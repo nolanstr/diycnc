@@ -1,0 +1,89 @@
+DIY CNC layout report
+=====================
+Travel X/Y/Z:                 180 / 300 / 140 mm
+Base footprint (= enclosure): 600 W x 724 D mm
+Enclosure frame:              600 W x 724 D x 766 H mm
+Overall incl. door, motors:   687 W x 872 D x 1024 H mm
+Table top height:             176 mm above casting underside
+Table top -> collet nut tip:  160 mm (Z up)
+Table top -> beam underside:  180 mm
+Tool tip above table, Z up:   130 mm (30 mm stickout)
+Tool tip above table, Z down: -10 mm
+Beam face -> spindle axis:    170 mm (overhang)
+Gap between uprights:         370 mm
+
+Epoxy granite volume:         43.9 L
+Casting mass:                 103 kg (228 lb)
+  Base front:                  11.4 L   26.7 kg
+  Base rear:                   16.9 L   39.8 kg
+  Upright L:                    3.1 L    7.4 kg
+  Upright R:                    3.1 L    7.4 kg
+  Beam:                         9.4 L   22.0 kg
+Cast-in steel + joint hardware: 22.3 kg
+Epoxy needed (~10% by mass): 10.3 kg
+
+Linear motion / plate BOM
+-------------------------
+  Y table  HGR15 rail x2 + HGH15CA block x4                     600 mm                               buy
+  Y table  SFU1605 ballscrew + BK12/BF12 + housing + coupler    550 mm                               buy
+  X beam   HGR15 rail x2 + HGH15CA block x4                     400 mm                               OWNED
+  X beam   SFU1204 ballscrew + BK10/BF10 + housing + coupler    400 mm                               OWNED
+  Z        HGR15 rail x2 + HGH15CA block x4                     300 mm                               buy
+  Z        SFU1204 ballscrew + BK10/BF10 + housing + coupler    300 mm                               buy
+  X beam   NEMA 23 bracket for BK10                             1 pc                                 OWNED
+  Z        NEMA 23 bracket for BK10                             1 pc                                 buy
+  Y table  NEMA 23 bracket for BK12                             1 pc                                 buy
+  X, Y     NEMA 23 closed loop 23HS30-5004D-E1000 + CL57T driver 2 pcs                                buy
+  Z        NEMA 23 open loop (modeled as 23HS30-3004S)          1 pc                                 OWNED
+  Y table  DSG16H nut housing                                   1 pc                                 buy (comes in SFU1605 kits)
+  X, Z     DSG12H (24 mm bore) nut housing                      2 pcs                                X OWNED, Z buy
+  spindle  GDZ80-2.2 water-cooled ER20 + VFD + 80 mm cast clamp 1 set                                buy
+  all      MIC6 plate: table                                    260 x 320 x 3/4 in, M6 grid 10x12 @ 25 buy
+  all      MIC6 plate: X carriage                               170 x 410 x 5/8 in                   buy
+  all      MIC6 plate: Z plate                                  150 x 300 x 5/8 in                   buy
+  all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
+  all      Leveling feet M12                                    4 pcs                                buy
+  enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy
+  frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 18 (riser hold-downs); M6 x 15 long: 6 (Y BK/BF on the base) buy
+  frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 2 pads (~4 in of bar), 6 tapped holes buy
+  frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
+  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 14 mm holes per tube) buy
+  frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 12 in (posts), 2 x 6 in (spigots), 4 x 6 in (legs) buy
+  frame    Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs ~270 g                               PRINT
+  frame    Steel plate 3/8 in, cut to size by the supplier (upright tops) 2 x 68 x 168                         buy
+  frame    M12 rod + coupling nut + nut/washer                  4 x 293 (uprights), 2 x 358 (base)   buy
+  frame    M10 x 150 cap screw + washer (beam)                  8 pcs                                buy
+  frame    Dowel pin 10 x 30                                    4 pcs                                buy
+  frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.2 m                                buy
+  frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
+  coolant  Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base 1                                    buy
+  coolant  Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep 1                                    buy
+  coolant  100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar 1 set                                buy / PRINT
+  coolant  Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output 1                                    buy
+  coolant  Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out 2.8 m                                buy
+  frame    Leg feet: printed plug + M12 nut bonded into each leg end (nuts from the M12 pack) 4 pcs                                PRINT
+  coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                buy
+  covers   Roll-up way cover: spring roller + 0.1 mm stainless strip 1x 250 wide, 2x 85 wide              buy or DIY
+  covers   Spiral ballscrew cover for the table screw           1                                    buy
+  covers   Drip shield over the beam rails, ACM offcut (or 1.5 mm stainless) 510 x 57                             buy
+  covers   Brush seal plates for the motor cutouts              2                                    buy
+  printed  Drag chain links, PETG: 38 x 21 outer, 20 pitch, R38 bend 17 + 2 end mounts                    PRINT
+
+Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)
+--------------------------------------------------------
+  PanelLeft          726 x 684 ACM 3 mm
+  PanelRight         726 x 684 ACM 3 mm
+  PanelBack          726 x 560 ACM 3 mm
+  PanelRoof          684 x 560 ACM 3 mm
+  DoorPanel          560 x 756 polycarbonate
+  2020 x 4          766 mm
+  2020 x 2          756 mm
+  2020 x 4          684 mm
+  2020 x 2          600 mm
+  2020 x 3          560 mm
+  2020 x 2          244 mm
+  2020 total         10.68 m
+
+Collision check (18 poses: X/Y at both ends + center, Z top/bottom; door closed, cutter excluded)
+--------------------------------------------------------------------------------------------------
+  No collisions.
