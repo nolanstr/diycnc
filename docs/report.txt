@@ -42,7 +42,7 @@ Linear motion / plate BOM
   all      MIC6 plate: X carriage                               170 x 410 x 5/8 in                   buy
   all      MIC6 plate: Z plate                                  150 x 300 x 5/8 in                   buy
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
-  all      Leveling feet 1/2-13                                 4 pcs                                buy
+  all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
   frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 18 (riser hold-downs); M6 x 15 long: 6 (Y BK/BF on the base) buy
   frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 2 pads (~4 in of bar), 6 tapped holes buy

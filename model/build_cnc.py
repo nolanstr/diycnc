@@ -965,7 +965,7 @@ def build():
         ('all', 'MIC6 plate: X carriage', f"{P['carriage_w']:.0f} x {z_flange - car_z0:.0f} x 5/8 in", 'buy'),
         ('all', 'MIC6 plate: Z plate', f"{P['zplate_w']:.0f} x {P['z_rail_len']:.0f} x 5/8 in", 'buy'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
-        ('all', 'Leveling feet 1/2-13', '4 pcs', 'buy'),
+        ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
         ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
         ('frame', 'Cast-in threaded inserts for epoxy (knurled brass or steel)',
          f"M5 x 12 long: {d['anchor_count'].get('insert_m5', 0)} (riser hold-downs); "
