@@ -45,7 +45,7 @@ SECTIONS = [
          '$6.56', 6.56, '', 'product page'),
         ('Cord splice glue', 'Cyanoacrylate', '1', 'Loctite 406, 20 g', A + 'B07H2YGBTJ',
          '$9.86', 9.86, '', 'product page'),
-        ('M5 cast-in inserts', '18 riser hold-downs (+11 enclosure in phase 2)', '1 (30)', 'uxcell knurled brass M5 x 16 mm', A + 'B07R7LL1SG',
+        ('M5 cast-in inserts', '18 riser hold-downs (+11 for the part 3 enclosure)', '1 (30)', 'uxcell knurled brass M5 x 16 mm', A + 'B07R7LL1SG',
          '$11.08', 11.08, 'Screw each to the mould floor with a greased screw so it ends up flush. Cast the enclosure inserts now too.', 'product page'),
         ('M6 cast-in inserts', '6 (Y BK12/BF12 on the base)', '1 (20)', 'Knurled brass M6 inserts (eBay)', 'https://www.ebay.com/itm/156778660033',
          '~$16', 16.11, 'Length not confirmed; 12-16 mm is fine', 'search snippet'),
