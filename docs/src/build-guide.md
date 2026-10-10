@@ -26,8 +26,9 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
   removed pressed against the mould), straightedge (at least 600 mm, ideally ground),
   feeler gauges, dial indicator with a magnetic base, precision level, torque wrench.
 - **Safety:** nitrile gloves and long sleeves for epoxy (skin sensitisation is permanent);
-  a P100 respirator when handling silica flour or fly ash and when grinding cured EG; eye
-  protection when cutting steel. Mix in a ventilated space.
+  an N95 dust mask when pouring the whiting; a P100 respirator when grinding or sanding cured
+  EG (the quartz sand and gravel in it make silica dust; work wet if you can); eye protection
+  when cutting steel. Mix in a ventilated space.
 - **3D printing (PETG):** the mould cores, formers and fillers, plus the parts that get cast in
   (socket liners, spigot sleeves, tube plugs, drain liner) and the machine's printed parts. All
   of it is in `print/`, split to fit a Bambu A1 mini, and listed in the print guide: about 80
@@ -66,7 +67,7 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
    acetone just before casting. If it will sit more than a day or two, give it a thin coat
    of epoxy primer. Paint only the part of each leg that will hang below the base (after
    casting).
-8. **Threaded rod and hardware:** cut the M12 rods (4 x 293 mm for the uprights, 2 x 358 mm
+8. **Threaded rod and hardware:** cut the M12 rods (per upright 2 x 293, 1 x 213 and 1 x 102 mm; 2 x 358 mm
    for the base draw rods), deburr the ends. Have the inserts ready: 18 x M5 (12-16 mm long) and
    6 x M6 x 15 mm cast-in inserts, plus 11 x M5 for the enclosure.
 
@@ -87,9 +88,9 @@ each casting is poured with its most important face down.
 
 | Casting | Face on the mould floor | Size (mm) | Mass |
 |---|---|---|---|
-| Base front | top face (coolant floor) | 600 x 345 x 110 | 26.7 kg |
-| Base rear | top face | 600 x 380 x 110 | 39.8 kg |
-| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 285 long, 246 tall | 7.4 kg each |
+| Base front | top face (coolant floor) | 600 x 345 x 110 | 34.5 kg |
+| Base rear | top face | 600 x 380 x 110 | 42.4 kg |
+| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 12.5 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 22 kg |
 
 The printed pieces (in `print/`, see the print guide) do everything a flat board can't:
@@ -98,7 +99,7 @@ The printed pieces (in `print/`, see the print guide) do everything a flat board
 |---|---|---|
 | Pocket cores (`core-*`) | in the base pockets, closed side down onto the wet skin | stay in |
 | Formers (`former-*`) | on the mould floor or wall: gutters, coolant trough, motor relief, gasket grooves | pull out |
-| Fillers (`filler-*`) | in the box corners: base corner radii, upright flare and back slope, beam back edge | pull out, reuse |
+| Fillers (`filler-*`) | in the box corners: base corner radii, beam back edge | pull out, reuse |
 | Plugs (`plug-*`) | upright tie-rod nut pockets | pull out |
 | Liners (`liner-*`, `cast-in-*`) | drain, sockets, spigot sleeves, tube plugs | stay in |
 
@@ -124,39 +125,42 @@ their sizes are in the print guide.
 - **Legs** (base, 35 mm cast in): stick up out of the open back of the mould. Hold them square
   with a plywood jig screwed across the mould. Plug the top (inside) end first.
 - **Drain nipple** (front half): screwed onto a greased fitting through the floor.
-- **Upright posts:** pass through holes in the mould floor (the mould stands on blocks); a
-  plywood jig underneath sets their spacing and squareness. The top plate is held flush with
-  the open top by a bridge. Greased 14 mm rods (or dowels wrapped in packing tape) form the
-  tie-rod holes, and the printed pocket plugs slide down them to form the nut pockets.
+- **Uprights:** the mould is two melamine side plates cut to the upright's profile (430 mm
+  foot, 246 mm tall, front sloping up to 190 mm long at the top), a back board, and a board
+  along the sloped front. The posts pass through holes in the floor (the mould stands on
+  blocks); a plywood jig underneath sets their spacing and squareness. The top plate is held
+  flush with the open top by a bridge. Greased 14 mm rods (or dowels wrapped in packing tape)
+  form the four tie-rod holes, two near the top and two through the sloped front, and the
+  printed pocket plugs slide down them to form the nut pockets.
 - **Beam:** the tubes are held by printed plugs bolted through the end walls, the two support
   pads are screwed to the floor, and greased 11.5 mm rods through the side walls form the
   cap-screw holes. Greased dowels form the dowel holes.
 - **Gutters, trough and gasket grooves:** printed or MDF formers screwed to the mould floor
   or walls.
 
-![Upright mould: posts, top plate and the printed flare filler](../../renders/build/05-mould-upright.png)
+![Upright: posts, top plate, tie rods and pocket plugs (orange)](../../renders/build/05-mould-upright.png)
 
 ![Beam mould: tubes, support pads, riser inserts and the back-edge fillers](../../renders/build/06-mould-beam.png)
 
 ## 3. Mixing and casting
 
-Use the graded mix (see the design notes): about 10 % epoxy, 10 % silica flour (or fly
-ash), 15 % fine sand, 20 % coarse sand, 20 % pea gravel 3-6 mm, 25 % gravel 6-10 mm, by
+Use the graded mix (see the design notes): about 10 % epoxy, 10 % whiting (calcium
+carbonate, 325 mesh, from a pottery supplier), 15 % fine sand, 20 % coarse sand, 20 % pea gravel 3-6 mm, 25 % gravel 6-10 mm, by
 weight. Tune it with a jar test before buying in bulk, and cast two or three test bars
 (50 x 50 x 200 mm). Cut one open: there should be no voids larger than a grain of sand.
 
 | Casting | Mix (10 %) | Epoxy |
 |---|---|---|
-| Base front | 26.7 kg | 2.7 kg |
-| Base rear | 39.8 kg | 4.0 kg |
-| Uprights | 2 x 7.4 kg | 2 x 0.75 kg |
+| Base front | 34.5 kg | 3.5 kg |
+| Base rear | 42.4 kg | 4.2 kg |
+| Uprights | 2 x 12.5 kg | 2 x 1.25 kg |
 | Beam | 22 kg | 2.2 kg |
 
 Add 5-10 % for waste.
 
 1. **Dry and clean** all aggregate. Weigh everything out per batch before opening the epoxy.
    Keep batches to what you can place within about half the epoxy's pot life (10-15 kg each).
-2. **Mix order:** epoxy resin + hardener (exact ratio, by weight), then silica flour until
+2. **Mix order:** epoxy resin + hardener (exact ratio, by weight), then the whiting until
    smooth, then the sands, then the gravel. Mix until every stone is wet and the colour is even.
 3. **Place in layers** of 30-40 mm. Vibrate each layer until the surface goes glossy and stops
    releasing bubbles, then add the next. Work the mix around the steel, inserts and cores with a
@@ -181,8 +185,9 @@ check the top-plate spacing against the beam mould.
    the two M12 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base
    with the feet.
 3. **Uprights:** glue the foot O-ring into each upright's groove. Drop the posts into the lined
-   sockets (the base dowel locates it), thread the tie rods into the coupling nuts, add washers
-   and nuts in the top pockets, and tighten to about 40-50 N·m.
+   sockets (the base dowel locates it); the foot runs forward across the base split. Thread the
+   four tie rods into the coupling nuts, add washers and nuts in the pockets (two at the top,
+   two in the sloped front), and tighten to about 40-50 N·m, working front to back.
 4. **Beam:** set it on the top plates over the dowels and fit the eight M10 x 150 cap screws.
    Before final torque (about 40 N·m into the 3/8 in plates), check the beam face is square to
    the base top with a square and a dial indicator. Shim under one top plate if needed.
@@ -209,7 +214,7 @@ form the joints.
 4. **X risers (beam face):** same, 100 mm apart. Make them parallel to the base top, checked
    with the indicator on the Y-axis table later, or now with a height gauge from the base top.
 5. Dam the ends and sides with tape or plasticine, and flow low-viscosity epoxy thickened with
-   a little silica flour underneath from one side until it comes out the other.
+   a little whiting underneath from one side until it comes out the other.
 6. After 48 h, torque the hold-downs to about 4 N·m (brass inserts) and recheck flatness.
 
 ![Risers and ballscrew supports in place](../../renders/build/10-risers-supports.png)

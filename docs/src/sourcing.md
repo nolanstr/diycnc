@@ -14,9 +14,9 @@ The same list is in `docs/sourcing.csv` for a spreadsheet.
 |---|---|---|
 | Motion and drives | $522.50 | 0 |
 | Spindle and electronics | $367.78 | 14 |
-| Castings and frame | $1,267.80 | 0 |
+| Castings and frame | $1,317.36 | 0 |
 | Enclosure, coolant and covers | $573.92 | 3 |
-| **Total** | **$2,732.00** | **17** |
+| **Total** | **$2,781.56** | **17** |
 
 The unpriced items are mostly the 120 V VFD, the electrical parts, the ACM sheet, the sump pump
 and the spiral cover. My rough estimate for them is another $450-750 (not checked), so the build comes to roughly $3.2-3.5k
@@ -28,17 +28,27 @@ and coolant ($574), the spindle and VFD, and the closed-loop motors ($162).
 
 **Cheapest places to cut:** buy the tube, top-plate steel and risers from a local steel yard
 (offcuts or full lengths you cut yourself; estimated ~$100-150 less than the listings here) and
-the silica flour from a pottery supplier (~$40 less); skip the flood coolant and enclosure at
+skip the flood coolant and enclosure at
 first (~$550, see the README cost section); AliExpress versions of the rails, ballscrews,
 spindle and VFD (often 30-50 % less, slower shipping). Retail cut-to-size shops (e.g. Metal
 Supermarkets) were checked and cost more than these listings, about $820 for the tube,
 risers and aluminium.
 
+**JLCMC and JLCCNC (checked 2026-10-10).** JLCMC list prices are about half of Amazon for
+rails and couplings (e.g. the Y rail pair $27.40), but US orders prepay a 55 % duty plus DHL
+shipping, so the whole motion order comes to about $250-300 against about $190 here. There is
+no ready-made SFU1204 (lead 4) kit, and the 1605 screw-end machining for BK12/BF12 is not
+confirmed. Worth adding the rails and couplers only to a JLC order you are placing anyway.
+JLCCNC machining of the three aluminium plates with all holes is estimated at $430-850
+delivered (90 % duty prepaid on machined aluminium) against $242 for blanks you drill yourself:
+only worth it for the X carriage if you want its hole pattern exact. JLC 3D printing of the
+mould parts costs several hundred dollars against $60-90 of PETG.
+
 ## Motion and drives
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Y rails + blocks | HGR15 x2 at 600 mm + 4x HGH15CA | 1 kit | [iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA](https://www.amazon.com/dp/B0GJZ7D9NG) | $55.99 | $55.99 | Used at full length, no cutting. The listing calls the blocks "aluminum", which is probably wrong: check them for play. |
+| Y rails + blocks | HGR15 x2 at 600 mm + 4x HGH15CA | 1 kit | [iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA](https://www.amazon.com/dp/B0GJZ7D9NG) | $55.99 | $55.99 | Used at full length, no cutting. The listing calls the blocks "aluminum", which is probably wrong: check them for play. JLCMC alt: 2x E-BHH15C-2-L600-ZA-C-E30 $27.40 + 55 % US duty prepaid + shipping. |
 | Z rails + blocks | HGR15 x2 at 300 mm + 4x HGH15CA | 1 kit | [BEVDICNC 2x HGR15-300 + 4x HGH15CA](https://www.amazon.com/dp/B0BYYJKBB5) | $35.69 | $35.69 | Alt: CNCMANS B09N73DY32 $34.98 |
 | Y ballscrew kit | SFU1605-550, BK12/BF12, DSG16H | 1 | [Ballscrew kit DSG16H + SFU1605-550 + BK/BF12](https://www.amazon.com/dp/B088ZF8R91) | $39.39 | $39.39 | Ships with a 6.35x10 coupler: use the 8x10 below |
 | Z ballscrew kit | SFU1204-300, BK10/BF10, DSG12H | 1 | [CNCYEAH SFU1204 300 mm kit](https://www.amazon.com/dp/B09MJ3T5JZ) | $32.69 | $32.69 | Ships with a 6.35x8 coupler: use the 8x8 below |
@@ -87,9 +97,9 @@ risers and aluminium.
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Epoxy | ~10.6 kg low-viscosity laminating epoxy | 1 (3 gal) | [US Composites 635 Thin, 2 gal + 1 gal (not Amazon)](https://www.uscomposites.com/epoxy.html) | $185.30 | $185.30 | About $15/kg. Amazon alt: TotalBoat 2:1 Slow 3 gal B07N98VC3Z $354.99. Avoid deep-pour casting resins. |
-| Fines | Silica flour 200-325 mesh, 10-15 kg | 1 (50 lb) | [Florock ground silica, 50 lb](https://www.amazon.com/dp/B00V7WOFAQ) | $94.37 | $94.37 | Mesh not stated. A pottery supplier sells 200 mesh for about half (e.g. $53 / 50 lb). Wear a respirator. |
-| Aggregate | ~106 kg graded sand + pea gravel | ~5 bags | [Quikrete sand + Vigoro pea gravel (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $40.00 | Buy locally. Wash and dry fully. |
+| Epoxy | ~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste | 1 (3 gal) + 1 small kit | [US Composites 635 Thin, 2 gal + 1 gal, plus a ~1 gal kit (not Amazon)](https://www.uscomposites.com/epoxy.html) | $185.30 + ~$60 | $245.30 | About $15/kg. The 3 gal kit is about 12.5 kg, just short with waste and test bars; the small kit price is an estimate. Avoid deep-pour casting resins. |
+| Fines | Whiting (calcium carbonate) 325 mesh, 10-15 kg | 1 (50 lb) | Pottery-supply whiting, 50 lb bag (not Amazon) | ~$30 | $30.00 | No crystalline silica (check the SDS: <0.1 %), so a basic N95 is enough. Avoid garden lime and talc. Replaces $94 of silica flour. |
+| Aggregate | ~112 kg graded sand + pea gravel | ~6 bags | [Quikrete sand + Vigoro pea gravel (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $48.00 | Buy locally. Wash and dry fully. |
 | Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz](https://www.amazon.com/dp/B0BQCZ8C3K) | $18.52 | $18.52 |  |
 | Mould release PVA | Partall Film #10 | 1 qt | [Partall PVA, quart](https://www.amazon.com/dp/B09MY7PZ6D) | $22.99 | $22.99 |  |
 | Square tube 2x2x1/8, 12 in | Base tubes (split sockets) | 4 | [Rocaris 2x2x1/8 steel square tube, 12 in](https://www.amazon.com/dp/B0FYPR4YJV) | $24.99 | $99.96 | Bought at length. Steel-yard remnants are cheaper (0.120 wall is fine). Plain steel, not galvanized. |
@@ -100,10 +110,10 @@ risers and aluminium.
 | Rail risers 3/4 x 1-1/4 CR | Y: 2x 600 mm | 2 | [Midwest Steel 1018 cold-rolled flat bar (not Amazon)](https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar) | ~$4.50/lb | $58.00 | Not on Amazon. Cut to length by Midwest (cut fee not included). |
 | Rail risers 5/8 x 1-1/4 CR | X: 2x 400, Z: 2x 300 mm | 4 | [Midwest Steel 1018 cold-rolled flat bar (not Amazon)](https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar) | ~$4.50/lb | $56.00 | Same |
 | Aluminium plates | Cast plate: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25 | 3 cut pieces | [Midwest ATP-5 / MIC-6 cast plate, cut to size (not Amazon)](https://www.midweststeelsupply.com/store/castaluminumplateatp5) | ~$242 | $242.00 | Amazon alt is about $458: 6061 3/4x12x18 B007B4XUFU $215.98 + 5/8x12x24 B0DYG69W17 $241.97 (12x12 is too small for the table). |
-| M12 threaded rod | 4x 293 + 2x 358 mm | 2 (1 m) | [M12-1.75 x 1 m plain steel rod](https://www.amazon.com/dp/B076HB72TW) | $28.96 | $57.92 | Cut with a hacksaw. Confirm it is one rod per order. |
-| M12 coupling nuts | 6 | 1 (8-pack) | [Hillman 44770 M12 coupling nut](https://www.amazon.com/dp/B00JDTZNXS) | $16.97 | $16.97 |  |
-| M12 nuts | 12 | 1 (20-pack) | [Hillman 2468 M12 hex nut](https://www.amazon.com/dp/B00HYLYWDE) | $8.92 | $8.92 |  |
-| M12 washers | 12 | 1 (25-pack) | [M12 flat washer, hardened](https://www.amazon.com/dp/B01GUEFWTS) | $11.84 | $11.84 |  |
+| M12 threaded rod | 4x 293, 2x 213, 2x 102, 2x 358 mm | 3 (1 m) | [M12-1.75 x 1 m plain steel rod](https://www.amazon.com/dp/B076HB72TW) | $28.96 | $86.88 | Cut with a hacksaw. Confirm it is one rod per order. |
+| M12 coupling nuts | 10 | 2 (8-pack) | [Hillman 44770 M12 coupling nut](https://www.amazon.com/dp/B00JDTZNXS) | $16.97 | $33.94 |  |
+| M12 nuts | 16 | 1 (20-pack) | [Hillman 2468 M12 hex nut](https://www.amazon.com/dp/B00HYLYWDE) | $8.92 | $8.92 |  |
+| M12 washers | 16 | 1 (25-pack) | [M12 flat washer, hardened](https://www.amazon.com/dp/B01GUEFWTS) | $11.84 | $11.84 |  |
 | M10 x 150 cap screws | 8, 12.9 | 2 (5-pack) | [Aexit M10x150 12.9](https://www.amazon.com/dp/B07MQS53Y2) | $23.53 | $47.06 | M10 washers: buy locally |
 | Dowel pins 10 x 30 | 4 (locating only) | 1 (14-pack) | [10 x 30 mm 304 stainless dowel / shelf pin, 14 pcs (Walmart)](https://www.walmart.com/ip/856431494) | $18.49 | $18.49 | They only locate the castings (the bolts and rods carry the load), so plain pins are fine. Was a $85 hardened 20-pack. |
 | Leveling feet | M12, ~40 kg each | 1 (4-pack) | [Antrader M12 leg levelers D60](https://www.amazon.com/dp/B09NS87SYW) | $23.99 | $23.99 |  |
@@ -120,7 +130,7 @@ risers and aluminium.
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
 | PETG filament | 1 kg | 1 | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $15.99 | Cable chain, socket liners, sleeves, plugs |
 
-**Priced subtotal: $1,267.80**
+**Priced subtotal: $1,317.36**
 
 ## Enclosure, coolant and covers
 
