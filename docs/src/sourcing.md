@@ -18,19 +18,19 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $777.17 |
+| 1 | Castings and hardware | $751.21 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
-| 2 | Controller and wiring | $262.12 |
+| 2 | Controller and wiring | $198.59 |
 | 3 | Enclosure and flood coolant | $436.05 |
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,264.42** |
-| **2. Electronics + spindle** | **$494.24** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
+| **1. Frame** | **$1,238.46** |
+| **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.66-3.06k** |
+| **Total** | **about $2.57-2.97k** |
 
 Shipping and tax are extra. Raka (epoxy), the whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -63,7 +63,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Nuts and washers | 1/2-13 nuts x16, 1/2 in grade 8 washers x16, 3/8 grade 8 washers x8 | 4 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$20 | $19.86 | Nuts 15-pack $4.89 + 4-pack $1.38; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
 | Beam bolts | 3/8-16 x 6 in grade 8 hex bolt | 8 | [Bolt Depot, grade 8 yellow zinc](https://www.boltdepot.com/Hex_bolts_Zinc_plated_grade_8_steel_yellow_3_8-16.aspx) | $1.96 | $15.68 | Shipping extra; a local fastener supplier may have them |
 | Dowel pins | 3/8 x 1-1/4 in | 1 (10-pack) | [Steel dowel pins (Zoro)](https://www.zoro.com/i/G410073219/) | $5.79 | $5.79 | They only locate the castings |
-| Leveling feet | 1/2-13, ~40 kg each | 4 | [S&W NYL B24 leveling mount (Zoro)](https://www.zoro.com/k/nyl-b24/) | $9.49 | $37.96 | Check the stud length. Cheaper: a 1/2-13 bolt and a rubber pad per leg. |
+| Feet | 1/2-13 x 2 in hex bolt + jam nut + rubber pad, per leg | 4 | Hardware store bolts + rubber anti-vibration pads | ~$12 | $12.00 | The bolt screws into the nut in each leg end; turn it to level, lock with the jam nut. Leveling mounts (S&W NYL B24, $9.49 each) if you prefer. |
 | O-ring cord | NBR 3 mm, 2.5 m | 1 (3 m) | [uxcell nitrile round strip 3 mm x 3 m](https://www.amazon.com/dp/B0CNKM7L8B) | $6.56 | $6.56 |  |
 | Cord splice glue | Cyanoacrylate | 1 | [Loctite 406, 20 g](https://www.amazon.com/dp/B07H2YGBTJ) | $9.86 | $9.86 |  |
 | M5 cast-in inserts | 18 riser hold-downs (+11 for the part 3 enclosure) | 1 (30) | [uxcell knurled brass M5 x 16 mm](https://www.amazon.com/dp/B07R7LL1SG) | $11.08 | $11.08 | Screw each to the mould floor with a greased screw so it ends up flush. Cast the enclosure inserts now too. |
@@ -74,7 +74,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
 | PETG filament | ~2.7 kg for the mould parts and liners | 3 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $47.97 | About 1.5 kg less if the pocket cores are cut from XPS foam instead |
 
-**Priced subtotal: $777.17**
+**Priced subtotal: $751.21**
 
 ## Part 1 - Frame: rails, screws and mechanics
 
@@ -129,14 +129,13 @@ the tube, risers and aluminium) also cost more than the sources here.
 | E-stop | 22 mm mushroom, latching, NC, in a box | 1 | [Generic 22 mm E-stop station (eBay)](https://www.ebay.com/itm/144182671837) | $22.39 | $22.39 | Wire it to cut drive enable and VFD run in hardware. Check it has an NC contact. |
 | Mains inlet | IEC C14 with switch + fuse | 1 | [IEC C14 inlet module (Walmart)](https://www.walmart.com/ip/115677799) | $7.99 | $7.99 | Often ships without the fuse: buy 5x20 mm fuses. |
 | Logic power supply | 24 V, 6.5 A | 1 | [Mean Well LRS-150-24 (TRC Electronics)](https://www.trcelectronics.com/products/mean-well-lrs-150-24) | $20.39 | $20.39 | Jameco about $18.80 |
-| Electrical box | 12x10x6 in, with backplate | 1 | [VEVOR steel IP65 enclosure 12x10x6](https://www.vevor.com/electrical-enclosure-c_10749/vevor-steel-electrical-box-electrical-enclosure-box-12x10x6-carbon-steel-ip65-p_010902284840) | $48.90 | $48.90 | Controller, drivers and supplies; the VFD mounts beside it. A plastic box saves about $25. |
-| Spindle cable | 14/4 shielded, 10 ft | 10 ft | [Wolf Automation SILFLEX 14/4 shielded](https://www.wolfautomation.com/cable/a6021404/) | $4.65/ft | $46.50 | Premium, by the foot; an Amazon 15 ft coil is likely $25-40. Shield to earth at the VFD end. |
-| Stepper/sensor cable | 4-conductor shielded, ~33 ft | 33 ft | [BuildYourCNC 4-conductor shielded cable](https://buildyourcnc.com/) | $0.49/ft | $16.17 | Check the gauge (18-14 AWG) and that it is stranded for the cable chain. |
+| Electrical box | ABS IP65, 11.8 x 9.8 x 4.7 in | 1 | [LeMotech ABS IP65 junction box 11.8x9.8x4.7](https://thrumsvet.co.uk/products/lemotech-abs-plastic-dustproof-waterproof-ip65-junction-box/223105279/) | $25.99 | $25.99 | Holds the controller, three drivers and both supplies on a plywood or aluminium backplate; the VFD mounts outside. Steel alt: VEVOR 12x10x6 $48.90. |
+| Motor, sensor and spindle cable | 4-conductor shielded, ~45 ft | 45 ft | [BuildYourCNC 4-conductor shielded cable](https://buildyourcnc.com/) | $0.49/ft | $22.05 | One spool for the steppers, switches and spindle: 18/4 shielded is enough for a 1.5-2.2 kW spindle (BuildYourCNC). Shield to earth at the VFD end. Check the gauge and that it is stranded for the cable chain. |
 | DIN rail + terminals | UK2.5B kit | 1 | [Erayco 20x UK2.5B + rail](https://www.amazon.com/dp/B0BX2W42S4) | $19.99 | $19.99 | May need more rail |
 | Cable glands | PG7-PG16 | 1 (25 pcs) | [Nylon cable gland kit (eBay)](https://www.ebay.com/itm/406955179899) | $13.80 | $13.80 |  |
 | (opt) Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Nice to have; add later |
 
-**Priced subtotal: $262.12**
+**Priced subtotal: $198.59**
 
 ## Part 2 - Electronics: spindle (pick one)
 

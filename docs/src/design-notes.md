@@ -179,8 +179,8 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,265**; **2, the
-electronics and spindle** about **$495** plus the spindle the builder picks ($250-375 for a 1.5 kW
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,240**; **2, the
+electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
 coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
 from a hardware store; the remnant prices are estimates. The estimate below was made
