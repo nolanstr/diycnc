@@ -1,19 +1,10 @@
-# DIY CNC model
+# Design notes
 
 Fixed-gantry, epoxy-granite desktop mill sized like the Shariff DMC2 Mini
 (180 x 300 x 140 mm travel), with a 2020/ACM enclosure mounted on the base and a clear lift-up door.
 
-| File | What it is |
-|---|---|
-| `build_cnc.py` | Layout, enclosure, collision check, report, document. All dimensions in `P`. |
-| `parts.py` | Component geometry built from the reference drawings below. |
-| `DIYCNC.FCStd` | Colored FreeCAD model. Edit `posX`, `posY`, `posZ`, `doorAngle` in the `Params` sheet to jog the axes and open the door; set `explode` (e.g. 180) to pull the frame apart, `sumpOut` (e.g. 300) to slide the coolant sump out. |
-| `DIYCNC.step` | Same assembly for Fusion 360, Onshape, Blender, etc. |
-| `report.txt` | Key dimensions, casting mass, BOM, enclosure cut list, collision results. |
-| `BUILD.md` | Step-by-step build: steel prep, moulds, casting, frame assembly, bedding the risers, axes, electronics, enclosure, commissioning. |
-| `fea/` | Frame stiffness model and the base topology optimization (see Stiffness study). |
-| `sourcing.md`, `sourcing.csv` | Parts to buy, with Amazon (and a few other) listings and prices checked 2026-10-09. |
-| `renders/` | Snapshots, including the coolant system, way covers, cable chain, nozzles, Z axis and table drive. `frame_bare*`, `frame_section_*` and `gasket_*` show the castings on their own, with the gaskets drawn in blue (the real cord is black) and the printed liners, sleeves and plugs in orange. |
+This document explains the design: the frame, the coolant system, the stiffness study and
+the cost. The repository layout and the rebuild commands are in the top-level `README.md`.
 
 ## Frame
 
@@ -45,7 +36,7 @@ part of each leg that hangs below the base.
   everywhere else. The 70 mm front wall carries the coolant trough. Every pocket is open
   to the bottom, so the cores (printed shells or foam blocks) pull straight out; a few are
   shallow steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and
-  outboard of the sockets (`base_pockets` in `build_cnc.py`).
+  outboard of the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are printed PETG liners cast into the base, not steel tube.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and silica flour or fly ash) and vibrate it. A good mix gets to
@@ -58,7 +49,7 @@ rail, between its own screws) into cast-in inserts: 5 per riser on the base (Y),
 (X). The Y ballscrew supports (BK12/BF12) bolt into M6 inserts in the base top. The X supports
 (BK10/BF10) sit over the front beam tube, where an insert won't fit, so they bolt to two
 1/4 in steel pads cast flush into the beam face and bearing on the tube. The Z axis mounts on
-the aluminium plates and needs no inserts. See `BUILD.md`.
+the aluminium plates and needs no inserts. See the build guide.
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;
@@ -69,7 +60,7 @@ sockets, tighten the tie rods), beam (cap screws), axes, enclosure. To break it 
 take the X and Y motors off first (they pass through the enclosure panels), then
 reverse the order. Heaviest piece: the rear base half.
 
-## Stiffness study (`fea/`)
+## Stiffness study (`analysis/`)
 
 A finite-element model of the frame was used to see where the epoxy granite does the most
 good, and a topology optimization was run on the base.
@@ -104,7 +95,7 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   about 75 / 25 / 85 % in X / Y / Z, and making the base rigid about 70 / 70 / 35 %. The
   uprights are only 3.1 L each, so per litre they're the next place to add material (wider
   or deeper, which also grows the base and the enclosure).
-- The optimization (`fea/topopt.py`, pockets open to the bottom) puts the base material
+- The optimization (`analysis/topopt.py`, pockets open to the bottom) puts the base material
   into girders under the rails, a tie between them behind the split and knees to the
   sockets, and takes it out of the perimeter walls, the cross rib at the split and the
   skin. The castable version drawn here has the same volume as before (28.4 L) and is 5 %
@@ -119,7 +110,7 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   with closed box sections (lost foam cores) is only about 8 % stiffer than open pockets
   at the same volume, which isn't worth the trouble.
 
-Figures in `fea/figs` (and `renders/frame_base_underside.png`): `base_current.png` (the
+Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `base_current.png` (the
 previous base), `base_final.png` (solid depth from the top
 in each column), `base_pocket_*` and `base_free_*` (optimization results at 18-28.5 L), and
 `tradeoff.png` (base stiffness against base volume).
@@ -128,8 +119,8 @@ Rerun it with a Python that has numpy, scipy, matplotlib and scikit-sparse 0.5 o
 (older scikit-sparse falls back to a much slower solver):
 
 ```sh
-/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd cad/fea/voxelize.py   # -> fea/vox_current.*
-cd cad/fea
+/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/voxelize.py   # -> analysis/vox_current.*
+cd analysis
 python baseline.py                                  # stiffness and each module's share (about 1 min)
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
@@ -138,7 +129,7 @@ FEA_VOX=vox_current python whatif.py                # stiffness of the model as 
 
 `vox_current` is whatever `build_cnc.py` draws now (`voxelize.py` rewrites it);
 `vox_previous` is the frame before these changes, which the optimizations and the
-"previous design" numbers above use. `VOX_P='{"beam_d": 160}' VOX_OUT=fea/vox_test` on the
+"previous design" numbers above use. `VOX_P='{"beam_d": 160}' VOX_OUT=analysis/vox_test` on the
 voxelize command tries a parameter change.
 
 ## Chips and coolant
@@ -170,7 +161,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 ## Cost
 
-**Checked against real listings (2026-10-09, `sourcing.md`): about $2,730 for the priced items,
+**Checked against real listings (2026-10-09, the sourcing list): about $2,730 for the priced items,
 plus 17 unpriced ones, so roughly $3.1-3.4k at Amazon prices.** Buying the tube, plate and
 risers from a local steel yard should take roughly another $100-150 off. The estimate below was made
 before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
@@ -211,18 +202,6 @@ Bigger savings mean giving something up. Options, roughly in order of impact:
 - **1.5 kW 110 V spindle** instead of the 2.2 kW you can upgrade to 240 V later:
   about $40-70 cheaper, less power for steel.
 - **Open-loop motors** on X/Y: about $60-80 cheaper, but you lose stall and crash detection.
-
-## Rebuilding
-
-```sh
-# collision check + report only
-/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd cad/build_cnc.py
-
-# full rebuild: model, STEP, renders (opens and closes a FreeCAD window)
-CNC_SNAPSHOTS=1 /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/cad/build_cnc.py"
-```
-
-Or in FreeCAD: Macro > Macros... > `build_cnc.py` > Execute.
 
 ## Reference dimensions
 

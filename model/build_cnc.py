@@ -6,10 +6,10 @@ geometry (rails, blocks, ballscrew hardware, motors, spindle) lives in parts.py.
 The frame is five bolt-together epoxy-granite castings with cast-in steel, and the
 enclosure bolts to the base top.
 
-Headless (collision check + report.txt only):
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd cad/build_cnc.py
+Headless (collision check, docs/report.txt and the print/ STLs):
+    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd model/build_cnc.py
 In the FreeCAD GUI (also rebuilds the colored DIYCNC.FCStd and DIYCNC.step):
-    Macro > Macros... > select cad/build_cnc.py > Execute
+    Macro > Macros... > select model/build_cnc.py > Execute
 
 Edit P below and re-run. In the GUI, jog the axes and open the door by editing
 posX / posY / posZ / doorAngle in the Params spreadsheet.
@@ -34,11 +34,14 @@ try:
     HERE = os.path.dirname(os.path.abspath(__file__))
 except NameError:
     HERE = os.getcwd()
+ROOT = os.path.dirname(HERE)          # repository root: docs/, renders/, print/ live here
 if HERE not in sys.path:
     sys.path.insert(0, HERE)
+import moulds  # noqa: E402
 import parts  # noqa: E402
 
 importlib.reload(parts)  # pick up edits when re-run inside one GUI session
+importlib.reload(moulds)
 
 # --------------------------------------------------------------------------
 # Parameters (mm)
@@ -74,7 +77,7 @@ P = dict(
     motor_x='23HS30-5004D-E1000', motor_y='23HS30-5004D-E1000', motor_z='23HS30-3004S',
 
     # Epoxy-granite castings: base (front + rear halves), two uprights, beam
-    # The base's underside pockets follow a topology optimization (fea/, see base_pockets).
+    # The base's underside pockets follow a topology optimization (analysis/, see base_pockets).
     base_h=110.0, base_corner_r=40.0, base_split_y=0.0, split_wall=15.0,
     base_core_skin=25.0,    # top skin over the pockets
     base_girder_w=80.0,     # full-depth girder under each table rail, rail tube in the middle
@@ -348,10 +351,10 @@ def chamfered(x0, x1, y0, y1, c):
 
 
 def base_pockets(g):
-    """Underside pockets of the base: (outline [(x, y), ...], pocket top z). All open to the
+    """Underside pockets of the base: (outline [(x, y), ...], pocket top z, name). All open to the
     bottom, so the cores (printed shells or foam) pull straight out.
 
-    The layout follows the topology optimization in fea/ (see README): two full-depth girders
+    The layout follows the topology optimization in analysis/ (see the design notes): two full-depth girders
     under the table rails, a full-depth tie between them behind the split, solid knees from
     the girders out to the upright sockets, and thin skin nearly everywhere else.
     """
@@ -362,22 +365,64 @@ def base_pockets(g):
     yf0, yf1 = y0 + P['base_front_wall'], g['split'] - P['split_wall']
     tie = g['split'] + P['base_tie']
     ry = g['rod_y']
-    out = [(chamfered(-gi, gi, yf0, yf1, 10.0), zp),          # front, between the girders
-           (chamfered(-gi, gi, tie, 245.0, 30.0), zp)]        # rear, between the girders
+    out = [(chamfered(-gi, gi, yf0, yf1, 10.0), zp, 'centre'),          # front, between the girders
+           (chamfered(-gi, gi, tie, 245.0, 30.0), zp, 'centre')]        # rear, between the girders
     for sx in (-1, 1):
         side = [
-            (chamfered(go, half - 40.0, yf0, yf1, 10.0), zp),                   # front, outboard
-            (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0),           # under the coolant trough band
-            (chamfered(half - 45.0, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0),    # under the front draw rods
-            ([(140.0, 15.0), (half - 45.0, 15.0), (half - 45.0, 95.0)], zp),     # rear, ahead of the uprights
-            (chamfered(go, g['inner'] - 5.0, tie, 318.0, 10.0), 40.0),          # under the knee, inboard of the sockets
-            (chamfered(g['outer'] - 8.0, half - 8.0, 60.0, ry - 32.0, 8.0), 65.0),   # outboard of the sockets,
-            (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0),  # either side of the coupler
-            (chamfered(60.0, 230.0, 318.0, y1 - 10.0, 10.0), zp),               # behind the sockets
+            (chamfered(go, half - 40.0, yf0, yf1, 10.0), zp, 'outboard'),                 # front, outboard
+            (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0, 'trough-band'),      # under the coolant trough band
+            (chamfered(half - 45.0, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),  # under the front draw rods
+            ([(140.0, 15.0), (half - 45.0, 15.0), (half - 45.0, 95.0)], zp, 'triangle'),   # rear, ahead of the uprights
+            (chamfered(go, g['inner'] - 5.0, tie, 318.0, 10.0), 40.0, 'knee'),            # under the knee, inboard of the sockets
+            (chamfered(g['outer'] - 8.0, half - 8.0, 60.0, ry - 32.0, 8.0), 65.0, 'outer-a'),   # outboard of the sockets,
+            (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),  # either side of the coupler
+            (chamfered(60.0, 230.0, 318.0, y1 - 10.0, 10.0), zp, 'rear'),                 # behind the sockets
         ]
-        for poly, z in side:
+        for poly, z, name in side:
             pts = [(sx * x, y) for x, y in poly]
-            out.append((pts if sx > 0 else pts[::-1], z))
+            out.append((pts if sx > 0 else pts[::-1], z, f"{name}-{'R' if sx > 0 else 'L'}"))
+    return out
+
+
+def base_envelope(g, front, edges=True):
+    """Outside shape of a base half, before any cuts (the mould cavity). edges=False leaves off the
+    small edge rounds (the mould fillers only need the big corner radii)."""
+    half, base_top, ys = g['base_half'], g['base_top'], g['split']
+    ya, yb = (g['base_y0'], ys) if front else (ys, g['base_y1'])
+    outer_y = ya if front else yb
+    blk = parts.box(-half, half, ya, yb, 0, base_top)
+    blk = parts.soften(blk, P['base_corner_r'], lambda e: parts.parallel((0, 0, 1))(e) and on_y(outer_y)(e))
+    if not edges:
+        return blk
+    blk = fillet_safe(blk, (P['edge_r'], 3.0), lambda e: on_z(base_top)(e) and not on_y(ys)(e))
+    return fillet_safe(blk, (2.0,), lambda e: on_z(0.0)(e) and not on_y(ys)(e))
+
+
+def base_top_formers(g, front):
+    """Recesses in a base half's top face (named solids): the side gutters, the coolant trough
+    (front) and the table-motor relief (rear). Cut from the casting; printed as mould formers."""
+    half, base_top, ys = g['base_half'], g['base_top'], g['split']
+    ya, yb = (g['base_y0'], ys) if front else (ys, g['base_y1'])
+    out = []
+    # Coolant floor: a trough across the front, falling toward the outlet, fed by side gutters
+    # that run between the uprights and the enclosure walls.
+    gx0, gx1 = half - 35.0, half - 20.0
+    gy0, gy1 = g['base_y0'] + 20.0, g['base_y1'] - 20.0
+    side = [(gy0, base_top + 1), (gy0, base_top - 15), (gy1, base_top - 8), (gy1, base_top + 1)]
+    for sx in (-1, 1):
+        xa = min(sx * gx0, sx * gx1)
+        gutter = Part.Face(Part.makePolygon([Vector(xa, y, z) for y, z in side] + [Vector(xa, *side[0])])).extrude(
+            Vector(gx1 - gx0, 0, 0))
+        out.append((f"gutter-{'R' if sx > 0 else 'L'}", gutter.common(parts.box(-half, half, ya, yb, 0, base_top + 1))))
+    if front:
+        ox = g['outlet'][0]
+        trough = [(-gx1, base_top + 1), (-gx1, base_top - 15), (ox, base_top - 25), (gx1, base_top - 18), (gx1, base_top + 1)]
+        out.append(('trough', Part.Face(Part.makePolygon([Vector(x, gy0, z) for x, z in trough] +
+                                                         [Vector(trough[0][0], gy0, trough[0][1])])).extrude(Vector(0, 35.0, 0))))
+    else:
+        # relief under the table motor, which hangs off the back below the base top
+        c = P['motor_cutout'] / 2
+        out.append(('motor-relief', parts.box(-c, c, g['y_bk'], yb + 1, base_top - 8, base_top + 1)))
     return out
 
 
@@ -387,15 +432,11 @@ def base_half(m, g, st, front):
     half, base_top, ys = g['base_half'], g['base_top'], g['split']
     ya, yb = (g['base_y0'], ys) if front else (ys, g['base_y1'])
     tag, cont = ('Front', 'FrameBaseFront') if front else ('Rear', 'FrameBaseRear')
-    outer_y = ya if front else yb
-    blk = parts.box(-half, half, ya, yb, 0, base_top)
-    blk = parts.soften(blk, P['base_corner_r'], lambda e: parts.parallel((0, 0, 1))(e) and on_y(outer_y)(e))
-    blk = fillet_safe(blk, (P['edge_r'], 3.0), lambda e: on_z(base_top)(e) and not on_y(ys)(e))
-    blk = fillet_safe(blk, (2.0,), lambda e: on_z(0.0)(e) and not on_y(ys)(e))
+    blk = base_envelope(g, front)
 
     s2 = P['table_rail_spacing'] / 2
     cuts = []
-    for poly, z_top in base_pockets(g):
+    for poly, z_top, _ in base_pockets(g):
         if (sum(y for _, y in poly) / len(poly) < ys) == front:
             face = Part.Face(Part.makePolygon([Vector(x, y, -1) for x, y in poly + poly[:1]]))
             cuts.append(face.extrude(Vector(0, 0, z_top + 1)))
@@ -435,20 +476,9 @@ def base_half(m, g, st, front):
             cuts += [env, parts.cyl_v(7.0, ys - 1, ys + 11, dx, dz)]
             st.add(f'DrawRodCoupler{side}', cont, env.cut(parts.cyl_v(6.0, ys, ys + 50, dx, dz)), 'steel')
 
-    # Coolant floor: a trough across the front, falling toward the outlet, fed by side gutters
-    # that run between the uprights and the enclosure walls.
-    gx0, gx1 = half - 35.0, half - 20.0
-    gy0, gy1 = g['base_y0'] + 20.0, g['base_y1'] - 20.0
-    side = [(gy0, base_top + 1), (gy0, base_top - 15), (gy1, base_top - 8), (gy1, base_top + 1)]
-    for sx in (-1, 1):
-        xa = min(sx * gx0, sx * gx1)
-        cuts.append(Part.Face(Part.makePolygon([Vector(xa, y, z) for y, z in side] + [Vector(xa, *side[0])])).extrude(
-            Vector(gx1 - gx0, 0, 0)))
+    cuts += [shape for _, shape in base_top_formers(g, front)]
     if front:
         ox, oy = g['outlet']
-        trough = [(-gx1, base_top + 1), (-gx1, base_top - 15), (ox, base_top - 25), (gx1, base_top - 18), (gx1, base_top + 1)]
-        cuts.append(Part.Face(Part.makePolygon([Vector(x, gy0, z) for x, z in trough] + [Vector(trough[0][0], gy0, trough[0][1])])).extrude(
-            Vector(0, 35.0, 0)))
         # drain: straight down through the front wall to a cast-in brass nipple over the chip basket
         cuts += [Part.makeCylinder(7.0, base_top - 25 + 1, Vector(ox, oy, 0)),
                  parts.hexagon(22.0, -0.5, 12.5, ox, oy)]
@@ -477,9 +507,6 @@ def base_half(m, g, st, front):
                 Part.makeCylinder(2.5, 14.0, Vector(bx, by, base_top - 13))), 'brass')
 
     if not front:
-        # relief under the table motor, which hangs off the back below the base top
-        c = P['motor_cutout'] / 2
-        cuts.append(parts.box(-c, c, g['y_bk'], yb + 1, base_top - 8, base_top + 1))
         sock_s, sock_w = P['socket_liner']
         for sx, side in ((-1, 'L'), (1, 'R')):
             for i, py in enumerate(g['post_ys']):
@@ -530,10 +557,8 @@ def foot_gasket(g, sx):
     return ring, 2 * ((x1 - x0) + (y1 - y0))
 
 
-def upright(m, g, st, sx):
-    """Upright casting: posts drop into the base sockets, tie rods pull it down, the beam bolts to its top plate."""
-    tag = 'L' if sx < 0 else 'R'
-    cont = f'FrameUpright{tag}'
+def upright_envelope(g, sx, edges=True):
+    """Outside shape of an upright, before any cuts (the mould cavity)."""
     inner, outer, base_top, beam_bot = g['inner'], g['outer'], g['base_top'], g['beam_bot']
     up_y0, up_y1 = g['up_y0'], g['up_y1']
     flare, lip = P['upright_flare'], P['upright_lip']
@@ -542,14 +567,25 @@ def upright(m, g, st, sx):
     back = min(up_y1 + 35.0, g['base_y1'])
     cy, cz, r = up_y0 - flare, base_top + lip + flare, flare
     mid = P3(cy + r * 0.70710678, cz - r * 0.70710678)
-    edges = [Part.LineSegment(P3(cy, base_top), P3(back, base_top)).toShape(),
+    outline = [Part.LineSegment(P3(cy, base_top), P3(back, base_top)).toShape(),
              Part.LineSegment(P3(back, base_top), P3(up_y1, beam_bot)).toShape(),
              Part.LineSegment(P3(up_y1, beam_bot), P3(up_y0, beam_bot)).toShape(),
              Part.LineSegment(P3(up_y0, beam_bot), P3(up_y0, cz)).toShape(),
              Part.Arc(P3(up_y0, cz), mid, P3(cy, base_top + lip)).toShape(),
              Part.LineSegment(P3(cy, base_top + lip), P3(cy, base_top)).toShape()]
-    up = Part.Face(Part.Wire(edges)).extrude(Vector(P['upright_t'], 0, 0))
-    up = fillet_safe(up, (P['edge_r'], 4.0, 2.0), lambda e: not on_z(base_top)(e))
+    up = Part.Face(Part.Wire(outline)).extrude(Vector(P['upright_t'], 0, 0))
+    if not edges:
+        return up
+    return fillet_safe(up, (P['edge_r'], 4.0, 2.0), lambda e: not on_z(base_top)(e))
+
+
+def upright(m, g, st, sx):
+    """Upright casting: posts drop into the base sockets, tie rods pull it down, the beam bolts to its top plate."""
+    tag = 'L' if sx < 0 else 'R'
+    cont = f'FrameUpright{tag}'
+    inner, outer, base_top, beam_bot = g['inner'], g['outer'], g['base_top'], g['beam_bot']
+    up_y0, up_y1 = g['up_y0'], g['up_y1']
+    up = upright_envelope(g, sx)
 
     plate_t = P['top_plate_t']
     post_s, post_w = P['post_tube']
@@ -589,14 +625,23 @@ def upright(m, g, st, sx):
     return shape.Volume
 
 
+def beam_envelope(g, edges=True):
+    """Outside shape of the beam, before any cuts (the mould cavity)."""
+    outer, bf, bot, top = g['outer'], g['beam_face'], g['beam_bot'], g['beam_top']
+    by1 = bf + P['beam_d']
+    shape = parts.box(-outer, outer, bf, by1, bot, top)
+    shape = fillet_safe(shape, (P['beam_back_r'], 30.0), lambda e: parts.parallel((1, 0, 0))(e) and on_y(by1)(e))
+    if not edges:
+        return shape
+    return fillet_safe(shape, (P['edge_r'], 3.0), lambda e: all(abs(abs(v.Point.x) - outer) < 1e-6 for v in e.Vertexes))
+
+
 def beam(m, g, st):
     """Beam casting: two tubes span the uprights; four M10 cap screws and a dowel per side."""
     outer, inner, bf = g['outer'], g['inner'], g['beam_face']
     bot, top = g['beam_bot'], g['beam_top']
     by1 = bf + P['beam_d']
-    shape = parts.box(-outer, outer, bf, by1, bot, top)
-    shape = fillet_safe(shape, (P['beam_back_r'], 30.0), lambda e: parts.parallel((1, 0, 0))(e) and on_y(by1)(e))
-    shape = fillet_safe(shape, (P['edge_r'], 3.0), lambda e: all(abs(abs(v.Point.x) - outer) < 1e-6 for v in e.Vertexes))
+    shape = beam_envelope(g)
     tube_s, tube_w = P['frame_tube']
     cz = (bot + top) / 2
     cuts = []
@@ -713,6 +758,74 @@ def cast_anchors(m, d):
         p['shape'] = p['shape'].cut(hs)
         p['proxy'] = [p['shape']]
     d['anchor_count'] = count
+
+
+MOULD_GROUPS = {'base-front': 'MouldBaseFront', 'base-rear': 'MouldBaseRear', 'upright': 'MouldUpright',
+                'beam': 'MouldBeam'}
+CASTING_FOLDERS = {'FrameBaseFront': 'base-front', 'FrameBaseRear': 'base-rear', 'FrameUprightL': 'upright',
+                   'FrameBeam': 'beam'}
+
+
+def mould_parts(m, d):
+    """Printed mould pieces and printed cast-in parts: (folder, name, shape, kind, qty, note).
+    The two uprights are identical, so their pieces are listed once with qty 2."""
+    g = frame_layout(d)
+    out = []
+    top = g['base_top']
+    for front, folder in ((True, 'base-front'), (False, 'base-rear')):
+        for poly, z_top, name in base_pockets(g):
+            if (sum(y for _, y in poly) / len(poly) < g['split']) == front:
+                out.append((folder, name, moulds.shell_core(poly, z_top), 'core', 1,
+                            'Shell core, stays in the casting. Fill with dry sand while casting so it cannot float.'))
+        for name, shape in base_top_formers(g, front):
+            out.append((folder, name, shape.common(parts.box(-1e3, 1e3, -1e3, 1e3, 0, top)), 'former', 1,
+                        'Stick to the mould floor (the base is cast top-down), wax.'))
+        for i, f in enumerate(moulds.fillers(base_envelope(g, front, edges=False))):
+            out.append((folder, f'corner-{i + 1}', f, 'filler', 1, 'Rounded corner of the mould box; wax.'))
+    # drain liner (stays in): from the brass nipple up to the trough floor
+    ox, oy = g['outlet']
+    out.append(('base-front', 'drain', Part.makeCylinder(7.0, top - 25 - 12.0, Vector(ox, oy, 12.0)).cut(
+        Part.makeCylinder(5.0, top, Vector(ox, oy, 0))), 'liner', 1, 'Drain liner; sits on the nipple and stays in.'))
+    out.append(('base-front', 'split-gasket-groove', split_gasket(g)[0], 'former', 1,
+                'Stick to the split-face mould wall, wax.'))
+    sx = -1
+    mid_y = (g['up_y0'] + g['up_y1']) / 2
+    for f in moulds.fillers(upright_envelope(g, sx, edges=False)):
+        if f.BoundBox.Center.y < mid_y:
+            # only the curve is printed; above it a plain 70 mm block (wood/MDF) fills the box corner
+            cz = top + P['upright_lip'] + P['upright_flare']
+            out.append(('upright', 'front-flare', f.common(parts.box(-1e3, 1e3, -1e3, 1e3, top - 1, cz)), 'filler', 2,
+                        f"Forms the curved flare at the front of the foot; wax. Above it, fill the box corner with a "
+                        f"{P['upright_flare']:.0f} x {g['beam_bot'] - cz:.0f} x {P['upright_t']:.0f} mm wood block."))
+        else:
+            out.append(('upright', 'back-slope', f, 'filler', 2,
+                        'Forms the sloped back. Optional: a melamine board set at the same angle does the same job.'))
+    out.append(('upright', 'foot-gasket-groove', foot_gasket(g, sx)[0], 'former', 2,
+                'Stick to the mould floor (the upright is cast foot-down), wax.'))
+    pb, rod_r = g['pocket_bot'], 7.2
+    plug = Part.makeCylinder(16.0, g['beam_bot'] - pb, Vector(0, 0, pb)).cut(Part.makeCylinder(rod_r, 1e3, Vector(0, 0, 0)))
+    out.append(('upright', 'tie-rod-pocket', plug, 'plug', 4,
+                'Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.'))
+    for i, f in enumerate(moulds.fillers(beam_envelope(g, edges=False))):
+        out.append(('beam', f'back-edge-{i + 1}', f, 'filler', 1, 'Rounded back edge of the beam mould; wax.'))
+    # printed parts already in the model: cast-in liners, sleeves and plugs, and the machine's own
+    seen = {}
+    for p in m.parts:
+        if p['look'] != 'printed' or p['container'] == 'FrameUprightR':
+            continue
+        cast_in = p['name'] in m.structure
+        folder = CASTING_FOLDERS.get(p['container'], 'machine') if cast_in else 'machine'
+        bb = p['shape'].BoundBox
+        key = (folder, round(p['shape'].Volume), tuple(sorted(round(v) for v in (bb.XLength, bb.YLength, bb.ZLength))))
+        qty = 2 if folder == 'upright' else 1
+        if key in seen:
+            seen[key][4] += qty
+            continue
+        name = ''.join('-' + c.lower() if c.isupper() and i else c.lower() for i, c in enumerate(p['name'])).replace('--', '-')
+        row = [folder, name, p['shape'], 'cast-in' if cast_in else 'part', qty, 'Cast in, stays.' if cast_in else '']
+        seen[key] = row
+        out.append(row)
+    m.moulds = [tuple(r) for r in out]
 
 
 def build():
@@ -880,6 +993,7 @@ def build():
         ('printed', f"Drag chain links, PETG: {CHAIN['width']:.0f} x {CHAIN['height']:.0f} outer, {CHAIN['pitch']:.0f} pitch, "
                     f"R{CHAIN['radius']:.0f} bend", f"{CHAIN['links']} + 2 end mounts", 'PRINT'),
     ]
+    mould_parts(m, d)
     return m
 
 
@@ -1345,6 +1459,21 @@ def make_document(m, path):
         containers[dd['container']].addObject(obj)
         if App.GuiUp:
             style(obj, dd['look'])
+    # Printed mould pieces, hidden: shown in the build renders, left out of the STEP export.
+    mtop = doc.addObject('App::Part', 'Moulds')
+    for folder, name, shape, kind, qty, note in getattr(m, 'moulds', []):
+        if kind in ('cast-in', 'part'):
+            continue                     # already in the model as real parts
+        cname = MOULD_GROUPS[folder]
+        grp = doc.getObject(cname) or doc.addObject('App::Part', cname)
+        if grp.getParentGeoFeatureGroup() is None:
+            mtop.addObject(grp)
+        obj = doc.addObject('Part::Feature', f"{cname}_{kind}_{name}".replace('-', '_'))
+        obj.Shape = shape
+        grp.addObject(obj)
+        if App.GuiUp:
+            style(obj, 'printed')
+    mtop.Visibility = False
     doc.recompute()
     doc.saveAs(path)
     return doc
@@ -1353,7 +1482,8 @@ def make_document(m, path):
 def export_step(doc, path):
     try:
         import Import
-        tops = [o for o in doc.Objects if o.TypeId == 'App::Part' and o.getParentGeoFeatureGroup() is None]
+        tops = [o for o in doc.Objects if o.TypeId == 'App::Part' and o.getParentGeoFeatureGroup() is None
+                and o.Name != 'Moulds']
         Import.export(tops, path)
     except Exception as exc:
         print(f'STEP export failed: {exc}')
@@ -1431,6 +1561,31 @@ def snapshots(doc, out_dir, m):
         ('frame_base_underside', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
         ('gasket_base_split', (0, 0, 0), rear_iso, ('BaseFrontCasting',), dict(mode='bare', only=('FrameBaseFront',))),
+        # Build steps (renders/build/): cast-in steel, moulds, frame assembly, axes
+        ('build/01-steel-base-front', (0, 0, 0), iso, ('BaseFrontCasting',),
+         dict(mode='bare', only=('FrameBaseFront',), xray=True)),
+        ('build/02-mould-base-front', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseFrontCasting',),
+         dict(mode='bare', only=('FrameBaseFront',), xray=True, moulds=('MouldBaseFront',))),
+        ('build/03-steel-base-rear', (0, 0, 0), rear_iso, ('BaseRearCasting',),
+         dict(mode='bare', only=('FrameBaseRear',), xray=True)),
+        ('build/04-mould-base-rear', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseRearCasting',),
+         dict(mode='bare', only=('FrameBaseRear',), xray=True, moulds=('MouldBaseRear',))),
+        ('build/05-mould-upright', (0, 0, 0), lambda: look((0.8, 0.55, -0.45)), ('UprightLCasting',),
+         dict(mode='bare', only=('FrameUprightL',), xray=True, moulds=('MouldUpright',))),
+        ('build/06-mould-beam', (0, 0, 0), lambda: look((0.45, 0.8, -0.5)), ('BeamCasting',),
+         dict(mode='bare', only=('FrameBeam',), xray=True, moulds=('MouldBeam',))),
+        ('build/07-frame-base', (0, 0, 0), iso, ('BaseFrontCasting', 'BaseRearCasting'),
+         dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
+        ('build/08-frame-uprights', (0, 0, 0), iso, None,
+         dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear', 'FrameUprightL', 'FrameUprightR'))),
+        ('build/09-frame-beam', (0, 0, 0), iso, None, dict(mode='bare')),
+        ('build/10-risers-supports', (0, 0, 0), iso, None,
+         dict(mode='bare', extra=('Y_Riser', 'X_Riser', 'Y_BK12', 'Y_BF12', 'X_BK10', 'X_BF10'))),
+        ('build/11-rails-screws-motors', (0, 0, 0), iso, None,
+         dict(mode='bare', extra=('Y_Riser', 'X_Riser', 'Y_Rail', 'X_Rail', 'Y_BK12', 'Y_BF12', 'X_BK10', 'X_BF10',
+                                  'Y_Screw', 'X_Screw', 'Y_Coupler', 'X_Coupler', 'Y_Motor', 'X_Motor'))),
+        ('build/12-axes-spindle', (0, 0, 0), iso, None, {}),
+        ('build/13-enclosure-coolant', (0, 0, 0), iso, None, dict(enc=True, bench=True)),
         ('gasket_upright_foot', (0, 0, 0), lambda: look((0.55, 0.65, 0.75)), ('UprightLCasting',),
          dict(mode='bare', only=('FrameUprightL',))),
     )
@@ -1466,13 +1621,17 @@ def snapshots(doc, out_dir, m):
         for a in axes:
             a.Visibility = mode is None
         bare = mode == 'bare'
+        shown_moulds = o.get('moulds', ())
         for t in tops:
             if t not in (enc, bench) and t not in axes:
-                t.Visibility = not bare or t.Name == 'Frame'
+                t.Visibility = (not bare and t.Name != 'Moulds') or t.Name == 'Frame' or (
+                    t.Name == 'Moulds' and bool(shown_moulds))
         for f in features:
             parent = f.getParentGeoFeatureGroup()
-            f.Visibility = not bare or (f in structure and (
-                'only' not in o or (parent is not None and parent.Name in o['only'])))
+            in_only = 'only' not in o or (parent is not None and parent.Name in o['only'])
+            f.Visibility = (not bare or (f in structure and in_only)
+                            or ('extra' in o and f.Name.startswith(o['extra']) and in_only)
+                            or (parent is not None and parent.Name in shown_moulds))
         for c in castings:
             style(c, 'granite_hi' if bare else 'granite')
             c.ViewObject.Transparency = 75 if mode == 'xray' or o.get('xray') else 0
@@ -1485,6 +1644,7 @@ def snapshots(doc, out_dir, m):
             zoom_to(view, [doc.getObject(n) for n in focus])
         Gui.updateGui()
         path = os.path.join(out_dir, f'{name}.png')
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         view.saveImage(path, 2800, 2100, 'White')
         subprocess.run(['sips', '-Z', '1400', path], capture_output=True)
         for n, shp in saved.items():
@@ -1498,6 +1658,7 @@ def snapshots(doc, out_dir, m):
     enc.Visibility = bench.Visibility = True
     for a in axes + tops + features:
         a.Visibility = True
+    doc.getObject('Moulds').Visibility = False
     for gk in gaskets:
         style(gk, 'rubber')
     for c in castings:
@@ -1508,22 +1669,101 @@ def snapshots(doc, out_dir, m):
     doc.save()
 
 
+FOLDER_TITLES = [('base-front', 'Base, front half'), ('base-rear', 'Base, rear half'),
+                 ('upright', 'Uprights (both the same: print quantities are for two)'), ('beam', 'Beam'),
+                 ('machine', 'Machine parts')]
+
+
+def export_prints(m):
+    """STLs for every printed piece under print/, and docs/src/print-guide.md listing them."""
+    root = os.path.join(ROOT, 'print')
+    for dp, _, fn in os.walk(root):
+        for f in fn:
+            if f.endswith('.stl') or f == 'manifest.csv':
+                os.remove(os.path.join(dp, f))
+    rows = moulds.export(m.moulds, root)
+    d = m.dims
+    kinds = {'core': 'Pocket core (shell, stays in)', 'former': 'Former (removable)', 'filler': 'Corner filler (removable)',
+             'plug': 'Pocket plug (removable)', 'liner': 'Liner (stays in)', 'cast-in': 'Cast-in part (stays in)',
+             'part': 'Machine part'}
+    boxes = {'base-front': f"{2 * d['base_half']:.0f} x {-d['base_y0']:.0f} x {d['base_top']:.0f}",
+             'base-rear': f"{2 * d['base_half']:.0f} x {d['base_y1']:.0f} x {d['base_top']:.0f}",
+             'upright': f"{P['upright_t']:.0f} x {min(d['up_y1'] + 35.0, d['base_y1']) - (d['up_y0'] - P['upright_flare']):.0f}"
+                        f" x {d['beam_bot'] - d['base_top']:.0f}",
+             'beam': f"{2 * d['outer']:.0f} x {P['beam_d']:.0f} x {P['beam_h']:.0f}"}
+    faces = {'base-front': 'top face down', 'base-rear': 'top face down', 'upright': 'foot down',
+             'beam': 'front (rail) face down'}
+    total_g = sum(r['grams'] for r in rows)
+    total_n = sum(r['qty'] for r in rows)
+    lines = ['# Print guide', '',
+             'Every printed part for the castings and the machine, cut to fit a Bambu A1 mini',
+             f'(180 mm cube; no piece is over {moulds.BED:.0f} mm). The STL files are in `print/`, one folder per',
+             'casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.', '',
+             f'**About {total_n} prints, roughly {total_g / 1000:.1f} kg of PETG.** The filament figures are rough estimates.', '',
+             '## Settings', '',
+             '- **PETG for everything.** Thick sections of curing epoxy get warm, and PLA softens at about 55 °C.',
+             '- 0.4 mm nozzle, 0.2 mm layers.',
+             f'- **Cores** (`core-*`): thin shells, {moulds.WALL:.1f} mm walls, so they print solid with any infill setting. '
+             'They are already turned with the closed face on the bed.',
+             '- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 3 walls, 15 % infill.',
+             '- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 4 walls, 40 % infill.',
+             '- Anything named `-partNofM` was cut to fit the bed. Glue the parts edge to edge with CA or epoxy',
+             '  and tape over the seam. Check the joined piece against the drawing before casting.', '',
+             '## How the pieces are used', '',
+             '- The mould boxes are 18 mm melamine board, not printed: the flat board is what the important',
+             '  faces are cast against. Box sizes (inside) and casting orientation are in the table below.',
+             '- **Removable pieces** (formers, fillers, plugs): screw or hot-glue them to the board, then 3-5 coats',
+             '  of paste wax and PVA like the rest of the mould. Reuse the fillers for the second upright.',
+             '- **Pieces that stay in** (cores, liners, cast-in parts): no wax; scuff and degrease them so the',
+             '  epoxy grips. Cores float: fill them with dry sand and hold them down with a bridge across the mould.', '',
+             '| Casting | Mould box inside (mm) | Cast with |', '|---|---|---|']
+    lines += [f'| {t} | {boxes[k]} | {faces[k]} |' for k, t in FOLDER_TITLES if k in boxes]
+    lines += ['', '![Base rear mould: cores (orange) in the pockets](../../renders/build/04-mould-base-rear.png)', '',
+              '## Foam cores instead of printed ones', '',
+              f"The pocket cores are about {sum(r['grams'] for r in rows if r['kind'] == 'core') / 1000:.1f} kg of the PETG. "
+              'The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;',
+              'wrap them in packing tape and wax them. The corners are chamfered 8-10 mm (30 mm on the rear',
+              'centre core), and the triangles are right triangles. Glue foam cores to the bridge so they',
+              'cannot float. Sizes (outline x depth from the underside):', '',
+              '| Casting | Core | Outline (mm) | Depth (mm) |', '|---|---|---|---|']
+    for folder, name, shape, kind, qty, note in m.moulds:
+        if kind == 'core':
+            bb = shape.BoundBox
+            lines.append(f'| {folder} | {name} | {bb.XLength:.0f} x {bb.YLength:.0f} | {bb.ZLength:.0f} |')
+    lines.append('')
+    for key, title in FOLDER_TITLES:
+        sub = [r for r in rows if r['folder'] == key]
+        if not sub:
+            continue
+        lines += [f'## {title}', '', f'Folder `print/{key}/`, about {sum(r["grams"] for r in sub):.0f} g.', '',
+                  '| File | What | Qty | Size (mm) | Notes |', '|---|---|---|---|---|']
+        for r in sub:
+            lines.append(f"| `{r['file']}` | {kinds[r['kind']]} | {r['qty']} | {r['size']} | {r['note']} |")
+        lines.append('')
+    with open(os.path.join(ROOT, 'docs', 'src', 'print-guide.md'), 'w') as fh:
+        fh.write('\n'.join(lines))
+    print(f'print/: {len(rows)} STL files, about {total_g / 1000:.1f} kg PETG')
+
+
 def main():
     m = build()
     hits = collisions(m)
     text = report(m, hits)
     print(text)
-    with open(os.path.join(HERE, 'report.txt'), 'w') as fh:
+    with open(os.path.join(ROOT, 'docs', 'report.txt'), 'w') as fh:
         fh.write(text + '\n')
+    export_prints(m)
     if not App.GuiUp:
         return  # a headless save would drop the colors from DIYCNC.FCStd
     doc = make_document(m, os.path.join(HERE, 'DIYCNC.FCStd'))
     export_step(doc, os.path.join(HERE, 'DIYCNC.step'))
     if os.environ.get('CNC_SNAPSHOTS'):
-        img = os.path.join(HERE, 'renders')
+        img = os.path.join(ROOT, 'renders')
         os.makedirs(img, exist_ok=True)
-        for f in os.listdir(img):
-            os.remove(os.path.join(img, f))
+        for dp, _, fn in os.walk(img):
+            for f in fn:
+                if f.endswith('.png'):
+                    os.remove(os.path.join(dp, f))
         snapshots(doc, img, m)
         App.closeDocument(doc.Name)
         for f in os.listdir(HERE):

@@ -1,6 +1,6 @@
 """Evaluate optimized (or other) base designs over all load cases, and plot them.
 
-    FEA_VOX=vox_previous python evaluate.py to_*.npz    # stiffness table + figures in fea/figs
+    FEA_VOX=vox_previous python evaluate.py to_*.npz    # stiffness table + figures in analysis/figs
 
 The frame is FEA_VOX's; its own base is the reference ("current"). The base in COMPARE
 (default vox_current, the model as now drawn) is added as "final (CAD)".

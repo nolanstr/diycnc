@@ -1,9 +1,12 @@
-# Build instructions
+# Build guide
 
 How to build the machine in this folder: five epoxy-granite (EG) castings with cast-in steel,
 HGR15 rails on bedded steel risers, ballscrews on all three axes, a water-cooled spindle,
-and a 2020/ACM enclosure with flood coolant. Dimensions come from `build_cnc.py` /
-`report.txt`; parts and prices are in `sourcing.md`. Read the whole thing once before buying.
+and a 2020/ACM enclosure with flood coolant. Dimensions come from the model
+(`model/build_cnc.py`, summarised in `docs/report.txt`); parts and prices are in the sourcing
+list, and every printed part is in the print guide. Read the whole thing once before buying.
+
+![The finished machine, enclosure off](../../renders/build/12-axes-spindle.png)
 
 Measure the parts you actually have before cutting or casting anything, especially the
 rails, blocks, ballscrew kits and spindle clamp. Clone parts can differ from the catalogs by
@@ -25,9 +28,11 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **Safety:** nitrile gloves and long sleeves for epoxy (skin sensitisation is permanent);
   a P100 respirator when handling silica flour or fly ash and when grinding cured EG; eye
   protection when cutting steel. Mix in a ventilated space.
-- **3D printing (PETG):** socket liners (4), spigot sleeves (4), tube end plugs (12), the
-  cable chain, sump baffle and filter frame. Print the liners and sleeves first and test-fit
-  them on your actual tube.
+- **3D printing (PETG):** the mould cores, formers and fillers, plus the parts that get cast in
+  (socket liners, spigot sleeves, tube plugs, drain liner) and the machine's printed parts. All
+  of it is in `print/`, split to fit a Bambu A1 mini, and listed in the print guide: about 80
+  prints and 3.5 kg of PETG (about 1.5 kg less if you cut the pocket cores from foam). Print
+  the liners and sleeves first and test-fit them on your actual tube.
 
 ## 1. Buy and prepare the steel
 
@@ -45,7 +50,7 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
    or the upright top plates, 203 mm either side of the centre, on the cap-screw line).
 4. **Top plates** (3/8 in steel, 2 pieces 68 x 168 mm, ordered cut to size): drill and tap the four M10 beam-screw
    holes and the 10 mm dowel hole in each, and cut the tie-rod pockets (see
-   `renders/frame_section_uprights.png`). Do this before casting.
+   the section picture below). Do this before casting.
 5. **X support pads** (1/4 x 2-1/2 in flat bar, 2 pieces, about 49 and 36 mm long): drill and
    tap M6 at the BK10 and BF10 bolt positions (46 mm apart across the axis; along it, 13 mm
    apart for the BK10). These end up flush in the beam face and carry the X ballscrew bearings.
@@ -65,6 +70,14 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
    for the base draw rods), deburr the ends. Have the inserts ready: 18 x M5 (12-16 mm long) and
    6 x M6 x 15 mm cast-in inserts, plus 11 x M5 for the enclosure.
 
+![Section through the uprights: posts, sockets, tie rods and top plates](../../renders/frame_section_uprights.png)
+
+The cast-in steel, inserts and printed liners for each base half (castings drawn see-through):
+
+![Base front: steel and inserts](../../renders/build/01-steel-base-front.png)
+
+![Base rear: steel, sockets and inserts](../../renders/build/03-steel-base-rear.png)
+
 ## 2. Moulds and cores
 
 Use 18 mm melamine-faced board screwed together, with silicone fillets in the inside
@@ -79,11 +92,25 @@ each casting is poured with its most important face down.
 | Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 285 long, 246 tall | 7.4 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 22 kg |
 
+The printed pieces (in `print/`, see the print guide) do everything a flat board can't:
+
+| Printed piece | Where it goes | After casting |
+|---|---|---|
+| Pocket cores (`core-*`) | in the base pockets, closed side down onto the wet skin | stay in |
+| Formers (`former-*`) | on the mould floor or wall: gutters, coolant trough, motor relief, gasket grooves | pull out |
+| Fillers (`filler-*`) | in the box corners: base corner radii, upright flare and back slope, beam back edge | pull out, reuse |
+| Plugs (`plug-*`) | upright tie-rod nut pockets | pull out |
+| Liners (`liner-*`, `cast-in-*`) | drain, sockets, spigot sleeves, tube plugs | stay in |
+
 **Pocket cores (base).** The pockets in the base underside face up in the mould, so the cores
-sit on the cast top skin and come out the open back. Make them from XPS foam wrapped in
-packing tape and waxed, or as printed PETG shells. Give them 1-2° of draft. Cores float:
-screw a bridge across the mould top and wedge every core down. Pocket outlines and depths are
-in `base_pockets()` in `build_cnc.py` and in `renders/frame_base_underside.png`.
+sit on the cast top skin, 25 mm above the mould floor, with their open side up. The printed
+shells stay in the casting. Cores float: fill them with dry sand and screw a bridge across the
+mould top to hold every core down. Foam cores (XPS wrapped in packing tape and waxed) work too;
+their sizes are in the print guide.
+
+![Base front mould from underneath: steel, inserts and cores (orange)](../../renders/build/02-mould-base-front.png)
+
+![Base rear mould from underneath](../../renders/build/04-mould-base-rear.png)
 
 **Locating the cast-in parts** (all screws greased so they come out after curing):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screw each one to the mould floor
@@ -99,16 +126,21 @@ in `base_pockets()` in `build_cnc.py` and in `renders/frame_base_underside.png`.
 - **Drain nipple** (front half): screwed onto a greased fitting through the floor.
 - **Upright posts:** pass through holes in the mould floor (the mould stands on blocks); a
   plywood jig underneath sets their spacing and squareness. The top plate is held flush with
-  the open top by a bridge, and greased M12 rods form the tie-rod holes.
+  the open top by a bridge. Greased 14 mm rods (or dowels wrapped in packing tape) form the
+  tie-rod holes, and the printed pocket plugs slide down them to form the nut pockets.
 - **Beam:** the tubes are held by printed plugs bolted through the end walls, the two support
   pads are screwed to the floor, and greased 11.5 mm rods through the side walls form the
   cap-screw holes. Greased dowels form the dowel holes.
 - **Gutters, trough and gasket grooves:** printed or MDF formers screwed to the mould floor
   or walls.
 
+![Upright mould: posts, top plate and the printed flare filler](../../renders/build/05-mould-upright.png)
+
+![Beam mould: tubes, support pads, riser inserts and the back-edge fillers](../../renders/build/06-mould-beam.png)
+
 ## 3. Mixing and casting
 
-Use the graded mix (see the mix options page): about 10 % epoxy, 10 % silica flour (or fly
+Use the graded mix (see the design notes): about 10 % epoxy, 10 % silica flour (or fly
 ash), 15 % fine sand, 20 % coarse sand, 20 % pea gravel 3-6 mm, 25 % gravel 6-10 mm, by
 weight. Tune it with a jar test before buying in bulk, and cast two or three test bars
 (50 x 50 x 200 mm). Cut one open: there should be no voids larger than a grain of sand.
@@ -131,8 +163,8 @@ Add 5-10 % for waste.
    stick. Vibrate the full mould for 20-30 minutes at the end.
 4. **Level the open face**, cover against dust, and leave it at 20-25 °C. Demould after the
    time your epoxy needs (usually 24-48 h), but don't load or machine anything for 7 days.
-5. Pull all the greased screws and rods, then remove the cores (XPS can be dug out or
-   dissolved with a little acetone).
+5. Pull all the greased screws and rods, the formers, fillers and plugs. Printed cores stay in;
+   foam cores can be dug out or dissolved with a little acetone.
 6. **Seal** the base top (the coolant floor) and the gutters with a thin epoxy gel coat. Paint
    the exposed leg ends.
 
@@ -152,8 +184,14 @@ check the top-plate spacing against the beam mould.
    sockets (the base dowel locates it), thread the tie rods into the coupling nuts, add washers
    and nuts in the top pockets, and tighten to about 40-50 N·m.
 4. **Beam:** set it on the top plates over the dowels and fit the eight M10 x 150 cap screws.
-   Before final torque (about 40 N·m into the 10 mm plates), check the beam face is square to
+   Before final torque (about 40 N·m into the 3/8 in plates), check the beam face is square to
    the base top with a square and a dial indicator. Shim under one top plate if needed.
+
+![Base halves joined](../../renders/build/07-frame-base.png)
+
+![Uprights on](../../renders/build/08-frame-uprights.png)
+
+![Beam on: the finished frame](../../renders/build/09-frame-beam.png)
 
 ## 5. Bed the rail risers
 
@@ -173,6 +211,8 @@ form the joints.
 5. Dam the ends and sides with tape or plasticine, and flow low-viscosity epoxy thickened with
    a little silica flour underneath from one side until it comes out the other.
 6. After 48 h, torque the hold-downs to about 4 N·m (brass inserts) and recheck flatness.
+
+![Risers and ballscrew supports in place](../../renders/build/10-risers-supports.png)
 
 ## 6. Axes
 
@@ -207,6 +247,10 @@ form the joints.
 
 Lubricate every block with the grease gun before moving anything far.
 
+![Rails, screws and motors on the frame](../../renders/build/11-rails-screws-motors.png)
+
+![Axes, table and spindle](../../renders/build/12-axes-spindle.png)
+
 ## 7. Electronics and spindle
 
 - **Controller:** FluidNC board with external drivers. CL57T drivers for X and Y (closed loop),
@@ -225,7 +269,7 @@ Lubricate every block with the grease gun before moving anything far.
 ## 8. Enclosure and coolant
 
 1. Bolt the 2020 frame to the base top with angle brackets into the cast-in M5 inserts
-   (M5 x 35). Cut list in `report.txt`.
+   (M5 x 35). Cut list in `docs/report.txt`.
 2. ACM side, back and roof panels; polycarbonate door on hinges and gas struts, magnetic catch.
    Brush seals where the X and Y motors pass through the panels.
 3. Way covers: the stainless strips on their spring rollers in front of and behind the table,
@@ -233,6 +277,8 @@ Lubricate every block with the grease gun before moving anything far.
 4. Coolant: slide the sump (steam-table pan with the chip basket, magnet, baffle, screen and
    24 V pump) in under the base below the drain nipple. Run the return hose to the bulkhead, up
    the cable chain, to the manifold and nozzles on the spindle clamp. Use water-soluble coolant.
+
+![Enclosure, coolant sump and bench](../../renders/build/13-enclosure-coolant.png)
 
 ## 9. Commissioning
 

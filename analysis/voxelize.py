@@ -1,11 +1,11 @@
 """Voxelize the frame for the stiffness study (run with freecadcmd).
 
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd cad/fea/voxelize.py
+    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/voxelize.py
 
-Builds the model from build_cnc.py and writes fea/vox_current.npz: per-voxel volume
+Builds the model from build_cnc.py and writes analysis/vox_current.npz: per-voxel volume
 fractions of epoxy granite and steel for each module group (base, uprights, beam),
 plus the base with no underside pockets (the optimization's design space), and
-fea/vox_current.json with the positions the load cases need. VOX_P='{"beam_d": 140}' overrides
+analysis/vox_current.json with the positions the load cases need. VOX_P='{"beam_d": 140}' overrides
 parameters, VOX_OUT names the output.
 """
 
@@ -20,7 +20,7 @@ import FreeCAD as App  # noqa: F401
 from FreeCAD import Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAD = os.path.dirname(HERE)
+CAD = os.path.join(os.path.dirname(HERE), 'model')
 H = float(os.environ.get('VOX_H', '10'))     # voxel size, mm
 SUB = int(os.environ.get('VOX_SUB', '4'))    # sample points per voxel edge
 OUT = os.environ.get('VOX_OUT', os.path.join(HERE, 'vox_current'))
