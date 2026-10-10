@@ -10,25 +10,27 @@ The same list is in `docs/sourcing.csv` for a spreadsheet.
 
 ## Totals
 
-The machine is built in two phases. **Phase 1** is the complete mill: frame, axes, controller and
-chip protection, with brush-on cutting fluid. **Phase 2** adds the enclosure and flood coolant; the
-castings already have the inserts, gutters, drain and sump space for it. The spindle is the
-builder's choice and is priced separately.
+The list is in three parts, so you can buy and build in that order: **Part 1** is the machine
+itself without the expensive equipment (castings, steel, rails, ballscrews, chip protection),
+**Part 2** is the motors, controller, wiring and spindle, and **Part 3** is the enclosure and
+flood coolant. The machine runs after Part 2 with brush-on cutting fluid; the castings already
+have the inserts, gutters, drain and sump space for Part 3.
 
-| Section | Priced | Unpriced items |
+| Part | Section | Priced |
 |---|---|---|
-| Motion and drives | $522.50 | 0 |
-| Controller and electrical | $262.12 | 0 |
-| Castings and frame | $777.17 | 0 |
-| Chip protection | $196.87 | 0 |
-| **Phase 1 total, without spindle** | **$1,758.66** | **0** |
+| 1 | Castings and hardware | $777.17 |
+| 1 | Rails, screws and mechanics | $290.38 |
+| 1 | Chip protection | $196.87 |
+| 2 | Motors and drivers | $232.12 |
+| 2 | Controller and wiring | $262.12 |
+| 3 | Enclosure and flood coolant | $436.05 |
 
-| Spindle (pick one) | About |
+| Part | About |
 |---|---|
-| A: 1.5 kW 110 V water-cooled kit | $250-375 (+ collets ~$25.21 if not included) |
-| B: 2.2 kW kit + 120 V step-up VFD (full power needs 240 V) | $430-600 |
-
-**Phase 2** (enclosure + flood coolant): $436.05 priced + 2 unpriced (ACM sheet, Flood coolant pump), about $650-700 in all.
+| **1. Frame** | **$1,264.42** |
+| **2. Electronics + spindle** | **$494.24** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
+| **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
+| **Total** | **about $2.66-3.06k** |
 
 Shipping and tax are extra. Raka (epoxy), the whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -44,59 +46,7 @@ delivered (90 % duty prepaid on machined aluminium): only worth it for the X car
 want its hole pattern exact. Retail cut-to-size shops (e.g. Metal Supermarkets, about $820 for
 the tube, risers and aluminium) also cost more than the sources here.
 
-## Motion and drives
-
-| Item | Spec | Qty | Listing | Price | Line | Notes |
-|---|---|---|---|---|---|---|
-| Y rails + blocks | HGR15 x2 at 600 mm + 4x HGH15CA | 1 kit | [iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA](https://www.amazon.com/dp/B0GJZ7D9NG) | $55.99 | $55.99 | Used at full length, no cutting. The listing calls the blocks "aluminum", which is probably wrong: check them for play. JLCMC alt: 2x E-BHH15C-2-L600-ZA-C-E30 $27.40 + 55 % US duty prepaid + shipping. |
-| Z rails + blocks | HGR15 x2 at 300 mm + 4x HGH15CA | 1 kit | [BEVDICNC 2x HGR15-300 + 4x HGH15CA](https://www.amazon.com/dp/B0BYYJKBB5) | $35.69 | $35.69 | Alt: CNCMANS B09N73DY32 $34.98 |
-| Y ballscrew kit | SFU1605-550, BK12/BF12, DSG16H | 1 | [Ballscrew kit DSG16H + SFU1605-550 + BK/BF12](https://www.amazon.com/dp/B088ZF8R91) | $39.39 | $39.39 | Ships with a 6.35x10 coupler: use the 8x10 below |
-| Z ballscrew kit | SFU1204-300, BK10/BF10, DSG12H | 1 | [CNCYEAH SFU1204 300 mm kit](https://www.amazon.com/dp/B09MJ3T5JZ) | $32.69 | $32.69 | Ships with a 6.35x8 coupler: use the 8x8 below |
-| Z motor bracket | NEMA 23 + BK10 (HM10-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1204](https://www.amazon.com/dp/B09S3HMB7S) | $32.02 | $32.02 | Same bracket as your X one |
-| Y motor bracket | NEMA 23 + BK12 (HM12-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1605](https://www.amazon.com/dp/B09S39Q1RT) | $31.36 | $31.36 | Alt: CNCMANS HM12-57 B09QS2S3BT $28.98 |
-| X/Y closed-loop kits | 23HS30-5004D-E1000 2.0 Nm + CL57T | 2 | [STEPPERONLINE closed-loop kit 2.0 Nm + CL57T](https://www.amazon.com/dp/B0C694KQQP) | $81.00 | $162.00 | Exact model. Low stock when checked. |
-| Z driver (owned motor) | DM542T | 1 | [STEPPERONLINE DM542T](https://www.amazon.com/dp/B06Y5VPSFN) | $32.99 | $32.99 | Check that your motor is 4.2 A or less |
-| Motor power supply | 48 V, 3 drivers | 1 | [Mean Well LRS-350-48 (7.3 A)](https://www.amazon.com/dp/B013EU4KNK) | $37.13 | $37.13 | Trim to about 46 V: CL57T max input is 48 V |
-| Couplers, Y | 8x10 mm, D25 L30 | 1 (3-pack) | [CNCTOPBAOS 8x10 plum coupling, 3 pcs](https://www.amazon.com/dp/B082TT7B84) | $13.99 | $13.99 | Spares; check that D25 fits inside the bracket |
-| Couplers, Z | 8x8 mm, D25 L30 | 1 (2-pack) | [Yeebyee 8x8 plum coupling, 2 pcs](https://www.amazon.com/dp/B0GTV7VMZB) | $12.89 | $12.89 | The spare covers X if your kit came with 6.35x8 |
-| Grease gun | Mini, 3 oz cartridges | 1 | [Performance Tool W54205 mini grease gun kit](https://www.amazon.com/dp/B002V0AIWW) | $17.59 | $17.59 |  |
-| Needle tip | For the blocks' M4 nipples | 1 | [LubriMatic 05-037 needle](https://www.amazon.com/dp/B000FMO6XU) | $6.98 | $6.98 |  |
-| Grease | Lithium NLGI 2 | 1 (3x3 oz) | [LubriMatic 11312, 3x 3 oz](https://www.amazon.com/dp/B01JM4PCVG) | $11.79 | $11.79 |  |
-| (opt) M4 grease nipples | M4x0.7 straight | 1 pack | [HARFINGTON 15 pcs M4x0.7](https://www.amazon.com/dp/B0CLP8NGRJ) | $13.94 | $13.94 | Only if the block nipples are missing or the coupler won't seat |
-
-**Priced subtotal: $522.50**
-
-## Controller and electrical
-
-| Item | Spec | Qty | Listing | Price | Line | Notes |
-|---|---|---|---|---|---|---|
-| Controller | FluidNC, 6 axes, external drivers, RS485, 0-10 V | 1 | [Elecrow Corgi ESP32 FluidNC controller (not Amazon)](https://www.elecrow.com/corgi-esp32-6-axis-cnc-controller-for-fluidnc.html) | $49.00 | $49.00 | Runs gSender or the web UI. Drives an RS485 VFD directly, so no 0-10 V module is needed for one. |
-| Limit switches | Roller lever, 4 needed | 1 (5-pack) | [Yusheng ME-8108 limit switch set of 5](https://www.cncproshop.com/products/yusheng-me-8108-limit-switch-set-of-5) | $16.99 | $16.99 | Inductive LJ12A3-4-Z/BX (about $4.50 each) also work; power them from 12 V. |
-| E-stop | 22 mm mushroom, latching, NC, in a box | 1 | [Generic 22 mm E-stop station (eBay)](https://www.ebay.com/itm/144182671837) | $22.39 | $22.39 | Wire it to cut drive enable and VFD run in hardware. Check it has an NC contact. |
-| Mains inlet | IEC C14 with switch + fuse | 1 | [IEC C14 inlet module (Walmart)](https://www.walmart.com/ip/115677799) | $7.99 | $7.99 | Often ships without the fuse: buy 5x20 mm fuses. |
-| Logic power supply | 24 V, 6.5 A | 1 | [Mean Well LRS-150-24 (TRC Electronics)](https://www.trcelectronics.com/products/mean-well-lrs-150-24) | $20.39 | $20.39 | Jameco about $18.80 |
-| Electrical box | 12x10x6 in, with backplate | 1 | [VEVOR steel IP65 enclosure 12x10x6](https://www.vevor.com/electrical-enclosure-c_10749/vevor-steel-electrical-box-electrical-enclosure-box-12x10x6-carbon-steel-ip65-p_010902284840) | $48.90 | $48.90 | Controller, drivers and supplies; the VFD mounts beside it. A plastic box saves about $25. |
-| Spindle cable | 14/4 shielded, 10 ft | 10 ft | [Wolf Automation SILFLEX 14/4 shielded](https://www.wolfautomation.com/cable/a6021404/) | $4.65/ft | $46.50 | Premium, by the foot; an Amazon 15 ft coil is likely $25-40. Shield to earth at the VFD end. |
-| Stepper/sensor cable | 4-conductor shielded, ~33 ft | 33 ft | [BuildYourCNC 4-conductor shielded cable](https://buildyourcnc.com/) | $0.49/ft | $16.17 | Check the gauge (18-14 AWG) and that it is stranded for the cable chain. |
-| DIN rail + terminals | UK2.5B kit | 1 | [Erayco 20x UK2.5B + rail](https://www.amazon.com/dp/B0BX2W42S4) | $19.99 | $19.99 | May need more rail |
-| Cable glands | PG7-PG16 | 1 (25 pcs) | [Nylon cable gland kit (eBay)](https://www.ebay.com/itm/406955179899) | $13.80 | $13.80 |  |
-| (opt) Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Nice to have; add later |
-
-**Priced subtotal: $262.12**
-
-## Spindle (builder's choice, not in the Phase 1 total)
-
-| Item | Spec | Qty | Listing | Price | Line | Notes |
-|---|---|---|---|---|---|---|
-| (choice A) 1.5 kW 110 V water-cooled kit | Spindle + 110 V VFD + 80 mm clamp + pump, ER11/ER16 | 1 | [SainSmart / VXB / Huanyang-type kits](https://www.sainsmart.com/products/water-cooled-spindle-motor-kit) | $250-375 | $300.00 | Runs on a normal 120 V outlet. SainSmart $349 (sold out; open-box $249), VXB $374.88, eBay import ~$341 shipped. Check Amazon kits by hand. |
-| (choice B) 2.2 kW 220 V kit + 120 V step-up VFD | ER20 kit + 110-120 V in / 220 V out VFD | 1 + 1 | [RATTMMOTOR 2.2 kW kit + ATO or AT5-2200X VFD](https://www.amazon.com/dp/B073TRP92V) | $251 + $178-346 | $500.00 | Only about 1.2-1.6 kW on a 120 V circuit; full 2.2 kW once you have 240 V (then use the kit's own VFD). |
-| (choice) ER collets | ER11/ER16 or ER20 set to match | 1 | [Chiloskit ER20 13 pcs (or an ER11 set)](https://www.amazon.com/dp/B08B1H4RSR) | $25.21 | $25.21 | Skip if the kit includes a set |
-| (choice) Spindle pump relay | SSR, DC in, AC out | 1 | [SSR-25DA with heatsink (eBay)](https://www.ebay.com/itm/405564584590) | $17.44 | $17.44 | Runs the spindle water pump whenever the spindle runs. Fuse the branch. |
-| (choice) Spindle coolant | Distilled water + 10-20 % RV antifreeze, bucket | 1 | Local store | ~$10 | $10.00 | Water-cooled spindles only |
-
-**Priced subtotal: $0.00**
-
-## Castings and frame
+## Part 1 - Frame: castings and hardware
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
@@ -126,7 +76,26 @@ the tube, risers and aluminium) also cost more than the sources here.
 
 **Priced subtotal: $777.17**
 
-## Chip protection
+## Part 1 - Frame: rails, screws and mechanics
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| Y rails + blocks | HGR15 x2 at 600 mm + 4x HGH15CA | 1 kit | [iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA](https://www.amazon.com/dp/B0GJZ7D9NG) | $55.99 | $55.99 | Used at full length, no cutting. The listing calls the blocks "aluminum", which is probably wrong: check them for play. JLCMC alt: 2x E-BHH15C-2-L600-ZA-C-E30 $27.40 + 55 % US duty prepaid + shipping. |
+| Z rails + blocks | HGR15 x2 at 300 mm + 4x HGH15CA | 1 kit | [BEVDICNC 2x HGR15-300 + 4x HGH15CA](https://www.amazon.com/dp/B0BYYJKBB5) | $35.69 | $35.69 | Alt: CNCMANS B09N73DY32 $34.98 |
+| Y ballscrew kit | SFU1605-550, BK12/BF12, DSG16H | 1 | [Ballscrew kit DSG16H + SFU1605-550 + BK/BF12](https://www.amazon.com/dp/B088ZF8R91) | $39.39 | $39.39 | Ships with a 6.35x10 coupler: use the 8x10 below |
+| Z ballscrew kit | SFU1204-300, BK10/BF10, DSG12H | 1 | [CNCYEAH SFU1204 300 mm kit](https://www.amazon.com/dp/B09MJ3T5JZ) | $32.69 | $32.69 | Ships with a 6.35x8 coupler: use the 8x8 below |
+| Z motor bracket | NEMA 23 + BK10 (HM10-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1204](https://www.amazon.com/dp/B09S3HMB7S) | $32.02 | $32.02 | Same bracket as your X one |
+| Y motor bracket | NEMA 23 + BK12 (HM12-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1605](https://www.amazon.com/dp/B09S39Q1RT) | $31.36 | $31.36 | Alt: CNCMANS HM12-57 B09QS2S3BT $28.98 |
+| Couplers, Y | 8x10 mm, D25 L30 | 1 (3-pack) | [CNCTOPBAOS 8x10 plum coupling, 3 pcs](https://www.amazon.com/dp/B082TT7B84) | $13.99 | $13.99 | Spares; check that D25 fits inside the bracket |
+| Couplers, Z | 8x8 mm, D25 L30 | 1 (2-pack) | [Yeebyee 8x8 plum coupling, 2 pcs](https://www.amazon.com/dp/B0GTV7VMZB) | $12.89 | $12.89 | The spare covers X if your kit came with 6.35x8 |
+| Grease gun | Mini, 3 oz cartridges | 1 | [Performance Tool W54205 mini grease gun kit](https://www.amazon.com/dp/B002V0AIWW) | $17.59 | $17.59 |  |
+| Needle tip | For the blocks' M4 nipples | 1 | [LubriMatic 05-037 needle](https://www.amazon.com/dp/B000FMO6XU) | $6.98 | $6.98 |  |
+| Grease | Lithium NLGI 2 | 1 (3x3 oz) | [LubriMatic 11312, 3x 3 oz](https://www.amazon.com/dp/B01JM4PCVG) | $11.79 | $11.79 |  |
+| (opt) M4 grease nipples | M4x0.7 straight | 1 pack | [HARFINGTON 15 pcs M4x0.7](https://www.amazon.com/dp/B0CLP8NGRJ) | $13.94 | $13.94 | Only if the block nipples are missing or the coupler won't seat |
+
+**Priced subtotal: $290.38**
+
+## Part 1 - Frame: chip protection
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
@@ -137,11 +106,51 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Way cover springs | Constant force, for printed rollers | 1 (5-pack) | [SUS301 constant-force springs, 5 pcs](https://www.amazon.com/dp/B0DMM8YSMM) | $35.99 | $35.99 | One per narrow strip, two for the wide one |
 | Spiral screw cover | 20 mm ID, ~250-400 mm | 1 | [MISONONEIK spiral steel bellows cover](https://www.amazon.com/dp/B0GTDV8DZN) | ~$47 | $47.00 | Choose size 20-250-40-28 (the cheapest variant, about $47) or 20-400-40-33; variants $47-116 |
 | Drip shield | 510 x 57 mm | 0 | Cut from the ACM sheet offcut | $0 | $0.00 | Stainless was $57 (Speedy Metals 16 ga 12x24); ACM does the job |
-| Cutting fluid | Brush-on / drip, until flood coolant (phase 2) | 1 | Tap Magic or similar cutting fluid | ~$12 | $12.00 | Brush or drip it on; the base gutters and drain still carry it to the pan |
+| Cutting fluid | Brush-on / drip, until flood coolant (part 3) | 1 | Tap Magic or similar cutting fluid | ~$12 | $12.00 | Brush or drip it on; the base gutters and drain still carry it to the pan |
 
 **Priced subtotal: $196.87**
 
-## Phase 2: enclosure and flood coolant
+## Part 2 - Electronics: motors and drivers
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| X/Y closed-loop kits | 23HS30-5004D-E1000 2.0 Nm + CL57T | 2 | [STEPPERONLINE closed-loop kit 2.0 Nm + CL57T](https://www.amazon.com/dp/B0C694KQQP) | $81.00 | $162.00 | Exact model. Low stock when checked. |
+| Z driver (owned motor) | DM542T | 1 | [STEPPERONLINE DM542T](https://www.amazon.com/dp/B06Y5VPSFN) | $32.99 | $32.99 | Check that your motor is 4.2 A or less |
+| Motor power supply | 48 V, 3 drivers | 1 | [Mean Well LRS-350-48 (7.3 A)](https://www.amazon.com/dp/B013EU4KNK) | $37.13 | $37.13 | Trim to about 46 V: CL57T max input is 48 V |
+
+**Priced subtotal: $232.12**
+
+## Part 2 - Electronics: controller and wiring
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| Controller | FluidNC, 6 axes, external drivers, RS485, 0-10 V | 1 | [Elecrow Corgi ESP32 FluidNC controller (not Amazon)](https://www.elecrow.com/corgi-esp32-6-axis-cnc-controller-for-fluidnc.html) | $49.00 | $49.00 | Runs gSender or the web UI. Drives an RS485 VFD directly, so no 0-10 V module is needed for one. |
+| Limit switches | Roller lever, 4 needed | 1 (5-pack) | [Yusheng ME-8108 limit switch set of 5](https://www.cncproshop.com/products/yusheng-me-8108-limit-switch-set-of-5) | $16.99 | $16.99 | Inductive LJ12A3-4-Z/BX (about $4.50 each) also work; power them from 12 V. |
+| E-stop | 22 mm mushroom, latching, NC, in a box | 1 | [Generic 22 mm E-stop station (eBay)](https://www.ebay.com/itm/144182671837) | $22.39 | $22.39 | Wire it to cut drive enable and VFD run in hardware. Check it has an NC contact. |
+| Mains inlet | IEC C14 with switch + fuse | 1 | [IEC C14 inlet module (Walmart)](https://www.walmart.com/ip/115677799) | $7.99 | $7.99 | Often ships without the fuse: buy 5x20 mm fuses. |
+| Logic power supply | 24 V, 6.5 A | 1 | [Mean Well LRS-150-24 (TRC Electronics)](https://www.trcelectronics.com/products/mean-well-lrs-150-24) | $20.39 | $20.39 | Jameco about $18.80 |
+| Electrical box | 12x10x6 in, with backplate | 1 | [VEVOR steel IP65 enclosure 12x10x6](https://www.vevor.com/electrical-enclosure-c_10749/vevor-steel-electrical-box-electrical-enclosure-box-12x10x6-carbon-steel-ip65-p_010902284840) | $48.90 | $48.90 | Controller, drivers and supplies; the VFD mounts beside it. A plastic box saves about $25. |
+| Spindle cable | 14/4 shielded, 10 ft | 10 ft | [Wolf Automation SILFLEX 14/4 shielded](https://www.wolfautomation.com/cable/a6021404/) | $4.65/ft | $46.50 | Premium, by the foot; an Amazon 15 ft coil is likely $25-40. Shield to earth at the VFD end. |
+| Stepper/sensor cable | 4-conductor shielded, ~33 ft | 33 ft | [BuildYourCNC 4-conductor shielded cable](https://buildyourcnc.com/) | $0.49/ft | $16.17 | Check the gauge (18-14 AWG) and that it is stranded for the cable chain. |
+| DIN rail + terminals | UK2.5B kit | 1 | [Erayco 20x UK2.5B + rail](https://www.amazon.com/dp/B0BX2W42S4) | $19.99 | $19.99 | May need more rail |
+| Cable glands | PG7-PG16 | 1 (25 pcs) | [Nylon cable gland kit (eBay)](https://www.ebay.com/itm/406955179899) | $13.80 | $13.80 |  |
+| (opt) Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Nice to have; add later |
+
+**Priced subtotal: $262.12**
+
+## Part 2 - Electronics: spindle (pick one)
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| (choice A) 1.5 kW 110 V water-cooled kit | Spindle + 110 V VFD + 80 mm clamp + pump, ER11/ER16 | 1 | [SainSmart / VXB / Huanyang-type kits](https://www.sainsmart.com/products/water-cooled-spindle-motor-kit) | $250-375 | $300.00 | Runs on a normal 120 V outlet. SainSmart $349 (sold out; open-box $249), VXB $374.88, eBay import ~$341 shipped. Check Amazon kits by hand. |
+| (choice B) 2.2 kW 220 V kit + 120 V step-up VFD | ER20 kit + 110-120 V in / 220 V out VFD | 1 + 1 | [RATTMMOTOR 2.2 kW kit + ATO or AT5-2200X VFD](https://www.amazon.com/dp/B073TRP92V) | $251 + $178-346 | $500.00 | Only about 1.2-1.6 kW on a 120 V circuit; full 2.2 kW once you have 240 V (then use the kit's own VFD). |
+| (choice) ER collets | ER11/ER16 or ER20 set to match | 1 | [Chiloskit ER20 13 pcs (or an ER11 set)](https://www.amazon.com/dp/B08B1H4RSR) | $25.21 | $25.21 | Skip if the kit includes a set |
+| (choice) Spindle pump relay | SSR, DC in, AC out | 1 | [SSR-25DA with heatsink (eBay)](https://www.ebay.com/itm/405564584590) | $17.44 | $17.44 | Runs the spindle water pump whenever the spindle runs. Fuse the branch. |
+| (choice) Spindle coolant | Distilled water + 10-20 % RV antifreeze, bucket | 1 | Local store | ~$10 | $10.00 | Water-cooled spindles only |
+
+**Priced subtotal: $0.00**
+
+## Part 3 - Enclosure and flood coolant
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
