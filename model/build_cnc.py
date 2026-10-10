@@ -104,7 +104,9 @@ P = dict(
     # O-ring cord seals at the epoxy-to-epoxy joints: the faces still bear on each other,
     # the cord sits in a groove (3 mm cord, 4 x 2.3 groove = ~25 % squeeze)
     gasket_cord=3.0, gasket_groove=(4.0, 2.3), gasket_split_z=92.0,
-    top_plate_t=10.0, tie_rod_d=12.0, beam_bolt_d=10.0,
+    # Joint hardware in hardware-store inch sizes: 1/2-13 rod, couplers and nuts, 3/8-16 grade 8
+    # beam bolts, 3/8 in dowels.
+    top_plate_t=10.0, tie_rod_d=12.7, beam_bolt_d=9.525, dowel_d=9.525,
     # Cast-in threaded inserts (thread, outer diameter, length): the risers are bedded in epoxy
     # AND held down by counterbored low-head M5 screws under the rail; the BK/BF supports bolt
     # straight into M6 inserts. Nothing bolts to the cast-in tubes.
@@ -439,7 +441,7 @@ def base_top_formers(g, front):
 
 def base_half(m, g, st, front):
     """Front or rear half of the base. The halves meet at y = split: two 40x40 spigots
-    slide inside the rail tubes and two M12 draw rods pull the front half onto the rear."""
+    slide inside the rail tubes and two 1/2-13 draw rods pull the front half onto the rear."""
     half, base_top, ys = g['base_half'], g['base_top'], g['split']
     ya, yb = (g['base_y0'], ys) if front else (ys, g['base_y1'])
     tag, cont = ('Front', 'FrameBaseFront') if front else ('Rear', 'FrameBaseRear')
@@ -477,15 +479,15 @@ def base_half(m, g, st, front):
         if front:
             y0 = ya
             cuts += [parts.cyl_v(16.0, y0 - 1, y0 + 28, dx, dz), parts.cyl_v(7.0, y0 + 27, ys + 1, dx, dz)]
-            rod = parts.cyl_v(6.0, y0 + 15.5, ys + 28, dx, dz)
+            rod = parts.cyl_v(P['tie_rod_d'] / 2, y0 + 15.5, ys + 28, dx, dz)
             washer = parts.cyl_v(12.0, y0 + 25.5, y0 + 28, dx, dz)
             nut = hex_y(19.0, dx, y0 + 15.5, 10.0, dz).fuse(washer)
             st.add(f'DrawRod{side}', cont, rod, 'steel')
-            st.add(f'DrawRodNut{side}', cont, nut.cut(parts.cyl_v(6.0, y0, y0 + 30, dx, dz)), 'steel')
+            st.add(f'DrawRodNut{side}', cont, nut.cut(parts.cyl_v(P['tie_rod_d'] / 2, y0, y0 + 30, dx, dz)), 'steel')
         else:
             env = hex_y(19.0, dx, ys + 10, 36.0, dz)
             cuts += [env, parts.cyl_v(7.0, ys - 1, ys + 11, dx, dz)]
-            st.add(f'DrawRodCoupler{side}', cont, env.cut(parts.cyl_v(6.0, ys, ys + 50, dx, dz)), 'steel')
+            st.add(f'DrawRodCoupler{side}', cont, env.cut(parts.cyl_v(P['tie_rod_d'] / 2, ys, ys + 50, dx, dz)), 'steel')
 
     cuts += [shape for _, shape in base_top_formers(g, front)]
     if front:
@@ -525,7 +527,7 @@ def base_half(m, g, st, front):
                 env, shell = parts.square_tube('z', sx * g['ux'], py, sock_s, sock_w, g['sock_bot'], base_top)
                 cuts.append(env)
                 st.add(f'SocketLiner{side}{i + 1}', cont, shell, 'printed')
-            dowel = Part.makeCylinder(5.0, 30.0, Vector(sx * g['ux'], g['rod_y'], base_top - 15))
+            dowel = Part.makeCylinder(P['dowel_d'] / 2, 30.0, Vector(sx * g['ux'], g['rod_y'], base_top - 15))
             cuts.append(dowel)
             st.add(f'DowelBase{side}', cont, dowel, 'steel')
 
@@ -596,7 +598,7 @@ def upright(m, g, st, sx):
     post_s, post_w = P['post_tube']
     xa, xb = sorted((sx * (inner + 6), sx * (outer - 6)))
     cuts = [parts.box(xa, xb, up_y0 + 6, up_y1 - 6, beam_bot - plate_t, beam_bot + 1),
-            Part.makeCylinder(5.0, 16.0, Vector(sx * g['ux'], g['rod_y'], base_top - 1))]          # base dowel
+            Part.makeCylinder(P['dowel_d'] / 2, 16.0, Vector(sx * g['ux'], g['rod_y'], base_top - 1))]   # base dowel
     post_top = beam_bot - plate_t - 2
     for i, py in enumerate(g['post_ys']):
         # hollow post, printed plug at the top
@@ -619,7 +621,7 @@ def upright(m, g, st, sx):
     for bx in g['bolt_xs']:
         for by in g['bolt_ys']:
             taps.append(Part.makeCylinder(P['beam_bolt_d'] / 2, plate_t + 2, Vector(sx * bx, by, beam_bot - plate_t - 1)))
-    taps.append(Part.makeCylinder(5.0, plate_t + 2, Vector(sx * g['ux'], g['beam_dowel_y'], beam_bot - plate_t - 1)))
+    taps.append(Part.makeCylinder(P['dowel_d'] / 2, plate_t + 2, Vector(sx * g['ux'], g['beam_dowel_y'], beam_bot - plate_t - 1)))
     plate = parts.plate(xa, xb, up_y0 + 6, up_y1 - 6, beam_bot - plate_t, beam_bot, 0.8)
     st.add(f'TopPlate{tag}', cont, plate.cut(pockets + taps))
     ring, ring_len = foot_gasket(g, sx)
@@ -643,7 +645,7 @@ def beam_envelope(g, edges=True):
 
 
 def beam(m, g, st):
-    """Beam casting: two tubes span the uprights; four M10 cap screws and a dowel per side."""
+    """Beam casting: two tubes span the uprights; four 3/8-16 bolts and a dowel per side."""
     outer, inner, bf = g['outer'], g['inner'], g['beam_face']
     bot, top = g['beam_bot'], g['beam_top']
     by1 = bf + P['beam_d']
@@ -663,7 +665,7 @@ def beam(m, g, st):
     plate_t = P['top_plate_t']
     n = 0
     for sx in (-1, 1):
-        dowel = Part.makeCylinder(5.0, plate_t + 15.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - plate_t))
+        dowel = Part.makeCylinder(P['dowel_d'] / 2, plate_t + 15.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - plate_t))
         cuts.append(dowel)
         st.add(f'DowelBeam{"L" if sx < 0 else "R"}', 'FrameBeam', dowel, 'steel')
         for bx in g['bolt_xs']:
@@ -705,11 +707,11 @@ def frame_modules(m, d):
         ('frame', 'Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs', '~270 g', 'PRINT'),
         ('frame', f'Steel plate 3/8 in, cut to size by the supplier (upright tops)',
          f"2 x {d['outer'] - d['inner'] - 12:.0f} x {d['up_y1'] - d['up_y0'] - 12:.0f}", 'buy'),
-        ('frame', 'M12 rod + coupling nut + nut/washer', ', '.join(f"2 x {pb + 12.5 - (d['base_top'] - 52):.0f}" for _, _, pb in g['tie_rods'])
+        ('frame', '1/2-13 threaded rod + coupling nut + nut/washer (hardware store)', ', '.join(f"2 x {pb + 12.5 - (d['base_top'] - 52):.0f}" for _, _, pb in g['tie_rods'])
          + " (uprights), "
                                                          f"2 x {ys + 28 - y0 - 15.5:.0f} (base)", 'buy'),
-        ('frame', f"M10 x {d['beam_top'] - d['beam_bot'] + plate_t:.0f} cap screw + washer (beam)", '8 pcs', 'buy'),
-        ('frame', 'Dowel pin 10 x 30', '4 pcs', 'buy'),
+        ('frame', f"3/8-16 x 6 in grade 8 bolt + washer (beam; {d['beam_top'] - d['beam_bot'] + plate_t:.0f} mm under the head)", '8 pcs', 'buy'),
+        ('frame', 'Dowel pin 3/8 x 1-1/4 in', '4 pcs', 'buy'),
         ('frame', f"Nitrile O-ring cord {P['gasket_cord']:.0f} mm (base split + upright feet), glue the ends",
          f"{d['gasket_m'] + 0.3:.1f} m", 'buy'),
         ('frame', '1/2 in brass hex nipple, cast-in coolant drain', '1 pc', 'buy'),
@@ -963,8 +965,8 @@ def build():
         ('all', 'MIC6 plate: X carriage', f"{P['carriage_w']:.0f} x {z_flange - car_z0:.0f} x 5/8 in", 'buy'),
         ('all', 'MIC6 plate: Z plate', f"{P['zplate_w']:.0f} x {P['z_rail_len']:.0f} x 5/8 in", 'buy'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
-        ('all', 'Leveling feet M12', '4 pcs', 'buy'),
-        ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy'),
+        ('all', 'Leveling feet 1/2-13', '4 pcs', 'buy'),
+        ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'phase 2'),
         ('frame', 'Cast-in threaded inserts for epoxy (knurled brass or steel)',
          f"M5 x 12 long: {d['anchor_count'].get('insert_m5', 0)} (riser hold-downs); "
          f"M6 x 15 long: {d['anchor_count'].get('insert_m6', 0)} (Y BK/BF on the base)", 'buy'),
@@ -977,15 +979,15 @@ def build():
     ] + d['steel_bom'] + [
         ('coolant', 'Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base', '1', 'buy'),
         ('coolant', 'Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep', '1', 'buy'),
-        ('coolant', '100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar', '1 set', 'buy / PRINT'),
-        ('coolant', 'Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output', '1', 'buy'),
-        ('coolant', 'Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out', f"{d['hose_return']:.1f} m", 'buy'),
-        ('frame', 'Leg feet: printed plug + M12 nut bonded into each leg end (nuts from the M12 pack)', '4 pcs', 'PRINT'),
-        ('coolant', '1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles', '1 set', 'buy'),
+        ('coolant', '100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar', '1 set', 'phase 2'),
+        ('coolant', 'Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output', '1', 'phase 2'),
+        ('coolant', 'Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out', f"{d['hose_return']:.1f} m", 'phase 2'),
+        ('frame', 'Leg feet: printed plug + 1/2-13 nut bonded into each leg end', '4 pcs', 'PRINT'),
+        ('coolant', '1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles', '1 set', 'phase 2'),
         ('covers', 'Roll-up way cover: spring roller + 0.1 mm stainless strip', '1x 250 wide, 2x 85 wide', 'buy or DIY'),
         ('covers', 'Spiral ballscrew cover for the table screw', '1', 'buy'),
-        ('covers', 'Drip shield over the beam rails, ACM offcut (or 1.5 mm stainless)', f"{2 * d['outer'] - 20:.0f} x 57", 'buy'),
-        ('covers', 'Brush seal plates for the motor cutouts', '2', 'buy'),
+        ('covers', 'Drip shield over the beam rails, aluminium or ACM offcut', f"{2 * d['outer'] - 20:.0f} x 57", 'buy'),
+        ('covers', 'Brush seal plates for the motor cutouts', '2', 'phase 2'),
         ('printed', f"Drag chain links, PETG: {CHAIN['width']:.0f} x {CHAIN['height']:.0f} outer, {CHAIN['pitch']:.0f} pitch, "
                     f"R{CHAIN['radius']:.0f} bend", f"{CHAIN['links']} + 2 end mounts", 'PRINT'),
     ]
