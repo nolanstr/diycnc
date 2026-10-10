@@ -1,5 +1,5 @@
 Section,Item,Spec,Qty,Listing,URL,Unit price,Line total (USD),Notes,Price source (2026-10-09)
-Motion and drives,Y rails + blocks,HGR15 x2 at 600 mm + 4x HGH15CA,1 kit,"iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA",https://www.amazon.com/dp/B0GJZ7D9NG,$55.99,55.99,"Used at full length, no cutting. The listing calls the blocks ""aluminum"", which is probably wrong: check them for play.",product page
+Motion and drives,Y rails + blocks,HGR15 x2 at 600 mm + 4x HGH15CA,1 kit,"iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA",https://www.amazon.com/dp/B0GJZ7D9NG,$55.99,55.99,"Used at full length, no cutting. The listing calls the blocks ""aluminum"", which is probably wrong: check them for play. JLCMC alt: 2x E-BHH15C-2-L600-ZA-C-E30 $27.40 + 55 % US duty prepaid + shipping.",product page
 Motion and drives,Z rails + blocks,HGR15 x2 at 300 mm + 4x HGH15CA,1 kit,BEVDICNC 2x HGR15-300 + 4x HGH15CA,https://www.amazon.com/dp/B0BYYJKBB5,$35.69,35.69,Alt: CNCMANS B09N73DY32 $34.98,product page
 Motion and drives,Y ballscrew kit,"SFU1605-550, BK12/BF12, DSG16H",1,Ballscrew kit DSG16H + SFU1605-550 + BK/BF12,https://www.amazon.com/dp/B088ZF8R91,$39.39,39.39,Ships with a 6.35x10 coupler: use the 8x10 below,product page
 Motion and drives,Z ballscrew kit,"SFU1204-300, BK10/BF10, DSG12H",1,CNCYEAH SFU1204 300 mm kit,https://www.amazon.com/dp/B09MJ3T5JZ,$32.69,32.69,Ships with a 6.35x8 coupler: use the 8x8 below,product page
@@ -34,9 +34,9 @@ Spindle and electronics,Stepper/sensor cable,18/4 shielded,1 (50 ft),Linear Moti
 Spindle and electronics,Electrical box,"Steel, room for VFD + PSUs",1,VEVOR 20x16x8 in enclosure,https://www.amazon.com/dp/B0924BN1P5,?,,16x12x6 (B09247D9LH) is tight with the VFD inside. Add a filtered fan.,not seen
 Spindle and electronics,DIN rail + terminals,UK2.5B kit,1,Erayco terminal block kit,https://www.amazon.com/dp/B07KRDJCYB,?,,,not seen
 Spindle and electronics,Cable glands,PG7-PG19,1 (50 pcs),Bates nylon glands,https://www.amazon.com/dp/B09W9Q5HMH,?,,,not seen
-Castings and frame,Epoxy,~10.6 kg low-viscosity laminating epoxy,1 (3 gal),"US Composites 635 Thin, 2 gal + 1 gal (not Amazon)",https://www.uscomposites.com/epoxy.html,$185.30,185.30,About $15/kg. Amazon alt: TotalBoat 2:1 Slow 3 gal B07N98VC3Z $354.99. Avoid deep-pour casting resins.,vendor page
-Castings and frame,Fines,"Silica flour 200-325 mesh, 10-15 kg",1 (50 lb),"Florock ground silica, 50 lb",https://www.amazon.com/dp/B00V7WOFAQ,$94.37,94.37,Mesh not stated. A pottery supplier sells 200 mesh for about half (e.g. $53 / 50 lb). Wear a respirator.,product page
-Castings and frame,Aggregate,~106 kg graded sand + pea gravel,~5 bags,Quikrete sand + Vigoro pea gravel (Home Depot),https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000,~$7/bag,40.00,Buy locally. Wash and dry fully.,search snippets (est.)
+Castings and frame,Epoxy,"~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste",1 (3 gal) + 1 small kit,"US Composites 635 Thin, 2 gal + 1 gal, plus a ~1 gal kit (not Amazon)",https://www.uscomposites.com/epoxy.html,$185.30 + ~$60,245.30,"About $15/kg. The 3 gal kit is about 12.5 kg, just short with waste and test bars; the small kit price is an estimate. Avoid deep-pour casting resins.",vendor page + estimate
+Castings and frame,Fines,"Whiting (calcium carbonate) 325 mesh, 10-15 kg",1 (50 lb),"Pottery-supply whiting, 50 lb bag (not Amazon)",,~$30,30.00,"No crystalline silica (check the SDS: <0.1 %), so a basic N95 is enough. Avoid garden lime and talc. Replaces $94 of silica flour.",estimate
+Castings and frame,Aggregate,~112 kg graded sand + pea gravel,~6 bags,Quikrete sand + Vigoro pea gravel (Home Depot),https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000,~$7/bag,48.00,Buy locally. Wash and dry fully.,search snippets (est.)
 Castings and frame,Mould release wax,Partall Paste #2,1,"Partall Paste #2, 12 oz",https://www.amazon.com/dp/B0BQCZ8C3K,$18.52,18.52,,product page
 Castings and frame,Mould release PVA,Partall Film #10,1 qt,"Partall PVA, quart",https://www.amazon.com/dp/B09MY7PZ6D,$22.99,22.99,,product page
 Castings and frame,"Square tube 2x2x1/8, 12 in",Base tubes (split sockets),4,"Rocaris 2x2x1/8 steel square tube, 12 in",https://www.amazon.com/dp/B0FYPR4YJV,$24.99,99.96,"Bought at length. Steel-yard remnants are cheaper (0.120 wall is fine). Plain steel, not galvanized.",product page
@@ -47,10 +47,10 @@ Castings and frame,Steel plate 3/8 in,Upright top plates 2x 68 x 168 mm (2-11/16
 Castings and frame,Rail risers 3/4 x 1-1/4 CR,Y: 2x 600 mm,2,Midwest Steel 1018 cold-rolled flat bar (not Amazon),https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar,~$4.50/lb,58.00,Not on Amazon. Cut to length by Midwest (cut fee not included).,calculated from vendor page
 Castings and frame,Rail risers 5/8 x 1-1/4 CR,"X: 2x 400, Z: 2x 300 mm",4,Midwest Steel 1018 cold-rolled flat bar (not Amazon),https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar,~$4.50/lb,56.00,Same,calculated from vendor page
 Castings and frame,Aluminium plates,"Cast plate: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25",3 cut pieces,"Midwest ATP-5 / MIC-6 cast plate, cut to size (not Amazon)",https://www.midweststeelsupply.com/store/castaluminumplateatp5,~$242,242.00,Amazon alt is about $458: 6061 3/4x12x18 B007B4XUFU $215.98 + 5/8x12x24 B0DYG69W17 $241.97 (12x12 is too small for the table).,calculated from vendor page
-Castings and frame,M12 threaded rod,4x 293 + 2x 358 mm,2 (1 m),M12-1.75 x 1 m plain steel rod,https://www.amazon.com/dp/B076HB72TW,$28.96,57.92,Cut with a hacksaw. Confirm it is one rod per order.,product page
-Castings and frame,M12 coupling nuts,6,1 (8-pack),Hillman 44770 M12 coupling nut,https://www.amazon.com/dp/B00JDTZNXS,$16.97,16.97,,product page
-Castings and frame,M12 nuts,12,1 (20-pack),Hillman 2468 M12 hex nut,https://www.amazon.com/dp/B00HYLYWDE,$8.92,8.92,,product page
-Castings and frame,M12 washers,12,1 (25-pack),"M12 flat washer, hardened",https://www.amazon.com/dp/B01GUEFWTS,$11.84,11.84,,product page
+Castings and frame,M12 threaded rod,"4x 293, 2x 213, 2x 102, 2x 358 mm",3 (1 m),M12-1.75 x 1 m plain steel rod,https://www.amazon.com/dp/B076HB72TW,$28.96,86.88,Cut with a hacksaw. Confirm it is one rod per order.,product page
+Castings and frame,M12 coupling nuts,10,2 (8-pack),Hillman 44770 M12 coupling nut,https://www.amazon.com/dp/B00JDTZNXS,$16.97,33.94,,product page
+Castings and frame,M12 nuts,16,1 (20-pack),Hillman 2468 M12 hex nut,https://www.amazon.com/dp/B00HYLYWDE,$8.92,8.92,,product page
+Castings and frame,M12 washers,16,1 (25-pack),"M12 flat washer, hardened",https://www.amazon.com/dp/B01GUEFWTS,$11.84,11.84,,product page
 Castings and frame,M10 x 150 cap screws,"8, 12.9",2 (5-pack),Aexit M10x150 12.9,https://www.amazon.com/dp/B07MQS53Y2,$23.53,47.06,M10 washers: buy locally,product page
 Castings and frame,Dowel pins 10 x 30,4 (locating only),1 (14-pack),"10 x 30 mm 304 stainless dowel / shelf pin, 14 pcs (Walmart)",https://www.walmart.com/ip/856431494,$18.49,18.49,"They only locate the castings (the bolts and rods carry the load), so plain pins are fine. Was a $85 hardened 20-pack.",search snippet
 Castings and frame,Leveling feet,"M12, ~40 kg each",1 (4-pack),Antrader M12 leg levelers D60,https://www.amazon.com/dp/B09NS87SYW,$23.99,23.99,,product page
@@ -98,6 +98,6 @@ Castings and frame,PETG filament,1 kg,1,SUNLU PETG 1 kg,https://www.amazon.com/d
 
 Subtotal,Motion and drives,,,,,,522.50,0 unpriced,
 Subtotal,Spindle and electronics,,,,,,367.78,14 unpriced,
-Subtotal,Castings and frame,,,,,,1267.80,0 unpriced,
+Subtotal,Castings and frame,,,,,,1317.36,0 unpriced,
 Subtotal,"Enclosure, coolant and covers",,,,,,573.92,3 unpriced,
-Total,priced items,,,,,,2732.00,17 unpriced,
+Total,priced items,,,,,,2781.56,17 unpriced,

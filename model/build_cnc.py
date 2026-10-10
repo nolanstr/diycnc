@@ -81,9 +81,13 @@ P = dict(
     base_h=110.0, base_corner_r=40.0, base_split_y=0.0, split_wall=15.0,
     base_core_skin=25.0,    # top skin over the pockets
     base_girder_w=80.0,     # full-depth girder under each table rail, rail tube in the middle
-    base_tie=60.0,          # full-depth tie between the girders, behind the split
+    base_tie=90.0,          # full-depth tie between the girders, this far either side of the split
     base_front_wall=70.0,   # the coolant trough and outlet run through it
-    upright_t=80.0, upright_d=180.0, upright_front=40.0, upright_flare=70.0, upright_lip=8.0,
+    # Uprights are raked buttresses (from the frame topology optimization, analysis/): the foot runs
+    # forward along the base and the front face slopes up to just ahead of the beam.
+    upright_t=80.0, upright_d=180.0, upright_front=40.0,
+    upright_foot=290.0, upright_top_front=70.0,   # foot front / top front, mm ahead of the beam face
+    front_tie_rods=(60.0, 160.0),                 # extra tie rods, mm behind the foot's front edge
     beam_d=140.0, beam_h=140.0, beam_back_r=40.0, edge_r=6.0,   # beam as deep as the upright tops
 
     # Cast-in steel and joints (tube = (size, wall)): US stock sizes in stock lengths, so
@@ -119,7 +123,7 @@ P = dict(
     motor_cutout=72.0,
 
     eg_density=2.35,     # kg/L, epoxy granite
-    eg_epoxy_frac=0.10,  # epoxy mass fraction, with well-graded aggregate + silica flour/fly ash fines
+    eg_epoxy_frac=0.10,  # epoxy mass fraction, with well-graded aggregate + whiting (calcium carbonate) fines
 )
 
 # rgb, shininess (0..1), transparency (0..100)
@@ -313,6 +317,12 @@ def frame_layout(d):
     g['post_ys'] = (d['up_y0'] + 35.0, d['up_y1'] - 35.0)
     g['rod_y'] = (d['up_y0'] + d['up_y1']) / 2                 # upright tie rods
     g['pocket_bot'] = d['beam_bot'] - 18.0                     # tie-rod nut pocket floor
+    g['up_front'] = d['beam_face'] - P['upright_foot']         # front of the upright foot
+    g['up_top_front'] = d['beam_face'] - P['upright_top_front']
+    slope = lambda y: d['base_top'] + (y - g['up_front']) / (g['up_top_front'] - g['up_front']) * (d['beam_bot'] - d['base_top'])
+    # tie rods (x from the centre line outward, y, nut-pocket floor): two at the top, two through the slope
+    g['tie_rods'] = [(g['ux'] - 20.0, g['rod_y'], g['pocket_bot']), (g['ux'] + 20.0, g['rod_y'], g['pocket_bot'])]
+    g['tie_rods'] += [(g['ux'], g['up_front'] + dy, slope(g['up_front'] + dy) - 30.0) for dy in P['front_tie_rods']]
     g['bolt_xs'] = (g['ux'] - 22.0, g['ux'] + 22.0)            # beam cap screws
     g['bolt_ys'] = (d['beam_face'] + 25.0, d['beam_face'] + P['beam_d'] - 25.0)
     g['beam_dowel_y'] = d['beam_face'] + 70.0
@@ -365,14 +375,15 @@ def base_pockets(g):
     yf0, yf1 = y0 + P['base_front_wall'], g['split'] - P['split_wall']
     tie = g['split'] + P['base_tie']
     ry = g['rod_y']
-    out = [(chamfered(-gi, gi, yf0, yf1, 10.0), zp, 'centre'),          # front, between the girders
+    foot = g['up_front']             # the upright feet stand on full-depth casting from here back
+    out = [(chamfered(-gi, gi, yf0, g['split'] - P['base_tie'], 10.0), zp, 'centre'),   # front, between the girders
            (chamfered(-gi, gi, tie, 245.0, 30.0), zp, 'centre')]        # rear, between the girders
     for sx in (-1, 1):
         side = [
-            (chamfered(go, half - 40.0, yf0, yf1, 10.0), zp, 'outboard'),                 # front, outboard
+            # front, outboard: stops short of the upright foot, which stands on full-depth casting
+            (chamfered(go, half - 40.0, yf0, foot - 20.0, 10.0), zp, 'outboard'),
             (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0, 'trough-band'),      # under the coolant trough band
             (chamfered(half - 45.0, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),  # under the front draw rods
-            ([(140.0, 15.0), (half - 45.0, 15.0), (half - 45.0, 95.0)], zp, 'triangle'),   # rear, ahead of the uprights
             (chamfered(go, g['inner'] - 5.0, tie, 318.0, 10.0), 40.0, 'knee'),            # under the knee, inboard of the sockets
             (chamfered(g['outer'] - 8.0, half - 8.0, 60.0, ry - 32.0, 8.0), 65.0, 'outer-a'),   # outboard of the sockets,
             (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),  # either side of the coupler
@@ -514,14 +525,18 @@ def base_half(m, g, st, front):
                 env, shell = parts.square_tube('z', sx * g['ux'], py, sock_s, sock_w, g['sock_bot'], base_top)
                 cuts.append(env)
                 st.add(f'SocketLiner{side}{i + 1}', cont, shell, 'printed')
-            for j, rx in enumerate((g['ux'] - 20.0, g['ux'] + 20.0)):
-                env = parts.hexagon(19.0, base_top - 70, 36.0, sx * rx, g['rod_y'])
-                cuts += [env, Part.makeCylinder(7.0, 36, Vector(sx * rx, g['rod_y'], base_top - 35))]
-                st.add(f'TieRodCoupler{side}{j + 1}', cont,
-                       env.cut(Part.makeCylinder(P['tie_rod_d'] / 2, 40, Vector(sx * rx, g['rod_y'], base_top - 72))), 'steel')
             dowel = Part.makeCylinder(5.0, 30.0, Vector(sx * g['ux'], g['rod_y'], base_top - 15))
             cuts.append(dowel)
             st.add(f'DowelBase{side}', cont, dowel, 'steel')
+
+    # tie-rod coupling nuts for the uprights, in whichever half each rod lands
+    for sx, side in ((-1, 'L'), (1, 'R')):
+        for j, (rx, ry, _) in enumerate(g['tie_rods']):
+            if ya <= ry < yb:
+                env = parts.hexagon(19.0, base_top - 70, 36.0, sx * rx, ry)
+                cuts += [env, Part.makeCylinder(7.0, 36, Vector(sx * rx, ry, base_top - 35))]
+                st.add(f'TieRodCoupler{side}{j + 1}', cont,
+                       env.cut(Part.makeCylinder(P['tie_rod_d'] / 2, 40, Vector(sx * rx, ry, base_top - 72))), 'steel')
 
     if front:
         # Seal on the split face: a U under the floor gutters, rising at both ends to near the top.
@@ -550,7 +565,7 @@ def foot_gasket(g, sx):
     """Groove loop in the upright's underside, 8 mm in from its edges."""
     w, dpt = P['gasket_groove']
     x0, x1 = sorted((sx * (g['inner'] + 8.0), sx * (g['outer'] - 8.0)))
-    y0, y1 = g['up_y0'] - P['upright_flare'] + 8.0, min(g['up_y1'] + 35.0, g['base_y1']) - 8.0
+    y0, y1 = g['up_front'] + 8.0, g['up_y1'] - 8.0
     z = g['base_top']
     ring = parts.box(x0 - w / 2, x1 + w / 2, y0 - w / 2, y1 + w / 2, z, z + dpt).cut(
         parts.box(x0 + w / 2, x1 - w / 2, y0 + w / 2, y1 - w / 2, z - 1, z + dpt + 1))
@@ -558,22 +573,12 @@ def foot_gasket(g, sx):
 
 
 def upright_envelope(g, sx, edges=True):
-    """Outside shape of an upright, before any cuts (the mould cavity)."""
+    """Outside shape of an upright, before any cuts (the mould cavity): a raked buttress, the
+    foot running forward along the base and the front face sloping up to the beam."""
     inner, outer, base_top, beam_bot = g['inner'], g['outer'], g['base_top'], g['beam_bot']
-    up_y0, up_y1 = g['up_y0'], g['up_y1']
-    flare, lip = P['upright_flare'], P['upright_lip']
     x0 = inner if sx > 0 else -outer
-    P3 = lambda y, z: Vector(x0, y, z)
-    back = min(up_y1 + 35.0, g['base_y1'])
-    cy, cz, r = up_y0 - flare, base_top + lip + flare, flare
-    mid = P3(cy + r * 0.70710678, cz - r * 0.70710678)
-    outline = [Part.LineSegment(P3(cy, base_top), P3(back, base_top)).toShape(),
-             Part.LineSegment(P3(back, base_top), P3(up_y1, beam_bot)).toShape(),
-             Part.LineSegment(P3(up_y1, beam_bot), P3(up_y0, beam_bot)).toShape(),
-             Part.LineSegment(P3(up_y0, beam_bot), P3(up_y0, cz)).toShape(),
-             Part.Arc(P3(up_y0, cz), mid, P3(cy, base_top + lip)).toShape(),
-             Part.LineSegment(P3(cy, base_top + lip), P3(cy, base_top)).toShape()]
-    up = Part.Face(Part.Wire(outline)).extrude(Vector(P['upright_t'], 0, 0))
+    prof = [(g['up_front'], base_top), (g['up_top_front'], beam_bot), (g['up_y1'], beam_bot), (g['up_y1'], base_top)]
+    up = Part.Face(Part.makePolygon([Vector(x0, y, z) for y, z in prof + prof[:1]])).extrude(Vector(P['upright_t'], 0, 0))
     if not edges:
         return up
     return fillet_safe(up, (P['edge_r'], 4.0, 2.0), lambda e: not on_z(base_top)(e))
@@ -600,15 +605,16 @@ def upright(m, g, st, sx):
         st.add(f'Post{tag}{i + 1}', cont, shell)
         st.plug(f'Post{tag}{i + 1}Plug', cont, 'z', sx * g['ux'], py, post_s - 2 * post_w, post_top - 10, post_top)
     pockets, taps = [], []
-    for j, rx in enumerate((g['ux'] - 20.0, g['ux'] + 20.0)):
-        x, pb = sx * rx, g['pocket_bot']
-        pockets.append(Part.makeCylinder(16.0, beam_bot - pb + 1, Vector(x, g['rod_y'], pb)))
-        cuts.append(Part.makeCylinder(7.0, pb - base_top + 1, Vector(x, g['rod_y'], base_top - 0.5)))
+    for j, (rx, ry, pb) in enumerate(g['tie_rods']):
+        x = sx * rx
+        # nut pocket: up from its floor through the top (or the sloped front) of the casting
+        pockets.append(Part.makeCylinder(16.0, beam_bot - pb + 1, Vector(x, ry, pb)))
+        cuts.append(Part.makeCylinder(7.0, pb - base_top + 1, Vector(x, ry, base_top - 0.5)))
         st.add(f'TieRod{tag}{j + 1}', cont, Part.makeCylinder(P['tie_rod_d'] / 2, pb + 12.5 - (base_top - 52),
-                                                               Vector(x, g['rod_y'], base_top - 52)), 'steel')
-        washer = Part.makeCylinder(12.0, 2.5, Vector(x, g['rod_y'], pb)).cut(Part.makeCylinder(6.5, 3, Vector(x, g['rod_y'], pb - 0.25)))
-        nut = parts.hexagon(19.0, pb + 2.5, 10.0, x, g['rod_y']).cut(
-            Part.makeCylinder(P['tie_rod_d'] / 2, 11, Vector(x, g['rod_y'], pb + 2)))
+                                                               Vector(x, ry, base_top - 52)), 'steel')
+        washer = Part.makeCylinder(12.0, 2.5, Vector(x, ry, pb)).cut(Part.makeCylinder(6.5, 3, Vector(x, ry, pb - 0.25)))
+        nut = parts.hexagon(19.0, pb + 2.5, 10.0, x, ry).cut(
+            Part.makeCylinder(P['tie_rod_d'] / 2, 11, Vector(x, ry, pb + 2)))
         st.add(f'TieRodNut{tag}{j + 1}', cont, washer.fuse(nut), 'steel')
     for bx in g['bolt_xs']:
         for by in g['bolt_ys']:
@@ -699,7 +705,8 @@ def frame_modules(m, d):
         ('frame', 'Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs', '~270 g', 'PRINT'),
         ('frame', f'Steel plate 3/8 in, cut to size by the supplier (upright tops)',
          f"2 x {d['outer'] - d['inner'] - 12:.0f} x {d['up_y1'] - d['up_y0'] - 12:.0f}", 'buy'),
-        ('frame', 'M12 rod + coupling nut + nut/washer', f"4 x {g['pocket_bot'] + 12.5 - (d['base_top'] - 52):.0f} (uprights), "
+        ('frame', 'M12 rod + coupling nut + nut/washer', ', '.join(f"2 x {pb + 12.5 - (d['base_top'] - 52):.0f}" for _, _, pb in g['tie_rods'])
+         + " (uprights), "
                                                          f"2 x {ys + 28 - y0 - 15.5:.0f} (base)", 'buy'),
         ('frame', f"M10 x {d['beam_top'] - d['beam_bot'] + plate_t:.0f} cap screw + washer (beam)", '8 pcs', 'buy'),
         ('frame', 'Dowel pin 10 x 30', '4 pcs', 'buy'),
@@ -789,22 +796,11 @@ def mould_parts(m, d):
     out.append(('base-front', 'split-gasket-groove', split_gasket(g)[0], 'former', 1,
                 'Stick to the split-face mould wall, wax.'))
     sx = -1
-    mid_y = (g['up_y0'] + g['up_y1']) / 2
-    for f in moulds.fillers(upright_envelope(g, sx, edges=False)):
-        if f.BoundBox.Center.y < mid_y:
-            # only the curve is printed; above it a plain 70 mm block (wood/MDF) fills the box corner
-            cz = top + P['upright_lip'] + P['upright_flare']
-            out.append(('upright', 'front-flare', f.common(parts.box(-1e3, 1e3, -1e3, 1e3, top - 1, cz)), 'filler', 2,
-                        f"Forms the curved flare at the front of the foot; wax. Above it, fill the box corner with a "
-                        f"{P['upright_flare']:.0f} x {g['beam_bot'] - cz:.0f} x {P['upright_t']:.0f} mm wood block."))
-        else:
-            out.append(('upright', 'back-slope', f, 'filler', 2,
-                        'Forms the sloped back. Optional: a melamine board set at the same angle does the same job.'))
     out.append(('upright', 'foot-gasket-groove', foot_gasket(g, sx)[0], 'former', 2,
                 'Stick to the mould floor (the upright is cast foot-down), wax.'))
     pb, rod_r = g['pocket_bot'], 7.2
     plug = Part.makeCylinder(16.0, g['beam_bot'] - pb, Vector(0, 0, pb)).cut(Part.makeCylinder(rod_r, 1e3, Vector(0, 0, 0)))
-    out.append(('upright', 'tie-rod-pocket', plug, 'plug', 4,
+    out.append(('upright', 'tie-rod-pocket', plug, 'plug', 2 * len(g['tie_rods']),
                 'Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.'))
     for i, f in enumerate(moulds.fillers(beam_envelope(g, edges=False))):
         out.append(('beam', f'back-edge-{i + 1}', f, 'filler', 1, 'Rounded back edge of the beam mould; wax.'))
@@ -1688,8 +1684,8 @@ def export_prints(m):
              'part': 'Machine part'}
     boxes = {'base-front': f"{2 * d['base_half']:.0f} x {-d['base_y0']:.0f} x {d['base_top']:.0f}",
              'base-rear': f"{2 * d['base_half']:.0f} x {d['base_y1']:.0f} x {d['base_top']:.0f}",
-             'upright': f"{P['upright_t']:.0f} x {min(d['up_y1'] + 35.0, d['base_y1']) - (d['up_y0'] - P['upright_flare']):.0f}"
-                        f" x {d['beam_bot'] - d['base_top']:.0f}",
+             'upright': f"{P['upright_t']:.0f} x {d['up_y1'] - (d['beam_face'] - P['upright_foot']):.0f}"
+                        f" x {d['beam_bot'] - d['base_top']:.0f}, sloped front board",
              'beam': f"{2 * d['outer']:.0f} x {P['beam_d']:.0f} x {P['beam_h']:.0f}"}
     faces = {'base-front': 'top face down', 'base-rear': 'top face down', 'upright': 'foot down',
              'beam': 'front (rail) face down'}

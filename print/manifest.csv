@@ -1,13 +1,11 @@
 folder,file,kind,qty,size,grams,note
-base-front,core-centre-part1of2.stl,core,1,100 x 130 x 85,85,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-front,core-centre-part2of2.stl,core,1,100 x 130 x 85,85,
-base-front,core-outboard-L-part1of2.stl,core,1,130 x 130 x 85,98,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-front,core-outboard-L-part2of2.stl,core,1,130 x 130 x 85,98,
+base-front,core-centre-part1of2.stl,core,1,100 x 92 x 85,64,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-front,core-centre-part2of2.stl,core,1,100 x 93 x 85,64,
+base-front,core-outboard-L.stl,core,1,130 x 134 x 85,120,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-trough-band-L.stl,core,1,101 x 55 x 40,33,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-L-part1of2.stl,core,1,37 x 128 x 40,31,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-L-part2of2.stl,core,1,37 x 128 x 40,31,
-base-front,core-outboard-R-part1of2.stl,core,1,130 x 130 x 85,98,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-front,core-outboard-R-part2of2.stl,core,1,130 x 130 x 85,98,
+base-front,core-outboard-R.stl,core,1,130 x 134 x 85,120,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-trough-band-R.stl,core,1,101 x 55 x 40,33,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-R-part1of2.stl,core,1,37 x 128 x 40,31,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-R-part2of2.stl,core,1,37 x 128 x 40,31,
@@ -21,17 +19,14 @@ base-front,former-trough-part3of4.stl,former,1,140 x 35 x 25,49,
 base-front,former-trough-part4of4.stl,former,1,140 x 35 x 22,44,
 base-front,filler-corner-1.stl,filler,1,40 x 40 x 110,32,Rounded corner of the mould box; wax.
 base-front,filler-corner-2.stl,filler,1,40 x 40 x 110,32,Rounded corner of the mould box; wax.
-base-rear,core-centre-part1of2.stl,core,1,100 x 92 x 85,59,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-centre-part2of2.stl,core,1,100 x 92 x 85,59,
-base-rear,core-triangle-L.stl,core,1,115 x 80 x 85,64,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-L-part1of2.stl,core,1,50 x 129 x 40,36,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-L-part2of2.stl,core,1,50 x 129 x 40,36,
+base-rear,core-centre.stl,core,1,100 x 155 x 85,101,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-L-part1of2.stl,core,1,50 x 114 x 40,32,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-L-part2of2.stl,core,1,50 x 114 x 40,32,
 base-rear,core-outer-a-L.stl,core,1,35 x 128 x 65,48,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-outer-b-L.stl,core,1,35 x 60 x 65,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-rear-L.stl,core,1,170 x 52 x 85,88,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-triangle-R.stl,core,1,115 x 80 x 85,64,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-R-part1of2.stl,core,1,50 x 129 x 40,36,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-R-part2of2.stl,core,1,50 x 129 x 40,36,
+base-rear,core-knee-R-part1of2.stl,core,1,50 x 114 x 40,32,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-R-part2of2.stl,core,1,50 x 114 x 40,32,
 base-rear,core-outer-a-R.stl,core,1,35 x 128 x 65,48,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-outer-b-R.stl,core,1,35 x 60 x 65,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-rear-R.stl,core,1,170 x 52 x 85,88,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
@@ -49,12 +44,11 @@ base-front,former-split-gasket-groove-part1of4.stl,former,1,145 x 2 x 14,2,"Stic
 base-front,former-split-gasket-groove-part2of4.stl,former,1,145 x 2 x 4,2,
 base-front,former-split-gasket-groove-part3of4.stl,former,1,145 x 2 x 4,2,
 base-front,former-split-gasket-groove-part4of4.stl,former,1,145 x 2 x 14,2,
-upright,filler-front-flare.stl,filler,2,80 x 70 x 70,202,"Forms the curved flare at the front of the foot; wax. Above it, fill the box corner with a 70 x 168 x 80 mm wood block."
-upright,filler-back-slope-part1of2.stl,filler,2,80 x 18 x 123,104,Forms the sloped back. Optional: a melamine board set at the same angle does the same job.
-upright,filler-back-slope-part2of2.stl,filler,2,80 x 35 x 123,191,
-upright,former-foot-gasket-groove-part1of2.stl,former,2,68 x 136 x 2,9,"Stick to the mould floor (the upright is cast foot-down), wax."
-upright,former-foot-gasket-groove-part2of2.stl,former,2,68 x 136 x 2,9,
-upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 18,33,Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.
+upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 139 x 2,9,"Stick to the mould floor (the upright is cast foot-down), wax."
+upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 139 x 2,4,
+upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 139 x 2,4,
+upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 139 x 2,9,
+upright,plug-tie-rod-pocket.stl,plug,8,32 x 32 x 18,65,Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.
 beam,filler-back-edge-1-part1of4.stl,filler,1,132 x 40 x 40,39,Rounded back edge of the beam mould; wax.
 beam,filler-back-edge-1-part2of4.stl,filler,1,132 x 40 x 40,39,
 beam,filler-back-edge-1-part3of4.stl,filler,1,132 x 40 x 40,39,

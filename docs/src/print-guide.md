@@ -4,7 +4,7 @@ Every printed part for the castings and the machine, cut to fit a Bambu A1 mini
 (180 mm cube; no piece is over 170 mm). The STL files are in `print/`, one folder per
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 
-**About 98 prints, roughly 3.6 kg of PETG.** The filament figures are rough estimates.
+**About 95 prints, roughly 2.7 kg of PETG.** The filament figures are rough estimates.
 
 ## Settings
 
@@ -29,54 +29,50 @@ casting, with the list in `print/manifest.csv`. They are written by `model/build
 |---|---|---|
 | Base, front half | 600 x 345 x 110 | top face down |
 | Base, rear half | 600 x 380 x 110 | top face down |
-| Uprights (both the same: print quantities are for two) | 80 x 285 x 246 | foot down |
+| Uprights (both the same: print quantities are for two) | 80 x 430 x 246, sloped front board | foot down |
 | Beam | 530 x 140 x 140 | front (rail) face down |
 
 ![Base rear mould: cores (orange) in the pockets](../../renders/build/04-mould-base-rear.png)
 
 ## Foam cores instead of printed ones
 
-The pocket cores are about 1.5 kg of the PETG. The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;
+The pocket cores are about 1.1 kg of the PETG. The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;
 wrap them in packing tape and wax them. The corners are chamfered 8-10 mm (30 mm on the rear
 centre core), and the triangles are right triangles. Glue foam cores to the bridge so they
 cannot float. Sizes (outline x depth from the underside):
 
 | Casting | Core | Outline (mm) | Depth (mm) |
 |---|---|---|---|
-| base-front | centre | 100 x 260 | 85 |
-| base-front | outboard-L | 130 x 260 | 85 |
+| base-front | centre | 100 x 185 | 85 |
+| base-front | outboard-L | 130 x 134 | 85 |
 | base-front | trough-band-L | 101 x 55 | 40 |
 | base-front | draw-rod-L | 37 x 255 | 40 |
-| base-front | outboard-R | 130 x 260 | 85 |
+| base-front | outboard-R | 130 x 134 | 85 |
 | base-front | trough-band-R | 101 x 55 | 40 |
 | base-front | draw-rod-R | 37 x 255 | 40 |
-| base-rear | centre | 100 x 185 | 85 |
-| base-rear | triangle-L | 115 x 80 | 85 |
-| base-rear | knee-L | 50 x 258 | 40 |
+| base-rear | centre | 100 x 155 | 85 |
+| base-rear | knee-L | 50 x 228 | 40 |
 | base-rear | outer-a-L | 35 x 128 | 65 |
 | base-rear | outer-b-L | 35 x 60 | 65 |
 | base-rear | rear-L | 170 x 52 | 85 |
-| base-rear | triangle-R | 115 x 80 | 85 |
-| base-rear | knee-R | 50 x 258 | 40 |
+| base-rear | knee-R | 50 x 228 | 40 |
 | base-rear | outer-a-R | 35 x 128 | 65 |
 | base-rear | outer-b-R | 35 x 60 | 65 |
 | base-rear | rear-R | 170 x 52 | 85 |
 
 ## Base, front half
 
-Folder `print/base-front/`, about 1245 g.
+Folder `print/base-front/`, about 1053 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
-| `core-centre-part1of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 130 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-centre-part2of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 130 x 85 |  |
-| `core-outboard-L-part1of2.stl` | Pocket core (shell, stays in) | 1 | 130 x 130 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-outboard-L-part2of2.stl` | Pocket core (shell, stays in) | 1 | 130 x 130 x 85 |  |
+| `core-centre-part1of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 92 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
+| `core-centre-part2of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 93 x 85 |  |
+| `core-outboard-L.stl` | Pocket core (shell, stays in) | 1 | 130 x 134 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-trough-band-L.stl` | Pocket core (shell, stays in) | 1 | 101 x 55 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-draw-rod-L-part1of2.stl` | Pocket core (shell, stays in) | 1 | 37 x 128 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-draw-rod-L-part2of2.stl` | Pocket core (shell, stays in) | 1 | 37 x 128 x 40 |  |
-| `core-outboard-R-part1of2.stl` | Pocket core (shell, stays in) | 1 | 130 x 130 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-outboard-R-part2of2.stl` | Pocket core (shell, stays in) | 1 | 130 x 130 x 85 |  |
+| `core-outboard-R.stl` | Pocket core (shell, stays in) | 1 | 130 x 134 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-trough-band-R.stl` | Pocket core (shell, stays in) | 1 | 101 x 55 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-draw-rod-R-part1of2.stl` | Pocket core (shell, stays in) | 1 | 37 x 128 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-draw-rod-R-part2of2.stl` | Pocket core (shell, stays in) | 1 | 37 x 128 x 40 |  |
@@ -101,21 +97,18 @@ Folder `print/base-front/`, about 1245 g.
 
 ## Base, rear half
 
-Folder `print/base-rear/`, about 1222 g.
+Folder `print/base-rear/`, about 1061 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
-| `core-centre-part1of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 92 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-centre-part2of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 92 x 85 |  |
-| `core-triangle-L.stl` | Pocket core (shell, stays in) | 1 | 115 x 80 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-knee-L-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 129 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-knee-L-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 129 x 40 |  |
+| `core-centre.stl` | Pocket core (shell, stays in) | 1 | 100 x 155 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
+| `core-knee-L-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 114 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
+| `core-knee-L-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 114 x 40 |  |
 | `core-outer-a-L.stl` | Pocket core (shell, stays in) | 1 | 35 x 128 x 65 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-outer-b-L.stl` | Pocket core (shell, stays in) | 1 | 35 x 60 x 65 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-rear-L.stl` | Pocket core (shell, stays in) | 1 | 170 x 52 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-triangle-R.stl` | Pocket core (shell, stays in) | 1 | 115 x 80 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-knee-R-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 129 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
-| `core-knee-R-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 129 x 40 |  |
+| `core-knee-R-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 114 x 40 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
+| `core-knee-R-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 114 x 40 |  |
 | `core-outer-a-R.stl` | Pocket core (shell, stays in) | 1 | 35 x 128 x 65 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-outer-b-R.stl` | Pocket core (shell, stays in) | 1 | 35 x 60 x 65 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
 | `core-rear-R.stl` | Pocket core (shell, stays in) | 1 | 170 x 52 x 85 | Shell core, stays in the casting. Fill with dry sand while casting so it cannot float. |
@@ -135,16 +128,15 @@ Folder `print/base-rear/`, about 1222 g.
 
 ## Uprights (both the same: print quantities are for two)
 
-Folder `print/upright/`, about 592 g.
+Folder `print/upright/`, about 136 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
-| `filler-front-flare.stl` | Corner filler (removable) | 2 | 80 x 70 x 70 | Forms the curved flare at the front of the foot; wax. Above it, fill the box corner with a 70 x 168 x 80 mm wood block. |
-| `filler-back-slope-part1of2.stl` | Corner filler (removable) | 2 | 80 x 18 x 123 | Forms the sloped back. Optional: a melamine board set at the same angle does the same job. |
-| `filler-back-slope-part2of2.stl` | Corner filler (removable) | 2 | 80 x 35 x 123 |  |
-| `former-foot-gasket-groove-part1of2.stl` | Former (removable) | 2 | 68 x 136 x 2 | Stick to the mould floor (the upright is cast foot-down), wax. |
-| `former-foot-gasket-groove-part2of2.stl` | Former (removable) | 2 | 68 x 136 x 2 |  |
-| `plug-tie-rod-pocket.stl` | Pocket plug (removable) | 4 | 32 x 32 x 18 | Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing. |
+| `former-foot-gasket-groove-part1of4.stl` | Former (removable) | 2 | 68 x 139 x 2 | Stick to the mould floor (the upright is cast foot-down), wax. |
+| `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 139 x 2 |  |
+| `former-foot-gasket-groove-part3of4.stl` | Former (removable) | 2 | 4 x 139 x 2 |  |
+| `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 2 | 68 x 139 x 2 |  |
+| `plug-tie-rod-pocket.stl` | Pocket plug (removable) | 8 | 32 x 32 x 18 | Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing. |
 | `cast-in-post-l1-plug.stl` | Cast-in part (stays in) | 4 | 30 x 30 x 10 | Cast in, stays. |
 
 ## Beam

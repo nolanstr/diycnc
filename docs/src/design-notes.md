@@ -14,7 +14,7 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 |---|---|---|
 | Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x M12 draw rods, the coolant outlet, O-ring groove on the split face | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face |
 | Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), 4 printed socket liners, M12 coupling nuts | - |
-| Upright (x2) | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts drop into the lined sockets, a dowel locates it, 2x M12 tie rods pull it down |
+| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts drop into the lined sockets, a dowel locates it, 4x M12 tie rods pull it down (two from pockets at the top, two from pockets in the sloped front) |
 | Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 14 mm where the inner cap screws pass | A dowel and 4x M10 cap screws per side into the upright top plates |
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
@@ -39,7 +39,8 @@ part of each leg that hangs below the base.
   outboard of the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are printed PETG liners cast into the base, not steel tube.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
-  10 mm, sand, fine sand, and silica flour or fly ash) and vibrate it. A good mix gets to
+  10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. Whiting is
+  used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
   about 9 % epoxy, which saves roughly another 1 kg.
 
 **What the rails and supports bolt to.** Nothing bolts to the cast-in tubes; they stiffen
@@ -58,7 +59,8 @@ coolant runs to the two drains at the front. The door laps over the base front f
 Assembly: base halves (spigots in, tighten the draw rods), uprights (posts into
 sockets, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
 take the X and Y motors off first (they pass through the enclosure panels), then
-reverse the order. Heaviest piece: the rear base half.
+reverse the order. Heaviest piece: the rear base half (about 42 kg). The upright feet run
+forward across the base split, so the base halves have to be joined before the uprights go on.
 
 ## Stiffness study (`analysis/`)
 
@@ -86,7 +88,9 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | Base with no pockets at all (+14 L) | 56.8 L | 61.5 | 90.1 | 67.0 |
 | Beam 120 -> 140 mm deep only (+1.5 L) | 43.9 L | 51.1 | 90.9 | 63.8 |
 | Optimized base + 140 mm beam | 43.7 L | 54.0 | 94.5 | 68.0 |
-| **Now: + riser hold-downs, support pads, uncut 600 mm Y rails** | **43.7 L** | **55.7** | **96.8** | **68.9** |
+| + riser hold-downs, support pads, uncut 600 mm Y rails | 43.7 L | 55.7 | 96.8 | 68.9 |
+| Base + uprights optimized together, same material (free-form uprights) | 43.7 L | 63.9 | 103.3 | 85.2 |
+| **Now: raked-buttress uprights, base re-laid around them** | **52.6 L** | **77.5** | **107.5** | **93.0** |
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
   equally. Litre for litre, epoxy in the beam is worth roughly ten times as much as epoxy
@@ -95,7 +99,19 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   about 75 / 25 / 85 % in X / Y / Z, and making the base rigid about 70 / 70 / 35 %. The
   uprights are only 3.1 L each, so per litre they're the next place to add material (wider
   or deeper, which also grows the base and the enclosure).
-- The optimization (`analysis/topopt.py`, pockets open to the bottom) puts the base material
+- **Uprights.** Optimizing the base and the uprights together (`analysis/topopt_frame.py`,
+  one shared budget, the uprights free to grow anywhere beside the table under the beam) moves
+  about 3 L from the base into the uprights and turns each upright into a raked buttress: the
+  foot runs about 300 mm forward along the base and the front face slopes up to just ahead of
+  the beam (`analysis/figs/frame_34.6_upright.png`). That alone, at the same total material, is
+  +15 / +7 / +24 % in X / Y / Z. With 4 L less material in total the frame ends up about 20 %
+  less stiff than before, so cutting material isn't worth it.
+- The castable version drawn now is a solid full-width buttress (one sloped board in the
+  mould, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright. The base
+  was then re-optimized around the longer feet (`analysis/figs/frame2_base_*.png`): it wants
+  full depth under the feet and a wider tie across the split. Total +8.9 L of epoxy granite
+  (about $75) for +39 / +11 / +35 %.
+- The base optimization (`analysis/topopt.py`, pockets open to the bottom) puts the base material
   into girders under the rails, a tie between them behind the split and knees to the
   sockets, and takes it out of the perimeter walls, the cross rib at the split and the
   skin. The castable version drawn here has the same volume as before (28.4 L) and is 5 %
@@ -110,7 +126,8 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   with closed box sections (lost foam cores) is only about 8 % stiffer than open pockets
   at the same volume, which isn't worth the trouble.
 
-Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `base_current.png` (the
+Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `frame_34.6_*` (base and
+uprights optimized together), `frame2_base_*` (base around the new uprights), `base_current.png` (the
 previous base), `base_final.png` (solid depth from the top
 in each column), `base_pocket_*` and `base_free_*` (optimization results at 18-28.5 L), and
 `tradeoff.png` (base stiffness against base volume).
@@ -161,7 +178,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 ## Cost
 
-**Checked against real listings (2026-10-09, the sourcing list): about $2,730 for the priced items,
+**Checked against real listings (2026-10-09, the sourcing list): about $2,780 for the priced items,
 plus 17 unpriced ones, so roughly $3.1-3.4k at Amazon prices.** Buying the tube, plate and
 risers from a local steel yard should take roughly another $100-150 off. The estimate below was made
 before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
@@ -174,7 +191,7 @@ and enclosure.
 
 | Item | Before | Cost-down | Change |
 |---|---|---|---|
-| Epoxy + aggregate | $240-315 | $200-255 | Hollow rear base, 10 % epoxy mix (well-graded aggregate + silica flour/fly ash), bulk kits |
+| Epoxy + aggregate | $240-315 | $200-255 | Hollow rear base, 10 % epoxy mix (well-graded aggregate + whiting fines), bulk kits |
 | Cast-in steel, rods, dowels, fasteners | $90-140 | $90-140 | |
 | Rail risers | $60-90 | $25-40 | Cold-rolled flat bar bedded in epoxy and replicated, instead of MIC6 strips |
 | MIC6 table, carriage, Z plate | $120-180 | $120-180 | Remnant/drop plate is often much cheaper |
