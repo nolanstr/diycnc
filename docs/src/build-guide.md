@@ -271,7 +271,11 @@ Lubricate every block with the grease gun before moving anything far.
 - **Safety:** wire the E-stop to cut driver enable and the VFD run signal in hardware. Fit
   the homing switches, then the tool setter.
 
-## 8. Enclosure and coolant
+## 8. Enclosure and coolant (phase 2)
+
+The machine runs without these: until then, brush or drip cutting fluid onto the cut, keep the
+way covers and screw cover on, and let the gutters and drain carry the fluid to the pan under the
+base. Cast the enclosure inserts into the base now so the frame bolts straight on later.
 
 1. Bolt the 2020 frame to the base top with angle brackets into the cast-in M5 inserts
    (M5 x 35). Cut list in `docs/report.txt`.

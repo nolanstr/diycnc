@@ -1,38 +1,38 @@
 # Sourcing list
 
 Parts to buy for the machine in `model/DIYCNC.FCStd` / `docs/report.txt`, sourced on Amazon (US) where it
-makes sense. Prices and stock were checked on **2026-10-09**. "?" means the price was not visible
+makes sense. Prices and stock were checked on **2026-10-09/10**. "?" means the price was not visible
 (Amazon blocks automated page reads); check the live listing. Shipping and tax are not included.
 Off-Amazon picks are marked "not Amazon": they are there because Amazon doesn't carry the part or
-is much dearer. Rows marked (opt) are optional and are left out of the totals.
+is much dearer. Rows marked (opt) or (choice) are left out of the totals.
 
 The same list is in `docs/sourcing.csv` for a spreadsheet.
 
 ## Totals
 
+The machine is built in two phases. **Phase 1** is the complete mill: frame, axes, controller and
+chip protection, with brush-on cutting fluid. **Phase 2** adds the enclosure and flood coolant; the
+castings already have the inserts, gutters, drain and sump space for it. The spindle is the
+builder's choice and is priced separately.
+
 | Section | Priced | Unpriced items |
 |---|---|---|
 | Motion and drives | $522.50 | 0 |
-| Spindle and electronics | $367.78 | 14 |
-| Castings and frame | $1,317.36 | 0 |
-| Enclosure, coolant and covers | $573.92 | 3 |
-| **Total** | **$2,781.56** | **17** |
+| Controller and electrical | $262.12 | 0 |
+| Castings and frame | $777.17 | 0 |
+| Chip protection | $196.87 | 0 |
+| **Phase 1 total, without spindle** | **$1,758.66** | **0** |
 
-The unpriced items are mostly the 120 V VFD, the electrical parts, the ACM sheet, the sump pump
-and the spiral cover. My rough estimate for them is another $450-750 (not checked), so the build comes to roughly $3.2-3.5k
-before shipping.
+| Spindle (pick one) | About |
+|---|---|
+| A: 1.5 kW 110 V water-cooled kit | $250-375 (+ collets ~$25.21 if not included) |
+| B: 2.2 kW kit + 120 V step-up VFD (full power needs 240 V) | $430-600 |
 
-**Where the money goes:** the frame section: casting materials ~$360, aluminium plate ~$240,
-steel tube and plate ~$245, rods and fasteners ~$190, risers ~$110. Then the enclosure
-and coolant ($574), the spindle and VFD, and the closed-loop motors ($162).
+**Phase 2** (enclosure + flood coolant): $436.05 priced + 2 unpriced (ACM sheet, Flood coolant pump), about $650-700 in all.
 
-**Cheapest places to cut:** buy the tube, top-plate steel and risers from a local steel yard
-(offcuts or full lengths you cut yourself; estimated ~$100-150 less than the listings here) and
-skip the flood coolant and enclosure at
-first (~$550, see the README cost section); AliExpress versions of the rails, ballscrews,
-spindle and VFD (often 30-50 % less, slower shipping). Retail cut-to-size shops (e.g. Metal
-Supermarkets) were checked and cost more than these listings, about $820 for the tube,
-risers and aluminium.
+Shipping and tax are extra. Raka (epoxy), the whiting and Bolt Depot ship heavy or separately;
+buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
+estimates: call a yard with the cut list.
 
 **JLCMC and JLCCNC (checked 2026-10-10).** JLCMC list prices are about half of Amazon for
 rails and couplings (e.g. the Y rail pair $27.40), but US orders prepay a 55 % duty plus DHL
@@ -40,9 +40,9 @@ shipping, so the whole motion order comes to about $250-300 against about $190 h
 no ready-made SFU1204 (lead 4) kit, and the 1605 screw-end machining for BK12/BF12 is not
 confirmed. Worth adding the rails and couplers only to a JLC order you are placing anyway.
 JLCCNC machining of the three aluminium plates with all holes is estimated at $430-850
-delivered (90 % duty prepaid on machined aluminium) against $242 for blanks you drill yourself:
-only worth it for the X carriage if you want its hole pattern exact. JLC 3D printing of the
-mould parts costs several hundred dollars against $60-90 of PETG.
+delivered (90 % duty prepaid on machined aluminium): only worth it for the X carriage if you
+want its hole pattern exact. Retail cut-to-size shops (e.g. Metal Supermarkets, about $820 for
+the tube, risers and aluminium) also cost more than the sources here.
 
 ## Motion and drives
 
@@ -66,73 +66,82 @@ mould parts costs several hundred dollars against $60-90 of PETG.
 
 **Priced subtotal: $522.50**
 
-## Spindle and electronics
+## Controller and electrical
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Spindle kit | 2.2 kW 80 mm ER20 water-cooled + 220 V VFD + clamp | 1 | [RATTMMOTOR 2.2 kW ER20 kit with VFD, clamp, pump](https://www.amazon.com/dp/B073TRP92V) | $250.96 | $250.96 | Its VFD needs 220 V in: keep it for the 240 V upgrade. Its pump is 220 V too. Alt with 13 ER20 collets included: B07JB3TJKR (price not seen). |
-| VFD for 120 V now | 110-120 V in, 220 V 3-phase out, 400 Hz | 1 | [Huanyang 1.5 kW step-up VFD (110 V in, 220 V out)](https://www.amazon.com/dp/B0D62J4G22) | ? | ? | Caps the spindle at ~1.5 kW until 240 V. Ask the seller to confirm 400 Hz. Alt: a 110 V-out HY02D211B (B0775F4G47) with the V/f curve set to 110 V at 200 Hz gives full torque up to 12k rpm. |
-| ER20 collet set | 1-13 mm | 1 | [Chiloskit ER20 13 pcs](https://www.amazon.com/dp/B08B1H4RSR) | $25.21 | $25.21 | Skip if the kit includes a set |
-| Spindle water pump | 110 V submersible, ~80 W | 1 | [110 V 80 W submersible pump for water-cooled spindles](https://www.amazon.com/dp/B0B7W31NBF) | ? | ? | Make sure it is the 110 V version; many are 220 V. Runs in a 10-20 L bucket. |
-| Spindle coolant | Distilled water + 10-20 % RV antifreeze | 1 | Local store | ? | ? | Stops algae and corrosion |
-| (opt) Radiator | 240 mm with fans | 1 | [ASHATA 240 mm radiator + 2 fans](https://www.amazon.com/dp/B07HK7GVZY) | ? | ? | Only if the bucket warms up on long jobs |
-| Controller | FluidNC, 6 axes, external drivers, RS485, 0-10 V | 1 | [Elecrow Corgi ESP32 FluidNC controller (not Amazon)](https://www.elecrow.com/corgi-esp32-6-axis-cnc-controller-for-fluidnc.html) | $49.00 | $49.00 | Runs gSender or the web UI; no Windows license. Alt: DDCSV3.1 standalone B07SR854D1 (about $250-330 elsewhere). |
-| 0-10 V spindle module | For the controller | 1 | [Elecrow FluidNC 0-10 V module](https://www.elecrow.com/6x-cnc-controller-for-fluidnc.html) | $11.00 | $11.00 | Check whether the Corgi already has 0-10 V built in |
-| Spindle pump relay | SSR, DC in, 120 V AC out | 1 | [Aexit SSR-25DA](https://www.amazon.com/dp/B07L81H1LD) | ? | ? | Runs the 110 V spindle water pump whenever the spindle runs. Fuse the branch. |
-| Homing sensors | Inductive NPN NO, M12 | 1 (5-pack) | [LJ12A3-4-Z/BX, 5 pcs](https://www.amazon.com/dp/B0D1R8RLMW) | ? | ? | Power them from 12 V, not 5 V |
-| Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Price may belong to a neighbouring listing |
-| E-stop | 22 mm mushroom, latching, in a box | 1 | [Shopcorp E-stop with box](https://www.amazon.com/dp/B0C8BGDVTH) | ? | ? | Wire it to cut drive enable and VFD run in hardware |
-| Mains inlet, logic | IEC C14 with switch + fuse | 1 (4-pack) | [Oiyagai C14 inlet, switch, fuse](https://www.amazon.com/dp/B078N95379) | ? | ? | Logic, 48 V supply and pump only (6 A switch) |
-| Mains inlet, VFD | IEC C20, 16/20 A | 1 | [Interpower 83030420](https://www.amazon.com/dp/B00917YXTW) | ? | ? | The VFD draws 15-20 A on 120 V: a 20 A circuit |
-| Logic power supply | 24 V DIN rail | 1 | [Mean Well HDR-60-24](https://www.amazon.com/dp/B077BBD1K9) | ? | ? |  |
-| Spindle cable | 14/4 shielded, 3 m | 1 (10 ft) | [LINKSQ 14/4 shielded](https://www.amazon.com/dp/B0DVQ61DS6) | ? | ? | Shield to earth at the VFD end |
-| Stepper/sensor cable | 18/4 shielded | 1 (50 ft) | [Linear Motion Labs 18/4 shielded](https://www.amazon.com/dp/B01GZ50P7Q) | ? | ? |  |
-| Electrical box | Steel, room for VFD + PSUs | 1 | [VEVOR 20x16x8 in enclosure](https://www.amazon.com/dp/B0924BN1P5) | ? | ? | 16x12x6 (B09247D9LH) is tight with the VFD inside. Add a filtered fan. |
-| DIN rail + terminals | UK2.5B kit | 1 | [Erayco terminal block kit](https://www.amazon.com/dp/B07KRDJCYB) | ? | ? |  |
-| Cable glands | PG7-PG19 | 1 (50 pcs) | [Bates nylon glands](https://www.amazon.com/dp/B09W9Q5HMH) | ? | ? |  |
+| Controller | FluidNC, 6 axes, external drivers, RS485, 0-10 V | 1 | [Elecrow Corgi ESP32 FluidNC controller (not Amazon)](https://www.elecrow.com/corgi-esp32-6-axis-cnc-controller-for-fluidnc.html) | $49.00 | $49.00 | Runs gSender or the web UI. Drives an RS485 VFD directly, so no 0-10 V module is needed for one. |
+| Limit switches | Roller lever, 4 needed | 1 (5-pack) | [Yusheng ME-8108 limit switch set of 5](https://www.cncproshop.com/products/yusheng-me-8108-limit-switch-set-of-5) | $16.99 | $16.99 | Inductive LJ12A3-4-Z/BX (about $4.50 each) also work; power them from 12 V. |
+| E-stop | 22 mm mushroom, latching, NC, in a box | 1 | [Generic 22 mm E-stop station (eBay)](https://www.ebay.com/itm/144182671837) | $22.39 | $22.39 | Wire it to cut drive enable and VFD run in hardware. Check it has an NC contact. |
+| Mains inlet | IEC C14 with switch + fuse | 1 | [IEC C14 inlet module (Walmart)](https://www.walmart.com/ip/115677799) | $7.99 | $7.99 | Often ships without the fuse: buy 5x20 mm fuses. |
+| Logic power supply | 24 V, 6.5 A | 1 | [Mean Well LRS-150-24 (TRC Electronics)](https://www.trcelectronics.com/products/mean-well-lrs-150-24) | $20.39 | $20.39 | Jameco about $18.80 |
+| Electrical box | 12x10x6 in, with backplate | 1 | [VEVOR steel IP65 enclosure 12x10x6](https://www.vevor.com/electrical-enclosure-c_10749/vevor-steel-electrical-box-electrical-enclosure-box-12x10x6-carbon-steel-ip65-p_010902284840) | $48.90 | $48.90 | Controller, drivers and supplies; the VFD mounts beside it. A plastic box saves about $25. |
+| Spindle cable | 14/4 shielded, 10 ft | 10 ft | [Wolf Automation SILFLEX 14/4 shielded](https://www.wolfautomation.com/cable/a6021404/) | $4.65/ft | $46.50 | Premium, by the foot; an Amazon 15 ft coil is likely $25-40. Shield to earth at the VFD end. |
+| Stepper/sensor cable | 4-conductor shielded, ~33 ft | 33 ft | [BuildYourCNC 4-conductor shielded cable](https://buildyourcnc.com/) | $0.49/ft | $16.17 | Check the gauge (18-14 AWG) and that it is stranded for the cable chain. |
+| DIN rail + terminals | UK2.5B kit | 1 | [Erayco 20x UK2.5B + rail](https://www.amazon.com/dp/B0BX2W42S4) | $19.99 | $19.99 | May need more rail |
+| Cable glands | PG7-PG16 | 1 (25 pcs) | [Nylon cable gland kit (eBay)](https://www.ebay.com/itm/406955179899) | $13.80 | $13.80 |  |
+| (opt) Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Nice to have; add later |
 
-**Priced subtotal: $367.78** + 14 unpriced: VFD for 120 V now, Spindle water pump, Spindle coolant, Spindle pump relay, Homing sensors, E-stop, Mains inlet, logic, Mains inlet, VFD, Logic power supply, Spindle cable, Stepper/sensor cable, Electrical box, DIN rail + terminals, Cable glands
+**Priced subtotal: $262.12**
+
+## Spindle (builder's choice, not in the Phase 1 total)
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| (choice A) 1.5 kW 110 V water-cooled kit | Spindle + 110 V VFD + 80 mm clamp + pump, ER11/ER16 | 1 | [SainSmart / VXB / Huanyang-type kits](https://www.sainsmart.com/products/water-cooled-spindle-motor-kit) | $250-375 | $300.00 | Runs on a normal 120 V outlet. SainSmart $349 (sold out; open-box $249), VXB $374.88, eBay import ~$341 shipped. Check Amazon kits by hand. |
+| (choice B) 2.2 kW 220 V kit + 120 V step-up VFD | ER20 kit + 110-120 V in / 220 V out VFD | 1 + 1 | [RATTMMOTOR 2.2 kW kit + ATO or AT5-2200X VFD](https://www.amazon.com/dp/B073TRP92V) | $251 + $178-346 | $500.00 | Only about 1.2-1.6 kW on a 120 V circuit; full 2.2 kW once you have 240 V (then use the kit's own VFD). |
+| (choice) ER collets | ER11/ER16 or ER20 set to match | 1 | [Chiloskit ER20 13 pcs (or an ER11 set)](https://www.amazon.com/dp/B08B1H4RSR) | $25.21 | $25.21 | Skip if the kit includes a set |
+| (choice) Spindle pump relay | SSR, DC in, AC out | 1 | [SSR-25DA with heatsink (eBay)](https://www.ebay.com/itm/405564584590) | $17.44 | $17.44 | Runs the spindle water pump whenever the spindle runs. Fuse the branch. |
+| (choice) Spindle coolant | Distilled water + 10-20 % RV antifreeze, bucket | 1 | Local store | ~$10 | $10.00 | Water-cooled spindles only |
+
+**Priced subtotal: $0.00**
 
 ## Castings and frame
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Epoxy | ~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste | 1 (3 gal) + 1 small kit | [US Composites 635 Thin, 2 gal + 1 gal, plus a ~1 gal kit (not Amazon)](https://www.uscomposites.com/epoxy.html) | $185.30 + ~$60 | $245.30 | About $15/kg. The 3 gal kit is about 12.5 kg, just short with waste and test bars; the small kit price is an estimate. Avoid deep-pour casting resins. |
-| Fines | Whiting (calcium carbonate) 325 mesh, 10-15 kg | 1 (50 lb) | Pottery-supply whiting, 50 lb bag (not Amazon) | ~$30 | $30.00 | No crystalline silica (check the SDS: <0.1 %), so a basic N95 is enough. Avoid garden lime and talc. Replaces $94 of silica flour. |
+| Epoxy | ~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste | 1 (3 gal) + 1 (1.5 qt) | [Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal + 1.5 qt kits (not Amazon)](https://raka.com/collections/epoxy-kits) | $172.99 + $32.99 | $205.98 | About 14 kg, $14.7/kg; shipping extra (~$30-45). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
+| Fines | Whiting (calcium carbonate) 325 mesh, 10-15 kg | 1 (50 lb) | [Clay-King calcium carbonate whiting, 50 lb (not Amazon)](https://www.clay-king.com/product/calcium-carbonate-whiting/) | $0.84/lb | $42.00 | No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc. |
 | Aggregate | ~112 kg graded sand + pea gravel | ~6 bags | [Quikrete sand + Vigoro pea gravel (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $48.00 | Buy locally. Wash and dry fully. |
-| Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz](https://www.amazon.com/dp/B0BQCZ8C3K) | $18.52 | $18.52 |  |
-| Mould release PVA | Partall Film #10 | 1 qt | [Partall PVA, quart](https://www.amazon.com/dp/B09MY7PZ6D) | $22.99 | $22.99 |  |
-| Square tube 2x2x1/8, 12 in | Base tubes (split sockets) | 4 | [Rocaris 2x2x1/8 steel square tube, 12 in](https://www.amazon.com/dp/B0FYPR4YJV) | $24.99 | $99.96 | Bought at length. Steel-yard remnants are cheaper (0.120 wall is fine). Plain steel, not galvanized. |
-| Square tube 2x2x1/8, 18 in | Beam tubes | 2 | [2TwentyTwo 2x2x1/8 steel tube, 18 in](https://www.amazon.com/dp/B09KNXGQDM) | $18.42 | $36.84 | Drill 4x 14 mm holes per tube (drill press). Remnants are fine: 18 in +/- 1/4 in, any surface rust brushed off. |
-| Square tube 1-1/2x1-1/2x1/8, 12 in | Upright posts | 4 | [1.5x1.5x1/8 mild steel tube (12)](https://www.amazon.com/dp/B0BYTFMLXV) | $13.73 | $54.92 |  |
-| Square tube 1-1/2x1-1/2x1/8, 6 in | Base spigots (2) + legs (4) | 6 | [1.5x1.5x1/8 mild steel tube (6)](https://www.amazon.com/dp/B0BYTG6YTN) | $5.52 | $33.12 | Printed sleeves take up the spigot gap in the 2 in tube; file the inside weld seam. Leg feet: an M12 nut (from the 20-pack) bonded into a printed plug in each leg end. |
-| Steel plate 3/8 in | Upright top plates 2x 68 x 168 mm (2-11/16 x 6-5/8 in) | 2 cut pieces | [A36 plate cut to size (Midwest Steel or a local yard)](https://www.midweststeelsupply.com/) | ~$15 | $15.00 | Order cut to size so nothing needs cutting; add it to the riser order. |
-| Rail risers 3/4 x 1-1/4 CR | Y: 2x 600 mm | 2 | [Midwest Steel 1018 cold-rolled flat bar (not Amazon)](https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar) | ~$4.50/lb | $58.00 | Not on Amazon. Cut to length by Midwest (cut fee not included). |
-| Rail risers 5/8 x 1-1/4 CR | X: 2x 400, Z: 2x 300 mm | 4 | [Midwest Steel 1018 cold-rolled flat bar (not Amazon)](https://www.midweststeelsupply.com/store/1018coldrollsteelflatbar) | ~$4.50/lb | $56.00 | Same |
-| Aluminium plates | Cast plate: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25 | 3 cut pieces | [Midwest ATP-5 / MIC-6 cast plate, cut to size (not Amazon)](https://www.midweststeelsupply.com/store/castaluminumplateatp5) | ~$242 | $242.00 | Amazon alt is about $458: 6061 3/4x12x18 B007B4XUFU $215.98 + 5/8x12x24 B0DYG69W17 $241.97 (12x12 is too small for the table). |
-| M12 threaded rod | 4x 293, 2x 213, 2x 102, 2x 358 mm | 3 (1 m) | [M12-1.75 x 1 m plain steel rod](https://www.amazon.com/dp/B076HB72TW) | $28.96 | $86.88 | Cut with a hacksaw. Confirm it is one rod per order. |
-| M12 coupling nuts | 10 | 2 (8-pack) | [Hillman 44770 M12 coupling nut](https://www.amazon.com/dp/B00JDTZNXS) | $16.97 | $33.94 |  |
-| M12 nuts | 16 | 1 (20-pack) | [Hillman 2468 M12 hex nut](https://www.amazon.com/dp/B00HYLYWDE) | $8.92 | $8.92 |  |
-| M12 washers | 16 | 1 (25-pack) | [M12 flat washer, hardened](https://www.amazon.com/dp/B01GUEFWTS) | $11.84 | $11.84 |  |
-| M10 x 150 cap screws | 8, 12.9 | 2 (5-pack) | [Aexit M10x150 12.9](https://www.amazon.com/dp/B07MQS53Y2) | $23.53 | $47.06 | M10 washers: buy locally |
-| Dowel pins 10 x 30 | 4 (locating only) | 1 (14-pack) | [10 x 30 mm 304 stainless dowel / shelf pin, 14 pcs (Walmart)](https://www.walmart.com/ip/856431494) | $18.49 | $18.49 | They only locate the castings (the bolts and rods carry the load), so plain pins are fine. Was a $85 hardened 20-pack. |
-| Leveling feet | M12, ~40 kg each | 1 (4-pack) | [Antrader M12 leg levelers D60](https://www.amazon.com/dp/B09NS87SYW) | $23.99 | $23.99 |  |
+| Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
+| Square tube | 2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 12 in, 6x 6 in | ~7 ft of each | Steel-yard remnants (local) | ~$40 | $40.00 | About 37 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized. |
+| Steel plate and pads | 3/8 in: 2x 68x168 mm; 1/4 x 2-1/2 in: ~4 in | offcuts | Steel-yard offcuts (local) | ~$15 | $15.00 | Upright top plates and the X support pads |
+| Rail risers | Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm | ~4 + 5 ft | Steel yard (local) | ~$40 | $40.00 | About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece). |
+| Aluminium plates | 6061 drops: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25 | ~22 lb | eBay "6061 aluminum plate remnant" / local drops | ~$85 | $85.00 | About $2.3-4.5/lb delivered. Midwest MIC-6 cut pieces are $242 if you would rather not hunt. Check flatness; face the table on the machine. |
+| Threaded rod | 1/2-13, cut to 4x 293, 2x 213, 2x 102, 2x 358 mm | 1x 6 ft + 1x 3 ft | [Everbilt 1/2-13 zinc threaded rod (Home Depot)](https://www.homedepot.com/p/332733421) | $14.93 + $7.93 | $22.86 | 6 ft: 358, 358, 293, 293, 293, 102, 102; 3 ft: 293, 213, 213 (hacksaw). |
+| Coupling nuts | 1/2-13, 10 | 10 | [Everbilt 1/2-13 coupling nut (Home Depot)](https://www.homedepot.com/p/204337404) | $2.47 | $24.70 | Tractor Supply 3-packs $5.99 are a bit cheaper |
+| Nuts and washers | 1/2-13 nuts x16, 1/2 in grade 8 washers x16, 3/8 grade 8 washers x8 | 4 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$20 | $19.86 | Nuts 15-pack $4.89 + 4-pack $1.38; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
+| Beam bolts | 3/8-16 x 6 in grade 8 hex bolt | 8 | [Bolt Depot, grade 8 yellow zinc](https://www.boltdepot.com/Hex_bolts_Zinc_plated_grade_8_steel_yellow_3_8-16.aspx) | $1.96 | $15.68 | Shipping extra; a local fastener supplier may have them |
+| Dowel pins | 3/8 x 1-1/4 in | 1 (10-pack) | [Steel dowel pins (Zoro)](https://www.zoro.com/i/G410073219/) | $5.79 | $5.79 | They only locate the castings |
+| Leveling feet | 1/2-13, ~40 kg each | 4 | [S&W NYL B24 leveling mount (Zoro)](https://www.zoro.com/k/nyl-b24/) | $9.49 | $37.96 | Check the stud length. Cheaper: a 1/2-13 bolt and a rubber pad per leg. |
 | O-ring cord | NBR 3 mm, 2.5 m | 1 (3 m) | [uxcell nitrile round strip 3 mm x 3 m](https://www.amazon.com/dp/B0CNKM7L8B) | $6.56 | $6.56 |  |
 | Cord splice glue | Cyanoacrylate | 1 | [Loctite 406, 20 g](https://www.amazon.com/dp/B07H2YGBTJ) | $9.86 | $9.86 |  |
-| M5 cast-in inserts | 29 (11 enclosure + 18 riser hold-downs) | 1 (30) | [uxcell knurled brass M5 x 16 mm](https://www.amazon.com/dp/B07R7LL1SG) | $11.08 | $11.08 | Screw each to the mould floor with a greased screw so it ends up flush. |
-| M6 cast-in inserts | 6 (Y BK12/BF12 on the base) | 1 pack | Knurled brass M6 insert, ~15 mm long | ~$8 | $8.00 | Search "M6 knurled brass insert 15mm". |
-| X support pads | 1/4 x 2-1/2 in flat bar, ~4 in | 1 offcut | Steel yard remnant | ~$5 | $5.00 | Two pads (49 and 36 mm), drilled and tapped M6, cast flush in the beam face. |
-| Riser hold-down screws | DIN 7984 low-head M5 x 20 (8) and M5 x 25 (10) | 2 packs | Low-head socket cap screws | ~$12 | $12.00 | Low head (3.5 mm) so they sit below the rail in the 4.5 mm counterbores. |
-| Support screws | M6 x 40 (6, Y); M6 x 35 + 12 DIN 433 small washers (6, X) | 2 packs + washers | M6 socket cap screws 12.9 | ~$10 | $10.00 | Two small washers (10 mm OD, fit the BK counterbore) under each X screw head so it stops short of the beam tube. |
-| M5 x 35 cap screws | 11 | 1 (25) | [M5x35 12.9 SHCS](https://www.amazon.com/dp/B0CJV2ZW2C) | $8.99 | $8.99 |  |
-| Cap screw assortment | M3-M6 | 1 | [Mywish 900 pcs 12.9 kit](https://www.amazon.com/dp/B0CS3797P1) | $21.99 | $21.99 |  |
+| M5 cast-in inserts | 18 riser hold-downs (+11 enclosure in phase 2) | 1 (30) | [uxcell knurled brass M5 x 16 mm](https://www.amazon.com/dp/B07R7LL1SG) | $11.08 | $11.08 | Screw each to the mould floor with a greased screw so it ends up flush. Cast the enclosure inserts now too. |
+| M6 cast-in inserts | 6 (Y BK12/BF12 on the base) | 1 (20) | [Knurled brass M6 inserts (eBay)](https://www.ebay.com/itm/156778660033) | ~$16 | $16.11 | Length not confirmed; 12-16 mm is fine |
+| Low-head screws | DIN 7984 M5 x 20 (8, X risers) and M5 x 25 (10, Y risers) | 2 (100) | [Zoro Select DIN 7984 low-head, class 8.8](https://www.zoro.com/i/G2652426/) | $9.99 + $14.29 | $24.28 | Head 3.5 mm tall, sits below the rail in the 4.5 mm counterbore |
+| Support screws | M6 x 40 (6, Y BK/BF); M6 x 35 (6, X) + 12 DIN 433 small washers | 1 (100) + 3 (2-pack) | [Zoro M6x40 100-pack; Home Depot M6x35 2-packs](https://www.zoro.com/i/G2650606/) | $10.15 + 3x $3.75 | $21.40 | Two small washers under each X screw head so it stops short of the beam tube (washers from the hardware store) |
 | Rail screws | M4 x 16 | 1 (100) | [iexcell M4x16 12.9](https://www.amazon.com/dp/B08B1T9VM3) | $8.26 | $8.26 |  |
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
-| PETG filament | 1 kg | 1 | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $15.99 | Cable chain, socket liners, sleeves, plugs |
+| PETG filament | ~2.7 kg for the mould parts and liners | 3 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $47.97 | About 1.5 kg less if the pocket cores are cut from XPS foam instead |
 
-**Priced subtotal: $1,317.36**
+**Priced subtotal: $777.17**
 
-## Enclosure, coolant and covers
+## Chip protection
+
+| Item | Spec | Qty | Listing | Price | Line | Notes |
+|---|---|---|---|---|---|---|
+| Sump | Full-size steam-table pan, 4 in deep (~13 L) | 1 | [Winco SPJH-104, 22 ga stainless (not Amazon)](https://www.katom.com/080-SPJH104.html) | $22.16-26.81 | $26.81 | Not found on Amazon; restaurant-supply stores (KaTom, GoFoodservice $23.63) or a local one. Slides in under the base. |
+| Chip basket | 1/3-size pan, 2-1/2 in deep | 1 | [CAC STPT-S25-2 1/3 pan (not Amazon)](https://www.gofoodservice.com/p/cac-stpt-s25-2) | $9.98 | $9.98 | Solid pan: drill 6 mm holes in the floor (or buy a perforated 1/3 x 2-1/2 in pan). Sits at the front, under the drain. |
+| Drain nipple | 1/2 NPT brass | 1 (2-pack) | [Legines brass barb 1/2 NPT x 5/8](https://www.amazon.com/dp/B077DMKGLB) | $10.99 | $10.99 | Cast into the base, pointing down into the chip basket. +$7.59 shipping. |
+| Way cover strip | 0.1 mm 301 stainless | 1 | [SPCCGG 301 strip 0.1 x 300 x 1000 mm](https://www.amazon.com/dp/B0DNQVM7RB) | $54.10 | $54.10 | Gives all three strips. If it turns out soft, use 304 full-hard B09ZQQJ34Z for the 85 mm strips. |
+| Way cover springs | Constant force, for printed rollers | 1 (5-pack) | [SUS301 constant-force springs, 5 pcs](https://www.amazon.com/dp/B0DMM8YSMM) | $35.99 | $35.99 | One per narrow strip, two for the wide one |
+| Spiral screw cover | 20 mm ID, ~250-400 mm | 1 | [MISONONEIK spiral steel bellows cover](https://www.amazon.com/dp/B0GTDV8DZN) | ~$47 | $47.00 | Choose size 20-250-40-28 (the cheapest variant, about $47) or 20-400-40-33; variants $47-116 |
+| Drip shield | 510 x 57 mm | 0 | Cut from the ACM sheet offcut | $0 | $0.00 | Stainless was $57 (Speedy Metals 16 ga 12x24); ACM does the job |
+| Cutting fluid | Brush-on / drip, until flood coolant (phase 2) | 1 | Tap Magic or similar cutting fluid | ~$12 | $12.00 | Brush or drip it on; the base gutters and drain still carry it to the pan |
+
+**Priced subtotal: $196.87**
+
+## Phase 2: enclosure and flood coolant
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
@@ -149,24 +158,17 @@ mould parts costs several hundred dollars against $60-90 of PETG.
 | Panel trim | U-strip for 3 mm panels | 1 | [BLCCLOY 2020 panel U-strip, 25x 420 mm](https://www.amazon.com/dp/B0FXWQ9941) | $17.99 | $17.99 | 10.5 m; just short of every edge |
 | Brush seal | For 2x 72 mm motor cutouts | 1 m | [SLZ dust-shoe brush strip 50 mm](https://www.amazon.com/dp/B0GVHQQ699) | $20.00 | $20.00 |  |
 | Bulkhead | 1/4 NPT, thin panel | 1 (2-pack) | [FloFlex 1/4 in bulkhead, short](https://www.amazon.com/dp/B0CSZ76G4K) | $9.99 | $9.99 | Measure the hole size first |
-| Sump | Full-size steam-table pan, 4 in deep (~13 L) | 1 | [Winco SPJH-104, 22 ga stainless (not Amazon)](https://www.katom.com/080-SPJH104.html) | $22.16-26.81 | $26.81 | Not found on Amazon; restaurant-supply stores (KaTom, GoFoodservice $23.63) or a local one. Slides in under the base. |
-| Chip basket | 1/3-size pan, 2-1/2 in deep | 1 | [CAC STPT-S25-2 1/3 pan (not Amazon)](https://www.gofoodservice.com/p/cac-stpt-s25-2) | $9.98 | $9.98 | Solid pan: drill 6 mm holes in the floor (or buy a perforated 1/3 x 2-1/2 in pan). Sits at the front, under the drain. |
 | Sump filter mesh | 100 um | 1 | [100 micron filter sock (cut open)](https://www.amazon.com/dp/B082S88S92) | $10.59 | $10.59 | Cut open and clamp in the printed filter frame |
 | Magnet bar | 100 x 25 mm | 1 | [ULIBERMAGNET 12000 Gs filter rod 100x25](https://www.amazon.com/dp/B0CWGNDRNL) | $29.99 | $29.99 | Lies on the sump floor and catches fine steel |
 | Flood coolant pump | 24 V brushless submersible, ~800 L/h, 5 m head, <= 60 mm tall | 1 | Search Amazon: "24V brushless submersible pump 800L/H 5M" | ? | ? | Low enough for the 4 in sump and no mains voltage in the coolant. Runs from the 24 V supply via the controller's MOSFET output. Replaces the $113 120 V pump. |
 | Return tubing | 8 mm OD PU | 1 (5.5 m) | [uxcell 8 mm PU tubing](https://www.amazon.com/dp/B00WW704BY) | $10.19 | $10.19 | +$1.21 shipping |
-| Drain nipple | 1/2 NPT brass | 1 (2-pack) | [Legines brass barb 1/2 NPT x 5/8](https://www.amazon.com/dp/B077DMKGLB) | $10.99 | $10.99 | Cast into the base, pointing down into the chip basket. +$7.59 shipping. |
 | Ball valve | 1/4 NPT | 1 | [Beduan brass mini ball valve](https://www.amazon.com/dp/B07PMPXC5X) | $7.99 | $7.99 |  |
 | Manifold | 1/4 NPT Y | 1 | [FASPARTS brass Y block](https://www.amazon.com/dp/B01B5BY0BC) | $11.99 | $11.99 | One bullet says 1/2 in thread: check before ordering |
 | Loc-Line nozzles | 1/4 in kit | 2 | [Loc-Line LP-40413 coolant hose kit](https://www.amazon.com/dp/B002QG4F8Y) | $15.15 | $30.30 |  |
 | Push-to-connect fittings | 8 mm x 1/4 NPT | 1 (10) | [Qjaiune push fittings](https://www.amazon.com/dp/B098QMJHWP) | $7.49 | $7.49 | One at the pump outlet, so the return line unplugs and the sump slides out |
 | Coolant concentrate | Semi-synthetic, 1 gal | 1 | [Fusion Cool 2240](https://www.amazon.com/dp/B09LSL9JS7) | $52.95 | $52.95 | Mix 5-10 % |
-| Way cover strip | 0.1 mm 301 stainless | 1 | [SPCCGG 301 strip 0.1 x 300 x 1000 mm](https://www.amazon.com/dp/B0DNQVM7RB) | $54.10 | $54.10 | Gives all three strips. If it turns out soft, use 304 full-hard B09ZQQJ34Z for the 85 mm strips. |
-| Way cover springs | Constant force, for printed rollers | 1 (5-pack) | [SUS301 constant-force springs, 5 pcs](https://www.amazon.com/dp/B0DMM8YSMM) | $35.99 | $35.99 | One per narrow strip, two for the wide one |
-| Spiral screw cover | 20 mm ID, ~250-400 mm | 1 | [MISONONEIK spiral steel bellows cover](https://www.amazon.com/dp/B0GTDV8DZN) | ? | ? | Choose size 20-250-40-28 or 20-400-40-33; variants $47-116 |
-| Drip shield | 510 x 57 mm | 0 | Cut from the ACM sheet offcut | $0 | $0.00 | Stainless was $57 (Speedy Metals 16 ga 12x24); ACM does the job |
 
-**Priced subtotal: $573.92** + 3 unpriced: ACM sheet, Flood coolant pump, Spiral screw cover
+**Priced subtotal: $436.05** + 2 unpriced: ACM sheet, Flood coolant pump
 
 ## Already owned
 

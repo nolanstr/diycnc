@@ -178,9 +178,12 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 ## Cost
 
-**Checked against real listings (2026-10-09, the sourcing list): about $2,780 for the priced items,
-plus 17 unpriced ones, so roughly $3.1-3.4k at Amazon prices.** Buying the tube, plate and
-risers from a local steel yard should take roughly another $100-150 off. The estimate below was made
+**Checked against real listings (2026-10-09/10, the sourcing list).** The build is split into
+**Phase 1**, the complete mill with brush-on cutting fluid (about **$1,760** without the spindle, buying
+the steel and aluminium as remnants and the joint hardware at a hardware store), the **spindle**,
+which is the builder's choice (a 1.5 kW 110 V water-cooled kit at about $250-375, or the 2.2 kW kit
+plus a 120 V step-up VFD at about $430-600), and **Phase 2**, the enclosure and flood coolant (about
+$650-700). The estimate below was made
 before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
 what each cost-down change saves.
 
