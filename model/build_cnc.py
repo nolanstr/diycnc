@@ -966,7 +966,7 @@ def build():
         ('all', 'MIC6 plate: Z plate', f"{P['zplate_w']:.0f} x {P['z_rail_len']:.0f} x 5/8 in", 'buy'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Leveling feet 1/2-13', '4 pcs', 'buy'),
-        ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'phase 2'),
+        ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
         ('frame', 'Cast-in threaded inserts for epoxy (knurled brass or steel)',
          f"M5 x 12 long: {d['anchor_count'].get('insert_m5', 0)} (riser hold-downs); "
          f"M6 x 15 long: {d['anchor_count'].get('insert_m6', 0)} (Y BK/BF on the base)", 'buy'),
@@ -979,15 +979,15 @@ def build():
     ] + d['steel_bom'] + [
         ('coolant', 'Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base', '1', 'buy'),
         ('coolant', 'Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep', '1', 'buy'),
-        ('coolant', '100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar', '1 set', 'phase 2'),
-        ('coolant', 'Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output', '1', 'phase 2'),
-        ('coolant', 'Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out', f"{d['hose_return']:.1f} m", 'phase 2'),
+        ('coolant', '100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar', '1 set', 'buy (part 3)'),
+        ('coolant', 'Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output', '1', 'buy (part 3)'),
+        ('coolant', 'Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out', f"{d['hose_return']:.1f} m", 'buy (part 3)'),
         ('frame', 'Leg feet: printed plug + 1/2-13 nut bonded into each leg end', '4 pcs', 'PRINT'),
-        ('coolant', '1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles', '1 set', 'phase 2'),
+        ('coolant', '1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles', '1 set', 'buy (part 3)'),
         ('covers', 'Roll-up way cover: spring roller + 0.1 mm stainless strip', '1x 250 wide, 2x 85 wide', 'buy or DIY'),
         ('covers', 'Spiral ballscrew cover for the table screw', '1', 'buy'),
         ('covers', 'Drip shield over the beam rails, aluminium or ACM offcut', f"{2 * d['outer'] - 20:.0f} x 57", 'buy'),
-        ('covers', 'Brush seal plates for the motor cutouts', '2', 'phase 2'),
+        ('covers', 'Brush seal plates for the motor cutouts', '2', 'buy (part 3)'),
         ('printed', f"Drag chain links, PETG: {CHAIN['width']:.0f} x {CHAIN['height']:.0f} outer, {CHAIN['pitch']:.0f} pitch, "
                     f"R{CHAIN['radius']:.0f} bend", f"{CHAIN['links']} + 2 end mounts", 'PRINT'),
     ]

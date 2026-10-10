@@ -271,7 +271,7 @@ Lubricate every block with the grease gun before moving anything far.
 - **Safety:** wire the E-stop to cut driver enable and the VFD run signal in hardware. Fit
   the homing switches, then the tool setter.
 
-## 8. Enclosure and coolant (phase 2)
+## 8. Enclosure and coolant (part 3 of the sourcing list)
 
 The machine runs without these: until then, brush or drip cutting fluid onto the cut, keep the
 way covers and screw cover on, and let the gutters and drain carry the fluid to the pan under the

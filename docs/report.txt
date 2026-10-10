@@ -43,7 +43,7 @@ Linear motion / plate BOM
   all      MIC6 plate: Z plate                                  150 x 300 x 5/8 in                   buy
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Leveling feet 1/2-13                                 4 pcs                                buy
-  enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               phase 2
+  enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
   frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 18 (riser hold-downs); M6 x 15 long: 6 (Y BK/BF on the base) buy
   frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 2 pads (~4 in of bar), 6 tapped holes buy
   frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
@@ -58,15 +58,15 @@ Linear motion / plate BOM
   frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
   coolant  Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base 1                                    buy
   coolant  Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep 1                                    buy
-  coolant  100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar 1 set                                phase 2
-  coolant  Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output 1                                    phase 2
-  coolant  Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out 2.8 m                                phase 2
+  coolant  100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar 1 set                                buy (part 3)
+  coolant  Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output 1                                    buy (part 3)
+  coolant  Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out 2.8 m                                buy (part 3)
   frame    Leg feet: printed plug + 1/2-13 nut bonded into each leg end 4 pcs                                PRINT
-  coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                phase 2
+  coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                buy (part 3)
   covers   Roll-up way cover: spring roller + 0.1 mm stainless strip 1x 250 wide, 2x 85 wide              buy or DIY
   covers   Spiral ballscrew cover for the table screw           1                                    buy
   covers   Drip shield over the beam rails, aluminium or ACM offcut 510 x 57                             buy
-  covers   Brush seal plates for the motor cutouts              2                                    phase 2
+  covers   Brush seal plates for the motor cutouts              2                                    buy (part 3)
   printed  Drag chain links, PETG: 38 x 21 outer, 20 pitch, R38 bend 17 + 2 end mounts                    PRINT
 
 Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)

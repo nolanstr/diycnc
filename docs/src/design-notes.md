@@ -178,12 +178,12 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 ## Cost
 
-**Checked against real listings (2026-10-09/10, the sourcing list).** The build is split into
-**Phase 1**, the complete mill with brush-on cutting fluid (about **$1,760** without the spindle, buying
-the steel and aluminium as remnants and the joint hardware at a hardware store), the **spindle**,
-which is the builder's choice (a 1.5 kW 110 V water-cooled kit at about $250-375, or the 2.2 kW kit
-plus a 120 V step-up VFD at about $430-600), and **Phase 2**, the enclosure and flood coolant (about
-$650-700). The estimate below was made
+**Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,265**; **2, the
+electronics and spindle** about **$495** plus the spindle the builder picks ($250-375 for a 1.5 kW
+110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
+coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
+from a hardware store; the remnant prices are estimates. The estimate below was made
 before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
 what each cost-down change saves.
 
