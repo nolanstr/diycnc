@@ -91,8 +91,8 @@ each casting is poured with its most important face down.
 |---|---|---|---|
 | Base front | top face (coolant floor) | 600 x 345 x 110 | 34.5 kg |
 | Base rear | top face | 600 x 380 x 110 | 42.4 kg |
-| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 12.9 kg each |
-| Beam | front face (rails) | 530 x 140 x 140 | 22.4 kg |
+| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 14.6 kg each |
+| Beam | front face (rails) | 530 x 140 x 140 | 25.4 kg |
 
 The printed pieces (in `print/`, see the print guide) do everything a flat board can't:
 
@@ -163,15 +163,25 @@ Two kitchen-type sieves (about 3 and 6 mm mesh, or hardware cloth) split the bag
 gravel into these bands. Wash anything dusty or clay-coated, and dry everything completely
 (spread it out in the sun, or an old oven tray): water stops the epoxy bonding. Crushed stone
 locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
-either works. 8.5 % only works if the aggregate packs densely, so prove the mix before
-casting anything:
+either works.
+
+**Beam and uprights: aluminium oxide instead of the coarse sand.** Brown fused aluminium oxide
+grit, #16 (about 1.2 mm), is about five times stiffer than sand or granite and makes these
+castings roughly 20 % stiffer, which is about 10 % on the whole frame. It's heavier, so swap
+it by volume: **1.5 kg of grit for every 1 kg of coarse sand**, everything else (epoxy
+included) the same. One 50 lb bag covers the beam, both uprights and a pair of test bars. The
+base keeps the sand. Don't over-vibrate these: the heavy grit can settle. Use an old paddle;
+the grit wears it.
+
+8.5 % only works if the aggregate packs densely, so prove the mix before casting anything:
 
 1. **Jar test.** Fill a 1 L jar with the dry aggregate blend (no whiting), shaking and
    tapping it down, then pour in water from a measuring cup until it reaches the top. The
    water is the void space. Nudge the coarse sand and fine sand up or down a few percent
    until it's as small as you can get it (below about 25 % of the jar is good).
 2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mould (waxed like the others) and cast
-   two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings.
+   two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings,
+   plus two at 8.5 % with the alumina grit for the beam and uprights.
 3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
    than a grain of sand, and every stone should be wetted. Then tap-test the other: weigh it,
    rest it on two foam strips 112 mm in from each end, tap the middle with a small hammer and
@@ -179,14 +189,16 @@ casting anything:
    about **E (GPa) = 4.8e-5 x mass (kg) x frequency (Hz)²**. The frame model assumes 30 GPa,
    about 570 Hz for a 1.9 kg bar; 25 GPa would cost about 13 % of the frame stiffness.
 4. **Pick the mix.** Use 8.5 % if its bar is void-free and at least as stiff as the 9.5 % one;
-   otherwise use 9.5 % and order the extra 1.5 qt epoxy kit.
+   otherwise use 9.5 % and order the extra 1.5 qt epoxy kit. The alumina bar should ring about
+   10 % higher than the plain 8.5 % one (about 20 % stiffer; it's heavier, so use the formula);
+   if it doesn't, or it has voids, cast the beam and uprights with sand too.
 
 | Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
 | Base front | 34.5 kg | 2.9 kg |
 | Base rear | 42.4 kg | 3.6 kg |
-| Uprights | 2 x 12.9 kg | 2 x 1.1 kg |
-| Beam | 22.4 kg | 1.9 kg |
+| Uprights (alumina) | 2 x 14.6 kg | 2 x 1.1 kg |
+| Beam (alumina) | 25.4 kg | 1.9 kg |
 
 Add 5-10 % for waste: about 11.7 kg, plus about 0.7 kg for the test bars, which just fits the 3 gal
 kit (about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers

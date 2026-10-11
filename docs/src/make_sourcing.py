@@ -19,6 +19,8 @@ SECTIONS = [
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
         ('Aggregate', '~105 kg: fine sand 19, coarse sand 34, pea gravel 25, 3/8 in gravel 25 kg', '~6 bags', 'Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)', 'https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000',
          '~$7/bag', 48.00, 'Buy locally. Wash and dry fully.', 'search snippets (est.)'),
+        ('Alumina grit', 'Brown fused aluminium oxide #16, ~21 kg: the coarse sand in the beam and uprights', '1 (50 lb)', 'Kleen Blast AO5016 brown fused aluminum oxide #16, 50 lb', 'https://products.kleenblast.com/viewitems/specialty-abrasives-blast-media/brown-aluminum-oxide',
+         '$90.00', 90.00, 'About +10 % frame stiffness (estimate, analysis/alumina.py). Shipping extra; a local sandblasting supplier may stock it. Not 80-120 grit retail blast media: wrong size and far dearer per lb.', 'vendor page'),
         ('Mould release wax', 'Partall Paste #2', '1', 'Partall Paste #2, 12 oz (Fiberglass Supply)', 'https://www.fiberglasssupply.com/partall/',
          '$20.96', 20.96, '3-5 coats. PVA film is optional (Partall #10, $8.36/pint).', 'vendor page'),
         ('Square tube', '2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 12 in, 6x 6 in', '~7 ft of each', 'Steel-yard remnants (local)', '',

@@ -129,6 +129,9 @@ P = dict(
     motor_cutout=72.0,
 
     eg_density=2.35,     # kg/L, epoxy granite
+    # The beam and uprights use brown fused aluminium oxide grit (#16) instead of the coarse sand,
+    # same volume (about 1.5x the weight): stiffer castings where it counts most (analysis/alumina.py).
+    alumina_castings=('Upright', 'Beam'), coarse_frac=0.275, alumina_sg=3.95 / 2.65,
     eg_epoxy_frac=0.085,  # epoxy mass fraction, with well-graded aggregate + whiting (calcium carbonate) fines;
                           # check it with the jar test and test bars (build guide)
 )
@@ -1360,7 +1363,11 @@ def report(m, hits):
             b.move(offset(p['group'], x, y, 0.0))
             bb.add(b)
     x0o, x1o, y0o, y1o, z0, z1o = d['enc']
-    mass = d['casting_L'] * P['eg_density']
+    sand_kg = {k: v * P['eg_density'] for k, v in d['casting_vols'].items()}       # the plain mix
+    alu = {k: m_ * P['coarse_frac'] * P['alumina_sg'] if k.startswith(P['alumina_castings']) else 0.0
+           for k, m_ in sand_kg.items()}
+    kg = {k: m_ + alu[k] - (alu[k] / P['alumina_sg'] if alu[k] else 0.0) for k, m_ in sand_kg.items()}
+    mass = sum(kg.values())
     lines = [
         'DIY CNC layout report',
         '=====================',
@@ -1378,9 +1385,11 @@ def report(m, hits):
         '',
         f"Epoxy granite volume:         {d['casting_L']:.1f} L",
         f"Casting mass:                 {mass:.0f} kg ({mass * 2.2046:.0f} lb)",
-    ] + [f"  {k + ':':12s}                {v:5.1f} L  {v * P['eg_density']:5.1f} kg" for k, v in d['casting_vols'].items()] + [
+    ] + [f"  {k + ':':12s}                {v:5.1f} L  {kg[k]:5.1f} kg" + ('  (alumina grit)' if alu[k] else '')
+         for k, v in d['casting_vols'].items()] + [
         f"Cast-in steel + joint hardware: {d['steel_kg']:.1f} kg",
-        f"Epoxy needed (~{P['eg_epoxy_frac'] * 100:.1f}% by mass): {mass * P['eg_epoxy_frac']:.1f} kg",
+        f"Epoxy needed (~{P['eg_epoxy_frac'] * 100:.1f}% of the sand mix by mass): {sum(sand_kg.values()) * P['eg_epoxy_frac']:.1f} kg",
+        f"Aluminium oxide grit #16 (beam + uprights coarse fraction): {sum(alu.values()):.1f} kg",
         '',
         'Linear motion / plate BOM',
         '-------------------------',
