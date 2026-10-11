@@ -5,15 +5,18 @@ molds are melamine boards that bolt together with printed brackets; every printe
 pins to its board from outside, and the bulky hidden cores are foam. Nothing is glued, nothing
 goes through a face the mix touches, and the molds come apart cleanly for the next casting.
 
+This is the complete guide. Each mold also has its own shorter one (base-mold.pdf, upright-molds.pdf, beam-mold.pdf), with the
+shared sections and only that mold's parts, boards and steps: easier at the bench.
+
 The build guide covers the casting itself (mix, pour, cure); this guide is everything before and
 after that. All the sizes and hole positions come from the model (`model/build_cnc.py`), so if you
-change the design, re-run it and this guide, the hole maps and the printed parts all follow.
+change the design, re-run it and the guides, hole maps and printed parts all follow.
 
 ![The rear base-half mold ready to pour: boards see-through, printed kit in orange, foam in blue](../../renders/build/02-mold-base-rear.png)
 
-**The order of work:** print the kit (about a week of printer time, so start first) &rarr; cut and
-drill the boards &rarr; cut the foam &rarr; wax &rarr; assemble a mold &rarr; cast &rarr; take it
-apart. Cast in this order: base rear half, base front half (against the rear half), the two uprights
+**The order of work:** print the kit (start first: it is days of printing) &rarr; cut and drill the
+boards &rarr; cut the foam &rarr; wax &rarr; assemble the mold &rarr; cast &rarr; take it apart. The
+castings go in this order: base rear half, base front half (against the rear half), the two uprights
 together, the beam.
 
 ## 1. How the molds work
@@ -57,13 +60,13 @@ saddles and cradles are drawn for 19.05 mm board (Home Depot's 3/4 in white mela
 
 | Material | Amount | Notes |
 |---|---|---|
-| Melamine board, 19 mm (3/4 in) | 2 sheets, 4 x 8 ft | the layout below; have the store rip the strips |
+| Melamine board, 19 mm (3/4 in) | 2 sheets, 4 x 8 ft | the layout in section 4; have the store rip the strips |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores; stack two layers for the 90 mm ones |
 | PETG | 2 x 1 kg rolls | 1.19 kg for the molds and cast-in parts (sliced) |
 | Packing tape, double-sided carpet tape | 1 roll each | foam wrapping and holding |
 | Paste wax (Partall #2) and PVA | 1 each | release, 3-5 coats |
 | 3/8 in quarter-round molding (PVC) | about 6 m | the 10 mm outside edges of the castings |
-| 2x4 offcut | 4 blocks, about 50 mm | feet for each upright mold |
+| 2x4 offcut | 4 blocks per upright mold | 52 mm long |
 
 **Hardware** (zinc-plated is fine; grease anything that touches the mix). Buy about 10 % spare of the
 small bolts, nuts and washers.
@@ -90,17 +93,13 @@ small bolts, nuts and washers.
 | 3/8-16 x 2-1/2 in bolt, greased (holds the top plate) | 4 |
 | 5/8 in plain steel rod, greased (forms a tie-rod hole), cut to 140 mm, 243 mm, 377 mm, 377 mm | 2 |
 
-**Tools:** a drill with sharp brad-point bits (sizes in section 5) and a 2-1/2 in hole saw; a jigsaw
-or a circular saw for the upright side plates' sloped edge; a square and a long straightedge; a few
-clamps; a 7 mm nut driver and a 3 mm hex key; a fine saw or a hot-wire cutter and a sanding block for
-the foam; a marker that writes on melamine.
+**Tools:** a drill with sharp brad-point bits (sizes in section 5) and a 2-1/2 in hole saw; a jigsaw or a circular saw for the upright side plates' sloped edge; a square and a long straightedge; a few clamps; a 7 mm nut driver and a 3 mm hex key; a fine saw or a hot-wire cutter and a sanding block for the foam; a marker that writes on melamine.
 
-## 3. Print the kit
+## 3. Print the parts
 
-Everything printed is in `print/` and listed in the print guide: 144 prints, 1.29 kg of PETG and about 107 hours of printing, sliced in
-Bambu Studio for an A1 mini. Start early. Print order: one corner bracket and one saddle first
-(check them on an offcut of your board: the saddle should drop over it with a little play), then the
-kit, then the pieces for the rear base half, then the rest.
+136 prints, 1.19 kg of PETG and about 100 hours of printing, sliced in Bambu Studio for an A1 mini (settings in the
+print guide). Print one corner bracket and one saddle first and check them on an offcut of your
+board: the saddle should drop over it with a little play.
 
 The mold kit (reused for every casting):
 
@@ -110,61 +109,143 @@ The formers, fillers and plugs (each shapes part of a casting):
 
 ![Formers, fillers and plugs](../../renders/mold/gallery-pieces.png)
 
+| Folder | File | Qty | g (all) | Time each |
+|---|---|---|---|---|
+| base-box | `kit-corner-bracket.stl` | 4 | 33 | 39m 28s |
+| base-box | `kit-partition-bracket.stl` | 2 | 14 | 35m 28s |
+| base-box | `kit-saddle.stl` | 6 | 58 | 46m 3s |
+| base-box | `kit-leg-holder.stl` | 4 | 83 | 1h 37m 19s |
+| base-rear | `former-gutter-L-part1of3.stl` | 1 | 8 | 35m 5s |
+| base-rear | `former-gutter-L-part2of3.stl` | 1 | 8 | 33m 40s |
+| base-rear | `former-gutter-L-part3of3.stl` | 1 | 7 | 31m 15s |
+| base-rear | `former-gutter-R-part1of3.stl` | 1 | 8 | 35m 6s |
+| base-rear | `former-gutter-R-part2of3.stl` | 1 | 8 | 33m 40s |
+| base-rear | `former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
+| base-rear | `former-motor-relief.stl` | 1 | 12 | 40m 58s |
+| base-rear | `filler-corner-L.stl` | 1 | 17 | 1h 44m 24s |
+| base-rear | `filler-corner-R.stl` | 1 | 16 | 1h 42m 27s |
+| base-front | `former-gutter-L-part1of2.stl` | 1 | 11 | 49m 23s |
+| base-front | `former-gutter-L-part2of2.stl` | 1 | 10 | 43m 43s |
+| base-front | `former-gutter-R-part1of2.stl` | 1 | 11 | 49m 24s |
+| base-front | `former-gutter-R-part2of2.stl` | 1 | 10 | 43m 43s |
+| base-front | `former-trough-part1of5.stl` | 1 | 20 | 1h 14m 18s |
+| base-front | `former-trough-part2of5.stl` | 1 | 22 | 1h 23m 56s |
+| base-front | `former-trough-part3of5.stl` | 1 | 25 | 1h 33m 33s |
+| base-front | `former-trough-part4of5.stl` | 1 | 23 | 1h 24m 3s |
+| base-front | `former-trough-part5of5.stl` | 1 | 21 | 1h 17m 36s |
+| base-front | `filler-corner-L.stl` | 1 | 21 | 2h 0m 50s |
+| base-front | `filler-corner-R.stl` | 1 | 21 | 1h 56m 31s |
+| base-rear | `former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 50s |
+| base-rear | `former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 58s |
+| base-rear | `former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 58s |
+| base-rear | `former-split-gasket-groove-part4of4.stl` | 1 | 2 | 9m 53s |
+| base-front | `core-center-post.stl` | 1 | 5 | 44m 56s |
+| base-rear | `core-center-post.stl` | 1 | 5 | 44m 56s |
+| base-front | `core-outboard-L-post.stl` | 1 | 5 | 44m 53s |
+| base-front | `core-trough-band-L-post.stl` | 1 | 5 | 44m 54s |
+| base-front | `core-draw-rod-L-post.stl` | 1 | 5 | 44m 53s |
+| base-front | `core-foot-a-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-foot-b-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-foot-c-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-knee-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-outer-a-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-outer-b-L-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-rear-L-post.stl` | 1 | 5 | 44m 53s |
+| base-front | `core-outboard-R-post.stl` | 1 | 5 | 44m 53s |
+| base-front | `core-trough-band-R-post.stl` | 1 | 5 | 44m 54s |
+| base-front | `core-draw-rod-R-post.stl` | 1 | 5 | 44m 53s |
+| base-front | `core-foot-a-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-foot-b-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-foot-c-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-knee-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-outer-a-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-outer-b-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `core-rear-R-post.stl` | 1 | 5 | 44m 53s |
+| base-rear | `plug-socket-spike.stl` | 4 | 8 | 13m 26s |
+| base-rear | `kit-spigot-bushing.stl` | 2 | 34 | 1h 11m 51s |
+| upright | `kit-back-bracket.stl` | 4 | 21 | 27m 33s |
+| upright | `kit-front-bracket.stl` | 4 | 32 | 38m 27s |
+| upright | `kit-saddle-flat.stl` | 4 | 18 | 22m 40s |
+| upright | `filler-toe-filler.stl` | 2 | 54 | 1h 33m 58s |
+| upright | `former-foot-gasket-groove-part1of4.stl` | 2 | 7 | 17m 8s |
+| upright | `former-foot-gasket-groove-part2of4.stl` | 2 | 3 | 8m 46s |
+| upright | `former-foot-gasket-groove-part3of4.stl` | 2 | 3 | 8m 46s |
+| upright | `former-foot-gasket-groove-part4of4.stl` | 2 | 7 | 17m 10s |
+| upright | `plug-slope-plug-lower.stl` | 2 | 19 | 45m 49s |
+| upright | `plug-slope-plug-upper.stl` | 2 | 19 | 45m 47s |
+| upright | `plug-tie-rod-pocket.stl` | 4 | 33 | 39m 54s |
+| upright | `kit-plate-spacer.stl` | 4 | 15 | 20m 9s |
+| upright | `kit-post-bushing.stl` | 4 | 68 | 1h 11m 44s |
+| beam | `kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
+| beam | `filler-back-edge-part1of4.stl` | 1 | 19 | 1h 14m 46s |
+| beam | `filler-back-edge-part2of4.stl` | 1 | 19 | 1h 14m 46s |
+| beam | `filler-back-edge-part3of4.stl` | 1 | 19 | 1h 14m 46s |
+| beam | `filler-back-edge-part4of4.stl` | 1 | 19 | 1h 15m 1s |
+| beam | `kit-tube-locator.stl` | 4 | 39 | 55m 37s |
+| beam | `kit-dowel-stop.stl` | 2 | 2 | 6m 51s |
+| base-front | `cast-in-base-front-tube-plug-l.stl` | 2 | 13 | 29m 7s |
+| base-front | `cast-in-base-front-spigot-sleeve-l.stl` | 2 | 29 | 1h 14m 40s |
+| base-front | `cast-in-leg-front-l-plug.stl` | 2 | 7 | 15m 49s |
+| base-rear | `cast-in-base-rear-tube-plug-l.stl` | 2 | 13 | 27m 49s |
+| base-rear | `cast-in-base-rear-spigot-sleeve-l.stl` | 2 | 29 | 1h 14m 38s |
+| base-rear | `cast-in-leg-rear-l-plug.stl` | 2 | 7 | 15m 49s |
+| upright | `cast-in-post-l1-plug.stl` | 4 | 14 | 15m 49s |
+
 - **Nuts:** press M4 nuts into the hex pockets of the brackets and saddles; slide the nuts into the
-  pockets of the formers and fillers (a dab of grease keeps them from falling out). A 7 mm nut on a
-  bolt through the hole pulls a tight one into place.
+  pockets of the formers and fillers (a dab of grease keeps them from falling out). A nut on a bolt
+  through the hole pulls a tight one into place.
 - **Pegs:** test-fit the parts of each long former; a light pass with a file if a peg is tight.
 
 ## 4. Cut the boards
 
 Most boards are strips, so the quickest way is to have the store rip each sheet into strips at the
-widths in the layout, and crosscut them at home. Label every board with its name on the outside face
-as you cut it, and mark which face is the cast face (the melamine face that the mix touches).
+widths below, and crosscut them at home. Label every board with its name on the outside face as you
+cut it, and mark which face is the cast face (the melamine face that the mix touches).
 
 ![Sheet 1](boards/sheet-1.svg)
 
 ![Sheet 2](boards/sheet-2.svg)
 
-| Mold | Board | Qty | Size (mm) | Notes |
-|---|---|---|---|---|
-| Base | Base floor | 1 | 718 x 843 | both halves are cast on it |
-| Base | Base front wall | 1 | 638 x 135 |  |
-| Base | Base rear wall | 1 | 638 x 135 |  |
-| Base | Base side wall, left | 1 | 724 x 135 |  |
-| Base | Base side wall, right | 1 | 724 x 135 |  |
-| Base | Base partition | 1 | 600 x 135 | rear half only; comes out before the front half |
-| Base | Base partition strut | 2 | 326 x 60 | offcut, stands on edge; holds the partition foot (rear half only) |
-| Base | Base cleat, front | 1 | 638 x 40 | offcut strip, flat on the floor |
-| Base | Base cleat, rear | 1 | 638 x 40 | offcut strip, flat on the floor |
-| Base | Base cleat, left | 1 | 724 x 40 | offcut strip, flat on the floor |
-| Base | Base cleat, right | 1 | 724 x 40 | offcut strip, flat on the floor |
-| Base | Base bridge y=-190 | 1 | 651 x 60 |  |
-| Base | Base bridge y=-58 | 1 | 651 x 60 |  |
-| Base | Base bridge y=100 | 1 | 651 x 60 |  |
-| Base | Base bridge y=170 | 1 | 651 x 60 |  |
-| Base | Base bridge y=280 | 1 | 651 x 60 |  |
-| Base | Base leg bridge y=-310 | 1 | 480 x 60 |  |
-| Base | Base leg bridge y=344 | 1 | 480 x 60 |  |
-| Uprights | Upright floor | 2 | 198 x 575 |  |
-| Uprights | Upright side plate, outer | 2 | 495 x 271 (profile) | cut to the profile |
-| Uprights | Upright side plate, inner | 2 | 495 x 271 (profile) | cut to the profile |
-| Uprights | Upright back board | 2 | 80 x 271 |  |
-| Uprights | Upright front board | 2 | 80 x 312 | ends cut square |
-| Uprights | Upright bridge | 2 | 131 x 108 |  |
-| Uprights | Upright cleat, outer | 2 | 405 x 40 | offcut strip, flat on the floor |
-| Uprights | Upright cleat, inner | 2 | 405 x 40 | offcut strip, flat on the floor |
-| Uprights | Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
-| Beam | Beam floor | 1 | 648 x 258 |  |
-| Beam | Beam top wall | 1 | 568 x 165 |  |
-| Beam | Beam bottom wall | 1 | 568 x 165 |  |
-| Beam | Beam end wall, left | 1 | 140 x 165 |  |
-| Beam | Beam end wall, right | 1 | 140 x 165 |  |
-| Beam | Beam cleat, top | 1 | 568 x 40 | offcut strip, flat on the floor |
-| Beam | Beam cleat, bottom | 1 | 568 x 40 | offcut strip, flat on the floor |
-| Beam | Beam cleat, left | 1 | 140 x 40 | offcut strip, flat on the floor |
-| Beam | Beam cleat, right | 1 | 140 x 40 | offcut strip, flat on the floor |
+| Board | Qty | Size (mm) | Notes |
+|---|---|---|---|
+| Base floor | 1 | 718 x 843 | both halves are cast on it |
+| Base front wall | 1 | 638 x 135 |  |
+| Base rear wall | 1 | 638 x 135 |  |
+| Base side wall, left | 1 | 724 x 135 |  |
+| Base side wall, right | 1 | 724 x 135 |  |
+| Base partition | 1 | 600 x 135 | rear half only; comes out before the front half |
+| Base partition strut | 2 | 326 x 60 | offcut, stands on edge; holds the partition foot (rear half only) |
+| Base cleat, front | 1 | 638 x 40 | offcut strip, flat on the floor |
+| Base cleat, rear | 1 | 638 x 40 | offcut strip, flat on the floor |
+| Base cleat, left | 1 | 724 x 40 | offcut strip, flat on the floor |
+| Base cleat, right | 1 | 724 x 40 | offcut strip, flat on the floor |
+| Base bridge y=-190 | 1 | 651 x 60 |  |
+| Base bridge y=-58 | 1 | 651 x 60 |  |
+| Base bridge y=100 | 1 | 651 x 60 |  |
+| Base bridge y=170 | 1 | 651 x 60 |  |
+| Base bridge y=280 | 1 | 651 x 60 |  |
+| Base leg bridge y=-310 | 1 | 480 x 60 |  |
+| Base leg bridge y=344 | 1 | 480 x 60 |  |
+| Upright floor | 2 | 198 x 575 |  |
+| Upright side plate, outer | 2 | 495 x 271 (profile) | cut to the profile |
+| Upright side plate, inner | 2 | 495 x 271 (profile) | cut to the profile |
+| Upright back board | 2 | 80 x 271 |  |
+| Upright front board | 2 | 80 x 312 | ends cut square |
+| Upright bridge | 2 | 131 x 108 |  |
+| Upright cleat, outer | 2 | 405 x 40 | offcut strip, flat on the floor |
+| Upright cleat, inner | 2 | 405 x 40 | offcut strip, flat on the floor |
+| Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
+| Beam floor | 1 | 648 x 258 |  |
+| Beam top wall | 1 | 568 x 165 |  |
+| Beam bottom wall | 1 | 568 x 165 |  |
+| Beam end wall, left | 1 | 140 x 165 |  |
+| Beam end wall, right | 1 | 140 x 165 |  |
+| Beam cleat, top | 1 | 568 x 40 | offcut strip, flat on the floor |
+| Beam cleat, bottom | 1 | 568 x 40 | offcut strip, flat on the floor |
+| Beam cleat, left | 1 | 140 x 40 | offcut strip, flat on the floor |
+| Beam cleat, right | 1 | 140 x 40 | offcut strip, flat on the floor |
 
-The two upright side plates are cut to a profile (their drawings give the corners): cut the rectangle,
+The upright side plates are cut to a profile (their drawings give the corners): cut the rectangle,
 then the sloped front edge. The front board's ends are square.
 
 ## 5. Drill the boards
@@ -176,7 +257,7 @@ then the sloped front edge. The front board's ends are square.
   front wall (the beam's bottom wall). Left and right are as you look at the cast face, so a floor is
   mirrored compared with the machine. Bridges and cleats are drawn from the top.
 - The brackets and saddles are drill guides: clamp one in place and drill through its holes.
-- Countersink nothing; a washer goes under every bolt head.
+- A washer goes under every bolt head; countersink nothing.
 
 | Hole | Drill | For |
 |---|---|---|
@@ -801,7 +882,7 @@ core's post hole a snug 12 mm square, 30 mm deep, and glue the printed post in.
   corners that form outside edges (floor to wall), and run a small silicone fillet into the others.
 - Grease every screw, bolt and rod that will come out of the casting.
 
-## 8. Put the molds together
+## 8. Put the mold together
 
 ### Base, rear half (cast first)
 
@@ -887,7 +968,7 @@ The beam is cast with its front (rail) face down on the floor and its back open.
 
 ![Beam, step 2](../../renders/mold/step-beam-2.png)
 
-3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each cross) and hang the tubes between them. Bolt the back-edge fillers to the top wall, push the dowels into the bottom wall onto their printed stops, and slide the greased 1/2 in rods through both walls for the eight bolt holes. Fill to the line.
+3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each cross) and hang the tubes between them. Bolt the back-edge filler to the top wall, push the dowels into the bottom wall onto their printed stops, and slide the greased 1/2 in rods through both walls for the eight bolt holes. Fill to the line.
 
 ![Beam, step 3](../../renders/mold/step-beam-3.png)
 
@@ -916,7 +997,7 @@ The beam is cast with its front (rail) face down on the floor and its back open.
 
 | Problem | Fix |
 |---|---|
-| A nut won't slide under the hole | Clean the pocket with a 7 mm nut on a bolt; a warm nut (hair dryer) pushes in |
+| A nut won't slide under the hole | Clean the pocket with a nut on a bolt; a warm nut (hair dryer) pushes in |
 | A bracket or saddle is loose on the board | Your board is thinner than set: shim with tape, or set `mold_board` and reprint |
 | A pin won't go into its hole | Run a 1/8 in bit through the hole again; trim the pin tip with a knife |
 | A foam core moves while pouring | Check its post bolt is tight and the post is glued; add carpet tape under it |

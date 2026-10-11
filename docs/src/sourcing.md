@@ -1,12 +1,12 @@
 # Sourcing list
 
-Parts to buy for the machine in `model/DIYCNC.FCStd` / `docs/report.txt`, sourced on Amazon (US) where it
+Parts to buy for the machine in `model/DIYCNC.FCStd` / `docs/5-design/report.txt`, sourced on Amazon (US) where it
 makes sense. Prices and stock were checked on **2026-10-09/10**. "?" means the price was not visible
 (Amazon blocks automated page reads); check the live listing. Shipping and tax are not included.
 Off-Amazon picks are marked "not Amazon": they are there because Amazon doesn't carry the part or
 is much dearer. Rows marked (opt) or (choice) are left out of the totals.
 
-The same list is in `docs/sourcing.csv` for a spreadsheet.
+The same list is in `docs/1-sourcing/sourcing.csv` for a spreadsheet.
 
 ## Totals
 

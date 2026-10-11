@@ -3,7 +3,7 @@
 How to build the machine in this folder: five epoxy-granite (EG) castings with cast-in steel,
 HGR15 rails on bedded steel risers, ballscrews on all three axes, a water-cooled spindle,
 and a 2020/ACM enclosure with flood coolant. Dimensions come from the model
-(`model/build_cnc.py`, summarised in `docs/report.txt`); parts and prices are in the sourcing
+(`model/build_cnc.py`, summarised in `docs/5-design/report.txt`); parts and prices are in the sourcing
 list, and every printed part is in the print guide. Read the whole thing once before buying.
 
 ![The finished machine, enclosure off](../../renders/build/12-axes-spindle.png)
@@ -88,7 +88,8 @@ The molds are a kit. Melamine boards are cut to a list and drilled from hole map
 hold them together with M4 bolts. Every printed piece bolts or pins to its board from outside, into a
 nut built into the piece. Nothing is glued, nothing goes through a cast face, and the molds come apart
 and go back together the same way. The **mold guide** has the cut list, the hardware, a drawing and a
-hole table for every board, and the steps; the print guide lists the printed parts.
+hole table for every board, and the steps (`docs/3-molds/`, one guide per mold); the print guide
+lists the printed parts.
 
 - **Walls stand 25 mm above the pour line.** The brackets, saddles and leg holders bolt through
   that band. Fill to the line, not to the top.
@@ -337,7 +338,7 @@ way covers and screw cover on, and let the gutters and drain carry the fluid to 
 base. Cast the enclosure inserts into the base now so the frame bolts straight on later.
 
 1. Bolt the 2020 frame to the base top with angle brackets into the cast-in M5 inserts
-   (M5 x 35). Cut list in `docs/report.txt`.
+   (M5 x 35). Cut list in `docs/5-design/report.txt`.
 2. ACM side, back and roof panels; polycarbonate door on hinges and gas struts, magnetic catch.
    Brush seals where the X and Y motors pass through the panels.
 3. Way covers: the stainless strips on their spring rollers in front of and behind the table,
