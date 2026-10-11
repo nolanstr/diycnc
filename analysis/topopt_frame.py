@@ -1,6 +1,6 @@
 """Topology optimization of the base and the uprights together, in the current frame.
 
-    python topopt_frame.py 34.6        # total epoxy granite for base + both uprights, litres
+    python topopt_frame.py 34.6        # total epoxy granite for base + both uprights, liters
 
 One epoxy-granite budget is shared by the base and the two uprights, so the optimizer can
 also move material between them. The beam and all the cast-in steel stay as drawn.
@@ -27,7 +27,7 @@ from vfe import E_EG, E_MIN, E_ST, Voxels
 
 def upright_domain(vox):
     d = vox.d
-    X, Y, Z = np.meshgrid(vox.centres(0), vox.centres(1), vox.centres(2), indexing='ij')
+    X, Y, Z = np.meshgrid(vox.centers(0), vox.centers(1), vox.centers(2), indexing='ij')
     side = (np.abs(X) > d['inner']) & (np.abs(X) < d['outer'])
     span = (Y > d['base_y0'] + 40.0) & (Y < d['base_y1'] - 15.0)
     height = (Z > d['base_top']) & (Z < d['beam_bot'] - 5.0)
@@ -70,7 +70,7 @@ def main(target_L, iters=100, tag=None):
 
     # ---- uprights (free 3D, mirrored) -----------------------------------
     eg_dom3 = np.clip(1.0 - f['st_up'], 0, 1)
-    X, Y, Z = np.meshgrid(vox.centres(0), vox.centres(1), vox.centres(2), indexing='ij')
+    X, Y, Z = np.meshgrid(vox.centers(0), vox.centers(1), vox.centers(2), indexing='ij')
     cur = f['eg_up'] > 0.5
     keep = ndi.binary_dilation(f['st_up'] > 0.02, np.ones((3, 3, 3), bool))
     keep |= cur & (Z > d['beam_bot'] - 25.0)           # seat under the beam

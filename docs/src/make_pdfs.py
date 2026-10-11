@@ -22,7 +22,7 @@ LIST = re.compile(r'^(- |\d+\. )')
 # source, output, page orientation
 DOCUMENTS = [
     ('build-guide.md', 'build-guide.pdf', 'portrait'),
-    ('mould-guide.md', 'mould-guide.pdf', 'portrait'),
+    ('mold-guide.md', 'mold-guide.pdf', 'portrait'),
     ('print-guide.md', 'print-guide.pdf', 'portrait'),
     ('sourcing.md', 'sourcing.pdf', 'landscape'),
     ('design-notes.md', 'design-notes.pdf', 'portrait'),

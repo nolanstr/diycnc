@@ -38,7 +38,7 @@ def main(frac, web=False, iters=60, tag=None):
     eg_fix = fld(f['eg_base']) + fld(f['eg_beam'])
     eg_up = fld(f['eg_up'])
 
-    X, Y, Z = np.meshgrid(vox.centres(0), vox.centres(1), vox.centres(2), indexing='ij')
+    X, Y, Z = np.meshgrid(vox.centers(0), vox.centers(1), vox.centers(2), indexing='ij')
     keep = ndi.binary_dilation(f['st_up'] > 0.02, np.ones((3, 3, 3), bool))
     keep |= (Z > d['beam_bot'] - 25.0) | (Z < d['base_top'] + 15.0)
     up = eg_up > 0.01

@@ -1,29 +1,29 @@
-# Mould guide
+# Mold guide
 
-How to make the moulds for the five castings, put them together, and take them apart again. The
-moulds are melamine boards that bolt together with printed brackets; every printed piece bolts or
+How to make the molds for the five castings, put them together, and take them apart again. The
+molds are melamine boards that bolt together with printed brackets; every printed piece bolts or
 pins to its board from outside, and the bulky hidden cores are foam. Nothing is glued, nothing
-goes through a face the mix touches, and the moulds come apart cleanly for the next casting.
+goes through a face the mix touches, and the molds come apart cleanly for the next casting.
 
 The build guide covers the casting itself (mix, pour, cure); this guide is everything before and
 after that. All the sizes and hole positions come from the model (`model/build_cnc.py`), so if you
 change the design, re-run it and this guide, the hole maps and the printed parts all follow.
 
-![The rear base-half mould ready to pour: boards see-through, printed kit in orange, foam in blue](../../renders/build/02-mould-base-rear.png)
+![The rear base-half mold ready to pour: boards see-through, printed kit in orange, foam in blue](../../renders/build/02-mold-base-rear.png)
 
 **The order of work:** print the kit (about a week of printer time, so start first) &rarr; cut and
-drill the boards &rarr; cut the foam &rarr; wax &rarr; assemble a mould &rarr; cast &rarr; take it
+drill the boards &rarr; cut the foam &rarr; wax &rarr; assemble a mold &rarr; cast &rarr; take it
 apart. Cast in this order: base rear half, base front half (against the rear half), the two uprights
 together, the beam.
 
-## 1. How the moulds work
+## 1. How the molds work
 
 **Walls stand 25 mm above the pour line.** All the bolts that hold the box together go through
 that band, so none passes through a face that gets cast against. Fill to the line, not to the top.
 Strips of board (cleats) bolted down along the outside of each wall's foot keep the walls from moving
 out; printed corner brackets hold the corners square at the top.
 
-![A corner of the base mould, the right way up](../../renders/mould/detail-corner.png)
+![A corner of the base mold, the right way up](../../renders/mold/detail-corner.png)
 
 **Printed pieces bolt on from outside.** Each piece that forms part of the casting's surface (the
 formers and fillers) has a nut built into it: the nut drops into a pocket in the face that sits
@@ -31,27 +31,27 @@ against the board, slides sideways under the bolt hole, and an M4 bolt (M3 on th
 through the board from outside into it. The pocket is on the board side, so nothing opens onto a
 cast face, and the bolt comes out from outside after casting. Fit the nuts before the pieces go on.
 
-![The captive nut: drop it in, slide it under the hole, bolt through the board](../../renders/mould/fixing-nut.png)
+![The captive nut: drop it in, slide it under the hole, bolt through the board](../../renders/mold/fixing-nut.png)
 
 **Thin pieces have pins.** The gasket-groove beads and the motor relief are too thin for a nut; their
 3 mm pins push into 1/8 in holes. The casting presses them onto the board.
 
-![Pins on a gasket-groove bead](../../renders/mould/fixing-pins.png)
+![Pins on a gasket-groove bead](../../renders/mold/fixing-pins.png)
 
 **Pieces longer than the printer bed** are printed in parts with a peg on one cut face and a socket
 in the other. Push them together; each part has its own bolts to the board, so they need no glue.
 
-![Peg and socket between the parts of a long former](../../renders/mould/fixing-peg.png)
+![Peg and socket between the parts of a long former](../../renders/mold/fixing-peg.png)
 
 **Cores** (the pockets in the base underside) are blocks of XPS foam wrapped in packing tape. Each
 has a printed post glued into it; the post bolts to the side of a bridge (a board standing on edge
-across the mould, in printed saddles on the wall tops), which sets its height and stops it floating.
+across the mold, in printed saddles on the wall tops), which sets its height and stops it floating.
 
-![A foam core hanging from its bridge](../../renders/mould/detail-core.png)
+![A foam core hanging from its bridge](../../renders/mold/detail-core.png)
 
 **Fits** are 0.15 mm a side: snug, but they go together by hand. Board thickness matters: the
 saddles and cradles are drawn for 19.05 mm board (Home Depot's 3/4 in white melamine is a true
-0.750 in). Measure yours; if it differs, set `mould_board` in `model/build_cnc.py` and re-run it.
+0.750 in). Measure yours; if it differs, set `mold_board` in `model/build_cnc.py` and re-run it.
 
 ## 2. What you need
 
@@ -59,11 +59,11 @@ saddles and cradles are drawn for 19.05 mm board (Home Depot's 3/4 in white mela
 |---|---|---|
 | Melamine board, 19 mm (3/4 in) | 2 sheets, 4 x 8 ft | the layout below; have the store rip the strips |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores; stack two layers for the 90 mm ones |
-| PETG | 2 x 1 kg rolls | 1.19 kg for the moulds and cast-in parts (sliced) |
+| PETG | 2 x 1 kg rolls | 1.19 kg for the molds and cast-in parts (sliced) |
 | Packing tape, double-sided carpet tape | 1 roll each | foam wrapping and holding |
 | Paste wax (Partall #2) and PVA | 1 each | release, 3-5 coats |
-| 3/8 in quarter-round moulding (PVC) | about 6 m | the 10 mm outside edges of the castings |
-| 2x4 offcut | 4 blocks, about 50 mm | feet for each upright mould |
+| 3/8 in quarter-round molding (PVC) | about 6 m | the 10 mm outside edges of the castings |
+| 2x4 offcut | 4 blocks, about 50 mm | feet for each upright mold |
 
 **Hardware** (zinc-plated is fine; grease anything that touches the mix). Buy about 10 % spare of the
 small bolts, nuts and washers.
@@ -102,13 +102,13 @@ Bambu Studio for an A1 mini. Start early. Print order: one corner bracket and on
 (check them on an offcut of your board: the saddle should drop over it with a little play), then the
 kit, then the pieces for the rear base half, then the rest.
 
-The mould kit (reused for every casting):
+The mold kit (reused for every casting):
 
-![The printed mould kit](../../renders/mould/gallery-kit.png)
+![The printed mold kit](../../renders/mold/gallery-kit.png)
 
 The formers, fillers and plugs (each shapes part of a casting):
 
-![Formers, fillers and plugs](../../renders/mould/gallery-pieces.png)
+![Formers, fillers and plugs](../../renders/mold/gallery-pieces.png)
 
 - **Nuts:** press M4 nuts into the hex pockets of the brackets and saddles; slide the nuts into the
   pockets of the formers and fillers (a dab of grease keeps them from falling out). A 7 mm nut on a
@@ -125,7 +125,7 @@ as you cut it, and mark which face is the cast face (the melamine face that the 
 
 ![Sheet 2](boards/sheet-2.svg)
 
-| Mould | Board | Qty | Size (mm) | Notes |
+| Mold | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
 | Base | Base floor | 1 | 718 x 843 | both halves are cast on it |
 | Base | Base front wall | 1 | 638 x 135 |  |
@@ -766,8 +766,8 @@ core's post hole a snug 12 mm square, 30 mm deep, and glue the printed post in.
 
 | Casting | Piece | Qty | Size and how |
 |---|---|---|---|
-| base-front | centre | 1 | XPS block 100 x 185 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | centre | 1 | XPS block 100 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | center | 1 | XPS block 100 x 185 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | center | 1 | XPS block 100 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | outboard-L | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | trough-band-L | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | draw-rod-L | 1 | XPS block 37 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
@@ -790,18 +790,18 @@ core's post hole a snug 12 mm square, 30 mm deep, and glue the printed post in.
 | base-rear | rear-R | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | socket | 4 | XPS block 41 x 41 x 80 mm, taped; dig it out after curing (a little acetone dissolves the rest). |
 
-![A socket core: printed spike bolted to the floor, the foam pushed over it](../../renders/mould/detail-socket.png)
+![A socket core: printed spike bolted to the floor, the foam pushed over it](../../renders/mold/detail-socket.png)
 
 ## 7. Prepare the surfaces
 
 - Wax every face the mix touches, boards and removable printed pieces alike: 3-5 thin coats of paste
   wax, each buffed, then a coat of PVA. Don't wax the pieces that stay in (core posts, cast-in parts):
   scuff them and wipe them with acetone so the epoxy grips.
-- The castings' outside edges are rounded 10 mm: glue 3/8 in quarter-round moulding into the inside
+- The castings' outside edges are rounded 10 mm: glue 3/8 in quarter-round molding into the inside
   corners that form outside edges (floor to wall), and run a small silicone fillet into the others.
 - Grease every screw, bolt and rod that will come out of the casting.
 
-## 8. Put the moulds together
+## 8. Put the molds together
 
 ### Base, rear half (cast first)
 
@@ -809,71 +809,71 @@ Both base halves are cast on the same floor board. The rear half goes first, aga
 the split; then the partition comes out and the front half is cast against the rear half's waxed
 split face. The two top faces come out flush, the split faces match, and the front tubes slide
 straight onto the rear half's spigots. The base is cast upside down (its top face on the floor);
-these pictures show the mould the right way up.
+these pictures show the mold the right way up.
 
 1. Stand the floor on three battens (the insert screws and floor bolts come up from underneath) and bolt the cleats down along its edges.
 
-![Base rear, step 1](../../renders/mould/step-base-rear-1.png)
+![Base rear, step 1](../../renders/mold/step-base-rear-1.png)
 
 2. Stand the walls on the floor against the cleats and fit the four corner brackets at the top corners. Measure the diagonals before you tighten: they should match within 2 mm.
 
-![Base rear, step 2](../../renders/mould/step-base-rear-2.png)
+![Base rear, step 2](../../renders/mold/step-base-rear-2.png)
 
 3. Fit the partition between the side walls with its two brackets on the front side, and the two struts from the front wall to its foot. Push the gasket-groove beads onto its pins and the spigot bushings into its holes from the front.
 
-![Base rear, step 3](../../renders/mould/step-base-rear-3.png)
+![Base rear, step 3](../../renders/mold/step-base-rear-3.png)
 
 4. Bolt on the gutter formers, the motor relief (pins) and the rear corner fillers; bolt the socket spikes to the floor and push a taped foam block over each.
 
-![Base rear, step 4](../../renders/mould/step-base-rear-4.png)
+![Base rear, step 4](../../renders/mold/step-base-rear-4.png)
 
 5. Screw the inserts to the floor and the tie-rod couplers onto their greased bolts; hold the draw-rod couplers on bolts through the partition. Slide the spigots through the bushings and put the rear tubes on them, with their sleeves and end plugs. Bolt the leg holders into the corners, drop the legs in, set each at its height and tighten its pinch screw.
 
-![Base rear, step 5](../../renders/mould/step-base-rear-5.png)
+![Base rear, step 5](../../renders/mold/step-base-rear-5.png)
 
 6. Cast the 20 mm skin first. Then set the foam cores on it, drop the bridges into the saddles and bolt each core's post to its bridge. Fill to the pour line.
 
-![Base rear, step 6](../../renders/mould/step-base-rear-6.png)
+![Base rear, step 6](../../renders/mold/step-base-rear-6.png)
 
 ### Base, front half (against the rear half)
 
 1. After the cure: unbolt the bridges, the partition and its struts, and leave the rest. Dig the foam out of the four sockets, pull the gasket-groove beads, tape over the groove, and wax and PVA the rear half's split face and spigots.
 
-![Base front, step 1](../../renders/mould/step-base-front-1.png)
+![Base front, step 1](../../renders/mold/step-base-front-1.png)
 
 2. Bolt on the trough and gutter formers (the drain liner on the trough's spigot) and the front corner fillers; put the front tubes, sleeves and plugs onto the spigots; screw the draw rods into the rear half's couplers with their ends in the corner fillers; inserts, couplers and legs as before.
 
-![Base front, step 2](../../renders/mould/step-base-front-2.png)
+![Base front, step 2](../../renders/mold/step-base-front-2.png)
 
 3. Skin, foam cores, bridges, fill. After the cure unbolt everything and split the halves with a few wedges at the split, gently.
 
-![Base front, step 3](../../renders/mould/step-base-front-3.png)
+![Base front, step 3](../../renders/mold/step-base-front-3.png)
 
-### Uprights (two moulds, cast together)
+### Uprights (two molds, cast together)
 
 The uprights are cast foot down. Both are the same, so build two of everything.
 
 1. Push the post bushings into the floor from below and pin the gasket-groove bead to it. Bolt the cleats down.
 
-![Upright, step 1](../../renders/mould/step-upright-1.png)
+![Upright, step 1](../../renders/mold/step-upright-1.png)
 
 2. Stand the side plates against their cleats and the back board between them; fit the two back brackets.
 
-![Upright, step 2](../../renders/mould/step-upright-2.png)
+![Upright, step 2](../../renders/mold/step-upright-2.png)
 
 3. Bolt the toe filler to the floor between the side plates, set the front board's foot in its lip and fit the two front brackets at the top.
 
-![Upright, step 3](../../renders/mould/step-upright-3.png)
+![Upright, step 3](../../renders/mold/step-upright-3.png)
 
-4. Stand the mould on its four 2x4 blocks. Push the posts up through the bushings onto the bench, and the greased 5/8 in rods up through the floor: the two short ones into the slope plugs (bolted to the front board), the two long ones on through the top. The dowel-hole bolt and nut go in from underneath.
+4. Stand the mold on its four 2x4 blocks. Push the posts up through the bushings onto the bench, and the greased 5/8 in rods up through the floor: the two short ones into the slope plugs (bolted to the front board), the two long ones on through the top. The dowel-hole bolt and nut go in from underneath.
 
-![Upright, step 4](../../renders/mould/step-upright-4.png)
+![Upright, step 4](../../renders/mold/step-upright-4.png)
 
 5. Fill to the line and vibrate. Then slide the top pocket plugs down the long rods, hang the top plate from the bridge on its greased 3/8 bolts and spacers, and drop the bridge onto its saddles.
 
-![Upright, step 5](../../renders/mould/step-upright-5.png)
+![Upright, step 5](../../renders/mold/step-upright-5.png)
 
-![The toe filler holds the front board's foot](../../renders/mould/detail-toe.png)
+![The toe filler holds the front board's foot](../../renders/mold/detail-toe.png)
 
 ### Beam
 
@@ -881,17 +881,17 @@ The beam is cast with its front (rail) face down on the floor and its back open.
 
 1. Bolt the cleats down; screw the support pads and riser inserts to the floor on greased screws.
 
-![Beam, step 1](../../renders/mould/step-beam-1.png)
+![Beam, step 1](../../renders/mold/step-beam-1.png)
 
 2. Stand the walls against the cleats and fit the four corner brackets.
 
-![Beam, step 2](../../renders/mould/step-beam-2.png)
+![Beam, step 2](../../renders/mold/step-beam-2.png)
 
 3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each cross) and hang the tubes between them. Bolt the back-edge fillers to the top wall, push the dowels into the bottom wall onto their printed stops, and slide the greased 1/2 in rods through both walls for the eight bolt holes. Fill to the line.
 
-![Beam, step 3](../../renders/mould/step-beam-3.png)
+![Beam, step 3](../../renders/mold/step-beam-3.png)
 
-![A tube locator: a cross in the tube end, bolted through the end wall](../../renders/mould/detail-locator.png)
+![A tube locator: a cross in the tube end, bolted through the end wall](../../renders/mold/detail-locator.png)
 
 ## 9. Pouring, and the pour line
 
@@ -909,7 +909,7 @@ The beam is cast with its front (rail) face down on the floor and its back open.
    (or the floor off the casting).
 3. Unbolt and pull the formers and fillers (the bolts come out from the board side first). A wooden
    dowel and a light tap frees a stuck one. Dig out the socket foam; the pocket cores can stay.
-4. Scrape the boards, re-wax them, and store the kit pieces with their nuts in a box per mould. The
+4. Scrape the boards, re-wax them, and store the kit pieces with their nuts in a box per mold. The
    same kit does the next casting; only the formers and pieces that stay in are per casting.
 
 ## 11. If something doesn't fit
@@ -917,7 +917,7 @@ The beam is cast with its front (rail) face down on the floor and its back open.
 | Problem | Fix |
 |---|---|
 | A nut won't slide under the hole | Clean the pocket with a 7 mm nut on a bolt; a warm nut (hair dryer) pushes in |
-| A bracket or saddle is loose on the board | Your board is thinner than set: shim with tape, or set `mould_board` and reprint |
+| A bracket or saddle is loose on the board | Your board is thinner than set: shim with tape, or set `mold_board` and reprint |
 | A pin won't go into its hole | Run a 1/8 in bit through the hole again; trim the pin tip with a knife |
 | A foam core moves while pouring | Check its post bolt is tight and the post is glued; add carpet tape under it |
 | Mix leaks at a corner | A silicone fillet inside the corner before waxing; check the diagonals and brackets |

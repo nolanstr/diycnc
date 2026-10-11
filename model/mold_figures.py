@@ -1,10 +1,10 @@
-"""Illustrations for the mould guide: assembly steps for each mould, cut-away details of the joints and
-fixings, and a gallery of the printed pieces, with labelled callouts. Writes renders/mould/.
+"""Illustrations for the mold guide: assembly steps for each mold, cut-away details of the joints and
+fixings, and a gallery of the printed pieces, with labeled callouts. Writes renders/mold/.
 
 Run in the FreeCAD GUI (it needs the 3D view):
-    /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/mould_figures.py"
+    /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/mold_figures.py"
 
-The base is cast upside down; its figures are turned over so the mould is shown the right way up
+The base is cast upside down; its figures are turned over so the mold is shown the right way up
 (floor at the bottom), and the beam's are turned so its open back is up.
 """
 
@@ -24,7 +24,7 @@ try:
 except NameError:
     HERE = os.path.join(os.getcwd(), 'model')
 ROOT = os.path.dirname(HERE)
-OUT = os.path.join(ROOT, 'renders', 'mould')
+OUT = os.path.join(ROOT, 'renders', 'mold')
 FONT = '/System/Library/Fonts/HelveticaNeue.ttc'
 SCALE = 3                     # render at 3x the view, label, then shrink to 2/3
 INK, LEADER, BOX = (29, 36, 34), (90, 102, 98), (255, 255, 255)
@@ -33,18 +33,18 @@ src = open(os.path.join(HERE, 'build_cnc.py')).read()
 src = src[:src.rstrip().rfind('\nmain()')]
 NS = {'__file__': os.path.join(HERE, 'build_cnc.py'), '__name__': 'build_cnc'}
 exec(compile(src, 'build_cnc.py', 'exec'), NS)
-P, parts, moulds, style = NS['P'], NS['parts'], NS['moulds'], NS['style']
+P, parts, molds, style = NS['P'], NS['parts'], NS['molds'], NS['style']
 NS['LOOKS'].update({'hw': ((0.55, 0.57, 0.60), 0.7, 0), 'pour': ((0.30, 0.60, 0.95), 0.2, 70),
                     'ghost': ((0.62, 0.63, 0.65), 0.05, 80), 'melamine_s': ((0.93, 0.93, 0.90), 0.3, 25)})
 M = NS['build']()
-KIT = M.mould_kit
+KIT = M.mold_kit
 G = NS['frame_layout'](M.dims)
 PARTS = {p['name']: p for p in M.parts}
-T = P['mould_board']
+T = P['mold_board']
 
 
 # ------------------------------------------------------------------------------------------
-# Frames: show each mould the right way up
+# Frames: show each mold the right way up
 # ------------------------------------------------------------------------------------------
 def flip_base(s):
     s = s.copy()
@@ -69,21 +69,21 @@ IDENT = lambda s: s.copy()
 # Hardware models
 # ------------------------------------------------------------------------------------------
 def hexprism(c, axis, af, h):
-    axis = moulds.unit(axis)
-    s_ = moulds.perp(axis)
-    return moulds.hexagon(c, axis, s_, axis.cross(s_), af, h)
+    axis = molds.unit(axis)
+    s_ = molds.perp(axis)
+    return molds.hexagon(c, axis, s_, axis.cross(s_), af, h)
 
 
 def bolt(head_at, axis, length, d=4.0):
     """Socket-head bolt: head outside head_at, shank along axis."""
-    axis = moulds.unit(axis)
+    axis = molds.unit(axis)
     head = Part.makeCylinder(d * 0.85, d, head_at - axis * d, axis).cut(hexprism(head_at - axis * (d + 0.1), axis, d * 0.75, d * 0.6))
     washer = Part.makeCylinder(d * 1.1, 0.8, head_at - axis * 0.8, axis).cut(Part.makeCylinder(d / 2 + 0.2, 2, head_at - axis, axis))
     return head.fuse([washer, Part.makeCylinder(d / 2, length, head_at - axis * 0.8, axis)])
 
 
 def nut(c, axis, af=7.0, t=3.2, d=4.0):
-    axis = moulds.unit(axis)
+    axis = molds.unit(axis)
     return hexprism(c - axis * (t / 2), axis, af, t).cut(Part.makeCylinder(d / 2, t + 2, c - axis * (t / 2 + 1), axis))
 
 
@@ -92,7 +92,7 @@ def nut(c, axis, af=7.0, t=3.2, d=4.0):
 # ------------------------------------------------------------------------------------------
 class Scene:
     def __init__(self):
-        self.doc = App.newDocument('MouldFigures')
+        self.doc = App.newDocument('MoldFigures')
         self.view = Gui.ActiveDocument.ActiveView
         self.view.setAnimationEnabled(False)
         self.n = 0
@@ -116,8 +116,8 @@ class Scene:
         return o
 
     def camera(self, d, up=Vector(0, 0, 1), zoom=1.0):
-        z = -moulds.unit(d)
-        x = moulds.unit(up.cross(z))
+        z = -molds.unit(d)
+        x = molds.unit(up.cross(z))
         y = z.cross(x)
         self.view.setCameraOrientation(App.Rotation(App.Matrix(x.x, y.x, z.x, 0, x.y, y.y, z.y, 0,
                                                                x.z, y.z, z.z, 0, 0, 0, 0, 1)))
@@ -194,7 +194,7 @@ def boards(group, names=None, crop=None):
 
 def pieces(group, names=None, kinds=None, crop=None):
     out = []
-    for r in M.moulds:
+    for r in M.molds:
         if names is not None and not any(r['name'].startswith(n) for n in names):
             continue
         if kinds is not None and r['kind'] not in kinds:
@@ -237,12 +237,12 @@ def fig_bayonet(sc):
     """How a piece bolts to its board, exploded and cut through the bolt: the nut goes up into the pocket
     in the face that sits on the board, slides over under the hole, and the bolt comes up through the board."""
     sc.clear()
-    hw = moulds.HW['M4']
+    hw = molds.HW['M4']
     reach = hw['af'] + 3.0
     board = parts.box(-30, 38, -14, 14, -T, 0)
     piece = parts.box(-22, 30, -12, 12, 0, 16)
     p, n, s_ = Vector(0, 0, 0), Vector(0, 0, -1), Vector(1, 0, 0)
-    piece = piece.cut(moulds.nut_trap(p, n, s_, 'M4'))
+    piece = piece.cut(molds.nut_trap(p, n, s_, 'M4'))
     board = board.cut(Part.makeCylinder(2.25, T + 2, Vector(0, 0, -T - 1)))
     lift = Vector(0, 0, 22)
     keep = parts.box(-100, 100, 0, 100, -100, 100)            # cut away the near half
@@ -268,7 +268,7 @@ def fig_bayonet(sc):
 def fig_pins(sc):
     """A gasket-groove bead and its pins over the floor board."""
     sc.clear()
-    r = next(r for r in M.moulds if r['name'] == 'foot-gasket-groove')
+    r = next(r for r in M.molds if r['name'] == 'foot-gasket-groove')
     part_ = r['shape'][0]
     bb = part_.BoundBox
     crop = parts.box(bb.XMin - 30, bb.XMax + 30, bb.YMin - 20, bb.YMin + 140, bb.ZMin - 30, bb.ZMax + 10)
@@ -278,7 +278,7 @@ def fig_pins(sc):
     sc.add(part_.common(crop).translated(lift), 'printed')
     sc.camera(Vector(-0.6, 0.55, -0.6), zoom=1.0)
     pins_at = [Vector(e.Curve.Center.x, e.Curve.Center.y, bb.ZMin) for e in part_.Edges
-               if isinstance(e.Curve, Part.Circle) and abs(e.Curve.Radius - moulds.PIN_D / 2) < 0.05
+               if isinstance(e.Curve, Part.Circle) and abs(e.Curve.Radius - molds.PIN_D / 2) < 0.05
                and e.Curve.Center.z < bb.ZMin + 1 and crop.isInside(e.Curve.Center, 1, True)]
     lab = [(Vector(bb.XMin, bb.YMin + 60, bb.ZMax) + lift, 'Gasket-groove bead'),
            (Vector(bb.XMax + 20, bb.YMin + 100, bb.ZMin - T / 2), 'Floor board')]
@@ -294,13 +294,13 @@ def fig_pins(sc):
 def fig_peg(sc):
     """Two parts of a former cut for the bed: peg on one, socket in the other."""
     sc.clear()
-    r = next(r for r in M.moulds if r['folder'] == 'base-front' and r['name'] == 'trough')
+    r = next(r for r in M.molds if r['folder'] == 'base-front' and r['name'] == 'trough')
     a, b = r['shape'][1], r['shape'][2]
     sc.add(flip_base(a), 'printed')
     sc.add(flip_base(b).translated(Vector(28, 0, 0)), 'printed')
     sc.camera(Vector(-0.45, 0.75, -0.5))
     pa = flip_base(a)
-    peg = [f for f in pa.Faces if isinstance(f.Surface, Part.Cylinder) and abs(f.Surface.Radius - moulds.PEG_D / 2) < 0.05]
+    peg = [f for f in pa.Faces if isinstance(f.Surface, Part.Cylinder) and abs(f.Surface.Radius - molds.PEG_D / 2) < 0.05]
     lab = [(pa.BoundBox.Center + Vector(0, 0, 6), 'Trough former, part 2'),
            (flip_base(b).BoundBox.Center + Vector(28, 0, 6), 'Part 3')]
     if peg:
@@ -310,7 +310,7 @@ def fig_peg(sc):
 
 
 def fig_corner(sc):
-    """A corner of the base mould, the right way up: walls on cleats, corner bracket, leg holder,
+    """A corner of the base mold, the right way up: walls on cleats, corner bracket, leg holder,
     saddle and bridge, corner filler, and the pour line."""
     sc.clear()
     half, y1 = G['base_half'], G['base_y1']
@@ -340,8 +340,8 @@ def fig_corner(sc):
 def fig_core(sc):
     """A foam pocket core hanging from a bridge by its printed post (section through the post)."""
     sc.clear()
-    r = next(r for r in M.moulds if r['kind'] == 'foam' and r['name'] == 'foot-b-R')
-    post = next(r_ for r_ in M.moulds if r_['name'] == 'foot-b-R-post')
+    r = next(r for r in M.molds if r['kind'] == 'foam' and r['name'] == 'foot-b-R')
+    post = next(r_ for r_ in M.molds if r_['name'] == 'foot-b-R-post')
     blk = r['placed'][0][0]
     pst = post['placed'][0][0]
     bb = blk.BoundBox
@@ -369,8 +369,8 @@ def fig_core(sc):
 def fig_socket(sc):
     """A socket: printed spike bolted to the floor, the foam block pushed over it (lifted)."""
     sc.clear()
-    r = next(r for r in M.moulds if r['name'] == 'socket-spike')
-    f = next(r for r in M.moulds if r['name'] == 'socket' and r['kind'] == 'foam')
+    r = next(r for r in M.molds if r['name'] == 'socket-spike')
+    f = next(r for r in M.molds if r['name'] == 'socket' and r['kind'] == 'foam')
     sp, blk = r['placed'][0][0], f['placed'][0][0]
     bb = blk.BoundBox
     crop = parts.box(bb.XMin - 40, bb.XMax + 40, bb.YMin - 40, bb.YMax + 40, 0, G['base_top'] + T)
@@ -399,7 +399,7 @@ def fig_toe(sc):
         sc.add(s, 'melamine', 75)
     add_all(sc, IDENT, pieces('upright', ['toe-filler', 'front-bracket', 'slope-plug'], crop=crop))
     sc.camera(Vector(0.75, 0.55, -0.4))
-    tf = next(r for r in M.moulds if r['name'] == 'toe-filler')['placed'][0][0].BoundBox
+    tf = next(r for r in M.molds if r['name'] == 'toe-filler')['placed'][0][0].BoundBox
     sc.shoot('detail-toe', labels=[
         (Vector(tf.Center.x, tf.YMin + 15, tf.ZMin + 15), 'Toe filler, bolted to the floor'),
         (Vector(tf.Center.x, tf.YMin + 8, tf.ZMax - 6), 'Lip holds the board\'s foot'),
@@ -464,7 +464,7 @@ def anchor(shape):
 
 def steps(sc, name, fn, d, stages, up=Vector(0, 0, 1), max_labels=8):
     """stages: [(title, [(look, shape, label)])]: each image shows everything up to that stage, the new
-    parts in colour (labelled) and the earlier ones paler."""
+    parts in color (labeled) and the earlier ones paler."""
     shown = []
     for k, (title, items) in enumerate(stages, 1):
         sc.clear()
@@ -491,7 +491,7 @@ def B(group, names):
 
 def K(group, names=None, kinds=None):
     out = []
-    for r in M.moulds:
+    for r in M.molds:
         if (names is not None and not any(r['name'].startswith(n) for n in names)) or (kinds and r['kind'] not in kinds):
             continue
         for s_, sh in r['placed']:
@@ -538,7 +538,7 @@ def upright_steps(sc):
     post_bot = G['beam_bot'] - P['top_plate_t'] - 2 - P['tube_len']['post']
     rods = []
     for rx, ry, pb in G['tie_rods']:
-        z1 = G['beam_bot'] + P['mould_freeboard'] + 30 if pb >= G['pocket_bot'] - 1 else pb + 20
+        z1 = G['beam_bot'] + P['mold_freeboard'] + 30 if pb >= G['pocket_bot'] - 1 else pb + 20
         rods.append(('hw', Part.makeCylinder(P['up_rod_hole'] / 2, z1 - post_bot, Vector(-rx, ry, post_bot)),
                      '5/8 in rod (forms a tie-rod hole)'))
     st = S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'TopPlate'))
@@ -575,7 +575,7 @@ def gallery(sc, name, rows, cols=5, gap=40.0):
     cells = []
     for r in rows:
         shp = r['shape'][0] if isinstance(r['shape'], list) else r['shape']
-        pose = moulds.print_pose(shp, r.get('up'), r['kind'] == 'core')
+        pose = molds.print_pose(shp, r.get('up'), r['kind'] == 'core')
         cells.append((r, pose))
     size = max(max(p.BoundBox.XLength, p.BoundBox.YLength) for _, p in cells) + gap
     labels = []
@@ -607,8 +607,8 @@ def main():
             f(sc)
         except Exception as e:
             print('steps failed:', f.__name__, e)
-    kit_rows = [r for r in M.moulds if r['kind'] == 'kit']
-    rest = [r for r in M.moulds if r['kind'] in ('former', 'filler', 'plug')]
+    kit_rows = [r for r in M.molds if r['kind'] == 'kit']
+    rest = [r for r in M.molds if r['kind'] in ('former', 'filler', 'plug')]
     try:
         gallery(sc, 'gallery-kit', kit_rows)
         gallery(sc, 'gallery-pieces', rest)

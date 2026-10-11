@@ -18,7 +18,7 @@ from vfe import Voxels  # noqa: E402
 def upright_views(vox, rho_up, title, path):
     """Left upright: side view (how much of its 80 mm width is solid) and slices across x."""
     d = vox.d
-    xs = vox.centres(0)
+    xs = vox.centers(0)
     sel = (xs < -d['inner']) & (xs > -d['outer'])
     up = rho_up[sel] > 0.5                      # nx_sel x ny x nz
     frac = up.mean(0)

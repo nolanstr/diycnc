@@ -63,7 +63,7 @@ class Voxels:
         self.n = np.array(self.info['n'])
         self.d = self.info['dims']
 
-    def centres(self, ax):
+    def centers(self, ax):
         return self.o[ax] + (np.arange(self.n[ax]) + 0.5) * self.h
 
 
@@ -88,7 +88,7 @@ class Mesh:
         self.ndof = 3 * self.nn
         self.edof = (3 * self.enodes[:, :, None] + np.arange(3)).reshape(self.ne, 24)
         self.ke = brick_ke(self.h)
-        self.centre = vox.o + (self.ijk + 0.5) * self.h
+        self.center = vox.o + (self.ijk + 0.5) * self.h
         # CSC pattern and scatter map, built once
         r = np.repeat(self.edof, 24, axis=1).ravel().astype(np.int64)
         c = np.tile(self.edof, (1, 24)).ravel().astype(np.int64)
@@ -132,8 +132,8 @@ class Mesh:
         return np.einsum('eal,ab,ebl->el', ue, self.ke, ue)
 
     def nodes_in(self, lo, hi, solid=None):
-        """Nodes of elements whose centres lie in the box [lo, hi] (and in `solid`, if given)."""
-        sel = np.all((self.centre >= lo) & (self.centre <= hi), axis=1)
+        """Nodes of elements whose centers lie in the box [lo, hi] (and in `solid`, if given)."""
+        sel = np.all((self.center >= lo) & (self.center <= hi), axis=1)
         if solid is not None:
             sel &= solid
         return np.unique(self.enodes[sel])

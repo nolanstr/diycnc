@@ -1,7 +1,7 @@
-"""Printed mould parts for the epoxy-granite castings, how they fix to the mould boards, and STL
+"""Printed mold parts for the epoxy-granite castings, how they fix to the mold boards, and STL
 export split for a small printer.
 
-The mould boxes are melamine board (mouldbox.py): flat, cheap, and the reference for the castings'
+The mold boxes are melamine board (moldbox.py): flat, cheap, and the reference for the castings'
 important faces. Everything with shape is printed:
   core    pocket cores: thin closed-top shells, left in the casting; a post on each bolts to a bridge
   former  recesses in a cast face (gutters, trough, motor relief, gasket grooves): pulled after curing
@@ -34,7 +34,7 @@ BULKHEAD = 2.4    # core walls either side of a cut, bolted together
 PETG = 1.27       # g/cm^3
 FIT = 0.15        # slip fit, a side
 MIN_WALL = 1.2    # least plastic around a nut, a hole or a peg
-BOARD = 18.0      # melamine thickness (build_cnc sets it from P['mould_board'])
+BOARD = 18.0      # melamine thickness (build_cnc sets it from P['mold_board'])
 BOARD_MAX = 19.0  # bolt lengths still go through the nut on a board this thick
 # clearance hole, nut across flats, nut thickness, plastic between the board and the nut
 HW = {'M3': dict(hole=3.4, af=5.5, t=2.4, skin=2.0),
@@ -60,7 +60,7 @@ def nut_bolt(size):
 
 
 class Fix:
-    """Something through a mould board. kind: 'bolt' (into a captive nut in a printed piece, or a
+    """Something through a mold board. kind: 'bolt' (into a captive nut in a printed piece, or a
     bracket), 'pin', or 'hole' (insert screws, core rods, bolts into cast-in nuts, hole-saw holes).
     p is on the board face the thing sits against; n points into the board."""
 
@@ -102,7 +102,7 @@ def hexagon(c, w, s, b, af, h):
 
 
 def bar(c, w, s, b, length, width, h):
-    """Box from c: `length` along s, `width` centred across b, `h` along w."""
+    """Box from c: `length` along s, `width` centerd across b, `h` along w."""
     o = c - b * (width / 2)
     return poly([o, o + s * length, o + s * length + b * width, o + b * width]).extrude(w * h)
 
@@ -374,7 +374,7 @@ def core(poly_xy, z_top, posts=(), lim=BED):
     """Pocket core in bed-sized parts: a shell closed at the pocket's top (z_top) and open at the
     casting's underside (z = 0), with a bolted bulkhead either side of each cut.
     posts: [(x, y, f, z_bolt, z_end)]: a 12 mm post rising past the rim to the side of a bridge,
-    f the unit (x, y) vector toward the bridge face (6 mm from the post's centre), bolted to it by an
+    f the unit (x, y) vector toward the bridge face (6 mm from the post's center), bolted to it by an
     M4 at height z_bolt into a nut that slides in from the post's end (z_end).
     Returns ([parts], [Fix]) with the bridge bolts."""
     full = prism(poly_xy, 0.0, z_top)
@@ -441,8 +441,8 @@ def _slab(ax, a, b, big=2000.0):
 
 
 def fillers(envelope, min_dim=15.0, min_vol=5e3):
-    """What the casting's rounded corners and sloped faces leave empty in a square mould box.
-    Thin edge-fillet slivers are left out (quarter-round moulding does those)."""
+    """What the casting's rounded corners and sloped faces leave empty in a square mold box.
+    Thin edge-fillet slivers are left out (quarter-round molding does those)."""
     bb = envelope.BoundBox
     box = Part.makeBox(bb.XLength, bb.YLength, bb.ZLength, Vector(bb.XMin, bb.YMin, bb.ZMin))
     rest = box.cut(envelope)

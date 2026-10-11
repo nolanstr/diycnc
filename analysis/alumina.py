@@ -1,4 +1,4 @@
-"""Aluminium oxide grit in place of the sand: how much stiffer, and where it pays.
+"""Aluminum oxide grit in place of the sand: how much stiffer, and where it pays.
 
     python alumina.py
 
