@@ -12,15 +12,15 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
-Epoxy granite volume:         52.8 L
-Casting mass:                 124 kg (273 lb)
+Epoxy granite volume:         53.2 L
+Casting mass:                 125 kg (276 lb)
   Base front:                  14.7 L   34.5 kg
-  Base rear:                   18.1 L   42.4 kg
-  Upright L:                    5.3 L   12.5 kg
-  Upright R:                    5.3 L   12.5 kg
-  Beam:                         9.4 L   22.0 kg
+  Base rear:                   18.0 L   42.4 kg
+  Upright L:                    5.5 L   12.9 kg
+  Upright R:                    5.5 L   12.9 kg
+  Beam:                         9.5 L   22.4 kg
 Cast-in steel + joint hardware: 23.4 kg
-Epoxy needed (~8.5% by mass): 10.5 kg
+Epoxy needed (~8.5% by mass): 10.6 kg
 
 Linear motion / plate BOM
 -------------------------
@@ -49,9 +49,9 @@ Linear motion / plate BOM
   frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
   frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 14 mm holes per tube) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 12 in (posts), 2 x 6 in (spigots), 4 x 6 in (legs) buy
-  frame    Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs ~270 g                               PRINT
+  frame    Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs, 4 dark grey pocket caps ~300 g                               PRINT
   frame    Steel plate 3/8 in, cut to size by the supplier (upright tops) 2 x 68 x 168                         buy
-  frame    1/2-13 threaded rod + coupling nut + nut/washer (hardware store) 2 x 293, 2 x 293, 2 x 102, 2 x 213 (uprights), 2 x 358 (base) buy
+  frame    1/2-13 threaded rod + coupling nut + nut/washer (hardware store) 2 x 293, 2 x 293, 2 x 108, 2 x 211 (uprights), 2 x 358 (base) buy
   frame    3/8-16 x 6 in grade 8 bolt + washer (beam; 150 mm under the head) 8 pcs                                buy
   frame    Dowel pin 3/8 x 1-1/4 in                             4 pcs                                buy
   frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.8 m                                buy

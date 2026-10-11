@@ -87,8 +87,12 @@ P = dict(
     # forward along the base and the front face slopes up to just ahead of the beam.
     upright_t=80.0, upright_d=180.0, upright_front=40.0,
     upright_foot=290.0, upright_top_front=70.0,   # foot front / top front, mm ahead of the beam face
+    upright_nose=20.0, upright_nose_r=12.0,       # blunt toe: vertical nose, rounded into the slope
     front_tie_rods=(60.0, 160.0),                 # extra tie rods, mm behind the foot's front edge
     beam_d=140.0, beam_h=140.0, beam_back_r=40.0, edge_r=6.0,   # beam as deep as the upright tops
+    # Outside edge rounds (quarter-round strips in the mould corners): castings' outer edges,
+    # the beam's lower back edge (meets the uprights' back faces) and its rail-face edges
+    round_r=10.0, beam_back_low_r=10.0, beam_face_r=3.0,
 
     # Cast-in steel and joints (tube = (size, wall)): US stock sizes in stock lengths, so
     # nothing is cut to length: 2 x 2 x 1/8 in and 1-1/2 x 1-1/2 x 1/8 in mild steel.
@@ -154,6 +158,7 @@ LOOKS = {
     'drainhose': ((0.85, 0.86, 0.80), 0.30, 30),
     'locline': ((0.15, 0.32, 0.72), 0.30, 0),
     'printed': ((0.95, 0.45, 0.10), 0.25, 0),
+    'printed_dark': ((0.22, 0.22, 0.24), 0.05, 0),   # printed in dark grey to match the castings (pocket caps)
     'shim': ((0.80, 0.81, 0.84), 0.85, 0),
     'wood': ((0.74, 0.58, 0.40), 0.10, 0),
 }
@@ -322,10 +327,12 @@ def frame_layout(d):
     g['pocket_bot'] = d['beam_bot'] - 18.0                     # tie-rod nut pocket floor
     g['up_front'] = d['beam_face'] - P['upright_foot']         # front of the upright foot
     g['up_top_front'] = d['beam_face'] - P['upright_top_front']
-    slope = lambda y: d['base_top'] + (y - g['up_front']) / (g['up_top_front'] - g['up_front']) * (d['beam_bot'] - d['base_top'])
+    toe = d['base_top'] + P['upright_nose']
+    slope = lambda y: toe + (y - g['up_front']) / (g['up_top_front'] - g['up_front']) * (d['beam_bot'] - toe)
     # tie rods (x from the centre line outward, y, nut-pocket floor): two at the top, two through the slope
     g['tie_rods'] = [(g['ux'] - 20.0, g['rod_y'], g['pocket_bot']), (g['ux'] + 20.0, g['rod_y'], g['pocket_bot'])]
-    g['tie_rods'] += [(g['ux'], g['up_front'] + dy, slope(g['up_front'] + dy) - 30.0) for dy in P['front_tie_rods']]
+    # (the sloped pockets go 38 mm deep, so a printed cap closes them flush over the nut)
+    g['tie_rods'] += [(g['ux'], g['up_front'] + dy, slope(g['up_front'] + dy) - 38.0) for dy in P['front_tie_rods']]
     g['bolt_xs'] = (g['ux'] - 22.0, g['ux'] + 22.0)            # beam cap screws
     g['bolt_ys'] = (d['beam_face'] + 25.0, d['beam_face'] + P['beam_d'] - 25.0)
     g['beam_dowel_y'] = d['beam_face'] + 70.0
@@ -408,7 +415,7 @@ def base_envelope(g, front, edges=True):
     blk = parts.soften(blk, P['base_corner_r'], lambda e: parts.parallel((0, 0, 1))(e) and on_y(outer_y)(e))
     if not edges:
         return blk
-    blk = fillet_safe(blk, (P['edge_r'], 3.0), lambda e: on_z(base_top)(e) and not on_y(ys)(e))
+    blk = fillet_safe(blk, (P['round_r'], P['edge_r'], 3.0), lambda e: on_z(base_top)(e) and not on_y(ys)(e))
     return fillet_safe(blk, (2.0,), lambda e: on_z(0.0)(e) and not on_y(ys)(e))
 
 
@@ -580,11 +587,18 @@ def upright_envelope(g, sx, edges=True):
     foot running forward along the base and the front face sloping up to the beam."""
     inner, outer, base_top, beam_bot = g['inner'], g['outer'], g['base_top'], g['beam_bot']
     x0 = inner if sx > 0 else -outer
-    prof = [(g['up_front'], base_top), (g['up_top_front'], beam_bot), (g['up_y1'], beam_bot), (g['up_y1'], base_top)]
+    toe = base_top + P['upright_nose']
+    prof = [(g['up_front'], base_top), (g['up_front'], toe), (g['up_top_front'], beam_bot), (g['up_y1'], beam_bot),
+            (g['up_y1'], base_top)]
     up = Part.Face(Part.makePolygon([Vector(x0, y, z) for y, z in prof + prof[:1]])).extrude(Vector(P['upright_t'], 0, 0))
+    # the nose rounds into the slope (part of the mould: a printed toe filler)
+    up = fillet_safe(up, (P['upright_nose_r'],), lambda e: parts.parallel((1, 0, 0))(e) and on_z(toe)(e))
     if not edges:
         return up
-    return fillet_safe(up, (P['edge_r'], 4.0, 2.0), lambda e: not on_z(base_top)(e))
+    # outside edges well rounded; the top face (under the beam and the top plate) only lightly
+    up = fillet_safe(up, (P['round_r'], 6.0), lambda e: not on_z(base_top)(e) and not on_z(beam_bot)(e)
+                     and not (parts.parallel((1, 0, 0))(e) and on_z(toe)(e)))
+    return fillet_safe(up, (4.0, 2.0), lambda e: on_z(beam_bot)(e))
 
 
 def upright(m, g, st, sx):
@@ -619,6 +633,10 @@ def upright(m, g, st, sx):
         nut = parts.hexagon(19.0, pb + 2.5, 10.0, x, ry).cut(
             Part.makeCylinder(P['tie_rod_d'] / 2, 11, Vector(x, ry, pb + 2)))
         st.add(f'TieRodNut{tag}{j + 1}', cont, washer.fuse(nut), 'steel')
+        if pb < g['pocket_bot'] - 1:
+            # pocket in the slope: a printed push-fit cap, flush with the face, resting on the nut
+            cap = Part.makeCylinder(15.85, beam_bot - pb, Vector(x, ry, pb + 12.6)).common(up)
+            m.add(f'PocketCap{tag}{j + 1}', 'frame', cap, 'printed_dark', container=cont)
     for bx in g['bolt_xs']:
         for by in g['bolt_ys']:
             taps.append(Part.makeCylinder(P['beam_bolt_d'] / 2, plate_t + 2, Vector(sx * bx, by, beam_bot - plate_t - 1)))
@@ -639,10 +657,14 @@ def beam_envelope(g, edges=True):
     outer, bf, bot, top = g['outer'], g['beam_face'], g['beam_bot'], g['beam_top']
     by1 = bf + P['beam_d']
     shape = parts.box(-outer, outer, bf, by1, bot, top)
-    shape = fillet_safe(shape, (P['beam_back_r'], 30.0), lambda e: parts.parallel((1, 0, 0))(e) and on_y(by1)(e))
+    back = lambda e: parts.parallel((1, 0, 0))(e) and on_y(by1)(e)
+    shape = fillet_safe(shape, (P['beam_back_r'], 30.0), lambda e: back(e) and on_z(top)(e))
+    shape = fillet_safe(shape, (P['beam_back_low_r'],), lambda e: parts.parallel((1, 0, 0))(e) and on_z(bot)(e)
+                        and all(v.Point.y > by1 - 1 for v in e.Vertexes))
     if not edges:
         return shape
-    return fillet_safe(shape, (P['edge_r'], 3.0), lambda e: all(abs(abs(v.Point.x) - outer) < 1e-6 for v in e.Vertexes))
+    shape = fillet_safe(shape, (P['beam_face_r'],), lambda e: parts.parallel((1, 0, 0))(e) and on_y(bf)(e))
+    return fillet_safe(shape, (P['round_r'], 6.0, 3.0), lambda e: all(abs(abs(v.Point.x) - outer) < 1e-6 for v in e.Vertexes))
 
 
 def beam(m, g, st):
@@ -705,7 +727,7 @@ def frame_modules(m, d):
          f"4 x {inch(tl['base'])} (base), 2 x {inch(tl['beam'])} (beam, {drill})", 'buy'),
         ('frame', 'Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length',
          f"4 x {inch(tl['post'])} (posts), 2 x {inch(tl['spigot'])} (spigots), 4 x {inch(P['leg_len'])} (legs)", 'buy'),
-        ('frame', 'Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs', '~270 g', 'PRINT'),
+        ('frame', 'Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs, 4 dark grey pocket caps', '~300 g', 'PRINT'),
         ('frame', f'Steel plate 3/8 in, cut to size by the supplier (upright tops)',
          f"2 x {d['outer'] - d['inner'] - 12:.0f} x {d['up_y1'] - d['up_y0'] - 12:.0f}", 'buy'),
         ('frame', '1/2-13 threaded rod + coupling nut + nut/washer (hardware store)', ', '.join(f"2 x {pb + 12.5 - (d['base_top'] - 52):.0f}" for _, _, pb in g['tie_rods'])
@@ -803,20 +825,29 @@ def mould_parts(m, d):
                 'Stick to the mould floor (the upright is cast foot-down), wax.'))
     pb, rod_r = g['pocket_bot'], 7.2
     plug = Part.makeCylinder(16.0, g['beam_bot'] - pb, Vector(0, 0, pb)).cut(Part.makeCylinder(rod_r, 1e3, Vector(0, 0, 0)))
-    out.append(('upright', 'tie-rod-pocket', plug, 'plug', 2 * len(g['tie_rods']),
-                'Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.'))
+    top_rods = [r for r in g['tie_rods'] if r[2] >= pb - 1]
+    out.append(('upright', 'tie-rod-pocket', plug, 'plug', 2 * len(top_rods),
+                'Forms a top nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.'))
+    slope_rods = [r for r in g['tie_rods'] if r[2] < pb - 1]
+    if slope_rods:
+        rx, ry, spb = slope_rods[0]
+        env = upright_envelope(g, sx, edges=False)
+        sp = Part.makeCylinder(16.0, g['beam_bot'] - spb, Vector(sx * rx, ry, spb)).common(env).cut(
+            Part.makeCylinder(rod_r, 1e3, Vector(sx * rx, ry, 0)))
+        out.append(('upright', 'slope-pocket', sp, 'plug', 2 * len(slope_rods),
+                    'Forms a nut pocket in the slope: its sloped end screws to the front board. Wax; pull after curing.'))
     for i, f in enumerate(moulds.fillers(beam_envelope(g, edges=False))):
         out.append(('beam', f'back-edge-{i + 1}', f, 'filler', 1, 'Rounded back edge of the beam mould; wax.'))
     # printed parts already in the model: cast-in liners, sleeves and plugs, and the machine's own
     seen = {}
     for p in m.parts:
-        if p['look'] != 'printed' or p['container'] == 'FrameUprightR':
+        if not p['look'].startswith('printed') or p['container'] == 'FrameUprightR':
             continue
         cast_in = p['name'] in m.structure
         folder = CASTING_FOLDERS.get(p['container'], 'machine') if cast_in else 'machine'
         bb = p['shape'].BoundBox
         key = (folder, round(p['shape'].Volume), tuple(sorted(round(v) for v in (bb.XLength, bb.YLength, bb.ZLength))))
-        qty = 2 if folder == 'upright' else 1
+        qty = 2 if folder == 'upright' or p['container'] == 'FrameUprightL' else 1
         if key in seen:
             seen[key][4] += qty
             continue

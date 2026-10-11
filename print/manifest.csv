@@ -48,15 +48,12 @@ upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 139 x 2,9,"Stick to
 upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 139 x 2,4,
 upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 139 x 2,4,
 upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 139 x 2,9,
-upright,plug-tie-rod-pocket.stl,plug,8,32 x 32 x 18,65,Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.
+upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 18,33,Forms a top nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing.
+upright,plug-slope-pocket.stl,plug,4,32 x 32 x 54,62,Forms a nut pocket in the slope: its sloped end screws to the front board. Wax; pull after curing.
 beam,filler-back-edge-1-part1of4.stl,filler,1,132 x 40 x 40,39,Rounded back edge of the beam mould; wax.
 beam,filler-back-edge-1-part2of4.stl,filler,1,132 x 40 x 40,39,
 beam,filler-back-edge-1-part3of4.stl,filler,1,132 x 40 x 40,39,
 beam,filler-back-edge-1-part4of4.stl,filler,1,132 x 40 x 40,39,
-beam,filler-back-edge-2-part1of4.stl,filler,1,132 x 40 x 40,39,Rounded back edge of the beam mould; wax.
-beam,filler-back-edge-2-part2of4.stl,filler,1,132 x 40 x 40,39,
-beam,filler-back-edge-2-part3of4.stl,filler,1,132 x 40 x 40,39,
-beam,filler-back-edge-2-part4of4.stl,filler,1,132 x 40 x 40,39,
 base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,42 x 10 x 42,46,"Cast in, stays."
 base-front,cast-in-base-front-spigot-sleeve-l.stl,cast-in,2,44 x 69 x 44,81,"Cast in, stays."
 base-front,cast-in-leg-front-l-plug.stl,cast-in,2,30 x 30 x 10,22,"Cast in, stays."
@@ -65,6 +62,7 @@ base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,44 x 69 x 44,81,"Cast 
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,30 x 30 x 10,22,"Cast in, stays."
 base-rear,cast-in-socket-liner-l1.stl,cast-in,4,44 x 44 x 80,196,"Cast in, stays."
 upright,cast-in-post-l1-plug.stl,cast-in,4,30 x 30 x 10,45,"Cast in, stays."
+machine,part-pocket-cap-l3.stl,part,4,32 x 32 x 42,42,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,11,
 machine,part-chain-mount-moving.stl,part,1,37 x 123 x 45,27,
 machine,part-sump-baffle-part1of2.stl,part,1,148 x 4 x 73,44,

@@ -81,8 +81,9 @@ The cast-in steel, inserts and printed liners for each base half (castings drawn
 
 ## 2. Moulds and cores
 
-Use 18 mm melamine-faced board screwed together, with silicone fillets in the inside
-corners. Wax every surface 3-5 times (Partall Paste #2), buff, then spray or wipe PVA release.
+Use 18 mm melamine-faced board screwed together. The castings' outside edges are rounded
+10 mm: glue 3/8 in quarter-round moulding (PVC or primed wood) into the inside corners of the
+boxes that form outside edges, and run small silicone fillets everywhere else. Wax every surface 3-5 times (Partall Paste #2), buff, then spray or wipe PVA release.
 Everything that has to be flat or located precisely goes against the mould **floor**, so
 each casting is poured with its most important face down.
 
@@ -90,8 +91,8 @@ each casting is poured with its most important face down.
 |---|---|---|---|
 | Base front | top face (coolant floor) | 600 x 345 x 110 | 34.5 kg |
 | Base rear | top face | 600 x 380 x 110 | 42.4 kg |
-| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 12.5 kg each |
-| Beam | front face (rails) | 530 x 140 x 140 | 22 kg |
+| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 12.9 kg each |
+| Beam | front face (rails) | 530 x 140 x 140 | 22.4 kg |
 
 The printed pieces (in `print/`, see the print guide) do everything a flat board can't:
 
@@ -100,7 +101,7 @@ The printed pieces (in `print/`, see the print guide) do everything a flat board
 | Pocket cores (`core-*`) | in the base pockets, closed side down onto the wet skin | stay in |
 | Formers (`former-*`) | on the mould floor or wall: gutters, coolant trough, motor relief, gasket grooves | pull out |
 | Fillers (`filler-*`) | in the box corners: base corner radii, beam back edge | pull out, reuse |
-| Plugs (`plug-*`) | upright tie-rod nut pockets | pull out |
+| Plugs (`plug-*`) | upright tie-rod nut pockets (top and sloped front) | pull out |
 | Liners (`liner-*`, `cast-in-*`) | drain, sockets, spigot sleeves, tube plugs | stay in |
 
 **Pocket cores (base).** The pockets in the base underside face up in the mould, so the cores
@@ -127,11 +128,13 @@ their sizes are in the print guide.
 - **Drain nipple** (front half): screwed onto a greased fitting through the floor.
 - **Uprights:** the mould is two melamine side plates cut to the upright's profile (430 mm
   foot, 246 mm tall, front sloping up to 190 mm long at the top), a back board, and a board
-  along the sloped front. The posts pass through holes in the floor (the mould stands on
+  along the sloped front, which starts 20 mm up on a blunt nose (a printed toe filler rounds it
+into the slope). The posts pass through holes in the floor (the mould stands on
   blocks); a plywood jig underneath sets their spacing and squareness. The top plate is held
   flush with the open top by a bridge. Greased 14 mm rods (or dowels wrapped in packing tape)
-  form the four tie-rod holes, two near the top and two through the sloped front, and the
-  printed pocket plugs slide down them to form the nut pockets.
+  form the four tie-rod holes, two near the top and two through the sloped front. The short
+  pocket plugs slide down the top two; the two slope-pocket plugs are cut at the slope angle
+  and screw to the front board, with the rods passing through them.
 - **Beam:** the tubes are held by printed plugs bolted through the end walls, the two support
   pads are screwed to the floor, and greased 11.5 mm rods through the side walls form the
   cap-screw holes. Greased dowels form the dowel holes.
@@ -168,11 +171,12 @@ densely, so prove the mix before casting anything:
 |---|---|---|
 | Base front | 34.5 kg | 2.9 kg |
 | Base rear | 42.4 kg | 3.6 kg |
-| Uprights | 2 x 12.5 kg | 2 x 1.1 kg |
-| Beam | 22 kg | 1.9 kg |
+| Uprights | 2 x 12.9 kg | 2 x 1.1 kg |
+| Beam | 22.4 kg | 1.9 kg |
 
-Add 5-10 % for waste: about 11.6 kg, plus about 0.7 kg for the test bars, which just fits the 3 gal
-kit (about 12.5 kg). Mix only what you can place, and keep the leftovers for the gel coat.
+Add 5-10 % for waste: about 11.7 kg, plus about 0.7 kg for the test bars, which just fits the 3 gal
+kit (about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers
+the gel coat.
 
 1. **Dry and clean** all aggregate. Weigh everything out per batch before opening the epoxy.
    Keep batches to what you can place within about half the epoxy's pot life (10-15 kg each).
@@ -203,7 +207,8 @@ check the top-plate spacing against the beam mould.
 3. **Uprights:** glue the foot O-ring into each upright's groove. Drop the posts into the lined
    sockets (the base dowel locates it); the foot runs forward across the base split. Thread the
    four tie rods into the coupling nuts, add washers and nuts in the pockets (two at the top,
-   two in the sloped front), and tighten to about 40-50 N·m, working front to back.
+   two in the sloped front), and tighten to about 40-50 N·m, working front to back. Push the
+   printed caps into the two sloped pockets, flush with the face (a dab of silicone holds them).
 4. **Beam:** set it on the top plates over the dowels and fit the eight M10 x 150 cap screws.
    Before final torque (about 40 N·m into the 3/8 in plates), check the beam face is square to
    the base top with a square and a dial indicator. Shim under one top plate if needed.

@@ -13,7 +13,7 @@ A = 'https://www.amazon.com/dp/'
 # line None = price not seen. Rows whose item starts with "(opt)" are left out of the totals.
 SECTIONS = [
     ('Part 1 - Frame: castings and hardware', [
-        ('Epoxy', '~10.5 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal kit (not Amazon)', 'https://raka.com/collections/epoxy-kits',
+        ('Epoxy', '~10.6 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal kit (not Amazon)', 'https://raka.com/collections/epoxy-kits',
          '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; shipping extra (~$30-45). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
         ('Fines', 'Whiting (calcium carbonate) 325 mesh, 10-15 kg', '1 (50 lb)', 'Clay-King calcium carbonate whiting, 50 lb (not Amazon)', 'https://www.clay-king.com/product/calcium-carbonate-whiting/',
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
@@ -29,7 +29,7 @@ SECTIONS = [
          '~$40', 40.00, 'About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece).', 'estimate'),
         ('Aluminium plates', '6061 drops: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25', '~22 lb', 'eBay "6061 aluminum plate remnant" / local drops', '',
          '~$85', 85.00, 'About $2.3-4.5/lb delivered. Midwest MIC-6 cut pieces are $242 if you would rather not hunt. Check flatness; face the table on the machine.', 'estimate (eBay listings)'),
-        ('Threaded rod', '1/2-13, cut to 4x 293, 2x 213, 2x 102, 2x 358 mm', '1x 6 ft + 1x 3 ft', 'Everbilt 1/2-13 zinc threaded rod (Home Depot)', 'https://www.homedepot.com/p/332733421',
+        ('Threaded rod', '1/2-13, cut to 4x 293, 2x 211, 2x 108, 2x 358 mm', '1x 6 ft + 1x 3 ft', 'Everbilt 1/2-13 zinc threaded rod (Home Depot)', 'https://www.homedepot.com/p/332733421',
          '$14.93 + $7.93', 22.86, '6 ft: 358, 358, 293, 293, 293, 102, 102; 3 ft: 293, 213, 213 (hacksaw).', 'search snippet'),
         ('Coupling nuts', '1/2-13, 10', '10', 'Everbilt 1/2-13 coupling nut (Home Depot)', 'https://www.homedepot.com/p/204337404',
          '$2.47', 24.70, 'Tractor Supply 3-packs $5.99 are a bit cheaper', 'search snippet'),
