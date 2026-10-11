@@ -13,11 +13,11 @@ A = 'https://www.amazon.com/dp/'
 # line None = price not seen. Rows whose item starts with "(opt)" are left out of the totals.
 SECTIONS = [
     ('Part 1 - Frame: castings and hardware', [
-        ('Epoxy', '~10.6 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)', 'https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1',
+        ('Epoxy', '~9.9 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)', 'https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1',
          '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
         ('Fines', 'Whiting (calcium carbonate) 325 mesh, ~11 kg', '1 (50 lb)', 'Clay-King calcium carbonate whiting, 50 lb (not Amazon)', 'https://www.clay-king.com/product/calcium-carbonate-whiting/',
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
-        ('Aggregate', '~105 kg: fine sand 19, coarse sand 34, pea gravel 25, 3/8 in gravel 25 kg', '~6 bags', 'Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)', 'https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000',
+        ('Aggregate', '~80 kg: fine sand 10, coarse sand 19, pea gravel 23, 3/8 in gravel 23 kg, plus test bars', '~5 bags', 'Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)', 'https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000',
          '~$7/bag', 48.00, 'Buy locally. Wash and dry fully.', 'search snippets (est.)'),
         ('Alumina grit, coarse', 'Brown fused aluminium oxide #16 (12-20 is fine), ~21 kg: the coarse sand in the beam and uprights', '1 (50 lb)', 'IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)', 'https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs',
          '$109.99', 109.99, 'Free shipping. Alt: Kleen Blast AO5016 $90 + shipping (blast media is excluded from its free shipping). About +10 % frame stiffness on its own (analysis/alumina.py).', 'vendor page'),

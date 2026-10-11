@@ -89,8 +89,8 @@ each casting is poured with its most important face down.
 
 | Casting | Face on the mould floor | Size (mm) | Mass |
 |---|---|---|---|
-| Base front | top face (coolant floor) | 600 x 345 x 110 | 34.5 kg |
-| Base rear | top face | 600 x 380 x 110 | 42.4 kg |
+| Base front | top face (coolant floor) | 600 x 345 x 110 | 30.4 kg |
+| Base rear | top face | 600 x 380 x 110 | 37.7 kg |
 | Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 15.4 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 26.8 kg |
 
@@ -152,12 +152,12 @@ fills the gaps between the next size up), which is what lets the epoxy stay at 8
 
 | Part | Size | Source | % of mix | For the whole frame |
 |---|---|---|---|---|
-| Epoxy | | Raka 127 + 606 | 8.5 % | 10.6 kg |
-| Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 11 kg |
-| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 19 kg |
-| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 34 kg |
-| Pea gravel | 3-6 mm | bagged pea gravel, sieved | 20 % | 25 kg |
-| Gravel | 6-10 mm | 3/8 in crushed stone (#8) or bigger pea gravel | 20 % | 25 kg |
+| Epoxy | | Raka 127 + 606 | 8.5 % | 9.9 kg |
+| Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 10.5 kg |
+| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 10 kg (base) + 10 kg of 70 grit |
+| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 19 kg (base) + 20 kg of #16 grit |
+| Pea gravel | 3-6 mm | bagged pea gravel, sieved | 20 % | 23 kg |
+| Gravel | 6-10 mm | 3/8 in crushed stone (#8) or bigger pea gravel | 20 % | 23 kg |
 
 Two kitchen-type sieves (about 3 and 6 mm mesh, or hardware cloth) split the bagged sand and
 gravel into these bands. Wash anything dusty or clay-coated, and dry everything completely
@@ -197,13 +197,13 @@ wears it.
 
 | Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
-| Base front | 34.5 kg | 2.9 kg |
-| Base rear | 42.4 kg | 3.6 kg |
+| Base front | 30.4 kg | 2.6 kg |
+| Base rear | 37.7 kg | 3.2 kg |
 | Uprights (alumina) | 2 x 15.4 kg | 2 x 1.1 kg |
 | Beam (alumina) | 26.8 kg | 1.9 kg |
 
-Add 5-10 % for waste: about 11.7 kg, plus about 0.7 kg for the test bars, which just fits the 3 gal
-kit (about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers
+Add 5-10 % for waste: about 10.9 kg, plus about 1 kg for the test bars, which fits the 3 gal kit
+(about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers
 the gel coat.
 
 1. **Dry and clean** all aggregate. Weigh everything out per batch before opening the epoxy.

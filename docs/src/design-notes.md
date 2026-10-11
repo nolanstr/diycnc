@@ -26,17 +26,19 @@ tapping the risers, top plates and support pads. Use plain steel, not galvanized
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 10.6 kg of epoxy (8.5 % of the 125 kg the castings would weigh with sand; 135 kg with the alumina):
+**Keeping the epoxy down.** About 9.9 kg of epoxy (8.5 % of the 116 kg the castings would weigh with sand; 126 kg with the alumina):
 - The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
 - The base's underside pockets follow the stiffness study below: two full-depth girders
-  (80 mm wide) under the table rails, a full-depth tie between them just behind the split,
-  solid knees from the girders out to the upright sockets, and a 25 mm top skin almost
-  everywhere else. The 70 mm front wall carries the coolant trough. Every pocket is open
-  to the bottom, so the cores (printed shells or foam blocks) pull straight out; a few are
-  shallow steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and
-  outboard of the sockets (`base_pockets` in `model/build_cnc.py`).
+  (80 mm wide, the narrowest that still fills around the rail tubes) under the table rails, a
+  full-depth tie between them across the split, a full-depth rib across the front of each
+  upright foot and another along the split, and a 20 mm top skin almost everywhere else,
+  including over pockets under the upright feet that keep clear of the tie-rod couplers and
+  sockets. The 70 mm front wall carries the coolant trough. Every pocket is open to the
+  bottom, so the cores (printed shells or foam blocks) pull straight out; a few are shallow
+  steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
+  the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are printed PETG liners cast into the base, not steel tube.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
@@ -57,7 +59,7 @@ part of each leg that hangs below the base.
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
   **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
   of that for far less. **Epoxy grout** (Laticrete SpectraLock) is fine for a test bar or a
-  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 125 kg. Whiting is
+  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 126 kg. Whiting is
   used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
   8.5 % epoxy, which fits a single 3 gal kit (10 % needs a second, small kit); the build guide's
   jar test and test bars check it before anything is cast.
@@ -78,7 +80,7 @@ coolant runs to the two drains at the front. The door laps over the base front f
 Assembly: base halves (spigots in, tighten the draw rods), uprights (posts into
 sockets, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
 take the X and Y motors off first (they pass through the enclosure panels), then
-reverse the order. Heaviest piece: the rear base half (about 42 kg). The upright feet run
+reverse the order. Heaviest piece: the rear base half (about 38 kg). The upright feet run
 forward across the base split, so the base halves have to be joined before the uprights go on.
 
 ## Stiffness study (`analysis/`)
@@ -111,7 +113,8 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | Base + uprights optimized together, same material (free-form uprights) | 43.7 L | 63.9 | 103.3 | 85.2 |
 | Raked-buttress uprights, base re-laid around them | 52.6 L | 77.5 | 107.5 | 93.0 |
 | + blunt upright toe, rounded edges, deeper slope pockets | 53.0 L | 78.2 | 110.1 | 95.5 |
-| **Now: + alumina grit in the beam and uprights (estimate)** | **53.0 L** | **91.3** | **127.3** | **115.7** |
+| + alumina grit in the beam and uprights (estimate) | 53.0 L | 91.3 | 127.3 | 115.7 |
+| **Now: lighter base (pockets under the upright feet, 20 mm skin), 9 kg less** | **49.5 L** | **84.3** | **124.5** | **111.1** |
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
   equally. Litre for litre, epoxy in the beam is worth roughly ten times as much as epoxy
@@ -147,6 +150,16 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   granite costs about $8.50/L, so even the best case saves about $35. A free-form base
   with closed box sections (lost foam cores) is only about 8 % stiffer than open pockets
   at the same volume, which isn't worth the trouble.
+- **Weight** (`analysis/weight.py`, `to_light_*`). With the alumina grit in the beam and
+  uprights there was stiffness to spare, so the base was optimized again at smaller budgets.
+  Free-form (ideal) pockets: 27 L of base is 14 kg lighter for -7 / -1 / -2 %, 24 L is 21 kg
+  lighter and still at the sand-only frame's stiffness, 21 L drops below it. Nearly all of
+  it comes out from under the upright feet, which the earlier, larger budget had filled. The
+  castable version keeps a rib across the front of each foot and along the split and leaves
+  room around the tie-rod couplers and the sockets: base 32.8 -> 29.1 L, castings 9 kg
+  lighter, frame -8 / -2 / -4 % against the alumina frame and still +8 / +13 / +16 % over
+  the sand-only one. The simple trims don't pay: 60 mm girders leave under 5 mm of casting
+  beside the rail tubes, and a 55 mm front wall runs the pockets into the legs.
 
 **Material and the 8.5 % mix.** The model uses E = 30 GPa for the epoxy granite. Published
 values for well-graded 7-10 % mixes are 25-45 GPa (one commercial mineral casting lists
@@ -167,15 +180,16 @@ scales almost directly with E:
 So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
 test and tap-tested bars check both before anything is cast.
 
-**Vibration** (`analysis/modal.py`). The frame on its four feet, with 12 kg of X carriage, Z
-axis and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks:
+**Vibration** (`analysis/modal.py`, run with `FEA_GRIT=1.37` for the alumina). The frame as drawn
+on its four feet, with 12 kg of X carriage, Z axis and spindle on the beam blocks and 12 kg of
+table, vise and work on the Y blocks:
 
 | Mode | Frequency | Motion |
 |---|---|---|
 | 1 | 135 Hz | gantry sways side to side (X); base twisting on its feet carries 39 % of it |
 | 2 | 268 Hz | beam rocks front to back (Y) |
 | 3 | 290 Hz | base bends, front to back |
-| 4 | 343 Hz | gantry sway with the base, second form |
+| 4 | 359 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -224,6 +238,8 @@ FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
 FEA_VOX=vox_current python whatif.py                # stiffness of the model as drawn
 python alumina.py                                   # alumina grit: mix modulus and frame stiffness
+FEA_GRIT=1.37 python -c "import topopt; topopt.main('pocket', 24, tag='light_24')"   # lighter base
+python weight.py vox_current [vox_...]              # castings mass against stiffness
 python modal.py                                     # natural frequencies (about 30 s)
 python topopt_upright.py 0.9 [web]                  # upright holes (about 10 min each)
 python compare_uprights.py to_upright_*.npz         # their stiffness and frequencies

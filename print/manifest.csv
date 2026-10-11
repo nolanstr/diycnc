@@ -1,14 +1,16 @@
 folder,file,kind,qty,size,grams,note
-base-front,core-centre-part1of2.stl,core,1,100 x 92 x 85,64,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-front,core-centre-part2of2.stl,core,1,100 x 93 x 85,64,
-base-front,core-outboard-L.stl,core,1,130 x 134 x 85,120,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-front,core-centre-part1of2.stl,core,1,100 x 92 x 90,67,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-front,core-centre-part2of2.stl,core,1,100 x 93 x 90,67,
+base-front,core-outboard-L.stl,core,1,130 x 164 x 90,144,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-trough-band-L.stl,core,1,101 x 55 x 40,33,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-L-part1of2.stl,core,1,37 x 128 x 40,31,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-L-part2of2.stl,core,1,37 x 128 x 40,31,
-base-front,core-outboard-R.stl,core,1,130 x 134 x 85,120,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-front,core-foot-a-L.stl,core,1,68 x 66 x 90,51,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-front,core-outboard-R.stl,core,1,130 x 164 x 90,144,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-trough-band-R.stl,core,1,101 x 55 x 40,33,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-R-part1of2.stl,core,1,37 x 128 x 40,31,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,core-draw-rod-R-part2of2.stl,core,1,37 x 128 x 40,31,
+base-front,core-foot-a-R.stl,core,1,68 x 66 x 90,51,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-front,former-gutter-L-part1of2.stl,former,1,15 x 162 x 15,22,"Stick to the mould floor (the base is cast top-down), wax."
 base-front,former-gutter-L-part2of2.stl,former,1,15 x 162 x 13,20,
 base-front,former-gutter-R-part1of2.stl,former,1,15 x 162 x 15,22,"Stick to the mould floor (the base is cast top-down), wax."
@@ -19,17 +21,22 @@ base-front,former-trough-part3of4.stl,former,1,140 x 35 x 25,49,
 base-front,former-trough-part4of4.stl,former,1,140 x 35 x 22,44,
 base-front,filler-corner-1.stl,filler,1,40 x 40 x 110,32,Rounded corner of the mould box; wax.
 base-front,filler-corner-2.stl,filler,1,40 x 40 x 110,32,Rounded corner of the mould box; wax.
-base-rear,core-centre.stl,core,1,100 x 155 x 85,101,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-L-part1of2.stl,core,1,50 x 114 x 40,32,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-L-part2of2.stl,core,1,50 x 114 x 40,32,
-base-rear,core-outer-a-L.stl,core,1,35 x 128 x 65,48,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-centre-part1of2.stl,core,1,100 x 95 x 90,63,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-centre-part2of2.stl,core,1,100 x 95 x 90,63,
+base-rear,core-foot-b-L.stl,core,1,68 x 100 x 90,69,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-foot-c-L.stl,core,1,80 x 64 x 90,57,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-L-part1of2.stl,core,1,50 x 91 x 40,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-L-part2of2.stl,core,1,50 x 91 x 40,26,
+base-rear,core-outer-a-L.stl,core,1,35 x 42 x 65,20,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-outer-b-L.stl,core,1,35 x 60 x 65,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-rear-L.stl,core,1,170 x 52 x 85,88,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-R-part1of2.stl,core,1,50 x 114 x 40,32,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-knee-R-part2of2.stl,core,1,50 x 114 x 40,32,
-base-rear,core-outer-a-R.stl,core,1,35 x 128 x 65,48,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-rear-L.stl,core,1,170 x 52 x 90,92,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-foot-b-R.stl,core,1,68 x 100 x 90,69,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-foot-c-R.stl,core,1,80 x 64 x 90,57,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-R-part1of2.stl,core,1,50 x 91 x 40,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-knee-R-part2of2.stl,core,1,50 x 91 x 40,26,
+base-rear,core-outer-a-R.stl,core,1,35 x 42 x 65,20,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,core-outer-b-R.stl,core,1,35 x 60 x 65,26,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
-base-rear,core-rear-R.stl,core,1,170 x 52 x 85,88,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
+base-rear,core-rear-R.stl,core,1,170 x 52 x 90,92,"Shell core, stays in the casting. Fill with dry sand while casting so it cannot float."
 base-rear,former-gutter-L-part1of3.stl,former,1,15 x 120 x 12,14,"Stick to the mould floor (the base is cast top-down), wax."
 base-rear,former-gutter-L-part2of3.stl,former,1,15 x 120 x 10,13,
 base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,12,
