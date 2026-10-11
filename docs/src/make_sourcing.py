@@ -14,7 +14,7 @@ A = 'https://www.amazon.com/dp/'
 SECTIONS = [
     ('Part 1 - Frame: castings and hardware', [
         ('Epoxy', '~10.6 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal kit (not Amazon)', 'https://raka.com/collections/epoxy-kits',
-         '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; shipping extra (~$30-45). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
+         '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
         ('Fines', 'Whiting (calcium carbonate) 325 mesh, 10-15 kg', '1 (50 lb)', 'Clay-King calcium carbonate whiting, 50 lb (not Amazon)', 'https://www.clay-king.com/product/calcium-carbonate-whiting/',
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
         ('Aggregate', '~112 kg graded sand + pea gravel', '~6 bags', 'Quikrete sand + Vigoro pea gravel (Home Depot)', 'https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000',
@@ -252,7 +252,7 @@ def main():
              f'| **2. Electronics + spindle** | **{money(p2)}** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |',
              f'| **3. Enclosure + flood coolant** | **{money(p3)}** + {len(u3)} unpriced ({", ".join(u3)}): about $650-700 |',
              f'| **Total** | **about ${(p1 + p2 + 250 + 650) / 1000:.2f}-{(p1 + p2 + 600 + 700) / 1000:.2f}k** |', '',
-             'Shipping and tax are extra. Raka (epoxy), the whiting and Bolt Depot ship heavy or separately;',
+             'Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;',
              'buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are',
              'estimates: call a yard with the cut list.', '',
              '**JLCMC and JLCCNC (checked 2026-10-10).** JLCMC list prices are about half of Amazon for',
