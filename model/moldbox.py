@@ -39,6 +39,7 @@ class Board:
         self.outline = list(outline)
         self.t = board_t()
         self.holes = []          # (u, v, d, what)
+        self.pour_v = None       # the pour line (v), on boards that cross it
 
     def uv(self, p):
         d = p - self.o
@@ -55,11 +56,22 @@ class Board:
             return False
         return inside(self.uv(p), self.outline)
 
-    def solid(self):
+    def solid(self, holes=True):
         face = molds.poly([self.at(u, v) for u, v in self.outline])
         s = face.extrude(self.N * self.t)
-        cuts = [Part.makeCylinder(d / 2, self.t + 2, self.at(u, v, -1.0), self.N) for u, v, d, _ in self.holes]
+        cuts = [Part.makeCylinder(d / 2, self.t + 2, self.at(u, v, -1.0), self.N) for u, v, d, _ in self.holes] if holes else []
         return s.cut(cuts) if cuts else s
+
+    def pour_span(self):
+        """(u0, u1) where the pour line crosses the outline, or None."""
+        if self.pour_v is None:
+            return None
+        v, xs = self.pour_v, []
+        pts = self.outline + self.outline[:1]
+        for (u0, v0), (u1, v1) in zip(pts, pts[1:]):
+            if (v0 - v) * (v1 - v) < 0 or (v0 == v != v1):
+                xs.append(u0 + (v - v0) * (u1 - u0) / (v1 - v0))
+        return (min(xs), max(xs)) if len(xs) >= 2 else None
 
     def size(self):
         us = [u for u, _ in self.outline]

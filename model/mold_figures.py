@@ -34,8 +34,10 @@ src = src[:src.rstrip().rfind('\nmain()')]
 NS = {'__file__': os.path.join(HERE, 'build_cnc.py'), '__name__': 'build_cnc'}
 exec(compile(src, 'build_cnc.py', 'exec'), NS)
 P, parts, molds, style = NS['P'], NS['parts'], NS['molds'], NS['style']
-NS['LOOKS'].update({'hw': ((0.55, 0.57, 0.60), 0.7, 0), 'pour': ((0.30, 0.60, 0.95), 0.2, 70),
-                    'ghost': ((0.62, 0.63, 0.65), 0.05, 80), 'melamine_s': ((0.93, 0.93, 0.90), 0.3, 25)})
+NS['LOOKS'].update({'hw': ((0.55, 0.57, 0.60), 0.7, 0), 'pour': ((0.30, 0.60, 0.95), 0.2, 60),
+                    'ghost': ((0.80, 0.81, 0.82), 0.05, 0), 'melamine_s': ((0.93, 0.93, 0.90), 0.3, 25),
+                    'board_new': ((0.97, 0.85, 0.58), 0.2, 30), 'board_old': ((0.91, 0.91, 0.89), 0.2, 72),
+                    'mix': ((0.30, 0.31, 0.33), 0.1, 0)})
 M = NS['build']()
 KIT = M.mold_kit
 G = NS['frame_layout'](M.dims)
@@ -433,7 +435,11 @@ def fig_locator(sc):
 # ------------------------------------------------------------------------------------------
 # Assembly steps
 # ------------------------------------------------------------------------------------------
-NICE = {'BaseRearTubePlug': 'Tube end plug (printed)', 'BaseFrontTubePlug': 'Tube end plug (printed)',
+NICE = {'corner-L': 'Corner filler', 'corner-R': 'Corner filler', 'back-edge': 'Back-edge filler',
+        'saddle-flat': 'Saddle', 'tie-rod-pocket': 'Top pocket plug', 'split-gasket-groove': 'Gasket-groove bead',
+        'foot-gasket-groove': 'Gasket-groove bead', 'motor-relief': 'Motor-relief former', 'gutter': 'Gutter former',
+        'trough': 'Trough former', 'slope-plug': 'Slope plug', 'socket-spike': 'Socket spike',
+        'BaseRearTubePlug': 'Tube end plug (printed)', 'BaseFrontTubePlug': 'Tube end plug (printed)',
         'BaseRearSpigotSleeve': 'Spigot sleeve (printed)', 'BaseFrontSpigotSleeve': 'Spigot sleeve (printed)',
         'BaseRearTube': 'Rail tube', 'BaseFrontTube': 'Rail tube', 'BaseSpigot': 'Spigot', 'Leg': 'Leg',
         'DrawRodCoupler': 'Draw-rod coupler', 'TieRodCoupler': 'Tie-rod coupler', 'DrawRod': 'Draw rod',
@@ -470,10 +476,10 @@ def steps(sc, name, fn, d, stages, up=Vector(0, 0, 1), max_labels=8):
         sc.clear()
         for old in shown:
             for look, s_, _ in old:
-                sc.add(fn(s_), 'ghost' if look != 'melamine' else 'melamine', 82 if look != 'melamine' else 80)
+                sc.add(fn(s_), 'board_old' if look == 'melamine' else 'pour' if look == 'pour' else 'ghost')
         labels, seen = [], set()
         for look, s_, _ in items:
-            sc.add(fn(s_), look, 40 if look == 'melamine' else None)
+            sc.add(fn(s_), 'board_new' if look == 'melamine' else look)
         rank = lambda it: 0 if it[0] in ('printed', 'foam') else 1 if it[0] == 'melamine' else 2
         for look, s_, lab in sorted(items, key=rank):
             if lab and lab not in seen and len(labels) < max_labels:
@@ -485,7 +491,7 @@ def steps(sc, name, fn, d, stages, up=Vector(0, 0, 1), max_labels=8):
 
 
 def B(group, names):
-    return [('melamine', b.solid(), nice(b.name)) for b in KIT.boards
+    return [('melamine', b.solid(holes=False), nice(b.name)) for b in KIT.boards
             if group in b.show and any(b.name.startswith(n) for n in names)]
 
 
@@ -519,16 +525,18 @@ def base_steps(sc):
         ('floor', B(rear, ['Base floor', 'Base cleat'])),
         ('walls', B(rear, walls) + K(rear, ['corner-bracket'])),
         ('partition', B(rear, ['Base partition']) + K(rear, ['partition-bracket', 'split-gasket', 'spigot-bushing'])),
-        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-', 'socket'])),
+        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R', 'socket'])),
         ('steel', S('FrameBaseRear') + K(rear, ['leg-holder'])),
-        ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle']) + B(rear, ['Base bridge', 'Base leg bridge'])),
+        ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle']) + B(rear, ['Base bridge', 'Base leg bridge'])
+         + [pour_plane('base')]),
     ]
     steps(sc, 'step-base-rear', flip_base, Vector(-0.5, -0.62, -0.6), stages)
     cast = [('granite', PARTS['BaseRearCasting']['shape'], 'Rear half, cured and waxed')]
     fstages = [
         ('rear cast', B(front, ['Base floor', 'Base cleat'] + walls) + K(front, ['corner-bracket']) + cast),
-        ('front pieces', K(front, ['gutter', 'trough', 'corner-']) + S('FrameBaseFront') + K(front, ['leg-holder'])),
-        ('cores', K(front, None, kinds=('foam', 'core')) + K(front, ['saddle']) + B(front, ['Base bridge', 'Base leg bridge'])),
+        ('front pieces', K(front, ['gutter', 'trough', 'corner-L', 'corner-R']) + S('FrameBaseFront') + K(front, ['leg-holder'])),
+        ('cores', K(front, None, kinds=('foam', 'core')) + K(front, ['saddle']) + B(front, ['Base bridge', 'Base leg bridge'])
+         + [pour_plane('base')]),
     ]
     steps(sc, 'step-base-front', flip_base, Vector(0.5, 0.62, -0.6), fstages)
 
@@ -546,7 +554,7 @@ def upright_steps(sc):
         ('floor', B(u, ['Upright floor', 'Upright cleat']) + K(u, ['post-bushing', 'foot-gasket'])),
         ('sides', B(u, ['Upright side plate', 'Upright back board']) + K(u, ['back-bracket'])),
         ('front', B(u, ['Upright front board']) + K(u, ['toe-filler', 'front-bracket'])),
-        ('steel', st + rods + K(u, ['slope-plug'])),
+        ('steel', st + rods + K(u, ['slope-plug']) + [pour_plane('upright')]),
         ('top', K(u, ['tie-rod-pocket', 'plate-spacer', 'saddle-flat']) + B(u, ['Upright bridge'])
          + [('steeltube', PARTS['TopPlateL']['shape'], 'Top plate')]),
     ]
@@ -562,9 +570,190 @@ def beam_steps(sc):
     stages = [
         ('floor', B(b, ['Beam floor', 'Beam cleat']) + S('FrameBeam', keep=on_floor)),
         ('walls', B(b, ['Beam top wall', 'Beam bottom wall', 'Beam end wall']) + K(b, ['corner-bracket'])),
-        ('tubes', S('FrameBeam', keep=lambda p: not on_floor(p)) + K(b, ['tube-locator', 'back-edge', 'dowel-stop']) + rods),
+        ('tubes', S('FrameBeam', keep=lambda p: not on_floor(p)) + K(b, ['tube-locator', 'back-edge', 'dowel-stop']) + rods
+         + [pour_plane('beam')]),
     ]
     steps(sc, 'step-beam', turn_beam, Vector(-0.45, -0.6, -0.65), stages)
+
+
+# ------------------------------------------------------------------------------------------
+# Exploded views and the pour line
+# ------------------------------------------------------------------------------------------
+def pour_plane(mold):
+    if mold == 'base':
+        return ('pour', parts.box(-G['base_half'], G['base_half'], G['base_y0'], G['base_y1'], -0.8, 0), 'Pour line: fill to here')
+    if mold == 'upright':
+        return ('pour', parts.box(-G['outer'], -G['inner'], G['up_top_front'], G['up_y1'], G['beam_bot'], G['beam_bot'] + 0.8),
+                'Pour line: fill to here')
+    by1 = G['beam_face'] + P['beam_d']
+    return ('pour', parts.box(-G['outer'], G['outer'], by1, by1 + 0.8, G['beam_bot'], G['beam_top']), 'Pour line: fill to here')
+
+
+def exploded(sc, name, fn, items, d, max_labels=13):
+    """items: [(look, shape, label, displacement)]: each part pulled out along its way in."""
+    sc.clear()
+    labels, seen = [], set()
+    for look, s_, lab, v in items:
+        moved = s_.translated(v)
+        sc.add(fn(moved), {'melamine': 'board_new'}.get(look, look))
+        if lab and lab not in seen and len(labels) < max_labels:
+            seen.add(lab)
+            labels.append((pt(fn, anchor(moved)), lab))
+    sc.camera(d)
+    sc.shoot(name, labels=labels)
+
+
+def _out(shape, c, dist, axes=(0, 1)):
+    """Push a part away from c along its dominant horizontal axis (both axes for corner parts)."""
+    p = shape.BoundBox.Center - c
+    comp = [p.x, p.y, p.z]
+    v = Vector()
+    if len(axes) == 1 or True:
+        big = sorted(axes, key=lambda a: -abs(comp[a]))
+        for a in (big if len(axes) > 1 and abs(comp[big[1]]) > 0.6 * abs(comp[big[0]]) else big[:1]):
+            e = [0, 0, 0]
+            e[a] = math.copysign(dist, comp[a])
+            v += Vector(*e)
+    return v
+
+
+def base_exploded(sc):
+    g = 'base-rear'
+    up = Vector(0, 0, -1)
+    c = Vector(0, (G['split'] + G['base_y1']) / 2, 55)
+    it = []
+    for b in KIT.boards:
+        if g not in b.show or b.name.startswith(('Base bridge', 'Base leg bridge', 'Base partition strut')):
+            continue
+        s_ = b.solid(holes=False)
+        if b.name.startswith('Base floor'):
+            v = Vector()
+        elif b.name.startswith('Base cleat'):
+            v = _out(s_, c, 70)
+        else:
+            v = b.N * 170
+        it.append(('melamine', s_, nice(b.name), v))
+    for r in M.molds:
+        for s_, sh in r['placed']:
+            if g not in sh:
+                continue
+            n, k = r['name'], r['kind']
+            if n in ('corner-bracket',):
+                v = _out(s_, c, 250, (0, 1)) + up * 60
+            elif n == 'partition-bracket':
+                v = Vector(0, -1, 0) * 170 + up * 60
+            elif n in ('split-gasket-groove', 'spigot-bushing'):
+                v = Vector(0, -1, 0) * (130 if n.startswith('split') else 215)
+            elif n == 'leg-holder':
+                v = up * 330 + _out(s_, c, 60, (0, 1))
+            elif n == 'saddle':
+                v = up * 470 + _out(s_, c, 170, (0,))
+            elif k == 'foam' or n.endswith('-post'):
+                v = up * (180 if n == 'socket' else 250)
+            else:
+                v = up * 60
+            it.append(('foam' if k == 'foam' else 'printed', s_, 'Foam core' if k == 'foam' and n != 'socket' else
+                       'Foam socket core' if k == 'foam' else 'Core post' if n.endswith('-post') else nice(n), v))
+    for look, s_, lab in S('FrameBaseRear'):
+        if lab in ('Rail tube', 'Spigot', 'Leg', 'Draw-rod coupler', 'Tie-rod coupler'):
+            it.append((look, s_, lab, up * (400 if lab == 'Leg' else 120)))
+    for b in KIT.boards:
+        if g in b.show and b.name.startswith(('Base bridge', 'Base leg bridge')):
+            it.append(('melamine', b.solid(holes=False), 'Bridge', up * 470))
+    exploded(sc, 'exploded-base', flip_base, it, Vector(-0.5, -0.62, -0.6))
+
+
+def upright_exploded(sc):
+    u = 'upright'
+    c = Vector(-(G['outer'] + G['inner']) / 2, (G['up_front'] + G['up_y1']) / 2, (G['base_top'] + G['beam_bot']) / 2)
+    Z = Vector(0, 0, 1)
+    a = Vector(0, G['up_top_front'] - G['up_front'], G['beam_bot'] - G['base_top'] - P['upright_nose'])
+    a.normalize()
+    nrm = Vector(0, -a.z, a.y)
+    it = []
+    for b in KIT.boards:
+        if u not in b.show:
+            continue
+        s_ = b.solid(holes=False)
+        if b.name.startswith('Upright floor'):
+            v = Vector()
+        elif b.name.startswith('Upright cleat'):
+            v = _out(s_, c, 60)
+        elif b.name.startswith('Upright bridge'):
+            v = Z * 230
+        else:
+            v = b.N * 150
+        it.append(('melamine', s_, nice(b.name), v))
+    for r in M.molds:
+        for s_, sh in r['placed']:
+            if u not in sh:
+                continue
+            n = r['name']
+            v = {'back-bracket': _out(s_, c, 190) + Z * 40, 'front-bracket': nrm * 200 + _out(s_, c, 90, (0,)),
+                 'toe-filler': nrm * 70, 'post-bushing': Z * -60, 'foot-gasket-groove': Z * 25,
+                 'tie-rod-pocket': Z * 120, 'plate-spacer': Z * 170, 'saddle-flat': Z * 230 + _out(s_, c, 60, (0,))}.get(n)
+            if v is None:
+                v = nrm * 100 if n.startswith('slope-plug') else Vector()
+            it.append(('printed', s_, nice(n), v))
+    for look, s_, lab in S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'Plug', 'Dowel')):
+        it.append((look, s_, lab, Z * (150 if lab == 'Top plate' else -90)))
+    exploded(sc, 'exploded-upright', IDENT, it, Vector(0.8, 0.55, -0.45))
+
+
+def beam_exploded(sc):
+    b_ = 'beam'
+    c = Vector(0, G['beam_face'] + P['beam_d'] / 2, (G['beam_bot'] + G['beam_top']) / 2)
+    Y = Vector(0, 1, 0)
+    it = []
+    for b in KIT.boards:
+        if b_ not in b.show:
+            continue
+        s_ = b.solid(holes=False)
+        if b.name.startswith('Beam floor'):
+            v = Vector()
+        elif b.name.startswith('Beam cleat'):
+            v = _out(s_, c, 60, (0, 2))
+        else:
+            v = b.N * 140
+        it.append(('melamine', s_, nice(b.name), v))
+    for r in M.molds:
+        for s_, sh in r['placed']:
+            if b_ not in sh:
+                continue
+            n = r['name']
+            v = {'corner-bracket': _out(s_, c, 220, (0, 2)) + Y * 40, 'tube-locator': _out(s_, c, 80, (0,)),
+                 'back-edge': Vector(0, 0, 1) * 90, 'dowel-stop': Vector(0, 0, -1) * 190}.get(n, Vector())
+            it.append(('printed', s_, nice(n), v))
+    for look, s_, lab in S('FrameBeam'):
+        it.append((look, s_, lab, Y * (110 if lab == 'Beam tube' else 0)))
+    exploded(sc, 'exploded-beam', turn_beam, it, Vector(-0.45, -0.6, -0.65))
+
+
+def fig_pour(sc):
+    """The pour line: a gauge on one wall, screed shoes on two facing walls, a board struck across."""
+    sc.clear()
+    fb = P['mold_freeboard']
+    gauge = next(r for r in M.molds if r['name'] == 'pour-gauge')['shape']
+    shoe = next(r for r in M.molds if r['name'] == 'screed-shoe')['shape']
+    W, D, Hh = 160.0, 120.0, 120.0
+    mirror = lambda s_: s_.mirror(Vector(-W / 2, 0, 0), Vector(1, 0, 0))
+    wall = parts.box(0, T, -D / 2, D / 2, -Hh, 0)
+    sc.add(wall, 'board_old')
+    sc.add(mirror(wall), 'board_old')
+    sc.add(parts.box(-W - T - 30, T + 30, -D / 2 - 30, D / 2 + 30, -Hh - T, -Hh), 'board_old')
+    sc.add(parts.box(-W, 0, -D / 2, D / 2, -Hh, -fb), 'mix')
+    sc.add(gauge.translated(Vector(0, -D / 2 + 6, 0)), 'printed')
+    for f in (lambda s_: s_, mirror):
+        sc.add(f(shoe.translated(Vector(0, 10, 0))), 'printed')
+    slot = T + 0.4
+    sc.add(parts.box(-W + 5, -5, 10 - T / 2, 10 + T / 2, -fb, -fb + 60), 'wood')
+    sc.camera(Vector(-0.55, 0.75, -0.45))
+    sc.shoot('detail-pour', labels=[
+        (Vector(-1.5, -D / 2 + 18, -fb + 2), f'Pour-line gauge: its leg ends {fb:.0f} mm down'),
+        (Vector(-12, 10, -fb + 2), 'Screed shoe (one on each wall)'),
+        (Vector(-W / 2, 10, -fb + 50), 'Straight board on edge: strike off along the walls'),
+        (Vector(-W / 2, -D / 2 + 10, -fb), f'Pour line, {fb:.0f} mm below the wall tops'),
+        (Vector(T / 2, D / 2 - 10, -40), 'Wall')])
 
 
 # ------------------------------------------------------------------------------------------
@@ -602,7 +791,7 @@ def main():
             f(sc)
         except Exception as e:
             print('figure failed:', f.__name__, e)
-    for f in (base_steps, upright_steps, beam_steps):
+    for f in (base_steps, upright_steps, beam_steps, base_exploded, upright_exploded, beam_exploded, fig_pour):
         try:
             f(sc)
         except Exception as e:

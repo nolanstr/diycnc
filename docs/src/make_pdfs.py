@@ -114,6 +114,8 @@ def main():
         build(src, out, orient)
     for out, title, numbers in BUILD_STAGES:
         build('build-guide.md', out, 'portrait', stage('build-guide.md', title, numbers))
+    import make_templates
+    make_templates.main()
 
 
 if __name__ == '__main__':
