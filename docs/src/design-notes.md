@@ -26,7 +26,7 @@ tapping the risers, top plates and support pads. Use plain steel, not galvanized
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 10.6 kg of epoxy (8.5 % of 125 kg of casting):
+**Keeping the epoxy down.** About 10.6 kg of epoxy (8.5 % of the 125 kg the castings would weigh with sand; 132 kg with the alumina):
 - The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
@@ -43,11 +43,15 @@ part of each leg that hangs below the base.
   split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
   with D = 10 mm and q about 0.45: q = 0.5 (classic Fuller) is a little coarse and needs more
   epoxy to wet, q = 0.37 (Andreasen) packs tighter but its extra powder soaks up epoxy.
-- Options people use, and why the build doesn't: **aluminium oxide** grit (Mohs 9, E about
-  370 GPa against about 70 for quartz and granite) as the coarse sand could add perhaps
-  10-25 % stiffness, untested; 16 grit is about $80-90 per 50 lb, so about $150-200 for the
-  coarse sand, and the castings get about 10 % heavier. Try it in a pair of tap-tested bars
-  first if you want it. **Graded industrial quartz** (Agsco and similar) is clean, dry and
+- **Aluminium oxide in the beam and uprights.** Brown fused alumina grit (#16, E about 370 GPa
+  against about 70 for quartz and granite) replaces the coarse sand, volume for volume, in
+  those three castings only (`analysis/alumina.py`). A differential-effective-medium estimate
+  of the mix puts it about 22 % stiffer (the plain mix comes out at 34 GPa, close to the
+  30 GPa the frame model uses). On the frame that's about +10 / +10 / +13 % in X / Y / Z for
+  one 50 lb bag (about $90 plus shipping, 21 kg); the beam alone gets two thirds of it, and
+  doing the base as well would need two more bags for another 5 %. It's an estimate, so the
+  build guide's tap-tested bars check it, and sand is the fallback. Other options:
+  **Graded industrial quartz** (Agsco and similar) is clean, dry and
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
   **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
   of that for far less. **Epoxy grout** (Laticrete SpectraLock) is fine for a test bar or a
@@ -104,7 +108,8 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | + riser hold-downs, support pads, uncut 600 mm Y rails | 43.7 L | 55.7 | 96.8 | 68.9 |
 | Base + uprights optimized together, same material (free-form uprights) | 43.7 L | 63.9 | 103.3 | 85.2 |
 | Raked-buttress uprights, base re-laid around them | 52.6 L | 77.5 | 107.5 | 93.0 |
-| **Now: + blunt upright toe, rounded edges, deeper slope pockets** | **53.0 L** | **78.2** | **110.1** | **95.5** |
+| + blunt upright toe, rounded edges, deeper slope pockets | 53.0 L | 78.2 | 110.1 | 95.5 |
+| **Now: + alumina grit in the beam and uprights (estimate)** | **53.0 L** | **86.4** | **120.9** | **107.9** |
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
   equally. Litre for litre, epoxy in the beam is worth roughly ten times as much as epoxy
@@ -216,6 +221,7 @@ python baseline.py                                  # stiffness and each module'
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
 FEA_VOX=vox_current python whatif.py                # stiffness of the model as drawn
+python alumina.py                                   # alumina grit: mix modulus and frame stiffness
 python modal.py                                     # natural frequencies (about 30 s)
 python topopt_upright.py 0.9 [web]                  # upright holes (about 10 min each)
 python compare_uprights.py to_upright_*.npz         # their stiffness and frequencies
@@ -256,7 +262,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,205**; **2, the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,295** (including $90 of alumina grit for the beam and uprights); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
 coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
