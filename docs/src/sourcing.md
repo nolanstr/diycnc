@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $808.22 |
+| 1 | Castings and hardware | $868.20 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,10 +27,10 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,295.47** |
+| **1. Frame** | **$1,355.45** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.63-3.03k** |
+| **Total** | **about $2.69-3.09k** |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -53,7 +53,8 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Epoxy | ~10.6 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)](https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
 | Fines | Whiting (calcium carbonate) 325 mesh, ~11 kg | 1 (50 lb) | [Clay-King calcium carbonate whiting, 50 lb (not Amazon)](https://www.clay-king.com/product/calcium-carbonate-whiting/) | $0.84/lb | $42.00 | No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc. |
 | Aggregate | ~105 kg: fine sand 19, coarse sand 34, pea gravel 25, 3/8 in gravel 25 kg | ~6 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $48.00 | Buy locally. Wash and dry fully. |
-| Alumina grit | Brown fused aluminium oxide #16, ~21 kg: the coarse sand in the beam and uprights | 1 (50 lb) | [Kleen Blast AO5016 brown fused aluminum oxide #16, 50 lb](https://products.kleenblast.com/viewitems/specialty-abrasives-blast-media/brown-aluminum-oxide) | $90.00 | $90.00 | About +10 % frame stiffness (estimate, analysis/alumina.py). Shipping extra; a local sandblasting supplier may stock it. Not 80-120 grit retail blast media: wrong size and far dearer per lb. |
+| Alumina grit, coarse | Brown fused aluminium oxide #16 (12-20 is fine), ~21 kg: the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Free shipping. Alt: Kleen Blast AO5016 $90 + shipping (blast media is excluded from its free shipping). About +10 % frame stiffness on its own (analysis/alumina.py). |
+| Alumina grit, fine | Black aluminium oxide 70 grit, ~11 kg: the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Local pickup. With the #16: about +17 % frame stiffness in all. |
 | Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
 | Square tube | 2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 12 in, 6x 6 in | ~7 ft of each | Steel-yard remnants (local) | ~$40 | $40.00 | About 37 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized. |
 | Steel plate and pads | 3/8 in: 2x 68x168 mm; 1/4 x 2-1/2 in: ~4 in | offcuts | Steel-yard offcuts (local) | ~$15 | $15.00 | Upright top plates and the X support pads |
@@ -75,7 +76,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
 | PETG filament | ~2.7 kg for the mould parts and liners | 3 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $47.97 | About 1.5 kg less if the pocket cores are cut from XPS foam instead |
 
-**Priced subtotal: $808.22**
+**Priced subtotal: $868.20**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

@@ -13,15 +13,16 @@ Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
 Epoxy granite volume:         53.2 L
-Casting mass:                 132 kg (290 lb)
+Casting mass:                 135 kg (297 lb)
   Base front:                  14.7 L   34.5 kg
   Base rear:                   18.0 L   42.4 kg
-  Upright L:                    5.5 L   14.6 kg  (alumina grit)
-  Upright R:                    5.5 L   14.6 kg  (alumina grit)
-  Beam:                         9.5 L   25.4 kg  (alumina grit)
+  Upright L:                    5.5 L   15.4 kg  (alumina grit)
+  Upright R:                    5.5 L   15.4 kg  (alumina grit)
+  Beam:                         9.5 L   26.8 kg  (alumina grit)
 Cast-in steel + joint hardware: 23.4 kg
 Epoxy needed (~8.5% of the sand mix by mass): 10.6 kg
-Aluminium oxide grit #16 (beam + uprights coarse fraction): 19.7 kg
+Aluminium oxide grit, brown #16 (coarse sand): 19.7 kg (beam + uprights)
+Aluminium oxide grit, black 70 grit (fine sand): 10.2 kg (beam + uprights)
 
 Linear motion / plate BOM
 -------------------------
