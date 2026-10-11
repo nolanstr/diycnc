@@ -136,7 +136,7 @@ def floor_bracket(c, n_out, up, along, w=24.0, h=25.0, reach=32.0):
                                     bolt_length(moulds.BOARD_MAX + TH + 0.5))]
 
 
-def saddle(c, n_out, up, along, width=None, depth=12.0):
+def saddle(c, n_out, up, along, width=None, depth=12.0, cheeks=True):
     """Cap over a wall's top edge that carries a bridge end: the cap, a leg down the wall's outside,
     and two cheeks. c: on the wall's inner face at its top, mid-saddle; n_out: the wall's outward
     normal (the bridge crosses the wall along -n_out). width=None: the bridge stands on edge between
@@ -146,12 +146,12 @@ def saddle(c, n_out, up, along, width=None, depth=12.0):
     n_out, up, along = unit(n_out), unit(up), unit(along)
     slot = board_t() + SLOT
     gap = slot if width is None else width + 4 * FIT
-    half = gap / 2 + TH
+    half = gap / 2 + TH if cheeks else gap / 2
     o = c - along * half
     s = block(o, along, n_out, up, 2 * half, slot + TH, TH)                                 # cap
     s = s.fuse(block(o + n_out * slot, along, n_out, -up, 2 * half, TH, 25.0))              # leg
     ch = 22.0 if width is None else 10.0
-    for e in (0.0, 2 * half - TH):
+    for e in ((0.0, 2 * half - TH) if cheeks else ()):
         s = s.fuse(block(o + along * e + up * TH, along, n_out, up, TH, slot + TH, ch))
     p = c - up * depth
     s = s.cut(Part.makeCylinder(HW['M4']['hole'] / 2, TH + 2, p + n_out * (slot - 1), n_out))

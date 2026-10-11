@@ -6,11 +6,11 @@
 <text x="618.4" y="76.5" font-size="16.0" fill="#1d2422">2</text>
 <circle cx="33.0" cy="11.5" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
 <text x="39.6" y="8.8" font-size="16.0" fill="#1d2422">3</text>
-<circle cx="54.1" cy="11.5" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
-<text x="60.7" y="8.8" font-size="16.0" fill="#1d2422">4</text>
-<circle cx="584.0" cy="11.5" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
-<text x="590.7" y="8.8" font-size="16.0" fill="#1d2422">5</text>
 <circle cx="605.1" cy="11.5" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
-<text x="611.7" y="8.8" font-size="16.0" fill="#1d2422">6</text>
+<text x="611.7" y="8.8" font-size="16.0" fill="#1d2422">4</text>
+<circle cx="54.1" cy="6.0" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
+<text x="60.7" y="3.3" font-size="16.0" fill="#1d2422">5</text>
+<circle cx="584.0" cy="6.0" r="4.0" fill="none" stroke="#a8641a" stroke-width="1.99"/>
+<text x="590.7" y="3.3" font-size="16.0" fill="#1d2422">6</text>
 <text x="0" y="157.3" font-size="16.0" fill="#5b6662">0,0 · 638 x 135 mm · seen from the cast side</text>
 </svg>

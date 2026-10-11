@@ -3,82 +3,82 @@ base-box,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 base-box,kit-floor-bracket.stl,kit,10,24 x 32 x 25,70,
 base-box,kit-partition-bracket.stl,kit,2,44 x 44 x 23,18,
 base-box,kit-saddle.stl,kit,2,53 x 31 x 25,24,The rear half needs six; four move over for the front half.
-base-box,kit-leg-holder.stl,kit,4,72 x 72 x 51,175,
+base-box,kit-leg-holder.stl,kit,4,72 x 72 x 40,118,
 base-box,kit-leg-hanger.stl,kit,4,43 x 43 x 145,98,Drops over the leg end and rests on the holder: the leg hangs at its cast-in depth.
-base-rear,former-gutter-L-part1of3.stl,former,1,15 x 124 x 12,13,Bolts to the floor from underneath (the base is cast top face down).
-base-rear,former-gutter-L-part2of3.stl,former,1,15 x 124 x 10,12,
-base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,11,
-base-rear,former-gutter-R-part1of3.stl,former,1,15 x 124 x 12,13,Bolts to the floor from underneath (the base is cast top face down).
-base-rear,former-gutter-R-part2of3.stl,former,1,15 x 124 x 10,12,
-base-rear,former-gutter-R-part3of3.stl,former,1,15 x 120 x 9,11,
-base-rear,former-motor-relief.stl,former,1,72 x 60 x 14,21,Bolts to the floor from underneath (the base is cast top face down).
-base-rear,filler-corner-L.stl,filler,1,40 x 40 x 110,30,Rounded corner; bolts to the floor and both walls.
-base-rear,filler-corner-R.stl,filler,1,40 x 40 x 110,30,Rounded corner; bolts to the floor and both walls.
-base-front,former-gutter-L-part1of2.stl,former,1,15 x 149 x 15,18,Bolts to the floor from underneath (the base is cast top face down).
-base-front,former-gutter-L-part2of2.stl,former,1,15 x 145 x 13,17,
-base-front,former-gutter-R-part1of2.stl,former,1,15 x 149 x 15,18,Bolts to the floor from underneath (the base is cast top face down).
-base-front,former-gutter-R-part2of2.stl,former,1,15 x 145 x 13,17,
-base-front,former-trough-part1of5.stl,former,1,116 x 35 x 19,30,Bolts to the floor from underneath (the base is cast top face down).
-base-front,former-trough-part2of5.stl,former,1,116 x 35 x 23,35,
-base-front,former-trough-part3of5.stl,former,1,116 x 35 x 33,39,
-base-front,former-trough-part4of5.stl,former,1,116 x 35 x 24,36,
-base-front,former-trough-part5of5.stl,former,1,112 x 35 x 21,33,
-base-front,filler-corner-L.stl,filler,1,40 x 40 x 110,36,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
-base-front,filler-corner-R.stl,filler,1,40 x 40 x 110,36,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
+base-rear,former-gutter-L-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
+base-rear,former-gutter-L-part2of3.stl,former,1,15 x 124 x 10,8,
+base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,8,
+base-rear,former-gutter-R-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
+base-rear,former-gutter-R-part2of3.stl,former,1,15 x 124 x 10,8,
+base-rear,former-gutter-R-part3of3.stl,former,1,15 x 120 x 9,8,
+base-rear,former-motor-relief.stl,former,1,72 x 60 x 14,14,Bolts to the floor from underneath (the base is cast top face down).
+base-rear,filler-corner-L.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
+base-rear,filler-corner-R.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
+base-front,former-gutter-L-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
+base-front,former-gutter-L-part2of2.stl,former,1,15 x 145 x 13,12,
+base-front,former-gutter-R-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
+base-front,former-gutter-R-part2of2.stl,former,1,15 x 145 x 13,12,
+base-front,former-trough-part1of5.stl,former,1,116 x 35 x 19,21,Bolts to the floor from underneath (the base is cast top face down).
+base-front,former-trough-part2of5.stl,former,1,116 x 35 x 23,24,
+base-front,former-trough-part3of5.stl,former,1,116 x 35 x 33,27,
+base-front,former-trough-part4of5.stl,former,1,116 x 35 x 24,25,
+base-front,former-trough-part5of5.stl,former,1,112 x 35 x 21,23,
+base-front,filler-corner-L.stl,filler,1,40 x 40 x 110,25,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
+base-front,filler-corner-R.stl,filler,1,40 x 40 x 110,25,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
 base-rear,former-split-gasket-groove-part1of4.stl,former,1,145 x 14 x 8,2,Pins into the partition.
 base-rear,former-split-gasket-groove-part2of4.stl,former,1,145 x 4 x 8,2,
 base-rear,former-split-gasket-groove-part3of4.stl,former,1,145 x 4 x 8,2,
 base-rear,former-split-gasket-groove-part4of4.stl,former,1,145 x 14 x 8,2,
-base-front,core-centre-part1of2.stl,core,1,100 x 92 x 141,98,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-centre-part2of2.stl,core,1,100 x 93 x 90,73,
-base-rear,core-centre-part1of2.stl,core,1,100 x 86 x 90,64,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-centre-part2of2.stl,core,1,100 x 104 x 141,99,
-base-front,core-outboard-L.stl,core,1,130 x 164 x 141,169,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-trough-band-L.stl,core,1,101 x 55 x 91,49,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-draw-rod-L-part1of2.stl,core,1,36 x 128 x 91,48,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-draw-rod-L-part2of2.stl,core,1,37 x 128 x 40,33,
-base-front,core-foot-a-L.stl,core,1,68 x 66 x 141,76,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-foot-b-L.stl,core,1,68 x 99 x 141,93,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-foot-c-L.stl,core,1,80 x 62 x 141,82,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-knee-L-part1of2.stl,core,1,50 x 92 x 40,29,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-knee-L-part2of2.stl,core,1,50 x 92 x 91,45,
-base-rear,core-outer-a-L.stl,core,1,35 x 44 x 116,39,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-outer-b-L.stl,core,1,35 x 60 x 116,46,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-rear-L.stl,core,1,170 x 52 x 141,117,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-outboard-R.stl,core,1,130 x 164 x 141,169,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-trough-band-R.stl,core,1,101 x 55 x 91,49,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-draw-rod-R-part1of2.stl,core,1,36 x 128 x 91,48,"Shell core, stays in. Bolts to the bridge by its post."
-base-front,core-draw-rod-R-part2of2.stl,core,1,37 x 128 x 40,33,
-base-front,core-foot-a-R.stl,core,1,68 x 66 x 141,76,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-foot-b-R.stl,core,1,68 x 99 x 141,93,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-foot-c-R.stl,core,1,80 x 62 x 141,82,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-knee-R-part1of2.stl,core,1,50 x 92 x 40,29,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-knee-R-part2of2.stl,core,1,50 x 92 x 91,45,
-base-rear,core-outer-a-R.stl,core,1,35 x 44 x 116,39,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-outer-b-R.stl,core,1,35 x 60 x 116,46,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,core-rear-R.stl,core,1,170 x 52 x 141,117,"Shell core, stays in. Bolts to the bridge by its post."
-base-rear,plug-socket-plug.stl,plug,4,41 x 41 x 15,50,Fills the open end of a socket liner; bolts to the floor.
+base-front,core-centre-part1of2.stl,core,1,100 x 92 x 141,80,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-centre-part2of2.stl,core,1,100 x 93 x 90,57,
+base-rear,core-centre-part1of2.stl,core,1,100 x 86 x 90,50,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-centre-part2of2.stl,core,1,100 x 104 x 141,80,
+base-front,core-outboard-L.stl,core,1,130 x 164 x 141,133,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-trough-band-L.stl,core,1,101 x 55 x 91,39,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-draw-rod-L-part1of2.stl,core,1,36 x 128 x 91,37,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-draw-rod-L-part2of2.stl,core,1,37 x 128 x 40,26,
+base-front,core-foot-a-L.stl,core,1,68 x 66 x 141,60,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-foot-b-L.stl,core,1,68 x 100 x 141,77,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-foot-c-L.stl,core,1,80 x 63 x 141,66,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-knee-L-part1of2.stl,core,1,50 x 92 x 40,22,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-knee-L-part2of2.stl,core,1,50 x 92 x 91,34,
+base-rear,core-outer-a-L.stl,core,1,35 x 43 x 116,27,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-outer-b-L.stl,core,1,35 x 60 x 116,33,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-rear-L.stl,core,1,170 x 52 x 141,94,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-outboard-R.stl,core,1,130 x 164 x 141,133,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-trough-band-R.stl,core,1,101 x 55 x 91,39,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-draw-rod-R-part1of2.stl,core,1,36 x 128 x 91,37,"Shell core, stays in. Bolts to the bridge by its post."
+base-front,core-draw-rod-R-part2of2.stl,core,1,37 x 128 x 40,26,
+base-front,core-foot-a-R.stl,core,1,68 x 66 x 141,60,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-foot-b-R.stl,core,1,68 x 100 x 141,77,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-foot-c-R.stl,core,1,80 x 63 x 141,66,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-knee-R-part1of2.stl,core,1,50 x 92 x 40,22,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-knee-R-part2of2.stl,core,1,50 x 92 x 91,34,
+base-rear,core-outer-a-R.stl,core,1,35 x 43 x 116,27,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-outer-b-R.stl,core,1,35 x 60 x 116,33,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,core-rear-R.stl,core,1,170 x 52 x 141,94,"Shell core, stays in. Bolts to the bridge by its post."
+base-rear,plug-socket-plug.stl,plug,4,41 x 41 x 15,35,Fills the open end of a socket liner; bolts to the floor.
 base-rear,kit-spigot-bushing.stl,kit,2,79 x 79 x 22,55,Push fit in a 2-1/2 in hole-saw hole; flange on the far side.
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,8,50 x 50 x 22,77,Two at the top of the front board and two at its foot (only the side-plate bolt there).
 upright,kit-floor-bracket.stl,kit,10,32 x 24 x 25,70,
-upright,kit-saddle-flat.stl,kit,4,41 x 121 x 25,111,The bridge rests between the cheeks.
-upright,filler-toe-filler.stl,filler,2,80 x 60 x 48,83,Rounds the nose into the slope; the front board stands on it. Bolts to the floor.
+upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
+upright,filler-toe-filler.stl,filler,2,80 x 60 x 48,57,Rounds the nose into the slope; the front board stands on it. Bolts to the floor.
 upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 139 x 8,8,Pins into the floor.
 upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 139 x 8,3,
 upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 139 x 8,3,
 upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 139 x 8,8,
-upright,plug-slope-pocket--60.stl,plug,2,32 x 32 x 54,29,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,plug-slope-pocket-40.stl,plug,2,32 x 32 x 54,29,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 49,50,Forms a top nut pocket: slides down its rod; the bridge holds it down.
+upright,plug-slope-pocket--60.stl,plug,2,32 x 32 x 54,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-slope-pocket-40.stl,plug,2,32 x 32 x 54,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 49,35,Forms a top nut pocket: slides down its rod; the bridge holds it down.
 upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
 upright,kit-post-bushing.stl,kit,4,79 x 79 x 22,110,"Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 beam,kit-floor-bracket.stl,kit,6,24 x 32 x 25,42,
-beam,filler-back-edge-1-part1of4.stl,filler,1,136 x 40 x 40,34,Rounded back edge; bolts to the top wall.
-beam,filler-back-edge-1-part2of4.stl,filler,1,136 x 40 x 40,35,
-beam,filler-back-edge-1-part3of4.stl,filler,1,136 x 40 x 40,35,
-beam,filler-back-edge-1-part4of4.stl,filler,1,132 x 40 x 40,34,
+beam,filler-back-edge-1-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
+beam,filler-back-edge-1-part2of4.stl,filler,1,136 x 40 x 40,24,
+beam,filler-back-edge-1-part3of4.stl,filler,1,136 x 40 x 40,24,
+beam,filler-back-edge-1-part4of4.stl,filler,1,132 x 40 x 40,24,
 beam,kit-tube-locator.stl,kit,4,44 x 44 x 51,74,"Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end."
 beam,kit-dowel-stop.stl,kit,2,18 x 18 x 11,3,Pushes into the dowel hole from outside so the dowel stands 10 mm proud.
 base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,42 x 10 x 42,28,"Cast in, stays."
@@ -87,7 +87,7 @@ base-front,cast-in-leg-front-l-plug.stl,cast-in,2,30 x 30 x 10,14,"Cast in, stay
 base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,42 x 10 x 42,28,"Cast in, stays."
 base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,44 x 69 x 44,75,"Cast in, stays."
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,30 x 30 x 10,14,"Cast in, stays."
-base-rear,cast-in-socket-liner-l1.stl,cast-in,4,47 x 47 x 80,206,"Cast in, stays."
+base-rear,cast-in-socket-liner-l1.stl,cast-in,4,45 x 45 x 80,154,"Cast in, stays."
 upright,cast-in-post-l1-plug.stl,cast-in,4,30 x 30 x 10,29,"Cast in, stays."
 machine,part-pocket-cap-l3.stl,part,4,32 x 32 x 42,38,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,10,

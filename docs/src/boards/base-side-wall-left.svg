@@ -6,23 +6,23 @@
 <text x="714.5" y="77.6" font-size="18.1" fill="#1d2422">2</text>
 <circle cx="13.9" cy="11.5" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
 <text x="21.5" y="8.5" font-size="18.1" fill="#1d2422">3</text>
-<circle cx="35.0" cy="11.5" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="42.5" y="8.5" font-size="18.1" fill="#1d2422">4</text>
 <circle cx="99.5" cy="12.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="107.0" y="9.0" font-size="18.1" fill="#1d2422">5</text>
+<text x="107.0" y="9.0" font-size="18.1" fill="#1d2422">4</text>
 <circle cx="209.5" cy="12.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="217.0" y="9.0" font-size="18.1" fill="#1d2422">6</text>
+<text x="217.0" y="9.0" font-size="18.1" fill="#1d2422">5</text>
 <circle cx="279.5" cy="12.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="287.0" y="9.0" font-size="18.1" fill="#1d2422">7</text>
+<text x="287.0" y="9.0" font-size="18.1" fill="#1d2422">6</text>
 <circle cx="418.6" cy="11.5" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="426.1" y="8.5" font-size="18.1" fill="#1d2422">8</text>
+<text x="426.1" y="8.5" font-size="18.1" fill="#1d2422">7</text>
 <circle cx="437.5" cy="12.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="445.0" y="9.0" font-size="18.1" fill="#1d2422">9</text>
+<text x="445.0" y="9.0" font-size="18.1" fill="#1d2422">8</text>
 <circle cx="569.5" cy="12.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="577.0" y="9.0" font-size="18.1" fill="#1d2422">10</text>
-<circle cx="689.5" cy="11.5" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="697.0" y="8.5" font-size="18.1" fill="#1d2422">11</text>
+<text x="577.0" y="9.0" font-size="18.1" fill="#1d2422">9</text>
 <circle cx="710.5" cy="11.5" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
-<text x="718.1" y="8.5" font-size="18.1" fill="#1d2422">12</text>
+<text x="718.1" y="8.5" font-size="18.1" fill="#1d2422">10</text>
+<circle cx="35.0" cy="6.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
+<text x="42.5" y="3.0" font-size="18.1" fill="#1d2422">11</text>
+<circle cx="689.5" cy="6.0" r="4.5" fill="none" stroke="#a8641a" stroke-width="2.26"/>
+<text x="697.0" y="3.0" font-size="18.1" fill="#1d2422">12</text>
 <text x="0" y="160.4" font-size="18.1" fill="#5b6662">0,0 · 724 x 135 mm · seen from the cast side</text>
 </svg>

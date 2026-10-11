@@ -67,8 +67,8 @@ SECTIONS = [
          '$8.26', 8.26, '', 'product page'),
         ('Block screws', 'M4 x 20', '1 (50)', 'iexcell M4x20 12.9', A + 'B08B1T7K14',
          '$7.86', 7.86, 'Check length against the plate thickness', 'product page'),
-        ('PETG filament', '~4.6 kg: mould kit, cores, formers, liners and machine parts (print guide)', '5 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
-         '$15.99', 79.95, 'About 1.5 kg less (one or two rolls) if the pocket cores are cut from XPS foam instead', 'product page'),
+        ('PETG filament', '~3.7 kg: mould kit, cores, formers, liners and machine parts (print guide)', '4 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
+         '$15.99', 63.96, 'About 2.3 kg (3 rolls) with foam pocket cores instead (foam_cores in the model; one 2 in XPS board)', 'product page'),
     ]),
     ('Part 1 - Frame: rails, screws and mechanics', [
         ('Y rails + blocks', 'HGR15 x2 at 600 mm + 4x HGH15CA', '1 kit', 'iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA', A + 'B0GJZ7D9NG',

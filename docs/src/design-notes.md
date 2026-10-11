@@ -291,7 +291,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,575** (including $150 of alumina grit for the beam and uprights, and about $220 for the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,559** (including $150 of alumina grit for the beam and uprights, and about $200 for the
 bolt-together mould kit: two sheets of melamine, its hardware and the extra PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood

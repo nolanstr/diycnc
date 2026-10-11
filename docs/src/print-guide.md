@@ -5,17 +5,18 @@ Every printed part for the moulds, the castings and the machine, cut to fit a Ba
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the moulds go together is in the mould guide.
 
-**About 186 prints, roughly 4.6 kg of PETG.** The filament figures are rough estimates.
+**About 186 prints, roughly 3.7 kg of PETG.** The filament figures are rough estimates.
 
 ## Settings
 
 - **PETG for everything.** Thick sections of curing epoxy get warm, and PLA softens at about 55 °C.
 - 0.4 mm nozzle, 0.2 mm layers. Every file is already turned the way it prints best, without supports.
-- **Cores** (`core-*`): thin shells, 1.6 mm walls, so they print solid with any infill setting.
-- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 3 walls, 15 % infill.
-- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings): 4 walls, 25 % infill. Print one,
-  check it over a 19 mm offcut of your board, then the rest.
-- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 4 walls, 40 % infill.
+- **Cores** (`core-*`): thin shells, 1.2 mm walls (three lines), so they print solid; the
+  posts get 2 walls and 10 % infill. The sand inside holds the walls while casting.
+- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 2 walls, 10 % infill. They only have to
+  hold their shape against the mix; the nut pockets have their own walls.
+- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings): 3 walls, 15 % infill. Print one,  check it over a 19 mm offcut of your board, then the rest.
+- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 3 walls, 40 % infill.
 - **Fits.** Slip fits are 0.15 mm a side, nut pockets 0.15 mm over the nut, pins 3.0 mm into a 1/8 in
   hole. If your printer runs tight, print a bracket and a former first and adjust the
   horizontal expansion (XY compensation) rather than the files.
@@ -38,10 +39,11 @@ How the moulds go together is in the mould guide.
 
 ## Foam cores instead of printed ones
 
-The pocket cores are about 2.0 kg of the PETG. The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;
-wrap them in packing tape and wax them. The corners are chamfered 8-10 mm (30 mm on the rear
-centre core). A foam core needs its own post to the bridge: glue a printed `core` post cut off
-a misprint, or a strip of plywood, into it. Sizes (outline x depth from the underside):
+The pocket cores are about 1.6 kg of the PETG. The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;
+wrap them in packing tape. The corners are chamfered 8-10 mm (30 mm on the rear centre core).
+Set `foam_cores=True` in `model/build_cnc.py` and re-run it: the cores drop out of `print/` and
+each gets just its printed post instead (about 8 g), which pushes 30 mm into a snug hole in the
+foam and bolts to the bridge like the printed core's. Sizes (outline x depth from the underside):
 
 | Casting | Core | Outline (mm) | Depth (mm) |
 |---|---|---|---|
@@ -51,26 +53,26 @@ a misprint, or a strip of plywood, into it. Sizes (outline x depth from the unde
 | base-front | trough-band-L | 101 x 55 | 40 |
 | base-front | draw-rod-L | 37 x 255 | 40 |
 | base-front | foot-a-L | 68 x 66 | 90 |
-| base-rear | foot-b-L | 68 x 99 | 90 |
-| base-rear | foot-c-L | 80 x 62 | 90 |
-| base-rear | knee-L | 50 x 184 | 40 |
-| base-rear | outer-a-L | 35 x 44 | 65 |
+| base-rear | foot-b-L | 68 x 100 | 90 |
+| base-rear | foot-c-L | 80 x 63 | 90 |
+| base-rear | knee-L | 50 x 183 | 40 |
+| base-rear | outer-a-L | 35 x 43 | 65 |
 | base-rear | outer-b-L | 35 x 60 | 65 |
 | base-rear | rear-L | 170 x 52 | 90 |
 | base-front | outboard-R | 130 x 164 | 90 |
 | base-front | trough-band-R | 101 x 55 | 40 |
 | base-front | draw-rod-R | 37 x 255 | 40 |
 | base-front | foot-a-R | 68 x 66 | 90 |
-| base-rear | foot-b-R | 68 x 99 | 90 |
-| base-rear | foot-c-R | 80 x 62 | 90 |
-| base-rear | knee-R | 50 x 184 | 40 |
-| base-rear | outer-a-R | 35 x 44 | 65 |
+| base-rear | foot-b-R | 68 x 100 | 90 |
+| base-rear | foot-c-R | 80 x 63 | 90 |
+| base-rear | knee-R | 50 x 183 | 40 |
+| base-rear | outer-a-R | 35 x 43 | 65 |
 | base-rear | outer-b-R | 35 x 60 | 65 |
 | base-rear | rear-R | 170 x 52 | 90 |
 
 ## Base mould kit (both halves)
 
-Folder `print/base-box/`, about 425 g.
+Folder `print/base-box/`, about 368 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
@@ -78,12 +80,12 @@ Folder `print/base-box/`, about 425 g.
 | `kit-floor-bracket.stl` | Mould kit (reused) | 10 | 24 x 32 x 25 |  |
 | `kit-partition-bracket.stl` | Mould kit (reused) | 2 | 44 x 44 x 23 |  |
 | `kit-saddle.stl` | Mould kit (reused) | 2 | 53 x 31 x 25 | The rear half needs six; four move over for the front half. |
-| `kit-leg-holder.stl` | Mould kit (reused) | 4 | 72 x 72 x 51 |  |
+| `kit-leg-holder.stl` | Mould kit (reused) | 4 | 72 x 72 x 40 |  |
 | `kit-leg-hanger.stl` | Mould kit (reused) | 4 | 43 x 43 x 145 | Drops over the leg end and rests on the holder: the leg hangs at its cast-in depth. |
 
 ## Base, rear half (cast first)
 
-Folder `print/base-rear/`, about 1651 g.
+Folder `print/base-rear/`, about 1310 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
@@ -102,18 +104,18 @@ Folder `print/base-rear/`, about 1651 g.
 | `former-split-gasket-groove-part4of4.stl` | Former (removable) | 1 | 145 x 14 x 8 |  |
 | `core-centre-part1of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 86 x 90 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-centre-part2of2.stl` | Pocket core (shell, stays in) | 1 | 100 x 104 x 141 |  |
-| `core-foot-b-L.stl` | Pocket core (shell, stays in) | 1 | 68 x 99 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
-| `core-foot-c-L.stl` | Pocket core (shell, stays in) | 1 | 80 x 62 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-foot-b-L.stl` | Pocket core (shell, stays in) | 1 | 68 x 100 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-foot-c-L.stl` | Pocket core (shell, stays in) | 1 | 80 x 63 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-knee-L-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 92 x 40 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-knee-L-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 92 x 91 |  |
-| `core-outer-a-L.stl` | Pocket core (shell, stays in) | 1 | 35 x 44 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-outer-a-L.stl` | Pocket core (shell, stays in) | 1 | 35 x 43 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-outer-b-L.stl` | Pocket core (shell, stays in) | 1 | 35 x 60 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-rear-L.stl` | Pocket core (shell, stays in) | 1 | 170 x 52 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
-| `core-foot-b-R.stl` | Pocket core (shell, stays in) | 1 | 68 x 99 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
-| `core-foot-c-R.stl` | Pocket core (shell, stays in) | 1 | 80 x 62 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-foot-b-R.stl` | Pocket core (shell, stays in) | 1 | 68 x 100 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-foot-c-R.stl` | Pocket core (shell, stays in) | 1 | 80 x 63 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-knee-R-part1of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 92 x 40 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-knee-R-part2of2.stl` | Pocket core (shell, stays in) | 1 | 50 x 92 x 91 |  |
-| `core-outer-a-R.stl` | Pocket core (shell, stays in) | 1 | 35 x 44 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
+| `core-outer-a-R.stl` | Pocket core (shell, stays in) | 1 | 35 x 43 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-outer-b-R.stl` | Pocket core (shell, stays in) | 1 | 35 x 60 x 116 | Shell core, stays in. Bolts to the bridge by its post. |
 | `core-rear-R.stl` | Pocket core (shell, stays in) | 1 | 170 x 52 x 141 | Shell core, stays in. Bolts to the bridge by its post. |
 | `plug-socket-plug.stl` | Plug (removable) | 4 | 41 x 41 x 15 | Fills the open end of a socket liner; bolts to the floor. |
@@ -121,11 +123,11 @@ Folder `print/base-rear/`, about 1651 g.
 | `cast-in-base-rear-tube-plug-l.stl` | Cast-in part (stays in) | 2 | 42 x 10 x 42 | Cast in, stays. |
 | `cast-in-base-rear-spigot-sleeve-l.stl` | Cast-in part (stays in) | 2 | 44 x 69 x 44 | Cast in, stays. |
 | `cast-in-leg-rear-l-plug.stl` | Cast-in part (stays in) | 2 | 30 x 30 x 10 | Cast in, stays. |
-| `cast-in-socket-liner-l1.stl` | Cast-in part (stays in) | 4 | 47 x 47 x 80 | Cast in, stays. |
+| `cast-in-socket-liner-l1.stl` | Cast-in part (stays in) | 4 | 45 x 45 x 80 | Cast in, stays. |
 
 ## Base, front half
 
-Folder `print/base-front/`, about 1353 g.
+Folder `print/base-front/`, about 1061 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
@@ -158,14 +160,14 @@ Folder `print/base-front/`, about 1353 g.
 
 ## Uprights (two moulds: print quantities are for both)
 
-Folder `print/upright/`, about 654 g.
+Folder `print/upright/`, about 508 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
 | `kit-back-bracket.stl` | Mould kit (reused) | 4 | 33 x 33 x 23 |  |
 | `kit-front-bracket.stl` | Mould kit (reused) | 8 | 50 x 50 x 22 | Two at the top of the front board and two at its foot (only the side-plate bolt there). |
 | `kit-floor-bracket.stl` | Mould kit (reused) | 10 | 32 x 24 x 25 |  |
-| `kit-saddle-flat.stl` | Mould kit (reused) | 4 | 41 x 121 x 25 | The bridge rests between the cheeks. |
+| `kit-saddle-flat.stl` | Mould kit (reused) | 4 | 31 x 25 x 25 | The bridge rests on them; its rods locate it. |
 | `filler-toe-filler.stl` | Filler (removable) | 2 | 80 x 60 x 48 | Rounds the nose into the slope; the front board stands on it. Bolts to the floor. |
 | `former-foot-gasket-groove-part1of4.stl` | Former (removable) | 2 | 68 x 139 x 8 | Pins into the floor. |
 | `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 139 x 8 |  |
@@ -180,7 +182,7 @@ Folder `print/upright/`, about 654 g.
 
 ## Beam
 
-Folder `print/beam/`, about 297 g.
+Folder `print/beam/`, about 255 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|

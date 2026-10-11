@@ -32,8 +32,8 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the cores,
   formers and fillers, the parts that get cast in (socket liners, spigot sleeves, tube plugs,
   drain liner) and the machine's printed parts. All of it is in `print/`, split to fit a Bambu
-  A1 mini, and listed in the print guide: about 100 prints and 4.6 kg of PETG (about 1.5 kg less
-  if you cut the pocket cores from foam). Print one bracket and one saddle first and check them
+  A1 mini, and listed in the print guide: about 100 prints and 3.7 kg of PETG (about 2.3 kg
+  if you cut the pocket cores from foam and print only their posts: `foam_cores` in the model). Print one bracket and one saddle first and check them
   on your board; print the liners and sleeves early and test-fit them on your actual tube.
 
 ## 1. Buy and prepare the steel

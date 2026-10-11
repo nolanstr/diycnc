@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,088.14 |
+| 1 | Castings and hardware | $1,072.15 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,10 +27,10 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,575.39** |
+| **1. Frame** | **$1,559.40** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.91-3.31k** |
+| **Total** | **about $2.89-3.29k** |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -77,9 +77,9 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Support screws | M6 x 40 (6, Y BK/BF); M6 x 35 (6, X) + 12 DIN 433 small washers | 1 (100) + 3 (2-pack) | [Zoro M6x40 100-pack; Home Depot M6x35 2-packs](https://www.zoro.com/i/G2650606/) | $10.15 + 3x $3.75 | $21.40 | Two small washers under each X screw head so it stops short of the beam tube (washers from the hardware store) |
 | Rail screws | M4 x 16 | 1 (100) | [iexcell M4x16 12.9](https://www.amazon.com/dp/B08B1T9VM3) | $8.26 | $8.26 |  |
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
-| PETG filament | ~4.6 kg: mould kit, cores, formers, liners and machine parts (print guide) | 5 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $79.95 | About 1.5 kg less (one or two rolls) if the pocket cores are cut from XPS foam instead |
+| PETG filament | ~3.7 kg: mould kit, cores, formers, liners and machine parts (print guide) | 4 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $63.96 | About 2.3 kg (3 rolls) with foam pocket cores instead (foam_cores in the model; one 2 in XPS board) |
 
-**Priced subtotal: $1,088.14**
+**Priced subtotal: $1,072.15**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

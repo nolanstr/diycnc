@@ -15,7 +15,7 @@ Gap between uprights:         370 mm
 Epoxy granite volume:         49.2 L
 Casting mass:                 125 kg (276 lb)
   Base front:                  13.0 L   30.5 kg
-  Base rear:                   16.0 L   37.6 kg
+  Base rear:                   16.0 L   37.7 kg
   Upright L:                    5.5 L   15.3 kg  (alumina grit)
   Upright R:                    5.5 L   15.3 kg  (alumina grit)
   Beam:                         9.3 L   26.3 kg  (alumina grit)
