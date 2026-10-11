@@ -26,7 +26,7 @@ Part 1 - Frame: castings and hardware,Low-head screws,"DIN 7984 M5 x 20 (8, X ri
 Part 1 - Frame: castings and hardware,Support screws,"M6 x 40 (6, Y BK/BF); M6 x 35 (6, X) + 12 DIN 433 small washers",1 (100) + 3 (2-pack),Zoro M6x40 100-pack; Home Depot M6x35 2-packs,https://www.zoro.com/i/G2650606/,$10.15 + 3x $3.75,21.40,Two small washers under each X screw head so it stops short of the beam tube (washers from the hardware store),search snippets
 Part 1 - Frame: castings and hardware,Rail screws,M4 x 16,1 (100),iexcell M4x16 12.9,https://www.amazon.com/dp/B08B1T9VM3,$8.26,8.26,,product page
 Part 1 - Frame: castings and hardware,Block screws,M4 x 20,1 (50),iexcell M4x20 12.9,https://www.amazon.com/dp/B08B1T7K14,$7.86,7.86,Check length against the plate thickness,product page
-Part 1 - Frame: castings and hardware,PETG filament,"~4.6 kg: mould kit, cores, formers, liners and machine parts (print guide)",5 (1 kg),SUNLU PETG 1 kg,https://www.amazon.com/dp/B0FS1FJLCW,$15.99,79.95,About 1.5 kg less (one or two rolls) if the pocket cores are cut from XPS foam instead,product page
+Part 1 - Frame: castings and hardware,PETG filament,"~3.7 kg: mould kit, cores, formers, liners and machine parts (print guide)",4 (1 kg),SUNLU PETG 1 kg,https://www.amazon.com/dp/B0FS1FJLCW,$15.99,63.96,About 2.3 kg (3 rolls) with foam pocket cores instead (foam_cores in the model; one 2 in XPS board),product page
 "Part 1 - Frame: rails, screws and mechanics",Y rails + blocks,HGR15 x2 at 600 mm + 4x HGH15CA,1 kit,"iMetrx HGR15 kit, 2x 600 mm + 4x HGH15CA",https://www.amazon.com/dp/B0GJZ7D9NG,$55.99,55.99,"Used at full length, no cutting. The listing calls the blocks ""aluminum"", which is probably wrong: check them for play. JLCMC alt: 2x E-BHH15C-2-L600-ZA-C-E30 $27.40 + 55 % US duty prepaid + shipping.",product page
 "Part 1 - Frame: rails, screws and mechanics",Z rails + blocks,HGR15 x2 at 300 mm + 4x HGH15CA,1 kit,BEVDICNC 2x HGR15-300 + 4x HGH15CA,https://www.amazon.com/dp/B0BYYJKBB5,$35.69,35.69,Alt: CNCMANS B09N73DY32 $34.98,product page
 "Part 1 - Frame: rails, screws and mechanics",Y ballscrew kit,"SFU1605-550, BK12/BF12, DSG16H",1,Ballscrew kit DSG16H + SFU1605-550 + BK/BF12,https://www.amazon.com/dp/B088ZF8R91,$39.39,39.39,Ships with a 6.35x10 coupler: use the 8x10 below,product page
@@ -88,11 +88,11 @@ Part 3 - Enclosure and flood coolant,Loc-Line nozzles,1/4 in kit,2,Loc-Line LP-4
 Part 3 - Enclosure and flood coolant,Push-to-connect fittings,8 mm x 1/4 NPT,1 (10),Qjaiune push fittings,https://www.amazon.com/dp/B098QMJHWP,$7.49,7.49,"One at the pump outlet, so the return line unplugs and the sump slides out",product page
 Part 3 - Enclosure and flood coolant,Coolant concentrate,"Semi-synthetic, 1 gal",1,Fusion Cool 2240,https://www.amazon.com/dp/B09LSL9JS7,$52.95,52.95,Mix 5-10 %,product page
 
-Subtotal,Part 1 - Frame: castings and hardware,,,,,,1088.14,0 unpriced,
+Subtotal,Part 1 - Frame: castings and hardware,,,,,,1072.15,0 unpriced,
 Subtotal,"Part 1 - Frame: rails, screws and mechanics",,,,,,290.38,0 unpriced,
 Subtotal,Part 1 - Frame: chip protection,,,,,,196.87,0 unpriced,
 Subtotal,Part 2 - Electronics: motors and drivers,,,,,,232.12,0 unpriced,
 Subtotal,Part 2 - Electronics: controller and wiring,,,,,,198.59,0 unpriced,
 Subtotal,Part 2 - Electronics: spindle (pick one),,,,,,0.00,0 unpriced,
 Subtotal,Part 3 - Enclosure and flood coolant,,,,,,436.05,2 unpriced,
-Total,priced items,,,,,,1575.39,0 unpriced,
+Total,priced items,,,,,,1559.40,0 unpriced,

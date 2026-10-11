@@ -29,7 +29,7 @@ import Part
 from FreeCAD import Rotation, Vector
 
 BED = 170.0       # Bambu A1 mini: 180 mm cube, less a margin
-WALL = 1.6        # core shell wall: four 0.4 mm lines (the sand inside holds the shape)
+WALL = 1.2        # core shell wall: three 0.4 mm lines (the sand inside holds the shape)
 BULKHEAD = 2.4    # core walls either side of a cut, bolted together
 PETG = 1.27       # g/cm^3
 FIT = 0.15        # slip fit, a side
@@ -414,15 +414,22 @@ def core(poly_xy, z_top, posts=(), lim=BED):
             hole = Part.makeCylinder(HW['M3']['hole'] / 2, 2 * BULKHEAD + 2.0, q - a * (BULKHEAD + 1.0), a)
             out[k] = out[k].cut(hole)
             out[k + 1] = out[k + 1].cut(hole)
-    for x, y, f, z_bolt, z_end in posts:
-        f = unit(Vector(f[0], f[1], 0))
-        post = Part.makeBox(POST, POST, z_top - WALL + 0.5 - z_end, Vector(x - POST / 2, y - POST / 2, z_end))
-        k = next(i for i in range(len(out)) if edges[i] <= (x, y)[ax] <= edges[i + 1])
-        q = Vector(x, y, z_bolt) + f * (POST / 2)
-        post = post.cut(nut_trap(q, f, Vector(0, 0, -1), 'M4', mode='side', run=40.0))
+    for spec in posts:
+        post, fx = core_post(*spec, z_top - WALL + 0.5)
+        k = next(i for i in range(len(out)) if edges[i] <= (spec[0], spec[1])[ax] <= edges[i + 1])
         out[k] = out[k].fuse(post).removeSplitter()
-        fixes.append(Fix('bolt', q, f, DRILL['M4'], 'core post', 'M4', nut_bolt('M4')[0]))
+        fixes += fx
     return out, fixes
+
+
+def core_post(x, y, f, z_bolt, z_end, z_foot):
+    """A core's post, from z_foot (inside the core) up past the rim to z_end, with the captive nut
+    for the bridge bolt. On its own it is the post for a foam core."""
+    f = unit(Vector(f[0], f[1], 0))
+    post = Part.makeBox(POST, POST, z_foot - z_end, Vector(x - POST / 2, y - POST / 2, z_end))
+    q = Vector(x, y, z_bolt) + f * (POST / 2)
+    post = post.cut(nut_trap(q, f, Vector(0, 0, -1), 'M4', mode='side', run=40.0))
+    return post, [Fix('bolt', q, f, DRILL['M4'], 'core post', 'M4', nut_bolt('M4')[0])]
 
 
 def _slab(ax, a, b, big=2000.0):
@@ -462,12 +469,17 @@ def _axis_angle(a, b):
     return r.Axis, math.degrees(r.Angle)
 
 
+# print settings by kind: (walls, mm deep all round; infill). The print guide gives the same.
+SETTINGS = {'former': (0.8, 0.10), 'filler': (0.8, 0.10), 'plug': (0.8, 0.10), 'core': (0.8, 0.10),
+            'kit': (1.2, 0.15), 'part': (1.2, 0.15), 'liner': (1.2, 0.40), 'cast-in': (1.2, 0.40)}
+
+
 def grams(shape, kind):
-    """Rough filament use: walls about 1.2 mm deep all round, and infill inside them (15 %, or
-    40 % for liners and cast-in parts). Thin shells come out solid."""
+    """Rough filament use: the walls (solid) and the infill inside them. Thin shells come out solid."""
+    wall, fill = SETTINGS[kind]
     v = shape.Volume / 1000.0
-    walls = min(v, shape.Area / 100.0 * 0.12)
-    return (walls + (0.4 if kind in ('liner', 'cast-in') else 0.15) * (v - walls)) * PETG
+    walls = min(v, shape.Area / 100.0 * wall / 10.0)
+    return (walls + fill * (v - walls)) * PETG
 
 
 def export(rows, root):

@@ -220,9 +220,9 @@ their drawing.
 | 1 | 39 | 55 | 4.5 | corner-L |
 | 2 | 599 | 55 | 4.5 | corner-R |
 | 3 | 33 | 124 | 4.5 | corner bracket |
-| 4 | 54 | 124 | 4.5 | leg holder |
-| 5 | 584 | 124 | 4.5 | leg holder |
-| 6 | 605 | 124 | 4.5 | corner bracket |
+| 4 | 605 | 124 | 4.5 | corner bracket |
+| 5 | 54 | 129 | 4.5 | leg holder |
+| 6 | 584 | 129 | 4.5 | leg holder |
 
 ### Base rear wall
 
@@ -233,9 +233,9 @@ their drawing.
 | 1 | 26 | 56 | 4.5 | corner-R |
 | 2 | 612 | 56 | 4.5 | corner-L |
 | 3 | 33 | 124 | 4.5 | corner bracket |
-| 4 | 54 | 124 | 4.5 | leg holder |
-| 5 | 584 | 124 | 4.5 | leg holder |
-| 6 | 605 | 124 | 4.5 | corner bracket |
+| 4 | 605 | 124 | 4.5 | corner bracket |
+| 5 | 54 | 129 | 4.5 | leg holder |
+| 6 | 584 | 129 | 4.5 | leg holder |
 
 ### Base side wall, left
 
@@ -246,15 +246,15 @@ their drawing.
 | 1 | 7 | 35 | 4.5 | corner-L |
 | 2 | 707 | 54 | 4.5 | corner-L |
 | 3 | 14 | 124 | 4.5 | corner bracket |
-| 4 | 35 | 124 | 4.5 | leg holder |
-| 5 | 100 | 123 | 4.5 | saddle |
-| 6 | 210 | 123 | 4.5 | saddle |
-| 7 | 280 | 123 | 4.5 | saddle |
-| 8 | 419 | 124 | 4.5 | corner bracket |
-| 9 | 438 | 123 | 4.5 | saddle |
-| 10 | 570 | 123 | 4.5 | saddle |
-| 11 | 690 | 124 | 4.5 | leg holder |
-| 12 | 711 | 124 | 4.5 | corner bracket |
+| 4 | 100 | 123 | 4.5 | saddle |
+| 5 | 210 | 123 | 4.5 | saddle |
+| 6 | 280 | 123 | 4.5 | saddle |
+| 7 | 419 | 124 | 4.5 | corner bracket |
+| 8 | 438 | 123 | 4.5 | saddle |
+| 9 | 570 | 123 | 4.5 | saddle |
+| 10 | 711 | 124 | 4.5 | corner bracket |
+| 11 | 35 | 129 | 4.5 | leg holder |
+| 12 | 690 | 129 | 4.5 | leg holder |
 
 ### Base side wall, right
 
@@ -265,15 +265,15 @@ their drawing.
 | 1 | 718 | 35 | 4.5 | corner-R |
 | 2 | 18 | 56 | 4.5 | corner-R |
 | 3 | 14 | 124 | 4.5 | corner bracket |
-| 4 | 35 | 124 | 4.5 | leg holder |
-| 5 | 155 | 123 | 4.5 | saddle |
-| 6 | 287 | 123 | 4.5 | saddle |
-| 7 | 306 | 124 | 4.5 | corner bracket |
-| 8 | 445 | 123 | 4.5 | saddle |
-| 9 | 515 | 123 | 4.5 | saddle |
-| 10 | 625 | 123 | 4.5 | saddle |
-| 11 | 690 | 124 | 4.5 | leg holder |
-| 12 | 711 | 124 | 4.5 | corner bracket |
+| 4 | 155 | 123 | 4.5 | saddle |
+| 5 | 287 | 123 | 4.5 | saddle |
+| 6 | 306 | 124 | 4.5 | corner bracket |
+| 7 | 445 | 123 | 4.5 | saddle |
+| 8 | 515 | 123 | 4.5 | saddle |
+| 9 | 625 | 123 | 4.5 | saddle |
+| 10 | 711 | 124 | 4.5 | corner bracket |
+| 11 | 35 | 129 | 4.5 | leg holder |
+| 12 | 690 | 129 | 4.5 | leg holder |
 
 ### Base partition
 

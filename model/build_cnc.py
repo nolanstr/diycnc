@@ -109,7 +109,7 @@ P = dict(
     # (1-1/2 in spigot in the 2 in tube); (outer size, wall). The sockets are 1.5 mm a side
     # oversize: the posts are grouted in with epoxy at assembly (waxed, so they still lift out), which
     # takes up whatever the two moulds differ by.
-    socket_liner=(47.1, 3.0), socket_depth=80.0, spigot_sleeve=70.0,
+    socket_liner=(45.1, 2.0), socket_depth=80.0, spigot_sleeve=70.0,
     # Legs: 6 in pieces of the 1-1/2 in tube cast into the base corners, with threaded inserts
     # for the leveling feet. The coolant sump slides in underneath, between them.
     leg_len=152.4, leg_embed=35.0, leg_inset=35.0,
@@ -144,6 +144,7 @@ P = dict(
     # Moulds: melamine board (measure yours: the printed saddles and brackets are drawn for it), every
     # wall this much taller than its casting, so all the bolts go through above the pour line.
     mould_board=19.05, mould_freeboard=25.0,    # Home Depot 3/4 in white melamine is a true 0.750 in
+    foam_cores=False,    # True: the base pocket cores are XPS foam blocks, and only their posts are printed
 
     eg_density=2.35,     # kg/L, epoxy granite
     # The beam and uprights use aluminium oxide grit instead of sand, same volume: brown #16 for the
@@ -1027,17 +1028,23 @@ def mould_base(kit, m, g):
                 continue
             for side in (-1, 1):
                 py = yb + side * (T / 2 + moulds.POST / 2)
-                if min(ycs) + 10.0 <= py <= max(ycs) - 10.0:
+                if min(ycs) + moulds.POST / 2 + 2.0 <= py <= max(ycs) - moulds.POST / 2 - 2.0:   # post inside the wall
                     post = (cx, py, (0, -side), bz - 12.0, bz - 20.0)
                     break
             if post:
                 break
-        shells, fx = moulds.core(poly, z_top, [post] if post else [])
-        for what, n in (('M3 x 10 bolt', 2), ('M3 nut', 2), ('M3 washer', 4)):
-            kit.count(what, n * (len(shells) - 1))
         if not post:
             print(f'mould kit: no bridge over core {name}')
-        kit.add(folder, name, 'core', shells, 1, 'Shell core, stays in. Bolts to the bridge by its post.', show=[folder])
+        if P['foam_cores']:
+            # foam block cut to the pocket; only its post is printed, pushed 30 mm into the foam
+            p, fx = moulds.core_post(*post, min(30.0, z_top - 10.0))
+            kit.add(folder, f'{name}-post', 'core', p, 1, 'Post for a foam core: push it 30 mm into a snug hole in '
+                    'the foam and glue it.', show=[folder])
+        else:
+            shells, fx = moulds.core(poly, z_top, [post] if post else [])
+            for what, n in (('M3 x 10 bolt', 2), ('M3 nut', 2), ('M3 washer', 4)):
+                kit.count(what, n * (len(shells) - 1))
+            kit.add(folder, name, 'core', shells, 1, 'Shell core, stays in. Bolts to the bridge by its post.', show=[folder])
         kit.fix(fx, M)
 
     # sockets (rear): a plug in each liner's open end, bolted to the floor
@@ -1093,7 +1100,7 @@ def leg_holder(c, sx, sy, half, yw, fb, x_in):
     c: the leg's centre at the pour line."""
     T = P['mould_board']
     xw = sx * half
-    z0, z1 = -fb, -2.0
+    z0, z1 = -fb, -fb + 12.0                    # a 12 mm plate at the top of the freeboard band
     xa, xb = sorted((xw, sx * x_in))
     ya, yb = sorted((yw, yw - sy * 72.0))
     s = parts.box(xa, xb, ya, yb, z0, z1)
@@ -1174,10 +1181,10 @@ def mould_upright(kit, g):
                  mould=M, show=show, per=2, merge=True, mult=mult, up=Z)
     sad = []
     for xs, n in ((x0, -X), (x1, X)):
-        s, wf, _ = mouldbox.saddle(Vector(xs, (by0 + by1_) / 2, zt), n, Z, Y, width=by1_ - by0)
+        s, wf, _ = mouldbox.saddle(Vector(xs, (by0 + by1_) / 2, zt), n, Z, Y, width=24.0, cheeks=False)
         sad.append((s, wf))
     kit.add_many(folder, 'saddle-flat', 'kit', sad, mould=M, show=show, per=2, mult=mult, up=X,
-                 note='The bridge rests between the cheeks.')
+                 note='The bridge rests on them; its rods locate it.')
 
     # toe filler: under the front board's foot, rounding the nose into the slope
     env = upright_envelope(g, sx, edges=False)
@@ -2220,11 +2227,13 @@ def export_prints(m):
              '## Settings', '',
              '- **PETG for everything.** Thick sections of curing epoxy get warm, and PLA softens at about 55 °C.',
              '- 0.4 mm nozzle, 0.2 mm layers. Every file is already turned the way it prints best, without supports.',
-             f'- **Cores** (`core-*`): thin shells, {moulds.WALL:.1f} mm walls, so they print solid with any infill setting.',
-             '- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 3 walls, 15 % infill.',
-             '- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings): 4 walls, 25 % infill. Print one,',
+             f'- **Cores** (`core-*`): thin shells, {moulds.WALL:.1f} mm walls (three lines), so they print solid; the',
+             '  posts get 2 walls and 10 % infill. The sand inside holds the walls while casting.',
+             '- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 2 walls, 10 % infill. They only have to',
+             '  hold their shape against the mix; the nut pockets have their own walls.',
+             '- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings): 3 walls, 15 % infill. Print one,'
              f'  check it over a {P["mould_board"]:.0f} mm offcut of your board, then the rest.',
-             '- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 4 walls, 40 % infill.',
+             '- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 3 walls, 40 % infill.',
              '- **Fits.** Slip fits are 0.15 mm a side, nut pockets 0.15 mm over the nut, pins 3.0 mm into a 1/8 in',
              '  hole. If your printer runs tight, print a bracket and a former first and adjust the',
              '  horizontal expansion (XY compensation) rather than the files.', '',
@@ -2244,16 +2253,16 @@ def export_prints(m):
              '## Foam cores instead of printed ones', '',
              f"The pocket cores are about {sum(r['grams'] for r in rows if r['kind'] == 'core') / 1000:.1f} kg of the PETG. "
              'The rectangular ones are quick to cut from XPS foam board on a table saw or with a hot wire;',
-             'wrap them in packing tape and wax them. The corners are chamfered 8-10 mm (30 mm on the rear',
-             'centre core). A foam core needs its own post to the bridge: glue a printed `core` post cut off',
-             'a misprint, or a strip of plywood, into it. Sizes (outline x depth from the underside):', '',
+             'wrap them in packing tape. The corners are chamfered 8-10 mm (30 mm on the rear centre core).',
+             'Set `foam_cores=True` in `model/build_cnc.py` and re-run it: the cores drop out of `print/` and',
+             'each gets just its printed post instead (about 8 g), which pushes 30 mm into a snug hole in the',
+             'foam and bolts to the bridge like the printed core\'s. Sizes (outline x depth from the underside):', '',
              '| Casting | Core | Outline (mm) | Depth (mm) |', '|---|---|---|---|']
-    for r in m.moulds:
-        if r['kind'] == 'core':
-            bb = App.BoundBox()
-            for p in r['shape']:
-                bb.add(p.BoundBox)
-            lines.append(f"| {r['folder']} | {r['name']} | {bb.XLength:.0f} x {bb.YLength:.0f} | {max(bb.ZMax, 0):.0f} |")
+    g = frame_layout(m.dims)
+    for poly, z_top, name in base_pockets(g):
+        xs, ys = [x for x, _ in poly], [y for _, y in poly]
+        half = 'base-front' if sum(ys) / len(ys) < g['split'] else 'base-rear'
+        lines.append(f"| {half} | {name} | {max(xs) - min(xs):.0f} x {max(ys) - min(ys):.0f} | {z_top:.0f} |")
     lines.append('')
     for key, title in FOLDER_TITLES:
         sub = [r for r in rows if r['folder'] == key]
