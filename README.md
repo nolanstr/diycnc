@@ -9,14 +9,16 @@ Everything is modeled in FreeCAD from one Python script.
 
 ## Documents
 
-| PDF | What's in it |
+The documents are in `docs/`, one folder per stage of the build, in the order you use them (index:
+[docs/README.md](docs/README.md)).
+
+| Folder | What's in it |
 |---|---|
-| [Build guide](docs/build-guide.pdf) | Step by step, with pictures: steel prep, molds, casting, frame, risers, axes, electronics, enclosure, commissioning |
-| [Mold guide](docs/mold-guide.pdf) | The bolt-together molds: cut list, hardware, a hole map for every board, assembly steps |
-| [Print guide](docs/print-guide.pdf) | Every 3D-printed part (mold kit, cores, formers, fillers, liners), cut to fit a Bambu A1 mini |
-| [Sourcing list](docs/sourcing.pdf) | Parts to buy, with listings and prices (also as [CSV](docs/sourcing.csv)) |
-| [Design notes](docs/design-notes.pdf) | How the frame, coolant and joints work, the stiffness study and the cost |
-| [Report](docs/report.txt) | Dimensions, casting volumes and masses, BOM, enclosure cut list, collision check |
+| [1-sourcing](docs/1-sourcing) | [Sourcing list](docs/1-sourcing/sourcing.pdf): parts to buy, with listings and prices (also as [CSV](docs/1-sourcing/sourcing.csv)) |
+| [2-printing](docs/2-printing) | [Print guide](docs/2-printing/print-guide.pdf): every 3D-printed part, settings and sliced filament use |
+| [3-molds](docs/3-molds) | [All the molds](docs/3-molds/molds-complete.pdf), or one guide per mold: [base](docs/3-molds/base-mold.pdf), [uprights](docs/3-molds/upright-molds.pdf), [beam](docs/3-molds/beam-mold.pdf) |
+| [4-build](docs/4-build) | [Build guide](docs/4-build/build-guide.pdf), and the same in five stages for the bench (steel, casting, frame, axes and electronics, enclosure) |
+| [5-design](docs/5-design) | [Design notes](docs/5-design/design-notes.pdf) (the frame, joints, stiffness study, cost) and the [report](docs/5-design/report.txt) (dimensions, masses, BOM, collision check) |
 
 The Markdown sources are in `docs/src/`.
 
@@ -35,7 +37,7 @@ The Markdown sources are in `docs/src/`.
 FreeCAD 1.1 is the only requirement for the model.
 
 ```sh
-# collision check, docs/report.txt and the print/ STLs
+# collision check, docs/5-design/report.txt, the print/ STLs and the Markdown in docs/src/
 /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd model/build_cnc.py
 
 # everything above plus DIYCNC.FCStd, DIYCNC.step and renders/ (opens and closes a FreeCAD window)

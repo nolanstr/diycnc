@@ -1,4 +1,4 @@
-"""Writes docs/src/sourcing.md and docs/sourcing.csv from the sourcing results (checked 2026-10-09).
+"""Writes docs/src/sourcing.md and docs/1-sourcing/sourcing.csv from the sourcing results (checked 2026-10-09).
 
     python3 docs/src/make_sourcing.py
 """
@@ -226,12 +226,12 @@ def money(v):
 def main():
     rows, md = [], []
     md += ['# Sourcing list', '',
-           'Parts to buy for the machine in `model/DIYCNC.FCStd` / `docs/report.txt`, sourced on Amazon (US) where it',
+           'Parts to buy for the machine in `model/DIYCNC.FCStd` / `docs/5-design/report.txt`, sourced on Amazon (US) where it',
            'makes sense. Prices and stock were checked on **2026-10-09/10**. "?" means the price was not visible',
            '(Amazon blocks automated page reads); check the live listing. Shipping and tax are not included.',
            'Off-Amazon picks are marked "not Amazon": they are there because Amazon doesn\'t carry the part or',
            'is much dearer. Rows marked (opt) or (choice) are left out of the totals.', '',
-           'The same list is in `docs/sourcing.csv` for a spreadsheet.', '']
+           'The same list is in `docs/1-sourcing/sourcing.csv` for a spreadsheet.', '']
     summary = []
     for sec, items in SECTIONS:
         priced = sum(i[6] for i in items if i[6] is not None and not i[0].startswith('('))
@@ -278,7 +278,7 @@ def main():
              'delivered (90 % duty prepaid on machined aluminum): only worth it for the X carriage if you',
              'want its hole pattern exact. Retail cut-to-size shops (e.g. Metal Supermarkets, about $820 for',
              'the tube, risers and aluminum) also cost more than the sources here.', '']
-    i = md.index('The same list is in `docs/sourcing.csv` for a spreadsheet.') + 2
+    i = md.index('The same list is in `docs/1-sourcing/sourcing.csv` for a spreadsheet.') + 2
     md[i:i] = head
 
     md += ['## Already owned', ''] + [f'- {o}' for o in OWNED] + ['',
@@ -304,7 +304,7 @@ def main():
            '']
     with open(os.path.join(SRC, 'sourcing.md'), 'w') as fh:
         fh.write('\n'.join(md))
-    with open(os.path.join(DOCS, 'sourcing.csv'), 'w', newline='') as fh:
+    with open(os.path.join(DOCS, '1-sourcing', 'sourcing.csv'), 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['Section', 'Item', 'Spec', 'Qty', 'Listing', 'URL', 'Unit price', 'Line total (USD)', 'Notes', 'Price source (2026-10-09)'])
         w.writerows(rows)

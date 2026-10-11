@@ -201,6 +201,7 @@ class Kit:
         self.boards = []
         self.rows = []           # printed pieces (dicts, see molds.export)
         self.hardware = {}       # description -> count
+        self.by_mold = {}        # mold -> {description: count}
         self.loose = []          # Fixes that land on no board (reported)
 
     def board(self, b):
@@ -219,12 +220,15 @@ class Kit:
                 if not any(abs(u - h[0]) < 0.5 and abs(v - h[1]) < 0.5 for h in b.holes):
                     b.holes.append((u, v, f.d, f.what))
             if f.kind == 'bolt':
-                self.count(f'{f.size} x {f.length} bolt', f.qty * mult)
-                self.count(f'{f.size} nut', f.qty * mult)
-                self.count(f'{f.size} washer', f.qty * mult)
+                self.count(f'{f.size} x {f.length} bolt', f.qty * mult, mold)
+                self.count(f'{f.size} nut', f.qty * mult, mold)
+                self.count(f'{f.size} washer', f.qty * mult, mold)
 
-    def count(self, what, n):
+    def count(self, what, n, mold=None):
         self.hardware[what] = self.hardware.get(what, 0) + n
+        if mold:
+            d = self.by_mold.setdefault(mold, {})
+            d[what] = d.get(what, 0) + n
 
     def add(self, folder, name, kind, shape, qty=1, note='', up=None, placed=None, show=None):
         """A printed piece: shape (or [parts]) to print; placed = [world shapes] shown in the `show` groups."""

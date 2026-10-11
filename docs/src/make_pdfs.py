@@ -1,4 +1,5 @@
-"""Builds the PDFs in docs/ from the Markdown in docs/src/ (Markdown -> HTML -> headless Chrome).
+"""Builds the PDFs in docs/<section>/ from the Markdown in docs/src/ (Markdown -> HTML -> headless Chrome).
+The build guide is also split into one PDF per stage, for the bench.
 
     python3 docs/src/make_pdfs.py
 
@@ -19,13 +20,24 @@ DOCS = os.path.dirname(SRC)
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 LIST = re.compile(r'^(- |\d+\. )')
 
-# source, output, page orientation
+# source, output (under docs/), page orientation
 DOCUMENTS = [
-    ('build-guide.md', 'build-guide.pdf', 'portrait'),
-    ('mold-guide.md', 'mold-guide.pdf', 'portrait'),
-    ('print-guide.md', 'print-guide.pdf', 'portrait'),
-    ('sourcing.md', 'sourcing.pdf', 'landscape'),
-    ('design-notes.md', 'design-notes.pdf', 'portrait'),
+    ('sourcing.md', '1-sourcing/sourcing.pdf', 'landscape'),
+    ('print-guide.md', '2-printing/print-guide.pdf', 'portrait'),
+    ('molds-complete.md', '3-molds/molds-complete.pdf', 'portrait'),
+    ('base-mold.md', '3-molds/base-mold.pdf', 'portrait'),
+    ('upright-molds.md', '3-molds/upright-molds.pdf', 'portrait'),
+    ('beam-mold.md', '3-molds/beam-mold.pdf', 'portrait'),
+    ('build-guide.md', '4-build/build-guide.pdf', 'portrait'),
+    ('design-notes.md', '5-design/design-notes.pdf', 'portrait'),
+]
+# the build guide's stages: output, title, its numbered sections
+BUILD_STAGES = [
+    ('4-build/1-steel.pdf', 'Build guide 1: tools and steel', (0, 1)),
+    ('4-build/2-casting.pdf', 'Build guide 2: molds and casting', (2, 3)),
+    ('4-build/3-frame.pdf', 'Build guide 3: frame and rail risers', (4, 5)),
+    ('4-build/4-axes-electronics.pdf', 'Build guide 4: axes, electronics and spindle', (6, 7)),
+    ('4-build/5-enclosure-commissioning.pdf', 'Build guide 5: enclosure, coolant and commissioning', (8, 9)),
 ]
 
 CSS = """
@@ -55,9 +67,18 @@ strong { color: var(--head); }
 """
 
 
-def build(src, out, orient):
-    with open(os.path.join(SRC, src)) as fh:
-        text = fh.read()
+def stage(src, title, numbers):
+    """The sections of a guide with these numbers (## N. ...), under a new title."""
+    text = open(os.path.join(SRC, src)).read()
+    parts = re.split(r'(?m)^(?=## )', text)
+    keep = [p for p in parts[1:] if re.match(r'## (\d+)\.', p) and int(re.match(r'## (\d+)\.', p).group(1)) in numbers]
+    return f'# {title}\n\n' + ''.join(keep)
+
+
+def build(src, out, orient, text=None):
+    if text is None:
+        with open(os.path.join(SRC, src)) as fh:
+            text = fh.read()
     title = text.splitlines()[0].lstrip('# ').strip()
     # Python-Markdown nests lists only at 4-space indents, and needs a blank line before a list
     lines, prev = [], ''
@@ -78,6 +99,7 @@ def build(src, out, orient):
         fh.write(html)
         tmp = fh.name
     pdf = os.path.join(DOCS, out)
+    os.makedirs(os.path.dirname(pdf), exist_ok=True)
     subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-pdf-header-footer',
                     '--allow-file-access-from-files', f'--print-to-pdf={pdf}', f'file://{tmp}'],
                    check=True, capture_output=True)
@@ -90,6 +112,8 @@ def main():
         sys.exit('Google Chrome not found at ' + CHROME)
     for src, out, orient in DOCUMENTS:
         build(src, out, orient)
+    for out, title, numbers in BUILD_STAGES:
+        build('build-guide.md', out, 'portrait', stage('build-guide.md', title, numbers))
 
 
 if __name__ == '__main__':
