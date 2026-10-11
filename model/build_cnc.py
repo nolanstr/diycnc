@@ -125,7 +125,8 @@ P = dict(
     motor_cutout=72.0,
 
     eg_density=2.35,     # kg/L, epoxy granite
-    eg_epoxy_frac=0.10,  # epoxy mass fraction, with well-graded aggregate + whiting (calcium carbonate) fines
+    eg_epoxy_frac=0.085,  # epoxy mass fraction, with well-graded aggregate + whiting (calcium carbonate) fines;
+                          # check it with the jar test and test bars (build guide)
 )
 
 # rgb, shininess (0..1), transparency (0..100)
@@ -1348,7 +1349,7 @@ def report(m, hits):
         f"Casting mass:                 {mass:.0f} kg ({mass * 2.2046:.0f} lb)",
     ] + [f"  {k + ':':12s}                {v:5.1f} L  {v * P['eg_density']:5.1f} kg" for k, v in d['casting_vols'].items()] + [
         f"Cast-in steel + joint hardware: {d['steel_kg']:.1f} kg",
-        f"Epoxy needed (~{P['eg_epoxy_frac'] * 100:.0f}% by mass): {mass * P['eg_epoxy_frac']:.1f} kg",
+        f"Epoxy needed (~{P['eg_epoxy_frac'] * 100:.1f}% by mass): {mass * P['eg_epoxy_frac']:.1f} kg",
         '',
         'Linear motion / plate BOM',
         '-------------------------',

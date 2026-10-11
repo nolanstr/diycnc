@@ -26,7 +26,7 @@ tapping the risers, top plates and support pads. Use plain steel, not galvanized
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 10.3 kg of epoxy (10 % of 103 kg of casting):
+**Keeping the epoxy down.** About 10.5 kg of epoxy (8.5 % of 124 kg of casting):
 - The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
@@ -41,7 +41,8 @@ part of each leg that hangs below the base.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. Whiting is
   used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
-  about 9 % epoxy, which saves roughly another 1 kg.
+  8.5 % epoxy, which fits a single 3 gal kit (10 % needs a second, small kit); the build guide's
+  jar test and test bars check it before anything is cast.
 
 **What the rails and supports bolt to.** Nothing bolts to the cast-in tubes; they stiffen
 the castings and form the joints. The rails screw into steel risers, and the risers are bedded
@@ -126,11 +127,69 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   with closed box sections (lost foam cores) is only about 8 % stiffer than open pockets
   at the same volume, which isn't worth the trouble.
 
+**Material and the 8.5 % mix.** The model uses E = 30 GPa for the epoxy granite. Published
+values for well-graded 7-10 % mixes are 25-45 GPa (one commercial mineral casting lists
+25 GPa); the university studies use 15-30 % resin with powder fillers and aren't comparable.
+Granite is about 70 GPa and the epoxy about 3 GPa, so a lower epoxy fraction is as stiff or
+stiffer as long as every stone is wetted and there are no voids; what it gives up is a little
+damping (the resin does the damping) and some margin against dry spots. The frame's stiffness
+scales almost directly with E:
+
+| E of the epoxy granite | X | Y | Z |
+|---|---|---|---|
+| 20 GPa | 57.5 | 78.6 | 70.6 |
+| 25 GPa | 67.7 | 93.3 | 82.0 |
+| **30 GPa (assumed)** | **77.5** | **107.5** | **93.0** |
+| 35 GPa | 87.1 | 121.3 | 103.7 |
+| 40 GPa | 96.4 | 134.8 | 114.1 |
+
+So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
+test and tap-tested bars check both before anything is cast.
+
+**Vibration** (`analysis/modal.py`). The frame on its four feet, with 12 kg of X carriage, Z
+axis and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks:
+
+| Mode | Frequency | Motion |
+|---|---|---|
+| 1 | 135 Hz | gantry sways side to side (X); base twisting on its feet carries 39 % of it |
+| 2 | 264 Hz | beam rocks front to back (Y) |
+| 3 | 291 Hz | base bends, front to back |
+| 4 | 341 Hz | gantry sway with the base, second form |
+
+Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
+Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
+with 2-3 flutes) and modes 2-4 are inside it. That's normal for a machine this size; the frame is still several times stiffer than
+the spindle and tool (static X/Y/Z above), and chatter on a mill like this usually
+comes from the spindle, Z axis and tool. If a frequency rings, change the spindle speed by
+10-20 % rather than the frame. A solid bench (the base twisting on its feet is in every mode)
+and sand in the hollow posts and sockets help more than geometry changes.
+
+**Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
+The uprights were optimized again on their own, with the cuts forced to go straight through
+(windows) or to stop at a 20 mm web on the inner face (pockets from the outside), keeping 90 %
+and 80 % of their material:
+
+| Uprights (both) | Removed | X | Y | Z | Mode 1 / 2 | Epoxy saved |
+|---|---|---|---|---|---|---|
+| Solid, as drawn | | 77.5 | 107.5 | 93.0 | 135 / 264 Hz | |
+| One window each, 90 % | 1.05 L, 2.5 kg | 75.0 | 106.5 | 91.2 | 136 / 263 Hz | ~$3 |
+| One outer pocket each, 90 % | 1.05 L | 75.6 | 106.8 | 92.0 | 136 / 261 Hz | ~$3 |
+| Two windows each, 80 % | 2.1 L, 4.9 kg | 71.7 | 104.8 | 88.9 | 136 / 255 Hz | ~$6 |
+| Two outer pockets each, 80 % | 2.1 L | 73.1 | 105.6 | 90.3 | 135 / 254 Hz | ~$6 |
+
+The holes land where you'd expect, in the low-stress middle of the buttress just ahead of
+the front post (`analysis/figs/upright_*.png`), but they don't pay: 10 % of the upright costs
+1-3 % of the frame's stiffness and saves about $3 of epoxy (the 3 gal kit is bought either
+way), and the natural frequencies don't move because the mass that matters is the beam and
+the head on top. Each window would also need a printed liner. The uprights stay solid; the
+frame optimization above already moved material into them, not out.
+
 Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `frame_34.6_*` (base and
 uprights optimized together), `frame2_base_*` (base around the new uprights), `base_current.png` (the
 previous base), `base_final.png` (solid depth from the top
 in each column), `base_pocket_*` and `base_free_*` (optimization results at 18-28.5 L), and
-`tradeoff.png` (base stiffness against base volume).
+`tradeoff.png` (base stiffness against base volume), `upright_*` (lightening holes, at 90 and
+80 % of the upright).
 
 Rerun it with a Python that has numpy, scipy, matplotlib and scikit-sparse 0.5 or later
 (older scikit-sparse falls back to a much slower solver):
@@ -142,6 +201,9 @@ python baseline.py                                  # stiffness and each module'
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
 FEA_VOX=vox_current python whatif.py                # stiffness of the model as drawn
+python modal.py                                     # natural frequencies (about 30 s)
+python topopt_upright.py 0.9 [web]                  # upright holes (about 10 min each)
+python compare_uprights.py to_upright_*.npz         # their stiffness and frequencies
 ```
 
 `vox_current` is whatever `build_cnc.py` draws now (`voxelize.py` rewrites it);
@@ -179,7 +241,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,240**; **2, the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,205**; **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
 coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
@@ -194,7 +256,7 @@ and enclosure.
 
 | Item | Before | Cost-down | Change |
 |---|---|---|---|
-| Epoxy + aggregate | $240-315 | $200-255 | Hollow rear base, 10 % epoxy mix (well-graded aggregate + whiting fines), bulk kits |
+| Epoxy + aggregate | $240-315 | $200-255 | Hollow rear base, 8.5 % epoxy mix (well-graded aggregate + whiting fines), bulk kits |
 | Cast-in steel, rods, dowels, fasteners | $90-140 | $90-140 | |
 | Rail risers | $60-90 | $25-40 | Cold-rolled flat bar bedded in epoxy and replicated, instead of MIC6 strips |
 | MIC6 table, carriage, Z plate | $120-180 | $120-180 | Remnant/drop plate is often much cheaper |
