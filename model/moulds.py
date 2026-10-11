@@ -488,6 +488,8 @@ def export(rows, root):
     import MeshPart
     out = []
     for r in rows:
+        if r['kind'] == 'foam':
+            continue                              # cut from XPS board, listed in the print guide
         d = os.path.join(root, r['folder'])
         os.makedirs(d, exist_ok=True)
         parts = r['shape'] if isinstance(r['shape'], list) else split_bed(r['shape'])

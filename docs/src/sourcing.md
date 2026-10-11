@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,072.15 |
+| 1 | Castings and hardware | $1,075.17 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,7 +27,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,559.40** |
+| **1. Frame** | **$1,562.42** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
 | **Total** | **about $2.89-3.29k** |
@@ -56,7 +56,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Alumina grit, coarse | Brown fused aluminium oxide #16 (12-20 is fine), ~21 kg: the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Free shipping. Alt: Kleen Blast AO5016 $90 + shipping (blast media is excluded from its free shipping). About +10 % frame stiffness on its own (analysis/alumina.py). |
 | Alumina grit, fine | Black aluminium oxide 70 grit, ~11 kg: the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Local pickup. With the #16: about +17 % frame stiffness in all. |
 | Mould board | 3/4 in white melamine (a true 0.750 in), about 2.6 m2 of boards: cut list in the mould guide | 2 (4 x 8 ft) | [Veranda melamine white particleboard panel, 3/4 in x 4 ft x 8 ft (Home Depot, model 461877)](https://www.homedepot.com/p/Veranda-3-4-in-x-4-ft-x-8-ft-Melamine-White-Particleboard-Panel-461877/100070209) | $43.98 | $87.96 | Have the store rip the long strips. Measure the thickness: the printed saddles and brackets are drawn for 19.05 mm (mould_board in the model). |
-| Mould hardware | M4 x 30 (~150), M4 x 35 (~30), M4 x 70 (4), M4 nuts and washers (~180 each); M3 x 10 (12), M3 x 25 (20), M3 nuts and washers | assorted packs | Zinc-plated metric packs (Amazon, Bolt Depot or a hardware store) | ~$50 | $50.00 | Exact counts in the mould guide. Reused for every casting. |
+| Mould hardware | M4 x 30 (~100), M4 x 35 (~30), M4 x 45 (~45), M4 x 20 (4), M4 x 70 (4), M4 nuts and washers (~180 each); a few M3 x 25 with nuts | assorted packs | Zinc-plated metric packs (Amazon, Bolt Depot or a hardware store) | ~$50 | $50.00 | Exact counts in the mould guide. Reused for every casting. |
 | Mould rods and bolts | 5/8 in and 1/2 in plain steel rod (3 ft each, plus a second 1/2 in), 1/2-13 bolts (8 x 2-1/2 in, 4 x 1-1/2 in), 3/8-16 x 2-1/2 in (4) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot) | ~$50 | $50.00 | Greased, they form the tie-rod and bolt holes and hold the couplers. Reused. |
 | Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
 | Square tube | 2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 12 in, 6x 6 in | ~7 ft of each | Steel-yard remnants (local) | ~$40 | $40.00 | About 37 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized. |
@@ -77,9 +77,11 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Support screws | M6 x 40 (6, Y BK/BF); M6 x 35 (6, X) + 12 DIN 433 small washers | 1 (100) + 3 (2-pack) | [Zoro M6x40 100-pack; Home Depot M6x35 2-packs](https://www.zoro.com/i/G2650606/) | $10.15 + 3x $3.75 | $21.40 | Two small washers under each X screw head so it stops short of the beam tube (washers from the hardware store) |
 | Rail screws | M4 x 16 | 1 (100) | [iexcell M4x16 12.9](https://www.amazon.com/dp/B08B1T9VM3) | $8.26 | $8.26 |  |
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
-| PETG filament | ~3.7 kg: mould kit, cores, formers, liners and machine parts (print guide) | 4 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $63.96 | About 2.3 kg (3 rolls) with foam pocket cores instead (foam_cores in the model; one 2 in XPS board) |
+| PETG filament | ~1.4 kg: mould kit, core posts, formers, cast-in parts and machine parts (print guide) | 2 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $31.98 | The bulky mould pieces are foam (next row). Printing them instead (foam=False in the model) needs about 1.7 kg more. |
+| XPS foam board | 2 in x 2 ft x 8 ft: pocket and socket cores, coolant trough and gutters, beam back edge | 1 | [Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)](https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335) | ~$25 | $25.00 | Plus packing tape and double-sided carpet tape (~$10). Sizes in the mould guide. |
+| Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 
-**Priced subtotal: $1,072.15**
+**Priced subtotal: $1,075.17**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

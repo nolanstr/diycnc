@@ -495,7 +495,7 @@ def coolant_sump(cx, y0, z0, L=527.0, W=324.0, D=101.6):
     """Slide-out sump under the base: a full-size 4 in stainless steam-table pan (~13 L).
 
     Front to back (+y): 1/3-size perforated pan as the chip basket (under the drain), a magnet
-    bar on the floor, an underflow baffle (printed PETG), a 100 um filter screen in a printed
+    bar on the floor, an underflow baffle (3 mm ACM offcut), a 100 um filter screen in a printed
     frame, then the clean end with a 24 V brushless submersible pump (no mains in the coolant). Origin: front of the rim at y0,
     centred on cx, standing on z0. Returns (parts, pump outlet).
     """
@@ -507,7 +507,7 @@ def coolant_sump(cx, y0, z0, L=527.0, W=324.0, D=101.6):
     def plate(y, z_a, z_b, t=4.0):
         w = W - 2 * 12.0 - 4.0
         return box(cx - w / 2, cx + w / 2, y, y + t, z_a, z_b)
-    out.append(('Baffle', plate(y0 + 235.0, fl + 25.0, top - 2.0), 'printed'))
+    out.append(('Baffle', plate(y0 + 235.0, fl + 25.0, top - 2.0, 3.0), 'acm'))
     screen = plate(y0 + 275.0, fl + 6.0, top - 2.0, 6.0).cut(
         box(cx - W / 2 + 40, cx + W / 2 - 40, y0 + 274.0, y0 + 282.0, fl + 18.0, top - 14.0))
     out.append(('FilterFrame', screen, 'printed'))
