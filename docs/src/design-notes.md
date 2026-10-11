@@ -39,7 +39,19 @@ part of each leg that hangs below the base.
   outboard of the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are printed PETG liners cast into the base, not steel tube.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
-  10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. Whiting is
+  10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
+  split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
+  with D = 10 mm and q about 0.45: q = 0.5 (classic Fuller) is a little coarse and needs more
+  epoxy to wet, q = 0.37 (Andreasen) packs tighter but its extra powder soaks up epoxy.
+- Options people use, and why the build doesn't: **aluminium oxide** grit (Mohs 9, E about
+  370 GPa against about 70 for quartz and granite) as the coarse sand could add perhaps
+  10-25 % stiffness, untested; 16 grit is about $80-90 per 50 lb, so about $150-200 for the
+  coarse sand, and the castings get about 10 % heavier. Try it in a pair of tap-tested bars
+  first if you want it. **Graded industrial quartz** (Agsco and similar) is clean, dry and
+  consistent but costs more and ships heavy; pool filter sand is the local equivalent.
+  **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
+  of that for far less. **Epoxy grout** (Laticrete SpectraLock) is fine for a test bar or a
+  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 125 kg. Whiting is
   used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
   8.5 % epoxy, which fits a single 3 gal kit (10 % needs a second, small kit); the build guide's
   jar test and test bars check it before anything is cast.
