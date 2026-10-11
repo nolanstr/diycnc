@@ -1,0 +1,85 @@
+folder,file,kind,qty,grams_each,grams,time_each,estimate
+base-box,kit-corner-bracket.stl,kit,4,8.2,32.7,39m 28s,40
+base-box,kit-partition-bracket.stl,kit,2,7.2,14.4,35m 28s,18
+base-box,kit-saddle.stl,kit,6,9.7,57.9,46m 3s,73
+base-box,kit-leg-holder.stl,kit,4,20.7,82.6,1h 37m 19s,105
+base-rear,former-gutter-L-part1of3.stl,former,1,8.1,8.1,35m 5s,9
+base-rear,former-gutter-L-part2of3.stl,former,1,7.6,7.6,33m 40s,8
+base-rear,former-gutter-L-part3of3.stl,former,1,7.0,7.0,31m 15s,8
+base-rear,former-gutter-R-part1of3.stl,former,1,8.1,8.1,35m 6s,9
+base-rear,former-gutter-R-part2of3.stl,former,1,7.6,7.6,33m 40s,8
+base-rear,former-gutter-R-part3of3.stl,former,1,7.0,7.0,31m 15s,8
+base-rear,former-motor-relief.stl,former,1,12.5,12.5,40m 58s,14
+base-rear,filler-corner-L.stl,filler,1,16.7,16.7,1h 44m 24s,21
+base-rear,filler-corner-R.stl,filler,1,16.5,16.5,1h 42m 27s,21
+base-front,former-gutter-L-part1of2.stl,former,1,11.4,11.4,49m 23s,13
+base-front,former-gutter-L-part2of2.stl,former,1,10.4,10.4,43m 43s,12
+base-front,former-gutter-R-part1of2.stl,former,1,11.4,11.4,49m 24s,13
+base-front,former-gutter-R-part2of2.stl,former,1,10.4,10.4,43m 43s,12
+base-front,former-trough-part1of5.stl,former,1,19.5,19.5,1h 14m 18s,21
+base-front,former-trough-part2of5.stl,former,1,22.5,22.5,1h 23m 56s,24
+base-front,former-trough-part3of5.stl,former,1,24.9,24.9,1h 33m 33s,27
+base-front,former-trough-part4of5.stl,former,1,23.1,23.1,1h 24m 3s,25
+base-front,former-trough-part5of5.stl,former,1,21.1,21.1,1h 17m 36s,23
+base-front,filler-corner-L.stl,filler,1,20.6,20.6,2h 0m 50s,25
+base-front,filler-corner-R.stl,filler,1,20.7,20.7,1h 56m 31s,25
+base-rear,former-split-gasket-groove-part1of4.stl,former,1,1.6,1.6,9m 50s,2
+base-rear,former-split-gasket-groove-part2of4.stl,former,1,1.4,1.4,8m 58s,2
+base-rear,former-split-gasket-groove-part3of4.stl,former,1,1.4,1.4,8m 58s,2
+base-rear,former-split-gasket-groove-part4of4.stl,former,1,1.6,1.6,9m 53s,2
+base-front,core-centre-post.stl,core,1,4.8,4.8,44m 56s,6
+base-rear,core-centre-post.stl,core,1,4.8,4.8,44m 56s,6
+base-front,core-outboard-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-front,core-trough-band-L-post.stl,core,1,4.8,4.8,44m 54s,6
+base-front,core-draw-rod-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-front,core-foot-a-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-foot-b-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-foot-c-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-knee-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-outer-a-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-outer-b-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-rear-L-post.stl,core,1,4.8,4.8,44m 53s,6
+base-front,core-outboard-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-front,core-trough-band-R-post.stl,core,1,4.8,4.8,44m 54s,6
+base-front,core-draw-rod-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-front,core-foot-a-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-foot-b-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-foot-c-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-knee-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-outer-a-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-outer-b-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,core-rear-R-post.stl,core,1,4.8,4.8,44m 53s,6
+base-rear,plug-socket-spike.stl,plug,4,1.9,7.6,13m 26s,8
+base-rear,kit-spigot-bushing.stl,kit,2,17.0,34.0,1h 11m 51s,43
+upright,kit-back-bracket.stl,kit,4,5.3,21.0,27m 33s,26
+upright,kit-front-bracket.stl,kit,4,7.9,31.5,38m 27s,39
+upright,kit-saddle-flat.stl,kit,4,4.4,17.8,22m 40s,23
+upright,filler-toe-filler.stl,filler,2,27.1,54.2,1h 33m 58s,57
+upright,former-foot-gasket-groove-part1of4.stl,former,2,3.3,6.6,17m 8s,8
+upright,former-foot-gasket-groove-part2of4.stl,former,2,1.4,2.7,8m 46s,3
+upright,former-foot-gasket-groove-part3of4.stl,former,2,1.4,2.7,8m 46s,3
+upright,former-foot-gasket-groove-part4of4.stl,former,2,3.3,6.6,17m 10s,8
+upright,plug-slope-plug-lower.stl,plug,2,9.7,19.3,45m 49s,20
+upright,plug-slope-plug-upper.stl,plug,2,9.7,19.3,45m 47s,20
+upright,plug-tie-rod-pocket.stl,plug,4,8.2,32.6,39m 54s,35
+upright,kit-plate-spacer.stl,kit,4,3.8,15.2,20m 9s,17
+upright,kit-post-bushing.stl,kit,4,17.0,68.1,1h 11m 44s,85
+beam,kit-corner-bracket.stl,kit,4,8.2,32.8,40m 3s,40
+beam,filler-back-edge-part1of4.stl,filler,1,18.7,18.7,1h 14m 46s,24
+beam,filler-back-edge-part2of4.stl,filler,1,19.2,19.2,1h 14m 46s,24
+beam,filler-back-edge-part3of4.stl,filler,1,19.2,19.2,1h 14m 46s,24
+beam,filler-back-edge-part4of4.stl,filler,1,18.8,18.8,1h 15m 1s,24
+beam,kit-tube-locator.stl,kit,4,9.8,39.2,55m 37s,47
+beam,kit-dowel-stop.stl,kit,2,0.9,1.8,6m 51s,3
+base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,6.7,13.3,29m 7s,14
+base-front,cast-in-base-front-spigot-sleeve-l.stl,cast-in,2,14.5,28.9,1h 14m 40s,35
+base-front,cast-in-leg-front-l-plug.stl,cast-in,2,3.6,7.1,15m 49s,8
+base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,6.7,13.3,27m 49s,14
+base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,14.5,28.9,1h 14m 38s,35
+base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,3.6,7.1,15m 49s,8
+upright,cast-in-post-l1-plug.stl,cast-in,4,3.6,14.2,15m 49s,16
+machine,part-pocket-cap-l3.stl,part,4,8.0,32.1,29m 42s,38
+machine,part-chain-mount-fixed.stl,part,1,7.8,7.8,29m 18s,10
+machine,part-chain-mount-moving.stl,part,1,18.0,18.0,1h 18m 33s,24
+machine,part-sump-filter-frame-part1of2.stl,part,1,20.5,20.5,1h 41m 28s,26
+machine,part-sump-filter-frame-part2of2.stl,part,1,20.5,20.5,1h 40m 46s,26

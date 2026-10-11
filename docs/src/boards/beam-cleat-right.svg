@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12.0 -12.0 164.0 64.0" width="164mm" height="64mm" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5.2 -5.2 150.4 50.4" width="150mm" height="50mm" font-family="Helvetica, Arial, sans-serif">
 <polygon points="140.0,40.0 0.0,40.0 0.0,0.0 140.0,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
-<circle cx="100.0" cy="20.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.75"/>
-<text x="103.2" y="19.0" font-size="6.0" fill="#1d2422">1</text>
-<circle cx="40.0" cy="20.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.75"/>
-<text x="43.2" y="19.0" font-size="6.0" fill="#1d2422">2</text>
-<text x="0" y="48.4" font-size="6.0" fill="#5b6662">0,0 · 140 x 40 mm · seen from the outside (top)</text>
+<circle cx="100.0" cy="20.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.33"/>
+<text x="102.7" y="19.6" font-size="2.6" fill="#1d2422">1</text>
+<circle cx="40.0" cy="20.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.33"/>
+<text x="42.7" y="19.6" font-size="2.6" fill="#1d2422">2</text>
+<text x="0" y="43.6" font-size="2.6" fill="#5b6662">0,0 · 140 x 40 mm · seen from the outside (top)</text>
 </svg>

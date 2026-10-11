@@ -67,7 +67,7 @@ SECTIONS = [
          '$8.26', 8.26, '', 'product page'),
         ('Block screws', 'M4 x 20', '1 (50)', 'iexcell M4x20 12.9', A + 'B08B1T7K14',
          '$7.86', 7.86, 'Check length against the plate thickness', 'product page'),
-        ('PETG filament', '~1.5 kg: mould kit, core posts, formers and fillers, cast-in parts and machine parts (print guide)', '2 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
+        ('PETG filament', '1.3 kg (sliced): mould kit, core posts, formers and fillers, cast-in parts and machine parts', '2 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
          '$15.99', 31.98, 'The pocket and socket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more.', 'product page'),
         ('XPS foam board', '2 in x 2 ft x 8 ft: the base pocket and socket cores', '1', 'Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)', 'https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335',
          '~$25', 25.00, 'Plus packing tape and double-sided carpet tape (~$10). Sizes in the mould guide.', 'estimate (price not shown)'),
