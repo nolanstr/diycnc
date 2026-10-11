@@ -128,7 +128,7 @@ Folder `print/base-rear/`, about 1061 g.
 
 ## Uprights (both the same: print quantities are for two)
 
-Folder `print/upright/`, about 136 g.
+Folder `print/upright/`, about 165 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
@@ -136,12 +136,13 @@ Folder `print/upright/`, about 136 g.
 | `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 139 x 2 |  |
 | `former-foot-gasket-groove-part3of4.stl` | Former (removable) | 2 | 4 x 139 x 2 |  |
 | `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 2 | 68 x 139 x 2 |  |
-| `plug-tie-rod-pocket.stl` | Pocket plug (removable) | 8 | 32 x 32 x 18 | Forms the nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing. |
+| `plug-tie-rod-pocket.stl` | Pocket plug (removable) | 4 | 32 x 32 x 18 | Forms a top nut pocket; slides down the greased tie-rod core rod. Wax; pull after curing. |
+| `plug-slope-pocket.stl` | Pocket plug (removable) | 4 | 32 x 32 x 54 | Forms a nut pocket in the slope: its sloped end screws to the front board. Wax; pull after curing. |
 | `cast-in-post-l1-plug.stl` | Cast-in part (stays in) | 4 | 30 x 30 x 10 | Cast in, stays. |
 
 ## Beam
 
-Folder `print/beam/`, about 308 g.
+Folder `print/beam/`, about 154 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
@@ -149,17 +150,14 @@ Folder `print/beam/`, about 308 g.
 | `filler-back-edge-1-part2of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
 | `filler-back-edge-1-part3of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
 | `filler-back-edge-1-part4of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
-| `filler-back-edge-2-part1of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 | Rounded back edge of the beam mould; wax. |
-| `filler-back-edge-2-part2of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
-| `filler-back-edge-2-part3of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
-| `filler-back-edge-2-part4of4.stl` | Corner filler (removable) | 1 | 132 x 40 x 40 |  |
 
 ## Machine parts
 
-Folder `print/machine/`, about 184 g.
+Folder `print/machine/`, about 226 g.
 
 | File | What | Qty | Size (mm) | Notes |
 |---|---|---|---|---|
+| `part-pocket-cap-l3.stl` | Machine part | 4 | 32 x 32 x 42 |  |
 | `part-chain-mount-fixed.stl` | Machine part | 1 | 25 x 38 x 21 |  |
 | `part-chain-mount-moving.stl` | Machine part | 1 | 37 x 123 x 45 |  |
 | `part-sump-baffle-part1of2.stl` | Machine part | 1 | 148 x 4 x 73 |  |

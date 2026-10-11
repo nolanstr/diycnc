@@ -26,7 +26,7 @@ tapping the risers, top plates and support pads. Use plain steel, not galvanized
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 10.5 kg of epoxy (8.5 % of 124 kg of casting):
+**Keeping the epoxy down.** About 10.6 kg of epoxy (8.5 % of 125 kg of casting):
 - The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
@@ -91,7 +91,8 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | Optimized base + 140 mm beam | 43.7 L | 54.0 | 94.5 | 68.0 |
 | + riser hold-downs, support pads, uncut 600 mm Y rails | 43.7 L | 55.7 | 96.8 | 68.9 |
 | Base + uprights optimized together, same material (free-form uprights) | 43.7 L | 63.9 | 103.3 | 85.2 |
-| **Now: raked-buttress uprights, base re-laid around them** | **52.6 L** | **77.5** | **107.5** | **93.0** |
+| Raked-buttress uprights, base re-laid around them | 52.6 L | 77.5 | 107.5 | 93.0 |
+| **Now: + blunt upright toe, rounded edges, deeper slope pockets** | **53.0 L** | **78.2** | **110.1** | **95.5** |
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
   equally. Litre for litre, epoxy in the beam is worth roughly ten times as much as epoxy
@@ -108,7 +109,8 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   +15 / +7 / +24 % in X / Y / Z. With 4 L less material in total the frame ends up about 20 %
   less stiff than before, so cutting material isn't worth it.
 - The castable version drawn now is a solid full-width buttress (one sloped board in the
-  mould, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright. The base
+  mould, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright (5.5 L since
+  the toe got a 20 mm nose). The base
   was then re-optimized around the longer feet (`analysis/figs/frame2_base_*.png`): it wants
   full depth under the feet and a wider tie across the split. Total +8.9 L of epoxy granite
   (about $75) for +39 / +11 / +35 %.
@@ -137,11 +139,11 @@ scales almost directly with E:
 
 | E of the epoxy granite | X | Y | Z |
 |---|---|---|---|
-| 20 GPa | 57.5 | 78.6 | 70.6 |
-| 25 GPa | 67.7 | 93.3 | 82.0 |
-| **30 GPa (assumed)** | **77.5** | **107.5** | **93.0** |
-| 35 GPa | 87.1 | 121.3 | 103.7 |
-| 40 GPa | 96.4 | 134.8 | 114.1 |
+| 20 GPa | 58.0 | 80.3 | 72.3 |
+| 25 GPa | 68.3 | 95.5 | 84.1 |
+| **30 GPa (assumed)** | **78.2** | **110.1** | **95.5** |
+| 35 GPa | 87.9 | 124.4 | 106.6 |
+| 40 GPa | 97.3 | 138.4 | 117.4 |
 
 So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
 test and tap-tested bars check both before anything is cast.
@@ -152,9 +154,9 @@ axis and spindle on the beam blocks and 12 kg of table, vise and work on the Y b
 | Mode | Frequency | Motion |
 |---|---|---|
 | 1 | 135 Hz | gantry sways side to side (X); base twisting on its feet carries 39 % of it |
-| 2 | 264 Hz | beam rocks front to back (Y) |
-| 3 | 291 Hz | base bends, front to back |
-| 4 | 341 Hz | gantry sway with the base, second form |
+| 2 | 268 Hz | beam rocks front to back (Y) |
+| 3 | 290 Hz | base bends, front to back |
+| 4 | 343 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -167,7 +169,8 @@ and sand in the hollow posts and sockets help more than geometry changes.
 **Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
 The uprights were optimized again on their own, with the cuts forced to go straight through
 (windows) or to stop at a 20 mm web on the inner face (pockets from the outside), keeping 90 %
-and 80 % of their material:
+and 80 % of their material (run on the frame before the toe and edge cleanup, which added
+1-3 %):
 
 | Uprights (both) | Removed | X | Y | Z | Mode 1 / 2 | Epoxy saved |
 |---|---|---|---|---|---|---|
