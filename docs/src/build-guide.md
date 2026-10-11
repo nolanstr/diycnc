@@ -29,12 +29,15 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
   an N95 dust mask when pouring the whiting; a P100 respirator when grinding or sanding cured
   EG (the quartz sand and gravel in it make silica dust; work wet if you can); eye protection
   when cutting steel. Mix in a ventilated space.
-- **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the cores,
-  formers and fillers, the parts that get cast in (socket liners, spigot sleeves, tube plugs,
-  drain liner) and the machine's printed parts. All of it is in `print/`, split to fit a Bambu
-  A1 mini, and listed in the print guide: about 100 prints and 3.7 kg of PETG (about 2.3 kg
-  if you cut the pocket cores from foam and print only their posts: `foam_cores` in the model). Print one bracket and one saddle first and check them
-  on your board; print the liners and sleeves early and test-fit them on your actual tube.
+- **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the core posts,
+  formers and fillers, the parts that get cast in (spigot sleeves, tube plugs, drain liner) and
+  the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
+  in the print guide: about 1.4 kg of PETG, inside two 1 kg rolls. The bulky mould pieces (pocket
+  and socket cores, the coolant trough and gutters, the beam's back edge) are cut from one sheet of
+  2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
+  print the sleeves early and test-fit them on your actual tube.
+- **Foam cutting:** a fine-tooth saw or a hot-wire cutter, a long knife, a sanding block, packing
+  tape and double-sided carpet tape.
 
 ## 1. Buy and prepare the steel
 
@@ -122,17 +125,17 @@ hole table for every board, and the steps; the print guide lists the printed par
 **Locating the cast-in parts** (the mould guide has the details; grease every screw and rod that comes out):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
   flush with the casting face.
-- **Socket liners** (rear half): each over a printed plug bolted to the floor; their far end is closed.
-  The sockets are 1.5 mm a side bigger than the posts: the posts are grouted in at assembly (section 4),
-  so the two moulds don't have to agree to a tenth.
+- **Sockets** (rear half): cast on taped foam blocks standing on printed plugs bolted to the floor; dig
+  the foam out after curing. The sockets are 1.5 mm a side bigger than the posts: the posts are grouted
+  in at assembly (section 4), so the two moulds don't have to agree to a tenth.
 - **Couplers:** the tie-rod couplers on greased 1/2-13 bolts up through the floor; the rear half's
   draw-rod couplers on bolts through the partition.
 - **Spigots** (rear half): through printed bushings in the partition, half their length out; the rear
   tubes, sleeves and end plugs slide onto them.
-- **Legs:** through printed holders bolted into the corners above the pour line, each hanging from a
-  printed cap at its cast-in depth.
-- **Cores:** sit on the wet 20 mm skin with dry sand in them; a post on each bolts to the side of a
-  bridge, which sets its height and stops it floating.
+- **Legs:** through printed holders bolted into the corners above the pour line, each held at its
+  cast-in depth by a pinch screw.
+- **Cores:** taped XPS foam blocks on the wet 20 mm skin; a printed post glued into each bolts to the
+  side of a bridge, which sets its height and stops it floating. They can stay in.
 - **Uprights:** the posts come up through bushings in the floor, 5/8 in rods form the tie-rod holes
   (1.6 mm a side over the 1/2 in tie rods), a greased 1/2-13 bolt forms the dowel hole (grouted at
   assembly), and the top plate hangs from the bridge on two greased 3/8 bolts.

@@ -212,10 +212,10 @@ class Kit:
             if not hits:
                 self.loose.append((mould, f))
                 continue
-            b = hits[0]
-            u, v = b.uv(f.p)
-            if not any(abs(u - h[0]) < 0.5 and abs(v - h[1]) < 0.5 for h in b.holes):
-                b.holes.append((u, v, f.d, f.what))
+            for b in hits:                         # a bolt through a cleat and the floor: both get the hole
+                u, v = b.uv(f.p)
+                if not any(abs(u - h[0]) < 0.5 and abs(v - h[1]) < 0.5 for h in b.holes):
+                    b.holes.append((u, v, f.d, f.what))
             if f.kind == 'bolt':
                 self.count(f'{f.size} x {f.length} bolt', f.qty * mult)
                 self.count(f'{f.size} nut', f.qty * mult)

@@ -39,13 +39,15 @@ part of each leg that hangs below the base.
   bottom, so the cores (printed shells or foam blocks) pull straight out; a few are shallow
   steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
   the sockets (`base_pockets` in `model/build_cnc.py`).
-- The sockets are printed PETG liners cast into the base, not steel tube.
+- The sockets are cast on foam blocks (dug out after) and grouted to the posts at assembly, not steel tube.
 
 **Moulds and fits.** The moulds are a kit (`model/mouldbox.py`, the mould guide): melamine boards
 with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
-it is too thin, and pieces cut to fit the printer are pegged together. A clash check in the
+it is too thin, and pieces cut to fit the printer are pegged together. The bulky pieces (pocket
+and socket cores, coolant trough and gutters, the beam's back edge) are XPS foam, which keeps the
+printing to about 1.4 kg of PETG. A clash check in the
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
 (flush top faces, matching split faces, tubes straight onto the spigots), and the posts and
@@ -291,8 +293,8 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,559** (including $150 of alumina grit for the beam and uprights, and about $200 for the
-bolt-together mould kit: two sheets of melamine, its hardware and the extra PETG); **2, the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,562** (including $150 of alumina grit for the beam and uprights, and about $200 for the
+bolt-together mould kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
 coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware

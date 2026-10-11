@@ -8,15 +8,20 @@ so the moulds come apart cleanly and go back together the same way for the next 
 
 - **Walls stand 25 mm above the pour line.** The brackets, saddles and leg holders bolt through that
   band, so no bolt passes through a face that gets cast against. Fill to the line, not to the top.
-- **Corner brackets** hold each outside corner square in that band; **floor brackets** hold each wall
-  foot from outside and bolt down through the floor. Each bracket has its nut pressed into a hex pocket,
-  and its holes are a drill guide: clamp it in place and drill through it.
+- **Corner brackets** hold each outside corner square in that band. Each has its nut pressed into a hex
+  pocket, and its holes are a drill guide: clamp it in place and drill through it.
+- **Cleats** (strips of board offcut) lie on the floor along each wall's foot, outside, bolted down
+  through the floor: the walls stand against them.
 - **Printed pieces bolt on from outside.** An M4 bolt (M3 on thin pieces) goes through the board into
   a nut built into the piece. The nut drops into a pocket in the face against the board and slides
   over under the hole, so nothing opens onto a cast face. Fit the nuts before the pieces go on.
 - **Thin pieces have pins.** The gasket-groove beads and the shallow end of the gutters have 3 mm pins
   that push into 1/8 in holes. The casting presses them onto the board.
 - **Pieces cut to fit the printer** have a peg and socket on the cut, and their own fixings.
+- **Foam.** The base pocket cores, the socket cores, the coolant trough and gutters, and the beam's
+  rounded back edge are XPS foam board, wrapped in packing tape. They sit on double-sided carpet tape;
+  the casting presses them down. Each pocket core has a printed post glued into it that bolts to a
+  bridge, so it can't float. That keeps the printing to under two rolls of PETG.
 - **Bridges** stand on edge in saddles that hook over the wall tops; each core has a post that bolts
   to the side of a bridge, which sets its height and stops it floating.
 - **Fits** are 0.15 mm a side: snug, but they go together by hand. Waxed pieces come out after curing.
@@ -31,19 +36,20 @@ set `mould_board` in `model/build_cnc.py` and re-run it: the STLs, hole maps and
 
 ## What to buy
 
-- **Melamine board**, 19 mm (3/4 in): about 2.6 m2 of boards in all, so 2 sheets of 4 x 8 ft with room for mistakes. Have the store rip it into strips at the widths in the cut list.
+- **Melamine board**, 19 mm (3/4 in): about 2.9 m2 of boards in all, so 2 sheets of 4 x 8 ft with room for mistakes. Have the store rip it into strips at the widths in the cut list.
 - **Hardware** (zinc-plated is fine; grease anything that touches the mix):
 
 | Item | Qty |
 |---|---|
-| M3 nut | 32 |
-| M3 washer | 44 |
-| M3 x 10 bolt | 12 |
-| M3 x 25 bolt | 20 |
+| M3 nut | 4 |
+| M3 washer | 4 |
+| M3 x 25 bolt | 4 |
 | M4 nut | 166 |
-| M4 washer | 166 |
-| M4 x 30 bolt | 134 |
+| M4 washer | 162 |
+| M4 x 20 bolt (leg pinch screw) | 4 |
+| M4 x 30 bolt | 90 |
 | M4 x 35 bolt | 28 |
+| M4 x 45 bolt | 40 |
 | M4 x 70 bolt | 4 |
 | M5 x 20 screw, greased (holds an insert) | 29 |
 | M6 x 20 screw, greased (holds a pad) | 6 |
@@ -57,6 +63,47 @@ set `mould_board` in `model/build_cnc.py` and re-run it: the STLs, hole maps and
 | Block of 2x4, 52 mm long: four under each upright mould (the posts stand on the bench) | 8 |
 
 Buy about 10 % spare of the small bolts, nuts and washers.
+
+- **Foam**: one 2 in x 2 ft x 8 ft XPS board (Foamular or similar) for the 32 foam
+  pieces (stack two layers, glued with foam-safe adhesive, for the 90 mm cores); packing tape;
+  double-sided carpet tape.
+
+## Foam pieces
+
+Cut with a fine saw, a hot wire or a sharp knife and a sanding block; wrap in packing tape (no wax
+needed on the tape). Sizes are x by y by depth, as the piece sits in the casting.
+
+| Casting | Piece | Qty | How |
+|---|---|---|---|
+| base-rear | gutter-L | 1 | XPS strip 15 x 360 x 12 mm: a wedge, 12 mm deep at the front end tapering to 8 mm at the back. |
+| base-rear | gutter-R | 1 | XPS strip 15 x 360 x 12 mm: a wedge, 12 mm deep at the front end tapering to 8 mm at the back. |
+| base-front | gutter-L | 1 | XPS strip 15 x 290 x 15 mm: a wedge, 15 mm deep at the front end tapering to 12 mm at the back. |
+| base-front | gutter-R | 1 | XPS strip 15 x 290 x 15 mm: a wedge, 15 mm deep at the front end tapering to 12 mm at the back. |
+| base-front | trough | 1 | XPS 560 x 35 x 25 mm: 15 mm deep at the left end, 25 mm at the drain (centre), 18 mm at the right, straight between. Push the drain liner into it. |
+| base-front | centre | 1 | XPS block 100 x 185 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | centre | 1 | XPS block 100 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-L | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | trough-band-L | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | draw-rod-L | 1 | XPS block 37 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | foot-a-L | 1 | XPS block 68 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-L | 1 | XPS block 68 x 100 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-c-L | 1 | XPS block 80 x 63 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-L | 1 | XPS block 50 x 183 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-a-L | 1 | XPS block 35 x 43 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-b-L | 1 | XPS block 35 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | rear-L | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-R | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | trough-band-R | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | draw-rod-R | 1 | XPS block 37 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | foot-a-R | 1 | XPS block 68 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-R | 1 | XPS block 68 x 100 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-c-R | 1 | XPS block 80 x 63 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-R | 1 | XPS block 50 x 183 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-a-R | 1 | XPS block 35 x 43 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-b-R | 1 | XPS block 35 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | rear-R | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | socket | 4 | XPS block 41 x 41 x 65 mm, taped; dig it out after curing (a little acetone dissolves the rest). |
+| beam | back-edge-1 | 1 | XPS 530 x 40 x 40 mm: a 40 mm quarter-round hollow, cut with a hot wire or sanded on a 80 mm tube; taped. |
 
 ## Cut list
 
@@ -72,6 +119,10 @@ their drawing.
 | Base | Base side wall, right | 1 | 724 x 135 |  |
 | Base | Base partition | 1 | 600 x 135 | rear half only; comes out before the front half |
 | Base | Base partition strut | 2 | 326 x 60 | offcut, stands on edge; holds the partition foot (rear half only) |
+| Base | Base cleat, front | 1 | 638 x 40 | offcut strip, flat on the floor |
+| Base | Base cleat, rear | 1 | 638 x 40 | offcut strip, flat on the floor |
+| Base | Base cleat, left | 1 | 724 x 40 | offcut strip, flat on the floor |
+| Base | Base cleat, right | 1 | 724 x 40 | offcut strip, flat on the floor |
 | Base | Base bridge y=-190 | 1 | 651 x 60 |  |
 | Base | Base bridge y=-58 | 1 | 651 x 60 |  |
 | Base | Base bridge y=100 | 1 | 651 x 60 |  |
@@ -85,11 +136,18 @@ their drawing.
 | Uprights | Upright back board | 2 | 80 x 271 |  |
 | Uprights | Upright front board | 2 | 80 x 312 | ends cut square |
 | Uprights | Upright bridge | 2 | 131 x 108 |  |
+| Uprights | Upright cleat, outer | 2 | 405 x 40 | offcut strip, flat on the floor |
+| Uprights | Upright cleat, inner | 2 | 405 x 40 | offcut strip, flat on the floor |
+| Uprights | Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
 | Beam | Beam floor | 1 | 648 x 258 |  |
 | Beam | Beam top wall | 1 | 568 x 165 |  |
 | Beam | Beam bottom wall | 1 | 568 x 165 |  |
 | Beam | Beam end wall, left | 1 | 140 x 165 |  |
 | Beam | Beam end wall, right | 1 | 140 x 165 |  |
+| Beam | Beam cleat, top | 1 | 568 x 40 | offcut strip, flat on the floor |
+| Beam | Beam cleat, bottom | 1 | 568 x 40 | offcut strip, flat on the floor |
+| Beam | Beam cleat, left | 1 | 140 x 40 | offcut strip, flat on the floor |
+| Beam | Beam cleat, right | 1 | 140 x 40 | offcut strip, flat on the floor |
 
 ## Drilling
 
@@ -104,8 +162,8 @@ their drawing.
 | Hole | Drill | For |
 |---|---|---|
 | 3.2 mm | 1/8 in | foot-gasket-groove, motor-relief, split-gasket-groove |
-| 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
-| 4.5 mm | 11/64 in | back-edge-1, core post, corner bracket, corner-L, corner-R, floor bracket, gutter-L, gutter-R, leg holder, saddle, slope-pocket--60, slope-pocket-40, socket plug, toe-filler, trough, tube locator |
+| 3.4 mm | 9/64 in | corner-L, corner-R |
+| 4.5 mm | 11/64 in | cleat, core post, corner bracket, corner-L, corner-R, leg holder, saddle, slope-pocket--60, slope-pocket-40, socket plug, toe-filler, tube locator |
 | 5.5 mm | 7/32 in | M5 insert screw |
 | 6.5 mm | 17/64 in | M6 insert screw |
 | 9.6 mm | 25/64 in | 3/8 dowel |
@@ -123,93 +181,69 @@ their drawing.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 209 | 21 | 4.5 | floor bracket |
-| 2 | 509 | 21 | 4.5 | floor bracket |
-| 3 | 71 | 64 | 3.4 | corner-R |
-| 4 | 647 | 64 | 3.4 | corner-L |
-| 5 | 159 | 69 | 5.5 | M5 insert screw |
-| 6 | 359 | 69 | 5.5 | M5 insert screw |
-| 7 | 559 | 69 | 5.5 | M5 insert screw |
-| 8 | 107 | 89 | 4.5 | trough |
-| 9 | 275 | 89 | 4.5 | trough |
-| 10 | 387 | 89 | 4.5 | trough |
-| 11 | 499 | 89 | 4.5 | trough |
-| 12 | 611 | 89 | 4.5 | trough |
-| 13 | 163 | 104 | 4.5 | trough |
-| 14 | 219 | 104 | 4.5 | trough |
-| 15 | 331 | 104 | 4.5 | trough |
-| 16 | 443 | 104 | 4.5 | trough |
-| 17 | 555 | 104 | 4.5 | trough |
-| 18 | 87 | 150 | 4.5 | gutter-R |
-| 19 | 632 | 150 | 4.5 | gutter-L |
-| 20 | 21 | 174 | 4.5 | floor bracket |
-| 21 | 697 | 174 | 4.5 | floor bracket |
-| 22 | 269 | 184 | 5.5 | M5 insert screw |
-| 23 | 449 | 184 | 5.5 | M5 insert screw |
-| 24 | 69 | 209 | 5.5 | M5 insert screw |
-| 25 | 336 | 210 | 6.5 | M6 insert screw |
-| 26 | 382 | 210 | 6.5 | M6 insert screw |
-| 27 | 649 | 209 | 5.5 | M5 insert screw |
-| 28 | 87 | 223 | 4.5 | gutter-R |
-| 29 | 632 | 223 | 4.5 | gutter-L |
-| 30 | 87 | 295 | 3.4 | gutter-R |
-| 31 | 632 | 295 | 3.4 | gutter-L |
-| 32 | 269 | 304 | 5.5 | M5 insert screw |
-| 33 | 449 | 304 | 5.5 | M5 insert screw |
-| 34 | 134 | 344 | 13.5 | 1/2-13 bolt into coupler |
-| 35 | 584 | 344 | 13.5 | 1/2-13 bolt into coupler |
-| 36 | 87 | 368 | 3.4 | gutter-R |
-| 37 | 632 | 368 | 3.4 | gutter-L |
-| 38 | 69 | 421 | 5.5 | M5 insert screw |
-| 39 | 649 | 421 | 5.5 | M5 insert screw |
-| 40 | 21 | 424 | 4.5 | floor bracket |
-| 41 | 269 | 424 | 5.5 | M5 insert screw |
-| 42 | 449 | 424 | 5.5 | M5 insert screw |
-| 43 | 697 | 424 | 4.5 | floor bracket |
-| 44 | 87 | 434 | 3.4 | gutter-R |
-| 45 | 632 | 434 | 3.4 | gutter-L |
-| 46 | 134 | 444 | 13.5 | 1/2-13 bolt into coupler |
-| 47 | 584 | 444 | 13.5 | 1/2-13 bolt into coupler |
-| 48 | 87 | 494 | 3.4 | gutter-R |
-| 49 | 632 | 494 | 3.4 | gutter-L |
-| 50 | 269 | 544 | 5.5 | M5 insert screw |
-| 51 | 449 | 544 | 5.5 | M5 insert screw |
-| 52 | 87 | 554 | 3.4 | gutter-R |
-| 53 | 632 | 554 | 3.4 | gutter-L |
-| 54 | 134 | 569 | 4.5 | socket plug |
-| 55 | 584 | 569 | 4.5 | socket plug |
-| 56 | 87 | 614 | 3.4 | gutter-R |
-| 57 | 632 | 614 | 3.4 | gutter-L |
-| 58 | 114 | 624 | 13.5 | 1/2-13 bolt into coupler |
-| 59 | 134 | 624 | 9.6 | 3/8 dowel |
-| 60 | 154 | 624 | 13.5 | 1/2-13 bolt into coupler |
-| 61 | 564 | 624 | 13.5 | 1/2-13 bolt into coupler |
-| 62 | 584 | 624 | 9.6 | 3/8 dowel |
-| 63 | 604 | 624 | 13.5 | 1/2-13 bolt into coupler |
-| 64 | 69 | 634 | 5.5 | M5 insert screw |
-| 65 | 649 | 634 | 5.5 | M5 insert screw |
-| 66 | 269 | 664 | 5.5 | M5 insert screw |
-| 67 | 449 | 664 | 5.5 | M5 insert screw |
-| 68 | 21 | 674 | 4.5 | floor bracket |
-| 69 | 87 | 674 | 3.4 | gutter-R |
-| 70 | 632 | 674 | 3.4 | gutter-L |
-| 71 | 697 | 674 | 4.5 | floor bracket |
-| 72 | 134 | 679 | 4.5 | socket plug |
-| 73 | 584 | 679 | 4.5 | socket plug |
-| 74 | 336 | 705 | 6.5 | M6 insert screw |
-| 75 | 382 | 705 | 6.5 | M6 insert screw |
-| 76 | 336 | 718 | 6.5 | M6 insert screw |
-| 77 | 382 | 718 | 6.5 | M6 insert screw |
-| 78 | 87 | 734 | 3.4 | gutter-R |
-| 79 | 343 | 737 | 3.2 | motor-relief |
-| 80 | 632 | 734 | 3.4 | gutter-L |
-| 81 | 64 | 772 | 3.4 | corner-R |
-| 82 | 375 | 770 | 3.2 | motor-relief |
-| 83 | 654 | 772 | 3.4 | corner-L |
-| 84 | 209 | 774 | 5.5 | M5 insert screw |
-| 85 | 509 | 774 | 5.5 | M5 insert screw |
-| 86 | 209 | 822 | 4.5 | floor bracket |
-| 87 | 509 | 822 | 4.5 | floor bracket |
+| 1 | 80 | 20 | 4.5 | cleat |
+| 2 | 266 | 20 | 4.5 | cleat |
+| 3 | 452 | 20 | 4.5 | cleat |
+| 4 | 638 | 20 | 4.5 | cleat |
+| 5 | 71 | 64 | 3.4 | corner-R |
+| 6 | 647 | 64 | 3.4 | corner-L |
+| 7 | 159 | 69 | 5.5 | M5 insert screw |
+| 8 | 359 | 69 | 5.5 | M5 insert screw |
+| 9 | 559 | 69 | 5.5 | M5 insert screw |
+| 10 | 20 | 99 | 4.5 | cleat |
+| 11 | 698 | 99 | 4.5 | cleat |
+| 12 | 269 | 184 | 5.5 | M5 insert screw |
+| 13 | 449 | 184 | 5.5 | M5 insert screw |
+| 14 | 69 | 209 | 5.5 | M5 insert screw |
+| 15 | 336 | 210 | 6.5 | M6 insert screw |
+| 16 | 382 | 210 | 6.5 | M6 insert screw |
+| 17 | 649 | 209 | 5.5 | M5 insert screw |
+| 18 | 269 | 304 | 5.5 | M5 insert screw |
+| 19 | 449 | 304 | 5.5 | M5 insert screw |
+| 20 | 20 | 314 | 4.5 | cleat |
+| 21 | 698 | 314 | 4.5 | cleat |
+| 22 | 134 | 344 | 13.5 | 1/2-13 bolt into coupler |
+| 23 | 584 | 344 | 13.5 | 1/2-13 bolt into coupler |
+| 24 | 69 | 421 | 5.5 | M5 insert screw |
+| 25 | 649 | 421 | 5.5 | M5 insert screw |
+| 26 | 269 | 424 | 5.5 | M5 insert screw |
+| 27 | 449 | 424 | 5.5 | M5 insert screw |
+| 28 | 134 | 444 | 13.5 | 1/2-13 bolt into coupler |
+| 29 | 584 | 444 | 13.5 | 1/2-13 bolt into coupler |
+| 30 | 20 | 529 | 4.5 | cleat |
+| 31 | 698 | 529 | 4.5 | cleat |
+| 32 | 269 | 544 | 5.5 | M5 insert screw |
+| 33 | 449 | 544 | 5.5 | M5 insert screw |
+| 34 | 134 | 569 | 4.5 | socket plug |
+| 35 | 584 | 569 | 4.5 | socket plug |
+| 36 | 114 | 624 | 13.5 | 1/2-13 bolt into coupler |
+| 37 | 134 | 624 | 9.6 | 3/8 dowel |
+| 38 | 154 | 624 | 13.5 | 1/2-13 bolt into coupler |
+| 39 | 564 | 624 | 13.5 | 1/2-13 bolt into coupler |
+| 40 | 584 | 624 | 9.6 | 3/8 dowel |
+| 41 | 604 | 624 | 13.5 | 1/2-13 bolt into coupler |
+| 42 | 69 | 634 | 5.5 | M5 insert screw |
+| 43 | 649 | 634 | 5.5 | M5 insert screw |
+| 44 | 269 | 664 | 5.5 | M5 insert screw |
+| 45 | 449 | 664 | 5.5 | M5 insert screw |
+| 46 | 134 | 679 | 4.5 | socket plug |
+| 47 | 584 | 679 | 4.5 | socket plug |
+| 48 | 336 | 705 | 6.5 | M6 insert screw |
+| 49 | 382 | 705 | 6.5 | M6 insert screw |
+| 50 | 336 | 718 | 6.5 | M6 insert screw |
+| 51 | 382 | 718 | 6.5 | M6 insert screw |
+| 52 | 343 | 737 | 3.2 | motor-relief |
+| 53 | 20 | 744 | 4.5 | cleat |
+| 54 | 698 | 744 | 4.5 | cleat |
+| 55 | 64 | 772 | 3.4 | corner-R |
+| 56 | 375 | 770 | 3.2 | motor-relief |
+| 57 | 654 | 772 | 3.4 | corner-L |
+| 58 | 209 | 774 | 5.5 | M5 insert screw |
+| 59 | 509 | 774 | 5.5 | M5 insert screw |
+| 60 | 80 | 823 | 4.5 | cleat |
+| 61 | 266 | 823 | 4.5 | cleat |
+| 62 | 452 | 823 | 4.5 | cleat |
+| 63 | 638 | 823 | 4.5 | cleat |
 
 ### Base front wall
 
@@ -295,6 +329,50 @@ their drawing.
 | 12 | 390 | 68 | 63.5 | hole saw |
 | 13 | 20 | 124 | 4.5 | corner bracket |
 | 14 | 580 | 124 | 4.5 | corner bracket |
+
+### Base cleat, front
+
+![Base cleat, front](boards/base-cleat-front.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 598 | 20 | 4.5 | cleat |
+| 2 | 412 | 20 | 4.5 | cleat |
+| 3 | 226 | 20 | 4.5 | cleat |
+| 4 | 40 | 20 | 4.5 | cleat |
+
+### Base cleat, rear
+
+![Base cleat, rear](boards/base-cleat-rear.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 598 | 20 | 4.5 | cleat |
+| 2 | 412 | 20 | 4.5 | cleat |
+| 3 | 226 | 20 | 4.5 | cleat |
+| 4 | 40 | 20 | 4.5 | cleat |
+
+### Base cleat, left
+
+![Base cleat, left](boards/base-cleat-left.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 684 | 20 | 4.5 | cleat |
+| 2 | 470 | 20 | 4.5 | cleat |
+| 3 | 255 | 20 | 4.5 | cleat |
+| 4 | 40 | 20 | 4.5 | cleat |
+
+### Base cleat, right
+
+![Base cleat, right](boards/base-cleat-right.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 684 | 20 | 4.5 | cleat |
+| 2 | 470 | 20 | 4.5 | cleat |
+| 3 | 255 | 20 | 4.5 | cleat |
+| 4 | 40 | 20 | 4.5 | cleat |
 
 ### Base bridge y=-190
 
@@ -393,24 +471,26 @@ their drawing.
 | 2 | 119 | 75 | 4.5 | toe-filler |
 | 3 | 131 | 136 | 3.2 | foot-gasket-groove |
 | 4 | 99 | 146 | 16.3 | 5/8 core rod |
-| 5 | 21 | 167 | 4.5 | floor bracket |
-| 6 | 177 | 167 | 4.5 | floor bracket |
+| 5 | 20 | 170 | 4.5 | cleat |
+| 6 | 178 | 170 | 4.5 | cleat |
 | 7 | 67 | 197 | 3.2 | foot-gasket-groove |
 | 8 | 99 | 246 | 16.3 | 5/8 core rod |
 | 9 | 67 | 266 | 3.2 | foot-gasket-groove |
 | 10 | 131 | 266 | 3.2 | foot-gasket-groove |
-| 11 | 67 | 336 | 3.2 | foot-gasket-groove |
-| 12 | 131 | 336 | 3.2 | foot-gasket-groove |
-| 13 | 99 | 371 | 63.5 | hole saw |
-| 14 | 131 | 414 | 3.2 | foot-gasket-groove |
-| 15 | 79 | 426 | 16.3 | 5/8 core rod |
-| 16 | 99 | 426 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 17 | 119 | 426 | 16.3 | 5/8 core rod |
-| 18 | 21 | 437 | 4.5 | floor bracket |
-| 19 | 177 | 437 | 4.5 | floor bracket |
+| 11 | 20 | 333 | 4.5 | cleat |
+| 12 | 67 | 336 | 3.2 | foot-gasket-groove |
+| 13 | 131 | 336 | 3.2 | foot-gasket-groove |
+| 14 | 178 | 333 | 4.5 | cleat |
+| 15 | 99 | 371 | 63.5 | hole saw |
+| 16 | 131 | 414 | 3.2 | foot-gasket-groove |
+| 17 | 79 | 426 | 16.3 | 5/8 core rod |
+| 18 | 99 | 426 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 19 | 119 | 426 | 16.3 | 5/8 core rod |
 | 20 | 67 | 461 | 3.2 | foot-gasket-groove |
 | 21 | 99 | 481 | 63.5 | hole saw |
-| 22 | 99 | 554 | 4.5 | floor bracket |
+| 22 | 20 | 495 | 4.5 | cleat |
+| 23 | 178 | 495 | 4.5 | cleat |
+| 24 | 99 | 555 | 4.5 | cleat |
 
 ### Upright side plate, outer (x2)
 
@@ -469,6 +549,34 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 | 3 | 45 | 34 | 16.3 | 5/8 core rod |
 | 4 | 43 | 100 | 10 | 3/8-16 bolt into the top plate |
 
+### Upright cleat, outer (x2)
+
+![Upright cleat, outer](boards/upright-cleat-outer.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 365 | 20 | 4.5 | cleat |
+| 2 | 203 | 20 | 4.5 | cleat |
+| 3 | 40 | 20 | 4.5 | cleat |
+
+### Upright cleat, inner (x2)
+
+![Upright cleat, inner](boards/upright-cleat-inner.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 365 | 20 | 4.5 | cleat |
+| 2 | 203 | 20 | 4.5 | cleat |
+| 3 | 40 | 20 | 4.5 | cleat |
+
+### Upright cleat, back (x2)
+
+![Upright cleat, back](boards/upright-cleat-back.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 40 | 20 | 4.5 | cleat |
+
 ## Beam: hole maps
 
 ### Beam floor
@@ -477,26 +585,30 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 174 | 21 | 4.5 | floor bracket |
-| 2 | 474 | 21 | 4.5 | floor bracket |
-| 3 | 174 | 79 | 5.5 | M5 insert screw |
-| 4 | 294 | 79 | 5.5 | M5 insert screw |
-| 5 | 354 | 79 | 5.5 | M5 insert screw |
-| 6 | 474 | 79 | 5.5 | M5 insert screw |
-| 7 | 94 | 106 | 6.5 | M6 insert screw |
-| 8 | 107 | 106 | 6.5 | M6 insert screw |
-| 9 | 452 | 106 | 6.5 | M6 insert screw |
-| 10 | 21 | 129 | 4.5 | floor bracket |
-| 11 | 627 | 129 | 4.5 | floor bracket |
-| 12 | 94 | 152 | 6.5 | M6 insert screw |
-| 13 | 107 | 152 | 6.5 | M6 insert screw |
-| 14 | 452 | 152 | 6.5 | M6 insert screw |
-| 15 | 174 | 179 | 5.5 | M5 insert screw |
-| 16 | 294 | 179 | 5.5 | M5 insert screw |
-| 17 | 354 | 179 | 5.5 | M5 insert screw |
-| 18 | 474 | 179 | 5.5 | M5 insert screw |
-| 19 | 174 | 237 | 4.5 | floor bracket |
-| 20 | 474 | 237 | 4.5 | floor bracket |
+| 1 | 80 | 20 | 4.5 | cleat |
+| 2 | 324 | 20 | 4.5 | cleat |
+| 3 | 568 | 20 | 4.5 | cleat |
+| 4 | 174 | 79 | 5.5 | M5 insert screw |
+| 5 | 294 | 79 | 5.5 | M5 insert screw |
+| 6 | 354 | 79 | 5.5 | M5 insert screw |
+| 7 | 474 | 79 | 5.5 | M5 insert screw |
+| 8 | 20 | 99 | 4.5 | cleat |
+| 9 | 628 | 99 | 4.5 | cleat |
+| 10 | 94 | 106 | 6.5 | M6 insert screw |
+| 11 | 107 | 106 | 6.5 | M6 insert screw |
+| 12 | 452 | 106 | 6.5 | M6 insert screw |
+| 13 | 94 | 152 | 6.5 | M6 insert screw |
+| 14 | 107 | 152 | 6.5 | M6 insert screw |
+| 15 | 452 | 152 | 6.5 | M6 insert screw |
+| 16 | 20 | 159 | 4.5 | cleat |
+| 17 | 628 | 159 | 4.5 | cleat |
+| 18 | 174 | 179 | 5.5 | M5 insert screw |
+| 19 | 294 | 179 | 5.5 | M5 insert screw |
+| 20 | 354 | 179 | 5.5 | M5 insert screw |
+| 21 | 474 | 179 | 5.5 | M5 insert screw |
+| 22 | 80 | 238 | 4.5 | cleat |
+| 23 | 324 | 238 | 4.5 | cleat |
+| 24 | 568 | 238 | 4.5 | cleat |
 
 ### Beam top wall
 
@@ -512,12 +624,8 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 | 6 | 81 | 115 | 13.1 | 1/2 core rod |
 | 7 | 487 | 115 | 13.1 | 1/2 core rod |
 | 8 | 531 | 115 | 13.1 | 1/2 core rod |
-| 9 | 84 | 133 | 4.5 | back-edge-1 |
-| 10 | 219 | 133 | 4.5 | back-edge-1 |
-| 11 | 351 | 133 | 4.5 | back-edge-1 |
-| 12 | 484 | 133 | 4.5 | back-edge-1 |
-| 13 | 33 | 154 | 4.5 | corner bracket |
-| 14 | 535 | 154 | 4.5 | corner bracket |
+| 9 | 33 | 154 | 4.5 | corner bracket |
+| 10 | 535 | 154 | 4.5 | corner bracket |
 
 ### Beam bottom wall
 
@@ -560,6 +668,44 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 | 3 | 14 | 154 | 4.5 | corner bracket |
 | 4 | 126 | 154 | 4.5 | corner bracket |
 
+### Beam cleat, top
+
+![Beam cleat, top](boards/beam-cleat-top.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 528 | 20 | 4.5 | cleat |
+| 2 | 284 | 20 | 4.5 | cleat |
+| 3 | 40 | 20 | 4.5 | cleat |
+
+### Beam cleat, bottom
+
+![Beam cleat, bottom](boards/beam-cleat-bottom.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 528 | 20 | 4.5 | cleat |
+| 2 | 284 | 20 | 4.5 | cleat |
+| 3 | 40 | 20 | 4.5 | cleat |
+
+### Beam cleat, left
+
+![Beam cleat, left](boards/beam-cleat-left.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 100 | 20 | 4.5 | cleat |
+| 2 | 40 | 20 | 4.5 | cleat |
+
+### Beam cleat, right
+
+![Beam cleat, right](boards/beam-cleat-right.svg)
+
+| # | x | y | Hole | For |
+|---|---|---|---|---|
+| 1 | 100 | 20 | 4.5 | cleat |
+| 2 | 40 | 20 | 4.5 | cleat |
+
 ## Putting the moulds together
 
 ### Base: both halves on one floor
@@ -570,22 +716,25 @@ flush, the split faces match, and the front tubes slide straight onto the rear h
 
 1. Drill the floor, walls, partition and bridges. Wax and PVA every face that the mix touches.
 2. Stand the floor on two or three battens (the insert screws and floor bolts come up from underneath).
-3. Stand the walls on the floor. Fit the four corner brackets at the top corners, then the floor brackets
-   along every wall foot. Square the box with a tape across the diagonals before tightening.
+3. Bolt the cleats to the floor and stand the walls on the floor against them. Fit the four corner
+   brackets at the top corners. Square the box with a tape across the diagonals before tightening.
 4. Fit the partition between the side walls with its two brackets on the front side, and the two struts
    from the front wall to its foot. Push the gasket-groove beads onto its pins; push the spigot bushings
    into its hole-saw holes from the front.
-5. Bolt the rear-half pieces on: the gutter formers and the motor relief to the floor, the corner fillers
-   to the floor and walls, the socket plugs to the floor (each with its liner over it), the inserts and
-   the tie-rod couplers on their greased screws and bolts, the base dowels in their holes.
+5. Put the rear-half pieces in: the foam gutters on carpet tape and the printed motor relief, the corner
+   fillers bolted to the floor and walls, the socket plugs bolted to the floor with a taped foam block on
+   each, the inserts and the tie-rod couplers on their greased screws and bolts, the base dowels.
 6. Hold the draw-rod couplers on greased 1/2-13 bolts through the partition. Slide the spigots through
    the bushings and put the rear tubes on them, with their sleeves and end plugs.
-7. Bolt the leg holders into the rear corners, drop the legs through them and put a sleeve on each leg.
-8. Cast the 20 mm skin, set the cores on it (sand in them), drop the bridges into the saddles and bolt each
-   core's post to its bridge. Fill to the line.
-9. After the cure: unbolt the bridges, partition and struts, leave the rest. Pull the gasket-groove beads,
+7. Bolt the leg holders into the rear corners, drop the legs through them, set each at its height (the
+   holder note in the print guide) and tighten its pinch screw.
+8. Cast the 20 mm skin, set the foam cores on it, drop the bridges into the saddles and bolt each core's
+   post to its bridge. Fill to the line.
+9. After the cure: unbolt the bridges, partition and struts, leave the rest. Dig the foam out of the four
+   sockets (a little acetone dissolves what sticks). Pull the gasket-groove beads,
    cover the groove with packing tape, and wax and PVA the rear half's split face and the spigots.
-10. Front half the same way: formers, trough, corner fillers, couplers and inserts; front tubes onto the
+10. Front half the same way: foam trough and gutters (the drain liner pushed into the trough), corner
+    fillers, couplers and inserts; front tubes onto the
     spigots; draw rods screwed into the rear half's couplers with their ends in the corner fillers; legs;
     skin, cores, bridges, fill.
 11. After the cure, unbolt everything and split the halves (a few wedges at the split, gently).
@@ -595,8 +744,8 @@ flush, the split faces match, and the front tubes slide straight onto the rear h
 ### Uprights (two moulds, cast together)
 
 1. Drill the boards; wax and PVA. Push the post bushings into the floor from below.
-2. Stand each side plate on the floor with its floor brackets, the back board between them with its
-   floor bracket, and the two back brackets at the top.
+2. Bolt the cleats to the floor. Stand each side plate on the floor against its cleat, the back board
+   between them against its cleat, and fit the two back brackets at the top.
 3. Bolt the toe filler to the floor between the side plates, set the front board on it and fit the
    front brackets: two at its top, two at its foot (those only bolt to the side plates).
 4. Pin the gasket-groove bead to the floor. Set the mould on its four printed feet.
@@ -610,10 +759,10 @@ flush, the split faces match, and the front tubes slide straight onto the rear h
 
 ### Beam
 
-1. Drill the boards; wax and PVA. Walls on the floor with the floor brackets, corner brackets at the top.
+1. Drill the boards; wax and PVA. Cleats bolted to the floor, walls against them, corner brackets at the top.
 2. Screw the support pads and riser inserts to the floor on greased screws. Push the dowels into the
    bottom wall onto their printed stops.
 3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each square end) and hang the
-   tubes between them. Bolt the back-edge fillers to the top wall.
+   tubes between them. Tape the foam back-edge filler along the top wall (the rods push through it).
 4. Greased 1/2 in rods through the top and bottom walls for the eight bolt holes. Fill to the line.
 5. The locators leave a 16 mm hole in each beam end; plug it with a dark printed cap or leave it.

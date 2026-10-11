@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28.4 -28.4 624.9 96.8" width="625mm" height="97mm" font-family="Helvetica, Arial, sans-serif">
+<polygon points="568.1,40.0 0.0,40.0 0.0,0.0 568.1,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
+<circle cx="528.1" cy="20.0" r="3.6" fill="none" stroke="#a8641a" stroke-width="1.78"/>
+<text x="534.0" y="17.6" font-size="14.2" fill="#1d2422">1</text>
+<circle cx="284.1" cy="20.0" r="3.6" fill="none" stroke="#a8641a" stroke-width="1.78"/>
+<text x="290.0" y="17.6" font-size="14.2" fill="#1d2422">2</text>
+<circle cx="40.0" cy="20.0" r="3.6" fill="none" stroke="#a8641a" stroke-width="1.78"/>
+<text x="45.9" y="17.6" font-size="14.2" fill="#1d2422">3</text>
+<text x="0" y="59.9" font-size="14.2" fill="#5b6662">0,0 · 568 x 40 mm · seen from the outside (top)</text>
+</svg>
