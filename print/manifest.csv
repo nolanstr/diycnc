@@ -59,16 +59,16 @@ upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 139 x 8,8,Pins into
 upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 139 x 8,3,
 upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 139 x 8,3,
 upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 139 x 8,8,
-upright,plug-slope-pocket--60.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,plug-slope-pocket-40.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-slope-plug-lower.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-slope-plug-upper.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 49,35,Forms a top nut pocket: slides down its rod; the bridge holds it down.
 upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
 upright,kit-post-bushing.stl,kit,4,80 x 80 x 22,85,"Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
-beam,filler-back-edge-1-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
-beam,filler-back-edge-1-part2of4.stl,filler,1,136 x 40 x 40,24,
-beam,filler-back-edge-1-part3of4.stl,filler,1,136 x 40 x 40,24,
-beam,filler-back-edge-1-part4of4.stl,filler,1,132 x 40 x 40,24,
+beam,filler-back-edge-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
+beam,filler-back-edge-part2of4.stl,filler,1,136 x 40 x 40,24,
+beam,filler-back-edge-part3of4.stl,filler,1,136 x 40 x 40,24,
+beam,filler-back-edge-part4of4.stl,filler,1,132 x 40 x 40,24,
 beam,kit-tube-locator.stl,kit,4,44 x 44 x 51,47,"Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end."
 beam,kit-dowel-stop.stl,kit,2,18 x 18 x 11,3,Pushes into the dowel hole from outside so the dowel stands 10 mm proud.
 base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,42 x 10 x 42,14,"Cast in, stays."

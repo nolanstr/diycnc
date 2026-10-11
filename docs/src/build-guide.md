@@ -32,7 +32,7 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the core posts,
   formers and fillers, the parts that get cast in (spigot sleeves, tube plugs, drain liner) and
   the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
-  in the print guide: about 1.5 kg of PETG, inside two 1 kg rolls. The base pocket and socket cores
+  in the print guide: 1.3 kg of PETG (sliced), inside two 1 kg rolls, and about 110 hours of printing. The base pocket and socket cores
   are cut from one sheet of 2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
   print the sleeves early and test-fit them on your actual tube.
 - **Foam cutting:** a fine-tooth saw or a hot-wire cutter, a long knife, a sanding block, packing
@@ -119,7 +119,7 @@ hole table for every board, and the steps; the print guide lists the printed par
 
 ![Rear-half mould from above (mould the right way up): boards see-through, kit and cores orange](../../renders/build/02-mould-base-rear.png)
 
-![A corner of the base mould: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mould/base-corner.png)
+![A corner of the base mould: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mould/detail-corner.png)
 
 **Locating the cast-in parts** (the mould guide has the details; grease every screw and rod that comes out):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,

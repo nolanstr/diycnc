@@ -19,6 +19,7 @@ Origin is on the casting's underside directly below the spindle axis with all
 axes at home (X and Y centered, Z fully up).
 """
 
+import csv
 import importlib
 import itertools
 import math
@@ -1319,7 +1320,8 @@ def mould_upright(kit, g):
             ys_ = L0.z + (ry - L0.y) * a.z / a.y          # slope height over the rod
             p = Part.makeCylinder(16.0, bb - pb, Vector(x, ry, pb)).common(env).cut(
                 Part.makeCylinder(rod, ys_ - 12.0 - pb + 1, Vector(x, ry, pb - 1)))
-            fixed_piece(kit, folder, M, f'slope-pocket-{int(round(ry))}', 'plug', p, [(L0, nrm, 1)], qty=2,
+            nm = 'slope-plug-lower' if ry == min(r_[1] for r_ in g['tie_rods'] if r_[2] < g['pocket_bot'] - 1) else 'slope-plug-upper'
+            fixed_piece(kit, folder, M, nm, 'plug', p, [(L0, nrm, 1)], qty=2,
                         note='Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.',
                         show=show, mult=mult, sizes=('M4', 'M3'))
     kit.add(folder, 'tie-rod-pocket', 'plug', tops[0], 2 * len(tops), 'Forms a top nut pocket: slides down its rod; '
@@ -1378,12 +1380,14 @@ def mould_beam(kit, m, g):
         cleat(kit, M, f'Beam cleat, {tag}', Vector(sx * xo, bf, bot), Vector(sx * xo, bf, top), sx * X, Y, show)
     rods = [Part.makeCylinder(P['beam_bolt_hole'] / 2 + FIT_PLUG, top - bot + 2, Vector(sx * bx, by, bot - 1))
             for sx in (-1, 1) for bx in g['bolt_xs'] for by in g['bolt_ys']]
-    for i, f in enumerate(moulds.fillers(beam_envelope(g, edges=False))):
+    fl = moulds.fillers(beam_envelope(g, edges=False))
+    for i, f in enumerate(fl):
+        nm = 'back-edge' if len(fl) == 1 else f'back-edge-{i + 1}'
         if P['foam_formers']:
-            kit.add(folder, f'back-edge-{i + 1}', 'foam', f, 1, foam_note('back-edge', f), show=show)
+            kit.add(folder, nm, 'foam', f, 1, foam_note('back-edge', f), show=show)
             continue
         f = f.cut(rods)
-        fixed_piece(kit, folder, M, f'back-edge-{i + 1}', 'filler', f, [(Vector(0, 0, top), Z, 1)], up=-Z,
+        fixed_piece(kit, folder, M, nm, 'filler', f, [(Vector(0, 0, top), Z, 1)], up=-Z,
                     note='Rounded back edge; bolts to the top wall.', show=show)
     # tube locators: a square spigot in the tube end and a 16 mm stem to the end wall, bolted through it
     # (M4 x 70) into a nut that slides in from the inside of the tube
@@ -2201,13 +2205,6 @@ def snapshots(doc, out_dir, m):
          dict(mode='bare', only=('FrameUprightL',), xray=True, moulds=('MouldUpright',))),
         ('build/06-mould-beam', (0, 0, 0), lambda: look((0.4, -0.75, -0.5), Vector(0, 1, 0)), ('BeamCasting',),
          dict(mode='bare', only=('FrameBeam',), xray=True, moulds=('MouldBeam',))),
-        ('mould/base-corner', (0, 0, 0), lambda: look((0.45, 0.6, 0.65), Vector(0, 0, -1)),
-         ('MouldBaseRear_kit_leg_holder_3', 'MouldBaseRear_kit_saddle_9', 'MouldBaseRear_kit_corner_bracket_3',
-          'MouldBaseRear_filler_corner_R_0'),
-         dict(mode='bare', only=('FrameBaseRear',), xray=True, moulds=('MouldBaseRear',))),
-        ('mould/upright-front', (0, 0, 0), lambda: look((0.8, 0.55, -0.45)),
-         ('MouldUpright_filler_toe_filler_0', 'MouldUpright_plug_slope_pocket__60_0', 'MouldUpright_kit_front_bracket_0'),
-         dict(mode='bare', only=('FrameUprightL',), xray=True, moulds=('MouldUpright',))),
         ('build/07-frame-base', (0, 0, 0), iso, ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
         ('build/08-frame-uprights', (0, 0, 0), iso, None,
@@ -2320,22 +2317,36 @@ def export_prints(m):
     kinds = {'core': 'Pocket core (shell, stays in)', 'former': 'Former (removable)', 'filler': 'Filler (removable)',
              'plug': 'Plug (removable)', 'liner': 'Liner (stays in)', 'cast-in': 'Cast-in part (stays in)',
              'kit': 'Mould kit (reused)', 'part': 'Machine part'}
+    # sliced figures (model/slice_prints.py), if they are for these files
+    sliced, hours = {}, None
+    path = os.path.join(root, 'sliced.csv')
+    if os.path.exists(path):
+        sl = {(r['folder'], r['file']): r for r in csv.DictReader(open(path))}
+        if all((r['folder'], r['file']) in sl and sl[(r['folder'], r['file'])]['estimate'] == f"{r['grams']:.0f}"
+               and sl[(r['folder'], r['file'])]['grams'] != '' for r in rows):
+            for r in rows:
+                x = sl[(r['folder'], r['file'])]
+                r['grams'], r['time'] = float(x['grams']), x['time_each']
+            sliced = True
     total_g = sum(r['grams'] for r in rows)
     total_n = sum(r['qty'] for r in rows)
+    how = ('sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by '
+           '`model/slice_prints.py`' if sliced else 'rough estimates; run `python3 model/slice_prints.py` for sliced figures')
     lines = ['# Print guide', '',
              'Every printed part for the moulds, the castings and the machine, cut to fit a Bambu A1 mini',
              f'(180 mm cube; no piece is over {moulds.BED:.0f} mm). The STL files are in `print/`, one folder per',
              'casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.',
              'How the moulds go together is in the mould guide.', '',
-             f'**About {total_n} prints, roughly {total_g / 1000:.1f} kg of PETG.** The filament figures are rough estimates.', '',
+             f'**{total_n} prints, {total_g / 1000:.2f} kg of PETG** (two 1 kg rolls). The filament figures are {how}.', '',
              '## Settings', '',
              '- **PETG for everything.** Thick sections of curing epoxy get warm, and PLA softens at about 55 °C.',
-             '- 0.4 mm nozzle, 0.2 mm layers. Every file is already turned the way it prints best, without supports.',
+             '- 0.4 mm nozzle, 0.2 mm layers, 4 top and 3 bottom layers. Every file is already turned the way it prints',
+             '  best, without supports.',
              f'- **Cores** (`core-*`): thin shells, {moulds.WALL:.1f} mm walls (three lines), so they print solid; the',
              '  posts get 2 walls and 10 % infill. The sand inside holds the walls while casting.',
              '- **Fillers, formers, plugs** (`filler-*`, `former-*`, `plug-*`): 2 walls, 10 % infill. They only have to',
              '  hold their shape against the mix; the nut pockets have their own walls.',
-             '- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings): 3 walls, 15 % infill. Print one,'
+             '- **Mould kit** (`kit-*`: brackets, saddles, holders, bushings) and machine parts: 3 walls, 15 % infill. Print one,'
              f'  check it over a {P["mould_board"]:.0f} mm offcut of your board, then the rest.',
              '- **Liners and cast-in parts** (`liner-*`, `cast-in-*`): 3 walls, 40 % infill.',
              '- **Fits.** Slip fits are 0.15 mm a side, nut pockets 0.15 mm over the nut, pins 3.0 mm into a 1/8 in',
@@ -2366,9 +2377,9 @@ def export_prints(m):
         if not sub:
             continue
         lines += [f'## {title}', '', f'Folder `print/{key}/`, about {sum(r["grams"] for r in sub):.0f} g.', '',
-                  '| File | What | Qty | Size (mm) | Notes |', '|---|---|---|---|---|']
+                  '| File | What | Qty | Size (mm) | g (all) | Notes |', '|---|---|---|---|---|---|']
         for r in sub:
-            lines.append(f"| `{r['file']}` | {kinds[r['kind']]} | {r['qty']} | {r['size']} | {r['note']} |")
+            lines.append(f"| `{r['file']}` | {kinds[r['kind']]} | {r['qty']} | {r['size']} | {r['grams']:.0f} | {r['note']} |")
         lines.append('')
     with open(os.path.join(ROOT, 'docs', 'src', 'print-guide.md'), 'w') as fh:
         fh.write('\n'.join(lines))
@@ -2388,7 +2399,7 @@ def board_svg(b, path):
     flip = b.view == 'outside'
     X = (lambda u: u1 - u) if flip else (lambda u: u - u0)
     Yv = lambda v: v1 - v
-    fs = max(6.0, max(u1 - u0, v1 - v0) / 40)           # text about 2 mm high on the page
+    fs = 2.6 * max(1.0, (u1 - u0 + 20) / 180.0)          # about 2.6 mm high once the page shrinks it to fit
     pad = 2 * fs
     w, h = u1 - u0 + 2 * pad, v1 - v0 + 2 * pad
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{-pad:.1f} {-pad:.1f} {w:.1f} {h:.1f}" '
@@ -2412,8 +2423,62 @@ def hole_order(b):
     return sorted(b.holes, key=lambda h: (round(h[1] / 5), h[0]))
 
 
+SHEET = (2440.0, 1220.0)        # 4 x 8 ft
+KERF = 4.0
+
+
+def sheet_layout(boards):
+    """Rip-and-crosscut layout: each sheet is ripped into strips along its length, as wide as the widest
+    piece left; pieces are crosscut from the strips, widest first. Returns [[(x, y, w, h, label)]]."""
+    pcs = []
+    for b in boards:
+        su, sv = b.size()
+        for k in range(b.qty):
+            L, W = max(su, sv), min(su, sv)
+            pcs.append((W, L, b.name + (f' ({k + 1})' if b.qty > 1 else '')))
+    pcs.sort(key=lambda p: (-p[0], -p[1]))
+    sheets = []
+    while pcs:
+        sheet, y = [], 0.0
+        while pcs:
+            strip = next((p for p in pcs if y + p[0] <= SHEET[1] + 0.1), None)
+            if strip is None:
+                break
+            w = strip[0]
+            x = 0.0
+            for p in list(pcs):
+                if p[0] <= w + 0.1 and x + p[1] <= SHEET[0] + 0.1:
+                    sheet.append((x, y, p[1], p[0], p[2]))
+                    x += p[1] + KERF
+                    pcs.remove(p)
+            y += w + KERF
+        sheets.append(sheet)
+    return sheets
+
+
+def sheet_svg(sheet, k, path):
+    W, H = SHEET
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -40 {W + 40:.0f} {H + 70:.0f}" '
+           f'font-family="Helvetica, Arial, sans-serif">',
+           f'<text x="0" y="-12" font-size="34" fill="#1d2422">Sheet {k}: 4 x 8 ft (1220 x 2440 mm)</text>',
+           f'<rect x="0" y="0" width="{W}" height="{H}" fill="#f4f4f1" stroke="#222" stroke-width="3"/>']
+    cols = ['#e9d8c4', '#d8e4ef', '#dfe9d6', '#efe1ea']
+    for i, (x, y, w, h, label) in enumerate(sheet):
+        out.append(f'<rect x="{x:.0f}" y="{y:.0f}" width="{w:.0f}" height="{h:.0f}" fill="{cols[i % 4]}" '
+                   f'stroke="#a8641a" stroke-width="2.5"/>')
+        fs = max(13.0, min(30.0, h / 3.2, w / max(len(label), 1) * 1.7))
+        out.append(f'<text x="{x + w / 2:.0f}" y="{y + h / 2 - fs * 0.15:.0f}" font-size="{fs:.0f}" text-anchor="middle" '
+                   f'fill="#1d2422">{label}</text>')
+        out.append(f'<text x="{x + w / 2:.0f}" y="{y + h / 2 + fs * 0.95:.0f}" font-size="{fs * 0.8:.0f}" '
+                   f'text-anchor="middle" fill="#5b6662">{w:.0f} x {h:.0f}</text>')
+    out.append('</svg>')
+    with open(path, 'w') as fh:
+        fh.write('\n'.join(out))
+
+
 def write_mould_guide(m):
-    """docs/src/mould-guide.md and the board drawings in docs/src/boards/."""
+    """docs/src/mould-guide.md: how to make and use the moulds, with the board drawings in
+    docs/src/boards/ and the illustrations from model/mould_figures.py in renders/mould/."""
     kit = m.mould_kit
     bdir = os.path.join(ROOT, 'docs', 'src', 'boards')
     os.makedirs(bdir, exist_ok=True)
@@ -2421,62 +2486,96 @@ def write_mould_guide(m):
         if f.endswith('.svg'):
             os.remove(os.path.join(bdir, f))
     T, fb = P['mould_board'], P['mould_freeboard']
-    area = sum(b.size()[0] * b.size()[1] * b.qty for b in kit.boards)
-    sheets = math.ceil(area / (1220 * 2440 * 0.7))
     hw = kit.hardware
-    lines = ['# Mould guide', '',
-             'The moulds are melamine boards that bolt together with printed brackets, and every printed piece',
-             'bolts or pins to its board from outside. Nothing is glued and nothing goes through a cast face,',
-             'so the moulds come apart cleanly and go back together the same way for the next casting.', '',
-             '## How it works', '',
-             f'- **Walls stand {fb:.0f} mm above the pour line.** The brackets, saddles and leg holders bolt through that',
-             '  band, so no bolt passes through a face that gets cast against. Fill to the line, not to the top.',
-             '- **Corner brackets** hold each outside corner square in that band. Each has its nut pressed into a hex',
-             '  pocket, and its holes are a drill guide: clamp it in place and drill through it.',
-             '- **Cleats** (strips of board offcut) lie on the floor along each wall\'s foot, outside, bolted down',
-             '  through the floor: the walls stand against them.',
-             '- **Printed pieces bolt on from outside.** An M4 bolt (M3 on thin pieces) goes through the board into',
-             '  a nut built into the piece. The nut drops into a pocket in the face against the board and slides',
-             '  over under the hole, so nothing opens onto a cast face. Fit the nuts before the pieces go on.',
-             '- **Thin pieces have pins.** The gasket-groove beads and the motor relief have 3 mm pins',
-             '  that push into 1/8 in holes. The casting presses them onto the board.',
-             '- **Pieces cut to fit the printer** have a peg and socket on the cut, and their own fixings.',
-             '- **Foam.** The base pocket cores and the socket cores are XPS foam board wrapped in packing tape. Each',
-             '  pocket core has a printed post glued into it that bolts to a bridge, so it sits at the right height',
-             '  and can\'t float; each socket block pushes over a printed spike bolted to the floor. That keeps the',
-             '  printing to about 1.5 kg of PETG.',
-             '- **Bridges** stand on edge in saddles that hook over the wall tops; each core has a post that bolts',
-             '  to the side of a bridge, which sets its height and stops it floating.',
-             '- **Fits** are 0.15 mm a side: snug, but they go together by hand. Waxed pieces come out after curing.', '',
-             f'**Measure your board first.** The saddles, cradles and drawings are for {T:.2f} mm board (Home Depot\'s',
-             '3/4 in white melamine is a true 0.750 in; other "3/4 in" melamine can be 18 mm). If yours is different,',
-             'set `mould_board` in `model/build_cnc.py` and re-run it: the STLs, hole maps and this guide all update.', '',
-             '![Rear-half mould: walls see-through, kit and cores orange](../../renders/build/02-mould-base-rear.png)', '',
-             '![Corner of the base mould: corner bracket, leg holder and its sleeve, saddle and bridge, corner filler]'
-             '(../../renders/mould/base-corner.png)', '',
-             '## What to buy', '',
-             f'- **Melamine board**, {T:.0f} mm (3/4 in): about {area / 1e6:.1f} m2 of boards in all, so {sheets} sheets of 4 x 8 ft '
-             'with room for mistakes. Have the store rip it into strips at the widths in the cut list.',
-             '- **Hardware** (zinc-plated is fine; grease anything that touches the mix):', '',
-             '| Item | Qty |', '|---|---|']
-    for k in sorted(hw, key=lambda k: (not k.startswith('M'), k)):
-        lines.append(f'| {k} | {hw[k]} |')
+    fig = lambda name, cap: [f'![{cap}](../../renders/mould/{name}.png)', '']
+    sheets = sheet_layout(kit.boards)
+    for k, sh in enumerate(sheets, 1):
+        sheet_svg(sh, k, os.path.join(bdir, f'sheet-{k}.svg'))
     foam = [r for r in m.moulds if r['kind'] == 'foam']
-    lines += ['', 'Buy about 10 % spare of the small bolts, nuts and washers.', '',
-              f'- **Foam**: one 2 in x 2 ft x 8 ft XPS board (Foamular or similar) for the {sum(r["qty"] for r in foam)} foam',
-              '  pieces (stack two layers, glued with foam-safe adhesive, for the 90 mm cores); packing tape;',
-              '  double-sided carpet tape.', '',
-              '## Foam pieces', '',
-              'Cut with a fine saw, a hot wire or a sharp knife and a sanding block; wrap in packing tape (no wax',
-              'needed on the tape). Sizes are x by y by depth, as the piece sits in the casting.', '',
-              '| Casting | Piece | Qty | How |', '|---|---|---|---|']
-    for r in foam:
-        lines.append(f"| {r['folder']} | {r['name']} | {r['qty']} | {r['note']} |")
-    lines += ['',
-              '## Cut list', '',
-              'Sizes are length x height (or width) of the face, in mm. Boards marked "profile" are cut to the outline in',
-              'their drawing.', '',
-              '| Mould | Board | Qty | Size (mm) | Notes |', '|---|---|---|---|---|']
+    sl_path = os.path.join(ROOT, 'print', 'sliced.csv')
+    sliced = list(csv.DictReader(open(sl_path))) if os.path.exists(sl_path) else []
+    pet = sum(float(r['grams']) for r in sliced if r['folder'] != 'machine') if sliced else None
+
+    L = ['# Mould guide', '',
+         'How to make the moulds for the five castings, put them together, and take them apart again. The',
+         'moulds are melamine boards that bolt together with printed brackets; every printed piece bolts or',
+         'pins to its board from outside, and the bulky hidden cores are foam. Nothing is glued, nothing',
+         'goes through a face the mix touches, and the moulds come apart cleanly for the next casting.', '',
+         'The build guide covers the casting itself (mix, pour, cure); this guide is everything before and',
+         'after that. All the sizes and hole positions come from the model (`model/build_cnc.py`), so if you',
+         'change the design, re-run it and this guide, the hole maps and the printed parts all follow.', '',
+         '![The rear base-half mould ready to pour: boards see-through, printed kit in orange, foam in blue]'
+         '(../../renders/build/02-mould-base-rear.png)', '',
+         '**The order of work:** print the kit (about a week of printer time, so start first) &rarr; cut and',
+         'drill the boards &rarr; cut the foam &rarr; wax &rarr; assemble a mould &rarr; cast &rarr; take it',
+         'apart. Cast in this order: base rear half, base front half (against the rear half), the two uprights',
+         'together, the beam.', '',
+         '## 1. How the moulds work', '',
+         f'**Walls stand {fb:.0f} mm above the pour line.** All the bolts that hold the box together go through',
+         'that band, so none passes through a face that gets cast against. Fill to the line, not to the top.',
+         'Strips of board (cleats) bolted down along the outside of each wall\'s foot keep the walls from moving',
+         'out; printed corner brackets hold the corners square at the top.', '']
+    L += fig('detail-corner', 'A corner of the base mould, the right way up')
+    L += ['**Printed pieces bolt on from outside.** Each piece that forms part of the casting\'s surface (the',
+          'formers and fillers) has a nut built into it: the nut drops into a pocket in the face that sits',
+          'against the board, slides sideways under the bolt hole, and an M4 bolt (M3 on thin pieces) goes',
+          'through the board from outside into it. The pocket is on the board side, so nothing opens onto a',
+          'cast face, and the bolt comes out from outside after casting. Fit the nuts before the pieces go on.', '']
+    L += fig('fixing-nut', 'The captive nut: drop it in, slide it under the hole, bolt through the board')
+    L += ['**Thin pieces have pins.** The gasket-groove beads and the motor relief are too thin for a nut; their',
+          '3 mm pins push into 1/8 in holes. The casting presses them onto the board.', '']
+    L += fig('fixing-pins', 'Pins on a gasket-groove bead')
+    L += ['**Pieces longer than the printer bed** are printed in parts with a peg on one cut face and a socket',
+          'in the other. Push them together; each part has its own bolts to the board, so they need no glue.', '']
+    L += fig('fixing-peg', 'Peg and socket between the parts of a long former')
+    L += ['**Cores** (the pockets in the base underside) are blocks of XPS foam wrapped in packing tape. Each',
+          'has a printed post glued into it; the post bolts to the side of a bridge (a board standing on edge',
+          'across the mould, in printed saddles on the wall tops), which sets its height and stops it floating.', '']
+    L += fig('detail-core', 'A foam core hanging from its bridge')
+    L += ['**Fits** are 0.15 mm a side: snug, but they go together by hand. Board thickness matters: the',
+          f'saddles and cradles are drawn for {T:.2f} mm board (Home Depot\'s 3/4 in white melamine is a true',
+          '0.750 in). Measure yours; if it differs, set `mould_board` in `model/build_cnc.py` and re-run it.', '',
+          '## 2. What you need', '',
+          '| Material | Amount | Notes |', '|---|---|---|',
+          f'| Melamine board, {T:.0f} mm (3/4 in) | {len(sheets)} sheets, 4 x 8 ft | the layout below; have the store rip the strips |',
+          '| XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores; stack two layers for the 90 mm ones |',
+          f"| PETG | 2 x 1 kg rolls | {f'{pet / 1000:.2f} kg for the moulds and cast-in parts (sliced)' if pet else 'see the print guide'} |",
+          '| Packing tape, double-sided carpet tape | 1 roll each | foam wrapping and holding |',
+          '| Paste wax (Partall #2) and PVA | 1 each | release, 3-5 coats |',
+          '| 3/8 in quarter-round moulding (PVC) | about 6 m | the 10 mm outside edges of the castings |',
+          '| 2x4 offcut | 4 blocks, about 50 mm | feet for each upright mould |', '',
+          '**Hardware** (zinc-plated is fine; grease anything that touches the mix). Buy about 10 % spare of the',
+          'small bolts, nuts and washers.', '', '| Item | Qty |', '|---|---|']
+    for k in sorted(hw, key=lambda k: (not k.startswith('M'), k)):
+        if not k.startswith('Block of 2x4'):
+            L.append(f'| {k} | {hw[k]} |')
+    L += ['', '**Tools:** a drill with sharp brad-point bits (sizes in section 5) and a 2-1/2 in hole saw; a jigsaw',
+          'or a circular saw for the upright side plates\' sloped edge; a square and a long straightedge; a few',
+          'clamps; a 7 mm nut driver and a 3 mm hex key; a fine saw or a hot-wire cutter and a sanding block for',
+          'the foam; a marker that writes on melamine.', '',
+          '## 3. Print the kit', '']
+    if sliced:
+        hours = sum(_minutes(r['time_each']) * int(r['qty']) for r in sliced if r['time_each'] != 'FAILED') / 60
+        L += [f'Everything printed is in `print/` and listed in the print guide: {sum(int(r["qty"]) for r in sliced)} prints, '
+              f'{sum(float(r["grams"]) for r in sliced) / 1000:.2f} kg of PETG and about {hours:.0f} hours of printing, sliced in',
+              'Bambu Studio for an A1 mini. Start early. Print order: one corner bracket and one saddle first',
+              f'(check them on an offcut of your board: the saddle should drop over it with a little play), then the',
+              'kit, then the pieces for the rear base half, then the rest.', '']
+    L += ['The mould kit (reused for every casting):', '']
+    L += fig('gallery-kit', 'The printed mould kit')
+    L += ['The formers, fillers and plugs (each shapes part of a casting):', '']
+    L += fig('gallery-pieces', 'Formers, fillers and plugs')
+    L += ['- **Nuts:** press M4 nuts into the hex pockets of the brackets and saddles; slide the nuts into the',
+          '  pockets of the formers and fillers (a dab of grease keeps them from falling out). A 7 mm nut on a',
+          '  bolt through the hole pulls a tight one into place.',
+          '- **Pegs:** test-fit the parts of each long former; a light pass with a file if a peg is tight.', '',
+          '## 4. Cut the boards', '',
+          'Most boards are strips, so the quickest way is to have the store rip each sheet into strips at the',
+          'widths in the layout, and crosscut them at home. Label every board with its name on the outside face',
+          'as you cut it, and mark which face is the cast face (the melamine face that the mix touches).', '']
+    for k in range(1, len(sheets) + 1):
+        L += [f'![Sheet {k}](boards/sheet-{k}.svg)', '']
+    L += ['| Mould | Board | Qty | Size (mm) | Notes |', '|---|---|---|---|---|']
     cut = {}
     for b in kit.boards:
         su, sv = b.size()
@@ -2486,25 +2585,28 @@ def write_mould_guide(m):
         else:
             cut[key] = [b, f"{su:.0f} x {sv:.0f}{'' if b.rect() else ' (profile)'}", b.qty]
     for b, size, qty in cut.values():
-        lines.append(f"| {MOULD_TITLES[b.mould]} | {b.name} | {qty} | {size} | {b.note} |")
-    lines += ['', '## Drilling', '',
-              '- Drill every hole from the **cast side** (the face the mix touches), so any tear-out is on the outside.',
-              '  The drawings and tables are seen from that side: x from the left edge, y from the bottom edge. For a',
-              '  wall the bottom edge sits on the floor; for a floor, the bottom of the drawing is toward the front',
-              '  wall (or the beam\'s bottom wall). Left and right are as you look at the cast face, so a floor seen',
-              '  from above is mirrored compared with the machine.',
-              '- Bridges are drawn from the top (outside).',
-              '- Use the printed brackets as drill guides where they sit; the tables give every hole anyway.', '',
-              '| Hole | Drill | For |', '|---|---|---|']
+        L.append(f"| {MOULD_TITLES[b.mould]} | {b.name} | {qty} | {size} | {b.note} |")
+    L += ['', 'The two upright side plates are cut to a profile (their drawings give the corners): cut the rectangle,',
+          'then the sloped front edge. The front board\'s ends are square.', '',
+          '## 5. Drill the boards', '',
+          '- Drill every hole from the **cast side**, so any tear-out is on the outside. Clamp a scrap under',
+          '  the board where the bit comes out.',
+          '- The drawings and tables are seen from the cast side: x from the left edge, y from the bottom edge.',
+          '  For a wall the bottom edge sits on the floor; for a floor, the bottom of the drawing is toward the',
+          '  front wall (the beam\'s bottom wall). Left and right are as you look at the cast face, so a floor is',
+          '  mirrored compared with the machine. Bridges and cleats are drawn from the top.',
+          '- The brackets and saddles are drill guides: clamp one in place and drill through its holes.',
+          '- Countersink nothing; a washer goes under every bolt head.', '',
+          '| Hole | Drill | For |', '|---|---|---|']
     used = {}
     for b in kit.boards:
         for _, _, d, what in b.holes:
             used.setdefault(round(d, 1), set()).add(what.split(' (')[0])
     for d in sorted(used):
-        lines.append(f"| {d:g} mm | {DRILLS.get(d, '')} | {', '.join(sorted(used[d]))} |")
-    lines.append('')
+        L.append(f"| {d:g} mm | {DRILLS.get(d, '')} | {', '.join(sorted(used[d]))} |")
+    L.append('')
     for mould in ('base', 'upright', 'beam'):
-        lines += [f'## {MOULD_TITLES[mould]}: hole maps', '']
+        L += [f'### {MOULD_TITLES[mould]}', '']
         for b in kit.boards:
             if b.mould != mould or not b.holes:
                 continue
@@ -2514,71 +2616,124 @@ def write_mould_guide(m):
             vs = [v for _, v in b.outline]
             u0, u1, v0 = min(us), max(us), min(vs)
             X = (lambda u: u1 - u) if b.view == 'outside' else (lambda u: u - u0)
-            lines += [f'### {b.name}' + (f' (x{b.qty})' if b.qty > 1 else ''), '', f'![{b.name}](boards/{fname})', '',
-                      '| # | x | y | Hole | For |', '|---|---|---|---|---|']
+            L += [f'#### {b.name}' + (f' (x{b.qty})' if b.qty > 1 else ''), '', f'![{b.name}](boards/{fname})', '',
+                  '| # | x | y | Hole | For |', '|---|---|---|---|---|']
             for k, (u, v, d, what) in enumerate(hole_order(b), 1):
-                lines.append(f'| {k} | {X(u):.0f} | {v - v0:.0f} | {d:g} | {what} |')
+                L.append(f'| {k} | {X(u):.0f} | {v - v0:.0f} | {d:g} | {what} |')
             if not b.rect():
-                lines += ['', 'Outline corners (x, y): ' + ', '.join(f'({X(u):.0f}, {v - v0:.0f})' for u, v in b.outline)]
-            lines.append('')
-    lines += MOULD_STEPS
+                L += ['', 'Outline corners (x, y): ' + ', '.join(f'({X(u):.0f}, {v - v0:.0f})' for u, v in b.outline)]
+            L.append('')
+    L += ['## 6. Cut the foam', '',
+          'Cut with a fine saw, a hot wire, or a long sharp knife and a sanding block. Wrap each piece in packing',
+          'tape (smooth, no wrinkles: the tape is the cast face). For the 90 mm cores glue two layers of 2 in',
+          'foam with a foam-safe adhesive (not solvent cement) or double-sided tape, then trim. Make each pocket',
+          'core\'s post hole a snug 12 mm square, 30 mm deep, and glue the printed post in.', '',
+          '| Casting | Piece | Qty | Size and how |', '|---|---|---|---|']
+    for r in foam:
+        L.append(f"| {r['folder']} | {r['name']} | {r['qty']} | {r['note']} |")
+    L += [''] + fig('detail-socket', 'A socket core: printed spike bolted to the floor, the foam pushed over it')
+    L += ['## 7. Prepare the surfaces', '',
+          '- Wax every face the mix touches, boards and removable printed pieces alike: 3-5 thin coats of paste',
+          '  wax, each buffed, then a coat of PVA. Don\'t wax the pieces that stay in (core posts, cast-in parts):',
+          '  scuff them and wipe them with acetone so the epoxy grips.',
+          '- The castings\' outside edges are rounded 10 mm: glue 3/8 in quarter-round moulding into the inside',
+          '  corners that form outside edges (floor to wall), and run a small silicone fillet into the others.',
+          '- Grease every screw, bolt and rod that will come out of the casting.', '',
+          '## 8. Put the moulds together', '',
+          '### Base, rear half (cast first)', '',
+          'Both base halves are cast on the same floor board. The rear half goes first, against a partition at',
+          'the split; then the partition comes out and the front half is cast against the rear half\'s waxed',
+          'split face. The two top faces come out flush, the split faces match, and the front tubes slide',
+          'straight onto the rear half\'s spigots. The base is cast upside down (its top face on the floor);',
+          'these pictures show the mould the right way up.', '']
+    steps_text = {
+        'step-base-rear-1': 'Stand the floor on three battens (the insert screws and floor bolts come up from underneath) '
+                            'and bolt the cleats down along its edges.',
+        'step-base-rear-2': 'Stand the walls on the floor against the cleats and fit the four corner brackets at the top '
+                            'corners. Measure the diagonals before you tighten: they should match within 2 mm.',
+        'step-base-rear-3': 'Fit the partition between the side walls with its two brackets on the front side, and the '
+                            'two struts from the front wall to its foot. Push the gasket-groove beads onto its pins and '
+                            'the spigot bushings into its holes from the front.',
+        'step-base-rear-4': 'Bolt on the gutter formers, the motor relief (pins) and the rear corner fillers; bolt the '
+                            'socket spikes to the floor and push a taped foam block over each.',
+        'step-base-rear-5': 'Screw the inserts to the floor and the tie-rod couplers onto their greased bolts; hold the '
+                            'draw-rod couplers on bolts through the partition. Slide the spigots through the bushings '
+                            'and put the rear tubes on them, with their sleeves and end plugs. Bolt the leg holders into '
+                            'the corners, drop the legs in, set each at its height and tighten its pinch screw.',
+        'step-base-rear-6': 'Cast the 20 mm skin first. Then set the foam cores on it, drop the bridges into the saddles '
+                            'and bolt each core\'s post to its bridge. Fill to the pour line.',
+        'step-base-front-1': 'After the cure: unbolt the bridges, the partition and its struts, and leave the rest. Dig '
+                             'the foam out of the four sockets, pull the gasket-groove beads, tape over the groove, and '
+                             'wax and PVA the rear half\'s split face and spigots.',
+        'step-base-front-2': 'Bolt on the trough and gutter formers (the drain liner on the trough\'s spigot) and the '
+                             'front corner fillers; put the front tubes, sleeves and plugs onto the spigots; screw the '
+                             'draw rods into the rear half\'s couplers with their ends in the corner fillers; inserts, '
+                             'couplers and legs as before.',
+        'step-base-front-3': 'Skin, foam cores, bridges, fill. After the cure unbolt everything and split the halves '
+                             'with a few wedges at the split, gently.',
+    }
+    for k in range(1, 7):
+        L += [f'{k}. ' + steps_text[f'step-base-rear-{k}'], ''] + fig(f'step-base-rear-{k}', f'Base rear, step {k}')
+    L += ['### Base, front half (against the rear half)', '']
+    for k in range(1, 4):
+        L += [f'{k}. ' + steps_text[f'step-base-front-{k}'], ''] + fig(f'step-base-front-{k}', f'Base front, step {k}')
+    L += ['### Uprights (two moulds, cast together)', '',
+          'The uprights are cast foot down. Both are the same, so build two of everything.', '']
+    up_text = [
+        'Push the post bushings into the floor from below and pin the gasket-groove bead to it. Bolt the cleats down.',
+        'Stand the side plates against their cleats and the back board between them; fit the two back brackets.',
+        'Bolt the toe filler to the floor between the side plates, set the front board\'s foot in its lip and '
+        'fit the two front brackets at the top.',
+        'Stand the mould on its four 2x4 blocks. Push the posts up through the bushings onto the bench, and the '
+        'greased 5/8 in rods up through the floor: the two short ones into the slope plugs (bolted to the front '
+        'board), the two long ones on through the top. The dowel-hole bolt and nut go in from underneath.',
+        'Fill to the line and vibrate. Then slide the top pocket plugs down the long rods, hang the top plate from '
+        'the bridge on its greased 3/8 bolts and spacers, and drop the bridge onto its saddles.',
+    ]
+    for k, t in enumerate(up_text, 1):
+        L += [f'{k}. {t}', ''] + fig(f'step-upright-{k}', f'Upright, step {k}')
+    L += fig('detail-toe', 'The toe filler holds the front board\'s foot')
+    L += ['### Beam', '', 'The beam is cast with its front (rail) face down on the floor and its back open.', '']
+    bm_text = [
+        'Bolt the cleats down; screw the support pads and riser inserts to the floor on greased screws.',
+        'Stand the walls against the cleats and fit the four corner brackets.',
+        'Bolt the tube locators through the end walls (M4 x 70 into the nut in each cross) and hang the tubes '
+        'between them. Bolt the back-edge fillers to the top wall, push the dowels into the bottom wall onto '
+        'their printed stops, and slide the greased 1/2 in rods through both walls for the eight bolt holes. '
+        'Fill to the line.',
+    ]
+    for k, t in enumerate(bm_text, 1):
+        L += [f'{k}. {t}', ''] + fig(f'step-beam-{k}', f'Beam, step {k}')
+    L += fig('detail-locator', 'A tube locator: a cross in the tube end, bolted through the end wall')
+    L += ['## 9. Pouring, and the pour line', '',
+          f'- The pour line is {fb:.0f} mm below the wall tops. Mark it inside each wall with a pencil line, and',
+          f'  screed the top with a straight board that has two {fb:.0f} mm feet riding on the wall tops.',
+          '- Vibrate each layer until it stops bubbling; the brackets and cleats hold the walls, so you can vibrate',
+          '  the floor board hard. Check the corner brackets and saddle bolts are still tight halfway through.',
+          '- Keep the mix off the bridges and saddles; scrape it off before it cures.', '',
+          '## 10. Taking it apart, and reuse', '',
+          '1. Leave it the full cure time (build guide). Unbolt the bridges and saddles, then the corner',
+          '   brackets, then the cleats; pull the walls straight off (a plastic wedge in the corner helps).',
+          '2. Unscrew every insert screw, coupler bolt and rod from outside, then lift the casting off the floor',
+          '   (or the floor off the casting).',
+          '3. Unbolt and pull the formers and fillers (the bolts come out from the board side first). A wooden',
+          '   dowel and a light tap frees a stuck one. Dig out the socket foam; the pocket cores can stay.',
+          '4. Scrape the boards, re-wax them, and store the kit pieces with their nuts in a box per mould. The',
+          '   same kit does the next casting; only the formers and pieces that stay in are per casting.', '',
+          '## 11. If something doesn\'t fit', '',
+          '| Problem | Fix |', '|---|---|',
+          '| A nut won\'t slide under the hole | Clean the pocket with a 7 mm nut on a bolt; a warm nut (hair dryer) pushes in |',
+          '| A bracket or saddle is loose on the board | Your board is thinner than set: shim with tape, or set `mould_board` and reprint |',
+          '| A pin won\'t go into its hole | Run a 1/8 in bit through the hole again; trim the pin tip with a knife |',
+          '| A foam core moves while pouring | Check its post bolt is tight and the post is glued; add carpet tape under it |',
+          '| Mix leaks at a corner | A silicone fillet inside the corner before waxing; check the diagonals and brackets |',
+          '| A former is stuck after curing | Bolts out first; then a dowel and a light tap from its thick end |', '']
     with open(os.path.join(ROOT, 'docs', 'src', 'mould-guide.md'), 'w') as fh:
-        fh.write('\n'.join(lines))
+        fh.write('\n'.join(L))
 
 
-MOULD_STEPS = [
-    '## Putting the moulds together', '',
-    '### Base: both halves on one floor', '',
-    'The rear half is cast first, against a partition at the split. Then the partition comes out and the',
-    'front half is cast against the rear half\'s waxed split face, on the same floor. The two top faces come out',
-    'flush, the split faces match, and the front tubes slide straight onto the rear half\'s spigots.', '',
-    '1. Drill the floor, walls, partition and bridges. Wax and PVA every face that the mix touches.',
-    '2. Stand the floor on two or three battens (the insert screws and floor bolts come up from underneath).',
-    '3. Bolt the cleats to the floor and stand the walls on the floor against them. Fit the four corner',
-    '   brackets at the top corners. Square the box with a tape across the diagonals before tightening.',
-    '4. Fit the partition between the side walls with its two brackets on the front side, and the two struts',
-    '   from the front wall to its foot. Push the gasket-groove beads onto its pins; push the spigot bushings',
-    '   into its hole-saw holes from the front.',
-    '5. Put the rear-half pieces in: the gutter formers and the motor relief on the floor, the corner fillers',
-    '   bolted to the floor and walls, the socket spikes bolted to the floor with a taped foam block pushed over',
-    '   each, the inserts and the tie-rod couplers on their greased screws and bolts, the base dowels.',
-    '6. Hold the draw-rod couplers on greased 1/2-13 bolts through the partition. Slide the spigots through',
-    '   the bushings and put the rear tubes on them, with their sleeves and end plugs.',
-    '7. Bolt the leg holders into the rear corners, drop the legs through them, set each at its height (the',
-    '   holder note in the print guide) and tighten its pinch screw.',
-    '8. Cast the 20 mm skin, set the foam cores on it, drop the bridges into the saddles and bolt each core\'s',
-    '   post to its bridge. Fill to the line.',
-    '9. After the cure: unbolt the bridges, partition and struts, leave the rest. Dig the foam out of the four',
-    '   sockets (a little acetone dissolves what sticks). Pull the gasket-groove beads,',
-    '   cover the groove with packing tape, and wax and PVA the rear half\'s split face and the spigots.',
-    '10. Front half the same way: trough and gutter formers (the drain liner on the trough\'s spigot), corner',
-    '    fillers, couplers and inserts; front tubes onto the',
-    '    spigots; draw rods screwed into the rear half\'s couplers with their ends in the corner fillers; legs;',
-    '    skin, cores, bridges, fill.',
-    '11. After the cure, unbolt everything and split the halves (a few wedges at the split, gently).', '',
-    '![Front-half mould against the cured rear half](../../renders/build/04-mould-base-front.png)', '',
-    '### Uprights (two moulds, cast together)', '',
-    '1. Drill the boards; wax and PVA. Push the post bushings into the floor from below.',
-    '2. Bolt the cleats to the floor. Stand each side plate on the floor against its cleat, the back board',
-    '   between them against its cleat, and fit the two back brackets at the top.',
-    '3. Bolt the toe filler to the floor between the side plates, set the front board\'s foot in its lip and',
-    '   fit the two front brackets at the top.',
-    '4. Pin the gasket-groove bead to the floor. Stand the mould on its four 2x4 blocks.',
-    '5. Posts up through the bushings onto the bench; greased 5/8 in rods up through the floor: the two',
-    '   short ones into the slope plugs (bolted to the front board), the two long ones on through the top.',
-    '   The dowel-hole bolt with its nut from underneath.',
-    '6. Fill to the line and vibrate. Then slide the top pocket plugs down the long rods, set the top plate',
-    '   (greased 3/8 bolts through the bridge and the spacers into it), drop the bridge into its saddles.',
-    '', '![Upright mould, front: toe filler, slope plug, front brackets](../../renders/mould/upright-front.png)', '',
-    '### Beam', '',
-    '1. Drill the boards; wax and PVA. Cleats bolted to the floor, walls against them, corner brackets at the top.',
-    '2. Screw the support pads and riser inserts to the floor on greased screws. Push the dowels into the',
-    '   bottom wall onto their printed stops.',
-    '3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each square end) and hang the',
-    '   tubes between them. Bolt the back-edge fillers to the top wall.',
-    '4. Greased 1/2 in rods through the top and bottom walls for the eight bolt holes. Fill to the line.',
-    '5. The locators leave a 16 mm hole in each beam end; plug it with a dark printed cap or leave it.', '',
-]
+def _minutes(t):
+    return sum(int(v) * {'d': 1440, 'h': 60, 'm': 1, 's': 1 / 60}[u] for v, u in re.findall(r'(\d+)([dhms])', t))
 
 
 def main():
@@ -2598,6 +2753,8 @@ def main():
         img = os.path.join(ROOT, 'renders')
         os.makedirs(img, exist_ok=True)
         for dp, _, fn in os.walk(img):
+            if os.path.basename(dp) == 'mould':
+                continue                  # model/mould_figures.py writes these
             for f in fn:
                 if f.endswith('.png'):
                     os.remove(os.path.join(dp, f))

@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.8 -24.8 544.6 320.6" width="545mm" height="321mm" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14.9 -14.9 524.9 300.9" width="525mm" height="301mm" font-family="Helvetica, Arial, sans-serif">
 <polygon points="0.0,271.1 495.1,271.1 495.1,0.0 263.8,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
-<circle cx="279.8" cy="30.9" r="3.1" fill="none" stroke="#a8641a" stroke-width="1.55"/>
-<text x="284.9" y="28.8" font-size="12.4" fill="#1d2422">1</text>
-<circle cx="405.5" cy="12.0" r="3.1" fill="none" stroke="#a8641a" stroke-width="1.55"/>
-<text x="410.7" y="9.9" font-size="12.4" fill="#1d2422">2</text>
-<circle cx="472.6" cy="11.5" r="3.1" fill="none" stroke="#a8641a" stroke-width="1.55"/>
-<text x="477.7" y="9.4" font-size="12.4" fill="#1d2422">3</text>
-<text x="0" y="288.4" font-size="12.4" fill="#5b6662">0,0 · 495 x 271 mm · seen from the cast side</text>
+<circle cx="279.8" cy="30.9" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.93"/>
+<text x="283.3" y="29.7" font-size="7.4" fill="#1d2422">1</text>
+<circle cx="405.5" cy="12.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.93"/>
+<text x="409.0" y="10.8" font-size="7.4" fill="#1d2422">2</text>
+<circle cx="472.6" cy="11.5" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.93"/>
+<text x="476.1" y="10.3" font-size="7.4" fill="#1d2422">3</text>
+<text x="0" y="281.5" font-size="7.4" fill="#5b6662">0,0 · 495 x 271 mm · seen from the cast side</text>
 </svg>

@@ -24,7 +24,7 @@ The Markdown sources are in `docs/src/`.
 
 | Folder | Contents |
 |---|---|
-| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `moulds.py` (printed mould pieces, their bolts, pins and pegs, and STL export), `mouldbox.py` (the mould boards, brackets and hole maps), and the generated `DIYCNC.FCStd` and `DIYCNC.step` |
+| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `moulds.py` (printed mould pieces, their bolts, pins and pegs, and STL export), `mouldbox.py` (the mould boards, brackets and hole maps), `mould_figures.py` (the mould guide's illustrations; run it in the FreeCAD GUI), `slice_prints.py` (slices `print/` in Bambu Studio for real filament figures), and the generated `DIYCNC.FCStd` and `DIYCNC.step` |
 | `print/` | STL files for every printed part, one folder per casting plus `machine/`, and `manifest.csv` |
 | `renders/` | Images of the machine and its parts; `renders/build/` has the build-step pictures |
 | `docs/` | The PDFs above, the report and the sourcing CSV; sources and generators in `docs/src/` |
@@ -40,6 +40,10 @@ FreeCAD 1.1 is the only requirement for the model.
 
 # everything above plus DIYCNC.FCStd, DIYCNC.step and renders/ (opens and closes a FreeCAD window)
 CNC_SNAPSHOTS=1 /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/build_cnc.py"
+
+# the mould guide's illustrations (renders/mould/), and real filament figures from Bambu Studio
+/Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/mould_figures.py"
+python3 model/slice_prints.py
 
 # the sourcing list, then the PDFs (needs Python with the markdown package and Google Chrome)
 python3 docs/src/make_sourcing.py
