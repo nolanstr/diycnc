@@ -12,7 +12,8 @@ Everything is modelled in FreeCAD from one Python script.
 | PDF | What's in it |
 |---|---|
 | [Build guide](docs/build-guide.pdf) | Step by step, with pictures: steel prep, moulds, casting, frame, risers, axes, electronics, enclosure, commissioning |
-| [Print guide](docs/print-guide.pdf) | Every 3D-printed part (mould cores, formers, fillers, liners), cut to fit a Bambu A1 mini |
+| [Mould guide](docs/mould-guide.pdf) | The bolt-together moulds: cut list, hardware, a hole map for every board, assembly steps |
+| [Print guide](docs/print-guide.pdf) | Every 3D-printed part (mould kit, cores, formers, fillers, liners), cut to fit a Bambu A1 mini |
 | [Sourcing list](docs/sourcing.pdf) | Parts to buy, with listings and prices (also as [CSV](docs/sourcing.csv)) |
 | [Design notes](docs/design-notes.pdf) | How the frame, coolant and joints work, the stiffness study and the cost |
 | [Report](docs/report.txt) | Dimensions, casting volumes and masses, BOM, enclosure cut list, collision check |
@@ -23,7 +24,7 @@ The Markdown sources are in `docs/src/`.
 
 | Folder | Contents |
 |---|---|
-| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `moulds.py` (printed mould pieces and STL export), and the generated `DIYCNC.FCStd` and `DIYCNC.step` |
+| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `moulds.py` (printed mould pieces, their bolts, pins and pegs, and STL export), `mouldbox.py` (the mould boards, brackets and hole maps), and the generated `DIYCNC.FCStd` and `DIYCNC.step` |
 | `print/` | STL files for every printed part, one folder per casting plus `machine/`, and `manifest.csv` |
 | `renders/` | Images of the machine and its parts; `renders/build/` has the build-step pictures |
 | `docs/` | The PDFs above, the report and the sourcing CSV; sources and generators in `docs/src/` |
