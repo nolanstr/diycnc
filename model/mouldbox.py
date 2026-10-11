@@ -171,9 +171,11 @@ def bushing(c, n, side, sq, hole=63.5):
     (n points through the board, away from the cavity); a square hole `sq` for a tube."""
     n, side = unit(n), unit(side)
     t = board_t()
-    body = Part.makeCylinder((hole - 0.1) / 2, t, c, n).fuse(Part.makeCylinder(hole / 2 + 8.0, 3.0, c + n * t, n))
     q = sq + 2 * FIT
     b = n.cross(side)
+    body = Part.makeCylinder((hole - 0.1) / 2, t, c, n)
+    for d in (side, -side, b, -b):                 # four tabs on the far side hold it in
+        body = body.fuse(block(c + n * t + d * (hole / 2 - 4.0) - d.cross(n) * 6.0, d, d.cross(n), n, 12.0, 12.0, 3.0))
     return body.cut(block(c - n - side * (q / 2) - b * (q / 2), side, b, n, q, q, t + 5)), \
         [Fix('hole', c, n, hole, 'hole saw')]
 

@@ -45,9 +45,8 @@ part of each leg that hangs below the base.
 with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
-it is too thin, and pieces cut to fit the printer are pegged together. The bulky pieces (pocket
-and socket cores, coolant trough and gutters, the beam's back edge) are XPS foam, which keeps the
-printing to about 1.4 kg of PETG. A clash check in the
+it is too thin, and pieces cut to fit the printer are pegged together. The hidden pocket and socket
+cores are XPS foam, which keeps the printing to about 1.5 kg of PETG. A clash check in the
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
 (flush top faces, matching split faces, tubes straight onto the spigots), and the posts and

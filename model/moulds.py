@@ -201,8 +201,9 @@ def fasten(piece, p0, n, count=1, sizes=('M4', 'M3', 'pin'), what='', avoid=()):
     sizes = [z for z in sizes if z == 'pin' or thick >= nut_bolt(z)[1] + MIN_WALL]
     fixes, used = [], []
     want = count
-    for size in sizes:
-        k = want if size != 'pin' else max(want, 2)
+    tries = [(z, want) for z in sizes if z != 'pin'] + [(z, 1) for z in sizes if z != 'pin' and want > 1]
+    tries += [('pin', max(want, 2))] if 'pin' in sizes else []
+    for size, k in tries:
         span = max(us) - min(us)
         targets = [min(us) + span * (i + 0.5) / k for i in range(k)]
         found = []
