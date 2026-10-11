@@ -8,11 +8,16 @@ over the block (or BK) footprints, so the compliance F.u is the frame's share of
 tool-to-work deflection along F.
 """
 
+import os
+
 import numpy as np
 
 from vfe import E_EG, E_MIN, E_ST, Mesh, Voxels, wrench_loads
 
 F0 = 1000.0   # N
+# Epoxy-granite stiffness factor per casting: FEA_GRIT=1.37 for the alumina grits in the uprights
+# and beam (analysis/alumina.py); 1 = the plain sand mix everywhere.
+EG_SCALE = {'base': 1.0, 'up': float(os.environ.get('FEA_GRIT', 1.0)), 'beam': float(os.environ.get('FEA_GRIT', 1.0))}
 
 
 def union_box(boxes, prefix):
@@ -98,7 +103,7 @@ def moduli(mesh, f, base_eg, rigid=()):
     for g in ('base', 'up', 'beam'):
         k = 1000.0 if g in rigid else 1.0
         eg = base_eg if g == 'base' else mesh.field(f[f'eg_{g}'])
-        E += k * (E_EG * eg + E_ST * mesh.field(f[f'st_{g}']))
+        E += k * (E_EG * EG_SCALE[g] * eg + E_ST * mesh.field(f[f'st_{g}']))
     return E
 
 

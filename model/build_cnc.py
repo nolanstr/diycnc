@@ -79,9 +79,11 @@ P = dict(
     # Epoxy-granite castings: base (front + rear halves), two uprights, beam
     # The base's underside pockets follow a topology optimization (analysis/, see base_pockets).
     base_h=110.0, base_corner_r=40.0, base_split_y=0.0, split_wall=15.0,
-    base_core_skin=25.0,    # top skin over the pockets
+    base_core_skin=20.0,    # top skin over the pockets
     base_girder_w=80.0,     # full-depth girder under each table rail, rail tube in the middle
-    base_tie=90.0,          # full-depth tie between the girders, this far either side of the split
+    base_tie=90.0,          # full-depth tie between the girders, this far ahead of the split
+    base_tie_rear=55.0,     # ... and this far behind it
+    base_foot_pockets=True, # pockets under the upright feet, between ribs and around the tie-rod couplers
     base_front_wall=70.0,   # the coolant trough and outlet run through it
     # Uprights are raked buttresses (from the frame topology optimization, analysis/): the foot runs
     # forward along the base and the front face slopes up to just ahead of the beam.
@@ -388,20 +390,35 @@ def base_pockets(g):
     s2, gw = P['table_rail_spacing'] / 2, P['base_girder_w'] / 2
     gi, go = s2 - gw, s2 + gw                       # girder inner and outer faces
     yf0, yf1 = y0 + P['base_front_wall'], g['split'] - P['split_wall']
-    tie = g['split'] + P['base_tie']
+    tie = g['split'] + P['base_tie_rear']
     ry = g['rod_y']
-    foot = g['up_front']             # the upright feet stand on full-depth casting from here back
+    foot = g['up_front']
+    sw = P['split_wall'] + 10.0                      # full-depth band either side of the split
     out = [(chamfered(-gi, gi, yf0, g['split'] - P['base_tie'], 10.0), zp, 'centre'),   # front, between the girders
            (chamfered(-gi, gi, tie, 245.0, 30.0), zp, 'centre')]        # rear, between the girders
     for sx in (-1, 1):
+        if P['base_foot_pockets']:
+            # Under the upright feet: a full-depth rib across the foot's front end, another along the
+            # split, and pockets between them that keep clear of the front tie-rod couplers (x = ux)
+            # and the sockets. The outboard pocket runs up to the front rib.
+            cx = g['ux'] - 27.0                       # inboard of the couplers
+            rods = sorted(r[1] for r in g['tie_rods'] if r[1] < g['post_ys'][0])
+            sock = g['post_ys'][0] - P['socket_liner'][0] / 2 - 12.0
+            front_end = foot + 10.0
+            feet = [(chamfered(go, cx, front_end + 20.0, g['split'] - sw, 10.0), zp, 'foot-a'),
+                    (chamfered(go, cx, g['split'] + sw, sock - 5.0, 10.0), zp, 'foot-b'),
+                    (chamfered(cx + 2.0, half - 20.0, rods[-1] + 27.0, sock, 8.0), zp, 'foot-c')]
+            knee_y0, outer_y0 = sock + 5.0, sock + 15.0
+        else:
+            front_end, feet, knee_y0, outer_y0 = foot - 20.0, [], tie, 60.0
         side = [
-            # front, outboard: stops short of the upright foot, which stands on full-depth casting
-            (chamfered(go, half - 40.0, yf0, foot - 20.0, 10.0), zp, 'outboard'),
+            (chamfered(go, half - 40.0, yf0, front_end, 10.0), zp, 'outboard'),             # front, outboard
             (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0, 'trough-band'),      # under the coolant trough band
             (chamfered(half - 45.0, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),  # under the front draw rods
-            (chamfered(go, g['inner'] - 5.0, tie, 318.0, 10.0), 40.0, 'knee'),            # under the knee, inboard of the sockets
-            (chamfered(g['outer'] - 8.0, half - 8.0, 60.0, ry - 32.0, 8.0), 65.0, 'outer-a'),   # outboard of the sockets,
-            (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),  # either side of the coupler
+        ] + feet + [
+            (chamfered(go, g['inner'] - 5.0, knee_y0, 318.0, 10.0), 40.0, 'knee'),        # under the knee, inboard of the sockets
+            (chamfered(g['outer'] - 8.0, half - 8.0, outer_y0, ry - 32.0, 8.0), 65.0, 'outer-a'),  # outboard of the sockets,
+            (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),     # either side of the coupler
             (chamfered(60.0, 230.0, 318.0, y1 - 10.0, 10.0), zp, 'rear'),                 # behind the sockets
         ]
         for poly, z, name in side:

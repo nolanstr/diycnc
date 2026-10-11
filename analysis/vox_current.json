@@ -323,15 +323,15 @@
   "travel_x": 180.0,
   "travel_y": 300.0,
   "travel_z": 140.0,
-  "base_core_skin": 25.0,
+  "base_core_skin": 20.0,
   "table_len": 320.0,
   "table_w": 260.0,
   "table_t": 19.05,
   "carriage_w": 170.0
  },
  "vols": {
-  "Base front": 14.674958915211274,
-  "Base rear": 18.046332122693105,
+  "Base front": 12.954889049848832,
+  "Base rear": 16.060149624865346,
   "Upright L": 5.48077289189612,
   "Upright R": 5.48077289189612,
   "Beam": 9.528949620245315
