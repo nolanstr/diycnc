@@ -1,4 +1,4 @@
-"""Mould boxes: melamine boards cut to a list and held together by printed brackets with M4 bolts,
+"""Mold boxes: melamine boards cut to a list and held together by printed brackets with M4 bolts,
 plus the hole map for every board.
 
 Every wall is 25 mm taller than the casting (the freeboard), so the brackets, saddles and leg
@@ -16,23 +16,23 @@ import math
 import Part
 from FreeCAD import Vector
 
-import moulds
-from moulds import FIT, HW, Fix, block, bolt_length, nut_recess, unit
+import molds
+from molds import FIT, HW, Fix, block, bolt_length, nut_recess, unit
 
 SLOT = 0.4        # board thickness + this = slot width in printed parts that go over a board edge
 TH = 6.0          # bracket legs
 
 
 def board_t():
-    return moulds.BOARD
+    return molds.BOARD
 
 
 class Board:
     """A melamine board: its inside (cast) face is the plane through `origin` with normal -N, so N
     points away from the cavity. Seen from inside, U is right and V is up; the outline is in (u, v)."""
 
-    def __init__(self, name, mould, origin, N, V, outline, qty=1, note='', view='inside', show=()):
-        self.name, self.mould, self.qty, self.note, self.view, self.show = name, mould, qty, note, view, list(show)
+    def __init__(self, name, mold, origin, N, V, outline, qty=1, note='', view='inside', show=()):
+        self.name, self.mold, self.qty, self.note, self.view, self.show = name, mold, qty, note, view, list(show)
         self.N, self.V = unit(N), unit(V)
         self.U = self.N.cross(self.V)
         self.o = Vector(origin)
@@ -56,7 +56,7 @@ class Board:
         return inside(self.uv(p), self.outline)
 
     def solid(self):
-        face = moulds.poly([self.at(u, v) for u, v in self.outline])
+        face = molds.poly([self.at(u, v) for u, v in self.outline])
         s = face.extrude(self.N * self.t)
         cuts = [Part.makeCylinder(d / 2, self.t + 2, self.at(u, v, -1.0), self.N) for u, v, d, _ in self.holes]
         return s.cut(cuts) if cuts else s
@@ -89,7 +89,7 @@ def inside(q, outline):
     return hit
 
 
-def box_board(name, mould, lo, hi, N, V, **kw):
+def box_board(name, mold, lo, hi, N, V, **kw):
     """Rectangular board filling the box between corners lo and hi."""
     N, V = unit(N), unit(V)
     U = N.cross(V)
@@ -97,7 +97,7 @@ def box_board(name, mould, lo, hi, N, V, **kw):
     us, vs, ws = [c.dot(U) for c in cs], [c.dot(V) for c in cs], [c.dot(N) for c in cs]
     o = U * min(us) + V * min(vs) + N * min(ws)
     du, dv = max(us) - min(us), max(vs) - min(vs)
-    return Board(name, mould, o, N, V, [(0, 0), (du, 0), (du, dv), (0, dv)], **kw)
+    return Board(name, mold, o, N, V, [(0, 0), (du, 0), (du, dv), (0, dv)], **kw)
 
 
 # --------------------------------------------------------------------------
@@ -116,7 +116,7 @@ def angle_bracket(c, a1, m1, a2, m2, up, h, leg=44.0, hole_at=33.0, bolts=(True,
             continue
         p = c + a * hole_at + down * (h / 2)
         s = s.cut(Part.makeCylinder(HW['M4']['hole'] / 2, TH + 2, p - m, m)).cut(nut_recess(p + m * TH, -m, 'M4'))
-        fixes.append(Fix('bolt', p, -m, HW['M4']['hole'], 'corner bracket', 'M4', bolt_length(moulds.BOARD_MAX + TH + 0.5)))
+        fixes.append(Fix('bolt', p, -m, HW['M4']['hole'], 'corner bracket', 'M4', bolt_length(molds.BOARD_MAX + TH + 0.5)))
     return s, fixes
 
 
@@ -128,12 +128,12 @@ def floor_bracket(c, n_out, up, along, w=24.0, h=25.0, reach=32.0):
     s = block(o, along, n_out, up, w, TH, h).fuse(block(o, along, n_out, up, w, reach, TH))
     for e in (0.0, w - 3.0):
         q = o + along * e
-        tri = moulds.poly([q + n_out * TH + up * TH, q + n_out * (reach - 2) + up * TH, q + n_out * TH + up * (h - 2)])
+        tri = molds.poly([q + n_out * TH + up * TH, q + n_out * (reach - 2) + up * TH, q + n_out * TH + up * (h - 2)])
         s = s.fuse(tri.extrude(along * 3.0))
     p = c + n_out * ((TH + reach) / 2)
     s = s.cut(Part.makeCylinder(HW['M4']['hole'] / 2, TH + 2, p - up, up)).cut(nut_recess(p + up * TH, -up, 'M4'))
     return s.removeSplitter(), [Fix('bolt', p, -up, HW['M4']['hole'], 'floor bracket', 'M4',
-                                    bolt_length(moulds.BOARD_MAX + TH + 0.5))]
+                                    bolt_length(molds.BOARD_MAX + TH + 0.5))]
 
 
 def saddle(c, n_out, up, along, width=None, depth=12.0, cheeks=True):
@@ -155,14 +155,14 @@ def saddle(c, n_out, up, along, width=None, depth=12.0, cheeks=True):
         s = s.fuse(block(o + along * e + up * TH, along, n_out, up, TH, slot + TH, ch))
     p = c - up * depth
     s = s.cut(Part.makeCylinder(HW['M4']['hole'] / 2, TH + 2, p + n_out * (slot - 1), n_out))
-    wall_fix = Fix('bolt', p, n_out, HW['M4']['hole'], 'saddle', 'M4', bolt_length(moulds.BOARD_MAX + TH + SLOT + 5.0))
+    wall_fix = Fix('bolt', p, n_out, HW['M4']['hole'], 'saddle', 'M4', bolt_length(molds.BOARD_MAX + TH + SLOT + 5.0))
     bridge_fix = None
     if width is None:
         q = c + n_out * (slot / 2) + up * (TH + 11.0)
         s = s.cut(Part.makeCylinder(HW['M4']['hole'] / 2, 2 * half + 2, q - along * (half + 1), along))
         s = s.cut(nut_recess(q + along * half, -along, 'M4'))
         bridge_fix = Fix('bolt', q - along * (board_t() / 2), along, HW['M4']['hole'], 'saddle', 'M4',
-                         bolt_length(moulds.BOARD_MAX + 2 * TH + SLOT + 0.5))
+                         bolt_length(molds.BOARD_MAX + 2 * TH + SLOT + 0.5))
     return s.removeSplitter(), [wall_fix], bridge_fix
 
 
@@ -199,7 +199,7 @@ def tube_hanger(c, up, side, sq, length, cap=3.0, strap=(20.0, 2.4)):
 class Kit:
     def __init__(self):
         self.boards = []
-        self.rows = []           # printed pieces (dicts, see moulds.export)
+        self.rows = []           # printed pieces (dicts, see molds.export)
         self.hardware = {}       # description -> count
         self.loose = []          # Fixes that land on no board (reported)
 
@@ -207,12 +207,12 @@ class Kit:
         self.boards.append(b)
         return b
 
-    def fix(self, fixes, mould, mult=1):
-        """Put fixings on the boards of `mould` and count their hardware (x mult)."""
+    def fix(self, fixes, mold, mult=1):
+        """Put fixings on the boards of `mold` and count their hardware (x mult)."""
         for f in fixes:
-            hits = [b for b in self.boards if b.mould == mould and b.contains(f.p, f.n)]
+            hits = [b for b in self.boards if b.mold == mold and b.contains(f.p, f.n)]
             if not hits:
-                self.loose.append((mould, f))
+                self.loose.append((mold, f))
                 continue
             for b in hits:                         # a bolt through a cleat and the floor: both get the hole
                 u, v = b.uv(f.p)
@@ -234,14 +234,14 @@ class Kit:
         self.rows.append(row)
         return row
 
-    def add_many(self, folder, name, kind, pieces, note='', up=None, mould=None, per=1, show=None, merge=False, mult=1,
+    def add_many(self, folder, name, kind, pieces, note='', up=None, mold=None, per=1, show=None, merge=False, mult=1,
                  reuse=False):
         """Identical pieces at several places: pieces = [(solid, fixes)], printed once with a quantity.
         merge: add to an earlier row with the same folder and name (reuse: the same prints, moved)."""
         if not pieces:
             return None
         for _, fx in pieces:
-            self.fix(fx, mould, mult)
+            self.fix(fx, mold, mult)
         old = next((r for r in self.rows if merge and r['folder'] == folder and r['name'] == name), None)
         if old:
             old['qty'] = max(old['qty'], len(pieces) * per) if reuse else old['qty'] + len(pieces) * per

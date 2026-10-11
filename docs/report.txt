@@ -21,8 +21,8 @@ Casting mass:                 125 kg (276 lb)
   Beam:                         9.3 L   26.3 kg  (alumina grit)
 Cast-in steel + joint hardware: 23.4 kg
 Epoxy needed (~8.5% of the sand mix by mass): 9.9 kg
-Aluminium oxide grit, brown #16 (coarse sand): 19.5 kg (beam + uprights)
-Aluminium oxide grit, black 70 grit (fine sand): 10.1 kg (beam + uprights)
+Aluminum oxide grit, brown #16 (coarse sand): 19.5 kg (beam + uprights)
+Aluminum oxide grit, black 70 grit (fine sand): 10.1 kg (beam + uprights)
 
 Linear motion / plate BOM
 -------------------------
@@ -51,7 +51,7 @@ Linear motion / plate BOM
   frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
   frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 14 mm holes per tube) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 12 in (posts), 2 x 6 in (spigots), 4 x 6 in (legs) buy
-  frame    Printed PETG: 4 spigot sleeves, 12 tube end plugs, 4 dark grey pocket caps (sockets cast on foam) ~250 g                               PRINT
+  frame    Printed PETG: 4 spigot sleeves, 12 tube end plugs, 4 dark gray pocket caps (sockets cast on foam) ~250 g                               PRINT
   frame    Steel plate 3/8 in, cut to size by the supplier (upright tops) 2 x 68 x 168                         buy
   frame    1/2-13 threaded rod + coupling nut + nut/washer (hardware store) 2 x 293, 2 x 293, 2 x 108, 2 x 211 (uprights), 2 x 358 (base) buy
   frame    3/8-16 x 6 in grade 8 bolt + washer (beam; 150 mm under the head) 8 pcs                                buy
@@ -67,7 +67,7 @@ Linear motion / plate BOM
   coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                buy (part 3)
   covers   Roll-up way cover: spring roller + 0.1 mm stainless strip 1x 250 wide, 2x 85 wide              buy or DIY
   covers   Spiral ballscrew cover for the table screw           1                                    buy
-  covers   Drip shield over the beam rails, aluminium or ACM offcut 510 x 57                             buy
+  covers   Drip shield over the beam rails, aluminum or ACM offcut 510 x 57                             buy
   covers   Brush seal plates for the motor cutouts              2                                    buy (part 3)
   printed  Drag chain links, PETG: 38 x 21 outer, 20 pitch, R38 bend 17 + 2 end mounts                    PRINT
 

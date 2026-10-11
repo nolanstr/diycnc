@@ -46,7 +46,7 @@ def setup(vox, mask):
 
 
 def cases(mesh, vox, xs=(0.0,), yts=(-150.0, 0.0, 150.0), tip_above_table=50.0, dirs='xyz'):
-    """Load matrix (ndof x nlc) and labels. yt = table centre position; the tool is always at y = 0."""
+    """Load matrix (ndof x nlc) and labels. yt = table center position; the tool is always at y = 0."""
     d, b, Pp, h = vox.d, vox.info['boxes'], vox.info['P'], vox.h
     zt = d['table_top'] + tip_above_table
     bf, bt = d['beam_face'], d['base_top']

@@ -84,7 +84,7 @@ def plate(x0, x1, y0, y1, z0, z1, c=1.0):
 
 
 def square_tube(axis, c1, c2, size, wall, a0, a1):
-    """Steel square tube along 'x', 'y' or 'z' from a0 to a1, section centred on (c1, c2) in the
+    """Steel square tube along 'x', 'y' or 'z' from a0 to a1, section centerd on (c1, c2) in the
     other two axes (in x, y, z order). Returns (outer envelope, tube wall)."""
     def section(s, ext):
         h = s / 2
@@ -150,7 +150,7 @@ def hgh15_block():
 # Ref: TBI Motion catalog sheets, hosted by Anaheim Automation:
 #   L010974 SFU ball screw, L011175 BK support units, L011178 BF support units.
 # Nut housings: DSG16H drawing (makerstore.cc TR-BS-DSG16-00); DSG12H overall size
-# from zyltech / vxb listings (centre height and holes not published: estimated).
+# from zyltech / vxb listings (center height and holes not published: estimated).
 # --------------------------------------------------------------------------
 SFU = {
     # body D, flange D1 x T, across flats F, overall L, bolt circle bcd, 6 holes
@@ -164,7 +164,7 @@ ENDS = {
     'SFU1605': dict(bk_a=12.0, bk_e=36.0, stub=10.0, stub_l=15.0, bf_a=10.0),
 }
 SUPPORT = {
-    # L, width B, height H, centre height h, flange height H1, raised centre B1, bolt spacing P,
+    # L, width B, height H, center height h, flange height H1, raised center B1, bolt spacing P,
     # vertical bolt holes X thru / Y counterbore x Z deep at C from the end, axial holes d2 on E.
     # lock = BK locknut (radius, width): not published, estimated.
     'BK10': dict(L=25.0, B=60.0, H=39.0, h=22.0, H1=32.5, B1=34.0, P=46.0, X=6.6, Y=10.8, Z=5.0,
@@ -199,7 +199,7 @@ def ballscrew(kind, u0, length, bf, bk, a):
 
 
 def sfu_nut(kind, uc, a):
-    """Flanged ballnut centred on uc, flange toward -u, flats facing +/-w."""
+    """Flanged ballnut centerd on uc, flange toward -u, flats facing +/-w."""
     s = SFU[kind]
     u0 = uc - s['L'] / 2
     flange = cyl_u(s['D1'] / 2, u0, u0 + s['T'], 0, a)
@@ -232,7 +232,7 @@ def nut_housing(kind, uc, a, carrier):
 
 
 def support(kind, u0, a, journal_r, lock_r=None):
-    """TBI BK/BF support (inverted T: B x H1 flange, B1 x H centre) from u0 to u0 + L."""
+    """TBI BK/BF support (inverted T: B x H1 flange, B1 x H center) from u0 to u0 + L."""
     s = SUPPORT[kind]
     u1 = u0 + s['L']
     body = box(u0, u1, -s['B'] / 2, s['B'] / 2, 0, s['H1']).fuse(box(u0, u1, -s['B1'] / 2, s['B1'] / 2, 0, s['H']))
@@ -368,7 +368,7 @@ def spindle(front, stickout=30.0, flute=18.0):
 
 
 def spindle_clamp(z0, back_y, bore=40.0, wall=10.0, foot_w=148.0, foot_t=14.0, depth=80.0):
-    """Cast 80 mm foot clamp (148 W x 80 D, 14 foot, bore centre 50 off the foot).
+    """Cast 80 mm foot clamp (148 W x 80 D, 14 foot, bore center 50 off the foot).
 
     Foot bolts to the Z plate at y = back_y; the split and 3x M8 clamp bolts face front.
     Ref: 80 mm cast spindle bracket drawing, cnconline.co.za/products/80mm-spindle-bracket.
@@ -472,7 +472,7 @@ def chain_link(P=20.0, W=38.0, H=21.0, t=2.4, inner_layer=False):
 
 def steam_pan(cx, y0, z0, L, W, D, rim=12.0, t=1.2, perforated=False):
     """Stainless steam-table (gastronorm-style) pan: rim L x W at the top, body tapered 1:10,
-    depth D. L along y from y0, W across x centred on cx, standing on z0."""
+    depth D. L along y from y0, W across x centerd on cx, standing on z0."""
     top, taper = z0 + D, D * 0.1
 
     def rect(inset, z):
@@ -497,7 +497,7 @@ def coolant_sump(cx, y0, z0, L=527.0, W=324.0, D=101.6):
     Front to back (+y): 1/3-size perforated pan as the chip basket (under the drain), a magnet
     bar on the floor, an underflow baffle (3 mm ACM offcut), a 100 um filter screen in a printed
     frame, then the clean end with a 24 V brushless submersible pump (no mains in the coolant). Origin: front of the rim at y0,
-    centred on cx, standing on z0. Returns (parts, pump outlet).
+    centerd on cx, standing on z0. Returns (parts, pump outlet).
     """
     top = z0 + D
     out = [('Pan', steam_pan(cx, y0, z0, L, W, D), 'steel')]

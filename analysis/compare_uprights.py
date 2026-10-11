@@ -19,12 +19,12 @@ from loads import F0, cases, domain_mask, setup  # noqa: E402
 from modal import report  # noqa: E402
 from vfe import E_EG, E_MIN, E_ST, Voxels  # noqa: E402
 
-EPOXY = 0.085 * 2.35 * 13.8      # $ of epoxy per litre of casting (8.5 % mix, $13.8/kg)
+EPOXY = 0.085 * 2.35 * 13.8      # $ of epoxy per liter of casting (8.5 % mix, $13.8/kg)
 
 
 def side_view(vox, rho, title, path):
     d = vox.d
-    xs = vox.centres(0)
+    xs = vox.centers(0)
     sel = (xs < -d['inner']) & (xs > -d['outer'])
     frac = (rho[sel] > 0.5).mean(0)
     ext = [vox.o[1], vox.o[1] + vox.n[1] * vox.h, vox.o[2], vox.o[2] + vox.n[2] * vox.h]

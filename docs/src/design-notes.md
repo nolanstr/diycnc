@@ -19,7 +19,7 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
 used at the lengths they're sold in: tube in 18, 12 and 6 in pieces of two US sizes (remnants
-are fine, lengths +/- 1/4 in, 0.120 in wall works as well as 1/8 in). The risers, aluminium
+are fine, lengths +/- 1/4 in, 0.120 in wall works as well as 1/8 in). The risers, aluminum
 plates and the upright top plates are ordered cut to size. The only cutting left is the 1/2-13
 threaded rod. The only machining is drilling the beam tubes (4 holes each) and drilling and
 tapping the risers, top plates and support pads. Use plain steel, not galvanized: epoxy bonds
@@ -41,7 +41,7 @@ part of each leg that hangs below the base.
   the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are cast on foam blocks (dug out after) and grouted to the posts at assembly, not steel tube.
 
-**Moulds and fits.** The moulds are a kit (`model/mouldbox.py`, the mould guide): melamine boards
+**Molds and fits.** The molds are a kit (`model/moldbox.py`, the mold guide): melamine boards
 with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
@@ -50,14 +50,14 @@ cores are XPS foam, which keeps the printing to 1.3 kg of PETG (sliced in Bambu 
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
 (flush top faces, matching split faces, tubes straight onto the spigots), and the posts and
-dowels are grouted into oversize holes at first assembly. Two independent moulds can't hold
+dowels are grouted into oversize holes at first assembly. Two independent molds can't hold
 the 0.2 mm a side the old printed socket liners needed.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
   split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
   with D = 10 mm and q about 0.45: q = 0.5 (classic Fuller) is a little coarse and needs more
   epoxy to wet, q = 0.37 (Andreasen) packs tighter but its extra powder soaks up epoxy.
-- **Aluminium oxide in the beam and uprights.** Alumina grit (E about 370 GPa for brown fused,
+- **Aluminum oxide in the beam and uprights.** Alumina grit (E about 370 GPa for brown fused,
   a little less for black, against about 70 for quartz and granite) replaces the sand, volume
   for volume, in those three castings only (`analysis/alumina.py`): brown #16 for the coarse
   sand, black 70 grit for the fine sand. A differential-effective-medium estimate of the mix
@@ -83,7 +83,7 @@ rail, between its own screws) into cast-in inserts: 5 per riser on the base (Y),
 (X). The Y ballscrew supports (BK12/BF12) bolt into M6 inserts in the base top. The X supports
 (BK10/BF10) sit over the front beam tube, where an insert won't fit, so they bolt to two
 1/4 in steel pads cast flush into the beam face and bearing on the tube. The Z axis mounts on
-the aluminium plates and needs no inserts. See the build guide.
+the aluminum plates and needs no inserts. See the build guide.
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;
@@ -106,8 +106,8 @@ joints between castings are treated as bonded, which is what the preload is for.
 1 kN force on the tool goes into the beam through the X blocks (the X component through
 the X ballscrew to its BK bearing) and, reversed, into the base through the Y blocks (the Y
 component through the Y screw to its BK). The result is the frame's own stiffness at the
-tool, tool against work, for X at the centre and end, the table at both ends and the
-centre, and the tool 50 mm above the table. Rails, blocks, screws and the spindle are not
+tool, tool against work, for X at the center and end, the table at both ends and the
+center, and the tool 50 mm above the table. Rails, blocks, screws and the spindle are not
 in it; the screws alone are roughly 30-50 N/um, so the frame should stay well above that.
 
 **Findings** (frame only, N/um at the tool, mean over the load cases):
@@ -129,11 +129,11 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | **Now: lighter base (pockets under the upright feet, 20 mm skin), 9 kg less** | **49.5 L** | **84.3** | **124.5** | **111.1** |
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
-  equally. Litre for litre, epoxy in the beam is worth roughly ten times as much as epoxy
+  equally. Liter for liter, epoxy in the beam is worth roughly ten times as much as epoxy
   in the base, so the beam now fills the upright tops (140 deep instead of 120).
 - In the new frame the beam is still the biggest share. Making the uprights rigid would add
   about 75 / 25 / 85 % in X / Y / Z, and making the base rigid about 70 / 70 / 35 %. The
-  uprights are only 3.1 L each, so per litre they're the next place to add material (wider
+  uprights are only 3.1 L each, so per liter they're the next place to add material (wider
   or deeper, which also grows the base and the enclosure).
 - **Uprights.** Optimizing the base and the uprights together (`analysis/topopt_frame.py`,
   one shared budget, the uprights free to grow anywhere beside the table under the beam) moves
@@ -143,7 +143,7 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
   +15 / +7 / +24 % in X / Y / Z. With 4 L less material in total the frame ends up about 20 %
   less stiff than before, so cutting material isn't worth it.
 - The castable version drawn now is a solid full-width buttress (one sloped board in the
-  mould, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright (5.5 L since
+  mold, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright (5.5 L since
   the toe got a 20 mm nose). The base
   was then re-optimized around the longer feet (`analysis/figs/frame2_base_*.png`): it wants
   full depth under the feet and a wider tie across the split. Total +8.9 L of epoxy granite
@@ -293,10 +293,10 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
 **1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,562** (including $150 of alumina grit for the beam and uprights, and about $200 for the
-bolt-together mould kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
+bolt-together mold kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
-coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
+coolant** about $650-700. The steel and aluminum are priced as remnants and the joint hardware
 from a hardware store; the remnant prices are estimates. The estimate below was made
 before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
 what each cost-down change saves.
@@ -345,15 +345,15 @@ Bigger savings mean giving something up. Options, roughly in order of impact:
 | SFU1204 / SFU1605 nuts, screw end machining | TBI Motion SFU sheet L010974 (via Anaheim Automation) | |
 | BK10/BK12, BF10/BF12 supports | TBI Motion sheets L011175 (BK), L011178 (BF) | BK locknut size estimated. BK12 counterbore depth (1.5) is as printed; worth checking. |
 | DSG16H nut housing | makerstore.cc drawing TR-BS-DSG16-00 | |
-| DSG12H nut housing (24 mm bore) | zyltech / vxb listings | Centre height and holes estimated. |
+| DSG12H nut housing (24 mm bore) | zyltech / vxb listings | Center height and holes estimated. |
 | NEMA 23 motors | StepperOnline drawings 23HS45-4204D-E1000, 23HS30-5004D-E1000, 23HS30-3004S | |
 | Motor bracket | No published drawing | Sized from kit listings: motor face ~47 mm from the BK. |
 | D25 L30 coupler | Seller listings (5 N·m, 8x10 / 6.35x10 bores) | Hub depth estimated. |
 | GDZ80-2.2 spindle | StepperOnline drawings GDZ80-2.2A/B | Some features scaled from the drawing (±1 mm). Body length varies by seller (213/230/240): measure yours. |
-| 80 mm cast clamp | cnconline.co.za 80 mm spindle bracket drawing | 148 W x 80 D, 14 foot, bore centre 50 off the foot. |
+| 80 mm cast clamp | cnconline.co.za 80 mm spindle bracket drawing | 148 W x 80 D, 14 foot, bore center 50 off the foot. |
 | ER20 nut | DIN 6499 / spindle drawing | Chinese spindles ship a 30 AF hex nut. |
 | 2020 extrusion | Misumi HFS5-2020 catalog p.2-511 | Owned V-slot is OpenBuilds profile (6.25 throat). |
 
 Before casting anything, measure the parts you actually have, especially the
 owned ANWOK rails, blocks and SFU1204 kit. Clone parts can differ from these
-catalogs by a millimetre or two.
+catalogs by a millimeter or two.

@@ -10,7 +10,7 @@ list, and every printed part is in the print guide. Read the whole thing once be
 
 Measure the parts you actually have before cutting or casting anything, especially the
 rails, blocks, ballscrew kits and spindle clamp. Clone parts can differ from the catalogs by
-a millimetre or two, and the castings lock in whatever you assume.
+a millimeter or two, and the castings lock in whatever you assume.
 
 Torques below are starting points for these fastener sizes, not manufacturer specs.
 
@@ -23,13 +23,13 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **Tools:** drill press, chop saw or hacksaw, angle grinder with flap disc, taps (M4, M5, M6),
   drill/mixer with a paddle (or a small cement mixer), kitchen scale + a 50 kg scale,
   vibration source (a table vibrator, a concrete poker, or a reciprocating sander with the pad
-  removed pressed against the mould), straightedge (at least 600 mm, ideally ground),
+  removed pressed against the mold), straightedge (at least 600 mm, ideally ground),
   feeler gauges, dial indicator with a magnetic base, precision level, torque wrench.
 - **Safety:** nitrile gloves and long sleeves for epoxy (skin sensitisation is permanent);
   an N95 dust mask when pouring the whiting; a P100 respirator when grinding or sanding cured
   EG (the quartz sand and gravel in it make silica dust; work wet if you can); eye protection
   when cutting steel. Mix in a ventilated space.
-- **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the core posts,
+- **3D printing (PETG):** the mold kit (brackets, saddles, holders, bushings), the core posts,
   formers and fillers, the parts that get cast in (spigot sleeves, tube plugs, drain liner) and
   the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
   in the print guide: 1.3 kg of PETG (sliced), inside two 1 kg rolls, and about 110 hours of printing. The base pocket and socket cores
@@ -41,7 +41,7 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 ## 1. Buy and prepare the steel
 
 Nothing you order needs cutting: buy the tube at these lengths, and order the risers, the top
-plates and the aluminium plates cut to size. Only the 1/2-13 threaded rod is cut.
+plates and the aluminum plates cut to size. Only the 1/2-13 threaded rod is cut.
 
 1. **Square tube** (plain steel, not galvanized; 0.120 or 1/8 in wall; remnants are fine):
    - 2 x 2 in: 4 x 12 in (base; they also take the split spigots), 2 x 18 in (beam).
@@ -51,7 +51,7 @@ plates and the aluminium plates cut to size. Only the 1/2-13 threaded rod is cut
    goes. Adjust the sleeve wall in the slicer if it is too tight or loose.
 3. **Drill the beam tubes:** each 18 in tube gets 14 mm holes straight through its top and
    bottom walls where the inner beam cap screws pass (4 holes per tube; mark from the model
-   or the upright top plates, 203 mm either side of the centre, on the cap-screw line).
+   or the upright top plates, 203 mm either side of the center, on the cap-screw line).
 4. **Top plates** (3/8 in steel, 2 pieces 68 x 168 mm, ordered cut to size): drill and tap the four 3/8-16 beam-screw
    holes and a 14 mm dowel hole in each (oversize: the beam's dowel is grouted into it at
    assembly), and cut the tie-rod pockets (see the section picture below). Do this before casting.
@@ -60,13 +60,13 @@ plates and the aluminium plates cut to size. Only the 1/2-13 threaded rod is cut
    apart for the BK10). These end up flush in the beam face and carry the X ballscrew bearings.
 6. **Rail risers** (cold-rolled 1018, 1-1/4 in wide, ordered cut to the rail lengths): Y 3/4 in x
    600 mm (2), X 5/8 in x 400 mm (2), Z 5/8 in x 300 mm (2). The rails are used at full length.
-   - Clamp each rail on its riser, centred, and use the rail's own holes as the drill
+   - Clamp each rail on its riser, centerd, and use the rail's own holes as the drill
      template; drill and tap M4 (60 mm pitch). Mark which rail goes on which riser.
    - Y and X risers also get the hold-down holes, midway between rail holes and under the
      rail: 5.5 mm through with a 9.5 mm x 4.5 mm deep counterbore from the top. Positions from
-     the riser centre: Y at 0, ±120 and ±240 mm, X at ±30 and ±150 mm.
+     the riser center: Y at 0, ±120 and ±240 mm, X at ±30 and ±150 mm.
    - Stone or lightly sand off burrs; keep the top faces flat.
-7. **Clean all cast-in steel:** wire-brush or flap-disc to dull grey metal, then degrease with
+7. **Clean all cast-in steel:** wire-brush or flap-disc to dull gray metal, then degrease with
    acetone just before casting. If it will sit more than a day or two, give it a thin coat
    of epoxy primer. Paint only the part of each leg that will hang below the base (after
    casting).
@@ -82,25 +82,25 @@ The cast-in steel, inserts and printed liners for each base half (castings drawn
 
 ![Base front: steel and inserts](../../renders/build/03-steel-base-front.png)
 
-## 2. Moulds and cores
+## 2. Molds and cores
 
-The moulds are a kit. Melamine boards are cut to a list and drilled from hole maps, and printed brackets
+The molds are a kit. Melamine boards are cut to a list and drilled from hole maps, and printed brackets
 hold them together with M4 bolts. Every printed piece bolts or pins to its board from outside, into a
-nut built into the piece. Nothing is glued, nothing goes through a cast face, and the moulds come apart
-and go back together the same way. The **mould guide** has the cut list, the hardware, a drawing and a
+nut built into the piece. Nothing is glued, nothing goes through a cast face, and the molds come apart
+and go back together the same way. The **mold guide** has the cut list, the hardware, a drawing and a
 hole table for every board, and the steps; the print guide lists the printed parts.
 
 - **Walls stand 25 mm above the pour line.** The brackets, saddles and leg holders bolt through
   that band. Fill to the line, not to the top.
 - **Everything that has to be flat or located goes against the floor**, so each casting is
   poured with its most important face down.
-- **Edges:** the castings' outside edges are rounded 10 mm. Glue 3/8 in quarter-round moulding
+- **Edges:** the castings' outside edges are rounded 10 mm. Glue 3/8 in quarter-round molding
   (PVC or primed wood) into the inside corners of the boxes that form outside edges, and run
   small silicone fillets everywhere else.
 - **Release:** wax every surface the mix touches 3-5 times (Partall Paste #2), buff, then
   spray or wipe PVA. That includes the printed pieces that come out; not the ones that stay in.
 
-| Casting | Face on the mould floor | Size (mm) | Mass |
+| Casting | Face on the mold floor | Size (mm) | Mass |
 |---|---|---|---|
 | Base front | top face (coolant floor) | 600 x 345 x 110 | 30.4 kg |
 | Base rear | top face | 600 x 380 x 110 | 37.7 kg |
@@ -114,19 +114,19 @@ hole table for every board, and the steps; the print guide lists the printed par
    split face. The two top faces come out flush and the split faces match. The front tubes and their
    sleeves slide straight onto the rear half's spigots, and the draw rods screw into its couplers, so
    that joint fits by construction. The split's gasket groove is in the rear half; tape over it first.
-3. **Uprights**, both from one batch, in two moulds.
+3. **Uprights**, both from one batch, in two molds.
 4. **Beam.**
 
-![Rear-half mould from above (mould the right way up): boards see-through, kit and cores orange](../../renders/build/02-mould-base-rear.png)
+![Rear-half mold from above (mold the right way up): boards see-through, kit and cores orange](../../renders/build/02-mold-base-rear.png)
 
-![A corner of the base mould: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mould/detail-corner.png)
+![A corner of the base mold: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mold/detail-corner.png)
 
-**Locating the cast-in parts** (the mould guide has the details; grease every screw and rod that comes out):
+**Locating the cast-in parts** (the mold guide has the details; grease every screw and rod that comes out):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
   flush with the casting face.
 - **Sockets** (rear half): cast on taped foam blocks pushed over printed spikes bolted to the floor; dig
   the foam out after curing. The sockets are 1.5 mm a side bigger than the posts: the posts are grouted
-  in at assembly (section 4), so the two moulds don't have to agree to a tenth.
+  in at assembly (section 4), so the two molds don't have to agree to a tenth.
 - **Couplers:** the tie-rod couplers on greased 1/2-13 bolts up through the floor; the rear half's
   draw-rod couplers on bolts through the partition.
 - **Spigots** (rear half): through printed bushings in the partition, half their length out; the rear
@@ -142,11 +142,11 @@ hole table for every board, and the steps; the print guide lists the printed par
   hole in the beam end); the support pads and riser inserts screw to the floor; 1/2 in rods form the
   cap-screw holes (1.6 mm a side over the 3/8 in bolts); the dowels sit in the bottom wall on printed stops.
 
-![Front-half mould, cast against the cured rear half](../../renders/build/04-mould-base-front.png)
+![Front-half mold, cast against the cured rear half](../../renders/build/04-mold-base-front.png)
 
-![Upright: posts, top plate, tie rods and pocket plugs (orange)](../../renders/build/05-mould-upright.png)
+![Upright: posts, top plate, tie rods and pocket plugs (orange)](../../renders/build/05-mold-upright.png)
 
-![Beam mould: tubes, support pads, riser inserts and the back-edge fillers](../../renders/build/06-mould-beam.png)
+![Beam mold: tubes, support pads, riser inserts and the back-edge fillers](../../renders/build/06-mold-beam.png)
 
 ## 3. Mixing and casting
 
@@ -168,7 +168,7 @@ gravel into these bands. Wash anything dusty or clay-coated, and dry everything 
 locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
 either works.
 
-**Beam and uprights: aluminium oxide instead of the sand.** Aluminium oxide grit is about five
+**Beam and uprights: aluminum oxide instead of the sand.** Aluminum oxide grit is about five
 times stiffer than sand or granite. Brown fused #16 (about 1.2 mm) replaces the coarse sand
 and black 70 grit (about 0.2 mm, Harbor Freight) replaces the fine sand; together they make
 these castings roughly 35 % stiffer, about 17 % on the whole frame. The grit is heavier, so
@@ -184,7 +184,7 @@ wears it.
    tapping it down, then pour in water from a measuring cup until it reaches the top. The
    water is the void space. Nudge the coarse sand and fine sand up or down a few percent
    until it's as small as you can get it (below about 25 % of the jar is good).
-2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mould (waxed like the others) and cast
+2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mold (waxed like the others) and cast
    two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings,
    plus two at 8.5 % with the alumina grits for the beam and uprights.
 3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
@@ -212,20 +212,20 @@ the gel coat.
 1. **Dry and clean** all aggregate. Weigh everything out per batch before opening the epoxy.
    Keep batches to what you can place within about half the epoxy's pot life (10-15 kg each).
 2. **Mix order:** epoxy resin + hardener (exact ratio, by weight), then the whiting until
-   smooth, then the sands, then the gravel. Mix until every stone is wet and the colour is even.
+   smooth, then the sands, then the gravel. Mix until every stone is wet and the color is even.
 3. **Place in layers** of 30-40 mm. Vibrate each layer until the surface goes glossy and stops
    releasing bubbles, then add the next. Work the mix around the steel, inserts and cores with a
-   stick. Vibrate the full mould for 20-30 minutes at the end.
-4. **Level the open face**, cover against dust, and leave it at 20-25 °C. Demould after the
+   stick. Vibrate the full mold for 20-30 minutes at the end.
+4. **Level the open face**, cover against dust, and leave it at 20-25 °C. Demold after the
    time your epoxy needs (usually 24-48 h), but don't load or machine anything for 7 days.
 5. Pull all the greased screws and rods, the formers, fillers and plugs. Printed cores stay in;
-   foam cores can be dug out or dissolved with a little acetone. Unbolt the mould kit; it's reused.
+   foam cores can be dug out or dissolved with a little acetone. Unbolt the mold kit; it's reused.
 6. **Seal** the base top (the coolant floor) and the gutters with a thin epoxy gel coat. Paint
    the exposed leg ends.
 
 Cast the rear base half first and the front half against it (above). Cast the two uprights
 together from one batch, before the beam, so you can check the top-plate spacing against the beam
-mould.
+mold.
 
 ## 4. Assemble the frame
 
@@ -237,7 +237,7 @@ mould.
    1/2-13 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base with
    the feet.
 3. **Grout the posts.** The sockets are 1.5 mm a side bigger than the posts, so the fit comes
-   from epoxy, not from the two moulds agreeing. Wax the posts (three coats, buffed) and the base
+   from epoxy, not from the two molds agreeing. Wax the posts (three coats, buffed) and the base
    dowels. Mix a little of the leftover epoxy with whiting to a thick cream and half-fill each
    socket and each upright's dowel hole. Glue the foot O-ring into each upright's groove, lower
    the upright on (posts into the sockets, foot on the base), thread the four tie rods into the
@@ -268,7 +268,7 @@ form the joints.
    screws (M5 x 25 for Y, M5 x 20 for X) just snug.
 3. **Y risers (base):** make each one straight along its length and both coplanar with each
    other, within 0.02 mm over the length if you can. Check with the straightedge and feelers,
-   or a dial indicator on a bridge spanning both. Set them parallel, 180 mm apart on centre
+   or a dial indicator on a bridge spanning both. Set them parallel, 180 mm apart on center
    (rail spacing), using the rails as a gauge.
 4. **X risers (beam face):** same, 100 mm apart. Make them parallel to the base top, checked
    with the indicator on the Y-axis table later, or now with a height gauge from the base top.
@@ -281,7 +281,7 @@ form the joints.
 ## 6. Axes
 
 **Y (table).**
-1. Bolt the Y rails (full 600 mm, centred 20 mm behind the base split) to their risers
+1. Bolt the Y rails (full 600 mm, centerd 20 mm behind the base split) to their risers
    (M4 x 16, about 4 N·m). Tighten the first rail against a
    straightedge, then set the second parallel with a dial indicator on a block of the first
    (within 0.01-0.02 mm over the travel).
@@ -303,7 +303,7 @@ form the joints.
 
 **Z.**
 1. Z risers onto the Z plate: tap the risers M5 and screw them on from the back of the plate
-   (no inserts needed in aluminium). Rails on the risers, and the four Z blocks on the front
+   (no inserts needed in aluminum). Rails on the risers, and the four Z blocks on the front
    of the X carriage.
 2. BK10 / BF10 and the Z screw on the carriage, nut housing on the Z plate, open-loop motor
    on top.
@@ -357,8 +357,8 @@ base. Cast the enclosure inserts into the base now so the frame bolts straight o
 4. **Squareness:** sweep an indicator in the spindle along a straightedge or the table edge.
    X to Y is set by the beam position (step 4 of the frame); Z to the table is set by
    shimming the spindle clamp (tram). Aim for under 0.02 mm over 100 mm.
-5. **Face the table:** take a light fly-cut over the aluminium table so it is flat and parallel
+5. **Face the table:** take a light fly-cut over the aluminum table so it is flat and parallel
    to X/Y.
-6. **First cuts:** aluminium first, then steel at light depths of cut with flood coolant. Check
+6. **First cuts:** aluminum first, then steel at light depths of cut with flood coolant. Check
    the spindle temperature and the coolant flow, and re-torque the frame bolts and the riser
    hold-downs after the first few hours of running.

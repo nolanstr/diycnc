@@ -33,7 +33,7 @@ R_FILTER = 15.0
 
 def passive_solid(vox):
     f, h, d = vox.f, vox.h, vox.d
-    X, Y, Z = np.meshgrid(vox.centres(0), vox.centres(1), vox.centres(2), indexing='ij')
+    X, Y, Z = np.meshgrid(vox.centers(0), vox.centers(1), vox.centers(2), indexing='ij')
     base = f['eg_base_solid'] > 0.01
     steel = (f['st_base'] > 0.02) | ((f['st_up'] > 0.02) & (Z < d['base_top']))
     near = ndi.binary_dilation(steel, np.ones((3, 3, 3), bool))
