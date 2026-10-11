@@ -144,19 +144,35 @@ their sizes are in the print guide.
 
 ## 3. Mixing and casting
 
-Use the graded mix (see the design notes): about 10 % epoxy, 10 % whiting (calcium
-carbonate, 325 mesh, from a pottery supplier), 15 % fine sand, 20 % coarse sand, 20 % pea gravel 3-6 mm, 25 % gravel 6-10 mm, by
-weight. Tune it with a jar test before buying in bulk, and cast two or three test bars
-(50 x 50 x 200 mm). Cut one open: there should be no voids larger than a grain of sand.
+Use the graded mix (see the design notes): about 8.5 % epoxy, 10 % whiting (calcium
+carbonate, 325 mesh, from a pottery supplier), 15 % fine sand, 20 % coarse sand, 20 % pea
+gravel 3-6 mm, 26.5 % gravel 6-10 mm, by weight. 8.5 % only works if the aggregate packs
+densely, so prove the mix before casting anything:
 
-| Casting | Mix (10 %) | Epoxy |
+1. **Jar test.** Fill a 1 L jar with the dry aggregate blend (no whiting), shaking and
+   tapping it down, then pour in water from a measuring cup until it reaches the top. The
+   water is the void space. Adjust the coarse/fine split until it's as small as you can get it
+   (below about 25 % of the jar is good).
+2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mould (waxed like the others) and cast
+   two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings.
+3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
+   than a grain of sand, and every stone should be wetted. Then tap-test the other: weigh it,
+   rest it on two foam strips 112 mm in from each end, tap the middle with a small hammer and
+   read the lowest strong peak on a phone spectrum app (phyphox, Spectroid). Its stiffness is
+   about **E (GPa) = 4.8e-5 x mass (kg) x frequency (Hz)²**. The frame model assumes 30 GPa,
+   about 570 Hz for a 1.9 kg bar; 25 GPa would cost about 13 % of the frame stiffness.
+4. **Pick the mix.** Use 8.5 % if its bar is void-free and at least as stiff as the 9.5 % one;
+   otherwise use 9.5 % and order the extra 1.5 qt epoxy kit.
+
+| Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
-| Base front | 34.5 kg | 3.5 kg |
-| Base rear | 42.4 kg | 4.2 kg |
-| Uprights | 2 x 12.5 kg | 2 x 1.25 kg |
-| Beam | 22 kg | 2.2 kg |
+| Base front | 34.5 kg | 2.9 kg |
+| Base rear | 42.4 kg | 3.6 kg |
+| Uprights | 2 x 12.5 kg | 2 x 1.1 kg |
+| Beam | 22 kg | 1.9 kg |
 
-Add 5-10 % for waste.
+Add 5-10 % for waste: about 11.6 kg, plus about 0.7 kg for the test bars, which just fits the 3 gal
+kit (about 12.5 kg). Mix only what you can place, and keep the leftovers for the gel coat.
 
 1. **Dry and clean** all aggregate. Weigh everything out per batch before opening the epoxy.
    Keep batches to what you can place within about half the epoxy's pot life (10-15 kg each).

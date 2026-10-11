@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $751.21 |
+| 1 | Castings and hardware | $718.22 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,10 +27,10 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,238.46** |
+| **1. Frame** | **$1,205.47** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.57-2.97k** |
+| **Total** | **about $2.54-2.94k** |
 
 Shipping and tax are extra. Raka (epoxy), the whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -50,7 +50,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Epoxy | ~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste | 1 (3 gal) + 1 (1.5 qt) | [Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal + 1.5 qt kits (not Amazon)](https://raka.com/collections/epoxy-kits) | $172.99 + $32.99 | $205.98 | About 14 kg, $14.7/kg; shipping extra (~$30-45). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
+| Epoxy | ~10.5 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal kit (not Amazon)](https://raka.com/collections/epoxy-kits) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; shipping extra (~$30-45). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
 | Fines | Whiting (calcium carbonate) 325 mesh, 10-15 kg | 1 (50 lb) | [Clay-King calcium carbonate whiting, 50 lb (not Amazon)](https://www.clay-king.com/product/calcium-carbonate-whiting/) | $0.84/lb | $42.00 | No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc. |
 | Aggregate | ~112 kg graded sand + pea gravel | ~6 bags | [Quikrete sand + Vigoro pea gravel (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $48.00 | Buy locally. Wash and dry fully. |
 | Mould release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
@@ -74,7 +74,7 @@ the tube, risers and aluminium) also cost more than the sources here.
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
 | PETG filament | ~2.7 kg for the mould parts and liners | 3 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $47.97 | About 1.5 kg less if the pocket cores are cut from XPS foam instead |
 
-**Priced subtotal: $751.21**
+**Priced subtotal: $718.22**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

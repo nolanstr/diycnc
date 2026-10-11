@@ -20,7 +20,7 @@ Casting mass:                 124 kg (273 lb)
   Upright R:                    5.3 L   12.5 kg
   Beam:                         9.4 L   22.0 kg
 Cast-in steel + joint hardware: 23.4 kg
-Epoxy needed (~10% by mass): 12.4 kg
+Epoxy needed (~8.5% by mass): 10.5 kg
 
 Linear motion / plate BOM
 -------------------------

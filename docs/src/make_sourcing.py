@@ -13,8 +13,8 @@ A = 'https://www.amazon.com/dp/'
 # line None = price not seen. Rows whose item starts with "(opt)" are left out of the totals.
 SECTIONS = [
     ('Part 1 - Frame: castings and hardware', [
-        ('Epoxy', '~12.4 kg low-viscosity laminating epoxy, plus ~10 % waste', '1 (3 gal) + 1 (1.5 qt)', 'Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal + 1.5 qt kits (not Amazon)', 'https://raka.com/collections/epoxy-kits',
-         '$172.99 + $32.99', 205.98, 'About 14 kg, $14.7/kg; shipping extra (~$30-45). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
+        ('Epoxy', '~10.5 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka 127 Thin + 606/608/610 hardener (2:1), 3 gal kit (not Amazon)', 'https://raka.com/collections/epoxy-kits',
+         '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; shipping extra (~$30-45). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
         ('Fines', 'Whiting (calcium carbonate) 325 mesh, 10-15 kg', '1 (50 lb)', 'Clay-King calcium carbonate whiting, 50 lb (not Amazon)', 'https://www.clay-king.com/product/calcium-carbonate-whiting/',
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
         ('Aggregate', '~112 kg graded sand + pea gravel', '~6 bags', 'Quikrete sand + Vigoro pea gravel (Home Depot)', 'https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000',
