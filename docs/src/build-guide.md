@@ -29,16 +29,17 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
   an N95 dust mask when pouring the whiting; a P100 respirator when grinding or sanding cured
   EG (the quartz sand and gravel in it make silica dust; work wet if you can); eye protection
   when cutting steel. Mix in a ventilated space.
-- **3D printing (PETG):** the mould cores, formers and fillers, plus the parts that get cast in
-  (socket liners, spigot sleeves, tube plugs, drain liner) and the machine's printed parts. All
-  of it is in `print/`, split to fit a Bambu A1 mini, and listed in the print guide: about 80
-  prints and 3.5 kg of PETG (about 1.5 kg less if you cut the pocket cores from foam). Print
-  the liners and sleeves first and test-fit them on your actual tube.
+- **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the cores,
+  formers and fillers, the parts that get cast in (socket liners, spigot sleeves, tube plugs,
+  drain liner) and the machine's printed parts. All of it is in `print/`, split to fit a Bambu
+  A1 mini, and listed in the print guide: about 100 prints and 4.6 kg of PETG (about 1.5 kg less
+  if you cut the pocket cores from foam). Print one bracket and one saddle first and check them
+  on your board; print the liners and sleeves early and test-fit them on your actual tube.
 
 ## 1. Buy and prepare the steel
 
 Nothing you order needs cutting: buy the tube at these lengths, and order the risers, the top
-plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
+plates and the aluminium plates cut to size. Only the 1/2-13 threaded rod is cut.
 
 1. **Square tube** (plain steel, not galvanized; 0.120 or 1/8 in wall; remnants are fine):
    - 2 x 2 in: 4 x 12 in (base; they also take the split spigots), 2 x 18 in (beam).
@@ -49,9 +50,9 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
 3. **Drill the beam tubes:** each 18 in tube gets 14 mm holes straight through its top and
    bottom walls where the inner beam cap screws pass (4 holes per tube; mark from the model
    or the upright top plates, 203 mm either side of the centre, on the cap-screw line).
-4. **Top plates** (3/8 in steel, 2 pieces 68 x 168 mm, ordered cut to size): drill and tap the four M10 beam-screw
-   holes and the 10 mm dowel hole in each, and cut the tie-rod pockets (see
-   the section picture below). Do this before casting.
+4. **Top plates** (3/8 in steel, 2 pieces 68 x 168 mm, ordered cut to size): drill and tap the four 3/8-16 beam-screw
+   holes and a 14 mm dowel hole in each (oversize: the beam's dowel is grouted into it at
+   assembly), and cut the tie-rod pockets (see the section picture below). Do this before casting.
 5. **X support pads** (1/4 x 2-1/2 in flat bar, 2 pieces, about 49 and 36 mm long): drill and
    tap M6 at the BK10 and BF10 bolt positions (46 mm apart across the axis; along it, 13 mm
    apart for the BK10). These end up flush in the beam face and carry the X ballscrew bearings.
@@ -67,7 +68,7 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
    acetone just before casting. If it will sit more than a day or two, give it a thin coat
    of epoxy primer. Paint only the part of each leg that will hang below the base (after
    casting).
-8. **Threaded rod and hardware:** cut the M12 rods (per upright 2 x 293, 1 x 213 and 1 x 102 mm; 2 x 358 mm
+8. **Threaded rod and hardware:** cut the 1/2-13 rods (per upright 2 x 293, 1 x 213 and 1 x 102 mm; 2 x 358 mm
    for the base draw rods), deburr the ends. Have the inserts ready: 18 x M5 (12-16 mm long) and
    6 x M6 x 15 mm cast-in inserts, plus 11 x M5 for the enclosure.
 
@@ -75,17 +76,27 @@ plates and the aluminium plates cut to size. Only the M12 threaded rod is cut.
 
 The cast-in steel, inserts and printed liners for each base half (castings drawn see-through):
 
-![Base front: steel and inserts](../../renders/build/01-steel-base-front.png)
+![Base rear (cast first): steel, sockets and inserts](../../renders/build/01-steel-base-rear.png)
 
-![Base rear: steel, sockets and inserts](../../renders/build/03-steel-base-rear.png)
+![Base front: steel and inserts](../../renders/build/03-steel-base-front.png)
 
 ## 2. Moulds and cores
 
-Use 18 mm melamine-faced board screwed together. The castings' outside edges are rounded
-10 mm: glue 3/8 in quarter-round moulding (PVC or primed wood) into the inside corners of the
-boxes that form outside edges, and run small silicone fillets everywhere else. Wax every surface 3-5 times (Partall Paste #2), buff, then spray or wipe PVA release.
-Everything that has to be flat or located precisely goes against the mould **floor**, so
-each casting is poured with its most important face down.
+The moulds are a kit. Melamine boards are cut to a list and drilled from hole maps, and printed brackets
+hold them together with M4 bolts. Every printed piece bolts or pins to its board from outside, into a
+nut built into the piece. Nothing is glued, nothing goes through a cast face, and the moulds come apart
+and go back together the same way. The **mould guide** has the cut list, the hardware, a drawing and a
+hole table for every board, and the steps; the print guide lists the printed parts.
+
+- **Walls stand 25 mm above the pour line.** The brackets, saddles and leg holders bolt through
+  that band. Fill to the line, not to the top.
+- **Everything that has to be flat or located goes against the floor**, so each casting is
+  poured with its most important face down.
+- **Edges:** the castings' outside edges are rounded 10 mm. Glue 3/8 in quarter-round moulding
+  (PVC or primed wood) into the inside corners of the boxes that form outside edges, and run
+  small silicone fillets everywhere else.
+- **Release:** wax every surface the mix touches 3-5 times (Partall Paste #2), buff, then
+  spray or wipe PVA. That includes the printed pieces that come out; not the ones that stay in.
 
 | Casting | Face on the mould floor | Size (mm) | Mass |
 |---|---|---|---|
@@ -94,52 +105,42 @@ each casting is poured with its most important face down.
 | Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 15.4 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 26.8 kg |
 
-The printed pieces (in `print/`, see the print guide) do everything a flat board can't:
+**Casting order:**
 
-| Printed piece | Where it goes | After casting |
-|---|---|---|
-| Pocket cores (`core-*`) | in the base pockets, closed side down onto the wet skin | stay in |
-| Formers (`former-*`) | on the mould floor or wall: gutters, coolant trough, motor relief, gasket grooves | pull out |
-| Fillers (`filler-*`) | in the box corners: base corner radii, beam back edge | pull out, reuse |
-| Plugs (`plug-*`) | upright tie-rod nut pockets (top and sloped front) | pull out |
-| Liners (`liner-*`, `cast-in-*`) | drain, sockets, spigot sleeves, tube plugs | stay in |
+1. **Base rear half**, against a partition at the split, on a floor board big enough for both halves.
+2. **Base front half** on the same floor, with the partition out, cast against the rear half's waxed
+   split face. The two top faces come out flush and the split faces match. The front tubes and their
+   sleeves slide straight onto the rear half's spigots, and the draw rods screw into its couplers, so
+   that joint fits by construction. The split's gasket groove is in the rear half; tape over it first.
+3. **Uprights**, both from one batch, in two moulds.
+4. **Beam.**
 
-**Pocket cores (base).** The pockets in the base underside face up in the mould, so the cores
-sit on the cast top skin, 25 mm above the mould floor, with their open side up. The printed
-shells stay in the casting. Cores float: fill them with dry sand and screw a bridge across the
-mould top to hold every core down. Foam cores (XPS wrapped in packing tape and waxed) work too;
-their sizes are in the print guide.
+![Rear-half mould from above (mould the right way up): boards see-through, kit and cores orange](../../renders/build/02-mould-base-rear.png)
 
-![Base front mould from underneath: steel, inserts and cores (orange)](../../renders/build/02-mould-base-front.png)
+![A corner of the base mould: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mould/base-corner.png)
 
-![Base rear mould from underneath](../../renders/build/04-mould-base-rear.png)
+**Locating the cast-in parts** (the mould guide has the details; grease every screw and rod that comes out):
+- **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
+  flush with the casting face.
+- **Socket liners** (rear half): each over a printed plug bolted to the floor; their far end is closed.
+  The sockets are 1.5 mm a side bigger than the posts: the posts are grouted in at assembly (section 4),
+  so the two moulds don't have to agree to a tenth.
+- **Couplers:** the tie-rod couplers on greased 1/2-13 bolts up through the floor; the rear half's
+  draw-rod couplers on bolts through the partition.
+- **Spigots** (rear half): through printed bushings in the partition, half their length out; the rear
+  tubes, sleeves and end plugs slide onto them.
+- **Legs:** through printed holders bolted into the corners above the pour line, each hanging from a
+  printed cap at its cast-in depth.
+- **Cores:** sit on the wet 20 mm skin with dry sand in them; a post on each bolts to the side of a
+  bridge, which sets its height and stops it floating.
+- **Uprights:** the posts come up through bushings in the floor, 5/8 in rods form the tie-rod holes
+  (1.6 mm a side over the 1/2 in tie rods), a greased 1/2-13 bolt forms the dowel hole (grouted at
+  assembly), and the top plate hangs from the bridge on two greased 3/8 bolts.
+- **Beam:** the tubes hang between printed locators bolted through the end walls (each leaves a 16 mm
+  hole in the beam end); the support pads and riser inserts screw to the floor; 1/2 in rods form the
+  cap-screw holes (1.6 mm a side over the 3/8 in bolts); the dowels sit in the bottom wall on printed stops.
 
-**Locating the cast-in parts** (all screws greased so they come out after curing):
-- **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screw each one to the mould floor
-  from underneath with a greased screw, so its face is flush with the casting face.
-- **Socket liners** (rear base half): open end down on the floor, held by a screw through a
-  printed cap.
-- **Base tubes, spigots and draw-rod hardware:** the split face is a mould wall. Bolt the
-  2 in base tubes to it through printed end plugs. In the rear half, the spigots stick out
-  through holes in that wall by half their length. Hold the rear half's coupling nuts on
-  greased M12 bolts through the wall.
-- **Legs** (base, 35 mm cast in): stick up out of the open back of the mould. Hold them square
-  with a plywood jig screwed across the mould. Plug the top (inside) end first.
-- **Drain nipple** (front half): screwed onto a greased fitting through the floor.
-- **Uprights:** the mould is two melamine side plates cut to the upright's profile (430 mm
-  foot, 246 mm tall, front sloping up to 190 mm long at the top), a back board, and a board
-  along the sloped front, which starts 20 mm up on a blunt nose (a printed toe filler rounds it
-into the slope). The posts pass through holes in the floor (the mould stands on
-  blocks); a plywood jig underneath sets their spacing and squareness. The top plate is held
-  flush with the open top by a bridge. Greased 14 mm rods (or dowels wrapped in packing tape)
-  form the four tie-rod holes, two near the top and two through the sloped front. The short
-  pocket plugs slide down the top two; the two slope-pocket plugs are cut at the slope angle
-  and screw to the front board, with the rods passing through them.
-- **Beam:** the tubes are held by printed plugs bolted through the end walls, the two support
-  pads are screwed to the floor, and greased 11.5 mm rods through the side walls form the
-  cap-screw holes. Greased dowels form the dowel holes.
-- **Gutters, trough and gasket grooves:** printed or MDF formers screwed to the mould floor
-  or walls.
+![Front-half mould, cast against the cured rear half](../../renders/build/04-mould-base-front.png)
 
 ![Upright: posts, top plate, tie rods and pocket plugs (orange)](../../renders/build/05-mould-upright.png)
 
@@ -216,30 +217,37 @@ the gel coat.
 4. **Level the open face**, cover against dust, and leave it at 20-25 °C. Demould after the
    time your epoxy needs (usually 24-48 h), but don't load or machine anything for 7 days.
 5. Pull all the greased screws and rods, the formers, fillers and plugs. Printed cores stay in;
-   foam cores can be dug out or dissolved with a little acetone.
+   foam cores can be dug out or dissolved with a little acetone. Unbolt the mould kit; it's reused.
 6. **Seal** the base top (the coolant floor) and the gutters with a thin epoxy gel coat. Paint
    the exposed leg ends.
 
-Cast the two uprights together from one batch, and cast them before the beam, so you can
-check the top-plate spacing against the beam mould.
+Cast the rear base half first and the front half against it (above). Cast the two uprights
+together from one batch, before the beam, so you can check the top-plate spacing against the beam
+mould.
 
 ## 4. Assemble the frame
 
-1. **Feet:** set the rear base half on the bench on its legs. Bond an M12 nut into a printed
+1. **Feet:** set the rear base half on the bench on its legs. Bond a 1/2-13 nut into a printed
    plug in each leg end (or use the threaded inserts), screw in the leveling feet, and roughly
    level it.
-2. **Join the base halves:** glue the O-ring cord into the front half's split groove (glue the
-   cord ends). Slide the printed sleeves onto the spigots, push the front half on, and tighten
-   the two M12 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base
-   with the feet.
-3. **Uprights:** glue the foot O-ring into each upright's groove. Drop the posts into the lined
-   sockets (the base dowel locates it); the foot runs forward across the base split. Thread the
-   four tie rods into the coupling nuts, add washers and nuts in the pockets (two at the top,
-   two in the sloped front), and tighten to about 40-50 N·m, working front to back. Push the
-   printed caps into the two sloped pockets, flush with the face (a dab of silicone holds them).
-4. **Beam:** set it on the top plates over the dowels and fit the eight M10 x 150 cap screws.
-   Before final torque (about 40 N·m into the 3/8 in plates), check the beam face is square to
-   the base top with a square and a dial indicator. Shim under one top plate if needed.
+2. **Join the base halves:** glue the O-ring cord into the rear half's split groove (glue the
+   cord ends). Push the front half on (its tubes and sleeves over the spigots) and tighten the two
+   1/2-13 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base with
+   the feet.
+3. **Grout the posts.** The sockets are 1.5 mm a side bigger than the posts, so the fit comes
+   from epoxy, not from the two moulds agreeing. Wax the posts (three coats, buffed) and the base
+   dowels. Mix a little of the leftover epoxy with whiting to a thick cream and half-fill each
+   socket and each upright's dowel hole. Glue the foot O-ring into each upright's groove, lower
+   the upright on (posts into the sockets, foot on the base), thread the four tie rods into the
+   coupling nuts and snug them, wipe off what squeezes out, and leave it 24 h. After that the
+   posts lift out and drop back in with no play.
+4. **Uprights:** add washers and nuts in the pockets (two at the top, two in the sloped front)
+   and tighten to about 40-50 N·m, working front to back. Push the printed caps into the two
+   sloped pockets, flush with the face (a dab of silicone holds them).
+5. **Beam:** the top plates' dowel holes are 14 mm, oversize the same way. Wax the beam's
+   dowels, put grout in the holes, set the beam on and fit the eight 3/8-16 x 6 in bolts snug.
+   Check the beam face is square to the base top with a square and a dial indicator (shim under
+   one top plate if needed) and leave it 24 h before the final torque (about 40 N·m).
 
 ![Base halves joined](../../renders/build/07-frame-base.png)
 

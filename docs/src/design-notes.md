@@ -12,15 +12,15 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 
 | Module | Steel inside | Joins to |
 |---|---|---|
-| Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x M12 draw rods, the coolant outlet, O-ring groove on the split face | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face |
-| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), 4 printed socket liners, M12 coupling nuts | - |
-| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts drop into the lined sockets, a dowel locates it, 4x M12 tie rods pull it down (two from pockets at the top, two from pockets in the sloped front) |
-| Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 14 mm where the inner cap screws pass | A dowel and 4x M10 cap screws per side into the upright top plates |
+| Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x 1/2-13 draw rods, the coolant outlet | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face. Cast against the rear half, so the joint fits by construction |
+| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), 4 printed socket liners, 1/2-13 coupling nuts, O-ring groove on the split face | - |
+| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts are grouted into the oversize sockets at first assembly (waxed, so they lift out), a dowel locates it, 4x 1/2-13 tie rods pull it down (two from pockets at the top, two from pockets in the sloped front) |
+| Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 14 mm where the inner cap screws pass | A dowel (grouted into an oversize plate hole at first assembly) and 4x 3/8-16 bolts per side into the upright top plates |
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
 used at the lengths they're sold in: tube in 18, 12 and 6 in pieces of two US sizes (remnants
 are fine, lengths +/- 1/4 in, 0.120 in wall works as well as 1/8 in). The risers, aluminium
-plates and the upright top plates are ordered cut to size. The only cutting left is the M12
+plates and the upright top plates are ordered cut to size. The only cutting left is the 1/2-13
 threaded rod. The only machining is drilling the beam tubes (4 holes each) and drilling and
 tapping the risers, top plates and support pads. Use plain steel, not galvanized: epoxy bonds
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
@@ -40,6 +40,17 @@ part of each leg that hangs below the base.
   steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
   the sockets (`base_pockets` in `model/build_cnc.py`).
 - The sockets are printed PETG liners cast into the base, not steel tube.
+
+**Moulds and fits.** The moulds are a kit (`model/mouldbox.py`, the mould guide): melamine boards
+with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
+through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
+from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
+it is too thin, and pieces cut to fit the printer are pegged together. A clash check in the
+model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
+construction instead of by measuring: the front base half is cast against the rear half
+(flush top faces, matching split faces, tubes straight onto the spigots), and the posts and
+dowels are grouted into oversize holes at first assembly. Two independent moulds can't hold
+the 0.2 mm a side the old printed socket liners needed.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
   split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
@@ -77,8 +88,8 @@ The enclosure's 2020 frame bolts to the base top with angle brackets into cast-i
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;
 coolant runs to the two drains at the front. The door laps over the base front face.
 
-Assembly: base halves (spigots in, tighten the draw rods), uprights (posts into
-sockets, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
+Assembly: base halves (spigots in, tighten the draw rods), uprights (posts grouted into the
+sockets the first time, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
 take the X and Y motors off first (they pass through the enclosure panels), then
 reverse the order. Heaviest piece: the rear base half (about 38 kg). The upright feet run
 forward across the base split, so the base halves have to be joined before the uprights go on.
@@ -280,7 +291,8 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,355** (including $150 of alumina grit for the beam and uprights); **2, the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,575** (including $150 of alumina grit for the beam and uprights, and about $220 for the
+bolt-together mould kit: two sheets of melamine, its hardware and the extra PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
 coolant** about $650-700. The steel and aluminium are priced as remnants and the joint hardware
