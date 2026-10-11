@@ -147,15 +147,29 @@ into the slope). The posts pass through holes in the floor (the mould stands on
 
 ## 3. Mixing and casting
 
-Use the graded mix (see the design notes): about 8.5 % epoxy, 10 % whiting (calcium
-carbonate, 325 mesh, from a pottery supplier), 15 % fine sand, 20 % coarse sand, 20 % pea
-gravel 3-6 mm, 26.5 % gravel 6-10 mm, by weight. 8.5 % only works if the aggregate packs
-densely, so prove the mix before casting anything:
+Use the graded mix, by weight. The aggregate follows a Fuller-type packing curve (each size
+fills the gaps between the next size up), which is what lets the epoxy stay at 8.5 %:
+
+| Part | Size | Source | % of mix | For the whole frame |
+|---|---|---|---|---|
+| Epoxy | | Raka 127 + 606 | 8.5 % | 10.6 kg |
+| Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 11 kg |
+| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 19 kg |
+| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 34 kg |
+| Pea gravel | 3-6 mm | bagged pea gravel, sieved | 20 % | 25 kg |
+| Gravel | 6-10 mm | 3/8 in crushed stone (#8) or bigger pea gravel | 20 % | 25 kg |
+
+Two kitchen-type sieves (about 3 and 6 mm mesh, or hardware cloth) split the bagged sand and
+gravel into these bands. Wash anything dusty or clay-coated, and dry everything completely
+(spread it out in the sun, or an old oven tray): water stops the epoxy bonding. Crushed stone
+locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
+either works. 8.5 % only works if the aggregate packs densely, so prove the mix before
+casting anything:
 
 1. **Jar test.** Fill a 1 L jar with the dry aggregate blend (no whiting), shaking and
    tapping it down, then pour in water from a measuring cup until it reaches the top. The
-   water is the void space. Adjust the coarse/fine split until it's as small as you can get it
-   (below about 25 % of the jar is good).
+   water is the void space. Nudge the coarse sand and fine sand up or down a few percent
+   until it's as small as you can get it (below about 25 % of the jar is good).
 2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mould (waxed like the others) and cast
    two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings.
 3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
