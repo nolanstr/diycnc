@@ -32,9 +32,8 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **3D printing (PETG):** the mould kit (brackets, saddles, holders, bushings), the core posts,
   formers and fillers, the parts that get cast in (spigot sleeves, tube plugs, drain liner) and
   the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
-  in the print guide: about 1.4 kg of PETG, inside two 1 kg rolls. The bulky mould pieces (pocket
-  and socket cores, the coolant trough and gutters, the beam's back edge) are cut from one sheet of
-  2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
+  in the print guide: about 1.5 kg of PETG, inside two 1 kg rolls. The base pocket and socket cores
+  are cut from one sheet of 2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
   print the sleeves early and test-fit them on your actual tube.
 - **Foam cutting:** a fine-tooth saw or a hot-wire cutter, a long knife, a sanding block, packing
   tape and double-sided carpet tape.
@@ -125,7 +124,7 @@ hole table for every board, and the steps; the print guide lists the printed par
 **Locating the cast-in parts** (the mould guide has the details; grease every screw and rod that comes out):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
   flush with the casting face.
-- **Sockets** (rear half): cast on taped foam blocks standing on printed plugs bolted to the floor; dig
+- **Sockets** (rear half): cast on taped foam blocks pushed over printed spikes bolted to the floor; dig
   the foam out after curing. The sockets are 1.5 mm a side bigger than the posts: the posts are grouted
   in at assembly (section 4), so the two moulds don't have to agree to a tenth.
 - **Couplers:** the tie-rod couplers on greased 1/2-13 bolts up through the floor; the rear half's

@@ -144,10 +144,11 @@ P = dict(
     # Moulds: melamine board (measure yours: the printed saddles and brackets are drawn for it), every
     # wall this much taller than its casting, so all the bolts go through above the pour line.
     mould_board=19.05, mould_freeboard=25.0,    # Home Depot 3/4 in white melamine is a true 0.750 in
-    # XPS foam (one 2 in board) instead of PETG for the base pocket cores (only their posts are printed),
-    # the socket cores, the coolant trough and gutter formers, and the beam's back-edge filler.
-    # False prints them all (about 1.7 kg more PETG).
-    foam=True,
+    # XPS foam (one 2 in board) instead of PETG for the base pocket cores (only their posts are printed)
+    # and the socket cores: hidden, and they only need to be within a millimetre or two. False prints them
+    # (about 1.4 kg more PETG). foam_formers also cuts the coolant trough and gutters and the beam's back
+    # edge from foam; they shape faces you see and drain coolant, so they print by default.
+    foam=True, foam_formers=False,
 
     eg_density=2.35,     # kg/L, epoxy granite
     # The beam and uprights use aluminium oxide grit instead of sand, same volume: brown #16 for the
@@ -387,10 +388,13 @@ class Steel:
         if look != 'printed':
             self.volume += shape.Volume
 
-    def plug(self, name, container, axis, c1, c2, size, a0, a1):
-        """Printed end plug that keeps the casting out of a hollow tube."""
+    def plug(self, name, container, axis, c1, c2, size, a0, a1, closed):
+        """Printed end plug that keeps the casting out of a hollow tube: a cup, closed (2 mm) at the
+        tube's end (`closed`, a0 or a1) and open toward the inside of the tube."""
         env, _ = parts.square_tube(axis, c1, c2, size - 2.0, 0.1, a0, a1)
-        self.add(name, container, env, 'printed')
+        b0, b1 = (a0 + 2.0, a1 + 1.0) if closed == a0 else (a0 - 1.0, a1 - 2.0)
+        cup = env.cut(parts.square_tube(axis, c1, c2, size - 2.0 - 3.2, 0.1, b0, b1)[0])
+        self.add(name, container, cup, 'printed')
 
 
 def chamfered(x0, x1, y0, y1, c):
@@ -517,11 +521,14 @@ def base_half(m, g, st, front):
         env, shell = parts.square_tube('y', x, g['tube_z'], tube_s, tube_w, ta, tb)
         cuts.append(env)
         st.add(f'Base{tag}Tube{side}', cont, shell)
-        st.plug(f'Base{tag}TubePlug{side}', cont, 'y', x, g['tube_z'], inner, *((ta, ta + 10) if front else (tb - 10, tb)))
-        # printed sleeve between the spigot and the tube, one per half
-        _, sleeve = parts.square_tube('y', x, g['tube_z'], inner - 0.2, (inner - 0.2 - spig_s - 0.4) / 2,
-                                      *((ys - sv, ys - 1) if front else (ys + 1, ys + sv)))
-        st.add(f'Base{tag}SpigotSleeve{side}', cont, sleeve, 'printed')
+        st.plug(f'Base{tag}TubePlug{side}', cont, 'y', x, g['tube_z'], inner, *((ta, ta + 10, ta) if front else (tb - 10, tb, tb)))
+        # printed sleeve between the spigot and the tube, one per half: two 15 mm rings at the ends of
+        # the spigot's length in this tube (the spigot bears on two short bands; the ring at the split
+        # keeps the mix out)
+        sa, sb = (ys - sv, ys - 1) if front else (ys + 1, ys + sv)
+        rings = [parts.square_tube('y', x, g['tube_z'], inner - 0.2, (inner - 0.2 - spig_s - 0.4) / 2, a_, a_ + 15.0)[1]
+                 for a_ in (sa, sb - 15.0)]
+        st.add(f'Base{tag}SpigotSleeve{side}', cont, rings[0].fuse(rings[1]), 'printed')
         if not front:
             _, spigot = parts.square_tube('y', x, g['tube_z'], spig_s, spig_w, ys - sl / 2, ys + sl / 2)
             st.add(f'BaseSpigot{side}', cont, spigot)
@@ -558,7 +565,7 @@ def base_half(m, g, st, front):
             env, shell = parts.square_tube('z', lx, ly, leg_s, leg_w, z1 - P['leg_len'], z1)
             cuts.append(env)
             st.add(name, cont, shell)
-            st.plug(name + 'Plug', cont, 'z', lx, ly, leg_s - 2 * leg_w, z1 - 10, z1)
+            st.plug(name + 'Plug', cont, 'z', lx, ly, leg_s - 2 * leg_w, z1 - 10, z1, z1)
             # threaded insert for the leveling foot
             insert = parts.square_tube('z', lx, ly, leg_s - 2 * leg_w - 1.2, 0.1, z1 - P['leg_len'], z1 - P['leg_len'] + 22)[0]
             st.add(name + 'Insert', cont, insert.cut(Part.makeCylinder(6.0, 30, Vector(lx, ly, z1 - P['leg_len'] - 5))), 'steel')
@@ -669,7 +676,7 @@ def upright(m, g, st, sx):
         env, shell = parts.square_tube('z', sx * g['ux'], py, post_s, post_w, post_top - P['tube_len']['post'], post_top)
         cuts.append(env)
         st.add(f'Post{tag}{i + 1}', cont, shell)
-        st.plug(f'Post{tag}{i + 1}Plug', cont, 'z', sx * g['ux'], py, post_s - 2 * post_w, post_top - 10, post_top)
+        st.plug(f'Post{tag}{i + 1}Plug', cont, 'z', sx * g['ux'], py, post_s - 2 * post_w, post_top - 10, post_top, post_top)
     pockets, taps = [], []
     for j, (rx, ry, pb) in enumerate(g['tie_rods']):
         x = sx * rx
@@ -883,8 +890,14 @@ def mould_parts(m, d):
             seen[key]['qty'] += qty
             continue
         name = ''.join('-' + c.lower() if c.isupper() and i else c.lower() for i, c in enumerate(p['name'])).replace('--', '-')
+        up = None
+        if name.startswith('pocket-cap'):
+            # its face (flush with the sloped front) on the bed
+            sl = Vector(0, g['up_top_front'] - g['up_front'], g['beam_bot'] - g['base_top'] - P['upright_nose'])
+            sl.normalize()
+            up = Vector(0, sl.z, -sl.y)
         seen[key] = kit.add(folder, name, 'cast-in' if cast_in else 'part', p['shape'], qty,
-                            'Cast in, stays.' if cast_in else '', placed=[])
+                            'Cast in, stays.' if cast_in else '', up=up, placed=[])
     for mould, f in kit.loose:
         print(f'mould kit: {f.what} at {f.p} ({mould}) lands on no board')
     m.moulds, m.mould_kit = kit.rows, kit
@@ -902,6 +915,10 @@ def fixed_piece(kit, folder, mould, name, kind, shape, contacts, qty=1, note='',
             p, fx = moulds.fasten(p, c0, n, k, sizes, what=name, avoid=avoid)
             fixes += fx
         parts_out.append(p)
+    if up is None:
+        # flat face against the board on the bed; pins (if any) point up, so then the other way round
+        n0 = contacts[0][1]
+        up = n0 if any(f.kind == 'pin' for f in fixes) else -n0
     row = kit.add(folder, name, kind, parts_out, qty, note, up, show=show)
     kit.fix(fixes, mould, mult)
     return row
@@ -965,6 +982,8 @@ def mould_base(kit, m, g):
                 sad.append((s, wf + [bf]))
             kit.add_many('base-box', 'saddle', 'kit', sad, mould=M, show=[folder], merge=True, reuse=True, up=X,
                          note='The rear half needs six; four move over for the front half.')
+    next(r for r in kit.rows if r['folder'] == 'base-box' and r['name'] == 'saddle')['qty'] = \
+        2 * max(len(v) for v in lines.values())
     # legs: a holder in each corner above the pour line, with a pinch screw that holds the leg at its
     # cast-in depth; a short bridge between each pair of holders
     lx_in = half - 72.0
@@ -993,7 +1012,7 @@ def mould_base(kit, m, g):
             shape = shape.common(cav)
             if name.startswith('gutter') and 'trough' in formers:
                 shape = shape.cut(formers['trough'])
-            if P['foam'] and name != 'motor-relief':
+            if P['foam_formers'] and name != 'motor-relief':
                 kit.add(folder, name, 'foam', shape, 1, foam_note(name, shape), show=[folder])
                 continue
             if name == 'trough':
@@ -1062,27 +1081,33 @@ def mould_base(kit, m, g):
             kit.add(folder, name, 'core', shells, 1, 'Shell core, stays in. Bolts to the bridge by its post.', show=[folder])
         kit.fix(fx, M)
 
-    # sockets (rear): a plug in each liner's open end, bolted to the floor
+    # sockets (rear). Foam: a printed spike bolted to the floor locates each foam block, which runs from
+    # the floor to the socket bottom. Printed liners: a plug in each liner's open end, bolted to the floor.
     sock_in = P['socket_liner'][0] - 2 * P['socket_liner'][1]
-    plugs = []
-    for sx in (-1, 1):
-        for py in g['post_ys']:
-            c = Vector(sx * g['ux'], py, top)
-            plug = parts.box(c.x - sock_in / 2 + FIT_PLUG, c.x + sock_in / 2 - FIT_PLUG, py - sock_in / 2 + FIT_PLUG,
-                             py + sock_in / 2 - FIT_PLUG,
-                             top - 15.0, top)
-            plug = parts.soften(plug, 2.0, parts.parallel((0, 0, 1)), chamfer=True)
-            plugs.append(plug)
-    for i, p in enumerate(plugs):
-        p, fx = moulds.fasten(p, Vector(0, 0, top), Z, 1, ('M4',), 'socket plug')
-        kit.fix(fx, M)
-        plugs[i] = p
-    kit.add('base-rear', 'socket-plug', 'plug', plugs[0], len(plugs), 'Fills the open end of a socket; '
-            'bolts to the floor.', placed=plugs, show=REAR)
+    centres = [Vector(sx * g['ux'], py, top) for sx in (-1, 1) for py in g['post_ys']]
     if P['foam']:
-        blks = [parts.box(sx * g['ux'] - sock_in / 2, sx * g['ux'] + sock_in / 2, py - sock_in / 2, py + sock_in / 2,
-                          g['sock_bot'], top - 15.0) for sx in (-1, 1) for py in g['post_ys']]
-        kit.add('base-rear', 'socket', 'foam', blks[0], len(blks), foam_note('socket', blks[0]), placed=blks, show=REAR)
+        spikes, blks = [], []
+        for c in centres:
+            sp = parts.box(c.x - 7.0, c.x + 7.0, c.y - 7.0, c.y + 7.0, top - 20.0, top)
+            sp = sp.cut(moulds.nut_trap(c, Z, X, 'M4', mode='side', run=12.0))
+            spikes.append(sp)
+            kit.fix([Fix('bolt', c, Z, 4.5, 'socket spike', 'M4', moulds.nut_bolt('M4')[0])], M)
+            blks.append(parts.box(c.x - sock_in / 2, c.x + sock_in / 2, c.y - sock_in / 2, c.y + sock_in / 2,
+                                  g['sock_bot'], top).cut(sp))
+        kit.add('base-rear', 'socket-spike', 'plug', spikes[0], 4, 'Bolts to the floor; the foam socket block pushes '
+                'over it (cut a 14 mm square hole 20 deep in the block).', placed=spikes, show=REAR, up=-Z)
+        kit.add('base-rear', 'socket', 'foam', blks[0], 4, foam_note('socket', blks[0]), placed=blks, show=REAR)
+    else:
+        plugs = []
+        for c in centres:
+            plug = parts.box(c.x - sock_in / 2 + FIT_PLUG, c.x + sock_in / 2 - FIT_PLUG, c.y - sock_in / 2 + FIT_PLUG,
+                             c.y + sock_in / 2 - FIT_PLUG, top - 15.0, top)
+            plug = parts.soften(plug, 2.0, parts.parallel((0, 0, 1)), chamfer=True)
+            plug, fx = moulds.fasten(plug, Vector(0, 0, top), Z, 1, ('M4',), 'socket plug')
+            kit.fix(fx, M)
+            plugs.append(plug)
+        kit.add('base-rear', 'socket-plug', 'plug', plugs[0], 4, 'Fills the open end of a socket liner; bolts to the '
+                'floor.', placed=plugs, show=REAR, up=-Z)
     # spigots (rear) through the partition
     bush = [mouldbox.bushing(Vector(sx * P['table_rail_spacing'] / 2, ys, g['tube_z']), -Y, X, P['post_tube'][0])
             for sx in (-1, 1)]
@@ -1167,6 +1192,15 @@ def leg_holder(c, sx, sy, half, yw, fb, x_in):
     s = parts.box(xa, xb, ya, yb, z0, z1)
     q = P['post_tube'][0] + 2 * FIT_PLUG
     s = s.cut(parts.box(c.x - q / 2, c.x + q / 2, c.y - q / 2, c.y + q / 2, z0 - 1, z1 + 1))
+    # lighten: in (u, v) from the leg's centre, positive toward the side wall and the end wall, keep a
+    # 7 mm ring round the leg, the plate out to both walls, the cradle arm and the pinch-screw boss
+    def uv_box(u0, u1, v0, v1):
+        return parts.box(*sorted((c.x + sx * u0, c.x + sx * u1)), *sorted((c.y + sy * v0, c.y + sy * v1)), z0 - 1, z1 + 1)
+    ring = q / 2 + 7.0
+    band = T / 2 + mouldbox.SLOT / 2 + TH_SADDLE + 1.0
+    inner = abs(c.x) - x_in + 1.0                   # out to the holder's inner edges (and past them)
+    s = s.cut([uv_box(-inner, -ring, -inner, -band), uv_box(-inner, -ring, band, ring),
+               uv_box(-ring, -8.0, -inner, -ring), uv_box(8.0, inner, -inner, -ring)])
     # cradle: a pad under the leg bridge's end and two cheeks
     ca, cb = sorted((sx * x_in, sx * (x_in + 12.0)))
     slot = T + mouldbox.SLOT
@@ -1235,11 +1269,9 @@ def mould_upright(kit, g):
         back.append(mouldbox.angle_bracket(Vector(xs, yb + T, zt), -Y, m1, -m1, Y, Z, fb - 2, leg=27.0, hole_at=22.5))
         fr.append(mouldbox.angle_bracket(Vector(xs, 0, 0) + Vector(0, at(s_top, T).y, at(s_top, T).z), -nrm, m1, -m1, nrm,
                                          a, 22.0))
-        fr.append(mouldbox.angle_bracket(Vector(xs, 0, 0) + Vector(0, at(s0 + 24, T).y, at(s0 + 24, T).z), -nrm, m1, -m1,
-                                         nrm, a, 22.0, bolts=(True, False)))
     kit.add_many(folder, 'back-bracket', 'kit', back, mould=M, show=show, per=2, mult=mult, up=Z)
     kit.add_many(folder, 'front-bracket', 'kit', fr, mould=M, show=show, per=2, mult=mult, up=a,
-                 note='Two at the top of the front board and two at its foot (only the side-plate bolt there).')
+                 note='At the top of the front board; its foot sits in the toe filler\'s lip.')
     yf = at(s_of(top, T), T).y
     for xs, n, tag in ((x0 - T, -X, 'outer'), (x1 + T, X, 'inner')):
         cleat(kit, M, f'Upright cleat, {tag}', Vector(xs, yf + 90.0, top), Vector(xs, yb + T, top), n, Z, show, 2, mult)
@@ -1255,11 +1287,13 @@ def mould_upright(kit, g):
     env = upright_envelope(g, sx, edges=False)
     big = 400.0
     pts = [at(s0, T), at(s0 - big, T), at(s0 - big, -big), at(s0, -big)]
-    region = moulds.poly([Vector(x0 + FIT_PLUG, p.y, p.z) for p in pts]).extrude(X * (x1 - x0 - 2 * FIT_PLUG))
+    lip = [at(s0 + 12.0, T + 6.0), at(s0 - big, T + 6.0), at(s0 - big, T - 0.01), at(s0 + 12.0, T - 0.01)]  # holds the board's foot
+    region = moulds.poly([Vector(x0 + FIT_PLUG, p.y, p.z) for p in pts]).fuse(
+        moulds.poly([Vector(x0 + FIT_PLUG, p.y, p.z) for p in lip])).extrude(X * (x1 - x0 - 2 * FIT_PLUG))
     region = region.common(parts.box(x0, x1, -1e3, 1e3, top, 1e3))
     toe_shape = max(region.cut(env).Solids, key=lambda s_: s_.Volume)
     fixed_piece(kit, folder, M, 'toe-filler', 'filler', toe_shape, [(Vector(0, 0, top), -Z, 2)], qty=2,
-                note='Rounds the nose into the slope; the front board stands on it. Bolts to the floor.',
+                note='Rounds the nose into the slope; the front board\'s foot sits in its lip. Bolts to the floor.',
                 show=show, mult=mult)
 
     # foot gasket groove: pins into the floor
@@ -1345,7 +1379,7 @@ def mould_beam(kit, m, g):
     rods = [Part.makeCylinder(P['beam_bolt_hole'] / 2 + FIT_PLUG, top - bot + 2, Vector(sx * bx, by, bot - 1))
             for sx in (-1, 1) for bx in g['bolt_xs'] for by in g['bolt_ys']]
     for i, f in enumerate(moulds.fillers(beam_envelope(g, edges=False))):
-        if P['foam']:
+        if P['foam_formers']:
             kit.add(folder, f'back-edge-{i + 1}', 'foam', f, 1, foam_note('back-edge', f), show=show)
             continue
         f = f.cut(rods)
@@ -1361,9 +1395,11 @@ def mould_beam(kit, m, g):
     for ty, sy in ((bf + 32.0, 1), (by1 - 32.0, -1)):
         for sx in (-1, 1):
             xe = sx * half_len
-            spig = parts.box(*sorted((xe, xe - sx * 15.0)), ty - sq / 2, ty + sq / 2, cz - sq / 2, cz + sq / 2)
-            spig = parts.soften(spig, 2.0, parts.parallel((1, 0, 0)), chamfer=True)
             sy_ = ty + sy * BEAM_STEM_OFF                         # stem clear of the bolt holes beside the tube end
+            xa_, xb_ = sorted((xe, xe - sx * 15.0))               # a cross in the tube end, a boss for the nut
+            spig = parts.box(xa_, xb_, ty - sq / 2, ty + sq / 2, cz - 3.0, cz + 3.0).fuse(
+                [parts.box(xa_, xb_, ty - 3.0, ty + 3.0, cz - sq / 2, cz + sq / 2),
+                 parts.box(xa_, xb_, sy_ - 7.0, sy_ + 7.0, cz - 7.0, cz + 7.0)])
             stem = Part.makeCylinder(8.0, outer - half_len, Vector(xe, sy_, cz), sx * X)
             p = spig.fuse(stem)
             p = p.cut(Part.makeCylinder(HW['M4']['hole'] / 2, outer - half_len + 15.0, Vector(sx * outer, sy_, cz), -sx * X))
@@ -2170,7 +2206,7 @@ def snapshots(doc, out_dir, m):
           'MouldBaseRear_filler_corner_R_0'),
          dict(mode='bare', only=('FrameBaseRear',), xray=True, moulds=('MouldBaseRear',))),
         ('mould/upright-front', (0, 0, 0), lambda: look((0.8, 0.55, -0.45)),
-         ('MouldUpright_filler_toe_filler_0', 'MouldUpright_plug_slope_pocket__60_0', 'MouldUpright_kit_corner_bracket_2'),
+         ('MouldUpright_filler_toe_filler_0', 'MouldUpright_plug_slope_pocket__60_0', 'MouldUpright_kit_front_bracket_0'),
          dict(mode='bare', only=('FrameUprightL',), xray=True, moulds=('MouldUpright',))),
         ('build/07-frame-base', (0, 0, 0), iso, ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
@@ -2315,14 +2351,15 @@ def export_prints(m):
              '- **Pins.** Thin formers (gasket-groove beads, the shallow end of a gutter) have 3 mm pins that push into',
              '  1/8 in holes. Nothing else holds them; the casting presses them onto the board.',
              '- **Removable pieces** (formers, fillers, plugs, kit): 3-5 coats of paste wax and PVA like the boards.',
-             '  **Pieces that stay in** (cores, liners, cast-in parts): no wax; scuff and degrease them so the',
-             '  epoxy grips. Fill the cores with dry sand before the bridge goes on.', '',
+             '  **Pieces that stay in** (core posts, cast-in parts): no wax; scuff and degrease them so the',
+             '  epoxy grips.', '',
              '![Base rear mould: boards, kit and cores (orange)](../../renders/build/02-mould-base-rear.png)', '',
              '## Foam pieces', '',
-             'With `foam=True` (the default in `model/build_cnc.py`) the bulky mould pieces are XPS foam board instead',
-             'of PETG: the base pocket cores (only their posts are printed), the socket cores, the coolant trough and',
-             'gutters, and the beam\'s back-edge filler. The mould guide lists them with their sizes. Set `foam=False`',
-             'and re-run to print them all instead (about 1.7 kg more PETG).', '']
+             'The base pocket cores and the socket cores are XPS foam board (`foam=True`, the default in',
+             '`model/build_cnc.py`); only the pocket cores\' posts and the socket spikes are printed. They are hidden and',
+             'only need to be within a millimetre or two. The coolant trough, gutters and the beam\'s back edge print,',
+             'because they shape faces you see and drain coolant (`foam_formers=True` cuts those from foam too). The',
+             'mould guide lists the foam pieces with their sizes. `foam=False` prints the cores (about 1.4 kg more).', '']
     lines.append('')
     for key, title in FOLDER_TITLES:
         sub = [r for r in rows if r['folder'] == key]
@@ -2401,13 +2438,13 @@ def write_mould_guide(m):
              '- **Printed pieces bolt on from outside.** An M4 bolt (M3 on thin pieces) goes through the board into',
              '  a nut built into the piece. The nut drops into a pocket in the face against the board and slides',
              '  over under the hole, so nothing opens onto a cast face. Fit the nuts before the pieces go on.',
-             '- **Thin pieces have pins.** The gasket-groove beads and the shallow end of the gutters have 3 mm pins',
+             '- **Thin pieces have pins.** The gasket-groove beads and the motor relief have 3 mm pins',
              '  that push into 1/8 in holes. The casting presses them onto the board.',
              '- **Pieces cut to fit the printer** have a peg and socket on the cut, and their own fixings.',
-             '- **Foam.** The base pocket cores, the socket cores, the coolant trough and gutters, and the beam\'s',
-             '  rounded back edge are XPS foam board, wrapped in packing tape. They sit on double-sided carpet tape;',
-             '  the casting presses them down. Each pocket core has a printed post glued into it that bolts to a',
-             '  bridge, so it can\'t float. That keeps the printing to under two rolls of PETG.',
+             '- **Foam.** The base pocket cores and the socket cores are XPS foam board wrapped in packing tape. Each',
+             '  pocket core has a printed post glued into it that bolts to a bridge, so it sits at the right height',
+             '  and can\'t float; each socket block pushes over a printed spike bolted to the floor. That keeps the',
+             '  printing to about 1.5 kg of PETG.',
              '- **Bridges** stand on edge in saddles that hook over the wall tops; each core has a post that bolts',
              '  to the side of a bridge, which sets its height and stops it floating.',
              '- **Fits** are 0.15 mm a side: snug, but they go together by hand. Waxed pieces come out after curing.', '',
@@ -2502,8 +2539,8 @@ MOULD_STEPS = [
     '4. Fit the partition between the side walls with its two brackets on the front side, and the two struts',
     '   from the front wall to its foot. Push the gasket-groove beads onto its pins; push the spigot bushings',
     '   into its hole-saw holes from the front.',
-    '5. Put the rear-half pieces in: the foam gutters on carpet tape and the printed motor relief, the corner',
-    '   fillers bolted to the floor and walls, the socket plugs bolted to the floor with a taped foam block on',
+    '5. Put the rear-half pieces in: the gutter formers and the motor relief on the floor, the corner fillers',
+    '   bolted to the floor and walls, the socket spikes bolted to the floor with a taped foam block pushed over',
     '   each, the inserts and the tie-rod couplers on their greased screws and bolts, the base dowels.',
     '6. Hold the draw-rod couplers on greased 1/2-13 bolts through the partition. Slide the spigots through',
     '   the bushings and put the rear tubes on them, with their sleeves and end plugs.',
@@ -2514,7 +2551,7 @@ MOULD_STEPS = [
     '9. After the cure: unbolt the bridges, partition and struts, leave the rest. Dig the foam out of the four',
     '   sockets (a little acetone dissolves what sticks). Pull the gasket-groove beads,',
     '   cover the groove with packing tape, and wax and PVA the rear half\'s split face and the spigots.',
-    '10. Front half the same way: foam trough and gutters (the drain liner pushed into the trough), corner',
+    '10. Front half the same way: trough and gutter formers (the drain liner on the trough\'s spigot), corner',
     '    fillers, couplers and inserts; front tubes onto the',
     '    spigots; draw rods screwed into the rear half\'s couplers with their ends in the corner fillers; legs;',
     '    skin, cores, bridges, fill.',
@@ -2524,9 +2561,9 @@ MOULD_STEPS = [
     '1. Drill the boards; wax and PVA. Push the post bushings into the floor from below.',
     '2. Bolt the cleats to the floor. Stand each side plate on the floor against its cleat, the back board',
     '   between them against its cleat, and fit the two back brackets at the top.',
-    '3. Bolt the toe filler to the floor between the side plates, set the front board on it and fit the',
-    '   front brackets: two at its top, two at its foot (those only bolt to the side plates).',
-    '4. Pin the gasket-groove bead to the floor. Set the mould on its four printed feet.',
+    '3. Bolt the toe filler to the floor between the side plates, set the front board\'s foot in its lip and',
+    '   fit the two front brackets at the top.',
+    '4. Pin the gasket-groove bead to the floor. Stand the mould on its four 2x4 blocks.',
     '5. Posts up through the bushings onto the bench; greased 5/8 in rods up through the floor: the two',
     '   short ones into the slope plugs (bolted to the front board), the two long ones on through the top.',
     '   The dowel-hole bolt with its nut from underneath.',
@@ -2538,7 +2575,7 @@ MOULD_STEPS = [
     '2. Screw the support pads and riser inserts to the floor on greased screws. Push the dowels into the',
     '   bottom wall onto their printed stops.',
     '3. Bolt the tube locators through the end walls (M4 x 70 into the nut in each square end) and hang the',
-    '   tubes between them. Tape the foam back-edge filler along the top wall (the rods push through it).',
+    '   tubes between them. Bolt the back-edge fillers to the top wall.',
     '4. Greased 1/2 in rods through the top and bottom walls for the eight bolt holes. Fill to the line.',
     '5. The locators leave a 16 mm hole in each beam end; plug it with a dark printed cap or leave it.', '',
 ]
