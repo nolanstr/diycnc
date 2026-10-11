@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**144 prints, 1.29 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**148 prints, 1.32 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -46,6 +46,15 @@ only need to be within a millimeter or two. The coolant trough, gutters and the 
 because they shape faces you see and drain coolant (`foam_formers=True` cuts those from foam too). The
 mold guide lists the foam pieces with their sizes. `foam=False` prints the cores (about 1.4 kg more).
 
+
+## Tools: pour-line gauge and screed shoes
+
+Folder `print/tools/`, about 29 g.
+
+| File | What | Qty | Size (mm) | g (all) | Notes |
+|---|---|---|---|---|---|
+| `kit-pour-gauge.stl` | Mold kit (reused) | 2 | 25 x 29 x 24 | 9 | Clips over a wall top; its inner leg ends 25 mm down, on the pour line. Pencil along it all round the mold, and check the fill against it. |
+| `kit-screed-shoe.stl` | Mold kit (reused) | 2 | 49 x 27 x 32 | 20 | A pair: rest them on two facing wall tops and drop a straight board (on edge) into them; its bottom edge sits on the pour line. Slide it along to strike off. |
 
 ## Base mold kit (both halves)
 

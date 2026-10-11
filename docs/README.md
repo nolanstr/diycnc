@@ -20,8 +20,11 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 
 - [molds-complete.pdf](3-molds/molds-complete.pdf): all the molds, with the sheet layout for the boards.
 - One guide per mold, each complete on its own (how the molds work, that mold's parts, hardware, boards,
-  hole maps, foam and steps): [base-mold.pdf](3-molds/base-mold.pdf) (both base halves),
+  foam and steps): [base-mold.pdf](3-molds/base-mold.pdf) (both base halves),
   [upright-molds.pdf](3-molds/upright-molds.pdf), [beam-mold.pdf](3-molds/beam-mold.pdf).
+- Full-size drilling templates to print on Letter paper and tape onto the boards, with the pour line on every
+  wall: [base](3-molds/templates/base-templates.pdf), [uprights](3-molds/templates/upright-templates.pdf),
+  [beam](3-molds/templates/beam-templates.pdf). The first page of each says how to print and use them.
 
 ## 4. Build: casting and assembly
 

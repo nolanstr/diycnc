@@ -24,5 +24,7 @@
 <text x="36.7" y="10.1" font-size="8.5" fill="#1d2422">11</text>
 <circle cx="535.1" cy="11.5" r="2.2" fill="none" stroke="#a8641a" stroke-width="1.06"/>
 <text x="538.8" y="10.1" font-size="8.5" fill="#1d2422">12</text>
+<line x1="0.0" y1="25.0" x2="568.1" y2="25.0" stroke="#2b72c9" stroke-width="1.42" stroke-dasharray="8.5,4.2"/>
+<text x="8.5" y="35.2" font-size="7.6" fill="#2b72c9">pour line (25 mm below the top)</text>
 <text x="0" y="176.9" font-size="8.5" fill="#5b6662">0,0 · 568 x 165 mm · seen from the cast side</text>
 </svg>

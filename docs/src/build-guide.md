@@ -217,7 +217,8 @@ the gel coat.
 3. **Place in layers** of 30-40 mm. Vibrate each layer until the surface goes glossy and stops
    releasing bubbles, then add the next. Work the mix around the steel, inserts and cores with a
    stick. Vibrate the full mold for 20-30 minutes at the end.
-4. **Level the open face**, cover against dust, and leave it at 20-25 °C. Demold after the
+4. **Level the open face** at the pour line, 25 mm below the wall tops: strike it off with a straight
+   board in the two printed screed shoes (mold guide, "Pour"). Cover against dust, and leave it at 20-25 °C. Demold after the
    time your epoxy needs (usually 24-48 h), but don't load or machine anything for 7 days.
 5. Pull all the greased screws and rods, the formers, fillers and plugs. Printed cores stay in;
    foam cores can be dug out or dissolved with a little acetone. Unbolt the mold kit; it's reused.
