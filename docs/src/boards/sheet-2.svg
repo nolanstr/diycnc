@@ -11,7 +11,7 @@
 <text x="1690" y="63" font-size="30" text-anchor="middle" fill="#1d2422">Base rear wall</text>
 <text x="1690" y="96" font-size="24" text-anchor="middle" fill="#5b6662">638 x 135</text>
 <rect x="2013" y="0" width="292" height="80" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="2159" y="37" font-size="22" text-anchor="middle" fill="#1d2422">Upright front board (2)</text>
+<text x="2159" y="37" font-size="22" text-anchor="middle" fill="#1d2422">Upright front board (1)</text>
 <text x="2159" y="61" font-size="17" text-anchor="middle" fill="#5b6662">292 x 80</text>
 <rect x="2309" y="0" width="80" height="40" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
 <text x="2349" y="18" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, back (1)</text>
@@ -19,61 +19,64 @@
 <rect x="0" y="139" width="600" height="135" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
 <text x="300" y="202" font-size="30" text-anchor="middle" fill="#1d2422">Base partition</text>
 <text x="300" y="235" font-size="24" text-anchor="middle" fill="#5b6662">600 x 135</text>
-<rect x="604" y="139" width="271" height="80" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
-<text x="740" y="176" font-size="21" text-anchor="middle" fill="#1d2422">Upright back board (1)</text>
-<text x="740" y="199" font-size="17" text-anchor="middle" fill="#5b6662">271 x 80</text>
-<rect x="879" y="139" width="271" height="80" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1015" y="176" font-size="21" text-anchor="middle" fill="#1d2422">Upright back board (2)</text>
-<text x="1015" y="199" font-size="17" text-anchor="middle" fill="#5b6662">271 x 80</text>
-<rect x="1154" y="139" width="651" height="60" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1480" y="166" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=-190</text>
-<text x="1480" y="187" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
-<rect x="1809" y="139" width="480" height="60" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
-<text x="2049" y="166" font-size="19" text-anchor="middle" fill="#1d2422">Base leg bridge y=-310</text>
-<text x="2049" y="187" font-size="15" text-anchor="middle" fill="#5b6662">480 x 60</text>
-<rect x="2293" y="139" width="80" height="40" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
-<text x="2333" y="157" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, back (2)</text>
-<text x="2333" y="171" font-size="10" text-anchor="middle" fill="#5b6662">80 x 40</text>
+<rect x="604" y="139" width="292" height="80" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
+<text x="750" y="176" font-size="22" text-anchor="middle" fill="#1d2422">Upright front board (2)</text>
+<text x="750" y="200" font-size="17" text-anchor="middle" fill="#5b6662">292 x 80</text>
+<rect x="900" y="139" width="271" height="80" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1036" y="176" font-size="21" text-anchor="middle" fill="#1d2422">Upright back board (2)</text>
+<text x="1036" y="199" font-size="17" text-anchor="middle" fill="#5b6662">271 x 80</text>
+<rect x="1175" y="139" width="651" height="60" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1501" y="166" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=-230</text>
+<text x="1501" y="187" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
+<rect x="1830" y="139" width="480" height="60" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
+<text x="2070" y="166" font-size="19" text-anchor="middle" fill="#1d2422">Base leg bridge y=-310</text>
+<text x="2070" y="187" font-size="15" text-anchor="middle" fill="#5b6662">480 x 60</text>
+<rect x="2314" y="139" width="80" height="40" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
+<text x="2354" y="157" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, back (2)</text>
+<text x="2354" y="171" font-size="10" text-anchor="middle" fill="#5b6662">80 x 40</text>
 <rect x="0" y="278" width="651" height="60" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="325" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=-58</text>
+<text x="325" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=-130</text>
 <text x="325" y="326" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
 <rect x="655" y="278" width="651" height="60" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
-<text x="980" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=100</text>
+<text x="980" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=-60</text>
 <text x="980" y="326" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
 <rect x="1310" y="278" width="651" height="60" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1635" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=170</text>
+<text x="1635" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=100</text>
 <text x="1635" y="326" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
 <rect x="1965" y="278" width="326" height="60" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
 <text x="2128" y="305" font-size="19" text-anchor="middle" fill="#1d2422">Base partition strut</text>
 <text x="2128" y="326" font-size="15" text-anchor="middle" fill="#5b6662">326 x 60</text>
 <rect x="0" y="342" width="651" height="60" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="325" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=280</text>
+<text x="325" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=170</text>
 <text x="325" y="390" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
-<rect x="655" y="342" width="480" height="60" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
-<text x="895" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base leg bridge y=344</text>
-<text x="895" y="390" font-size="15" text-anchor="middle" fill="#5b6662">480 x 60</text>
-<rect x="1139" y="342" width="326" height="60" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1302" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base partition strut</text>
-<text x="1302" y="390" font-size="15" text-anchor="middle" fill="#5b6662">326 x 60</text>
-<rect x="1469" y="342" width="638" height="40" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1788" y="360" font-size="13" text-anchor="middle" fill="#1d2422">Base cleat, rear</text>
-<text x="1788" y="374" font-size="10" text-anchor="middle" fill="#5b6662">638 x 40</text>
-<rect x="0" y="406" width="568" height="40" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="284" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Beam cleat, top</text>
-<text x="284" y="438" font-size="10" text-anchor="middle" fill="#5b6662">568 x 40</text>
-<rect x="572" y="406" width="568" height="40" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
-<text x="856" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Beam cleat, bottom</text>
-<text x="856" y="438" font-size="10" text-anchor="middle" fill="#5b6662">568 x 40</text>
-<rect x="1144" y="406" width="371" height="40" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1330" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, outer (1)</text>
-<text x="1330" y="438" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
-<rect x="1519" y="406" width="371" height="40" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
-<text x="1704" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, outer (2)</text>
-<text x="1704" y="438" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
-<rect x="1894" y="406" width="371" height="40" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
-<text x="2079" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, inner (1)</text>
-<text x="2079" y="438" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
-<rect x="0" y="450" width="371" height="40" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
-<text x="185" y="468" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, inner (2)</text>
+<rect x="655" y="342" width="651" height="60" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
+<text x="980" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base bridge y=280</text>
+<text x="980" y="390" font-size="15" text-anchor="middle" fill="#5b6662">651 x 60</text>
+<rect x="1310" y="342" width="480" height="60" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1550" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base leg bridge y=344</text>
+<text x="1550" y="390" font-size="15" text-anchor="middle" fill="#5b6662">480 x 60</text>
+<rect x="1794" y="342" width="326" height="60" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1957" y="369" font-size="19" text-anchor="middle" fill="#1d2422">Base partition strut</text>
+<text x="1957" y="390" font-size="15" text-anchor="middle" fill="#5b6662">326 x 60</text>
+<rect x="0" y="406" width="638" height="40" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
+<text x="319" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Base cleat, rear</text>
+<text x="319" y="438" font-size="10" text-anchor="middle" fill="#5b6662">638 x 40</text>
+<rect x="642" y="406" width="568" height="40" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
+<text x="926" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Beam cleat, top</text>
+<text x="926" y="438" font-size="10" text-anchor="middle" fill="#5b6662">568 x 40</text>
+<rect x="1214" y="406" width="568" height="40" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1498" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Beam cleat, bottom</text>
+<text x="1498" y="438" font-size="10" text-anchor="middle" fill="#5b6662">568 x 40</text>
+<rect x="1786" y="406" width="371" height="40" fill="#dfe9d6" stroke="#a8641a" stroke-width="2.5"/>
+<text x="1972" y="424" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, outer (1)</text>
+<text x="1972" y="438" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
+<rect x="0" y="450" width="371" height="40" fill="#efe1ea" stroke="#a8641a" stroke-width="2.5"/>
+<text x="185" y="468" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, outer (2)</text>
 <text x="185" y="482" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
+<rect x="375" y="450" width="371" height="40" fill="#e9d8c4" stroke="#a8641a" stroke-width="2.5"/>
+<text x="560" y="468" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, inner (1)</text>
+<text x="560" y="482" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
+<rect x="749" y="450" width="371" height="40" fill="#d8e4ef" stroke="#a8641a" stroke-width="2.5"/>
+<text x="935" y="468" font-size="13" text-anchor="middle" fill="#1d2422">Upright cleat, inner (2)</text>
+<text x="935" y="482" font-size="10" text-anchor="middle" fill="#5b6662">371 x 40</text>
 </svg>

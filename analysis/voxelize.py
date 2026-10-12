@@ -122,7 +122,7 @@ def main():
     keys = ['base_top', 'table_top', 'beam_bot', 'beam_top', 'beam_face', 'inner', 'outer', 'up_y0', 'up_y1',
             'base_half', 'base_y0', 'base_y1', 'tip', 'nut_tip', 'y_bk', 'beam_cz', 'car_back']
     info = dict(h=H, origin=grid.o.tolist(), n=grid.n.tolist(), dims={k: float(d[k]) for k in keys}, boxes=boxes,
-                legs=g['legs'], dowel_ys=list(g['dowel_ys']), ux=g['ux'], tube_z=g['tube_z'],
+                legs=g['legs'], dowel_ys=list(g['dowel_ys']), ux=g['ux'],
                 P={k: P[k] for k in ('table_rail_spacing', 'table_blk_pitch', 'beam_rail_spacing', 'beam_blk_pitch',
                                      'riser_w', 'table_riser_t', 'beam_riser_t', 'base_h', 'travel_x', 'travel_y',
                                      'travel_z', 'base_core_skin', 'table_len', 'table_w', 'table_t', 'carriage_w')},

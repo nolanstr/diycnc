@@ -368,6 +368,28 @@ def fig_core(sc):
         (pt(flip_base, Vector(bb.XMin - 30, bb.YMax + 10, 0)), 'Pour line')])
 
 
+def fig_skeletons(sc):
+    """Each steel skeleton on its own, labeled: what the builder slots together before it goes in the mold."""
+    skip = ('Casting', 'Gasket', 'BeamBolt', 'TieRod', 'Nut', 'Dowel', 'Insert', 'Anchor', 'DrawRod', 'SplitPin',
+            'Plug', 'Leg', 'Ring', 'Drain')
+    for name, conts, cam in (('skeleton-base', ('FrameBaseFront', 'FrameBaseRear'), Vector(-0.55, -0.7, 0.55)),
+                             ('skeleton-upright', ('FrameUprightL',), Vector(0.8, -0.5, 0.35)),
+                             ('skeleton-beam', ('FrameBeam',), Vector(-0.5, -0.75, 0.45))):
+        sc.clear()
+        labels, seen = [], set()
+        for p in M.parts:
+            if p['container'] not in conts or p['name'] not in M.structure or any(k in p['name'] for k in skip):
+                continue
+            sc.add(p['shape'], p['look'])
+            lab = nice(p['name'])
+            if lab not in seen:
+                seen.add(lab)
+                on = p['shape'].distToShape(Part.Vertex(p['shape'].BoundBox.Center))[1][0][0]   # a point on the part
+                labels.append((on, lab))
+        sc.camera(cam)
+        sc.shoot(name, labels=labels)
+
+
 def fig_toe(sc):
     """Upright: the toe filler and the front board's foot in its lip."""
     sc.clear()
@@ -377,7 +399,7 @@ def fig_toe(sc):
         sc.add(s, 'melamine', 40)
     for s in boards('upright', ['Upright side plate, inner'], crop):
         sc.add(s, 'melamine', 75)
-    add_all(sc, IDENT, pieces('upright', ['toe-filler', 'front-bracket', 'slope-plug'], crop=crop))
+    add_all(sc, IDENT, pieces('upright', ['toe-filler', 'front-bracket', 'toe-plug'], crop=crop))
     sc.camera(Vector(0.75, 0.55, -0.4))
     tf = next(r for r in M.molds if r['name'] == 'toe-filler')['placed'][0][0].BoundBox
     sc.shoot('detail-toe', labels=[
@@ -386,43 +408,24 @@ def fig_toe(sc):
         (Vector(tf.Center.x, tf.YMax + 20, tf.ZMax + 50), 'Front board (sloped)')])
 
 
-def fig_locator(sc):
-    """Beam: a tube locator through the end wall into the tube end (section)."""
-    sc.clear()
-    outer = G['outer']
-    half_len = P['tube_len']['beam'] / 2
-    bf = G['beam_face']
-    crop = parts.box(half_len - 40, outer + T + 30, bf - T - 1, bf + 80, G['beam_bot'] - T - 10, (G['beam_bot'] + G['beam_top']) / 2)
-    for s in boards('beam', ['Beam end wall, right', 'Beam floor', 'Beam bottom wall'], crop):
-        sc.add(turn_beam(s), 'melamine', 45)
-    add_all(sc, turn_beam, pieces('beam', ['tube-locator'], crop=crop))
-    for look, s in steel('FrameBeam', crop):
-        if s.Volume > 1:
-            sc.add(turn_beam(s), look)
-    sc.camera(Vector(-0.6, 0.6, -0.5))
-    cz = (G['beam_bot'] + G['beam_top']) / 2
-    ty = G['beam_tube_ys'][0]
-    sc.shoot('detail-locator', labels=[
-        (pt(turn_beam, Vector(half_len - 30, ty - 25.4 + 1.6, cz - 12)), 'Beam tube'),
-        (pt(turn_beam, Vector(half_len - 8, ty, cz)), 'Cross in the tube end'),
-        (pt(turn_beam, Vector(half_len + 20, ty + 12, cz)), '16 mm stem'),
-        (pt(turn_beam, Vector(outer + T, ty + 12, cz)), 'M4 x 70 through the end wall'),
-        (pt(turn_beam, Vector(outer + T / 2, bf + 70, G['beam_bot'])), 'End wall')])
-
-
 # ------------------------------------------------------------------------------------------
 # Assembly steps
 # ------------------------------------------------------------------------------------------
 NICE = {'corner-L': 'Corner filler', 'corner-R': 'Corner filler', 'back-edge': 'Back-edge filler',
         'saddle-flat': 'Saddle', 'bar-hanger': 'Bar hanger', 'split-gasket-groove': 'Gasket-groove bead',
         'foot-gasket-groove': 'Gasket-groove bead', 'motor-relief': 'Motor-relief former', 'gutter': 'Gutter former',
-        'trough': 'Trough former', 'slope-plug': 'Slope plug', 'socket-spike': 'Socket spike',
+        'trough': 'Trough former', 'toe-plug': 'Toe pocket plug', 'draw-pocket': 'Draw-rod pocket plug',
         'BaseRearTubePlug': 'Tube end plug (printed)', 'BaseFrontTubePlug': 'Tube end plug (printed)',
         'BaseRearSpigotSleeve': 'Spigot sleeve (printed)', 'BaseFrontSpigotSleeve': 'Spigot sleeve (printed)',
         'BaseRearTube': 'Rail tube', 'BaseFrontTube': 'Rail tube', 'BaseSpigot': 'Spigot', 'Leg': 'Leg',
         'DrawRodCoupler': 'Draw-rod coupler', 'TieBar': 'Anchor bar', 'RodSleeve': 'Tie-rod sleeve (printed)',
         'DrawRod': 'Draw rod',
-        'Anchor': 'Cast-in insert', 'Insert': 'Cast-in insert', 'Post': 'Post', 'TopPlate': 'Top plate',
+        'Anchor': 'Cast-in insert', 'Insert': 'Cast-in insert', 'TopPlate': 'Top plate',
+        'UprightFoot': 'Foot plate', 'UprightColumn': 'Column', 'UprightBrace': 'Brace plate',
+        'ColumnRing': 'Column ring (printed)', 'BaseRailBar': 'Rail bar (tapped)', 'BasePad': 'Support pad (tapped)',
+        'BaseSeat': 'Seat plate', 'BaseLegPlate': 'Leg plate', 'BaseGirderEnd': 'End plate', 'Base': 'Steel grid',
+        'SplitPin': 'Dowel pin', 'BeamFacePlate': 'Face plate (tapped)', 'BeamSeat': 'Seat plate', 'BeamCap': 'Cap plate',
+        'BeamBackPlate': 'Steel box', 'BeamDiaphragm': 'Steel box',
         'BeamTube': 'Beam tube', 'BeamSupportPad': 'Support pad', 'DrainOutlet': 'Drain nipple', 'Dowel': 'Dowel'}
 
 
@@ -497,15 +500,18 @@ def S(container, skip=('Casting', 'Gasket', 'BeamBolt'), keep=None):
             and (keep is None or keep(p))]
 
 
-SKIP_BAR = ('Casting', 'Gasket', 'BeamBolt', 'TieBar')
-is_bar = lambda p: p['name'].startswith('TieBar')
-
-
 def base_rods(front):
     """The greased 5/8 in rods that form the tie-rod holes through a base half (mold up is -z)."""
     return [('hw', Part.makeCylinder(P['up_rod_hole'] / 2, G['base_top'] + T + 40, Vector(sx * rx, ry, -15)),
              '5/8 in rod (forms a tie-rod hole)')
             for sx in (-1, 1) for rx, ry, _ in G['tie_rods'] if (ry < G['split']) == front]
+
+
+def draw_rods(front):
+    """The greased 5/8 in rods that form the draw-rod holes (along y)."""
+    y0, y1 = (G['base_y0'] - T - 20, G['split']) if front else (G['split'] - T - 20, G['base_y1'] + T + 20)
+    return [('hw', parts.cyl_v(P['up_rod_hole'] / 2, y0, y1, sx * G['draw_rod_x'], G['draw_z']), '5/8 in rod (forms a draw-rod hole)')
+            for sx in (-1, 1)]
 
 
 def base_steps(sc):
@@ -514,20 +520,20 @@ def base_steps(sc):
     stages = [
         ('floor', B(rear, ['Base floor', 'Base cleat'])),
         ('walls', B(rear, walls) + K(rear, ['corner-bracket'])),
-        ('partition', B(rear, ['Base partition']) + K(rear, ['partition-bracket', 'split-gasket', 'spigot-bushing'])),
-        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R'])),
-        ('steel', S('FrameBaseRear', skip=SKIP_BAR) + base_rods(False) + K(rear, ['leg-holder'])),
-        ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle', 'bar-hanger'])
-         + B(rear, ['Base bridge', 'Base leg bridge']) + S('FrameBaseRear', keep=is_bar) + [pour_plane('base')]),
+        ('partition', B(rear, ['Base partition']) + K(rear, ['partition-bracket', 'split-gasket'])),
+        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R', 'draw-pocket'])),
+        ('steel', S('FrameBaseRear') + base_rods(False) + draw_rods(False) + K(rear, ['leg-holder'])),
+        ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle'])
+         + B(rear, ['Base bridge', 'Base leg bridge']) + [pour_plane('base')]),
     ]
     steps(sc, 'step-base-rear', flip_base, Vector(-0.5, -0.62, -0.6), stages)
     cast = [('granite', PARTS['BaseRearCasting']['shape'], 'Rear half, cured and waxed')]
     fstages = [
         ('rear cast', B(front, ['Base floor', 'Base cleat'] + walls) + K(front, ['corner-bracket']) + cast),
-        ('front pieces', K(front, ['gutter', 'trough', 'corner-L', 'corner-R']) + S('FrameBaseFront', skip=SKIP_BAR)
-         + base_rods(True) + K(front, ['leg-holder'])),
-        ('cores', K(front, None, kinds=('foam', 'core')) + K(front, ['saddle', 'bar-hanger'])
-         + B(front, ['Base bridge', 'Base leg bridge']) + S('FrameBaseFront', keep=is_bar) + [pour_plane('base')]),
+        ('front pieces', K(front, ['gutter', 'trough', 'corner-L', 'corner-R', 'draw-pocket']) + S('FrameBaseFront')
+         + base_rods(True) + draw_rods(True) + K(front, ['leg-holder'])),
+        ('cores', K(front, None, kinds=('foam', 'core')) + K(front, ['saddle'])
+         + B(front, ['Base bridge', 'Base leg bridge']) + [pour_plane('base')]),
     ]
     steps(sc, 'step-base-front', flip_base, Vector(0.5, 0.62, -0.6), fstages)
 
@@ -535,24 +541,17 @@ def base_steps(sc):
 def upright_steps(sc):
     u = 'upright'
     post_bot = G['base_top'] - T - 20.0              # rods stand 20 mm out under the floor
-    rods, tops = [], []
-    for rx, ry, pb in G['tie_rods']:
-        if pb >= G['pocket_bot'] - 1:
-            z1 = G['beam_bot'] + P['mold_freeboard'] + 30
-            tops.append(('hw', Part.makeCylinder(P['tie_rod_d'] / 2, z1 - post_bot, Vector(-rx, ry, post_bot)),
-                         '1/2 in rod (centers a sleeve)'))
-        else:
-            rods.append(('hw', Part.makeCylinder(P['up_rod_hole'] / 2, pb + 20 - post_bot, Vector(-rx, ry, post_bot)),
-                         '5/8 in rod (forms a tie-rod hole)'))
+    rods = [('hw', Part.makeCylinder(P['tie_rod_d'] / 2, G['beam_bot'] + P['mold_freeboard'] + 30 - post_bot,
+                                     Vector(-rx, ry, post_bot)), '1/2 in rod (through a column)')
+            for rx, ry, pb in G['tie_rods'] if pb >= G['pocket_bot'] - 1]
     st = S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'TopPlate'))
     plate = PARTS['TopPlateLLower']['shape'].fuse(PARTS['TopPlateLUpper']['shape'])
     stages = [
         ('floor', B(u, ['Upright floor', 'Upright cleat']) + K(u, ['foot-gasket'])),
         ('sides', B(u, ['Upright side plate', 'Upright back board']) + K(u, ['back-bracket'])),
         ('front', B(u, ['Upright front board']) + K(u, ['toe-filler', 'front-bracket'])),
-        ('steel', st + rods + K(u, ['slope-plug']) + [pour_plane('upright')]),
-        ('top', K(u, ['plate-spacer', 'saddle-flat']) + B(u, ['Upright bridge']) + tops
-         + [('steeltube', plate, 'Top plate')]),
+        ('steel', st + rods + K(u, ['toe-plug']) + [pour_plane('upright')]),
+        ('top', K(u, ['plate-spacer', 'saddle-flat']) + B(u, ['Upright bridge']) + [('steeltube', plate, 'Top plate')]),
     ]
     steps(sc, 'step-upright', IDENT, Vector(0.8, 0.55, -0.45), stages)
 
@@ -562,11 +561,11 @@ def beam_steps(sc):
     rods = [('hw', Part.makeCylinder(P['beam_bolt_hole'] / 2, G['beam_top'] - G['beam_bot'] + 2 * T + 20,
                                      Vector(sx * bx, by, G['beam_bot'] - T - 10)), '1/2 in rod (forms a bolt hole)')
             for sx in (-1, 1) for bx in G['bolt_xs'] for by in G['bolt_ys']]
-    on_floor = lambda p: p['shape'].BoundBox.YMax < G['beam_face'] + 8
+    on_floor = lambda p: p['name'].startswith('BeamFacePlate')
     stages = [
         ('floor', B(b, ['Beam floor', 'Beam cleat']) + S('FrameBeam', keep=on_floor)),
         ('walls', B(b, ['Beam top wall', 'Beam bottom wall', 'Beam end wall']) + K(b, ['corner-bracket'])),
-        ('tubes', S('FrameBeam', keep=lambda p: not on_floor(p)) + K(b, ['tube-locator', 'back-edge', 'dowel-stop']) + rods
+        ('box', S('FrameBeam', keep=lambda p: not on_floor(p)) + K(b, ['back-edge', 'dowel-stop']) + rods
          + [pour_plane('beam')]),
     ]
     steps(sc, 'step-beam', turn_beam, Vector(-0.45, -0.6, -0.65), stages)
@@ -638,12 +637,10 @@ def base_exploded(sc):
                 v = _out(s_, c, 250, (0, 1)) + up * 60
             elif n == 'partition-bracket':
                 v = Vector(0, -1, 0) * 170 + up * 60
-            elif n in ('split-gasket-groove', 'spigot-bushing'):
-                v = Vector(0, -1, 0) * (130 if n.startswith('split') else 215)
+            elif n == 'split-gasket-groove':
+                v = Vector(0, -1, 0) * 130
             elif n == 'leg-holder':
                 v = up * 330 + _out(s_, c, 60, (0, 1))
-            elif n == 'bar-hanger':
-                v = up * 430
             elif n == 'saddle':
                 v = up * 470 + _out(s_, c, 170, (0,))
             elif k == 'foam' or n.endswith('-post'):
@@ -652,9 +649,8 @@ def base_exploded(sc):
                 v = up * 60
             it.append(('foam' if k == 'foam' else 'printed', s_, 'Foam core' if k == 'foam' and n != 'socket' else
                        'Foam socket core' if k == 'foam' else 'Core post' if n.endswith('-post') else nice(n), v))
-    for look, s_, lab in S('FrameBaseRear'):
-        if lab in ('Rail tube', 'Spigot', 'Leg', 'Draw-rod coupler', 'Anchor bar'):
-            it.append((look, s_, lab, up * {'Leg': 400, 'Anchor bar': 380}.get(lab, 120)))
+    for look, s_, lab in S('FrameBaseRear', skip=('Casting', 'Gasket', 'Dowel', 'Insert', 'DrawRod', 'SplitPin')):
+        it.append((look, s_, lab, up * (400 if lab == 'Leg' else 120)))
     for b in KIT.boards:
         if g in b.show and b.name.startswith(('Base bridge', 'Base leg bridge')):
             it.append(('melamine', b.solid(holes=False), 'Bridge', up * 470))
@@ -691,10 +687,10 @@ def upright_exploded(sc):
                  'toe-filler': nrm * 70, 'foot-gasket-groove': Z * 25,
                  'plate-spacer': Z * 170, 'saddle-flat': Z * 230 + _out(s_, c, 60, (0,))}.get(n)
             if v is None:
-                v = nrm * 100 if n.startswith('slope-plug') else Vector()
+                v = nrm * 100 if n.startswith('toe-plug') else Vector()
             it.append(('printed', s_, nice(n), v))
     for look, s_, lab in S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'Plug', 'Dowel')):
-        it.append((look, s_, lab, Z * (150 if lab == 'Top plate' else -90)))
+        it.append((look, s_, lab, Z * 150 if lab == 'Top plate' else Vector()))
     exploded(sc, 'exploded-upright', IDENT, it, Vector(0.8, 0.55, -0.45))
 
 
@@ -719,11 +715,11 @@ def beam_exploded(sc):
             if b_ not in sh:
                 continue
             n = r['name']
-            v = {'corner-bracket': _out(s_, c, 220, (0, 2)) + Y * 40, 'tube-locator': _out(s_, c, 80, (0,)),
+            v = {'corner-bracket': _out(s_, c, 220, (0, 2)) + Y * 40,
                  'back-edge': Vector(0, 0, 1) * 90, 'dowel-stop': Vector(0, 0, -1) * 190}.get(n, Vector())
             it.append(('printed', s_, nice(n), v))
     for look, s_, lab in S('FrameBeam'):
-        it.append((look, s_, lab, Y * (110 if lab == 'Beam tube' else 0)))
+        it.append((look, s_, lab, Y * (0 if lab.startswith('Face plate') else 110)))
     exploded(sc, 'exploded-beam', turn_beam, it, Vector(-0.45, -0.6, -0.65))
 
 
@@ -784,7 +780,7 @@ def gallery(sc, name, rows, cols=5, gap=40.0):
 def main():
     os.makedirs(OUT, exist_ok=True)
     sc = Scene()
-    for f in (fig_bayonet, fig_pins, fig_peg, fig_corner, fig_core, fig_toe, fig_locator):
+    for f in (fig_bayonet, fig_pins, fig_peg, fig_corner, fig_core, fig_toe, fig_skeletons):
         try:
             f(sc)
         except Exception as e:

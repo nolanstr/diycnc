@@ -1,7 +1,7 @@
 # DIY CNC: epoxy-granite desktop mill
 
 A fixed-gantry desktop mill for cutting steel, sized like the Shariff DMC2 Mini:
-180 x 300 x 140 mm travel, five bolt-together epoxy-granite castings, HGR15 rails,
+180 x 300 x 140 mm travel, five bolt-together castings (laser-cut steel skeletons cast into epoxy granite), HGR15 rails,
 ballscrews on all axes, a 2.2 kW water-cooled spindle, flood coolant and a full enclosure.
 Everything is modeled in FreeCAD from one Python script.
 

@@ -9,13 +9,13 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 - [sourcing.pdf](1-sourcing/sourcing.pdf): every part with a listing, price and notes, in three parts (frame,
   electronics, enclosure and coolant), with totals. [sourcing.csv](1-sourcing/sourcing.csv) is the same list
   for a spreadsheet.
-- [laser/](1-sourcing/laser/README.md): DXFs of the steel to order laser cut: the upright top plates (two
-  layers each) and the base anchor bars the tie rods pull against.
+- [laser/](1-sourcing/laser/README.md): DXFs of the steel skeletons, about 64 plates that slot together, for
+  Metal Supermarkets, a laser-cutting service or a CNC plasma table.
 
 ## 2. Printing: start this first
 
 - [print-guide.pdf](2-printing/print-guide.pdf): every printed part (STLs in `print/`), the slicer settings,
-  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.4 kg of PETG and a
+  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.1 kg of PETG and a
   hundred-odd hours of printing, so start it while the rest is on order.
 
 ## 3. Molds: making the molds
