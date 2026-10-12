@@ -599,7 +599,7 @@ def base_grid(m, g, st, front, cont, tag):
             te = T14 if kind == 'Split' else T38            # the draw-rod nuts bear on the far end plates
             if kind == 'Split' and front:
                 c0 = ys - T14
-            e = sk.Plate(f'BaseGirderEnd{kind}{tag}{side}', 'y', c0, te,
+            e = sk.Plate(f'BaseGirderEnd{"Back" if kind == "End" else kind}{tag}{side}', 'y', c0, te,
                          sk.tabbed(min(sx * (rx - 40), sx * (gx + 38)), 0.0, max(sx * (rx - 40), sx * (gx + 38)), 85.0))
             sk.through(web, e)
             e.hole(sx * g['draw_rod_x'], g['draw_z'], 14.3)
@@ -657,7 +657,7 @@ def base_grid(m, g, st, front, cont, tag):
         sk.through(bfx, pad)
         xs.append(bfx)
         tapped.append(pad)
-        fw = cross(f'BaseCrossFront{tag}', g['front_web'] + T38 / 2, -262.0, 262.0, 45.0, H, T38)   # the draw-rod nuts bear on it
+        fw = cross('BaseCrossNose', g['front_web'] + T38 / 2, -262.0, 262.0, 45.0, H, T38)   # the draw-rod nuts bear on it
         for sx in (-1, 1):
             fw.hole(sx * g['draw_rod_x'], g['draw_z'], 14.3)
         xs.append(fw)
@@ -671,7 +671,7 @@ def base_grid(m, g, st, front, cont, tag):
         xs.append(bkx)
         tapped.append(pad)
     for x_ in xs:
-        if x_.name.startswith('BaseCrossFront'):
+        if x_.name.startswith('BaseCrossNose'):
             for side in ('L', 'R'):
                 sk.through(girders[side], x_)
             plates.append(x_)
@@ -694,7 +694,7 @@ def base_grid(m, g, st, front, cont, tag):
         lx -= sx * 9.0                                # on the leg's top, clear of the pedestal and the gutter
         z0 = P['leg_embed']
         if front:
-            fw = next(x_ for x_ in xs if x_.name.startswith('BaseCrossFront'))
+            fw = next(x_ for x_ in xs if x_.name.startswith('BaseCrossNose'))
             y0, y1 = ly - 15.0, g['front_web']
             lp = sk.Plate(f'BaseLegPlate{tag}{side}', 'x', lx - TW / 2, TW,
                           sk.tabbed(y0, z0, y1, 90.0, [('p1', 55.0, 85.0, T38)]))
@@ -1003,7 +1003,7 @@ def beam(m, g, st):
         tabs = [('p0', q0 + 15, q1 - 15, T38), ('p1', q0 + 15, q1 - 15, T14)]
         if end:
             tabs += [('q0', bf + T38 + 8, g['beam_dowel_y'] - 12, T38), ('q1', bf + T38 + 8, yb_ - 8, T38)]
-        d = sk.Plate(f'BeamDiaphragm{i + 1}', 'x', x - T14 / 2, T14, sk.tabbed(bf + T38, q0, yb_, q1, tabs))
+        d = sk.Plate(f'BeamDiaphragm{"End" if end else "Mid"}{i + 1}', 'x', x - T14 / 2, T14, sk.tabbed(bf + T38, q0, yb_, q1, tabs))
         if end:   # clear of the beam's dowel
             d.cut(Part.makeCylinder(6.0, 40.0, Vector(x, g['beam_dowel_y'], bot - 5)))
         else:
@@ -3096,6 +3096,10 @@ def write_laser_dxf(m):
     for f in os.listdir(out):
         if f.endswith('.dxf'):
             os.remove(os.path.join(out, f))
+    for sub in ('dxf', 'step', 'stl'):
+        os.makedirs(os.path.join(out, sub), exist_ok=True)
+        for f in os.listdir(os.path.join(out, sub)):
+            os.remove(os.path.join(out, sub, f))
     groups = {}
     for pl in m.plates:
         bb = pl.shape.BoundBox
@@ -3104,21 +3108,38 @@ def write_laser_dxf(m):
     rows, total = [], 0.0
     for key, pls in sorted(groups.items(), key=lambda kv: (-kv[0][0], kv[1][0].name)):
         pl = pls[0]
-        base = re.sub(r'(?<=[a-z])[LR](?=[A-Z0-9]|$)', '', pl.name)
-        fn = re.sub(r'(?<!^)(?=[A-Z])', '-', base).lower()
-        w, h = sk.write_dxf(pl, os.path.join(out, fn + '.dxf'))
+        base = re.sub(r'\d+$', '', re.sub(r'(?<=[a-z])[LR](?=[A-Z0-9]|$)', '', pl.name))
+        name = re.sub(r'(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])', '-', base).lower()
+        th = {T38: '3-8in', T14: '1-4in', T12: '1-2in'}[pl.t]
+        fn = f'{th}_{len(pls)}x_{name}'
+        w, h = sk.write_dxf(pl, os.path.join(out, 'dxf', fn + '.dxf'))
+        flat = pl.to_cut()                           # lying flat, at the origin, tapped holes at drill size
+        if pl.normal == 'x':
+            flat.rotate(Vector(0, 0, 0), Vector(0, 1, 0), -90)
+        elif pl.normal == 'y':
+            flat.rotate(Vector(0, 0, 0), Vector(1, 0, 0), 90)
+        bb_ = flat.BoundBox
+        flat.translate(Vector(-bb_.XMin, -bb_.YMin, -bb_.ZMin))
+        flat.exportStep(os.path.join(out, 'step', fn + '.step'))
+        flat.exportStl(os.path.join(out, 'stl', fn + '.stl'))
         taps = ', '.join(f'{n} x {t}' for t, n in pl.taps.items())
         kg = pl.mass * len(pls)
         total += kg
-        rows.append(f'| `{fn}.dxf` | {sk.thickness_name(pl.t)} | {len(pls)} | {w:.1f} x {h:.1f} | {kg:.1f} | '
+        rows.append(f'| `{fn}` | {sk.thickness_name(pl.t)} | {len(pls)} | {w:.1f} x {h:.1f} | {kg:.1f} | '
                     f'{("tap " + taps) if taps else ""} |')
     with open(os.path.join(out, 'README.md'), 'w') as fh:
+        n_all = sum(len(p_) for p_ in groups.values())
         fh.write('# Laser-cut steel\n\nThe steel skeletons: plates that slot together. Send these to a laser-cutting '
-                 'service, Metal Supermarkets, or anyone with a CNC plasma or router table. Mild steel (A36 or '
-                 '1018), units mm. Holes to be tapped are drawn at the tap drill size; tap them before assembly. '
-                 'Keep slots and tabs clean of dross: they should slide together by hand.\n\n'
-                 '| File | Plate | Qty | Size (mm) | kg (all) | Notes |\n|---|---|---|---|---|---|\n'
-                 + '\n'.join(rows) + f'\n\nAbout {total:.0f} kg of plate in all.\n')
+                 'service (JLCCNC, SendCutSend, OSH Cut), Metal Supermarkets, or anyone with a CNC plasma or router '
+                 'table. Mild steel (A36 or 1018), units mm. Each part is in three formats, same name: `dxf/` (the '
+                 'flat outline), `step/` and `stl/` (the plate lying flat at its thickness). The name starts with '
+                 'the thickness and how many to cut. Holes to be tapped are drawn at the tap drill size; tap them '
+                 'before assembly. Keep slots and tabs clean of dross: they should slide together by hand. '
+                 'Slots are 0.25 mm a side over the tabs (laser); for plasma set CLR in model/skeleton.py to about '
+                 '0.5 and re-run.\n\n'
+                 f'{len(groups)} different parts, {n_all} plates in all, about {total:.0f} kg.\n\n'
+                 '| Part | Plate | Qty | Size (mm) | kg (all) | Notes |\n|---|---|---|---|---|---|\n'
+                 + '\n'.join(rows) + '\n')
 
 
 def main():

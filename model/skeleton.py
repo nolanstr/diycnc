@@ -117,6 +117,16 @@ class Plate:
                     self.window(lo, q0, hi, q1, r)
         return self
 
+    def to_cut(self):
+        """The plate as it is to be cut: tapped holes at their tap drill size."""
+        shape = self.shape
+        n = _unit(self.normal)
+        for p, q, major, drill in self.drills:
+            base = _vec(self.normal, self.c0 - 1, p, q)
+            shape = shape.fuse(Part.makeCylinder(major / 2 + 0.01, self.t, base + n, n).common(self.slab))
+            shape = shape.cut(Part.makeCylinder(drill / 2, self.t + 2, base, n))
+        return shape.removeSplitter() if self.drills else shape
+
     @property
     def mass(self):
         return self.shape.Volume * 7.85e-6

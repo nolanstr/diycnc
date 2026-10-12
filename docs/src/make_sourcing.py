@@ -33,7 +33,7 @@ SECTIONS = [
          '$20.96', 20.96, '3-5 coats. PVA film is optional (Partall #10, $8.36/pint).', 'vendor page'),
         ('Square tube', '2x2x0.120 A500: 4x 8 in (upright columns); 1-1/2x1-1/2x0.120: 4x 6 in (legs)', '~3 ft + 2 ft', 'Steel-yard remnants (local)', '',
          '~$15', 15.00, 'About 12 lb. Plain steel, not galvanized.', 'estimate (forum/yard prices)'),
-        ('Laser-cut steel', 'The skeletons: about 64 plates of 1/4, 3/8 and 1/2 in mild steel, 48 kg (docs/1-sourcing/laser/README.md)', '1 set', 'Metal Supermarkets, a laser-cutting service (SendCutSend, OSH Cut), or a friend\'s CNC plasma table: send docs/1-sourcing/laser/*.dxf', '',
+        ('Laser-cut steel', 'The skeletons: about 64 plates of 1/4, 3/8 and 1/2 in mild steel, 48 kg (docs/1-sourcing/laser/README.md)', '1 set', 'Metal Supermarkets, a laser-cutting service (SendCutSend, OSH Cut), or a friend\'s CNC plasma table: send the files in docs/1-sourcing/laser/ (DXF, STEP or STL)', '',
          '~$350', 350.00, 'About 106 lb of A36/1018 plate (roughly $150-200 of steel) plus cutting; much less on a friend\'s table. Tapping at home (the README lists it).', 'estimate'),
         ('Rail risers', 'Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm', '~4 + 5 ft', 'Steel yard (local)', '',
          '~$40', 40.00, 'About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece).', 'estimate'),
