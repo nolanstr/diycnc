@@ -13,8 +13,8 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 | Module | Steel inside | Joins to |
 |---|---|---|
 | Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x 1/2-13 draw rods, the coolant outlet | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face. Cast against the rear half, so the joint fits by construction |
-| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), sockets, draw-rod coupling nuts, O-ring groove on the split face | - |
-| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (11 in) that stick out the bottom, a two-layer 1 in steel top plate, O-ring groove under the foot | Posts are grouted into the oversize sockets at first assembly (waxed, so they lift out), a dowel locates it, 4x 1/2-13 tie rods pull it down: two from nuts held in the top plate, two from pockets in the sloped front, all right through the base to 3/8 x 3 in steel anchor bars in its underside |
+| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), draw-rod coupling nuts, the uprights' dowels and anchor bars, O-ring groove on the split face | - |
+| Upright (x2), a raked buttress | A two-layer 1 in steel top plate, O-ring groove under the foot | Two dowels in the base locate it (grouted into oversize holes in the foot at first assembly), 4x 1/2-13 tie rods pull it down: two from nuts held in the top plate, two from pockets in the sloped front, all right through the base to 3/8 x 3 in steel anchor bars in its underside |
 | Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 3/4 in where the inner cap screws pass | A dowel (grouted into an oversize plate hole at first assembly) and 4x 3/8-16 bolts per side into the upright top plates |
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
@@ -27,8 +27,8 @@ support pads, and tapping the top plates and anchor bars. Use plain steel, not g
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 10.1 kg of epoxy (8.5 % of the 119 kg the castings would weigh with sand; 128 kg with the alumina):
-- The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
+**Keeping the epoxy down.** About 10.3 kg of epoxy (8.5 % of the 121 kg the castings would weigh with sand; 130 kg with the alumina):
+- The base tubes and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
 - The base's underside pockets follow the stiffness study below: two full-depth girders
@@ -36,23 +36,21 @@ part of each leg that hangs below the base.
   full-depth tie between them across the split, a full-depth rib across the front of each
   upright foot and another along the split, and a 20 mm top skin almost everywhere else,
   including over pockets under the upright feet that keep clear of the band under each upright
-  where the tie rods run down to the anchor bar, and of the sockets. The 70 mm front wall carries the coolant trough. Every pocket is open to the
+  where the tie rods run down to the anchor bar. The 70 mm front wall carries the coolant trough. Every pocket is open to the
   bottom, so the cores (printed shells or foam blocks) pull straight out; a few are shallow
   steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
-  the sockets (`base_pockets` in `model/build_cnc.py`).
-- The sockets are cast on foam blocks (dug out after) and grouted to the posts at assembly, not steel tube.
+  the anchor bars (`base_pockets` in `model/build_cnc.py`).
 
 **Molds and fits.** The molds are a kit (`model/moldbox.py`, the mold guide): melamine boards
 with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
-it is too thin, and pieces cut to fit the printer are pegged together. The hidden pocket and socket
-cores are XPS foam, which keeps the printing to 1.5 kg of PETG (sliced in Bambu Studio). A clash check in the
+it is too thin, and pieces cut to fit the printer are pegged together. The hidden pocket
+cores are XPS foam, which keeps the printing to 1.4 kg of PETG (sliced in Bambu Studio). A clash check in the
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
-(flush top faces, matching split faces, tubes straight onto the spigots), and the posts and
-dowels are grouted into oversize holes at first assembly. Two independent molds can't hold
-the 0.2 mm a side the old printed socket liners needed.
+(flush top faces, matching split faces, tubes straight onto the spigots), and the dowels
+are grouted into oversize holes at first assembly, so two independent molds don't have to agree.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
   split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
@@ -72,7 +70,7 @@ the 0.2 mm a side the old printed socket liners needed.
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
   **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
   of that for far less. **Epoxy grout** (Laticrete SpectraLock) is fine for a test bar or a
-  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 128 kg. Whiting is
+  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 130 kg. Whiting is
   used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
   8.5 % epoxy, which fits a single 3 gal kit (10 % needs a second, small kit); the build guide's
   jar test and test bars check it before anything is cast.
@@ -91,8 +89,8 @@ force goes spindle, Z plate, Z and X blocks, X rails, steel risers, beam casting
 four 3/8-16 grade 8 bolts and a dowel into a 3/8 in steel plate cast into the upright top; the upright
 casting; four 1/2-13 tie rods per upright, from nuts held in the top plate (or in the slope pockets)
 right through the upright and the base to a 3/8 x 3 in steel anchor bar in the base underside, nut
-and washer below it, with the foot bearing on the base top and two grouted steel posts in sockets
-taking the shear; the base halves,
+and washer below it, with the foot bearing on the base top, friction under that clamp taking the
+side load and two grouted dowels locating it; the base halves,
 clamped face to face by two draw rods, with the steel spigots in the rail tubes keeping them in line;
 and back up through the Y risers, rails and blocks to the table. Every bolted joint is steel thread in
 steel (plates, couplers, nuts) or a cast-in brass insert, never a thread cut in epoxy granite, and every joint bears
@@ -112,25 +110,25 @@ study found them worth 1 % (base) and 6-7 % (beam), and the frame is already abo
 stiffer at the tool (84-125 N/um) than the ballscrews (30-50 N/um). What does pay is keeping the
 joints flat, clean and preloaded, which is why they're cast against each other or grouted.
 
-**Steel tolerances.** Nothing is cut at home, but a supplier's saw cut is only good to about
-1/8 in, and A500 tube is about 0.5 mm off nominal with a weld seam inside. Each cast-in piece is
-set from one end, and its other end has room (`tube_cut_tol`, checked in the report). The base
-tubes are set from the split end; the posts stand on the bench and have 6 mm under the top plate;
-the legs are set from their holders; the beam tubes are set by the rods through their 3/4 in
-holes, marked from each tube's middle, and their ends float on the locators. Printed parts that
-fit on or into tube have 0.5 mm a side (`tube_fit`) and grooves for the seam, so the socket grout
-gap went to 2.5 mm a side. The X support pads are bedded onto the beam tube with thickened epoxy
-across a 1.5 mm gap instead of being expected to touch it. If the tube that arrives is
-further off, put its calipered sizes in `frame_tube` / `post_tube` and re-run before printing.
+**Steel tolerances.** Nothing is cut at home except the threaded rod, but a supplier's saw cut is
+only good to about 1/8 in, and A500 tube is about 0.5 mm off nominal with a weld seam inside.
+Each cast-in piece is set from one end, and its other end has room (`tube_cut_tol`, checked in
+the report). The base tubes are set from the split end and the legs from their holders; the beam
+tubes are set by the rods through their 3/4 in holes, marked from each tube's middle, and their
+ends float on the locators; the tie rods are screwed up flush at the top and have a 6 mm tail
+under the bottom nut. Printed parts that fit on or into tube have 0.5 mm a side (`tube_fit`) and
+grooves for the seam. The X support pads are bedded onto the beam tube with thickened epoxy
+across a 1.5 mm gap instead of being expected to touch it. If the tube that arrives is further
+off, put its calipered sizes in `frame_tube` / `post_tube` and re-run before printing.
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;
 coolant runs to the two drains at the front. The door laps over the base front face.
 
-Assembly: base halves (spigots in, tighten the draw rods), uprights (posts grouted into the
-sockets the first time, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
+Assembly: base halves (spigots in, tighten the draw rods), uprights (dowels grouted into the
+feet the first time, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
 take the X and Y motors off first (they pass through the enclosure panels), then
-reverse the order. Heaviest piece: the rear base half (about 41 kg). The upright feet run
+reverse the order. Heaviest piece: the rear base half (about 42 kg). The upright feet run
 forward across the base split, so the base halves have to be joined before the uprights go on.
 
 ## Stiffness study (`analysis/`)
@@ -164,7 +162,23 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | Raked-buttress uprights, base re-laid around them | 52.6 L | 77.5 | 107.5 | 93.0 |
 | + blunt upright toe, rounded edges, deeper slope pockets | 53.0 L | 78.2 | 110.1 | 95.5 |
 | + alumina grit in the beam and uprights (estimate) | 53.0 L | 91.3 | 127.3 | 115.7 |
-| **Now: lighter base (pockets under the upright feet, 20 mm skin), 9 kg less** | **49.5 L** | **84.3** | **124.5** | **111.1** |
+| Lighter base (pockets under the upright feet, 20 mm skin), 9 kg less | 49.5 L | 84.3 | 124.5 | 111.1 |
+| Same, tie rods not counted as glued in (they sit in clearance holes; the rows below do the same; `vox_before_chain`) | 49.3 L | 81.6 | 121.9 | 107.6 |
+| + tie rods right through the base to steel anchor bars, two-layer top plates | 50.5 L | 86.8 | 124.7 | 111.6 |
+| + posts and sockets taken out, a second dowel per foot | 52.4 L | 86.3 | 124.2 | 110.1 |
+| **Now: + upright feet 260 mm ahead of the beam (from 290)** | **51.3 L** | **84.2** | **123.0** | **109.3** |
+
+- **The steel chain** (tie rods from the top plates to anchor bars under the base) is worth
+  +6 / +2 / +4 % (the bars, the thicker top plates and the solid band left under each foot
+  together). It also makes the
+  posts redundant: with the feet clamped through steel they were worth under 1.5 %, so they're
+  gone, and with them the sockets, the post bushings and the post grouting (a second grouted dowel
+  per foot locates it instead). The stiffness left over paid for 30 mm off each upright foot.
+  The frame ends up +3 / +1 / +2 % stiffer than before the chain, with modes 136 / 268 / 303 Hz
+  (from 132 / 265 / 282), and about 6 kg heavier (the bars and the thicker top plates). A 250 mm
+  foot keeps the static stiffness but drops mode 2 below the old frame; shorter than that the
+  front foot pockets run past their mold bridges. Thinner uprights and a thinner front wall
+  didn't pay.
 
 - The beam is the biggest share of the deflection, then the base and the uprights about
   equally. Liter for liter, epoxy in the beam is worth roughly ten times as much as epoxy
@@ -236,10 +250,10 @@ table, vise and work on the Y blocks:
 
 | Mode | Frequency | Motion |
 |---|---|---|
-| 1 | 135 Hz | gantry sways side to side (X); base twisting on its feet carries 39 % of it |
+| 1 | 136 Hz | gantry sways side to side (X); base twisting on its feet carries 42 % of it |
 | 2 | 268 Hz | beam rocks front to back (Y) |
-| 3 | 290 Hz | base bends, front to back |
-| 4 | 359 Hz | gantry sway with the base, second form |
+| 3 | 303 Hz | base bends, front to back |
+| 4 | 362 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -247,7 +261,7 @@ with 2-3 flutes) and modes 2-4 are inside it. That's normal for a machine this s
 the spindle and tool (static X/Y/Z above), and chatter on a mill like this usually
 comes from the spindle, Z axis and tool. If a frequency rings, change the spindle speed by
 10-20 % rather than the frame. A solid bench (the base twisting on its feet is in every mode)
-and sand in the hollow posts and sockets help more than geometry changes.
+and sand in the hollow tubes and legs help more than geometry changes.
 
 **Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
 The uprights were optimized again on their own, with the cuts forced to go straight through
@@ -287,6 +301,7 @@ python baseline.py                                  # stiffness and each module'
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
 FEA_VOX=vox_current python whatif.py                # stiffness of the model as drawn
+# voxelize with VOX_SKIP=TieRod,DrawRod so the rods in their clearance holes don't count as glued in
 python alumina.py                                   # alumina grit: mix modulus and frame stiffness
 FEA_GRIT=1.37 python -c "import topopt; topopt.main('pocket', 24, tag='light_24')"   # lighter base
 python weight.py vox_current [vox_...]              # castings mass against stiffness
@@ -330,7 +345,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,655** (including $150 of alumina grit for the beam and uprights, and about $200 for the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,647** (including $150 of alumina grit for the beam and uprights, and about $200 for the
 bolt-together mold kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood

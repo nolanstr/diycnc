@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**158 prints, 1.45 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**146 prints, 1.36 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -40,8 +40,8 @@ How the molds go together is in the mold guide.
 
 ## Foam pieces
 
-The base pocket cores and the socket cores are XPS foam board (`foam=True`, the default in
-`model/build_cnc.py`); only the pocket cores' posts and the socket spikes are printed. They are hidden and
+The base pocket cores are XPS foam board (`foam=True`, the default in
+`model/build_cnc.py`); only their posts are printed. They are hidden and
 only need to be within a millimeter or two. The coolant trough, gutters and the beam's back edge print,
 because they shape faces you see and drain coolant (`foam_formers=True` cuts those from foam too). The
 mold guide lists the foam pieces with their sizes. `foam=False` prints the cores (about 1.4 kg more).
@@ -70,7 +70,7 @@ Folder `print/base-box/`, about 272 g.
 
 ## Base, rear half (cast first)
 
-Folder `print/base-rear/`, about 236 g.
+Folder `print/base-rear/`, about 228 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -98,7 +98,6 @@ Folder `print/base-rear/`, about 236 g.
 | `core-outer-a-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outer-b-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-rear-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `plug-socket-spike.stl` | Plug (removable) | 4 | 14 x 14 x 20 | 8 | Bolts to the floor; the foam socket block pushes over it (cut a 14 mm square hole 20 deep in the block). |
 | `kit-spigot-bushing.stl` | Mold kit (reused) | 2 | 80 x 80 x 22 | 34 | Push fit in a 2-1/2 in hole-saw hole; flange on the far side. |
 | `cast-in-base-rear-tube-plug-l.stl` | Cast-in part (stays in) | 2 | 43 x 10 x 43 | 15 | Cast in, stays. |
 | `cast-in-base-rear-spigot-sleeve-l.stl` | Cast-in part (stays in) | 2 | 43 x 69 x 43 | 22 | Cast in, stays. |
@@ -136,23 +135,21 @@ Folder `print/base-front/`, about 284 g.
 
 ## Uprights (two molds: print quantities are for both)
 
-Folder `print/upright/`, about 361 g.
+Folder `print/upright/`, about 274 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
 | `kit-back-bracket.stl` | Mold kit (reused) | 4 | 33 x 33 x 23 | 21 |  |
 | `kit-front-bracket.stl` | Mold kit (reused) | 4 | 50 x 50 x 22 | 32 | At the top of the front board; its foot sits in the toe filler's lip. |
 | `kit-saddle-flat.stl` | Mold kit (reused) | 4 | 31 x 25 x 25 | 18 | The bridge rests on them; its rods locate it. |
-| `filler-toe-filler.stl` | Filler (removable) | 2 | 80 x 60 x 48 | 54 | Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor. |
-| `former-foot-gasket-groove-part1of4.stl` | Former (removable) | 2 | 68 x 139 x 8 | 7 | Pins into the floor. |
-| `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 139 x 8 | 3 |  |
-| `former-foot-gasket-groove-part3of4.stl` | Former (removable) | 2 | 4 x 139 x 8 | 3 |  |
-| `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 2 | 68 x 139 x 8 | 7 |  |
-| `plug-slope-plug-lower.stl` | Plug (removable) | 2 | 42 x 72 x 42 | 29 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
-| `plug-slope-plug-upper.stl` | Plug (removable) | 2 | 42 x 72 x 42 | 29 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
+| `filler-toe-filler.stl` | Filler (removable) | 2 | 80 x 55 x 48 | 51 | Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor. |
+| `former-foot-gasket-groove-part1of4.stl` | Former (removable) | 2 | 68 x 129 x 8 | 6 | Pins into the floor. |
+| `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 129 x 8 | 2 |  |
+| `former-foot-gasket-groove-part3of4.stl` | Former (removable) | 2 | 4 x 129 x 8 | 2 |  |
+| `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 2 | 68 x 129 x 8 | 6 |  |
+| `plug-slope-plug-lower.stl` | Plug (removable) | 2 | 42 x 75 x 41 | 30 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
+| `plug-slope-plug-upper.stl` | Plug (removable) | 2 | 42 x 75 x 41 | 30 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
 | `kit-plate-spacer.stl` | Mold kit (reused) | 4 | 16 x 16 x 31 | 15 | Between the bridge and the top plate, on its greased 3/8 bolt. |
-| `kit-post-bushing.stl` | Mold kit (reused) | 4 | 80 x 80 x 22 | 67 | Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath. |
-| `cast-in-post-l1-plug.stl` | Cast-in part (stays in) | 4 | 31 x 31 x 10 | 16 | Cast in, stays. |
 | `cast-in-rod-sleeve-l1a.stl` | Cast-in part (stays in) | 8 | 16 x 16 x 110 | 61 | Cast in, stays. |
 
 ## Beam
@@ -171,11 +168,11 @@ Folder `print/beam/`, about 153 g.
 
 ## Machine parts
 
-Folder `print/machine/`, about 116 g.
+Folder `print/machine/`, about 117 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
-| `part-pocket-cap-l3.stl` | Machine part | 4 | 42 x 62 x 32 | 49 |  |
+| `part-pocket-cap-l3.stl` | Machine part | 4 | 42 x 64 x 32 | 50 |  |
 | `part-chain-mount-fixed.stl` | Machine part | 1 | 25 x 38 x 21 | 8 |  |
 | `part-chain-mount-moving.stl` | Machine part | 1 | 37 x 123 x 45 | 18 |  |
 | `part-sump-filter-frame-part1of2.stl` | Machine part | 1 | 148 x 6 x 92 | 20 |  |

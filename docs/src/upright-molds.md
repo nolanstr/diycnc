@@ -38,8 +38,8 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 | Material | Amount | Notes |
 |---|---|---|
-| Melamine board, 3/4 in | about 1.0 m2 | all the molds come out of two 4 x 8 ft sheets |
-| PETG | 0.39 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| Melamine board, 3/4 in | about 0.9 m2 | all the molds come out of two 4 x 8 ft sheets |
+| PETG | 0.30 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 | 2x4 offcut | 4 blocks per upright mold, about 50 mm | feet |
@@ -51,35 +51,33 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 30 bolt | 24 |
 | M4 x 35 bolt | 4 |
 | M4 x 45 bolt | 14 |
-| 1/2 in rod (or a tie rod), greased, 381 mm: centers a top tie-rod sleeve | 4 |
-| 1/2-13 x 1-1/2 in bolt + nut, greased (forms the dowel hole) | 2 |
+| 1/2 in rod (or a tie rod), greased, 355 mm: centers a top tie-rod sleeve | 4 |
+| 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 4 |
 | 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 4 |
-| 5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to 134 mm, 237 mm | 2 |
+| 5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to 118 mm, 237 mm | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
 ## 3. Print
 
-50 prints, 0.39 kg, about 33 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+42 prints, 0.30 kg, about 26 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
 | `upright/kit-back-bracket.stl` | 4 | 21 | 27m 33s |
-| `upright/kit-front-bracket.stl` | 4 | 32 | 38m 27s |
+| `upright/kit-front-bracket.stl` | 4 | 32 | 38m 26s |
 | `upright/kit-saddle-flat.stl` | 4 | 18 | 22m 40s |
-| `upright/filler-toe-filler.stl` | 2 | 54 | 1h 33m 58s |
-| `upright/former-foot-gasket-groove-part1of4.stl` | 2 | 7 | 17m 8s |
-| `upright/former-foot-gasket-groove-part2of4.stl` | 2 | 3 | 8m 46s |
-| `upright/former-foot-gasket-groove-part3of4.stl` | 2 | 3 | 8m 46s |
-| `upright/former-foot-gasket-groove-part4of4.stl` | 2 | 7 | 17m 10s |
-| `upright/plug-slope-plug-lower.stl` | 2 | 29 | 1h 0m 39s |
-| `upright/plug-slope-plug-upper.stl` | 2 | 29 | 1h 0m 39s |
+| `upright/filler-toe-filler.stl` | 2 | 51 | 1h 30m 59s |
+| `upright/former-foot-gasket-groove-part1of4.stl` | 2 | 6 | 16m 25s |
+| `upright/former-foot-gasket-groove-part2of4.stl` | 2 | 2 | 8m 22s |
+| `upright/former-foot-gasket-groove-part3of4.stl` | 2 | 2 | 8m 22s |
+| `upright/former-foot-gasket-groove-part4of4.stl` | 2 | 6 | 16m 30s |
+| `upright/plug-slope-plug-lower.stl` | 2 | 30 | 1h 3m 51s |
+| `upright/plug-slope-plug-upper.stl` | 2 | 30 | 1h 3m 54s |
 | `upright/kit-plate-spacer.stl` | 4 | 15 | 20m 9s |
-| `upright/kit-post-bushing.stl` | 4 | 67 | 1h 11m 51s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `upright/cast-in-post-l1-plug.stl` | 4 | 16 | 24m 37s |
 | `upright/cast-in-rod-sleeve-l1a.stl` | 8 | 61 | 57m 53s |
 
 ## 4. Cut the boards
@@ -89,14 +87,14 @@ the cast face (the melamine face the mix touches).
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Upright floor | 2 | 198 x 575 |  |
-| Upright side plate, outer | 2 | 495 x 271 (profile) | cut to the profile |
-| Upright side plate, inner | 2 | 495 x 271 (profile) | cut to the profile |
+| Upright floor | 2 | 198 x 541 |  |
+| Upright side plate, outer | 2 | 461 x 271 (profile) | cut to the profile |
+| Upright side plate, inner | 2 | 461 x 271 (profile) | cut to the profile |
 | Upright back board | 2 | 80 x 271 |  |
-| Upright front board | 2 | 80 x 312 | ends cut square |
+| Upright front board | 2 | 80 x 292 | ends cut square |
 | Upright bridge | 2 | 131 x 108 |  |
-| Upright cleat, outer | 2 | 405 x 40 | offcut strip, flat on the floor |
-| Upright cleat, inner | 2 | 405 x 40 | offcut strip, flat on the floor |
+| Upright cleat, outer | 2 | 371 x 40 | offcut strip, flat on the floor |
+| Upright cleat, inner | 2 | 371 x 40 | offcut strip, flat on the floor |
 | Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
 
 ## 5. Mark and drill
@@ -117,7 +115,6 @@ The appendix has every board as a drawing and a table, if you would rather measu
 | 13.1 mm | 33/64 in | 1/2-13 bolt, base dowel hole |
 | 13.5 mm | 17/32 in | 1/2 rod through a sleeve |
 | 16.3 mm | 41/64 in | 5/8 core rod |
-| 63.5 mm | 2-1/2 in hole saw | hole saw |
 
 ## 6. Wax
 
@@ -132,7 +129,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 Cast foot down. Build two of everything.
 
-1. Post bushings into the floor from below; gasket bead pinned on; cleats bolted down.
+1. Gasket bead pinned on; cleats bolted down.
 
 ![Upright, step 1](../../renders/mold/step-upright-1.png)
 
@@ -144,7 +141,7 @@ Cast foot down. Build two of everything.
 
 ![Upright, step 3](../../renders/mold/step-upright-3.png)
 
-4. Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends nearer the top plate: 6 mm room); greased 5/8 in rods up through the floor into the slope plugs; the two top sleeves standing over their floor holes, tops taped; dowel-hole bolt from underneath.
+4. Mold on its four 2x4 blocks. Greased 5/8 in rods up through the floor into the slope plugs; the two top sleeves standing over their floor holes, tops taped; the two dowel-hole bolts from underneath.
 
 ![Upright, step 4](../../renders/mold/step-upright-4.png)
 
@@ -195,30 +192,29 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 121 | 56 | 4.5 | toe-filler |
-| 2 | 79 | 75 | 4.5 | toe-filler |
-| 3 | 131 | 136 | 3.2 | foot-gasket-groove |
-| 4 | 99 | 146 | 16.3 | 5/8 core rod |
+| 1 | 77 | 54 | 4.5 | toe-filler |
+| 2 | 119 | 72 | 4.5 | toe-filler |
+| 3 | 131 | 123 | 3.2 | foot-gasket-groove |
+| 4 | 99 | 142 | 16.3 | 5/8 core rod |
 | 5 | 20 | 170 | 4.5 | cleat |
 | 6 | 178 | 170 | 4.5 | cleat |
-| 7 | 67 | 197 | 3.2 | foot-gasket-groove |
-| 8 | 99 | 246 | 16.3 | 5/8 core rod |
-| 9 | 67 | 266 | 3.2 | foot-gasket-groove |
-| 10 | 131 | 266 | 3.2 | foot-gasket-groove |
-| 11 | 20 | 333 | 4.5 | cleat |
-| 12 | 67 | 336 | 3.2 | foot-gasket-groove |
-| 13 | 131 | 336 | 3.2 | foot-gasket-groove |
-| 14 | 178 | 333 | 4.5 | cleat |
-| 15 | 99 | 371 | 63.5 | hole saw |
-| 16 | 131 | 414 | 3.2 | foot-gasket-groove |
-| 17 | 79 | 426 | 13.5 | 1/2 rod through a sleeve |
-| 18 | 99 | 426 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 19 | 119 | 426 | 13.5 | 1/2 rod through a sleeve |
-| 20 | 67 | 461 | 3.2 | foot-gasket-groove |
-| 21 | 99 | 481 | 63.5 | hole saw |
-| 22 | 20 | 495 | 4.5 | cleat |
-| 23 | 178 | 495 | 4.5 | cleat |
-| 24 | 99 | 555 | 4.5 | cleat |
+| 7 | 67 | 182 | 3.2 | foot-gasket-groove |
+| 8 | 99 | 242 | 16.3 | 5/8 core rod |
+| 9 | 67 | 249 | 3.2 | foot-gasket-groove |
+| 10 | 131 | 249 | 3.2 | foot-gasket-groove |
+| 11 | 20 | 315 | 4.5 | cleat |
+| 12 | 67 | 314 | 3.2 | foot-gasket-groove |
+| 13 | 131 | 314 | 3.2 | foot-gasket-groove |
+| 14 | 178 | 315 | 4.5 | cleat |
+| 15 | 99 | 337 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 16 | 131 | 381 | 3.2 | foot-gasket-groove |
+| 17 | 79 | 392 | 13.5 | 1/2 rod through a sleeve |
+| 18 | 99 | 392 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 19 | 119 | 392 | 13.5 | 1/2 rod through a sleeve |
+| 20 | 67 | 441 | 3.2 | foot-gasket-groove |
+| 21 | 20 | 461 | 4.5 | cleat |
+| 22 | 178 | 461 | 4.5 | cleat |
+| 23 | 99 | 521 | 4.5 | cleat |
 
 #### Upright side plate, outer (x2)
 
@@ -226,11 +222,11 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 280 | 240 | 4.5 | corner bracket |
-| 2 | 406 | 259 | 4.5 | saddle |
-| 3 | 473 | 260 | 4.5 | corner bracket |
+| 1 | 246 | 241 | 4.5 | corner bracket |
+| 2 | 371 | 259 | 4.5 | saddle |
+| 3 | 438 | 260 | 4.5 | corner bracket |
 
-Outline corners (x, y): (0, 0), (495, 0), (495, 271), (264, 271)
+Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
 #### Upright side plate, inner (x2)
 
@@ -238,11 +234,11 @@ Outline corners (x, y): (0, 0), (495, 0), (495, 271), (264, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 215 | 240 | 4.5 | corner bracket |
+| 1 | 215 | 241 | 4.5 | corner bracket |
 | 2 | 22 | 260 | 4.5 | corner bracket |
 | 3 | 90 | 259 | 4.5 | saddle |
 
-Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
+Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 #### Upright back board (x2)
 
@@ -259,10 +255,10 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 27 | 66 | 4.5 | slope-plug-lower |
-| 2 | 27 | 209 | 4.5 | slope-plug-upper |
-| 3 | 14 | 301 | 4.5 | corner bracket |
-| 4 | 66 | 301 | 4.5 | corner bracket |
+| 1 | 27 | 73 | 4.5 | slope-plug-lower |
+| 2 | 27 | 229 | 4.5 | slope-plug-upper |
+| 3 | 14 | 281 | 4.5 | corner bracket |
+| 4 | 66 | 281 | 4.5 | corner bracket |
 
 #### Upright bridge (x2)
 
@@ -281,8 +277,8 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 365 | 20 | 4.5 | cleat |
-| 2 | 203 | 20 | 4.5 | cleat |
+| 1 | 331 | 20 | 4.5 | cleat |
+| 2 | 185 | 20 | 4.5 | cleat |
 | 3 | 40 | 20 | 4.5 | cleat |
 
 #### Upright cleat, inner (x2)
@@ -291,8 +287,8 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 365 | 20 | 4.5 | cleat |
-| 2 | 203 | 20 | 4.5 | cleat |
+| 1 | 331 | 20 | 4.5 | cleat |
+| 2 | 185 | 20 | 4.5 | cleat |
 | 3 | 40 | 20 | 4.5 | cleat |
 
 #### Upright cleat, back (x2)

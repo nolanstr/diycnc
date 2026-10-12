@@ -24,6 +24,7 @@ CAD = os.path.join(os.path.dirname(HERE), 'model')
 H = float(os.environ.get('VOX_H', '10'))     # voxel size, mm
 SUB = int(os.environ.get('VOX_SUB', '4'))    # sample points per voxel edge
 OUT = os.environ.get('VOX_OUT', os.path.join(HERE, 'vox_current'))
+SKIP = [t for t in os.environ.get('VOX_SKIP', '').split(',') if t]   # part-name prefixes left out (unbonded rods)
 
 
 def load_build():
@@ -97,7 +98,7 @@ def main():
             boxes[n] = [bb.XMin, bb.YMin, bb.ZMin, bb.XMax, bb.YMax, bb.ZMax]
         if n not in m.structure and n not in risers and not n.endswith('Casting'):
             continue
-        if p['look'] in ('printed', 'rubber'):
+        if p['look'] in ('printed', 'rubber') or any(n.startswith(t) for t in SKIP):
             continue
         mat = 'eg' if p['look'] == 'granite' else 'st'
         fr[f"{mat}_{GROUP[p['container']]}"] += fractions(p['shape'], grid)
@@ -121,7 +122,7 @@ def main():
     keys = ['base_top', 'table_top', 'beam_bot', 'beam_top', 'beam_face', 'inner', 'outer', 'up_y0', 'up_y1',
             'base_half', 'base_y0', 'base_y1', 'tip', 'nut_tip', 'y_bk', 'beam_cz', 'car_back']
     info = dict(h=H, origin=grid.o.tolist(), n=grid.n.tolist(), dims={k: float(d[k]) for k in keys}, boxes=boxes,
-                legs=g['legs'], post_ys=list(g['post_ys']), ux=g['ux'], tube_z=g['tube_z'],
+                legs=g['legs'], dowel_ys=list(g['dowel_ys']), ux=g['ux'], tube_z=g['tube_z'],
                 P={k: P[k] for k in ('table_rail_spacing', 'table_blk_pitch', 'beam_rail_spacing', 'beam_blk_pitch',
                                      'riser_w', 'table_riser_t', 'beam_riser_t', 'base_h', 'travel_x', 'travel_y',
                                      'travel_z', 'base_core_skin', 'table_len', 'table_w', 'table_t', 'carriage_w')},

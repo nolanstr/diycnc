@@ -48,20 +48,18 @@ base-rear,core-knee-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push 
 base-rear,core-outer-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-outer-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-rear-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,plug-socket-spike.stl,plug,4,14 x 14 x 20,8,Bolts to the floor; the foam socket block pushes over it (cut a 14 mm square hole 20 deep in the block).
 base-rear,kit-spigot-bushing.stl,kit,2,80 x 80 x 22,42,Push fit in a 2-1/2 in hole-saw hole; flange on the far side.
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
-upright,filler-toe-filler.stl,filler,2,80 x 60 x 48,57,Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor.
-upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 139 x 8,8,Pins into the floor.
-upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 139 x 8,3,
-upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 139 x 8,3,
-upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 139 x 8,8,
-upright,plug-slope-plug-lower.stl,plug,2,42 x 72 x 42,30,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,plug-slope-plug-upper.stl,plug,2,42 x 72 x 42,30,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,filler-toe-filler.stl,filler,2,80 x 55 x 48,54,Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor.
+upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 129 x 8,8,Pins into the floor.
+upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 129 x 8,3,
+upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 129 x 8,3,
+upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 129 x 8,8,
+upright,plug-slope-plug-lower.stl,plug,2,42 x 75 x 41,31,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-slope-plug-upper.stl,plug,2,42 x 75 x 41,31,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
-upright,kit-post-bushing.stl,kit,4,80 x 80 x 22,84,"Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 beam,filler-back-edge-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
 beam,filler-back-edge-part2of4.stl,filler,1,136 x 40 x 40,24,
@@ -77,9 +75,8 @@ base-front,cast-in-leg-front-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays
 base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,43 x 10 x 43,17,"Cast in, stays."
 base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,43 x 69 x 43,25,"Cast in, stays."
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
-upright,cast-in-post-l1-plug.stl,cast-in,4,31 x 31 x 10,19,"Cast in, stays."
 upright,cast-in-rod-sleeve-l1a.stl,cast-in,8,16 x 16 x 110,66,"Cast in, stays."
-machine,part-pocket-cap-l3.stl,part,4,42 x 62 x 32,59,
+machine,part-pocket-cap-l3.stl,part,4,42 x 64 x 32,60,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,10,
 machine,part-chain-mount-moving.stl,part,1,37 x 123 x 45,24,
 machine,part-sump-filter-frame-part1of2.stl,part,1,148 x 6 x 92,26,

@@ -44,7 +44,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 |---|---|---|
 | Melamine board, 3/4 in | about 1.5 m2 | all the molds come out of two 4 x 8 ft sheets |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 0.82 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.81 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -54,10 +54,10 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M3 nut | 20 |
 | M3 washer | 20 |
 | M3 x 25 bolt | 20 |
-| M4 nut | 122 |
-| M4 washer | 118 |
+| M4 nut | 118 |
+| M4 washer | 114 |
 | M4 x 20 bolt (leg pinch screw) | 4 |
-| M4 x 30 bolt | 78 |
+| M4 x 30 bolt | 74 |
 | M4 x 35 bolt | 24 |
 | M4 x 45 bolt | 16 |
 | M5 x 20 screw, greased (holds an insert) | 21 |
@@ -70,7 +70,7 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-90 prints, 0.82 kg, about 73 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+86 prints, 0.81 kg, about 72 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -96,7 +96,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/former-trough-part1of5.stl` | 1 | 20 | 1h 14m 18s |
 | `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 23m 56s |
 | `base-front/former-trough-part3of5.stl` | 1 | 25 | 1h 33m 33s |
-| `base-front/former-trough-part4of5.stl` | 1 | 23 | 1h 24m 3s |
+| `base-front/former-trough-part4of5.stl` | 1 | 23 | 1h 24m 2s |
 | `base-front/former-trough-part5of5.stl` | 1 | 21 | 1h 17m 36s |
 | `base-front/filler-corner-L.stl` | 1 | 21 | 2h 0m 50s |
 | `base-front/filler-corner-R.stl` | 1 | 21 | 1h 56m 31s |
@@ -109,7 +109,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/core-outboard-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/core-trough-band-L-post.stl` | 1 | 5 | 44m 54s |
 | `base-front/core-draw-rod-L-post.stl` | 1 | 5 | 44m 53s |
-| `base-front/core-foot-a-L-post.stl` | 1 | 5 | 44m 53s |
+| `base-front/core-foot-a-L-post.stl` | 1 | 5 | 44m 54s |
 | `base-rear/core-foot-b-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-outer-a-L-post.stl` | 1 | 5 | 44m 53s |
@@ -118,18 +118,17 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/core-outboard-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/core-trough-band-R-post.stl` | 1 | 5 | 44m 54s |
 | `base-front/core-draw-rod-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-front/core-foot-a-R-post.stl` | 1 | 5 | 44m 53s |
+| `base-front/core-foot-a-R-post.stl` | 1 | 5 | 44m 54s |
 | `base-rear/core-foot-b-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-outer-a-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-outer-b-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-rear-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/plug-socket-spike.stl` | 4 | 8 | 13m 26s |
-| `base-rear/kit-spigot-bushing.stl` | 2 | 34 | 1h 11m 37s |
+| `base-rear/kit-spigot-bushing.stl` | 2 | 34 | 1h 11m 32s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
 | `base-front/cast-in-base-front-tube-plug-l.stl` | 2 | 15 | 39m 34s |
-| `base-front/cast-in-base-front-spigot-sleeve-l.stl` | 2 | 22 | 59m 28s |
+| `base-front/cast-in-base-front-spigot-sleeve-l.stl` | 2 | 22 | 59m 31s |
 | `base-front/cast-in-leg-front-l-plug.stl` | 2 | 8 | 24m 14s |
 | `base-rear/cast-in-base-rear-tube-plug-l.stl` | 2 | 15 | 39m 16s |
 | `base-rear/cast-in-base-rear-spigot-sleeve-l.stl` | 2 | 22 | 59m 31s |
@@ -175,7 +174,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 |---|---|---|
 | 3.2 mm | 1/8 in | motor-relief, split-gasket-groove |
 | 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
-| 4.5 mm | 11/64 in | bar hanger, cleat, core post, corner bracket, corner-L, corner-R, gutter-L, gutter-R, leg holder, saddle, socket spike, trough |
+| 4.5 mm | 11/64 in | bar hanger, cleat, core post, corner bracket, corner-L, corner-R, gutter-L, gutter-R, leg holder, saddle, trough |
 | 5.5 mm | 7/32 in | M5 insert screw |
 | 6.5 mm | 17/64 in | M6 insert screw |
 | 9.6 mm | 25/64 in | 3/8 dowel |
@@ -193,28 +192,24 @@ glue the post in.
 |---|---|---|---|
 | base-front | center | 1 | XPS block 100 x 185 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | center | 1 | XPS block 100 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-L | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-L | 1 | XPS block 130 x 194 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | trough-band-L | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | draw-rod-L | 1 | XPS block 20 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | foot-a-L | 1 | XPS block 45 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | foot-a-L | 1 | XPS block 45 x 36 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | foot-b-L | 1 | XPS block 45 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | knee-L | 1 | XPS block 50 x 184 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-a-L | 1 | XPS block 20 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-b-L | 1 | XPS block 20 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | rear-L | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-R | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-R | 1 | XPS block 130 x 194 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | trough-band-R | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | draw-rod-R | 1 | XPS block 20 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | foot-a-R | 1 | XPS block 45 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | foot-a-R | 1 | XPS block 45 x 36 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | foot-b-R | 1 | XPS block 45 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | knee-R | 1 | XPS block 50 x 184 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-a-R | 1 | XPS block 20 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-b-R | 1 | XPS block 20 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | rear-R | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | socket | 4 | XPS block 43 x 43 x 80 mm, taped; dig it out after curing (a little acetone dissolves the rest). |
-
-![A socket core on its spike](../../renders/mold/detail-socket.png)
-
 ## 7. Wax
 
 - 3-5 coats of paste wax on every face the mix touches, boards and removable printed pieces, then PVA.
@@ -240,7 +235,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base rear, step 3](../../renders/mold/step-base-rear-3.png)
 
-4. Gutter formers, motor relief and corner fillers on; socket spikes bolted down with a foam block on each.
+4. Gutter formers, motor relief and corner fillers on.
 
 ![Base rear, step 4](../../renders/mold/step-base-rear-4.png)
 
@@ -254,7 +249,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ### Base, front half (against the rear half)
 
-1. After the cure: bridges, partition and struts off. Dig out the socket foam, pull the beads, tape the groove, and wax the rear half's split face and spigots.
+1. After the cure: bridges, partition and struts off. Pull the beads, tape the groove, and wax the rear half's split face and spigots.
 
 ![Base front, step 1](../../renders/mold/step-base-front-1.png)
 
@@ -280,7 +275,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 1. After the full cure: bridges and saddles off, then corner brackets, then cleats; pull the walls off.
 2. Screws, bolts and rods out from outside; lift the casting off the floor.
-3. Unbolt and pull the formers and fillers. Dig out the socket foam (a little acetone helps).
+3. Unbolt and pull the formers and fillers.
 4. Scrape and re-wax the boards; keep each mold's kit in a box. The kit is reused.
 
 ## 11. If something doesn't fit
@@ -344,18 +339,18 @@ edge on the floor). The templates carry the same holes at full size.
 | 35 | 449 | 304 | 5.5 | M5 insert screw |
 | 36 | 20 | 314 | 4.5 | cleat |
 | 37 | 698 | 314 | 4.5 | cleat |
-| 38 | 134 | 344 | 16.3 | 5/8 core rod |
-| 39 | 584 | 344 | 16.3 | 5/8 core rod |
-| 40 | 87 | 368 | 3.4 | gutter-R |
-| 41 | 632 | 368 | 3.4 | gutter-L |
+| 38 | 87 | 368 | 3.4 | gutter-R |
+| 39 | 632 | 368 | 3.4 | gutter-L |
+| 40 | 134 | 374 | 16.3 | 5/8 core rod |
+| 41 | 584 | 374 | 16.3 | 5/8 core rod |
 | 42 | 69 | 421 | 5.5 | M5 insert screw |
 | 43 | 649 | 421 | 5.5 | M5 insert screw |
 | 44 | 269 | 424 | 5.5 | M5 insert screw |
 | 45 | 449 | 424 | 5.5 | M5 insert screw |
 | 46 | 87 | 434 | 3.4 | gutter-R |
 | 47 | 632 | 434 | 3.4 | gutter-L |
-| 48 | 134 | 444 | 16.3 | 5/8 core rod |
-| 49 | 584 | 444 | 16.3 | 5/8 core rod |
+| 48 | 134 | 474 | 16.3 | 5/8 core rod |
+| 49 | 584 | 474 | 16.3 | 5/8 core rod |
 | 50 | 87 | 494 | 3.4 | gutter-R |
 | 51 | 632 | 494 | 3.4 | gutter-L |
 | 52 | 20 | 529 | 4.5 | cleat |
@@ -364,8 +359,8 @@ edge on the floor). The templates carry the same holes at full size.
 | 55 | 449 | 544 | 5.5 | M5 insert screw |
 | 56 | 87 | 554 | 3.4 | gutter-R |
 | 57 | 632 | 554 | 3.4 | gutter-L |
-| 58 | 134 | 569 | 4.5 | socket spike |
-| 59 | 584 | 569 | 4.5 | socket spike |
+| 58 | 134 | 569 | 9.6 | 3/8 dowel |
+| 59 | 584 | 569 | 9.6 | 3/8 dowel |
 | 60 | 87 | 614 | 3.4 | gutter-R |
 | 61 | 632 | 614 | 3.4 | gutter-L |
 | 62 | 114 | 624 | 16.3 | 5/8 core rod |
@@ -380,26 +375,24 @@ edge on the floor). The templates carry the same holes at full size.
 | 71 | 449 | 664 | 5.5 | M5 insert screw |
 | 72 | 87 | 674 | 3.4 | gutter-R |
 | 73 | 632 | 674 | 3.4 | gutter-L |
-| 74 | 134 | 679 | 4.5 | socket spike |
-| 75 | 584 | 679 | 4.5 | socket spike |
-| 76 | 336 | 705 | 6.5 | M6 insert screw |
-| 77 | 382 | 705 | 6.5 | M6 insert screw |
-| 78 | 336 | 718 | 6.5 | M6 insert screw |
-| 79 | 382 | 718 | 6.5 | M6 insert screw |
-| 80 | 87 | 734 | 3.4 | gutter-R |
-| 81 | 343 | 737 | 3.2 | motor-relief |
-| 82 | 632 | 734 | 3.4 | gutter-L |
-| 83 | 20 | 744 | 4.5 | cleat |
-| 84 | 698 | 744 | 4.5 | cleat |
-| 85 | 64 | 772 | 3.4 | corner-R |
-| 86 | 375 | 770 | 3.2 | motor-relief |
-| 87 | 654 | 772 | 3.4 | corner-L |
-| 88 | 209 | 774 | 5.5 | M5 insert screw |
-| 89 | 509 | 774 | 5.5 | M5 insert screw |
-| 90 | 80 | 823 | 4.5 | cleat |
-| 91 | 266 | 823 | 4.5 | cleat |
-| 92 | 452 | 823 | 4.5 | cleat |
-| 93 | 638 | 823 | 4.5 | cleat |
+| 74 | 336 | 705 | 6.5 | M6 insert screw |
+| 75 | 382 | 705 | 6.5 | M6 insert screw |
+| 76 | 336 | 718 | 6.5 | M6 insert screw |
+| 77 | 382 | 718 | 6.5 | M6 insert screw |
+| 78 | 87 | 734 | 3.4 | gutter-R |
+| 79 | 343 | 737 | 3.2 | motor-relief |
+| 80 | 632 | 734 | 3.4 | gutter-L |
+| 81 | 20 | 744 | 4.5 | cleat |
+| 82 | 698 | 744 | 4.5 | cleat |
+| 83 | 64 | 772 | 3.4 | corner-R |
+| 84 | 375 | 770 | 3.2 | motor-relief |
+| 85 | 654 | 772 | 3.4 | corner-L |
+| 86 | 209 | 774 | 5.5 | M5 insert screw |
+| 87 | 509 | 774 | 5.5 | M5 insert screw |
+| 88 | 80 | 823 | 4.5 | cleat |
+| 89 | 266 | 823 | 4.5 | cleat |
+| 90 | 452 | 823 | 4.5 | cleat |
+| 91 | 638 | 823 | 4.5 | cleat |
 
 #### Base front wall
 

@@ -13,7 +13,7 @@ A = 'https://www.amazon.com/dp/'
 # line None = price not seen. Rows whose item starts with "(opt)" are left out of the totals.
 SECTIONS = [
     ('Part 1 - Frame: castings and hardware', [
-        ('Epoxy', '~10.1 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)', 'https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1',
+        ('Epoxy', '~10.3 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste', '1 (3 gal)', 'Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)', 'https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1',
          '$172.99', 172.99, 'About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies.', 'vendor page'),
         ('Fines', 'Whiting (calcium carbonate) 325 mesh, ~11 kg', '1 (50 lb)', 'Clay-King calcium carbonate whiting, 50 lb (not Amazon)', 'https://www.clay-king.com/product/calcium-carbonate-whiting/',
          '$0.84/lb', 42.00, 'No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc.', 'vendor page'),
@@ -31,8 +31,8 @@ SECTIONS = [
          '~$70', 70.00, 'Greased, they form the tie-rod and bolt holes, hold the draw-rod couplers and the top plates, and hang the anchor bars. Reused.', 'estimate'),
         ('Mold release wax', 'Partall Paste #2', '1', 'Partall Paste #2, 12 oz (Fiberglass Supply)', 'https://www.fiberglasssupply.com/partall/',
          '$20.96', 20.96, '3-5 coats. PVA film is optional (Partall #10, $8.36/pint).', 'vendor page'),
-        ('Square tube', '2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 11 in, 6x 6 in', '~7 ft of each', 'Steel-yard remnants (local)', '',
-         '~$40', 40.00, 'About 37 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized.', 'estimate (forum/yard prices)'),
+        ('Square tube', '2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 6x 6 in', '~7 ft + 3 ft', 'Steel-yard remnants (local)', '',
+         '~$32', 32.00, 'About 28 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized.', 'estimate (forum/yard prices)'),
         ('Laser-cut steel', '1/2 in: 4x 68x168 mm (upright top plates, two layers each); 3/8 in: 2x 76x75 + 2x 76x245 mm (base anchor bars)', '8 parts', 'SendCutSend, OSH Cut or a local laser shop: upload docs/1-sourcing/laser/*.dxf', '',
          '~$90', 90.00, 'Mild steel (A36/1018). Tapping at home: 3/8-16 in the lower top-plate layers, M5 in the bars.', 'estimate'),
         ('Support pads', '1/4 x 2-1/2 in flat bar: ~4 in', 'offcut', 'Steel-yard offcuts (local)', '',
@@ -69,9 +69,9 @@ SECTIONS = [
          '$8.26', 8.26, '', 'product page'),
         ('Block screws', 'M4 x 20', '1 (50)', 'iexcell M4x20 12.9', A + 'B08B1T7K14',
          '$7.86', 7.86, 'Check length against the plate thickness', 'product page'),
-        ('PETG filament', '1.5 kg (sliced): mold kit, core posts, formers and fillers, cast-in parts and machine parts', '2 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
-         '$15.99', 31.98, 'The pocket and socket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more.', 'product page'),
-        ('XPS foam board', '2 in x 2 ft x 8 ft: the base pocket and socket cores', '1', 'Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)', 'https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335',
+        ('PETG filament', '1.4 kg (sliced): mold kit, core posts, formers and fillers, cast-in parts and machine parts', '2 (1 kg)', 'SUNLU PETG 1 kg', A + 'B0FS1FJLCW',
+         '$15.99', 31.98, 'The pocket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more.', 'product page'),
+        ('XPS foam board', '2 in x 2 ft x 8 ft: the base pocket cores', '1', 'Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)', 'https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335',
          '~$25', 25.00, 'Plus packing tape and double-sided carpet tape (~$10). Sizes in the mold guide.', 'estimate (price not shown)'),
         ('Foam tape', 'Double-sided carpet tape + packing tape', '1 each', 'Hardware store', '',
          '~$10', 10.00, '', 'estimate'),
