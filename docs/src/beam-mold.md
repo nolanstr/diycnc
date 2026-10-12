@@ -39,36 +39,33 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Material | Amount | Notes |
 |---|---|---|
 | Melamine board, 3/4 in | about 0.5 m2 | all the molds come out of two 4 x 8 ft sheets |
-| PETG | 0.18 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.12 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 
 | Hardware | Qty |
 |---|---|
-| M4 nut | 26 |
-| M4 washer | 26 |
-| M4 x 30 bolt | 12 |
+| M4 nut | 21 |
+| M4 washer | 21 |
+| M4 x 30 bolt | 11 |
 | M4 x 45 bolt | 10 |
-| M4 x 70 bolt | 4 |
-| M5 x 20 screw, greased (holds an insert) | 8 |
-| M6 x 20 screw, greased (holds a pad) | 6 |
+| M5 x 40 screw, greased (holds the face plate) | 8 |
+| M6 x 40 screw, greased (holds the face plate) | 6 |
 | 1/2 in plain steel rod, greased (forms a beam bolt hole), 198 mm | 8 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
 ## 3. Print
 
-18 prints, 0.18 kg, about 14 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+13 prints, 0.12 kg, about 9 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
 | `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
-| `beam/filler-back-edge-part1of4.stl` | 1 | 19 | 1h 14m 46s |
-| `beam/filler-back-edge-part2of4.stl` | 1 | 19 | 1h 14m 46s |
-| `beam/filler-back-edge-part3of4.stl` | 1 | 19 | 1h 14m 46s |
-| `beam/filler-back-edge-part4of4.stl` | 1 | 19 | 1h 15m 1s |
-| `beam/kit-tube-locator.stl` | 4 | 43 | 58m 26s |
+| `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 8m 21s |
+| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 13s |
+| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 8m 22s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
@@ -102,9 +99,9 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 | Hole | Drill | For |
 |---|---|---|
-| 4.5 mm | 11/64 in | back-edge, cleat, corner bracket, tube locator |
-| 5.5 mm | 7/32 in | M5 insert screw |
-| 6.5 mm | 17/64 in | M6 insert screw |
+| 4.5 mm | 11/64 in | back-edge, cleat, corner bracket |
+| 5.5 mm | 7/32 in | M5 screw into the face plate |
+| 6.5 mm | 17/64 in | M6 screw into the face plate |
 | 9.6 mm | 25/64 in | 3/8 dowel |
 | 13.1 mm | 33/64 in | 1/2 core rod |
 
@@ -119,9 +116,11 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 ### Beam
 
-Cast front (rail) face down, back open.
+Cast front (rail) face down, back open. Slot the steel box together on the bench: diaphragms into the face plate, the back plate over them, the end plates on the tabs.
 
-1. Cleats bolted down; support pads and riser inserts screwed to the floor.
+![The beam's steel box](../../renders/mold/skeleton-beam.png)
+
+1. Cleats bolted down.
 
 ![Beam, step 1](../../renders/mold/step-beam-1.png)
 
@@ -129,11 +128,9 @@ Cast front (rail) face down, back open.
 
 ![Beam, step 2](../../renders/mold/step-beam-2.png)
 
-3. Tube locators bolted through the end walls. Butter the support pads with thickened epoxy (about 3 mm), then the tubes between the locators, holes over the rod holes; back-edge filler on the top wall; dowels on their stops; greased 1/2 in rods through both walls and the tubes. Fill to the line.
+3. The steel box in, face plate down, greased M5 and M6 screws up through the floor into its tapped holes; greased 1/2 in rods through the top wall, the cap plates, the box, the seat plates and the bottom wall; back-edge filler on the top wall between the uprights; dowels on their stops. Fill to the line through the back plate's windows.
 
 ![Beam, step 3](../../renders/mold/step-beam-3.png)
-
-![A tube locator](../../renders/mold/detail-locator.png)
 
 ## 8. Pour
 
@@ -179,24 +176,24 @@ edge on the floor). The templates carry the same holes at full size.
 | 1 | 80 | 20 | 4.5 | cleat |
 | 2 | 324 | 20 | 4.5 | cleat |
 | 3 | 568 | 20 | 4.5 | cleat |
-| 4 | 174 | 79 | 5.5 | M5 insert screw |
-| 5 | 294 | 79 | 5.5 | M5 insert screw |
-| 6 | 354 | 79 | 5.5 | M5 insert screw |
-| 7 | 474 | 79 | 5.5 | M5 insert screw |
+| 4 | 174 | 79 | 5.5 | M5 screw into the face plate |
+| 5 | 294 | 79 | 5.5 | M5 screw into the face plate |
+| 6 | 354 | 79 | 5.5 | M5 screw into the face plate |
+| 7 | 474 | 79 | 5.5 | M5 screw into the face plate |
 | 8 | 20 | 99 | 4.5 | cleat |
 | 9 | 628 | 99 | 4.5 | cleat |
-| 10 | 94 | 106 | 6.5 | M6 insert screw |
-| 11 | 107 | 106 | 6.5 | M6 insert screw |
-| 12 | 452 | 106 | 6.5 | M6 insert screw |
-| 13 | 94 | 152 | 6.5 | M6 insert screw |
-| 14 | 107 | 152 | 6.5 | M6 insert screw |
-| 15 | 452 | 152 | 6.5 | M6 insert screw |
+| 10 | 94 | 106 | 6.5 | M6 screw into the face plate |
+| 11 | 107 | 106 | 6.5 | M6 screw into the face plate |
+| 12 | 452 | 106 | 6.5 | M6 screw into the face plate |
+| 13 | 94 | 152 | 6.5 | M6 screw into the face plate |
+| 14 | 107 | 152 | 6.5 | M6 screw into the face plate |
+| 15 | 452 | 152 | 6.5 | M6 screw into the face plate |
 | 16 | 20 | 159 | 4.5 | cleat |
 | 17 | 628 | 159 | 4.5 | cleat |
-| 18 | 174 | 179 | 5.5 | M5 insert screw |
-| 19 | 294 | 179 | 5.5 | M5 insert screw |
-| 20 | 354 | 179 | 5.5 | M5 insert screw |
-| 21 | 474 | 179 | 5.5 | M5 insert screw |
+| 18 | 174 | 179 | 5.5 | M5 screw into the face plate |
+| 19 | 294 | 179 | 5.5 | M5 screw into the face plate |
+| 20 | 354 | 179 | 5.5 | M5 screw into the face plate |
+| 21 | 474 | 179 | 5.5 | M5 screw into the face plate |
 | 22 | 80 | 238 | 4.5 | cleat |
 | 23 | 324 | 238 | 4.5 | cleat |
 | 24 | 568 | 238 | 4.5 | cleat |
@@ -215,12 +212,11 @@ edge on the floor). The templates carry the same holes at full size.
 | 6 | 81 | 115 | 13.1 | 1/2 core rod |
 | 7 | 487 | 115 | 13.1 | 1/2 core rod |
 | 8 | 531 | 115 | 13.1 | 1/2 core rod |
-| 9 | 84 | 133 | 4.5 | back-edge |
-| 10 | 219 | 133 | 4.5 | back-edge |
-| 11 | 351 | 133 | 4.5 | back-edge |
-| 12 | 484 | 133 | 4.5 | back-edge |
-| 13 | 33 | 154 | 4.5 | corner bracket |
-| 14 | 535 | 154 | 4.5 | corner bracket |
+| 9 | 163 | 133 | 4.5 | back-edge |
+| 10 | 285 | 133 | 4.5 | back-edge |
+| 11 | 403 | 133 | 4.5 | back-edge |
+| 12 | 33 | 154 | 4.5 | corner bracket |
+| 13 | 535 | 154 | 4.5 | corner bracket |
 
 #### Beam bottom wall
 
@@ -247,10 +243,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 70 | 45 | 4.5 | tube locator |
-| 2 | 70 | 96 | 4.5 | tube locator |
-| 3 | 14 | 154 | 4.5 | corner bracket |
-| 4 | 126 | 154 | 4.5 | corner bracket |
+| 1 | 14 | 154 | 4.5 | corner bracket |
+| 2 | 126 | 154 | 4.5 | corner bracket |
 
 #### Beam end wall, right
 
@@ -258,10 +252,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 70 | 45 | 4.5 | tube locator |
-| 2 | 70 | 96 | 4.5 | tube locator |
-| 3 | 14 | 154 | 4.5 | corner bracket |
-| 4 | 126 | 154 | 4.5 | corner bracket |
+| 1 | 14 | 154 | 4.5 | corner bracket |
+| 2 | 126 | 154 | 4.5 | corner bracket |
 
 #### Beam cleat, top
 

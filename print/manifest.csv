@@ -3,7 +3,6 @@ base-box,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 base-box,kit-partition-bracket.stl,kit,2,44 x 44 x 23,18,
 base-box,kit-saddle.stl,kit,6,53 x 31 x 25,73,The rear half needs six; four move over for the front half.
 base-box,kit-leg-holder.stl,kit,4,72 x 72 x 40,104,Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20).
-base-box,kit-bar-hanger.stl,kit,8,24 x 16 x 55,97,Bolts to the side of a bridge; an M5 x 60 screw down through it holds the anchor bar flush with the pour line. The rear half needs 8; 4 move over for the front.
 base-rear,former-gutter-L-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
 base-rear,former-gutter-L-part2of3.stl,former,1,15 x 124 x 10,8,
 base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,8,
@@ -22,13 +21,14 @@ base-front,former-trough-part2of5.stl,former,1,116 x 35 x 23,24,
 base-front,former-trough-part3of5.stl,former,1,116 x 35 x 33,27,
 base-front,former-trough-part4of5.stl,former,1,116 x 35 x 24,25,
 base-front,former-trough-part5of5.stl,former,1,112 x 35 x 21,23,
-base-front,filler-corner-L.stl,filler,1,40 x 40 x 110,25,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
-base-front,filler-corner-R.stl,filler,1,40 x 40 x 110,25,"Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls."
+base-front,filler-corner-L.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
+base-front,filler-corner-R.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
 base-rear,former-split-gasket-groove-part1of4.stl,former,1,145 x 14 x 8,2,Pins into the partition.
 base-rear,former-split-gasket-groove-part2of4.stl,former,1,145 x 4 x 8,2,
 base-rear,former-split-gasket-groove-part3of4.stl,former,1,145 x 4 x 8,2,
 base-rear,former-split-gasket-groove-part4of4.stl,former,1,145 x 14 x 8,2,
-base-front,core-center-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
+base-front,core-center-a-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
+base-front,core-center-b-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-center-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-outboard-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-trough-band-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
@@ -48,7 +48,10 @@ base-rear,core-knee-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push 
 base-rear,core-outer-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-outer-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-rear-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,kit-spigot-bushing.stl,kit,2,80 x 80 x 22,42,Push fit in a 2-1/2 in hole-saw hole; flange on the far side.
+base-front,plug-draw-pocket-L.stl,plug,1,32 x 32 x 62,13,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
+base-front,plug-draw-pocket-R.stl,plug,1,32 x 32 x 62,13,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
+base-rear,plug-draw-pocket-L.stl,plug,1,32 x 32 x 26,5,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
+base-rear,plug-draw-pocket-R.stl,plug,1,32 x 32 x 26,5,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
@@ -57,26 +60,19 @@ upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 129 x 8,8,Pins into
 upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 129 x 8,3,
 upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 129 x 8,3,
 upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 129 x 8,8,
-upright,plug-slope-plug-lower.stl,plug,2,42 x 75 x 41,31,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,plug-slope-plug-upper.stl,plug,2,42 x 75 x 41,31,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,plug-toe-plug.stl,plug,2,32 x 76 x 46,27,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
-beam,filler-back-edge-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
-beam,filler-back-edge-part2of4.stl,filler,1,136 x 40 x 40,24,
-beam,filler-back-edge-part3of4.stl,filler,1,136 x 40 x 40,24,
-beam,filler-back-edge-part4of4.stl,filler,1,132 x 40 x 40,24,
-beam,kit-tube-locator.stl,kit,4,43 x 43 x 51,52,"Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end."
+beam,filler-back-edge-part1of3.stl,filler,1,124 x 40 x 40,22,Rounded back edge between the uprights; bolts to the top wall.
+beam,filler-back-edge-part2of3.stl,filler,1,124 x 40 x 40,22,
+beam,filler-back-edge-part3of3.stl,filler,1,120 x 40 x 40,22,
 beam,kit-dowel-stop.stl,kit,2,18 x 18 x 6,2,Pushes into the dowel hole from outside so the dowel stands 15 mm proud.
 tools,kit-pour-gauge.stl,kit,2,25 x 29 x 24,11,"Clips over a wall top; its inner leg ends 25 mm down, on the pour line. Pencil along it all round the mold, and check the fill against it."
 tools,kit-screed-shoe.stl,kit,2,49 x 27 x 32,26,A pair: rest them on two facing wall tops and drop a straight board (on edge) into them; its bottom edge sits on the pour line. Slide it along to strike off.
-base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,43 x 10 x 43,17,"Cast in, stays."
-base-front,cast-in-base-front-spigot-sleeve-l.stl,cast-in,2,43 x 69 x 43,25,"Cast in, stays."
 base-front,cast-in-leg-front-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
-base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,43 x 10 x 43,17,"Cast in, stays."
-base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,43 x 69 x 43,25,"Cast in, stays."
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
-upright,cast-in-rod-sleeve-l1a.stl,cast-in,8,16 x 16 x 110,66,"Cast in, stays."
-machine,part-pocket-cap-l3.stl,part,4,42 x 64 x 32,60,
+upright,cast-in-column-ring-l1a.stl,cast-in,8,43 x 43 x 12,127,"Cast in, stays."
+machine,part-pocket-cap-l3.stl,part,2,32 x 65 x 37,27,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,10,
 machine,part-chain-mount-moving.stl,part,1,37 x 123 x 45,24,
 machine,part-sump-filter-frame-part1of2.stl,part,1,148 x 6 x 92,26,

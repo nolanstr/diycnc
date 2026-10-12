@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**146 prints, 1.36 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**124 prints, 1.12 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -58,7 +58,7 @@ Folder `print/tools/`, about 29 g.
 
 ## Base mold kit (both halves)
 
-Folder `print/base-box/`, about 272 g.
+Folder `print/base-box/`, about 187 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -66,11 +66,10 @@ Folder `print/base-box/`, about 272 g.
 | `kit-partition-bracket.stl` | Mold kit (reused) | 2 | 44 x 44 x 23 | 14 |  |
 | `kit-saddle.stl` | Mold kit (reused) | 6 | 53 x 31 x 25 | 58 | The rear half needs six; four move over for the front half. |
 | `kit-leg-holder.stl` | Mold kit (reused) | 4 | 72 x 72 x 40 | 82 | Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20). |
-| `kit-bar-hanger.stl` | Mold kit (reused) | 8 | 24 x 16 x 55 | 84 | Bolts to the side of a bridge; an M5 x 60 screw down through it holds the anchor bar flush with the pour line. The rear half needs 8; 4 move over for the front. |
 
 ## Base, rear half (cast first)
 
-Folder `print/base-rear/`, about 228 g.
+Folder `print/base-rear/`, about 168 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -98,14 +97,13 @@ Folder `print/base-rear/`, about 228 g.
 | `core-outer-a-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outer-b-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-rear-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `kit-spigot-bushing.stl` | Mold kit (reused) | 2 | 80 x 80 x 22 | 34 | Push fit in a 2-1/2 in hole-saw hole; flange on the far side. |
-| `cast-in-base-rear-tube-plug-l.stl` | Cast-in part (stays in) | 2 | 43 x 10 x 43 | 15 | Cast in, stays. |
-| `cast-in-base-rear-spigot-sleeve-l.stl` | Cast-in part (stays in) | 2 | 43 x 69 x 43 | 22 | Cast in, stays. |
+| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 26 | 5 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
+| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 26 | 5 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
 | `cast-in-leg-rear-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
 
 ## Base, front half
 
-Folder `print/base-front/`, about 284 g.
+Folder `print/base-front/`, about 268 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -118,9 +116,10 @@ Folder `print/base-front/`, about 284 g.
 | `former-trough-part3of5.stl` | Former (removable) | 1 | 116 x 35 x 33 | 25 |  |
 | `former-trough-part4of5.stl` | Former (removable) | 1 | 116 x 35 x 24 | 23 |  |
 | `former-trough-part5of5.stl` | Former (removable) | 1 | 112 x 35 x 21 | 21 |  |
-| `filler-corner-L.stl` | Filler (removable) | 1 | 40 x 40 x 110 | 21 | Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls. |
-| `filler-corner-R.stl` | Filler (removable) | 1 | 40 x 40 x 110 | 21 | Rounded corner, and the plug that forms the draw-rod nut pocket; bolts to the floor and both walls. |
-| `core-center-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
+| `filler-corner-L.stl` | Filler (removable) | 1 | 40 x 40 x 110 | 16 | Rounded corner; bolts to the floor and both walls. |
+| `filler-corner-R.stl` | Filler (removable) | 1 | 40 x 40 x 110 | 17 | Rounded corner; bolts to the floor and both walls. |
+| `core-center-a-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
+| `core-center-b-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outboard-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-trough-band-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-draw-rod-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
@@ -129,13 +128,13 @@ Folder `print/base-front/`, about 284 g.
 | `core-trough-band-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-draw-rod-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-foot-a-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `cast-in-base-front-tube-plug-l.stl` | Cast-in part (stays in) | 2 | 43 x 10 x 43 | 15 | Cast in, stays. |
-| `cast-in-base-front-spigot-sleeve-l.stl` | Cast-in part (stays in) | 2 | 43 x 69 x 43 | 22 | Cast in, stays. |
+| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 62 | 12 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
+| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 62 | 12 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
 | `cast-in-leg-front-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
 
 ## Uprights (two molds: print quantities are for both)
 
-Folder `print/upright/`, about 274 g.
+Folder `print/upright/`, about 289 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -147,32 +146,29 @@ Folder `print/upright/`, about 274 g.
 | `former-foot-gasket-groove-part2of4.stl` | Former (removable) | 2 | 4 x 129 x 8 | 2 |  |
 | `former-foot-gasket-groove-part3of4.stl` | Former (removable) | 2 | 4 x 129 x 8 | 2 |  |
 | `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 2 | 68 x 129 x 8 | 6 |  |
-| `plug-slope-plug-lower.stl` | Plug (removable) | 2 | 42 x 75 x 41 | 30 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
-| `plug-slope-plug-upper.stl` | Plug (removable) | 2 | 42 x 75 x 41 | 30 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
+| `plug-toe-plug.stl` | Plug (removable) | 2 | 32 x 76 x 46 | 26 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
 | `kit-plate-spacer.stl` | Mold kit (reused) | 4 | 16 x 16 x 31 | 15 | Between the bridge and the top plate, on its greased 3/8 bolt. |
-| `cast-in-rod-sleeve-l1a.stl` | Cast-in part (stays in) | 8 | 16 x 16 x 110 | 61 | Cast in, stays. |
+| `cast-in-column-ring-l1a.stl` | Cast-in part (stays in) | 8 | 43 x 43 x 12 | 109 | Cast in, stays. |
 
 ## Beam
 
-Folder `print/beam/`, about 153 g.
+Folder `print/beam/`, about 86 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
 | `kit-corner-bracket.stl` | Mold kit (reused) | 4 | 50 x 50 x 23 | 33 |  |
-| `filler-back-edge-part1of4.stl` | Filler (removable) | 1 | 136 x 40 x 40 | 19 | Rounded back edge; bolts to the top wall. |
-| `filler-back-edge-part2of4.stl` | Filler (removable) | 1 | 136 x 40 x 40 | 19 |  |
-| `filler-back-edge-part3of4.stl` | Filler (removable) | 1 | 136 x 40 x 40 | 19 |  |
-| `filler-back-edge-part4of4.stl` | Filler (removable) | 1 | 132 x 40 x 40 | 19 |  |
-| `kit-tube-locator.stl` | Mold kit (reused) | 4 | 43 x 43 x 51 | 43 | Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end. |
+| `filler-back-edge-part1of3.stl` | Filler (removable) | 1 | 124 x 40 x 40 | 17 | Rounded back edge between the uprights; bolts to the top wall. |
+| `filler-back-edge-part2of3.stl` | Filler (removable) | 1 | 124 x 40 x 40 | 18 |  |
+| `filler-back-edge-part3of3.stl` | Filler (removable) | 1 | 120 x 40 x 40 | 17 |  |
 | `kit-dowel-stop.stl` | Mold kit (reused) | 2 | 18 x 18 x 6 | 1 | Pushes into the dowel hole from outside so the dowel stands 15 mm proud. |
 
 ## Machine parts
 
-Folder `print/machine/`, about 117 g.
+Folder `print/machine/`, about 90 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
-| `part-pocket-cap-l3.stl` | Machine part | 4 | 42 x 64 x 32 | 50 |  |
+| `part-pocket-cap-l3.stl` | Machine part | 2 | 32 x 65 x 37 | 23 |  |
 | `part-chain-mount-fixed.stl` | Machine part | 1 | 25 x 38 x 21 | 8 |  |
 | `part-chain-mount-moving.stl` | Machine part | 1 | 37 x 123 x 45 | 18 |  |
 | `part-sump-filter-frame-part1of2.stl` | Machine part | 1 | 148 x 6 x 92 | 20 |  |

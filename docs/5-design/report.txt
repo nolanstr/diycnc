@@ -12,17 +12,17 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
-Epoxy granite volume:         51.4 L
-Casting mass:                 130 kg (287 lb)
-  Base front:                  13.0 L   30.5 kg
-  Base rear:                   17.8 L   41.9 kg
-  Upright L:                    5.6 L   15.7 kg  (alumina grit)
-  Upright R:                    5.6 L   15.7 kg  (alumina grit)
-  Beam:                         9.4 L   26.3 kg  (alumina grit)
-Cast-in steel + joint hardware: 25.6 kg
-Epoxy needed (~8.5% of the sand mix by mass): 10.3 kg
-Aluminum oxide grit, brown #16 (coarse sand): 19.8 kg (beam + uprights)
-Aluminum oxide grit, black 70 grit (fine sand): 10.2 kg (beam + uprights)
+Epoxy granite volume:         47.9 L
+Casting mass:                 121 kg (266 lb)
+  Base front:                  13.1 L   30.7 kg
+  Base rear:                   17.5 L   41.1 kg
+  Upright L:                    4.5 L   12.5 kg  (alumina grit)
+  Upright R:                    4.5 L   12.5 kg  (alumina grit)
+  Beam:                         8.5 L   23.8 kg  (alumina grit)
+Cast-in steel + joint hardware: 59.0 kg
+Epoxy needed (~8.5% of the sand mix by mass): 9.6 kg
+Aluminum oxide grit, brown #16 (coarse sand): 16.7 kg (beam + uprights)
+Aluminum oxide grit, black 70 grit (fine sand): 8.7 kg (beam + uprights)
 
 Linear motion / plate BOM
 -------------------------
@@ -46,19 +46,17 @@ Linear motion / plate BOM
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
-  frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 18 (riser hold-downs); M6 x 15 long: 6 (Y BK/BF on the base) buy
-  frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 2 pads (~4 in of bar), 6 tapped holes buy
-  frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
-  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 3/4 in holes per tube, marked from its middle) buy
-  frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 2 x 6 in (spigots), 4 x 6 in (legs)  buy
-  frame    Printed PETG: 4 spigot sleeves, 8 tube end plugs, 4 dark gray pocket caps, 8 tie-rod sleeves ~250 g                               PRINT
-  frame    Steel plate 1/2 in, laser cut (docs/1-sourcing/laser/top-plate-*.dxf): upright top plates, two layers each; tap the lower layer's four 3/8-16 holes 2 x lower, 2 x upper, 68 x 168       buy
-  frame    Steel plate 3/8 in, laser cut (docs/1-sourcing/laser/anchor-bar-*.dxf): base anchor bars; tap the small holes M5 2 x 56 x 76, 2 x 225 x 76            buy
-  frame    1/2-13 threaded rod (hardware store)                 4 x 375, 2 x 316, 2 x 196 (uprights), 2 x 358 (base draw rods) buy
-  frame    1/2-13 nut + 1/2 in SAE washer (uprights: two nuts and one washer per tie rod; draw rods: one each) 18 nuts, 10 washers                  buy
-  frame    1/2 x 1-1/2 in fender washer (under the slope tie-rod nuts) 4 pcs                                buy
+  frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 0 (riser hold-downs); M6 x 15 long: 0 (Y BK/BF on the base) buy
+  frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 0 pads (~4 in of bar), 0 tapped holes buy
+  frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + -8; 0; 0                         buy
+  frame    Laser-cut steel plate (docs/1-sourcing/laser/README.md lists every part) 4 x 1/2 in, 32 x 1/4 in, 28 x 3/8 in, 48 kg buy
+  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall), bought at length 4 x 8 in (upright columns)           buy
+  frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 6 in (legs)                      buy
+  frame    Printed PETG: 8 column rings, 4 leg plugs, 2 dark gray pocket caps ~60 g                                PRINT
+  frame    1/2-13 threaded rod (hardware store)                 4 x 375, 2 x 153 (uprights), 2 x 687 (base draw rods) buy
+  frame    1/2-13 nut + 1/2 in SAE washer (two of each per tie rod and draw rod) 16 of each                           buy
   frame    3/8-16 x 6-1/2 in grade 8 bolt + washer (beam)       8 pcs                                buy
-  frame    Dowel pin 3/8 x 1-1/4 in                             6 pcs                                buy
+  frame    Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split) 6 + 4 pcs                            buy
   frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.7 m                                buy
   frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
   coolant  Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base 1                                    buy
@@ -92,10 +90,9 @@ Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)
 Steel cut to length (+/-3.2 mm allowed; tubes +/-0.5 mm across the flats, printed fits 0.50 mm a side)
 --------------------------------------------------------------------------------------------------
   Piece              Set from (datum)                                   Error goes to                        Room
-  Base tubes (4)     split end, against the partition / the rear half   outer end, in the casting            13.1 mm ok
-  Legs (4)           set proud of the leg holder                        top end, in the casting               4.0 mm ok
-  Beam tubes (2)     holes, marked from the measured middle             both ends, on the locators           13.9 mm ok
-  Spigots (2)        a mark at the middle, at the split                 both ends, inside the tubes          12.4 mm ok
+  Legs (4)           top end, up against its leg plate                  the foot end, taken up by the leveling foot 15.0 mm ok
+  Upright columns (4) top end, against the top plate                     an epoxy bed on the foot plate        8.0 mm ok
+  Draw rods (2, cut) a nut on the front cross plate                     the tail behind the back nut          6.0 mm ok
   Top plates (2)     bolted to the mold bridge                          all edges, 6 mm inside the casting    6.0 mm ok
   Tie rods (8, cut)  screwed up flush with the plate / the slope nut    the tail under the bottom nut         6.0 mm ok
 
