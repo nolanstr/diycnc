@@ -2,7 +2,7 @@ folder,file,kind,qty,size,grams,note
 base-box,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 base-box,kit-partition-bracket.stl,kit,2,44 x 44 x 23,18,
 base-box,kit-saddle.stl,kit,6,53 x 31 x 25,73,The rear half needs six; four move over for the front half.
-base-box,kit-leg-holder.stl,kit,4,72 x 72 x 40,105,Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20).
+base-box,kit-leg-holder.stl,kit,4,72 x 72 x 40,104,Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20).
 base-rear,former-gutter-L-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
 base-rear,former-gutter-L-part2of3.stl,former,1,15 x 124 x 10,8,
 base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,8,
@@ -50,7 +50,7 @@ base-rear,core-outer-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: pu
 base-rear,core-outer-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-rear-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,plug-socket-spike.stl,plug,4,14 x 14 x 20,8,Bolts to the floor; the foam socket block pushes over it (cut a 14 mm square hole 20 deep in the block).
-base-rear,kit-spigot-bushing.stl,kit,2,80 x 80 x 22,43,Push fit in a 2-1/2 in hole-saw hole; flange on the far side.
+base-rear,kit-spigot-bushing.stl,kit,2,80 x 80 x 22,42,Push fit in a 2-1/2 in hole-saw hole; flange on the far side.
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
@@ -63,23 +63,23 @@ upright,plug-slope-plug-lower.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in t
 upright,plug-slope-plug-upper.stl,plug,2,32 x 61 x 38,20,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,plug-tie-rod-pocket.stl,plug,4,32 x 32 x 49,35,Forms a top nut pocket: slides down its rod; the bridge holds it down.
 upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
-upright,kit-post-bushing.stl,kit,4,80 x 80 x 22,85,"Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath."
+upright,kit-post-bushing.stl,kit,4,80 x 80 x 22,84,"Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 beam,filler-back-edge-part1of4.stl,filler,1,136 x 40 x 40,24,Rounded back edge; bolts to the top wall.
 beam,filler-back-edge-part2of4.stl,filler,1,136 x 40 x 40,24,
 beam,filler-back-edge-part3of4.stl,filler,1,136 x 40 x 40,24,
 beam,filler-back-edge-part4of4.stl,filler,1,132 x 40 x 40,24,
-beam,kit-tube-locator.stl,kit,4,44 x 44 x 51,47,"Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end."
+beam,kit-tube-locator.stl,kit,4,43 x 43 x 51,52,"Square end into the tube, stem to the end wall, M4 x 70 through the wall into a nut slid in from inside the tube. Leaves a 16 mm hole in each beam end."
 beam,kit-dowel-stop.stl,kit,2,18 x 18 x 11,3,Pushes into the dowel hole from outside so the dowel stands 10 mm proud.
 tools,kit-pour-gauge.stl,kit,2,25 x 29 x 24,11,"Clips over a wall top; its inner leg ends 25 mm down, on the pour line. Pencil along it all round the mold, and check the fill against it."
 tools,kit-screed-shoe.stl,kit,2,49 x 27 x 32,26,A pair: rest them on two facing wall tops and drop a straight board (on edge) into them; its bottom edge sits on the pour line. Slide it along to strike off.
-base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,42 x 10 x 42,14,"Cast in, stays."
-base-front,cast-in-base-front-spigot-sleeve-l.stl,cast-in,2,44 x 69 x 44,35,"Cast in, stays."
-base-front,cast-in-leg-front-l-plug.stl,cast-in,2,30 x 30 x 10,8,"Cast in, stays."
-base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,42 x 10 x 42,14,"Cast in, stays."
-base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,44 x 69 x 44,35,"Cast in, stays."
-base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,30 x 30 x 10,8,"Cast in, stays."
-upright,cast-in-post-l1-plug.stl,cast-in,4,30 x 30 x 10,16,"Cast in, stays."
+base-front,cast-in-base-front-tube-plug-l.stl,cast-in,2,43 x 10 x 43,17,"Cast in, stays."
+base-front,cast-in-base-front-spigot-sleeve-l.stl,cast-in,2,43 x 69 x 43,25,"Cast in, stays."
+base-front,cast-in-leg-front-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
+base-rear,cast-in-base-rear-tube-plug-l.stl,cast-in,2,43 x 10 x 43,17,"Cast in, stays."
+base-rear,cast-in-base-rear-spigot-sleeve-l.stl,cast-in,2,43 x 69 x 43,25,"Cast in, stays."
+base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
+upright,cast-in-post-l1-plug.stl,cast-in,4,31 x 31 x 10,19,"Cast in, stays."
 machine,part-pocket-cap-l3.stl,part,4,32 x 52 x 29,38,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,10,
 machine,part-chain-mount-moving.stl,part,1,37 x 123 x 45,24,

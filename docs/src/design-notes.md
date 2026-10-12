@@ -15,7 +15,7 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 | Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x 1/2-13 draw rods, the coolant outlet | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face. Cast against the rear half, so the joint fits by construction |
 | Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), 4 printed socket liners, 1/2-13 coupling nuts, O-ring groove on the split face | - |
 | Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts are grouted into the oversize sockets at first assembly (waxed, so they lift out), a dowel locates it, 4x 1/2-13 tie rods pull it down (two from pockets at the top, two from pockets in the sloped front) |
-| Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 14 mm where the inner cap screws pass | A dowel (grouted into an oversize plate hole at first assembly) and 4x 3/8-16 bolts per side into the upright top plates |
+| Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 3/4 in where the inner cap screws pass | A dowel (grouted into an oversize plate hole at first assembly) and 4x 3/8-16 bolts per side into the upright top plates |
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
 used at the lengths they're sold in: tube in 18, 12 and 6 in pieces of two US sizes (remnants
@@ -82,8 +82,39 @@ on the castings with a thin epoxy grout and held down by counterbored M5 screws 
 rail, between its own screws) into cast-in inserts: 5 per riser on the base (Y), 4 on the beam
 (X). The Y ballscrew supports (BK12/BF12) bolt into M6 inserts in the base top. The X supports
 (BK10/BF10) sit over the front beam tube, where an insert won't fit, so they bolt to two
-1/4 in steel pads cast flush into the beam face and bearing on the tube. The Z axis mounts on
+1/4 in steel pads cast flush into the beam face and bedded onto the tube with thickened epoxy. The Z axis mounts on
 the aluminum plates and needs no inserts. See the build guide.
+
+**Load path.** The castings carry the load; the steel is where load changes hands. A cutting
+force goes spindle, Z plate, Z and X blocks, X rails, steel risers, beam casting; then at each end
+four 3/8-16 grade 8 bolts and a dowel into a 3/8 in steel plate cast into the upright top; the upright
+casting; four 1/2-13 tie rods per upright into steel couplers cast 35-70 mm down in the base, with the
+foot bearing on the base top and two grouted steel posts in sockets taking the shear; the base halves,
+clamped face to face by two draw rods, with the steel spigots in the rail tubes keeping them in line;
+and back up through the Y risers, rails and blocks to the table. Every bolted joint is steel thread in
+steel (plates, couplers, nuts) or a cast-in brass insert, never a thread cut in epoxy granite, and every joint bears
+on a big flat epoxy face under preload. The stiffness study treats the joints as bonded, which is
+what that preload is for.
+
+The cast-in tubes aren't welded into one frame, on purpose. A welded skeleton would have to be one
+casting (about 150 kg, one mold) or be welded after casting (the heat ruins the epoxy next to it); it
+would add steel and weight; and it would make the frame one piece that can't be moved in parts,
+re-cast one member at a time, or rebuilt with a longer beam. It also wouldn't help much: the
+frame is already about 2-4 times stiffer at the tool (84-125 N/um) than the ballscrews (30-50 N/um),
+and the study found the tubes inside the members worth 1 % (base) and 6-7 % (beam). What does
+pay is keeping the joints flat, clean and preloaded, which is why they're cast against each other
+or grouted.
+
+**Steel tolerances.** Nothing is cut at home, but a supplier's saw cut is only good to about
+1/8 in, and A500 tube is about 0.5 mm off nominal with a weld seam inside. Each cast-in piece is
+set from one end, and its other end has room (`tube_cut_tol`, checked in the report). The base
+tubes are set from the split end; the posts stand on the bench and have 6 mm under the top plate;
+the legs are set from their holders; the beam tubes are set by the rods through their 3/4 in
+holes, marked from each tube's middle, and their ends float on the locators. Printed parts that
+fit on or into tube have 0.5 mm a side (`tube_fit`) and grooves for the seam, so the socket grout
+gap went to 2.5 mm a side. The X support pads are bedded onto the beam tube with thickened epoxy
+across a 1.5 mm gap instead of being expected to touch it. If the tube that arrives is
+further off, put its calipered sizes in `frame_tube` / `post_tube` and re-run before printing.
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;

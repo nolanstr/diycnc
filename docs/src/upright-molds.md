@@ -53,13 +53,13 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 45 bolt | 14 |
 | 1/2-13 x 1-1/2 in bolt + nut, greased (forms the dowel hole) | 2 |
 | 3/8-16 x 2-1/2 in bolt, greased (holds the top plate) | 4 |
-| 5/8 in plain steel rod, greased (forms a tie-rod hole), cut to 140 mm, 243 mm, 377 mm, 377 mm | 2 |
+| 5/8 in plain steel rod, greased (forms a tie-rod hole), cut to 144 mm, 247 mm, 381 mm, 381 mm | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
 ## 3. Print
 
-46 prints, 0.34 kg, about 26 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+46 prints, 0.34 kg, about 27 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -76,10 +76,10 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `upright/plug-slope-plug-upper.stl` | 2 | 19 | 45m 47s |
 | `upright/plug-tie-rod-pocket.stl` | 4 | 33 | 39m 54s |
 | `upright/kit-plate-spacer.stl` | 4 | 15 | 20m 9s |
-| `upright/kit-post-bushing.stl` | 4 | 68 | 1h 11m 49s |
+| `upright/kit-post-bushing.stl` | 4 | 67 | 1h 11m 51s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `upright/cast-in-post-l1-plug.stl` | 4 | 14 | 15m 49s |
+| `upright/cast-in-post-l1-plug.stl` | 4 | 16 | 24m 37s |
 
 ## 4. Cut the boards
 
@@ -142,7 +142,7 @@ Cast foot down. Build two of everything.
 
 ![Upright, step 3](../../renders/mold/step-upright-3.png)
 
-4. Mold on its four 2x4 blocks. Posts up through the bushings; greased 5/8 in rods up through the floor (short ones into the slope plugs, long ones to the top); dowel-hole bolt from underneath.
+4. Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends nearer the top plate: 6 mm room); greased 5/8 in rods up through the floor (short ones into the slope plugs, long ones to the top); dowel-hole bolt from underneath.
 
 ![Upright, step 4](../../renders/mold/step-upright-4.png)
 
@@ -177,6 +177,8 @@ Cast foot down. Build two of everything.
 | Bracket or saddle loose on the board | Board thinner than set: tape shim, or set `mold_board` and reprint |
 | Pin won't go in | Run the 1/8 in bit through again; trim the pin tip |
 | Foam core moves | Tighten its post bolt; carpet tape under it |
+| Printed part won't go on or into a steel tube | File the weld seam; sand the part. Several tight: caliper the tube, put its sizes in `frame_tube` / `post_tube`, re-run and reprint |
+| Printed part loose on a tube | A wrap of tape round the part |
 | Leak at a corner | Silicone fillet inside before waxing; check the brackets and diagonals |
 | Former stuck after curing | Bolts out first, then a dowel and a light tap |
 
