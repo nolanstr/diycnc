@@ -8,30 +8,29 @@ the cost. The repository layout and the rebuild commands are in the top-level `R
 
 ## Frame
 
-Five castings that bolt together. Each is a **steel skeleton** of laser-cut plates (and four tube
-columns in the uprights), slotted together and clamped with threaded rod, cast into **epoxy granite**,
-which damps it and adds stiffness. The steel is the frame: every joint between castings, and every
-rail, riser and ballscrew support, bolts steel to steel. Nothing is welded, and nothing is threaded
-into the epoxy granite (the enclosure's 11 M5 inserts are the only ones left).
+Five castings that bolt together. Each is a **steel skeleton** of stock flat bar and tube, cut to length,
+drilled from printed templates and clamped with threaded rod, cast into **epoxy granite**, which damps it
+and adds stiffness. The steel is the frame: every joint between castings, and every rail, riser and
+ballscrew support, bolts steel to steel. Nothing is welded, nothing is custom-cut, and nothing is
+threaded into the epoxy granite (the enclosure's 11 M5 inserts are the only ones left).
 
-| Module | Steel skeleton | Joins to |
+| Module | Steel skeleton (all stock) | Joins to |
 |---|---|---|
-| Base, two halves | A grid of slotted plates per half: a girder under each Y rail (tapped rail bar on top, web, bottom bar, end plates), a pedestal under each upright (seat plate, two webs, bottom bar), cross plates at the split and under the Y ballscrew supports (tapped pads), plates down to the legs | The halves meet end plate to end plate on four dowel pins, clamped by two 1/2-13 draw rods that run along the girders from a front pocket to a back pocket. The front half is cast against the rear, so the joint fits by construction |
-| Upright (x2), a raked buttress | A 3/8 in foot plate, two 2x2 tube columns, a brace plate up the slope, the two-layer 1/2 in top plate; O-ring groove under the foot | Its foot plate bears on the base pedestal's seat plate. Three 1/2-13 tie rods (two inside the columns, from nuts held in the top plate; one from the toe, onto the foot plate) run right through the pedestal to its bottom bar. Two dowels, grouted into the foot at first assembly, locate it |
-| Beam (140 deep x 140 high) | A box: a tapped 3/8 in face plate (the rail face), a back plate, five diaphragms, and a seat and a cap plate at each end | The seat plates bear on the upright top plates; at each end four 3/8-16 x 6-1/2 in grade 8 bolts clamp cap plate, box and seat plate down into the top plate, and a dowel (grouted at first assembly) locates it |
+| Base, two halves | Per half: a 2x3 tube girder under each Y rail with a tapped 3/8 x 1-1/2 in rail bar bolted on top and a 3/8 x 2-1/2 in end plate at each end; a pedestal under each upright (3/8 x 2-1/2 in seat and bottom bars, a 2x2 tube spacer round each tie rod); 1-1/2 in cross tubes from girder to girder (at the split and under the Y ballscrew supports, with tapped pads bolted on) and from each girder to its pedestal, each clamped by a 1/2-13 rod | The halves meet end plate to end plate on four dowel pins, clamped by two 1/2-13 draw rods that run inside the girders from a front pocket to a back pocket. The front half is cast against the rear, so the joint fits by construction |
+| Upright (x2), a raked buttress | A 3/8 x 2 in flat-bar foot, two 2x2 tube columns, a top plate of two 1/2 x 2-1/2 in flat bars (the lower one tapped); O-ring groove under the foot | Its foot bar bears on the base pedestal's seat bar. Three 1/2-13 tie rods (two inside the columns, screwed into the top plate; one from the toe, onto the foot bar) run right through the pedestal to its bottom bar. Two dowels, grouted into the foot at first assembly, locate it |
+| Beam (140 deep x 146 high) | A 3/8 x 5 in face bar (the rail face, tapped) and back bar, held apart by three pipe nipples on studs; a 3/8 x 2-1/2 in seat and cap bar at each end | The seat bars bear on the upright top plates; at each end four 3/8-16 grade B7 studs, screwed into the top plate, clamp cap bar, face and back bars and seat bar down; a dowel (grouted at first assembly) locates it |
 
-**Nothing you buy gets cut.** The rails (including the 600 mm Y pair) and ballscrews are used at the
-lengths they're sold in; the tube is bought at length (8 in columns, 6 in legs); the risers and
-aluminum plates are ordered cut to size; the skeleton plates are laser cut from the DXFs in
-`docs/1-sourcing/laser/` (about 64 parts, 48 kg). The only cutting left is the 1/2-13 threaded rod.
-The only machining is tapping (the top plates, the base rail bars and pads, the beam face plate)
-and drilling and tapping the risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
-Wire-brush off rust and loose scale and degrease just before casting; paint only the part of each
-leg that hangs below the base.
+**Nothing is made to order.** The rails (including the 600 mm Y pair) and ballscrews are used at the
+lengths they're sold in; the skeletons are about 54 pieces of stock flat bar and tube (46 kg) cut to
+length (`docs/1-sourcing/steel/` has the cut list and the drilling templates); the risers and aluminum
+plates are ordered cut to size. The cutting left is the threaded rod; the machining is drilling and
+tapping (from the templates) and the risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
+Wire-brush off rust and loose scale and degrease just before casting; paint only the part of each leg
+that hangs below the base.
 
 **Keeping the epoxy down.** About 9.6 kg of epoxy (8.5 % of the 113 kg the castings would weigh with sand; 121 kg with the alumina):
-- The columns and legs stay hollow. Printed rings and plugs close their ends so no mix gets in.
-- Every skeleton plate has windows, so the epoxy granite runs through and locks onto both faces.
+- The tubes stay hollow (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
+  they're clamped between, or by printed rings and plugs, so no mix gets in.
 - The base's underside pockets follow the stiffness study below, with the steel grid in the ribs
   between them: two full-depth girders (80 mm wide) under the table rails, a
   full-depth tie between them across the split, a full-depth rib across the front of each
@@ -79,37 +78,37 @@ are grouted into oversize holes at first assembly, so two independent molds don'
 **What the rails and supports bolt to.** Steel. The rails screw into steel risers, and the risers
 are bedded on the castings with a thin epoxy grout and held down by counterbored M5 screws (under
 the rail, between its own screws) into the skeleton: the base's tapped rail bars (Y) and the beam's
-tapped face plate (X). The Y ballscrew supports (BK12/BF12) bolt into tapped pads on the base grid's
-cross plates; the X supports (BK10/BF10) into the beam's face plate. Behind every tapped hole the
-casting is relieved, where the greased mold screw stood. The Z axis mounts on the aluminum plates.
+tapped face bar (X). The Y ballscrew supports (BK12/BF12) bolt into tapped pads on the base grid's
+cross tubes; the X supports (BK10/BF10) into the beam's face bar. Behind every tapped hole there's room
+(the casting is relieved where the greased mold screw stood, or a relief hole is drilled in the tube
+below). The Z axis mounts on the aluminum plates.
 
 **Load path.** A cutting force goes spindle, Z plate, Z and X blocks, X rails, steel risers, the beam's
-face plate and its steel box; at each end the seat plate bears on the upright's top plate, clamped by
-four 3/8-16 grade 8 bolts; down the upright's columns and brace to its foot plate, which bears on
-the base pedestal's seat plate; the three tie rods clamp that whole stack (top plate, columns, foot
-plate, seat, pedestal webs, bottom bar) from the top plate to the nuts under the base; across the
-base grid (cross plates, girders, the split end plates on their dowel pins, clamped by the draw
+face bar and the steel behind it; at each end the seat bar bears on the upright's top plate, clamped by
+four 3/8-16 studs; down the upright's columns to its foot bar, which bears on the base pedestal's seat
+bar; the three tie rods clamp that whole stack (top plate, columns, foot bar, seat bar, pedestal
+spacers, bottom bar) from the top plate to the nuts under the base; across the base grid (the cross
+tubes and their rods, the girders, the split end plates on their dowel pins, clamped by the draw
 rods); and back up through the Y rail bars, risers, rails and blocks to the table. Steel all the way,
-and every nut and bolt in that chain can be reached and retightened: the tie-rod nuts under the base
-and in the toe pockets, the draw-rod nuts in the front and back pockets, the cap screws on the beam
-top. The epoxy granite around it is in compression where the rods clamp and everywhere it fills
-between the plates; it damps the frame and adds about half its stiffness again. The stiffness
-study treats it as bonded to the steel, which the windows in every plate (the casting runs through
-and locks both faces) and the clamping are for.
+and every nut in that chain can be reached and retightened: the tie-rod nuts under the base and in
+the toe pockets, the draw-rod nuts in the front and back pockets, the stud nuts on the beam top. The
+epoxy granite fills round and between the steel, in compression where the rods clamp; it damps the
+frame and adds stiffness. The stiffness study treats it as bonded to the steel.
 
-The steel is bolted, not welded. A welded skeleton would have to be welded before casting (and
-pulls out of square doing it) or after (the heat ruins the epoxy next to it), and it would make the
-frame one piece. Slotted plates go together square without a jig, the slots and the mold screws put
-every tapped face where the templates say, and the five castings still come apart.
+The steel is bolted, not welded. A welded skeleton would have to be welded before casting (and pulls
+out of square doing it) or after (the heat ruins the epoxy next to it), and it would make the frame
+one piece. Bolted from stock and drilled from templates, it goes together without a jig, the mold
+screws and dowels put every tapped face where the templates say, and the five castings still come
+apart.
 
-**Steel tolerances.** The plates are laser cut, so they're good to a few tenths. The tube is bought at
-length, and a supplier's saw cut is only good to about 1/8 in, with A500 tube about 0.5 mm off
-nominal and a weld seam inside; each tube is set from one end and its other end has room
-(`tube_cut_tol`, checked in the report). Each column is clamped up against its top plate, its foot
-in a 4.8 mm epoxy bed on the foot plate; each leg is pushed up against its leg plate, its leveling
-foot taking up the rest; the rods are screwed up flush at one end and have a 6 mm tail past the far
-nut. The printed rings that center the columns on their rods have 0.5 mm a side (`tube_fit`) and
-grooves for the seam. If the tube that arrives is further off, put its calipered sizes in
+**Steel tolerances.** A supplier's saw cut is good to about 1/8 in, and A500 tube is about 0.5 mm off
+nominal with a weld seam inside. Each piece is set from one end and its other end has room
+(`tube_cut_tol`, checked in the report). Each upright column is clamped up against its top plate, its
+foot in a 4.8 mm epoxy bed on the foot bar; each girder is clamped between its end plates by the draw
+rod, set from the split; the pedestal spacers set where the bottom bar sits, which only moves it a
+little against the underside; the rods are screwed up to a stop at one end and have a 6 mm tail past
+the far nut. The printed rings that center the columns on their rods have 0.5 mm a side (`tube_fit`)
+and grooves for the seam. If the tube that arrives is further off, put its calipered sizes in
 `frame_tube` / `post_tube` and re-run before printing.
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
@@ -160,15 +159,16 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | + upright feet 260 mm ahead of the beam (from 290) | 51.3 L | 84.2 | 123.0 | 109.3 |
 | + steel skeletons in the uprights and a steel box in the beam (all 3/8 in) | 47.9 L | 96.0 | 132.7 | 130.9 |
 | + steel grids in the base (all 3/8 in) | 45.8 L | 107.1 | 153.5 | 138.1 |
-| **Now: webs, cross plates and braces 1/4 in with windows, 3/8 in foot plates** | **48.5 L** | **99.7** | **146.9** | **124.7** |
+| Slimmed: webs, cross plates and braces 1/4 in with windows, 3/8 in foot plates (64 laser-cut plates) | 48.5 L | 99.7 | 146.9 | 124.7 |
+| **Now: all stock flat bar and tube, bolted (no custom parts), beam 146 mm high** | **44.8 L** | **101.0** | **157.8** | **136.3** |
 
-- **Steel skeletons.** Making the steel the frame (laser-cut plates slotted together, tube columns,
-  everything clamped by rods and bolts, epoxy granite cast round it) makes the frame +18 / +19 /
-  +14 % stiffer than the last all-epoxy-granite design, with modes 136 / 277 / 299 Hz, for about
-  24 kg more (59 kg of steel and hardware against 26, 121 kg of castings against 130). All-3/8 in
-  plate was stiffer still (+27 / +25 / +26 %) but 11 kg heavier again. A 120 mm deep beam would save
-  another 4 kg and still beat the old frame (96.1 / 130.1 / 112.5, modes 138 / 280 / 300 Hz);
-  shorter upright feet run the front foot pockets past their mold bridges.
+- **Steel skeletons.** Making the steel the frame (epoxy granite cast round it) makes the frame stiffer
+  than the last all-epoxy-granite design. The first version was 64 custom laser-cut plates slotted
+  together (+18 / +19 / +14 %); the one drawn now is all stock flat bar and tube, cut to length, drilled
+  from templates and bolted, and comes out stiffer still: +20 / +28 / +25 % (101.0 / 157.8 / 136.3 N/um),
+  with modes 133 / 265 / 300 Hz, about 60 kg of steel and hardware and 113 kg of castings (the hollow
+  girder tubes take some epoxy granite out of the base). It loses the laser version's upright brace and
+  beam diaphragms but gains the base girders' and the beam bars' depth.
 
 - **The steel chain** (tie rods from the top plates to anchor bars under the base) is worth
   +6 / +2 / +4 % (the bars, the thicker top plates and the solid band left under each foot
@@ -252,10 +252,10 @@ table, vise and work on the Y blocks:
 
 | Mode | Frequency | Motion |
 |---|---|---|
-| 1 | 136 Hz | gantry sways side to side (X); base twisting on its feet carries 45 % of it |
-| 2 | 277 Hz | beam rocks front to back (Y) |
-| 3 | 299 Hz | base bends, front to back |
-| 4 | 366 Hz | gantry sway with the base, second form |
+| 1 | 133 Hz | gantry sways side to side (X); base twisting on its feet carries 40 % of it |
+| 2 | 265 Hz | beam rocks front to back (Y) |
+| 3 | 300 Hz | base bends, front to back |
+| 4 | 360 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -303,7 +303,7 @@ python baseline.py                                  # stiffness and each module'
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
 FEA_VOX=vox_previous python evaluate.py to_*.npz    # table + figures
 FEA_VOX=vox_current python whatif.py                # stiffness of the model as drawn
-# voxelize with VOX_SKIP=TieRod,DrawRod so the rods in their clearance holes don't count as glued in
+# voxelize with VOX_SKIP=TieRod,DrawRod,CrossRod so the rods in their clearance holes don't count as glued in
 python alumina.py                                   # alumina grit: mix modulus and frame stiffness
 FEA_GRIT=1.37 python -c "import topopt; topopt.main('pocket', 24, tag='light_24')"   # lighter base
 python weight.py vox_current [vox_...]              # castings mass against stiffness
@@ -347,7 +347,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,866** (including $150 of alumina grit for the beam and uprights, and about $200 for the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,839** (including $150 of alumina grit for the beam and uprights, and about $200 for the
 bolt-together mold kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood

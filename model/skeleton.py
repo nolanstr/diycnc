@@ -1,4 +1,6 @@
-"""Laser-cut steel skeletons: flat plates that slot together, clamped by rods and cap screws.
+"""Steel skeletons from stock: flat bar and tube cut to length, drilled from printed templates, and
+clamped by threaded rod and bolts. (Plates can also be custom laser-cut outlines with slots, but the
+frame no longer uses any.)
 
 Every plate lies in a plane square to x, y or z. Its outline is a polygon in that plane (in
 x, y, z order of the two in-plane axes), extruded through its thickness. Two kinds of joint,
@@ -61,6 +63,8 @@ class Plate:
         self.outline = outline
         self.taps = {}
         self.drills = []          # (p, q, major, drill): tapped holes, modeled at the major diameter
+        self.holes = []           # (p, q, finished d, tap or None): for the drilling templates
+        self.stock = None         # ('flat', t, width, length, length axis 'p' or 'q') for a flat bar
         pts = [_vec(normal, c0, p, q) for p, q in outline]
         face = Part.Face(Part.makePolygon(pts + pts[:1]))
         self.slab = face.extrude(_unit(normal) * t)          # outline only: what slots are cut against
@@ -78,6 +82,7 @@ class Plate:
             d, drill = TAP[tap]
             self.taps[tap] = self.taps.get(tap, 0) + 1
             self.drills.append((p, q, d, drill))
+        self.holes.append((p, q, d, tap))
         n = _unit(self.normal)
         self.cut(Part.makeCylinder(d / 2, self.t + 2, _vec(self.normal, self.c0 - 1, p, q), n))
         return self
@@ -126,6 +131,64 @@ class Plate:
             shape = shape.fuse(Part.makeCylinder(major / 2 + 0.01, self.t, base + n, n).common(self.slab))
             shape = shape.cut(Part.makeCylinder(drill / 2, self.t + 2, base, n))
         return shape.removeSplitter() if self.drills else shape
+
+    @property
+    def mass(self):
+        return self.shape.Volume * 7.85e-6
+
+
+def flat_bar(name, normal, c0, t, p0, q0, p1, q1, note=''):
+    """A piece of stock flat bar (thickness t) lying in a plane square to `normal`, p0..p1 x q0..q1."""
+    pl = Plate(name, normal, c0, t, tabbed(p0, q0, p1, q1), note=note)
+    w, ln = sorted((p1 - p0, q1 - q0))
+    pl.stock = ('flat', t, w, ln, 'p' if p1 - p0 >= q1 - q0 else 'q')
+    return pl
+
+
+class Tube:
+    """A piece of stock rectangular tube along `axis` from a0 to a1, centered on (c1, c2) in the other two
+    axes (in x, y, z order), outside w1 x w2 (same order), wall `wall`."""
+    def __init__(self, name, axis, c1, c2, w1, w2, wall, a0, a1, note=''):
+        self.name, self.axis, self.c1, self.c2, self.w1, self.w2, self.wall = name, axis, c1, c2, w1, w2, wall
+        self.a0, self.a1, self.note = min(a0, a1), max(a0, a1), note
+        self.env = self._box(w1, w2, 0.0, 1.5 * wall)
+        self.shape = self.env.cut(self._box(w1 - 2 * wall, w2 - 2 * wall, 1.0, 0.5 * wall))
+        self.holes = []           # (face axis, position along, position across, d, what)
+        self.stock = ('tube', w1, w2, wall, self.a1 - self.a0)
+
+    def _box(self, w1, w2, ext, r):
+        o = [0.0, 0.0, 0.0]
+        sz = [0.0, 0.0, 0.0]
+        i = AXES[self.axis]
+        others = [k for k in range(3) if k != i]
+        o[i], sz[i] = self.a0 - ext, self.a1 - self.a0 + 2 * ext
+        for k, c, w in zip(others, (self.c1, self.c2), (w1, w2)):
+            o[k], sz[k] = c - w / 2, w
+        b = Part.makeBox(*sz, Vector(*o))
+        n = Vector(*[1.0 if k == i else 0.0 for k in range(3)])
+        edges = [e for e in b.Edges if abs(abs((e.Vertexes[1].Point - e.Vertexes[0].Point).normalize().dot(n)) - 1) < 1e-6]
+        try:
+            return b.makeFillet(r, edges)
+        except Exception:
+            return b
+
+    def drill(self, face, along, across, d, what='', both=True):
+        """A hole through the wall(s) square to `face` ('x', 'y' or 'z', one of the two across the tube) at
+        `along` (on the tube's axis) and `across` (on the remaining axis), through both walls or the near one."""
+        i, f = AXES[self.axis], AXES[face]
+        k = 3 - i - f
+        p0 = [0.0, 0.0, 0.0]
+        p0[i], p0[k] = along, across
+        c_f = self.c1 if f == [m for m in range(3) if m != i][0] else self.c2
+        half = (self.w1 if f == [m for m in range(3) if m != i][0] else self.w2) / 2
+        p0[f] = c_f - half - 1
+        n = Vector(*[1.0 if m == f else 0.0 for m in range(3)])
+        length = 2 * half + 2 if both else self.wall + 2
+        self.shape = self.shape.cut(Part.makeCylinder(d / 2, length, Vector(*p0), n))
+        others = [m for m in range(3) if m != i]
+        lo = (self.c2 - self.w2 / 2) if f == others[0] else (self.c1 - self.w1 / 2)   # the face's edge, across
+        self.holes.append((face, along - self.a0, across - lo, d, what, both))
+        return self
 
     @property
     def mass(self):
@@ -220,5 +283,32 @@ def write_dxf(plate, path):
     return size
 
 
+DRILL = {4.2: 'M5 tap drill (4.2 mm), tap M5', 5.0: 'M6 tap drill (5 mm), tap M6',
+         7.94: '5/16 in, tap 3/8-16', 10.7: '27/64 in, tap 1/2-13', 6.5: '1/4 in', 6.6: '17/64 in',
+         7.0: '9/32 in', 9.6: '3/8 in', 10.5: '13/32 in', 12.7: '1/2 in', 13.5: '17/32 in', 14.0: '9/16 in',
+         14.3: '9/16 in'}
+
+
+def drill_name(d, tap=None):
+    if tap:
+        d = TAP[tap][1]
+    return DRILL.get(round(d, 2), f'{d:.1f} mm')
+
+
 def thickness_name(t):
     return {T38: '3/8 in', T14: '1/4 in', T12: '1/2 in'}.get(t, f'{t:.2f} mm')
+
+
+def inch(mm):
+    """A stock size in inches: 50.8 -> '2', 63.5 -> '2-1/2', 9.525 -> '3/8'."""
+    v = mm / 25.4
+    whole = int(v + 1e-6)
+    frac = round((v - whole) * 16)
+    if frac == 16:
+        whole, frac = whole + 1, 0
+    if not frac:
+        return f'{whole}'
+    num, den = frac, 16
+    while num % 2 == 0:
+        num, den = num // 2, den // 2
+    return f'{whole}-{num}/{den}' if whole else f'{num}/{den}'

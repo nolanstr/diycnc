@@ -33,7 +33,6 @@ base-rear,core-center-post.stl,core,1,4.8,4.8,44m 56s,6
 base-front,core-outboard-L-post.stl,core,1,4.8,4.8,44m 53s,6
 base-front,core-trough-band-L-post.stl,core,1,4.8,4.8,44m 54s,6
 base-front,core-draw-rod-L-post.stl,core,1,4.8,4.8,44m 53s,6
-base-front,core-foot-a-L-post.stl,core,1,4.8,4.8,44m 54s,6
 base-rear,core-foot-b-L-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-knee-L-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-outer-a-L-post.stl,core,1,4.8,4.8,44m 53s,6
@@ -42,16 +41,15 @@ base-rear,core-rear-L-post.stl,core,1,4.8,4.8,44m 53s,6
 base-front,core-outboard-R-post.stl,core,1,4.8,4.8,44m 53s,6
 base-front,core-trough-band-R-post.stl,core,1,4.8,4.8,44m 54s,6
 base-front,core-draw-rod-R-post.stl,core,1,4.8,4.8,44m 53s,6
-base-front,core-foot-a-R-post.stl,core,1,4.8,4.8,44m 54s,6
 base-rear,core-foot-b-R-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-knee-R-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-outer-a-R-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-outer-b-R-post.stl,core,1,4.8,4.8,44m 53s,6
 base-rear,core-rear-R-post.stl,core,1,4.8,4.8,44m 53s,6
-base-front,plug-draw-pocket-L.stl,plug,1,12.2,12.2,59m 24s,13
-base-front,plug-draw-pocket-R.stl,plug,1,12.2,12.2,59m 24s,13
-base-rear,plug-draw-pocket-L.stl,plug,1,4.8,4.8,25m 9s,5
-base-rear,plug-draw-pocket-R.stl,plug,1,4.8,4.8,25m 8s,5
+base-front,plug-draw-pocket-L.stl,plug,1,11.6,11.6,46m 16s,13
+base-front,plug-draw-pocket-R.stl,plug,1,11.6,11.6,46m 16s,13
+base-rear,plug-draw-pocket-L.stl,plug,1,5.1,5.1,21m 23s,6
+base-rear,plug-draw-pocket-R.stl,plug,1,5.1,5.1,21m 23s,6
 upright,kit-back-bracket.stl,kit,4,5.3,21.0,27m 33s,26
 upright,kit-front-bracket.stl,kit,4,7.9,31.5,38m 26s,39
 upright,kit-saddle-flat.stl,kit,4,4.4,17.8,22m 40s,23
@@ -64,7 +62,7 @@ upright,plug-toe-plug.stl,plug,2,12.9,25.8,1h 3m 42s,27
 upright,kit-plate-spacer.stl,kit,4,3.8,15.2,20m 9s,17
 beam,kit-corner-bracket.stl,kit,4,8.2,32.8,40m 3s,40
 beam,filler-back-edge-part1of3.stl,filler,1,17.4,17.4,1h 8m 21s,22
-beam,filler-back-edge-part2of3.stl,filler,1,17.5,17.5,1h 9m 13s,22
+beam,filler-back-edge-part2of3.stl,filler,1,17.5,17.5,1h 9m 15s,22
 beam,filler-back-edge-part3of3.stl,filler,1,17.4,17.4,1h 8m 22s,22
 beam,kit-dowel-stop.stl,kit,2,0.7,1.4,4m 19s,2
 tools,kit-pour-gauge.stl,kit,2,4.7,9.4,24m 33s,11
