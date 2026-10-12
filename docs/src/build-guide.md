@@ -32,7 +32,7 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **3D printing (PETG):** the mold kit (brackets, saddles, holders, bushings), the core posts,
   formers and fillers, the parts that get cast in (spigot sleeves, tube plugs, drain liner) and
   the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
-  in the print guide: 1.5 kg of PETG (sliced), inside two 1 kg rolls, and about 125 hours of printing. The base pocket and socket cores
+  in the print guide: 1.4 kg of PETG (sliced), inside two 1 kg rolls, and about 115 hours of printing. The base pocket cores
   are cut from one sheet of 2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
   print the sleeves early and test-fit them on your actual tube.
 - **Foam cutting:** a fine-tooth saw or a hot-wire cutter, a long knife, a sanding block, packing
@@ -45,7 +45,7 @@ plates and the aluminum plates cut to size. Only the 1/2-13 threaded rod is cut.
 
 1. **Square tube** (plain steel, not galvanized; 0.120 or 1/8 in wall; remnants are fine):
    - 2 x 2 in: 4 x 12 in (base; they also take the split spigots), 2 x 18 in (beam).
-   - 1-1/2 x 1-1/2 in: 4 x 11 in (upright posts), 6 x 6 in (2 base spigots + 4 legs).
+   - 1-1/2 x 1-1/2 in: 6 x 6 in (2 base spigots + 4 legs).
 2. **Check the steel when it arrives.** A supplier's saw cut is good to about 1/8 in, and
    square tube is about 0.5 mm off its nominal size, with a weld seam down the inside. None of
    that needs fixing, because each piece is set from one end and the other end has room
@@ -96,11 +96,11 @@ plates and the aluminum plates cut to size. Only the 1/2-13 threaded rod is cut.
    flush and the error ends up in the 6 mm tail under the bottom nut. Have the inserts ready: 18 x M5 (12-16 mm long) and
    6 x M6 x 15 mm cast-in inserts, plus 11 x M5 for the enclosure.
 
-![Section through the uprights: posts, sockets, tie rods and top plates](../../renders/frame_section_uprights.png)
+![Section through the uprights: tie rods, top plates and anchor bars](../../renders/frame_section_uprights.png)
 
 The cast-in steel, inserts and printed liners for each base half (castings drawn see-through):
 
-![Base rear (cast first): steel, sockets and inserts](../../renders/build/01-steel-base-rear.png)
+![Base rear (cast first): steel, anchor bars and inserts](../../renders/build/01-steel-base-rear.png)
 
 ![Base front: steel and inserts](../../renders/build/03-steel-base-front.png)
 
@@ -125,9 +125,9 @@ lists the printed parts.
 
 | Casting | Face on the mold floor | Size (mm) | Mass |
 |---|---|---|---|
-| Base front | top face (coolant floor) | 600 x 345 x 110 | 31.5 kg |
-| Base rear | top face | 600 x 380 x 110 | 40.5 kg |
-| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 430 long, 246 tall, sloped front | 14.9 kg each |
+| Base front | top face (coolant floor) | 600 x 345 x 110 | 30.5 kg |
+| Base rear | top face | 600 x 380 x 110 | 41.9 kg |
+| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 400 long, 246 tall, sloped front | 15.7 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 26.3 kg |
 
 **Casting order:**
@@ -147,9 +147,9 @@ lists the printed parts.
 **Locating the cast-in parts** (the mold guide has the details; grease every screw and rod that comes out):
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
   flush with the casting face.
-- **Sockets** (rear half): cast on taped foam blocks pushed over printed spikes bolted to the floor; dig
-  the foam out after curing. The sockets are 2.5 mm a side bigger than the posts: the posts are grouted
-  in at assembly (section 4), so the two molds don't have to agree to a tenth.
+- **Dowels** (rear half): two per upright, pushed halfway into holes in the floor; they stand 15 mm proud and
+  are grouted into oversize holes in the upright's foot at assembly (section 4), so the two molds
+  don't have to agree to a tenth.
 - **Tie-rod holes and anchor bars:** greased 5/8 in rods up through the floor form the tie-rod holes
   right through the base. At the end of the pour the anchor bars go over the rods' tops, flush with
   the pour line, each screwed (M5) to printed hangers bolted to the bridges.
@@ -160,12 +160,11 @@ lists the printed parts.
   cast-in depth by a pinch screw.
 - **Cores:** taped XPS foam blocks on the wet 20 mm skin; a printed post glued into each bolts to the
   side of a bridge, which sets its height and stops it floating. They can stay in.
-- **Uprights:** the posts come up through bushings in the floor and stand on the bench, so a post
-  that's cut long just ends closer to the top plate (6 mm of room). The top plate (both layers)
+- **Uprights:** the top plate (both layers)
   hangs from the bridge on two greased 3/8 bolts. The two top tie-rod holes are printed sleeves,
   centered on greased 1/2 in rods pushed up from under the floor through the plate and the bridge;
   5/8 in rods form the two slope holes (1.6 mm a side over the tie rods); a greased 1/2-13 bolt forms
-  the dowel hole (grouted at assembly).
+  the two dowel holes (grouted at assembly).
 - **Beam:** the tubes hang between printed locators bolted through the end walls (each leaves a 16 mm
   hole in the beam end). The locators only hold the tube ends; the 1/2 in rods through the tubes'
   3/4 in holes set them along the beam, so a tube that's a little long or short doesn't matter. The rods
@@ -176,7 +175,7 @@ lists the printed parts.
 
 ![Front-half mold, cast against the cured rear half](../../renders/build/04-mold-base-front.png)
 
-![Upright: posts, top plate, tie rods and pocket plugs (orange)](../../renders/build/05-mold-upright.png)
+![Upright: top plate, tie-rod sleeves and pocket plugs (orange)](../../renders/build/05-mold-upright.png)
 
 ![Beam mold: tubes, support pads, riser inserts and the back-edge fillers](../../renders/build/06-mold-beam.png)
 
@@ -187,7 +186,7 @@ fills the gaps between the next size up), which is what lets the epoxy stay at 8
 
 | Part | Size | Source | % of mix | For the whole frame |
 |---|---|---|---|---|
-| Epoxy | | Raka 127 + 606 | 8.5 % | 10.1 kg |
+| Epoxy | | Raka 127 + 606 | 8.5 % | 10.3 kg |
 | Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 10.5 kg |
 | Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 10 kg (base) + 10 kg of 70 grit |
 | Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 19 kg (base) + 20 kg of #16 grit |
@@ -232,9 +231,9 @@ wears it.
 
 | Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
-| Base front | 31.5 kg | 2.7 kg |
-| Base rear | 40.5 kg | 3.4 kg |
-| Uprights (alumina) | 2 x 14.9 kg | 2 x 1.1 kg |
+| Base front | 30.5 kg | 2.6 kg |
+| Base rear | 41.9 kg | 3.6 kg |
+| Uprights (alumina) | 2 x 15.7 kg | 2 x 1.2 kg |
 | Beam (alumina) | 26.3 kg | 1.9 kg |
 
 Add 5-10 % for waste: about 11 kg, plus about 1 kg for the test bars, which fits the 3 gal kit
@@ -269,13 +268,13 @@ mold.
    cord ends). Push the front half on (its tubes and sleeves over the spigots) and tighten the two
    1/2-13 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base with
    the feet.
-3. **Grout the posts.** The sockets are 2.5 mm a side bigger than the posts, so the fit comes
-   from epoxy, not from the two molds agreeing. Wax the posts (three coats, buffed) and the base
-   dowels. Mix a little of the leftover epoxy with whiting to a thick cream and half-fill each
-   socket and each upright's dowel hole. Glue the foot O-ring into each upright's groove, lower
-   the upright on (posts into the sockets, foot on the base) and put the tie rods in (next step)
-   snug, wipe off what squeezes out, and leave it 24 h. After that the posts lift out and drop
-   back in with no play.
+3. **Grout the dowels.** The two dowel holes in each upright's foot are 1/2 in, over the 3/8 in
+   dowels, so the fit comes from epoxy, not from the two molds agreeing. Wax the base dowels
+   (three coats, buffed). Mix a little of the leftover epoxy with whiting to a thick cream and
+   half-fill each dowel hole. Glue the foot O-ring into each upright's groove, lower the upright
+   on (dowels into their holes, foot on the base) and put the tie rods in (next step) snug, wipe
+   off what squeezes out, and leave it 24 h. After that the upright lifts off and drops back on
+   in the same place.
 4. **Tie rods.** Each upright is held by four 1/2-13 rods that run from its top plate or its
    sloped front right through the base to the anchor bar underneath, so it's steel from the beam
    screws to the nuts under the base, and every nut can be reached and retightened.

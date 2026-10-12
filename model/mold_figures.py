@@ -368,28 +368,6 @@ def fig_core(sc):
         (pt(flip_base, Vector(bb.XMin - 30, bb.YMax + 10, 0)), 'Pour line')])
 
 
-def fig_socket(sc):
-    """A socket: printed spike bolted to the floor, the foam block pushed over it (lifted)."""
-    sc.clear()
-    r = next(r for r in M.molds if r['name'] == 'socket-spike')
-    f = next(r for r in M.molds if r['name'] == 'socket' and r['kind'] == 'foam')
-    sp, blk = r['placed'][0][0], f['placed'][0][0]
-    bb = blk.BoundBox
-    crop = parts.box(bb.XMin - 40, bb.XMax + 40, bb.YMin - 40, bb.YMax + 40, 0, G['base_top'] + T)
-    for s in boards('base-rear', ['Base floor'], crop):
-        sc.add(flip_base(s), 'melamine', 20)
-    sc.add(flip_base(sp), 'printed')
-    lift = Vector(0, 0, 45)
-    sc.add(flip_base(blk).translated(lift), 'foam', 25)
-    sc.camera(Vector(-0.55, 0.6, -0.55))
-    top = pt(flip_base, Vector(bb.Center.x, bb.Center.y, G['base_top'] - 20))
-    sc.shoot('detail-socket', labels=[
-        (top, 'Printed spike, bolted to the floor'),
-        (pt(flip_base, bb.Center) + lift, 'Foam socket core: push over the spike'),
-        (pt(flip_base, Vector(bb.XMax + 30, bb.Center.y, G['base_top'] + T / 2)), 'Floor board')],
-        arrows=[(top + lift + Vector(0, 0, 30), top + Vector(0, 0, 25))])
-
-
 def fig_toe(sc):
     """Upright: the toe filler and the front board's foot in its lip."""
     sc.clear()
@@ -537,7 +515,7 @@ def base_steps(sc):
         ('floor', B(rear, ['Base floor', 'Base cleat'])),
         ('walls', B(rear, walls) + K(rear, ['corner-bracket'])),
         ('partition', B(rear, ['Base partition']) + K(rear, ['partition-bracket', 'split-gasket', 'spigot-bushing'])),
-        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R', 'socket'])),
+        ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R'])),
         ('steel', S('FrameBaseRear', skip=SKIP_BAR) + base_rods(False) + K(rear, ['leg-holder'])),
         ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle', 'bar-hanger'])
          + B(rear, ['Base bridge', 'Base leg bridge']) + S('FrameBaseRear', keep=is_bar) + [pour_plane('base')]),
@@ -556,7 +534,7 @@ def base_steps(sc):
 
 def upright_steps(sc):
     u = 'upright'
-    post_bot = G['beam_bot'] - P['top_plate_t'] - P['post_top_gap'] - P['tube_len']['post']
+    post_bot = G['base_top'] - T - 20.0              # rods stand 20 mm out under the floor
     rods, tops = [], []
     for rx, ry, pb in G['tie_rods']:
         if pb >= G['pocket_bot'] - 1:
@@ -569,7 +547,7 @@ def upright_steps(sc):
     st = S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'TopPlate'))
     plate = PARTS['TopPlateLLower']['shape'].fuse(PARTS['TopPlateLUpper']['shape'])
     stages = [
-        ('floor', B(u, ['Upright floor', 'Upright cleat']) + K(u, ['post-bushing', 'foot-gasket'])),
+        ('floor', B(u, ['Upright floor', 'Upright cleat']) + K(u, ['foot-gasket'])),
         ('sides', B(u, ['Upright side plate', 'Upright back board']) + K(u, ['back-bracket'])),
         ('front', B(u, ['Upright front board']) + K(u, ['toe-filler', 'front-bracket'])),
         ('steel', st + rods + K(u, ['slope-plug']) + [pour_plane('upright')]),
@@ -710,7 +688,7 @@ def upright_exploded(sc):
                 continue
             n = r['name']
             v = {'back-bracket': _out(s_, c, 190) + Z * 40, 'front-bracket': nrm * 200 + _out(s_, c, 90, (0,)),
-                 'toe-filler': nrm * 70, 'post-bushing': Z * -60, 'foot-gasket-groove': Z * 25,
+                 'toe-filler': nrm * 70, 'foot-gasket-groove': Z * 25,
                  'plate-spacer': Z * 170, 'saddle-flat': Z * 230 + _out(s_, c, 60, (0,))}.get(n)
             if v is None:
                 v = nrm * 100 if n.startswith('slope-plug') else Vector()
@@ -806,7 +784,7 @@ def gallery(sc, name, rows, cols=5, gap=40.0):
 def main():
     os.makedirs(OUT, exist_ok=True)
     sc = Scene()
-    for f in (fig_bayonet, fig_pins, fig_peg, fig_corner, fig_core, fig_socket, fig_toe, fig_locator):
+    for f in (fig_bayonet, fig_pins, fig_peg, fig_corner, fig_core, fig_toe, fig_locator):
         try:
             f(sc)
         except Exception as e:

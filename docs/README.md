@@ -15,7 +15,7 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 ## 2. Printing: start this first
 
 - [print-guide.pdf](2-printing/print-guide.pdf): every printed part (STLs in `print/`), the slicer settings,
-  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.5 kg of PETG and a
+  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.4 kg of PETG and a
   hundred-odd hours of printing, so start it while the rest is on order.
 
 ## 3. Molds: making the molds
@@ -33,7 +33,7 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 - [build-guide.pdf](4-build/build-guide.pdf): the whole build. The same in stages, for the bench:
   1. [1-steel.pdf](4-build/1-steel.pdf): tools, space and safety; buying and preparing the steel.
   2. [2-casting.pdf](4-build/2-casting.pdf): the molds (summary) and the mix, test bars and casting.
-  3. [3-frame.pdf](4-build/3-frame.pdf): joining the castings (grouting the posts) and bedding the rail risers.
+  3. [3-frame.pdf](4-build/3-frame.pdf): joining the castings (grouting the dowels, the tie rods) and bedding the rail risers.
   4. [4-axes-electronics.pdf](4-build/4-axes-electronics.pdf): rails, ballscrews, motors, wiring, spindle.
   5. [5-enclosure-commissioning.pdf](4-build/5-enclosure-commissioning.pdf): enclosure, flood coolant, first cuts.
 

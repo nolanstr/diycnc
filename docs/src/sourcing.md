@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,167.27 |
+| 1 | Castings and hardware | $1,159.27 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,10 +27,10 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,654.52** |
+| **1. Frame** | **$1,646.52** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.99-3.39k** |
+| **Total** | **about $2.98-3.38k** |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -50,7 +50,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
-| Epoxy | ~10.1 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)](https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
+| Epoxy | ~10.3 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)](https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
 | Fines | Whiting (calcium carbonate) 325 mesh, ~11 kg | 1 (50 lb) | [Clay-King calcium carbonate whiting, 50 lb (not Amazon)](https://www.clay-king.com/product/calcium-carbonate-whiting/) | $0.84/lb | $42.00 | No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc. |
 | Aggregate | ~80 kg: fine sand 10, coarse sand 19, pea gravel 23, 3/8 in gravel 23 kg, plus test bars | ~5 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$7/bag | $48.00 | Buy locally. Wash and dry fully. |
 | Alumina grit, coarse | Brown fused aluminum oxide #16 (12-20 is fine), ~21 kg: the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Free shipping. Alt: Kleen Blast AO5016 $90 + shipping (blast media is excluded from its free shipping). About +10 % frame stiffness on its own (analysis/alumina.py). |
@@ -59,7 +59,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Mold hardware | M4 x 30 (~100), M4 x 35 (~30), M4 x 45 (~45), M4 x 20 (4), M4 x 70 (4), M4 nuts and washers (~180 each); a few M3 x 25 with nuts | assorted packs | Zinc-plated metric packs (Amazon, Bolt Depot or a hardware store) | ~$50 | $50.00 | Exact counts in the mold guide. Reused for every casting. |
 | Mold rods and bolts | Plain steel rod: 5/8 in 2x 3 ft, 1/2 in 4x 3 ft; 1/2-13 x 1-1/2 in bolts (4), 3/8-16 x 3 in (4), M5 x 60 (8) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot) | ~$70 | $70.00 | Greased, they form the tie-rod and bolt holes, hold the draw-rod couplers and the top plates, and hang the anchor bars. Reused. |
 | Mold release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
-| Square tube | 2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 4x 11 in, 6x 6 in | ~7 ft of each | Steel-yard remnants (local) | ~$40 | $40.00 | About 37 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized. |
+| Square tube | 2x2x0.120 A500: 4x 12 in, 2x 18 in; 1-1/2x1-1/2x0.120: 6x 6 in | ~7 ft + 3 ft | Steel-yard remnants (local) | ~$32 | $32.00 | About 28 lb at $0.75-1.25/lb. Online cut lengths: Speedy Metals $106 + shipping. Plain steel, not galvanized. |
 | Laser-cut steel | 1/2 in: 4x 68x168 mm (upright top plates, two layers each); 3/8 in: 2x 76x75 + 2x 76x245 mm (base anchor bars) | 8 parts | SendCutSend, OSH Cut or a local laser shop: upload docs/1-sourcing/laser/*.dxf | ~$90 | $90.00 | Mild steel (A36/1018). Tapping at home: 3/8-16 in the lower top-plate layers, M5 in the bars. |
 | Support pads | 1/4 x 2-1/2 in flat bar: ~4 in | offcut | Steel-yard offcuts (local) | ~$5 | $5.00 | The X support pads |
 | Rail risers | Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm | ~4 + 5 ft | Steel yard (local) | ~$40 | $40.00 | About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece). |
@@ -78,11 +78,11 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Support screws | M6 x 40 (6, Y BK/BF); M6 x 35 (6, X) + 12 DIN 433 small washers | 1 (100) + 3 (2-pack) | [Zoro M6x40 100-pack; Home Depot M6x35 2-packs](https://www.zoro.com/i/G2650606/) | $10.15 + 3x $3.75 | $21.40 | Two small washers under each X screw head so it stops short of the beam tube (washers from the hardware store) |
 | Rail screws | M4 x 16 | 1 (100) | [iexcell M4x16 12.9](https://www.amazon.com/dp/B08B1T9VM3) | $8.26 | $8.26 |  |
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
-| PETG filament | 1.5 kg (sliced): mold kit, core posts, formers and fillers, cast-in parts and machine parts | 2 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $31.98 | The pocket and socket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more. |
-| XPS foam board | 2 in x 2 ft x 8 ft: the base pocket and socket cores | 1 | [Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)](https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335) | ~$25 | $25.00 | Plus packing tape and double-sided carpet tape (~$10). Sizes in the mold guide. |
+| PETG filament | 1.4 kg (sliced): mold kit, core posts, formers and fillers, cast-in parts and machine parts | 2 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $31.98 | The pocket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more. |
+| XPS foam board | 2 in x 2 ft x 8 ft: the base pocket cores | 1 | [Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)](https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335) | ~$25 | $25.00 | Plus packing tape and double-sided carpet tape (~$10). Sizes in the mold guide. |
 | Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 
-**Priced subtotal: $1,167.27**
+**Priced subtotal: $1,159.27**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

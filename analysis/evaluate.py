@@ -48,7 +48,7 @@ def outline(ax, vox):
     for sx in (-1, 1):
         x0, x1 = sorted((sx * d['inner'], sx * d['outer']))
         ax.add_patch(plt.Rectangle((x0, d['up_y0']), x1 - x0, d['up_y1'] - d['up_y0'], fill=False, ec='k', lw=1.2))
-        for py in info['post_ys']:
+        for py in info.get('post_ys', []):
             ax.add_patch(plt.Rectangle((sx * info['ux'] - 22, py - 22), 44, 44, fill=False, ec='k', lw=0.6))
     for lx, ly in info['legs']:
         ax.add_patch(plt.Rectangle((lx - 19, ly - 19), 38, 38, fill=False, ec='k', lw=0.6))
