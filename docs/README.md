@@ -9,8 +9,8 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 - [sourcing.pdf](1-sourcing/sourcing.pdf): every part with a listing, price and notes, in three parts (frame,
   electronics, enclosure and coolant), with totals. [sourcing.csv](1-sourcing/sourcing.csv) is the same list
   for a spreadsheet.
-- [laser/](1-sourcing/laser/README.md): DXFs of the steel skeletons, about 64 plates that slot together, for
-  Metal Supermarkets, a laser-cutting service or a CNC plasma table.
+- [steel/](1-sourcing/steel/README.md): the steel skeletons' cut list (stock flat bar and tube, about 54
+  pieces) and [steel-templates.pdf](1-sourcing/steel/steel-templates.pdf), 1:1 drilling templates for every part.
 
 ## 2. Printing: start this first
 

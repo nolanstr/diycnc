@@ -33,7 +33,6 @@ base-rear,core-center-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push 
 base-front,core-outboard-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-trough-band-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-draw-rod-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-foot-a-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-foot-b-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-knee-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-outer-a-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
@@ -42,16 +41,15 @@ base-rear,core-rear-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push 
 base-front,core-outboard-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-trough-band-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-draw-rod-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-foot-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-foot-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-knee-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-outer-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-outer-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-rear-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,plug-draw-pocket-L.stl,plug,1,32 x 32 x 62,13,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
-base-front,plug-draw-pocket-R.stl,plug,1,32 x 32 x 62,13,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
-base-rear,plug-draw-pocket-L.stl,plug,1,32 x 32 x 26,5,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
-base-rear,plug-draw-pocket-R.stl,plug,1,32 x 32 x 26,5,"Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it."
+base-front,plug-draw-pocket-L.stl,plug,1,32 x 32 x 56,13,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
+base-front,plug-draw-pocket-R.stl,plug,1,32 x 32 x 56,13,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
+base-rear,plug-draw-pocket-L.stl,plug,1,32 x 32 x 20,6,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
+base-rear,plug-draw-pocket-R.stl,plug,1,32 x 32 x 20,6,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.

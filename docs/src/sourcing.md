@@ -18,7 +18,7 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,378.76 |
+| 1 | Castings and hardware | $1,352.22 |
 | 1 | Rails, screws and mechanics | $290.38 |
 | 1 | Chip protection | $196.87 |
 | 2 | Motors and drivers | $232.12 |
@@ -27,10 +27,10 @@ have the inserts, gutters, drain and sump space for Part 3.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,866.01** |
+| **1. Frame** | **$1,839.47** |
 | **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $3.20-3.60k** |
+| **Total** | **about $3.17-3.57k** |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -57,15 +57,16 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Alumina grit, fine | Black aluminum oxide 70 grit, ~11 kg: the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Local pickup. With the #16: about +17 % frame stiffness in all. |
 | Mold board | 3/4 in white melamine (a true 0.750 in), about 2.6 m2 of boards: cut list in the mold guide | 2 (4 x 8 ft) | [Veranda melamine white particleboard panel, 3/4 in x 4 ft x 8 ft (Home Depot, model 461877)](https://www.homedepot.com/p/Veranda-3-4-in-x-4-ft-x-8-ft-Melamine-White-Particleboard-Panel-461877/100070209) | $43.98 | $87.96 | Have the store rip the long strips. Measure the thickness: the printed saddles and brackets are drawn for 19.05 mm (mold_board in the model). |
 | Mold hardware | M4 x 30 (~100), M4 x 35 (~30), M4 x 45 (~45), M4 x 20 (4), M4 x 70 (4), M4 nuts and washers (~180 each); a few M3 x 25 with nuts | assorted packs | Zinc-plated metric packs (Amazon, Bolt Depot or a hardware store) | ~$50 | $50.00 | Exact counts in the mold guide. Reused for every casting. |
-| Mold rods and bolts | Plain steel rod: 5/8 in 3x 3 ft, 1/2 in 4x 3 ft; 1/2-13 x 1-1/2 in bolts (4), 3/8-16 x 3 in (4), M5 x 40 (18), M6 x 40 (12) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot) | ~$80 | $80.00 | Greased, they form the tie-rod, draw-rod and bolt holes and hold the steel skeletons to the mold floors. Reused. |
+| Mold rods and bolts | Plain steel rod: 1/2 in 2x 3 ft; 1/2-13 x 1-1/2 in bolts (4), 3/8-16 x 3 in (4), M5 x 40 (18), M6 x 40 (12) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot) | ~$45 | $45.00 | Greased, they form the beam's stud holes and the dowel holes and hold the steel to the mold floors. Reused. |
 | Mold release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats. PVA film is optional (Partall #10, $8.36/pint). |
-| Square tube | 2x2x0.120 A500: 4x 8 in (upright columns); 1-1/2x1-1/2x0.120: 4x 6 in (legs) | ~3 ft + 2 ft | Steel-yard remnants (local) | ~$15 | $15.00 | About 12 lb. Plain steel, not galvanized. |
-| Laser-cut steel | The skeletons: about 64 plates of 1/4, 3/8 and 1/2 in mild steel, 48 kg (docs/1-sourcing/laser/README.md) | 1 set | Metal Supermarkets, a laser-cutting service (SendCutSend, OSH Cut), or a friend's CNC plasma table: send the files in docs/1-sourcing/laser/ (DXF, STEP or STL) | ~$350 | $350.00 | About 106 lb of A36/1018 plate (roughly $150-200 of steel) plus cutting; much less on a friend's table. Tapping at home (the README lists it). |
+| Steel, stock flat bar and tube | Flat bar 3/8 in x 1-1/2 (4.2 ft), x 2 (3.1 ft), x 2-1/2 (8.4 ft), x 5 (3.3 ft); 1/2 x 2-1/2 in (2.6 ft). Tube 1/8 wall: 2x3 (4.0 ft), 2x2 (1.8 ft + 4x 8-1/8 in), 1-1/2x1-1/2 (3.4 ft + 4x 6 in) | ~110 lb | A local steel yard or Metal Supermarkets, cut to the list in docs/1-sourcing/steel/ (Online Metals, Speedy Metals and Zoro sell the same sizes by the piece) | ~$300 | $300.00 | About $1.50-3/lb at a yard or service center with cutting. Retail cut pieces cost far more (Zoro: about $27/ft for 3/8 x 2-1/2 in bar). Drill and tap from docs/1-sourcing/steel/steel-templates.pdf. |
 | Rail risers | Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm | ~4 + 5 ft | Steel yard (local) | ~$40 | $40.00 | About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece). |
 | Aluminum plates | 6061 drops: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25 | ~22 lb | eBay "6061 aluminum plate remnant" / local drops | ~$85 | $85.00 | About $2.3-4.5/lb delivered. Midwest MIC-6 cut pieces are $242 if you would rather not hunt. Check flatness; face the table on the machine. |
-| Threaded rod | 1/2-13, cut to 4x 375, 2x 153, 2x 687 mm | 2x 6 ft | [Everbilt 1/2-13 zinc threaded rod (Home Depot)](https://www.homedepot.com/p/332733421) | $14.93 | $29.86 | 6 ft: 687, 687, 375; 6 ft: 375, 375, 375, 153, 153 (hacksaw). |
-| Nuts and washers | 1/2-13 nuts x16, 1/2 in SAE washers x16, 3/8 grade 8 washers x8 | 4 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$20 | $20.00 | Nuts 15-pack $4.89 + 4-pack $1.38; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
-| Beam bolts | 3/8-16 x 6-1/2 in grade 8 hex bolt | 8 | [Bolt Depot, grade 8 yellow zinc](https://www.boltdepot.com/Hex_bolts_Zinc_plated_grade_8_steel_yellow_3_8-16.aspx) | ~$2.30 | $18.40 | Shipping extra; a local fastener supplier may have them |
+| Threaded rod | 1/2-13, cut to 4x 363, 2x 153, 2x 687, 4x 270, 6x 225 mm | 4x 6 ft | [Everbilt 1/2-13 zinc threaded rod (Home Depot)](https://www.homedepot.com/p/332733421) | $14.93 | $59.72 | 6 ft: 687, 687, 363; 6 ft: 363, 363, 363, 270, 153; 6 ft: 270, 270, 270, 225, 225, 225; 6 ft: 225, 225, 225, 153 (hacksaw). |
+| Beam studs | 3/8-16 grade B7 threaded rod: 8x 186 mm studs, 3x 107 mm ties; 3/8-16 nuts and washers (11) | 2x 3 ft | Grade B7 threaded rod (Fastenal, McMaster-Carr or Amazon) | ~$30 | $30.00 | Grade B7 is about as strong as a grade 8 bolt; plain zinc rod is not. |
+| Pipe nipples | 1/2 in x 3 in black steel pipe nipple (beam spacers) | 3 | Everbilt black pipe nipple (Home Depot) | ~$3 | $9.00 |  |
+| Bolts for the base grid | 1/4-20 hex bolts with nuts and washers: 24x 4 in (rail bars onto the girders), 4x 2-1/4 in (pads) | 1 set | Hardware store | ~$15 | $15.00 |  |
+| Nuts and washers | 1/2-13 nuts x32, 1/2 in SAE washers x32, 3/8 grade 8 washers x8 | 5 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$28 | $28.00 | Nuts 15-pack $4.89; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
 | Dowel pins | 3/8 x 1-1/4 in (6) and 3/8 x 1 in (4, base split) | 2 (10-packs) | [Steel dowel pins (Zoro)](https://www.zoro.com/i/G410073219/) | ~$12 | $11.58 | They only locate the castings |
 | Feet | 1/2-13 x 2 in hex bolt + jam nut + rubber pad, per leg | 4 | Hardware store bolts + rubber anti-vibration pads | ~$12 | $12.00 | The bolt screws into the nut in each leg end; turn it to level, lock with the jam nut. Leveling mounts (S&W NYL B24, $9.49 each) if you prefer. |
 | O-ring cord | NBR 3 mm, 2.5 m | 1 (3 m) | [uxcell nitrile round strip 3 mm x 3 m](https://www.amazon.com/dp/B0CNKM7L8B) | $6.56 | $6.56 |  |
@@ -79,7 +80,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | XPS foam board | 2 in x 2 ft x 8 ft: the base pocket cores | 1 | [Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)](https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335) | ~$25 | $25.00 | Plus packing tape and double-sided carpet tape (~$10). Sizes in the mold guide. |
 | Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 
-**Priced subtotal: $1,378.76**
+**Priced subtotal: $1,352.22**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

@@ -51,7 +51,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 45 bolt | 10 |
 | M5 x 40 screw, greased (holds the face plate) | 8 |
 | M6 x 40 screw, greased (holds the face plate) | 6 |
-| 1/2 in plain steel rod, greased (forms a beam bolt hole), 198 mm | 8 |
+| 1/2 in plain steel rod, greased (forms a beam bolt hole), 204 mm | 8 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
@@ -64,7 +64,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 |---|---|---|---|
 | `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
 | `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 8m 21s |
-| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 13s |
+| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 15s |
 | `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 8m 22s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
@@ -77,15 +77,15 @@ the cast face (the melamine face the mix touches).
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Beam floor | 1 | 648 x 258 |  |
+| Beam floor | 1 | 648 x 264 |  |
 | Beam top wall | 1 | 568 x 165 |  |
 | Beam bottom wall | 1 | 568 x 165 |  |
-| Beam end wall, left | 1 | 140 x 165 |  |
-| Beam end wall, right | 1 | 140 x 165 |  |
+| Beam end wall, left | 1 | 146 x 165 |  |
+| Beam end wall, right | 1 | 146 x 165 |  |
 | Beam cleat, top | 1 | 568 x 40 | offcut strip, flat on the floor |
 | Beam cleat, bottom | 1 | 568 x 40 | offcut strip, flat on the floor |
-| Beam cleat, left | 1 | 140 x 40 | offcut strip, flat on the floor |
-| Beam cleat, right | 1 | 140 x 40 | offcut strip, flat on the floor |
+| Beam cleat, left | 1 | 146 x 40 | offcut strip, flat on the floor |
+| Beam cleat, right | 1 | 146 x 40 | offcut strip, flat on the floor |
 
 ## 5. Mark and drill
 
@@ -116,7 +116,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 ### Beam
 
-Cast front (rail) face down, back open. Slot the steel box together on the bench: diaphragms into the face plate, the back plate over them, the end plates on the tabs.
+Cast front (rail) face down, back open. Bolt the steel together on the bench: the three studs into the face bar, a pipe spacer on each, the back bar over them and a nut on each.
 
 ![The beam's steel box](../../renders/mold/skeleton-beam.png)
 
@@ -128,7 +128,7 @@ Cast front (rail) face down, back open. Slot the steel box together on the bench
 
 ![Beam, step 2](../../renders/mold/step-beam-2.png)
 
-3. The steel box in, face plate down, greased M5 and M6 screws up through the floor into its tapped holes; greased 1/2 in rods through the top wall, the cap plates, the box, the seat plates and the bottom wall; back-edge filler on the top wall between the uprights; dowels on their stops. Fill to the line through the back plate's windows.
+3. The steel in, face bar down: greased M5 and M6 screws up through the floor into its tapped holes; the back bar on its pipe spacers and studs; greased 1/2 in rods through the top wall, the cap bars, the seat bars and the bottom wall; back-edge filler on the top wall between the uprights; dowels on their stops. Fill to the line.
 
 ![Beam, step 3](../../renders/mold/step-beam-3.png)
 
@@ -176,27 +176,27 @@ edge on the floor). The templates carry the same holes at full size.
 | 1 | 80 | 20 | 4.5 | cleat |
 | 2 | 324 | 20 | 4.5 | cleat |
 | 3 | 568 | 20 | 4.5 | cleat |
-| 4 | 174 | 79 | 5.5 | M5 screw into the face plate |
-| 5 | 294 | 79 | 5.5 | M5 screw into the face plate |
-| 6 | 354 | 79 | 5.5 | M5 screw into the face plate |
-| 7 | 474 | 79 | 5.5 | M5 screw into the face plate |
+| 4 | 174 | 82 | 5.5 | M5 screw into the face plate |
+| 5 | 294 | 82 | 5.5 | M5 screw into the face plate |
+| 6 | 354 | 82 | 5.5 | M5 screw into the face plate |
+| 7 | 474 | 82 | 5.5 | M5 screw into the face plate |
 | 8 | 20 | 99 | 4.5 | cleat |
 | 9 | 628 | 99 | 4.5 | cleat |
-| 10 | 94 | 106 | 6.5 | M6 screw into the face plate |
-| 11 | 107 | 106 | 6.5 | M6 screw into the face plate |
-| 12 | 452 | 106 | 6.5 | M6 screw into the face plate |
-| 13 | 94 | 152 | 6.5 | M6 screw into the face plate |
-| 14 | 107 | 152 | 6.5 | M6 screw into the face plate |
-| 15 | 452 | 152 | 6.5 | M6 screw into the face plate |
-| 16 | 20 | 159 | 4.5 | cleat |
-| 17 | 628 | 159 | 4.5 | cleat |
-| 18 | 174 | 179 | 5.5 | M5 screw into the face plate |
-| 19 | 294 | 179 | 5.5 | M5 screw into the face plate |
-| 20 | 354 | 179 | 5.5 | M5 screw into the face plate |
-| 21 | 474 | 179 | 5.5 | M5 screw into the face plate |
-| 22 | 80 | 238 | 4.5 | cleat |
-| 23 | 324 | 238 | 4.5 | cleat |
-| 24 | 568 | 238 | 4.5 | cleat |
+| 10 | 94 | 109 | 6.5 | M6 screw into the face plate |
+| 11 | 107 | 109 | 6.5 | M6 screw into the face plate |
+| 12 | 452 | 109 | 6.5 | M6 screw into the face plate |
+| 13 | 94 | 155 | 6.5 | M6 screw into the face plate |
+| 14 | 107 | 155 | 6.5 | M6 screw into the face plate |
+| 15 | 452 | 155 | 6.5 | M6 screw into the face plate |
+| 16 | 20 | 165 | 4.5 | cleat |
+| 17 | 628 | 165 | 4.5 | cleat |
+| 18 | 174 | 182 | 5.5 | M5 screw into the face plate |
+| 19 | 294 | 182 | 5.5 | M5 screw into the face plate |
+| 20 | 354 | 182 | 5.5 | M5 screw into the face plate |
+| 21 | 474 | 182 | 5.5 | M5 screw into the face plate |
+| 22 | 80 | 244 | 4.5 | cleat |
+| 23 | 324 | 244 | 4.5 | cleat |
+| 24 | 568 | 244 | 4.5 | cleat |
 
 #### Beam top wall
 
@@ -244,7 +244,7 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 14 | 154 | 4.5 | corner bracket |
-| 2 | 126 | 154 | 4.5 | corner bracket |
+| 2 | 132 | 154 | 4.5 | corner bracket |
 
 #### Beam end wall, right
 
@@ -253,7 +253,7 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 14 | 154 | 4.5 | corner bracket |
-| 2 | 126 | 154 | 4.5 | corner bracket |
+| 2 | 132 | 154 | 4.5 | corner bracket |
 
 #### Beam cleat, top
 
@@ -281,7 +281,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 100 | 20 | 4.5 | cleat |
+| 1 | 106 | 20 | 4.5 | cleat |
 | 2 | 40 | 20 | 4.5 | cleat |
 
 #### Beam cleat, right
@@ -290,5 +290,5 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 100 | 20 | 4.5 | cleat |
+| 1 | 106 | 20 | 4.5 | cleat |
 | 2 | 40 | 20 | 4.5 | cleat |

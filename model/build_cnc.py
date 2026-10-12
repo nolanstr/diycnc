@@ -100,12 +100,12 @@ P = dict(
     upright_t=80.0, upright_d=180.0, upright_front=40.0,
     upright_foot=260.0, upright_top_front=70.0,   # foot front / top front, mm ahead of the beam face
     upright_nose=20.0, upright_nose_r=12.0,       # blunt toe: vertical nose, rounded into the slope
-    # Upright skeleton: a 1/2 in foot plate, two 2x2 tube columns (a tie rod inside each) and a 3/8 in
-    # brace plate up the slope, slotted into the foot plate and the top plate's lower layer
+    # Upright skeleton, all stock: a 3/8 x 2 in flat-bar foot, two 2x2 tube columns (a tie rod inside each,
+    # screwed into the top plate's lower bar) and the top plate
     column_ys=(35.0, 45.0),  # column center lines: this far behind the upright's top front / ahead of its back
     toe_rod=35.5,            # the toe tie rod, mm behind the foot's front edge; its nut sits on the foot plate
-    column_len=203.2,        # 8 in, bought at length: 5 mm short, bedded in thickened epoxy on the foot plate
-    beam_d=140.0, beam_h=140.0, beam_back_r=40.0, edge_r=6.0,   # beam as deep as the upright tops
+    column_len=206.4,        # 8-1/8 in, bought at length: 5 mm short, bedded in thickened epoxy on the foot bar
+    beam_d=140.0, beam_h=146.05, beam_back_r=40.0, edge_r=6.0,  # 5 in face bar between two 3/8 in end bars
     # Outside edge rounds (quarter-round strips in the mold corners): castings' outer edges,
     # the beam's lower back edge (meets the uprights' back faces) and its rail-face edges
     round_r=10.0, beam_back_low_r=10.0, beam_face_r=3.0,
@@ -137,14 +137,14 @@ P = dict(
     # Joint hardware in hardware-store inch sizes: 1/2-13 rod, couplers and nuts, 3/8-16 grade 8
     # beam bolts, 3/8 in dowels.
     tie_rod_d=12.7, beam_bolt_d=9.525, dowel_d=9.525, dowel_proud=15.0,
-    # The uprights are tied to steel top and bottom. Each top plate is two 1/2 in laser-cut layers: the
-    # lower one is tapped for the beam's cap screws, and the two top tie rods screw into nuts held in hex
-    # holes in the upper one. At the bottom every tie rod runs right through the base to a 3/8 x 3 in
-    # laser-cut steel bar flush in the underside, nut and washer below it. So the beam, the top plate,
-    # the tie rods and the bars are one steel chain, with the epoxy granite clamped in it, and there is
-    # no thread in the epoxy granite to come loose: every nut can be retightened from under the base.
-    top_plate_t=25.4, plate_layer=12.7, beam_bolt_len=165.1,          # 3/8-16 x 6-1/2 in cap screws
-    anchor_bar=(9.525, 76.2), anchor_hole=17.5,                       # bar (thickness, width), 11/16 in holes
+    # The uprights are tied to steel top and bottom. Each top plate is two 1/2 x 2-1/2 in flat bars: the
+    # lower one is tapped for the beam's studs and for the two column tie rods. At the bottom every tie rod
+    # runs right through the base pedestal to its bottom bar, nut and washer below it. So the beam, the top
+    # plate, the columns, the pedestal and the rods are one steel chain, with the epoxy granite clamped in
+    # it, and there is no thread in the epoxy granite to come loose: every nut can be retightened.
+    top_plate_t=25.4, plate_layer=12.7,
+    beam_stud=186.0,         # the beam's eight 3/8-16 grade B7 studs, cut from rod, screwed into the top plates
+    beam_spacer=76.2,        # 1/2 in x 3 in pipe nipples between the beam's face and back bars
     rod_tail=6.0,            # tie rod below its bottom nut: the rods are cut at home, and the error ends up here
     slope_pocket_d=32.0,     # toe tie-rod nut pocket, down to the foot plate
     # In the uprights the tie-rod holes are cast on 5/8 in rods (1.6 mm clearance a side) and the base
@@ -249,8 +249,9 @@ class Model:
         self.dynamic = []
         self.structure = set()   # castings, cast-in steel, joint hardware, gaskets
         self.anchors = []        # (point on the casting face, unit normal out of it, insert)
-        self.plates = []         # laser-cut steel (skeleton.Plate)
+        self.plates = []         # flat bar in the skeletons (skeleton.Plate)
         self.base_tapped = []    # (plate, container): base plates cast_anchors taps, then adds
+        self.tubes = []          # stock tube in the skeletons (skeleton.Tube)
 
     def add_dynamic(self, name, look, fn, container, touches=()):
         """A part whose shape depends on the axis positions: fn(x, y, z) -> shape or None.
@@ -397,8 +398,8 @@ def frame_layout(d):
     # base grid: a girder under each Y rail (web 12 mm outboard of the rail line, clear of the riser
     # hold-downs), a pedestal under each upright, cross plates at the split, the Y ballscrew supports and
     # the front; the draw rods run along the girders from the front face to the back face
-    g['rail_x'], g['girder_x'] = P['table_rail_spacing'] / 2, P['table_rail_spacing'] / 2 + 12.0
-    g['draw_rod_x'], g['pin_x'] = P['table_rail_spacing'] / 2 - 18.0, P['table_rail_spacing'] / 2 + 34.0
+    g['rail_x'] = g['girder_x'] = g['draw_rod_x'] = P['table_rail_spacing'] / 2   # girder tube under each rail
+    g['pin_x'] = P['table_rail_spacing'] / 2 + 32.0                               # split dowel pins, beside it
     g['front_web'] = d['base_y0'] + 56.5                       # front cross plate (y of its front face)
     g['rear_end'] = d['base_y1'] - 29.5                        # girders' rear end plates (y of their front face)
     y_tail = parts.ENDS['SFU1605']['bk_e'] - parts.SUPPORT['BK12']['L'] + parts.ENDS['SFU1605']['stub_l']
@@ -409,8 +410,13 @@ def frame_layout(d):
     g['legs'] = [(sx * (d['base_half'] - P['leg_inset']), y)
                  for y in (d['base_y0'] + P['leg_inset'], d['base_y1'] - P['leg_inset']) for sx in (-1, 1)]
     g['gasket_len'] = 0.0
-    g['draw_z'] = 55.0
+    g['draw_z'] = d['base_top'] - T38 - GIRDER[1] / 2              # the girders' center (and their draw rods)
+    g['tie_z'] = d['base_top'] - T38 - CROSS / 2 - 3.5               # the cross tubes' center (and their rods)
     return g
+
+
+GIRDER = (50.8, 76.2, 3.175)      # 2 x 3 x 1/8 in rectangular tube (wide, tall, wall)
+CROSS = 38.1                      # 1-1/2 x 1-1/2 x 1/8 in square tube
 
 
 BASE_BRIDGES = {'base-front': (-230.0, -130.0, -60.0), 'base-rear': (100.0, 170.0, 280.0)}   # y of the base mold's bridges
@@ -478,27 +484,26 @@ def base_pockets(g):
     ry = g['rod_y']
     foot = g['up_front']
     sw = P['split_wall'] + 10.0                      # full-depth band either side of the split
-    ob = g['ux'] + P['anchor_bar'][1] / 2 + 9.0      # outboard of the anchor bar
+    ob = g['ux'] + 38.1 + 9.0                        # outboard of the pedestal (and the cross-rod nuts)
     bfw = g['y_bf'] + 12.0                           # the BF12 cross plate, just behind the screws
     out = [(chamfered(-gi, gi, yf0, bfw - 20.0, 10.0), zp, 'center-a'),       # front, between the girders
            (chamfered(-gi, gi, bfw + 20.0, g['split'] - P['base_tie'], 10.0), zp, 'center-b'),
-           (chamfered(-gi, gi, tie, 245.0, 30.0), zp, 'center')]        # rear, between the girders
+           (chamfered(-gi + 6, gi - 6, tie, 245.0, 30.0), zp, 'center')]   # rear, clear of the cross rods' nuts
     for sx in (-1, 1):
         if P['base_foot_pockets']:
             # Under the upright feet: a full-depth rib across the foot's front end, another along the
             # split, and pockets between them that keep clear of the solid band under each upright's
             # center line, where the tie rods run down to the steel anchor bar.
             # The outboard pocket runs up to the front rib.
-            cx = g['ux'] - P['anchor_bar'][1] / 2 - 12.0      # inboard of the anchor bar
+            cx = g['ux'] - 38.1 - 12.0                    # inboard of the pedestal
             sock = g['up_y0'] - 0.5                          # a rib across the foot
             front_end = foot + 10.0
-            feet = [(chamfered(go, cx, front_end + 20.0, g['split'] - sw, 10.0), zp, 'foot-a'),
-                    (chamfered(go, cx, g['split'] + sw, sock - 5.0, 10.0), zp, 'foot-b')]
+            feet = [(chamfered(go + 6.0, cx, g['split'] + sw, sock - 5.0, 10.0), zp, 'foot-b')]
             knee_y0, outer_y0 = sock + 5.0, sock + 15.0
         else:
             front_end, feet, knee_y0, outer_y0 = foot - 20.0, [], tie, 60.0
         side = [
-            (chamfered(go, half - 40.0, yf0, front_end, 10.0), zp, 'outboard'),             # front, outboard
+            (chamfered(go + 10.0, half - 40.0, yf0, front_end - 20.0, 10.0), zp, 'outboard'),  # front, outboard
             (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0, 'trough-band'),      # under the coolant trough band
             (chamfered(ob, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),            # under the front draw rods
         ] + feet + [
@@ -556,160 +561,134 @@ def base_top_formers(g, front):
 
 
 def base_grid(m, g, st, front, cont, tag):
-    """The steel grid of a base half, all laser-cut plates slotted together: a girder under each Y rail
-    (rail bar on top, tapped for the riser hold-downs; web; bottom bar; an end plate at the split and at
-    the far end), a pedestal under each upright (seat plate the foot plate bears on, two webs, bottom bar
-    the tie-rod nuts pull against), cross plates (at the split, and under the Y ballscrew supports, whose
-    pads are tapped for them), and a plate down to each leg. The draw rods run beside the girder webs
-    from the front face to the back face, through the end plates, and clamp the halves end plate to end
-    plate. Returns the plates to cut from the casting and those cast_anchors taps."""
-    base_top, ys, half = g['base_top'], g['split'], g['base_half']
-    H, B = base_top - T38, T38                       # underside of the top plates, top of the bottom bars
-    TW = T14                                         # webs and cross plates; 3/8 where there are threads or nuts
+    """The steel grid of a base half, all stock, drilled from the templates and bolted: a 2x3 tube girder
+    under each Y rail with a 3/8 x 1-1/2 in rail bar bolted on top (tapped for the riser hold-downs) and a
+    3/8 x 3 in end plate at each end; a pedestal under each upright (3/8 x 2-1/2 in seat and bottom bars,
+    a 2x2 tube spacer round each tie rod); and 1-1/2 in cross tubes, each clamped by a 1/2-13 rod through
+    it and the tubes it joins: girder to girder (at the split, and under the Y ballscrew supports, whose
+    3/8 x 2 in pads bolt on top) and girder to pedestal. The draw rods run inside the girders, from end
+    plate to end plate, and clamp the halves together. Returns the plates and tubes cut from the casting,
+    and the plates cast_anchors taps."""
+    base_top, ys = g['base_top'], g['split']
+    H = base_top - T38                               # underside of the bars on top
+    gw, gh, gt = GIRDER
+    gz = g['draw_z']
+    tz = g['tie_z']
     sides = ((-1, 'L'), (1, 'R'))
-    xcross = [ys - 18.0, g['y_bf'] + 12.0] if front else [ys + 18.0, g['y_bkc'] - 18.0]   # cross plates (y)
-    plates, tapped = [], []
-    gx, rx = g['girder_x'], g['rail_x']
-    # y extents of this half's girders: web body, bars, and the two end plates
+    parts_, tapped = [], []
+    gx = g['girder_x']
     if front:
-        fw0 = g['front_web']
-        web_y = (fw0 + T38, ys - T14)
-        bar_y = (fw0, ys - 0.5)
-        ends = [('Split', ys - T38)]
+        tube_y = (g['front_web'] + T38, ys - T38)
+        bar_y = (g['front_web'], ys - 0.5)
+        ends = [('Front', g['front_web']), ('Split', ys - T38)]
     else:
-        web_y = (ys + T14, g['rear_end'])
+        tube_y = (ys + T38, g['rear_end'])
         bar_y = (ys + 0.5, g['rear_end'] + T38)
-        ends = [('Split', ys), ('End', g['rear_end'])]
+        ends = [('Split', ys), ('Back', g['rear_end'])]
+    # cross rods (y): girder to girder at the split and under the supports, girder to pedestal beside each
+    # pedestal column's tie rod
+    tie_ys = ([ys - 34.0, g['y_bf'] + 12.0] if front else [ys + 34.0, g['y_bkc'] - 17.5])
+    ped_ys = [y_ - 15.0 for _, y_, _ in g['tie_rods'] if (y_ < ys) == front]
+    # through-bolts that hold each rail bar down on its girder: midway between the riser hold-downs, clear of
+    # the cross rods
+    holds = [P['table_rail_y'] + u for u in riser_holddowns(P['table_rail_len'])]
+    marks = sorted([bar_y[0]] + [h_ for h_ in holds if bar_y[0] < h_ < bar_y[1]] + [bar_y[1]])
+    bolt_ys = [(a + b) / 2 for a, b in zip(marks, marks[1:]) if b - a > 30
+               and all(abs((a + b) / 2 - t_) > 13 for t_ in tie_ys + ped_ys)]
     girders = {}
     for sx, side in sides:
-        wx = sx * gx
-        y0, y1 = web_y
-        tabs = [('q0', y0 + 15 + k * (y1 - y0 - 30) / 2 - 15, y0 + 15 + k * (y1 - y0 - 30) / 2 + 15, T38) for k in range(3)]
-        tabs += [('q1', a0, a1, T38) for _, a0, a1, _ in tabs]
-        # through the end plates (below the split gasket), and at the front up through the front cross plate
-        tabs += [('p0', 55.0, 85.0, T38) if front else ('p0', 20.0, 50.0, T14), ('p1', 20.0, 50.0, T14 if front else T38)]
-        web = sk.Plate(f'BaseGirderWeb{tag}{side}', 'x', wx - TW / 2, TW, sk.tabbed(y0, B, y1, H, tabs))
-        web.truss(y0 + 12, y1 - 12, B + 15, H - 15, keep=xcross)
-        rail = sk.Plate(f'BaseRailBar{tag}{side}', 'z', H, T38, sk.tabbed(sx * rx - 19.05, bar_y[0], sx * rx + 19.05, bar_y[1]))
-        bot = sk.Plate(f'BaseGirderBar{tag}{side}', 'z', 0.0, T38, sk.tabbed(wx - 19.05, y0, wx + 19.05, y1))
-        sk.through(web, rail)
-        sk.through(web, bot)
-        endp = []
+        x0 = sx * gx
+        tube = sk.Tube(f'BaseGirder{tag}{side}', 'y', x0, gz, gw, gh, gt, *tube_y)
+        rail = sk.flat_bar(f'BaseRailBar{tag}{side}', 'z', H, T38, x0 - 19.05, bar_y[0], x0 + 19.05, bar_y[1])
+        for by in bolt_ys:
+            for dx in (-12.0, 12.0):
+                tube.drill('z', by, x0 + dx, 6.6, '1/4-20 bolt (rail bar)')
+                rail.hole(x0 + dx, by, 6.6)
+        for hy in (P['table_rail_y'] + u for u in riser_holddowns(P['table_rail_len'])):
+            if tube_y[0] < hy < tube_y[1]:
+                tube.drill('z', hy, x0, 6.5, 'relief under a riser hold-down', both=False)
         for kind, c0 in ends:
-            te = T14 if kind == 'Split' else T38            # the draw-rod nuts bear on the far end plates
-            if kind == 'Split' and front:
-                c0 = ys - T14
-            e = sk.Plate(f'BaseGirderEnd{"Back" if kind == "End" else kind}{tag}{side}', 'y', c0, te,
-                         sk.tabbed(min(sx * (rx - 40), sx * (gx + 38)), 0.0, max(sx * (rx - 40), sx * (gx + 38)), 85.0))
-            sk.through(web, e)
-            e.hole(sx * g['draw_rod_x'], g['draw_z'], 14.3)
+            e = sk.flat_bar(f'BaseGirderEnd{kind}{tag}{side}', 'y', c0, T38, x0 - 38.1, H - 76.2, x0 + 38.1, H - 12.7)
+            e.hole(x0, gz, 14.3)
             if kind == 'Split':
-                for z in (25.0, 70.0):
-                    e.hole(sx * g['pin_x'], z, 9.6)          # dowel pins: glued in the rear plate, into the front one
-            endp.append(e)
-        girders[side] = web
-        plates += [web, bot] + endp
+                for dx in (-32.0, 32.0):
+                    e.hole(x0 + dx, gz, 9.6)                 # dowel pins: glued in the rear plate, into the front one
+            parts_.append(e)
+        girders[side] = tube
+        parts_.append(tube)
         tapped.append(rail)
     # pedestals under the uprights
     peds = {}
     for sx, side in sides:
         ux = sx * g['ux']
         rods = [(sx * x_, y_) for x_, y_, _ in g['tie_rods'] if (y_ < ys) == front]
-        if front:
-            sy0, sy1, wy0, wy1 = g['up_front'] + 12.5, ys - 12.0, g['up_front'] + 12.5, ys - 12.0
-        else:
-            sy0, sy1 = ys + 12.0, g['up_y1'] - 12.5
-            wy0, wy1 = ys + 12.0, g['y_bkc'] - 12.0 + T38
-        seat = sk.Plate(f'BaseSeat{tag}{side}', 'z', H, T38, sk.tabbed(ux - 30.0, sy0, ux + 30.0, sy1))
-        pbar = sk.Plate(f'BasePedestalBar{tag}{side}', 'z', 0.0, T38, sk.tabbed(ux - 31.0, wy0, ux + 31.0, wy1))
-        webs = []
-        for k, dx in enumerate((-20.0, 20.0)):
-            n_t = max(1, int((min(sy1, wy1) - sy0) // 90))
-            step = (min(sy1, wy1) - sy0) / n_t
-            tabs = [('q1', sy0 + (i + 0.5) * step - 12, sy0 + (i + 0.5) * step + 12, T38) for i in range(n_t)]
-            n_b = max(1, int((wy1 - wy0) // 90))
-            stepb = (wy1 - wy0) / n_b
-            tabs += [('q0', wy0 + (i + 0.5) * stepb - 12, wy0 + (i + 0.5) * stepb + 12, T38) for i in range(n_b)]
-            w = sk.Plate(f'BasePedestalWeb{tag}{side}{k + 1}', 'x', ux + dx - TW / 2, TW, sk.tabbed(wy0, B, wy1, H, tabs))
-            # windows clear of the tie rods' nuts and the dowels between the webs, and of the cross plates
-            w.truss(wy0 + 12, wy1 - 12, B + 15, H - 15, keep=xcross)
-            sk.through(w, seat)
-            sk.through(w, pbar)
-            webs.append(w)
-        for x_, y_ in rods:
-            seat.hole(x_, y_, P['anchor_hole'])
-            pbar.hole(x_, y_, P['anchor_hole'])
+        sy0, sy1 = (g['up_front'] + 12.5, ys - 12.0) if front else (ys + 12.0, g['up_y1'] - 12.5)
+        seat = sk.flat_bar(f'BaseSeat{tag}{side}', 'z', H, T38, ux - 31.75, sy0, ux + 31.75, sy1)
+        pbar = sk.flat_bar(f'BasePedestalBar{tag}{side}', 'z', 0.0, T38, ux - 31.75, sy0, ux + 31.75, sy1)
+        cols = []
+        for k, (x_, y_) in enumerate(rods):
+            seat.hole(x_, y_, 14.3)
+            pbar.hole(x_, y_, 14.3)
+            c = sk.Tube(f'BasePedestalColumn{tag}{side}{k + 1}', 'z', x_, y_, 50.8, 50.8, 3.175, T38, H)
+            cols.append((y_, c))
+            parts_.append(c)
         if not front:
             for dy in g['dowel_ys']:
                 seat.hole(ux, dy, 9.6)
-        peds[side] = webs
-        plates += [seat, pbar] + webs
-    # cross plates
-    def cross(name, y, x0, x1, z0, z1, t=TW):
-        return sk.Plate(name, 'y', y - t / 2, t, sk.tabbed(x0, z0, x1, z1))
-    xs = []
-    if front:
-        xs.append(cross(f'BaseCrossSplit{tag}', ys - 18.0, -(g['ux'] + 30), g['ux'] + 30, B, H))
-        bfw = g['y_bf'] + 12.0                       # just behind the BF12 screws; tabs up through its pad
-        pad = sk.Plate('BasePadBF', 'z', H, T38, sk.tabbed(-40.0, g['y_bf'] - 20.0, 40.0, bfw + TW / 2 + 8.0))
-        bfx = sk.Plate(f'BaseCrossBF{tag}', 'y', bfw - TW / 2, TW,
-                       sk.tabbed(-(gx + 15), B, gx + 15, H, [('q1', -30.0, -8.0, T38), ('q1', 8.0, 30.0, T38)]))
-        sk.through(bfx, pad)
-        xs.append(bfx)
-        tapped.append(pad)
-        fw = cross('BaseCrossNose', g['front_web'] + T38 / 2, -262.0, 262.0, 45.0, H, T38)   # the draw-rod nuts bear on it
-        for sx in (-1, 1):
-            fw.hole(sx * g['draw_rod_x'], g['draw_z'], 14.3)
-        xs.append(fw)
-    else:
-        xs.append(cross(f'BaseCrossSplit{tag}', ys + 18.0, -(g['ux'] + 30), g['ux'] + 30, B, H))
-        bkw = g['y_bkc'] - 18.0                      # just ahead of the BK12 screws
-        bkx = sk.Plate(f'BaseCrossBK{tag}', 'y', bkw - TW / 2, TW,
-                       sk.tabbed(-262.0, B, 262.0, H, [('q1', -30.0, -8.0, T38), ('q1', 8.0, 30.0, T38)]))
-        pad = sk.Plate('BasePadBK', 'z', H, T38, sk.tabbed(-40.0, bkw - TW / 2 - 8.0, 40.0, g['y_bkc'] + 11.5))
-        sk.through(bkx, pad)
-        xs.append(bkx)
-        tapped.append(pad)
-    for x_ in xs:
-        if x_.name.startswith('BaseCrossNose'):
-            for side in ('L', 'R'):
-                sk.through(girders[side], x_)
-            plates.append(x_)
-            continue
-        for side in ('L', 'R'):
-            if x_.slab.common(girders[side].slab).Volume > 1:
-                sk.lap(x_, girders[side], 'z')
-            for w in peds[side]:
-                if x_.slab.common(w.slab).Volume > 1:
-                    sk.lap(x_, w, 'z')
-        # lightening windows, with a post wherever it crosses a web (and under the pad)
-        bb = x_.slab.BoundBox
-        keep = [c for c in (-g['ux'] - 20, -g['ux'] + 20, -gx, gx, g['ux'] - 20, g['ux'] + 20, -19.0, 19.0)
-                if bb.XMin < c < bb.XMax]
-        x_.truss(bb.XMin + 12, bb.XMax - 12, bb.ZMin + 15, bb.ZMax - 15, keep=keep, post=24.0)
-        plates.append(x_)
-    # legs: a plate from each leg's top to the nearest cross plate (front) or the BK cross plate (rear)
+        peds[side] = cols
+        parts_ += [seat, pbar]
+    # cross tubes, each clamped by a 1/2-13 rod through it and the tubes it butts against
+    ties, rods_ = [], []
+    def cross(name, y, xa, xb, through):
+        c = sk.Tube(name, 'x', y, tz, CROSS, CROSS, 3.175, xa, xb)
+        for t_ in through:
+            t_.drill('x', y if t_.axis == 'y' else tz, tz if t_.axis == 'y' else y, 14.3, '1/2-13 cross rod')
+        ties.append((name, y, through))
+        parts_.append(c)
+        # the rod: through the cross tube and both tubes it joins, a washer and nut on each outside face
+        lo = min(t_.env.BoundBox.XMin for t_ in through)
+        hi = max(t_.env.BoundBox.XMax for t_ in through)
+        tail = 13.6 + P['rod_tail']
+        rod = parts.cyl_u(P['tie_rod_d'] / 2, lo - tail, hi + tail, y, tz)
+        nuts = [parts.cyl_u(13.5, lo - 2.5, lo, y, tz).fuse(parts.cyl_u(11.0, lo - 13.6, lo - 2.5, y, tz)),
+                parts.cyl_u(13.5, hi, hi + 2.5, y, tz).fuse(parts.cyl_u(11.0, hi + 2.5, hi + 13.6, y, tz))]
+        st.add(name.replace('BaseCross', 'CrossRod'), cont, rod.fuse(nuts), 'steel')
+        rods_.append(rod.fuse(nuts))
+        return c
+    inner_x = gx - gw / 2
+    cross(f'BaseCrossSplit{tag}', tie_ys[0], -inner_x, inner_x, [girders['L'], girders['R']])
+    cross(f'BaseCross{"BF" if front else "BK"}{tag}', tie_ys[1], -inner_x, inner_x, [girders['L'], girders['R']])
     for sx, side in sides:
-        lx, ly = next((x_, y_) for x_, y_ in g['legs'] if (y_ < ys) == front and x_ * sx > 0)
-        lx -= sx * 9.0                                # on the leg's top, clear of the pedestal and the gutter
-        z0 = P['leg_embed']
-        if front:
-            fw = next(x_ for x_ in xs if x_.name.startswith('BaseCrossNose'))
-            y0, y1 = ly - 15.0, g['front_web']
-            lp = sk.Plate(f'BaseLegPlate{tag}{side}', 'x', lx - TW / 2, TW,
-                          sk.tabbed(y0, z0, y1, 90.0, [('p1', 55.0, 85.0, T38)]))
-            sk.through(lp, fw)
+        for k, ((y_, col), py) in enumerate(zip(peds[side], ped_ys)):
+            a, b = sorted((sx * (gx + gw / 2), sx * (g['ux'] - 25.4)))
+            cross(f'BaseCrossPed{tag}{side}{k + 1}', py, a, b, [girders[side], col])
+    # pads for the Y ballscrew supports, bolted down onto their cross tube
+    for nm, y_, _ in ties:
+        if nm.startswith(('BaseCrossBF', 'BaseCrossBK')):
+            bf = nm.startswith('BaseCrossBF')
+            py0, py1 = (g['y_bf'] - 20.4, g['y_bf'] + 30.4) if bf else (g['y_bk'] - 50.8, g['y_bk'])
+            pad = sk.flat_bar('BasePadBF' if bf else 'BasePadBK', 'z', H, T38, -45.0, py0, 45.0, py1)
+            tube = next(p_ for p_ in parts_ if getattr(p_, 'name', '') == nm)
+            by = y_ + (12.0 if bf else -12.0)
+            for bx in (-32.0, 32.0):
+                pad.hole(bx, by, 6.6)
+                tube.drill('z', bx, by, 6.6, '1/4-20 bolt (pad)')
+            # reliefs in the tube's top under the support's screws
+            sup = parts.SUPPORT['BF12' if bf else 'BK12']
+            us = (g['y_bf'] - sup['L'] / 2) if bf else (g['y_bk'] - sup['L'])
+            for c_ in sup['C']:
+                for vx in (-sup['P'] / 2, sup['P'] / 2):
+                    if abs(us + c_ - y_) < CROSS / 2 - 4:
+                        tube.drill('z', vx, us + c_, 7.0, 'relief under a support screw', both=False)
+            tapped.append(pad)
+    m.half_rods = rods_
+    for p_ in parts_:
+        st.add(p_.name, cont, p_.shape)
+        if isinstance(p_, sk.Plate):
+            m.plates.append(p_)
         else:
-            bkx = next(x_ for x_ in xs if x_.name.startswith('BaseCrossBK'))
-            yw1 = bkx.c0 + TW
-            lp = sk.Plate(f'BaseLegPlate{tag}{side}', 'x', lx - TW / 2, TW,
-                          sk.tabbed(yw1, z0, ly + 15.0, 90.0, [('p0', 50.0, 85.0, TW)]))
-            sk.through(lp, bkx)
-        plates.append(lp)
-    for pl in plates:
-        st.add(pl.name, cont, pl.shape)
-        m.plates.append(pl)
-    return plates, tapped
+            m.tubes.append(p_)
+    return parts_, tapped
 
 
 def base_half(m, g, st, front):
@@ -726,7 +705,8 @@ def base_half(m, g, st, front):
             face = Part.Face(Part.makePolygon([Vector(x, y, -1) for x, y in poly + poly[:1]]))
             cuts.append(face.extrude(Vector(0, 0, z_top + 1)))
     plates, tapped = base_grid(m, g, st, front, cont, tag)
-    cuts += [pl.slab for pl in plates + tapped]
+    cuts += [pl.env if isinstance(pl, sk.Tube) else pl.slab for pl in plates + tapped]
+    cuts += m.half_rods
     m.base_tapped += [(pl, cont) for pl in tapped]
     # draw rods: from a nut pocket in the front face to a nut pocket in the back face, beside the girders
     for sx, side in ((-1, 'L'), (1, 'R')):
@@ -746,14 +726,14 @@ def base_half(m, g, st, front):
             st.add(f'DrawRodNut{tag}{side}', cont, nut.cut(parts.cyl_v(P['tie_rod_d'] / 2, seat - 1, seat + 20, dx, dz)), 'steel')
             rod = parts.cyl_v(P['tie_rod_d'] / 2, ys, seat + 13.6 + P['rod_tail'], dx, dz)
             st.add(f'DrawRodRear{side}', cont, rod, 'steel')
-        if not front:
-            for z in (25.0, 70.0):
-                pin = parts.cyl_v(P['dowel_d'] / 2, ys - 12.7, ys + 12.7, sx * g['pin_x'], z)   # 3/8 x 1 in
-                st.add(f'SplitPin{side}{int(z)}', cont, pin, 'steel')
+        for k, dx in enumerate((-32.0, 32.0)):
+            px = sx * g['girder_x'] + dx
+            if not front:
+                pin = parts.cyl_v(P['dowel_d'] / 2, ys - 12.7, ys + 12.7, px, dz)   # 3/8 x 1 in
+                st.add(f'SplitPin{side}{k + 1}', cont, pin, 'steel')
                 cuts.append(pin)
-        else:
-            for z in (25.0, 70.0):
-                cuts.append(parts.cyl_v(P['dowel_d'] / 2 + 0.05, ys - 13.2, ys + 0.1, sx * g['pin_x'], z))
+            else:
+                cuts.append(parts.cyl_v(P['dowel_d'] / 2 + 0.05, ys - 13.2, ys + 0.1, px, dz))
 
     cuts += [shape for _, shape in base_top_formers(g, front)]
     if front:
@@ -852,10 +832,10 @@ def upright_envelope(g, sx, edges=True):
 
 
 def upright(m, g, st, sx):
-    """Upright: a steel skeleton (foot plate, two tube columns, a brace plate up the slope, the two-layer
-    top plate) cast into epoxy granite. The tie rods run inside the columns from nuts held in the top
-    plate, and from the toe pocket onto the foot plate, right through the base, so the whole upright is
-    clamped down through steel; two dowels locate it."""
+    """Upright: a steel skeleton of stock parts (flat-bar foot, two tube columns, a top plate of two flat
+    bars) cast into epoxy granite. The tie rods run inside the columns and screw into the top plate's
+    lower bar, and one from the toe pocket bears on the foot, all right through the base, so the whole
+    upright is clamped down through steel; two dowels locate it."""
     tag = 'L' if sx < 0 else 'R'
     cont = f'FrameUpright{tag}'
     inner, outer, base_top, beam_bot = g['inner'], g['outer'], g['base_top'], g['beam_bot']
@@ -866,23 +846,14 @@ def upright(m, g, st, sx):
     plate_bot = beam_bot - plate_t
     rod_r = P['tie_rod_d'] / 2
 
-    # ---- the skeleton
-    xa, xb = sorted((sx * (inner + 6), sx * (outer - 6)))
+    # ---- the skeleton, all stock: a 3/8 x 2 in flat-bar foot, two 2x2 tube columns, and a top plate of two
+    # 1/2 x 2-1/2 in flat bars (the lower one tapped for the column rods and the beam's studs)
+    xa, xb = sorted((sx * (g['ux'] - 31.75), sx * (g['ux'] + 31.75)))
     py0, py1 = g['up_top_front'] + 6, up_y1 - 6
-    lower = sk.Plate(f'TopPlate{tag}Lower', 'z', plate_bot, lay, sk.tabbed(xa, py0, xb, py1))
-    upper = sk.Plate(f'TopPlate{tag}Upper', 'z', plate_bot + lay, lay, sk.tabbed(xa, py0, xb, py1))
-    fa, fb = sorted((sx * (g['ux'] - 28), sx * (g['ux'] + 28)))           # inside the foot's gasket groove
-    foot = sk.Plate(f'UprightFoot{tag}', 'z', base_top, T38, sk.tabbed(fa, g['up_front'] + 12.5, fb, up_y1 - 12.5))
-    # brace: a strip from the foot (behind the toe pocket) up to the top plate (ahead of the front column)
-    yb0, yb1 = g['up_front'] + P['toe_rod'] + 20.0, g['up_front'] + P['toe_rod'] + 50.0
-    yt1 = g['columns'][0] - P['frame_tube'][0] / 2 - 3.0
-    yt0 = max(py0 + 4.0, yt1 - 26.0)
-    brace_pts = [(yb0 + 5, base_top), (yb1 - 5, base_top), (yb1 - 5, ft), (yb1, ft), (yt1, plate_bot),
-                 (yt1 - 4, plate_bot), (yt1 - 4, plate_bot + lay), (yt0 + 4, plate_bot + lay), (yt0 + 4, plate_bot),
-                 (yt0, plate_bot), (yb0, ft), (yb0 + 5, ft)]
-    brace = sk.Plate(f'UprightBrace{tag}', 'x', ux - T14 / 2, T14, brace_pts)
-    sk.through(brace, foot)
-    sk.through(brace, lower)
+    lower = sk.flat_bar(f'TopPlate{tag}Lower', 'z', plate_bot, lay, xa, py0, xb, py1)
+    upper = sk.flat_bar(f'TopPlate{tag}Upper', 'z', plate_bot + lay, lay, xa, py0, xb, py1)
+    fa, fb = sorted((sx * (g['ux'] - 25.4), sx * (g['ux'] + 25.4)))   # inside the foot's gasket groove
+    foot = sk.flat_bar(f'UprightFoot{tag}', 'z', base_top, T38, fa, g['up_front'] + 12.5, fb, up_y1 - 12.5)
     tl, tw = P['column_len'], P['frame_tube'][1]
     cols = []
     for i, cy in enumerate(g['columns']):
@@ -896,12 +867,10 @@ def upright(m, g, st, sx):
             ring = parts.soften(ring, 3.0, parts.parallel((0, 0, 1)), chamfer=True)
             ring = seam_relief(ring.cut(Part.makeCylinder(6.6, 14, Vector(ux, cy, z0 - 1))), 'z', ux, cy, inner_s, z0, z0 + 12)
             st.add(f'ColumnRing{tag}{i + 1}{"ab"[k]}', cont, ring, 'printed')
-    # holes: rods, dowels, beam screws, the beam's dowel
     for rx, ry, pb in g['tie_rods']:
         foot.hole(sx * rx, ry, 14.3)
         if pb >= g['pocket_bot'] - 1:
-            lower.hole(sx * rx, ry, 14.3)
-            upper.hexhole(sx * rx, ry, 19.05 + 0.6)
+            lower.hole(sx * rx, ry, 0, tap='1/2-13')
     for dy in g['dowel_ys']:
         foot.hole(ux, dy, P['up_dowel_hole'])
     for bx in g['bolt_xs']:
@@ -910,12 +879,12 @@ def upright(m, g, st, sx):
             upper.hole(sx * bx, by, 10.5)
     for pl in (lower, upper):
         pl.hole(ux, g['beam_dowel_y'], P['plate_dowel_hole'])
-    for pl in (foot, brace, lower, upper):
+    for pl in (foot, lower, upper):
         st.add(pl.name, cont, pl.shape)
         m.plates.append(pl)
 
     # ---- the casting around it
-    cuts = [foot.slab, brace.slab, parts.box(xa, xb, py0, py1, plate_bot, beam_bot + 1)] + cols
+    cuts = [foot.slab, parts.box(xa, xb, py0, py1, plate_bot, beam_bot + 1)] + cols
     cuts += [Part.makeCylinder(P['up_dowel_hole'] / 2, 10.0, Vector(ux, dy, ft - 1)) for dy in g['dowel_ys']]
     cuts += [Part.makeCylinder(rod_r + 1.0, plate_bot - tl - ft + 2, Vector(ux, cy, ft - 1)) for cy in g['columns']]
     pockets = []
@@ -925,8 +894,8 @@ def upright(m, g, st, sx):
         low = Part.makeCylinder(13.5, 2.5, Vector(x, ry, -2.5)).fuse(parts.hexagon(19.05, -13.6, 11.1, x, ry))
         st.add(f'TieRodNutLow{tag}{j + 1}', cont, low.cut(Part.makeCylinder(rod_r, 20, Vector(x, ry, -15))), 'steel')
         if pb >= g['pocket_bot'] - 1:
-            rod_top = beam_bot - 1.0                     # flush with the plate
-            nut = parts.hexagon(19.05, pb, 11.1, x, ry)
+            rod_top = beam_bot - lay                     # screwed into the lower bar, flush with its top
+            nut = None
         else:
             # toe: washer and nut on the foot plate, in a pocket from the slope; a printed cap closes it
             r = P['slope_pocket_d'] / 2
@@ -935,7 +904,8 @@ def upright(m, g, st, sx):
             rod_top = pb + 13.5
             cap = Part.makeCylinder(r - 0.15, beam_bot - pb, Vector(x, ry, pb + 13.7)).common(up)
             m.add(f'PocketCap{tag}{j + 1}', 'frame', cap, 'printed_dark', container=cont)
-        st.add(f'TieRodNut{tag}{j + 1}', cont, nut.cut(Part.makeCylinder(rod_r, 1e3, Vector(x, ry, 0))), 'steel')
+        if nut is not None:
+            st.add(f'TieRodNut{tag}{j + 1}', cont, nut.cut(Part.makeCylinder(rod_r, 1e3, Vector(x, ry, 0))), 'steel')
         tail = 13.6 + P['rod_tail']
         st.add(f'TieRod{tag}{j + 1}', cont, Part.makeCylinder(rod_r, rod_top + tail, Vector(x, ry, -tail)), 'steel')
     ring, ring_len = foot_gasket(g, sx)
@@ -966,81 +936,52 @@ def beam_envelope(g, edges=True):
 
 
 def beam(m, g, st):
-    """Beam: a steel box of laser-cut plates cast into epoxy granite. The front plate is the rail face
-    (tapped for the X risers and ballscrew supports, cast_anchors), a back plate behind it, a seat
-    plate under and a cap plate over each end, and diaphragms across, all slotted together. The
-    eight 3/8-16 cap screws clamp cap plate, box and seat plate down onto the upright top plates."""
+    """Beam: a steel box of stock flat bar cast into epoxy granite. A 3/8 x 5 in face bar (the rail face,
+    tapped for the X risers and ballscrew supports, cast_anchors) and a back bar, held apart by pipe
+    nipples on studs screwed into the face bar; at each end a 3/8 x 2-1/2 in seat bar under and cap bar
+    over them. Eight 3/8-16 studs, screwed into the upright top plates, clamp cap bar, face and back bars
+    and seat bar down onto the top plates."""
     outer, inner, bf = g['outer'], g['inner'], g['beam_face']
     bot, top = g['beam_bot'], g['beam_top']
     by1 = bf + P['beam_d']
+    cz = (bot + top) / 2
     shape = beam_envelope(g)
     cont = 'FrameBeam'
-    yb0 = g['bolt_ys'][1] - P['beam_bolt_hole'] / 2 - 4.0 - T38      # back plate, just ahead of the back screws
-    xe = outer - 10.0                                                  # plate ends, inside the end rounds
-    ends = [sorted((sx * (inner + 6), sx * (outer - 6))) for sx in (-1, 1)]   # over the uprights
-    # face and back plates: full length between the seat and cap levels, tabs up and down into the end plates
-    def long_plate(name, y0, t):
-        tabs = []
-        for a0, a1 in ends:
-            tabs += [('q0', a0 + 8, a1 - 8, T38), ('q1', a0 + 8, a1 - 8, T38)]
-        return sk.Plate(name, 'y', y0, t, sk.tabbed(-xe, bot + T38, xe, top - T38, tabs))
-    face = long_plate('BeamFacePlate', bf, T38)
-    cz = (bot + top) / 2
-    face.window(-95.0, cz - 22.0, 190.0, cz + 22.0, 8.0)          # between the rails, clear of the X supports
-    back = long_plate('BeamBackPlate', yb0 + T38 - T14, T14)          # back face where the 3/8 one was
-    caps, seats = [], []
-    for k, (a0, a1) in enumerate(ends):
-        side = 'L' if k == 0 else 'R'
-        seats.append(sk.Plate(f'BeamSeat{side}', 'z', bot, T38, sk.tabbed(a0, bf, a1, by1 - 6)))
-        caps.append(sk.Plate(f'BeamCap{side}', 'z', top - T38, T38, sk.tabbed(a0, bf, a1, by1 - 6)))
-    # diaphragms: one at each upright's center line (between its screws) and three between the uprights
-    dxs = [-g['ux'], -110.0, 0.0, 110.0, g['ux']]
-    diaph = []
-    for i, x in enumerate(dxs):
-        end = abs(abs(x) - g['ux']) < 1
-        q0, q1 = (bot + T38, top - T38) if end else (bot + 20.0, top - 20.0)
-        yb_ = yb0 + T38 - T14                        # the back plate's front face
-        tabs = [('p0', q0 + 15, q1 - 15, T38), ('p1', q0 + 15, q1 - 15, T14)]
-        if end:
-            tabs += [('q0', bf + T38 + 8, g['beam_dowel_y'] - 12, T38), ('q1', bf + T38 + 8, yb_ - 8, T38)]
-        d = sk.Plate(f'BeamDiaphragm{"End" if end else "Mid"}{i + 1}', 'x', x - T14 / 2, T14, sk.tabbed(bf + T38, q0, yb_, q1, tabs))
-        if end:   # clear of the beam's dowel
-            d.cut(Part.makeCylinder(6.0, 40.0, Vector(x, g['beam_dowel_y'], bot - 5)))
-        else:
-            d.window(bf + T38 + 16, q0 + 16, yb_ - 16, q1 - 16, 8.0)
-        diaph.append(d)
-    for d in diaph:
-        sk.through(d, face)
-        sk.through(d, back)
-    for c, sd in zip(caps, seats):
-        for pl in (face, back):
-            sk.through(pl, c)
-            sk.through(pl, sd)
-    for d in diaph:
-        for c, sd in zip(caps, seats):
-            if d.slab.common(c.slab).Volume > 1:
-                sk.through(d, c)
-                sk.through(d, sd)
-    # back plate windows between the diaphragms
-    for xa_, xb_ in zip(dxs, dxs[1:]):
-        lo, hi = sorted((xa_, xb_))
-        back.window(lo + 18, bot + T38 + 18, hi - 18, top - T38 - 18, 8.0)
-    # cap screws through cap and seat plates (clear for the 1/2 in rods that form their holes); dowels
-    for pl in caps + seats:
+    xe = 254.0                                                         # 20 in bars
+    yb0 = bf + T38 + P['beam_spacer']                                  # back bar, behind the spacers
+    face = sk.flat_bar('BeamFacePlate', 'y', bf, T38, -xe, bot + T38, xe, top - T38)
+    back = sk.flat_bar('BeamBackPlate', 'y', yb0, T38, -xe, bot + T38, xe, top - T38)
+    ends = []
+    for sx, side in ((-1, 'L'), (1, 'R')):
+        xa, xb = sorted((sx * (g['ux'] - 31.75), sx * (g['ux'] + 31.75)))
+        ends.append(sk.flat_bar(f'BeamSeat{side}', 'z', bot, T38, xa, bf, xb, bf + 133.35))
+        ends.append(sk.flat_bar(f'BeamCap{side}', 'z', top - T38, T38, xa, bf, xb, bf + 133.35))
+    for pl in ends:
         for sx in (-1, 1):
             for bx in g['bolt_xs']:
                 for by in g['bolt_ys']:
-                    pl.hole(sx * bx, by, 13.5)
-    for sd in seats:
-        for sx in (-1, 1):
-            sd.hole(sx * g['ux'], g['beam_dowel_y'], 9.6)
-    plates = [back] + caps + seats + diaph
+                    if pl.slab.common(Part.makeCylinder(1, 1000, Vector(sx * bx, by, 0))).Volume > 0:
+                        pl.hole(sx * bx, by, 13.5)
+        if pl.name.startswith('BeamSeat'):
+            pl.hole(math.copysign(g['ux'], pl.slab.BoundBox.Center.x), g['beam_dowel_y'], 9.6)
+    # ties: studs screwed into the face bar, through pipe nipples and the back bar, nut behind
+    cuts, ties = [], (-120.0, 0.0, 120.0)
+    for tx in ties:
+        face.hole(tx, cz, 0, tap='3/8-16')
+        back.hole(tx, cz, 10.5)
+        pipe = parts.cyl_v(10.65, bf + T38, yb0, tx, cz).cut(parts.cyl_v(7.9, bf, yb0 + 1, tx, cz))
+        st.add(f'BeamSpacer{int(tx)}', cont, pipe)
+        cuts.append(parts.cyl_v(10.65, bf + T38, yb0, tx, cz))
+        stud = parts.cyl_v(P['beam_bolt_d'] / 2, bf + 0.5, yb0 + T38 + 12.0, tx, cz)
+        nut = hex_y(14.3, tx, yb0 + T38, 8.4, cz).cut(parts.cyl_v(P['beam_bolt_d'] / 2, yb0, yb0 + 20, tx, cz))
+        st.add(f'BeamTie{int(tx)}', cont, stud.fuse(nut), 'steel')
+        cuts.append(parts.cyl_v(13.0, yb0 + T38, yb0 + T38 + 14.0, tx, cz))           # its nut, in the casting
+    plates = [back] + ends
     for pl in plates:
         st.add(pl.name, cont, pl.shape)
         m.plates.append(pl)
     m.beam_face_plate = face             # cast_anchors taps it, then adds it
-    cuts = [pl.slab for pl in plates + [face]]
-    plate_t = P['top_plate_t']
+    cuts += [pl.slab for pl in plates + [face]]
     n = 0
     for sx in (-1, 1):
         dowel = Part.makeCylinder(P['dowel_d'] / 2, P['dowel_proud'] + 15.0, Vector(sx * g['ux'], g['beam_dowel_y'],
@@ -1052,11 +993,11 @@ def beam(m, g, st):
                 x = sx * bx
                 n += 1
                 cuts.append(Part.makeCylinder(P['beam_bolt_hole'] / 2, top - bot + 2, Vector(x, by, bot - 1)))
-                bolt = Part.makeCylinder(P['beam_bolt_d'] / 2, P['beam_bolt_len'] - 2.0,
-                                         Vector(x, by, top + 2.0 - P['beam_bolt_len']))
+                z0 = bot - P['top_plate_t']                              # bottom of the top plate's lower bar
+                stud = Part.makeCylinder(P['beam_bolt_d'] / 2, P['beam_stud'], Vector(x, by, z0))
                 washer = Part.makeCylinder(10.0, 2.0, Vector(x, by, top))
-                head = Part.makeCylinder(8.0, 10.0, Vector(x, by, top + 2)).cut(parts.hexagon(8.0, top + 6, 7, x, by))
-                st.add(f'BeamBolt{n}', cont, bolt.fuse([washer, head]), 'black')
+                nut = parts.hexagon(14.3, top + 2, 8.4, x, by)
+                st.add(f'BeamBolt{n}', cont, stud.fuse([washer, nut]), 'black')
     shape = shape.cut(cuts).removeSplitter()
     m.add('BeamCasting', 'frame', shape, 'granite', container=cont)
     return shape.Volume
@@ -1074,26 +1015,38 @@ def frame_modules(m, d):
     d['gasket_m'] = g['gasket_len'] / 1000
     plate_t = P['top_plate_t']
     tl = P['tube_len']
-    inch = lambda mm: f'{mm / 25.4:.0f} in'
+    inch = lambda mm: f'{sk.inch(mm)} in'
     ys, y0 = g['split'], d['base_y0']
     d['steel_bom'] = [
         ('frame', 'Steel square tube 2 x 2 x 1/8 in (or 0.120 wall), bought at length',
-         f"4 x {inch(P['column_len'])} (upright columns)", 'buy'),
+         f"4 x {inch(P['column_len'])} (upright columns; the base's short ones are in the cut list)", 'buy'),
         ('frame', 'Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length',
          f"4 x {inch(P['leg_len'])} (legs)", 'buy'),
         ('frame', 'Printed PETG: 8 column rings, 4 leg plugs, 2 dark gray pocket caps', '~60 g', 'PRINT'),
         ('frame', '1/2-13 threaded rod (hardware store)',
          ', '.join(f"{2 * n_} x {L:.0f}" for L, n_ in sorted(collections.Counter(round(v) for v in tie_rod_lengths(g)).items(),
                                                             reverse=True))
-         + f" (uprights), 2 x {draw_rod_length(g):.0f} (base draw rods)", 'buy'),
-        ('frame', '1/2-13 nut + 1/2 in SAE washer (two of each per tie rod and draw rod)',
-         f"{4 * len(g['tie_rods']) + 4} of each", 'buy'),
-        ('frame', '3/8-16 x 6-1/2 in grade 8 bolt + washer (beam)', '8 pcs', 'buy'),
+         + f" (uprights), 2 x {draw_rod_length(g):.0f} (base draw rods), 4 x {cross_rod_lengths(g)[0]:.0f} + "
+           f"6 x {cross_rod_lengths(g)[1]:.0f} (base cross rods)", 'buy'),
+        ('frame', '1/2-13 nut + 1/2 in SAE washer', '32 of each', 'buy'),
+        ('frame', '3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts '
+                  'and washers', f"8 x {P['beam_stud']:.0f} + 3 x 107 mm; 11 nuts", 'buy'),
+        ('frame', '1/2 in x 3 in black pipe nipple (beam spacers)', '3 pcs', 'buy'),
+        ('frame', '1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes '
+                  '(2-1/4 in)', 'about 20 x 4 in + 4 x 2-1/4 in', 'buy'),
         ('frame', 'Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split)', '6 + 4 pcs', 'buy'),
         ('frame', f"Nitrile O-ring cord {P['gasket_cord']:.0f} mm (base split + upright feet), glue the ends",
          f"{d['gasket_m'] + 0.3:.1f} m", 'buy'),
         ('frame', '1/2 in brass hex nipple, cast-in coolant drain', '1 pc', 'buy'),
     ]
+
+
+def cross_rod_lengths(g):
+    """The base cross rods: girder to girder, and girder to pedestal column, a nut, washer and rod_tail past
+    each outside face."""
+    tail = 2 * (13.6 + P['rod_tail'])
+    gw = GIRDER[0]
+    return (2 * (g['girder_x'] + gw / 2) + tail, (g['ux'] + 25.4) - (g['girder_x'] - gw / 2) + tail)
 
 
 def draw_rod_length(g):
@@ -1105,7 +1058,7 @@ def draw_rod_length(g):
 def tie_rod_lengths(g):
     """Each upright's tie rods, cut length: from rod_tail under the bottom nut (washer, nut) to flush with
     the top plate (top two) or with the top of the slope nut."""
-    return [(g['beam_bot'] - 1.0 if pb >= g['pocket_bot'] - 1 else pb + 13.5) + 13.6 + P['rod_tail']
+    return [(g['beam_bot'] - P['plate_layer'] if pb >= g['pocket_bot'] - 1 else pb + 13.5) + 13.6 + P['rod_tail']
             for _, _, pb in g['tie_rods']]
 
 
@@ -1138,13 +1091,16 @@ def steel_tolerance(m, d):
     tube_s, post_s = P['frame_tube'][0], P['post_tube'][0]
     s2 = P['table_rail_spacing'] / 2
     rows = []
-    rows.append(('Legs (4)', 'top end, up against its leg plate', 'the foot end, taken up by the leveling foot', 15.0))
+    rooms = [free_end_room(cast['BaseFrontCasting' if ly < ys else 'BaseRearCasting'], 'z', lx, ly, post_s, P['leg_embed'], 1)
+             for lx, ly in g['legs']]
+    rows.append(('Legs (4)', 'set proud of the leg holder', 'top end, in the casting', min(rooms)))
     # upright columns: clamped up against the top plate; the bottom end sits in an epoxy bed on the foot plate
-    rows.append(('Upright columns (4)', 'top end, against the top plate', 'an epoxy bed on the foot plate',
+    rows.append(('Upright columns (4)', 'top end, against the top plate', 'an epoxy bed on the foot bar',
                  g['pocket_bot'] - P['column_len'] - g['foot_top']))
-    rows.append(('Draw rods (2, cut)', 'a nut on the front cross plate', 'the tail behind the back nut', P['rod_tail']))
+    rows.append(('Draw rods (2, cut)', 'flush with the front nut', 'the tail behind the back nut', P['rod_tail']))
+    rows.append(('Girders (4)', 'the split end plate', 'the far end plate, clamped by the draw rod', 6.0))
     rows.append(('Top plates (2)', 'bolted to the mold bridge', 'all edges, 6 mm inside the casting', 6.0))
-    rows.append(('Tie rods (8, cut)', 'screwed up flush with the plate / the slope nut', 'the tail under the bottom nut',
+    rows.append(('Tie and cross rods (cut)', 'screwed up to a stop, or flush with one nut', 'the tail past the far nut',
                  P['rod_tail']))
     d['steel_tol'] = [(n, dat, fr, room, room >= tol) for n, dat, fr, room in rows]
     for n, _, _, room, ok in d['steel_tol']:
@@ -1180,12 +1136,15 @@ def cast_anchors(m, d):
         m.structure.add(pl.name)
         m.plates.append(pl)
         d['steel_kg'] += pl.mass
-    by_t = collections.Counter()
-    for pl in m.plates:
-        by_t[sk.thickness_name(pl.t)] += 1
-    kg = sum(pl.mass for pl in m.plates)
-    d['steel_bom'].insert(0, ('frame', 'Laser-cut steel plate (docs/1-sourcing/laser/README.md lists every part)',
-                              ', '.join(f'{n} x {t}' for t, n in sorted(by_t.items())) + f', {kg:.0f} kg', 'buy'))
+    by_stock = {}
+    for pt, qty, stock, ln, _ in steel_parts(m):
+        by_stock.setdefault(stock, []).append((ln, qty))
+    for stock, items in sorted(by_stock.items(), reverse=True):
+        merged = collections.Counter()
+        for ln, q in items:
+            merged[round(ln)] += q
+        d['steel_bom'].insert(0, ('frame', f'{stock}, cut to length (docs/1-sourcing/steel/)',
+                                  ', '.join(f'{q} x {ln}' for ln, q in sorted(merged.items(), reverse=True)), 'buy'))
     for cast, hs in holes.items():
         p = parts_by_name[cast]
         p['shape'] = p['shape'].cut(hs)
@@ -1421,17 +1380,17 @@ def mold_base(kit, m, g):
             kit.add(folder, name, 'core', shells, 1, 'Shell core, stays in. Bolts to the bridge by its post.', show=[folder])
         kit.fix(fx, M)
 
-    # draw rods: printed plugs on the front and back walls form the nut pockets down to the steel; greased
-    # 5/8 in rods through them form the rod holes (through the partition for the rear half)
+    # draw rods: printed plugs on the front and back walls form the nut pockets down to the girders' end plates
+    # (the rods run inside the girder tubes, so nothing else forms their holes)
     for front, folder, yw, seat, n_ in ((True, 'base-front', y0, g['front_web'], -Y), (False, 'base-rear', y1,
                                                                                      g['rear_end'] + T38, Y)):
         for sx in (-1, 1):
             dx, dz = sx * g['draw_rod_x'], g['draw_z']
             a, b = sorted((yw, seat))
-            plug = parts.cyl_v(16.0 - FIT_PLUG, a, b, dx, dz).cut(parts.cyl_v(8.15, a - 1, b + 1, dx, dz))
+            plug = parts.cyl_v(16.0 - FIT_PLUG, a, b, dx, dz)
             fixed_piece(kit, folder, M, f'draw-pocket-{"R" if sx > 0 else "L"}', 'plug', plug,
                         [(Vector(0, yw, 0), n_, 1)], up=n_ * -1,
-                        note='Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it.',
+                        note='Forms a draw-rod nut pocket down to the girder\'s end plate; bolts to the wall.',
                         show=[folder])
 
     # everything else through the boards: insert screws, bolts into the cast-in nuts, dowels
@@ -1443,18 +1402,14 @@ def mold_base(kit, m, g):
     for bx, by in g['rail_bolts']:
         holes.append(Fix('hole', Vector(bx, by, top), Z, 5.5, 'M5 insert screw'))
     for sx in (-1, 1):
-        for rx, ry, _ in g['tie_rods']:
-            holes.append(Fix('hole', Vector(sx * rx, ry, top), Z, 16.3, '5/8 core rod'))
         holes += [Fix('hole', Vector(sx * g['ux'], dy, top), Z, 9.6, '3/8 dowel') for dy in g['dowel_ys']]
-        holes.append(Fix('hole', Vector(sx * g['draw_rod_x'], ys, g['draw_z']), -Y, 16.3, '5/8 core rod (draw rod)'))
-        holes += [Fix('hole', Vector(sx * g['pin_x'], ys, z), -Y, 9.6, '3/8 dowel pin (split)') for z in (25.0, 70.0)]
+        holes += [Fix('hole', Vector(sx * g['girder_x'] + dx, ys, g['draw_z']), -Y, 9.6, '3/8 dowel pin (split)')
+                  for dx in (-32.0, 32.0)]
     kit.fix(holes, M)
     kit.count('M5 x 30 screw, greased (holds a rail bar)', sum(1 for f in holes if f.what == 'M5 screw into a rail bar'), M)
     kit.count('M6 x 30 screw, greased (holds a support pad)', sum(1 for f in holes if f.what == 'M6 screw into a pad'), M)
     kit.count('M5 x 20 screw, greased (holds an insert)', sum(1 for f in holes if f.what == 'M5 insert screw'), M)
-    n_rods = 2 * max(sum(1 for r in g['tie_rods'] if (r[1] < ys) == fr) for fr in (True, False))
-    kit.count(f"5/8 in plain steel rod, greased (forms a tie-rod hole through the base), {T + top + 40:.0f} mm", n_rods, M)
-    kit.count(f"5/8 in plain steel rod, greased (forms a draw-rod hole), {y1 - y0 + 2 * T + 40:.0f} mm", 2, M)
+
 
 
 TH_SADDLE = 6.0
@@ -1632,10 +1587,8 @@ def mold_upright(kit, g):
     for rx, ry, pb in g['tie_rods']:
         x = sx * rx
         if pb >= g['pocket_bot'] - 1:
-            holes.append(Fix('hole', Vector(x, ry, top), -Z, 13.5, '1/2 rod through a sleeve'))
-            holes.append(Fix('hole', Vector(x, ry, zt + TH_SADDLE), Z, 13.5, '1/2 rod through a sleeve'))
+            holes.append(Fix('hole', Vector(x, ry, top), -Z, 13.5, 'column tie rod, from below'))
         else:
-            holes.append(Fix('hole', Vector(x, ry, top), -Z, 16.3, '5/8 core rod'))
             ys_ = L0.z + (ry - L0.y) * a.z / a.y          # slope height over the rod
             p = Part.makeCylinder(P['slope_pocket_d'] / 2, bb - pb, Vector(x, ry, pb)).common(env).cut(
                 Part.makeCylinder(rod, ys_ - 12.0 - pb + 1, Vector(x, ry, pb - 1)))
@@ -1655,11 +1608,8 @@ def mold_upright(kit, g):
     kit.fix(holes, M, mult)
     rod_bot = top - T - 20.0                       # the rods stand 20 mm out under the floor
     kit.count('Block of 2x4, laid flat: four under each upright mold (room under the floor for the rod ends)', 8, M)
-    rods = sorted(round(L0.z + (ry - L0.y) * a.z / a.y - 12 - rod_bot) for _, ry, pb in g['tie_rods']
-                  if pb < g['pocket_bot'] - 1)
-    kit.count('5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to ' + ', '.join(f'{r} mm' for r in rods), 2, M)
-    kit.count(f"1/2 in rod (or a tie rod), greased, {round(zt + TH_SADDLE + T + 20 - rod_bot)} mm: centers a top "
-              "tie-rod sleeve", 2 * 2, M)
+    kit.count('the two column tie rods themselves, greased: up through the floor and the columns into the top '
+              'plate, to center the columns while the casting goes off', 2, M)
     kit.count('3/8-16 x 3 in bolt, greased (holds the top plate, both layers)', 2 * 2, M)
     kit.count('1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole)', 2 * len(g['dowel_ys']), M)
 
@@ -1894,15 +1844,11 @@ def build():
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
         ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
-        ('frame', 'Cast-in threaded inserts for epoxy (knurled brass or steel)',
-         f"M5 x 12 long: {d['anchor_count'].get('insert_m5', 0)} (riser hold-downs); "
-         f"M6 x 15 long: {d['anchor_count'].get('insert_m6', 0)} (Y BK/BF on the base)", 'buy'),
-        ('frame', 'Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face',
-         f"{d['anchor_count'].get('beam_pad', 0)} pads (~4 in of bar), {d['anchor_count'].get('beam_pad_holes', 0)} tapped holes", 'buy'),
-        ('frame', 'Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); '
-                  'M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube)',
-         f"8 + {d['anchor_count'].get('insert_m5', 0) - 8}; {d['anchor_count'].get('insert_m6', 0)}; "
-         f"{d['anchor_count'].get('beam_pad_holes', 0)}", 'buy'),
+        ('frame', 'Cast-in M5 threaded inserts (knurled brass), for the enclosure only', f"{len(d['rail_bolts'])} pcs", 'buy'),
+        ('frame', 'Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); '
+                  'M6 x 40 (the Y and X BK/BF)',
+         f"{d['anchor_count'].get('face_insert_m5', 0)} + {d['anchor_count'].get('base_insert_m5', 0)}; "
+         f"{d['anchor_count'].get('face_insert_m6', 0) + d['anchor_count'].get('base_insert_m6', 0)}", 'buy'),
     ] + d['steel_bom'] + [
         ('coolant', 'Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base', '1', 'buy'),
         ('coolant', 'Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep', '1', 'buy'),
@@ -2505,7 +2451,7 @@ def snapshots(doc, out_dir, m):
         ('frame_bare_xray', (0, 0, 0), rear_iso, None, dict(mode='bare', xray=True)),
         ('frame_section_uprights', (0, 0, 0), iso, None, dict(mode='bare', section=('y', 'TieRodL1'))),
         ('frame_section_split', (0, 0, 0), lambda: look((1.0, 0.45, -0.5)), None,
-         dict(mode='bare', section=('x', 'BaseGirderWebRearR'))),
+         dict(mode='bare', section=('x', 'BaseGirderRearR'))),
         ('frame_base_underside', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
         ('gasket_base_split', (0, 0, 0), iso, ('BaseRearCasting',), dict(mode='bare', only=('FrameBaseRear',))),
@@ -2978,8 +2924,8 @@ def mold_guide(m, only=None):
           f'## {n + 1}. Assemble', '']
     if 'base' in molds_:
         L += ['### Base, rear half (first)', '',
-              'Cast upside down, top face on the floor; shown the right way up. New parts in color. Slot each half\'s '
-              'steel grid together first (the plates only fit one way), then it goes in as one piece.', '']
+              'Cast upside down, top face on the floor; shown the right way up. New parts in color. Bolt each half\'s '
+              'steel grid together first (the build guide, section 1), then it goes in as one piece.', '']
         L += fig('skeleton-base', 'The base grids, both halves')
         for k in range(1, 7):
             L += [f'{k}. ' + STEPS_TEXT[f'step-base-rear-{k}'], ''] + fig(f'step-base-rear-{k}', f'Base rear, step {k}')
@@ -2987,15 +2933,15 @@ def mold_guide(m, only=None):
         for k in range(1, 4):
             L += [f'{k}. ' + STEPS_TEXT[f'step-base-front-{k}'], ''] + fig(f'step-base-front-{k}', f'Base front, step {k}')
     if 'upright' in molds_:
-        L += ['### Uprights (two molds)', '', 'Cast foot down. Build two of everything. The skeleton: foot plate, '
-              'two columns, the brace slotted into the foot plate, the top plate slotted onto the brace.', '']
+        L += ['### Uprights (two molds)', '', 'Cast foot down. Build two of everything. The skeleton: the foot bar, '
+              'two columns and the top plate (two flat bars), clamped later by the column tie rods.', '']
         L += fig('skeleton-upright', 'An upright skeleton')
         for k, t in enumerate(UP_TEXT, 1):
             L += [f'{k}. {t}', ''] + fig(f'step-upright-{k}', f'Upright, step {k}')
         L += fig('detail-toe', 'The toe filler holds the front board\'s foot')
     if 'beam' in molds_:
-        L += ['### Beam', '', 'Cast front (rail) face down, back open. Slot the steel box together on the bench: '
-              'diaphragms into the face plate, the back plate over them, the end plates on the tabs.', '']
+        L += ['### Beam', '', 'Cast front (rail) face down, back open. Bolt the steel together on the bench: the '
+              'three studs into the face bar, a pipe spacer on each, the back bar over them and a nut on each.', '']
         L += fig('skeleton-beam', 'The beam\'s steel box')
         for k, t in enumerate(BEAM_TEXT, 1):
             L += [f'{k}. {t}', ''] + fig(f'step-beam-{k}', f'Beam, step {k}')
@@ -3049,37 +2995,35 @@ STEPS_TEXT = {
     'step-base-rear-2': 'Walls against the cleats; corner brackets at the top. Diagonals equal within 2 mm, then tighten.',
     'step-base-rear-3': 'Partition between the side walls: two brackets, two struts to the front wall. Beads on its pins.',
     'step-base-rear-4': 'Gutter formers, motor relief, corner fillers and the draw-rod pocket plugs on.',
-    'step-base-rear-5': 'The steel grid in, upside down: its rail bars and the BK pad screwed to the floor (greased M5 and '
-                        'M6), its seats over the dowels; the split end plates against the partition, dowel pins through it. '
-                        'Greased 5/8 in rods up through the floor for the tie-rod holes, and through the partition, the end '
-                        'plates and the pocket plugs for the draw rods. Inserts; leg holders, legs pushed up to their '
-                        'leg plates, pinch screws tight.',
-    'step-base-rear-6': 'Pour the 20 mm skin. Foam cores on it between the grid plates, bridges into the saddles, each post '
+    'step-base-rear-5': 'The steel grid in, bolted up and upside down: its rail bars and the BK pad screwed to the floor '
+                        '(greased M5 and M6), its seats over the dowels, the split end plates against the partition with '
+                        'their dowel pins through it. Tape over the holes in the pedestals\' bottom bars. Inserts; leg '
+                        'holders, legs set to height, pinch screws tight.',
+    'step-base-rear-6': 'Pour the 20 mm skin. Foam cores on it between the steel, bridges into the saddles, each post '
                         'bolted to its bridge. Fill to the pour line.',
     'step-base-front-1': 'After the cure: bridges, partition and struts off. Pull the beads, tape the groove, and wax the '
                          'rear half\'s split face, end plates and dowel pins.',
     'step-base-front-2': 'Trough and gutter formers, corner fillers and pocket plugs on; the front grid in, its rail bars and '
-                         'BF pad screwed down and its split end plates onto the dowel pins; rods; inserts and legs.',
-    'step-base-front-3': 'Skin, cores, bridges, fill. After the cure, pull the rods, take it apart and split the halves with '
-                         'wedges.',
+                         'BF pad screwed down and its split end plates onto the dowel pins; inserts and legs.',
+    'step-base-front-3': 'Skin, cores, bridges, fill. After the cure, take it apart and split the halves with wedges.',
 }
 UP_TEXT = [
     'Gasket bead pinned on; cleats bolted down.',
     'Side plates against their cleats, back board between them, two back brackets.',
     'Toe filler bolted down, the front board\'s foot in its lip, two front brackets at the top.',
-    'Mold on its four 2x4 blocks. The skeleton in: foot plate on the floor, greased 1/2 in rods up through the floor, '
-    'the foot plate and the columns; the brace in its slot; the toe pocket plug on the foot plate; the two dowel-hole '
-    'bolts from underneath. Columns on a bed of thickened epoxy, the top plate and bridge set on them while it goes off, '
-    'then lifted away.',
-    'Fill to the line. Top plate (both layers) back down over the rods and the brace tab, hung from the bridge; bridge '
-    'onto its saddles.',
+    'Mold on its four 2x4 blocks. The foot bar on the floor; the two columns on beds of thickened epoxy on it, the top '
+    'plate and bridge set on them while it goes off, then lifted away; the toe pocket plug on the foot bar; the two '
+    'dowel-hole bolts from underneath.',
+    'Fill to the line. Top plate (both bars) back on, hung from the bridge; bridge onto its saddles. Then the two '
+    'column tie rods, greased, up from under the floor through the foot bar and the columns into the top plate: they '
+    'center the columns while it cures.',
 ]
 BEAM_TEXT = [
     'Cleats bolted down.',
     'Walls against the cleats; four corner brackets.',
-    'The steel box in, face plate down, greased M5 and M6 screws up through the floor into its tapped holes; greased '
-    '1/2 in rods through the top wall, the cap plates, the box, the seat plates and the bottom wall; back-edge filler '
-    'on the top wall between the uprights; dowels on their stops. Fill to the line through the back plate\'s windows.',
+    'The steel in, face bar down: greased M5 and M6 screws up through the floor into its tapped holes; the back bar on '
+    'its pipe spacers and studs; greased 1/2 in rods through the top wall, the cap bars, the seat bars and the bottom '
+    'wall; back-edge filler on the top wall between the uprights; dowels on their stops. Fill to the line.',
 ]
 
 
@@ -3087,59 +3031,110 @@ def _minutes(t):
     return sum(int(v) * {'d': 1440, 'h': 60, 'm': 1, 's': 1 / 60}[u] for v, u in re.findall(r'(\d+)([dhms])', t))
 
 
-def write_laser_dxf(m):
-    """DXF (R12, mm) of every laser-cut plate for a laser-cutting service (or a CNC plasma or router),
-    in docs/1-sourcing/laser/, with a README listing them. Identical plates (left and right) share a
-    file. Holes that get tapped are drawn at the tap drill size."""
-    out = os.path.join(ROOT, 'docs', '1-sourcing', 'laser')
-    os.makedirs(out, exist_ok=True)
-    for f in os.listdir(out):
-        if f.endswith('.dxf'):
-            os.remove(os.path.join(out, f))
-    for sub in ('dxf', 'step', 'stl'):
-        os.makedirs(os.path.join(out, sub), exist_ok=True)
-        for f in os.listdir(os.path.join(out, sub)):
-            os.remove(os.path.join(out, sub, f))
+def steel_parts(m):
+    """The skeletons' stock parts, identical ones (left and right) grouped: (part, qty, stock, length)."""
     groups = {}
-    for pl in m.plates:
-        bb = pl.shape.BoundBox
-        key = (round(pl.t, 2), round(pl.shape.Volume), tuple(sorted(round(v) for v in (bb.XLength, bb.YLength, bb.ZLength))))
-        groups.setdefault(key, []).append(pl)
-    rows, total = [], 0.0
-    for key, pls in sorted(groups.items(), key=lambda kv: (-kv[0][0], kv[1][0].name)):
-        pl = pls[0]
-        base = re.sub(r'\d+$', '', re.sub(r'(?<=[a-z])[LR](?=[A-Z0-9]|$)', '', pl.name))
-        name = re.sub(r'(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])', '-', base).lower()
-        th = {T38: '3-8in', T14: '1-4in', T12: '1-2in'}[pl.t]
-        fn = f'{th}_{len(pls)}x_{name}'
-        w, h = sk.write_dxf(pl, os.path.join(out, 'dxf', fn + '.dxf'))
-        flat = pl.to_cut()                           # lying flat, at the origin, tapped holes at drill size
-        if pl.normal == 'x':
-            flat.rotate(Vector(0, 0, 0), Vector(0, 1, 0), -90)
-        elif pl.normal == 'y':
-            flat.rotate(Vector(0, 0, 0), Vector(1, 0, 0), 90)
-        bb_ = flat.BoundBox
-        flat.translate(Vector(-bb_.XMin, -bb_.YMin, -bb_.ZMin))
-        flat.exportStep(os.path.join(out, 'step', fn + '.step'))
-        flat.exportStl(os.path.join(out, 'stl', fn + '.stl'))
-        taps = ', '.join(f'{n} x {t}' for t, n in pl.taps.items())
-        kg = pl.mass * len(pls)
-        total += kg
-        rows.append(f'| `{fn}` | {sk.thickness_name(pl.t)} | {len(pls)} | {w:.1f} x {h:.1f} | {kg:.1f} | '
-                    f'{("tap " + taps) if taps else ""} |')
+    for pt in m.plates + m.tubes:
+        bb = pt.shape.BoundBox
+        key = (pt.stock[:-1] if pt.stock[0] == 'flat' else pt.stock, round(pt.shape.Volume),
+               tuple(sorted(round(v) for v in (bb.XLength, bb.YLength, bb.ZLength))))
+        groups.setdefault(key, []).append(pt)
+    out = []
+    for key, pts in groups.items():
+        pt = pts[0]
+        words = []
+        for p_ in pts:
+            base = re.sub(r'\d+$', '', re.sub(r'(?<=[a-z])[LR](?=[A-Z0-9]|$)', '', p_.name))
+            words.append(re.sub(r'(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])', ' ', base).split())
+        # words every member shares (drops "Front" / "Rear" when the part is in both base halves); identical
+        # parts with different jobs are named for both
+        tags = {'Base', 'Front', 'Rear'}
+        common = [w_ for w_ in words[0] if all(w_ in ws for ws in words)]
+        if [w_ for w_ in words[0] if w_ not in tags] == [w_ for w_ in common if w_ not in tags]:
+            name = ' '.join(w_ for w_ in common if w_ != 'Base')
+        else:
+            name = ' / '.join(sorted(set(' '.join(w_ for w_ in ws if w_ not in tags) for ws in words)))
+            if all(w_ in ws for ws in words for w_ in ('Front',)):
+                name += ' Front'
+        name = ' '.join(w_ if (w_.isupper() and len(w_) > 1) else w_.lower() for w_ in name.split())
+        name = name.replace('plate lower', 'plate, lower').replace('plate upper', 'plate, upper')
+        name = name[0].upper() + name[1:]
+        if pt.stock[0] == 'flat':
+            _, t, w, ln, _ = pt.stock
+            stock = f'Flat bar {sk.inch(t)} x {sk.inch(w)} in'
+        else:
+            _, w1, w2, wall, ln = pt.stock
+            a, b = sorted((w1, w2))
+            stock = f'{"Square" if abs(a - b) < 0.1 else "Rectangular"} tube {sk.inch(a)} x {sk.inch(b)} x {sk.inch(wall)} in'
+        out.append((pt, len(pts), stock, ln, name))
+    return sorted(out, key=lambda r: (r[2], -r[3]))
+
+
+def write_steel_parts(m):
+    """The steel to buy and how to work it: docs/1-sourcing/steel/README.md (a cut list by stock size and a
+    list of parts), and docs/src/boards/steel.json for the 1:1 drilling templates (make_templates.py)."""
+    out = os.path.join(ROOT, 'docs', '1-sourcing', 'steel')
+    os.makedirs(out, exist_ok=True)
+    rows = steel_parts(m)
+    templates, parts_md, by_stock = [], [], {}
+    for pt, qty, stock, ln, name in rows:
+        by_stock.setdefault(stock, []).append((ln, qty))
+        holes = []
+        if pt.stock[0] == 'flat':
+            ps = [pp for pp, _ in pt.outline]
+            qs = [qq for _, qq in pt.outline]
+            p0, q0 = min(ps), min(qs)
+            along_p = pt.stock[4] == 'p'
+            w = pt.stock[2]
+            for p_, q_, d, tap in pt.holes:
+                x, y = ((p_ - p0, q_ - q0) if along_p else (q_ - q0, p_ - p0))
+                holes.append([round(x, 2), round(y, 2), round(d, 2), tap or '', sk.drill_name(d, tap)])
+            faces = [('', w, holes)]
+        else:
+            faces = {}
+            for face, a, c, d, what, both in pt.holes:
+                faces.setdefault(face, []).append([round(a, 2), round(c, 2), round(d, 2),
+                                                   what + ('' if both else ' (near wall only)'), sk.drill_name(d)])
+            i = sk.AXES[pt.axis]
+            others = [k for k in range(3) if k != i]
+            faces = [(f'{face}-face', (pt.w2 if sk.AXES[face] == others[0] else pt.w1), hs) for face, hs in faces.items()]
+        drill_txt = []
+        for label, w, hs in faces:
+            if not hs:
+                continue
+            templates.append(dict(name=f'{name}{" (" + label + ")" if label else ""}', mold='steel', qty=qty,
+                                  view='steel', note=stock, size=[round(ln, 1), round(w, 1)],
+                                  outline=[[0, 0], [round(ln, 1), 0], [round(ln, 1), round(w, 1)], [0, round(w, 1)]],
+                                  holes=hs, pour=None))
+            n_by = collections.Counter(h[4] for h in hs)
+            drill_txt.append(', '.join(f'{n} x {k}' for k, n in n_by.items()))
+        parts_md.append(f'| {name} | {stock} | {ln:.0f} mm ({ln / 25.4:.2f} in) | {qty} | '
+                        f'{"; ".join(drill_txt) if drill_txt else "-"} |')
+    kg = sum(pt.mass * qty for pt, qty, *_ in rows)
+    cut = []
+    for stock, items in sorted(by_stock.items()):
+        total = sum(ln * q for ln, q in items)
+        merged = collections.Counter()
+        for ln, q in items:
+            merged[round(ln)] += q
+        pieces = ', '.join(f'{q} x {ln}' for ln, q in sorted(merged.items(), reverse=True))
+        cut.append(f'| {stock} | {pieces} | {total / 304.8:.1f} ft |')
     with open(os.path.join(out, 'README.md'), 'w') as fh:
-        n_all = sum(len(p_) for p_ in groups.values())
-        fh.write('# Laser-cut steel\n\nThe steel skeletons: plates that slot together. Send these to a laser-cutting '
-                 'service (JLCCNC, SendCutSend, OSH Cut), Metal Supermarkets, or anyone with a CNC plasma or router '
-                 'table. Mild steel (A36 or 1018), units mm. Each part is in three formats, same name: `dxf/` (the '
-                 'flat outline), `step/` and `stl/` (the plate lying flat at its thickness). The name starts with '
-                 'the thickness and how many to cut. Holes to be tapped are drawn at the tap drill size; tap them '
-                 'before assembly. Keep slots and tabs clean of dross: they should slide together by hand. '
-                 'Slots are 0.25 mm a side over the tabs (laser); for plasma set CLR in model/skeleton.py to about '
-                 '0.5 and re-run.\n\n'
-                 f'{len(groups)} different parts, {n_all} plates in all, about {total:.0f} kg.\n\n'
-                 '| Part | Plate | Qty | Size (mm) | kg (all) | Notes |\n|---|---|---|---|---|---|\n'
-                 + '\n'.join(rows) + '\n')
+        fh.write('# Steel for the skeletons\n\nAll stock mild steel (A36 / A500), nothing custom: buy it cut to length '
+                 '(Metal Supermarkets, Online Metals, a local steel yard; flat bar and tube also come in 3 and 6 ft '
+                 'lengths on Amazon and at hardware stores, and a chop saw or hacksaw does the rest). Drill and tap '
+                 'it from the printed 1:1 templates in `steel-templates.pdf` (center-punch through the paper, then '
+                 'a drill press).\n\n'
+                 f'{len(rows)} different parts, {sum(r[1] for r in rows)} pieces, about {kg:.0f} kg.\n\n'
+                 '## Cut list (by stock size)\n\n| Stock | Pieces (qty x length, mm) | Total |\n|---|---|---|\n'
+                 + '\n'.join(cut) + '\n\n## Parts\n\n| Part | Stock | Length | Qty | Holes |\n|---|---|---|---|---|\n'
+                 + '\n'.join(parts_md) + '\n')
+    with open(os.path.join(ROOT, 'docs', 'src', 'boards', 'steel.json'), 'w') as fh:
+        json.dump(dict(freeboard=0, board=0, boards=templates), fh, indent=0)
+    old = os.path.join(ROOT, 'docs', '1-sourcing', 'laser')
+    if os.path.isdir(old):
+        import shutil
+        shutil.rmtree(old)
 
 
 def main():
@@ -3150,7 +3145,7 @@ def main():
     with open(os.path.join(ROOT, 'docs', '5-design', 'report.txt'), 'w') as fh:
         fh.write(text + '\n')
     export_prints(m)
-    write_laser_dxf(m)
+    write_steel_parts(m)
     write_mold_guide(m)
     if not App.GuiUp:
         return  # a headless save would drop the colors from DIYCNC.FCStd

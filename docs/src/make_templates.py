@@ -1,4 +1,5 @@
-"""Printable 1:1 drilling templates for the mold boards: one PDF per mold in docs/3-molds/templates/.
+"""Printable 1:1 drilling templates: one PDF per mold in docs/3-molds/templates/ (the mold boards), and
+docs/1-sourcing/steel/steel-templates.pdf (the steel skeletons' flat bar and tube).
 
     python3 docs/src/make_templates.py      (make_pdfs.py runs it too)
 
@@ -24,7 +25,9 @@ HEAD = 17.0                            # header band at the top of each page
 OVERLAP = 12.0
 MOLDS = [('base', 'Base mold'), ('upright', 'Upright molds'), ('beam', 'Beam mold')]
 COLORS = {3.2: '#7a4fb5', 3.4: '#7a4fb5', 4.5: '#c0561a', 5.5: '#1f7a4d', 6.5: '#1f7a4d', 9.6: '#9a2b2b',
-          10.0: '#9a2b2b', 13.1: '#1d5fa8', 13.5: '#1d5fa8', 16.3: '#1d5fa8', 63.5: '#444'}
+          10.0: '#9a2b2b', 13.1: '#1d5fa8', 13.5: '#1d5fa8', 16.3: '#1d5fa8', 63.5: '#444',
+          5.0: '#1f7a4d', 6.0: '#2f8f8f', 6.6: '#c0561a', 7.0: '#b08a00', 9.5: '#7a4fb5', 10.5: '#9a2b2b',
+          12.7: '#1d5fa8', 14.0: '#444', 14.3: '#444'}
 
 
 def tiles(w, h):
@@ -49,9 +52,12 @@ def page_svg(b, x0, y0, cw, ch, label, fb):
          f'<defs><clipPath id="c"><rect x="{ox}" y="{oy}" width="{cw}" height="{ch}"/></clipPath></defs>',
          f'<text x="{MARGIN}" y="{MARGIN + 4.5}" font-size="4.6" font-weight="bold" fill="#1d2422">{b["name"]}'
          f'{" (x" + str(b["qty"]) + ": mark each)" if b["qty"] > 1 else ""}</text>',
-         f'<text x="{MARGIN}" y="{MARGIN + 9.5}" font-size="3.2" fill="#5b6662">page {label} · full size · '
-         f'lay it on the {"top (outside) face" if b["view"] == "outside" else "cast face (the side the mix touches)"}'
-         f' · board {b["size"][0]:.0f} x {b["size"][1]:.0f} mm</text>']
+         (f'<text x="{MARGIN}" y="{MARGIN + 9.5}" font-size="3.2" fill="#5b6662">page {label} · full size · '
+          f'{b["note"]}, {b["size"][0]:.0f} mm long · lay it on the part, x along its length from one end</text>'
+          if b['view'] == 'steel' else
+          f'<text x="{MARGIN}" y="{MARGIN + 9.5}" font-size="3.2" fill="#5b6662">page {label} · full size · '
+          f'lay it on the {"top (outside) face" if b["view"] == "outside" else "cast face (the side the mix touches)"}'
+          f' · board {b["size"][0]:.0f} x {b["size"][1]:.0f} mm</text>')]
     # 50 mm scale bar, top right
     sx = W - MARGIN - 52
     o += [f'<rect x="{sx}" y="{MARGIN + 2}" width="50" height="3" fill="none" stroke="#222" stroke-width="0.3"/>',
@@ -149,12 +155,39 @@ table { border-collapse: collapse; font-size: 8.5pt; width: 100%; }
 th, td { border: 1px solid #c9d0cc; padding: 2pt 5pt; text-align: left; } th { background: #eef1ef; }'''
 
 
+def steel_cover(index):
+    return f'''<div class="page cover">
+<h1>Steel parts: drilling templates</h1>
+<p class="sub">DIY CNC mill · {date.today():%B %Y} · full size, US Letter</p>
+<h2>Printing</h2>
+<ol>
+<li>Print at <b>Actual size / 100 %</b>. Turn off "Fit to page" and "Scale to fit". Letter paper, portrait.</li>
+<li>Measure the square below: it must be 100 mm (and the bar on every page 50 mm).</li>
+</ol>
+<h2>Marking and drilling</h2>
+<ol>
+<li>Cut out the part's outline on each page and tape it to the part, its edges on the part's edges (x runs along the
+length from the end the page starts at). For a tube, tape it to the face named in the title.</li>
+<li>Center-punch through every crosshair, pull the paper off, and drill on a drill press with the part clamped.
+Pilot with 1/8 in first. Tube holes marked "near wall only" go through one wall; the rest go through both.</li>
+<li>Tap the holes the legend says to tap (cutting oil, a tap guide or the drill press chuck to start square).</li>
+<li>Parts marked "x2" or more: mark one, then use it as a drilling jig for the rest (clamp them together).</li>
+</ol>
+<div class="square"><div>100 mm</div></div>
+<h2>Pages</h2>
+<table><tr><th>Part</th><th>Qty</th><th>Pages</th><th>Holes</th></tr>{index}</table>
+</div>'''
+
+
 def main():
     data = json.load(open(os.path.join(SRC, 'boards', 'boards.json')))
+    steel = json.load(open(os.path.join(SRC, 'boards', 'steel.json')))
     fb = data['freeboard']
     out_dir = os.path.join(DOCS, '3-molds', 'templates')
     os.makedirs(out_dir, exist_ok=True)
-    for mold, title in MOLDS:
+    for mold, title in MOLDS + [('steel', 'Steel parts')]:
+        if mold == 'steel':
+            data = steel
         pages, index = [], []
         for b in data['boards']:
             if b['mold'] != mold or not b['holes']:
@@ -172,16 +205,18 @@ def main():
                 pages.append(f'<div class="page">{page_svg(b, x0, y0, cw, ch, lab, fb)}</div>')
             index.append(f'<tr><td>{b["name"]}</td><td>{b["qty"]}</td><td>{first}-{first + len(kept) - 1} '
                          f'({len(kept)})</td><td>{len(b["holes"])}</td></tr>')
+        first_page = steel_cover(''.join(index)) if mold == 'steel' else cover(title, ''.join(index), fb)
         html = (f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>'
-                + cover(title, ''.join(index), fb) + ''.join(pages) + '</body></html>')
+                + first_page + ''.join(pages) + '</body></html>')
         with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False) as fh:
             fh.write(html)
             tmp = fh.name
-        pdf = os.path.join(out_dir, f'{mold}-templates.pdf')
+        rel = '1-sourcing/steel/steel-templates.pdf' if mold == 'steel' else f'3-molds/templates/{mold}-templates.pdf'
+        pdf = os.path.join(DOCS, rel)
         subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={pdf}',
                         f'file://{tmp}'], check=True, capture_output=True)
         os.remove(tmp)
-        print(f'3-molds/templates/{mold}-templates.pdf: {len(pages) + 1} pages')
+        print(f'{rel}: {len(pages) + 1} pages')
 
 
 if __name__ == '__main__':

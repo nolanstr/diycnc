@@ -51,10 +51,9 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 30 bolt | 22 |
 | M4 x 35 bolt | 4 |
 | M4 x 45 bolt | 14 |
-| 1/2 in rod (or a tie rod), greased, 355 mm: centers a top tie-rod sleeve | 4 |
 | 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 4 |
 | 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 4 |
-| 5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to 89 mm | 2 |
+| the two column tie rods themselves, greased: up through the floor and the columns into the top plate, to center the columns while the casting goes off | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
@@ -112,8 +111,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 | 4.5 mm | 11/64 in | cleat, corner bracket, saddle, toe-filler, toe-plug |
 | 10 mm | 25/64 in | 3/8-16 bolt into the top plate |
 | 13.1 mm | 33/64 in | 1/2-13 bolt, base dowel hole |
-| 13.5 mm | 17/32 in | 1/2 rod through a sleeve |
-| 16.3 mm | 41/64 in | 5/8 core rod |
+| 13.5 mm | 17/32 in | column tie rod, from below |
 
 ## 6. Wax
 
@@ -126,7 +124,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 ### Uprights (two molds)
 
-Cast foot down. Build two of everything. The skeleton: foot plate, two columns, the brace slotted into the foot plate, the top plate slotted onto the brace.
+Cast foot down. Build two of everything. The skeleton: the foot bar, two columns and the top plate (two flat bars), clamped later by the column tie rods.
 
 ![An upright skeleton](../../renders/mold/skeleton-upright.png)
 
@@ -142,11 +140,11 @@ Cast foot down. Build two of everything. The skeleton: foot plate, two columns, 
 
 ![Upright, step 3](../../renders/mold/step-upright-3.png)
 
-4. Mold on its four 2x4 blocks. The skeleton in: foot plate on the floor, greased 1/2 in rods up through the floor, the foot plate and the columns; the brace in its slot; the toe pocket plug on the foot plate; the two dowel-hole bolts from underneath. Columns on a bed of thickened epoxy, the top plate and bridge set on them while it goes off, then lifted away.
+4. Mold on its four 2x4 blocks. The foot bar on the floor; the two columns on beds of thickened epoxy on it, the top plate and bridge set on them while it goes off, then lifted away; the toe pocket plug on the foot bar; the two dowel-hole bolts from underneath.
 
 ![Upright, step 4](../../renders/mold/step-upright-4.png)
 
-5. Fill to the line. Top plate (both layers) back down over the rods and the brace tab, hung from the bridge; bridge onto its saddles.
+5. Fill to the line. Top plate (both bars) back on, hung from the bridge; bridge onto its saddles. Then the two column tie rods, greased, up from under the floor through the foot bar and the columns into the top plate: they center the columns while it cures.
 
 ![Upright, step 5](../../renders/mold/step-upright-5.png)
 
@@ -195,26 +193,25 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 77 | 54 | 4.5 | toe-filler |
 | 2 | 119 | 72 | 4.5 | toe-filler |
-| 3 | 99 | 117 | 16.3 | 5/8 core rod |
-| 4 | 131 | 123 | 3.2 | foot-gasket-groove |
-| 5 | 20 | 170 | 4.5 | cleat |
-| 6 | 178 | 170 | 4.5 | cleat |
-| 7 | 67 | 182 | 3.2 | foot-gasket-groove |
-| 8 | 67 | 249 | 3.2 | foot-gasket-groove |
-| 9 | 131 | 249 | 3.2 | foot-gasket-groove |
-| 10 | 99 | 272 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 11 | 20 | 315 | 4.5 | cleat |
-| 12 | 67 | 314 | 3.2 | foot-gasket-groove |
-| 13 | 131 | 314 | 3.2 | foot-gasket-groove |
-| 14 | 178 | 315 | 4.5 | cleat |
-| 15 | 99 | 337 | 13.5 | 1/2 rod through a sleeve |
-| 16 | 131 | 381 | 3.2 | foot-gasket-groove |
-| 17 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 18 | 99 | 437 | 13.5 | 1/2 rod through a sleeve |
-| 19 | 67 | 441 | 3.2 | foot-gasket-groove |
-| 20 | 20 | 461 | 4.5 | cleat |
-| 21 | 178 | 461 | 4.5 | cleat |
-| 22 | 99 | 521 | 4.5 | cleat |
+| 3 | 131 | 123 | 3.2 | foot-gasket-groove |
+| 4 | 20 | 170 | 4.5 | cleat |
+| 5 | 178 | 170 | 4.5 | cleat |
+| 6 | 67 | 182 | 3.2 | foot-gasket-groove |
+| 7 | 67 | 249 | 3.2 | foot-gasket-groove |
+| 8 | 131 | 249 | 3.2 | foot-gasket-groove |
+| 9 | 99 | 272 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 10 | 20 | 315 | 4.5 | cleat |
+| 11 | 67 | 314 | 3.2 | foot-gasket-groove |
+| 12 | 131 | 314 | 3.2 | foot-gasket-groove |
+| 13 | 178 | 315 | 4.5 | cleat |
+| 14 | 99 | 337 | 13.5 | column tie rod, from below |
+| 15 | 131 | 381 | 3.2 | foot-gasket-groove |
+| 16 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 17 | 99 | 437 | 13.5 | column tie rod, from below |
+| 18 | 67 | 441 | 3.2 | foot-gasket-groove |
+| 19 | 20 | 461 | 4.5 | cleat |
+| 20 | 178 | 461 | 4.5 | cleat |
+| 21 | 99 | 521 | 4.5 | cleat |
 
 #### Upright side plate, outer (x2)
 
@@ -265,10 +262,8 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 65 | 10 | 13.5 | 1/2 rod through a sleeve |
-| 2 | 87 | 40 | 10 | 3/8-16 bolt into the top plate |
-| 3 | 65 | 110 | 13.5 | 1/2 rod through a sleeve |
-| 4 | 43 | 130 | 10 | 3/8-16 bolt into the top plate |
+| 1 | 87 | 40 | 10 | 3/8-16 bolt into the top plate |
+| 2 | 43 | 130 | 10 | 3/8-16 bolt into the top plate |
 
 #### Upright cleat, outer (x2)
 

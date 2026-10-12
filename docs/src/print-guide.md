@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**124 prints, 1.12 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**122 prints, 1.11 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -97,13 +97,13 @@ Folder `print/base-rear/`, about 168 g.
 | `core-outer-a-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outer-b-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-rear-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 26 | 5 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
-| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 26 | 5 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
+| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 20 | 5 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
+| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 20 | 5 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `cast-in-leg-rear-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
 
 ## Base, front half
 
-Folder `print/base-front/`, about 268 g.
+Folder `print/base-front/`, about 258 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -123,13 +123,11 @@ Folder `print/base-front/`, about 268 g.
 | `core-outboard-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-trough-band-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-draw-rod-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `core-foot-a-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outboard-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-trough-band-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-draw-rod-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `core-foot-a-R-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
-| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 62 | 12 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
-| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 62 | 12 | Forms a draw-rod nut pocket down to the steel; bolts to the wall, the rod through it. |
+| `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 56 | 12 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
+| `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 56 | 12 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `cast-in-leg-front-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
 
 ## Uprights (two molds: print quantities are for both)

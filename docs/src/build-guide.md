@@ -40,44 +40,42 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 
 ## 1. Buy and prepare the steel
 
-The frame's backbone is steel: a skeleton in each casting, slotted together from laser-cut plates
-and clamped with threaded rod, then cast into epoxy granite, which damps it and stiffens it
-further. Every joint between the castings, and everything that bolts on (rails, ballscrew
-supports), is steel to steel. Nothing is welded and nothing is threaded into the epoxy granite.
+The frame's backbone is steel: a skeleton in each casting, bolted together from **stock flat bar and
+tube** and clamped with threaded rod, then cast into epoxy granite, which damps it and stiffens it
+further. Every joint between the castings, and everything that bolts on (rails, ballscrew supports),
+is steel to steel. Nothing is welded, nothing is custom-cut, and nothing is threaded into the epoxy
+granite.
 
 ![The base grids, both halves](../../renders/mold/skeleton-base.png)
 
-![An upright skeleton: foot plate, two columns, brace, two-layer top plate](../../renders/mold/skeleton-upright.png)
+![An upright skeleton: foot bar, two columns, top plate](../../renders/mold/skeleton-upright.png)
 
-![The beam's steel box](../../renders/mold/skeleton-beam.png)
+![The beam's steel: face and back bars, pipe spacers, end bars](../../renders/mold/skeleton-beam.png)
 
-1. **Laser-cut plates.** Send the DXFs in `docs/1-sourcing/laser/` to Metal Supermarkets, a
-   laser-cutting service, or a friend with a CNC plasma or router table. The README there lists
-   every part, its thickness and how many. About 64 parts, roughly 48 kg of 1/4, 3/8 and 1/2 in
-   mild steel. The tabs on one plate drop into slots in the next, so each skeleton only goes
-   together one way.
-   - Knock the dross off every edge and slot; the tabs should slide in by hand.
-   - **Tap** the holes the README lists, at the drill size they're cut to: 3/8-16 in the upright top
-     plates' lower layers, M5 in the base rail bars and the beam face plate, M6 in the base support
-     pads and the beam face plate. Use a tap guide or the drill press to start them square.
-2. **Square tube** (plain steel, not galvanized; 0.120 or 1/8 in wall; remnants are fine), bought at
-   length: 2 x 2 in, 4 x 8 in (the upright columns); 1-1/2 x 1-1/2 in, 4 x 6 in (legs).
-   - A saw cut within 1/8 in is fine: a column is clamped up against its top plate and its foot
-     stands in an epoxy bed on the foot plate (4.8 mm nominal); a leg is pushed up against its leg
-     plate and its leveling foot takes up the rest. Knock off burrs.
-   - The printed rings that center a column on its rod have 0.5 mm a side and grooves for the weld
-     seam, so they fit tube up to 0.5 mm off. If yours is further off, put its calipered sizes in
-     `frame_tube` / `post_tube` in `model/build_cnc.py`, re-run it and print the rings again.
-3. **Slot each skeleton together on the bench** (pictures above, and in the mold guide):
-   - **Upright** (two): brace into the foot plate; columns on the foot plate, a printed ring in each
-     end; top plate's lower layer over the brace tab, upper layer on it. It's clamped for good later,
-     by the tie rods.
-   - **Beam:** diaphragms into the face plate's slots, back plate over the diaphragms' tabs, the seat
-     and cap plates onto the end tabs.
-   - **Base** (one grid per half): girder webs into their bottom bars and end plates, pedestal webs
-     into their bars, the cross plates dropped over the webs (half-depth slots, so they lock), then
-     the rail bars, seats and pads on top and the leg plates through their cross plates. Glue the four
-     3/8 x 1 in dowel pins into the rear half's split end plates, half their length out.
+1. **Buy the steel cut to length.** `docs/1-sourcing/steel/README.md` has the cut list by stock size and
+   every part (about 54 pieces, 46 kg). It's all common sizes: 3/8 in flat bar in 1-1/2, 2, 2-1/2 and
+   5 in widths, 1/2 x 2-1/2 in flat bar, 2 x 3 in rectangular tube, and 2 x 2 and 1-1/2 x 1-1/2 in square
+   tube (1/8 wall). A local steel yard or Metal Supermarkets will cut it for you (cheapest); online
+   sellers sell it in fixed lengths you cut with a chop saw or hacksaw. Plus, bought at length: 2 x 2 in
+   tube, 4 x 8-1/8 in (the upright columns), and 1-1/2 x 1-1/2 in tube, 4 x 6 in (legs). A saw cut within
+   1/8 in is fine everywhere (the report's "Steel cut to length" table lists where each error goes).
+2. **Drill and tap from the templates.** Print `docs/1-sourcing/steel/steel-templates.pdf` at actual
+   size (check the 100 mm square), tape each part's outline to the part, center-punch every crosshair
+   and drill on a drill press. The legend on each page gives the drill, and which holes to tap:
+   1/2-13 in the upright top plates' lower bars (the column tie rods screw in) and 3/8-16 for the beam
+   studs; M5 in the base rail bars and the beam face bar; M6 in the support pads and the beam face bar.
+   Mark one of each pair and use it as a drilling jig for the other.
+3. **Bolt each skeleton together on the bench:**
+   - **Upright** (two): just the parts for now: foot bar, two columns (a printed ring in each end) and the
+     top plate's two bars. The column tie rods clamp it at assembly.
+   - **Beam:** screw the three 107 mm studs into the face bar, a pipe nipple over each, the back bar over
+     them and a nut on each; the seat and cap bars go in the mold on the cap-screw rods.
+   - **Base** (one grid per half): each girder (2 x 3 tube) between its end plates, its rail bar bolted on
+     top with 1/4-20 x 4 in bolts (nuts under the tube) and the draw rod through it; the pedestals (seat bar,
+     the 2 x 2 tube spacers, bottom bar) held together with the tie rods for now; the cross tubes between
+     the girders and from each girder to its pedestal, each clamped by its 1/2-13 rod and two nuts; the
+     support pads bolted onto their cross tubes. Glue the four 3/8 x 1 in dowel pins into the rear half's
+     split end plates, half their length out.
 4. **Rail risers** (cold-rolled 1018, 1-1/4 in wide, ordered cut to the rail lengths): Y 3/4 in x
    600 mm (2), X 5/8 in x 400 mm (2), Z 5/8 in x 300 mm (2). The rails are used at full length.
    - Clamp each rail on its riser, centered, and use the rail's own holes as the drill
@@ -85,16 +83,17 @@ supports), is steel to steel. Nothing is welded and nothing is threaded into the
    - Y and X risers also get the hold-down holes, midway between rail holes and under the
      rail: 5.5 mm through with a 9.5 mm x 4.5 mm deep counterbore from the top. Positions from
      the riser center: Y at 0, ±120 and ±240 mm, X at ±30 and ±150 mm. They go into the tapped
-     rail bars (base) and face plate (beam).
+     rail bars (base) and face bar (beam).
    - Stone or lightly sand off burrs; keep the top faces flat.
 5. **Clean all the steel:** wire-brush or flap-disc to dull gray metal, then degrease with acetone
    just before casting. If it will sit more than a day or two, give it a thin coat of epoxy primer
    (not on the faces the mold screws or the rails bear on). Paint only the part of each leg that will
    hang below the base (after casting).
-6. **Threaded rod and hardware:** cut the 1/2-13 rods: per upright 2 x 375 mm (in the columns) and
-   1 x 153 mm (at the toe); 2 x 687 mm for the base draw rods. Deburr the ends. A rod a few mm off is
-   fine: its top end is set flush and the error ends up in the 6 mm tail past the bottom nut. Have
-   11 x M5 cast-in inserts ready for the enclosure (the only inserts left).
+6. **Threaded rod and hardware:** cut the 1/2-13 rods: per upright 2 x 363 mm (in the columns) and
+   1 x 153 mm (at the toe); 2 x 687 mm for the base draw rods; 4 x 270 and 6 x 225 mm for the base cross
+   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 186 mm and 3 ties of 107 mm. Deburr the ends.
+   A rod a few mm off is fine: one end is set flush and the error ends up in the 6 mm tail past the far
+   nut. Have 11 x M5 cast-in inserts ready for the enclosure (the only inserts left).
 
 ![Section through the uprights: columns, tie rods, top plates and the base pedestals](../../renders/frame_section_uprights.png)
 
@@ -145,35 +144,34 @@ lists the printed parts.
 ![A corner of the base mold: corner bracket, leg holder and its hanger, saddle and bridge, corner filler](../../renders/mold/detail-corner.png)
 
 **Locating the steel** (the mold guide has the details; grease every screw and rod that comes out):
-- **Each skeleton goes in as one piece**, already slotted together, and is held by the faces it
-  bears on, so the plates that matter come out exactly where the templates put them.
+- **Each skeleton goes in as one bolted-up piece** and is held by the faces it bears on, so the parts that
+  matter come out where the templates put them.
 - **Base:** the grid lies upside down on the floor (the base is cast top face down). Greased M5 and M6
-  screws through the floor hold its rail bars and support pads; the dowels through the floor and the
-  seat plates locate the pedestals. Greased 5/8 in rods up through the floor form the tie-rod holes,
-  and two along the base, through the partition, the end plates and the printed pocket plugs, form
-  the draw-rod holes. For the front half, the front grid's split end plates go onto the rear half's
-  dowel pins. The 11 enclosure inserts screw to the floor.
-- **Dowels** (rear half): two per upright, through the floor and the seat plates; they stand 15 mm
-  proud and are grouted into oversize holes in the upright's foot at assembly (section 4).
-- **Legs:** through printed holders in the corners, each pushed up against its leg plate and held by a
-  pinch screw.
-- **Cores:** taped XPS foam blocks on the wet 20 mm skin, between the grid plates; a printed post glued
-  into each bolts to the side of a bridge. They can stay in.
-- **Uprights:** the foot plate lies on the floor; greased 1/2 in rods up through the floor, the foot
-  plate and the columns locate it and form the column rods' holes. Stand the columns on a bed of
-  thickened epoxy, set the top plate and bridge on them while it goes off, then lift those away and
-  fill. The top plate goes back on the rods and the brace's tab, hung from the bridge on two greased
-  3/8 bolts. A printed plug forms the toe pocket down to the foot plate; greased 1/2-13 bolts form
-  the two dowel holes.
-- **Beam:** the face plate lies on the floor, held by greased M5 and M6 screws into its tapped holes;
-  greased 1/2 in rods through the walls and the cap and seat plates form the cap-screw holes. Fill
-  through the back plate's windows. The dowels sit in the bottom wall on printed stops.
+  screws through the floor hold its rail bars and support pads; the dowels through the floor and the seat
+  bars locate the pedestals. The draw rods and tie rods sit inside the tubes, so nothing forms their holes;
+  tape over the holes in the pedestals' bottom bars (they're at the pour line). For the front half, the
+  front grid's split end plates go onto the rear half's dowel pins. Printed plugs form the draw-rod nut
+  pockets down to the girders' end plates. The 11 enclosure inserts screw to the floor.
+- **Dowels** (rear half): two per upright, through the floor and the seat bars; they stand 15 mm proud and
+  are grouted into oversize holes in the upright's foot at assembly (section 4).
+- **Legs:** through printed holders in the corners, each held at its cast-in depth by a pinch screw.
+- **Cores:** taped XPS foam blocks on the wet 20 mm skin, between the steel; a printed post glued into each
+  bolts to the side of a bridge. They can stay in.
+- **Uprights:** the foot bar lies on the floor. Stand the columns on a bed of thickened epoxy on it, set the
+  top plate and bridge on them while it goes off, then lift those away and fill. The top plate goes back
+  on, hung from the bridge on two greased 3/8 bolts, and the two column tie rods (greased) go up from under
+  the floor through the foot bar and the columns into the plate, to hold the columns centered while it
+  cures. A printed plug forms the toe pocket down to the foot bar; greased 1/2-13 bolts form the two dowel
+  holes.
+- **Beam:** the face bar lies on the floor, held by greased M5 and M6 screws into its tapped holes, the back
+  bar on its spacers above it; greased 1/2 in rods through the walls and the cap and seat bars form the
+  stud holes. The dowels sit in the bottom wall on printed stops.
 
 ![Front-half mold, cast against the cured rear half](../../renders/build/04-mold-base-front.png)
 
 ![Upright: skeleton, top plate and the toe pocket plug (orange)](../../renders/build/05-mold-upright.png)
 
-![Beam mold: the steel box and the back-edge filler](../../renders/build/06-mold-beam.png)
+![Beam mold: the steel and the back-edge filler](../../renders/build/06-mold-beam.png)
 
 ## 3. Mixing and casting
 
@@ -272,22 +270,23 @@ mold.
    on (dowels into their holes, foot on the base) and put the tie rods in (next step) snug, wipe
    off what squeezes out, and leave it 24 h. After that the upright lifts off and drops back on
    in the same place.
-4. **Tie rods.** Each upright is held by three 1/2-13 rods. Two run inside its columns, from nuts held
-   in the top plate, and one from the toe pocket, where its nut bears on the foot plate. All three go
-   right through the base pedestal to its bottom bar. So the beam screws, the top plate, the columns,
-   the foot plate, the pedestal and the rods are one steel chain, and every nut can be reached and
-   retightened.
-   - **Column rods:** drop a nut into each hex hole in the top plate. Push the 375 mm rod up from
-     under the base, through the pedestal and the column, and screw it into that nut until its end
-     is flush with the top of the plate (the hex hole stops the nut turning).
+4. **Tie rods.** Each upright is held by three 1/2-13 rods. Two run inside its columns and screw into
+   the top plate's lower bar; one runs from the toe pocket, where its nut bears on the foot bar. All
+   three go right through the base pedestal (inside its tube spacers) to its bottom bar. So the beam
+   studs, the top plate, the columns, the foot bar, the pedestal and the rods are one steel chain, and
+   every nut can be reached and retightened.
+   - **Column rods:** push the 363 mm rod up from under the base, through the pedestal and the column,
+     and screw it into the top plate's lower bar until it stops against the upper bar (finger tight).
    - **Toe rod:** washer and nut in the toe pocket; push the 153 mm rod up from below and screw it
      into the nut until its end is flush with the nut's top.
    - **Underneath:** an SAE washer and a nut on each rod against the pedestal's bottom bar. Snug all
      three, then tighten to about 40-50 N·m, front to back. Push the printed cap into the toe pocket,
      flush with the face (a dab of silicone holds it).
    - Check them again after a week and after the first month; later, once a year.
-5. **Beam:** the top plates' dowel holes are 14 mm, oversize the same way. Wax the beam's
-   dowels, put grout in the holes, set the beam on and fit the eight 3/8-16 x 6-1/2 in bolts snug.
+5. **Beam:** the top plates' dowel holes are 14 mm, oversize the same way. Screw the eight 186 mm
+   3/8-16 studs down through the top plates' upper bars into the lower bars until they stop. Wax the beam's
+   dowels, put grout in the holes, set the beam down over the studs and run a washer and nut on each,
+   snug.
    Check the beam face is square to the base top with a square and a dial indicator (shim under
    one top plate if needed) and leave it 24 h before the final torque (about 40 N·m).
 
@@ -300,7 +299,7 @@ mold.
 ## 5. Bed the rail risers
 
 The risers are bonded to the castings with a thin epoxy grout and held down by screws into the
-steel: the base's rail bars and the beam's face plate, tapped M5.
+steel: the base's rail bars and the beam's face bar, tapped M5.
 
 1. Abrade and degrease the casting under each riser and the riser's underside.
 2. Set the riser on small shim stacks (feeler stock) at each hold-down. Fit the M5 low-head
@@ -324,7 +323,7 @@ steel: the base's rail bars and the beam's face plate, tapped M5.
    (M4 x 16, about 4 N·m). Tighten the first rail against a
    straightedge, then set the second parallel with a dial indicator on a block of the first
    (within 0.01-0.02 mm over the travel).
-2. Bolt the BK12 (fixed bearing, rear) and BF12 (front) to their tapped steel pads (M6 x 35, about
+2. Bolt the BK12 (fixed bearing, rear) and BF12 (front) to their tapped steel pads (M6 x 40, about
    6-8 N·m) with the screw installed. Align the screw parallel to the rails in both directions
    with a dial indicator on the nut. Shim under a support if needed; the screw should spin
    freely by hand along the whole length.
@@ -334,7 +333,7 @@ steel: the base's rail bars and the beam's face plate, tapped M5.
 
 **X (beam).**
 1. Rails onto the X risers as for Y (100 mm spacing).
-2. BK10 and BF10 onto the beam's face plate, tapped M6: M6 x 35 (the casting is relieved behind each
+2. BK10 and BF10 onto the beam's face bar, tapped M6: M6 x 40 (the casting is relieved behind each
    hole, so the screws don't bottom).
    Align and check as for Y.
 3. Bolt the X carriage plate to the four blocks and the nut housing; motor bracket, 8 x 8

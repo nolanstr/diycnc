@@ -371,7 +371,7 @@ def fig_core(sc):
 def fig_skeletons(sc):
     """Each steel skeleton on its own, labeled: what the builder slots together before it goes in the mold."""
     skip = ('Casting', 'Gasket', 'BeamBolt', 'TieRod', 'Nut', 'Dowel', 'Insert', 'Anchor', 'DrawRod', 'SplitPin',
-            'Plug', 'Leg', 'Ring', 'Drain')
+            'Plug', 'Leg', 'Ring', 'Drain', 'CrossRod')
     for name, conts, cam in (('skeleton-base', ('FrameBaseFront', 'FrameBaseRear'), Vector(-0.55, -0.7, 0.55)),
                              ('skeleton-upright', ('FrameUprightL',), Vector(0.8, -0.5, 0.35)),
                              ('skeleton-beam', ('FrameBeam',), Vector(-0.5, -0.75, 0.45))):
@@ -421,11 +421,12 @@ NICE = {'corner-L': 'Corner filler', 'corner-R': 'Corner filler', 'back-edge': '
         'DrawRodCoupler': 'Draw-rod coupler', 'TieBar': 'Anchor bar', 'RodSleeve': 'Tie-rod sleeve (printed)',
         'DrawRod': 'Draw rod',
         'Anchor': 'Cast-in insert', 'Insert': 'Cast-in insert', 'TopPlate': 'Top plate',
-        'UprightFoot': 'Foot plate', 'UprightColumn': 'Column', 'UprightBrace': 'Brace plate',
+        'UprightFoot': 'Foot bar', 'UprightColumn': 'Column (2x2 tube)',
         'ColumnRing': 'Column ring (printed)', 'BaseRailBar': 'Rail bar (tapped)', 'BasePad': 'Support pad (tapped)',
-        'BaseSeat': 'Seat plate', 'BaseLegPlate': 'Leg plate', 'BaseGirderEnd': 'End plate', 'Base': 'Steel grid',
-        'SplitPin': 'Dowel pin', 'BeamFacePlate': 'Face plate (tapped)', 'BeamSeat': 'Seat plate', 'BeamCap': 'Cap plate',
-        'BeamBackPlate': 'Steel box', 'BeamDiaphragm': 'Steel box',
+        'BaseSeat': 'Seat bar', 'BasePedestalBar': 'Bottom bar', 'BasePedestalColumn': 'Pedestal column',
+        'BaseGirderEnd': 'End plate', 'BaseGirder': 'Girder (2x3 tube)', 'BaseCross': 'Cross tube', 'CrossRod': 'Cross rod',
+        'SplitPin': 'Dowel pin', 'BeamFacePlate': 'Face bar (tapped)', 'BeamSeat': 'Seat bar', 'BeamCap': 'Cap bar',
+        'BeamBackPlate': 'Back bar', 'BeamSpacer': 'Pipe spacer', 'BeamTie': 'Stud',
         'BeamTube': 'Beam tube', 'BeamSupportPad': 'Support pad', 'DrainOutlet': 'Drain nipple', 'Dowel': 'Dowel'}
 
 
@@ -522,7 +523,7 @@ def base_steps(sc):
         ('walls', B(rear, walls) + K(rear, ['corner-bracket'])),
         ('partition', B(rear, ['Base partition']) + K(rear, ['partition-bracket', 'split-gasket'])),
         ('pieces', K(rear, ['gutter', 'motor-relief', 'corner-L', 'corner-R', 'draw-pocket'])),
-        ('steel', S('FrameBaseRear') + base_rods(False) + draw_rods(False) + K(rear, ['leg-holder'])),
+        ('steel', S('FrameBaseRear') + K(rear, ['leg-holder'])),
         ('cores', K(rear, None, kinds=('foam', 'core')) + K(rear, ['saddle'])
          + B(rear, ['Base bridge', 'Base leg bridge']) + [pour_plane('base')]),
     ]
@@ -531,7 +532,7 @@ def base_steps(sc):
     fstages = [
         ('rear cast', B(front, ['Base floor', 'Base cleat'] + walls) + K(front, ['corner-bracket']) + cast),
         ('front pieces', K(front, ['gutter', 'trough', 'corner-L', 'corner-R', 'draw-pocket']) + S('FrameBaseFront')
-         + base_rods(True) + draw_rods(True) + K(front, ['leg-holder'])),
+         + K(front, ['leg-holder'])),
         ('cores', K(front, None, kinds=('foam', 'core')) + K(front, ['saddle'])
          + B(front, ['Base bridge', 'Base leg bridge']) + [pour_plane('base')]),
     ]
@@ -542,7 +543,7 @@ def upright_steps(sc):
     u = 'upright'
     post_bot = G['base_top'] - T - 20.0              # rods stand 20 mm out under the floor
     rods = [('hw', Part.makeCylinder(P['tie_rod_d'] / 2, G['beam_bot'] + P['mold_freeboard'] + 30 - post_bot,
-                                     Vector(-rx, ry, post_bot)), '1/2 in rod (through a column)')
+                                     Vector(-rx, ry, post_bot)), 'Column tie rod, from below')
             for rx, ry, pb in G['tie_rods'] if pb >= G['pocket_bot'] - 1]
     st = S('FrameUprightL', skip=('Casting', 'Gasket', 'TieRod', 'Nut', 'TopPlate'))
     plate = PARTS['TopPlateLLower']['shape'].fuse(PARTS['TopPlateLUpper']['shape'])
@@ -550,8 +551,9 @@ def upright_steps(sc):
         ('floor', B(u, ['Upright floor', 'Upright cleat']) + K(u, ['foot-gasket'])),
         ('sides', B(u, ['Upright side plate', 'Upright back board']) + K(u, ['back-bracket'])),
         ('front', B(u, ['Upright front board']) + K(u, ['toe-filler', 'front-bracket'])),
-        ('steel', st + rods + K(u, ['toe-plug']) + [pour_plane('upright')]),
-        ('top', K(u, ['plate-spacer', 'saddle-flat']) + B(u, ['Upright bridge']) + [('steeltube', plate, 'Top plate')]),
+        ('steel', st + K(u, ['toe-plug']) + [pour_plane('upright')]),
+        ('top', K(u, ['plate-spacer', 'saddle-flat']) + B(u, ['Upright bridge']) + [('steeltube', plate, 'Top plate')]
+         + rods),
     ]
     steps(sc, 'step-upright', IDENT, Vector(0.8, 0.55, -0.45), stages)
 

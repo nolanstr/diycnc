@@ -12,17 +12,17 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
-Epoxy granite volume:         47.9 L
-Casting mass:                 121 kg (266 lb)
-  Base front:                  13.1 L   30.7 kg
-  Base rear:                   17.5 L   41.1 kg
-  Upright L:                    4.5 L   12.5 kg  (alumina grit)
-  Upright R:                    4.5 L   12.5 kg  (alumina grit)
-  Beam:                         8.5 L   23.8 kg  (alumina grit)
-Cast-in steel + joint hardware: 59.0 kg
-Epoxy needed (~8.5% of the sand mix by mass): 9.6 kg
-Aluminum oxide grit, brown #16 (coarse sand): 16.7 kg (beam + uprights)
-Aluminum oxide grit, black 70 grit (fine sand): 8.7 kg (beam + uprights)
+Epoxy granite volume:         45.7 L
+Casting mass:                 116 kg (255 lb)
+  Base front:                  12.3 L   28.9 kg
+  Base rear:                   15.5 L   36.3 kg
+  Upright L:                    4.5 L   12.7 kg  (alumina grit)
+  Upright R:                    4.5 L   12.7 kg  (alumina grit)
+  Beam:                         8.9 L   25.0 kg  (alumina grit)
+Cast-in steel + joint hardware: 60.5 kg
+Epoxy needed (~8.5% of the sand mix by mass): 9.1 kg
+Aluminum oxide grit, brown #16 (coarse sand): 17.3 kg (beam + uprights)
+Aluminum oxide grit, black 70 grit (fine sand): 8.9 kg (beam + uprights)
 
 Linear motion / plate BOM
 -------------------------
@@ -41,21 +41,29 @@ Linear motion / plate BOM
   X, Z     DSG12H (24 mm bore) nut housing                      2 pcs                                X OWNED, Z buy
   spindle  GDZ80-2.2 water-cooled ER20 + VFD + 80 mm cast clamp 1 set                                buy
   all      MIC6 plate: table                                    260 x 320 x 3/4 in, M6 grid 10x12 @ 25 buy
-  all      MIC6 plate: X carriage                               170 x 410 x 5/8 in                   buy
+  all      MIC6 plate: X carriage                               170 x 407 x 5/8 in                   buy
   all      MIC6 plate: Z plate                                  150 x 300 x 5/8 in                   buy
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
-  frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 0 (riser hold-downs); M6 x 15 long: 0 (Y BK/BF on the base) buy
-  frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 0 pads (~4 in of bar), 0 tapped holes buy
-  frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + -8; 0; 0                         buy
-  frame    Laser-cut steel plate (docs/1-sourcing/laser/README.md lists every part) 4 x 1/2 in, 32 x 1/4 in, 28 x 3/8 in, 48 kg buy
-  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall), bought at length 4 x 8 in (upright columns)           buy
+  frame    Cast-in M5 threaded inserts (knurled brass), for the enclosure only 11 pcs                               buy
+  frame    Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); M6 x 40 (the Y and X BK/BF) 8 + 10; 12                           buy
+  frame    Flat bar 1/2 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 198                              buy
+  frame    Flat bar 3/8 x 1-1/2 in, cut to length (docs/1-sourcing/steel/) 2 x 359, 2 x 288                     buy
+  frame    Flat bar 3/8 x 2 in, cut to length (docs/1-sourcing/steel/) 2 x 375, 2 x 90                      buy
+  frame    Flat bar 3/8 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 285, 4 x 133, 8 x 76, 4 x 66     buy
+  frame    Flat bar 3/8 x 5 in, cut to length (docs/1-sourcing/steel/) 2 x 508                              buy
+  frame    Rectangular tube 2 x 3 x 1/8 in, cut to length (docs/1-sourcing/steel/) 2 x 340, 2 x 269                     buy
+  frame    Square tube 1-1/2 x 1-1/2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 4 x 129, 6 x 84                      buy
+  frame    Square tube 2 x 2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy
+  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall), bought at length 4 x 8-1/8 in (upright columns; the base's short ones are in the cut list) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 6 in (legs)                      buy
   frame    Printed PETG: 8 column rings, 4 leg plugs, 2 dark gray pocket caps ~60 g                                PRINT
-  frame    1/2-13 threaded rod (hardware store)                 4 x 375, 2 x 153 (uprights), 2 x 687 (base draw rods) buy
-  frame    1/2-13 nut + 1/2 in SAE washer (two of each per tie rod and draw rod) 16 of each                           buy
-  frame    3/8-16 x 6-1/2 in grade 8 bolt + washer (beam)       8 pcs                                buy
+  frame    1/2-13 threaded rod (hardware store)                 4 x 363, 2 x 153 (uprights), 2 x 687 (base draw rods), 4 x 270 + 6 x 225 (base cross rods) buy
+  frame    1/2-13 nut + 1/2 in SAE washer                       32 of each                           buy
+  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 186 + 3 x 107 mm; 11 nuts        buy
+  frame    1/2 in x 3 in black pipe nipple (beam spacers)       3 pcs                                buy
+  frame    1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes (2-1/4 in) about 20 x 4 in + 4 x 2-1/4 in       buy
   frame    Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split) 6 + 4 pcs                            buy
   frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.7 m                                buy
   frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
@@ -90,11 +98,12 @@ Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)
 Steel cut to length (+/-3.2 mm allowed; tubes +/-0.5 mm across the flats, printed fits 0.50 mm a side)
 --------------------------------------------------------------------------------------------------
   Piece              Set from (datum)                                   Error goes to                        Room
-  Legs (4)           top end, up against its leg plate                  the foot end, taken up by the leveling foot 15.0 mm ok
-  Upright columns (4) top end, against the top plate                     an epoxy bed on the foot plate        8.0 mm ok
-  Draw rods (2, cut) a nut on the front cross plate                     the tail behind the back nut          6.0 mm ok
+  Legs (4)           set proud of the leg holder                        top end, in the casting              30.0 mm ok
+  Upright columns (4) top end, against the top plate                     an epoxy bed on the foot bar          4.8 mm ok
+  Draw rods (2, cut) flush with the front nut                           the tail behind the back nut          6.0 mm ok
+  Girders (4)        the split end plate                                the far end plate, clamped by the draw rod  6.0 mm ok
   Top plates (2)     bolted to the mold bridge                          all edges, 6 mm inside the casting    6.0 mm ok
-  Tie rods (8, cut)  screwed up flush with the plate / the slope nut    the tail under the bottom nut         6.0 mm ok
+  Tie and cross rods (cut) screwed up to a stop, or flush with one nut        the tail past the far nut             6.0 mm ok
 
 Collision check (18 poses: X/Y at both ends + center, Z top/bottom; door closed, cutter excluded)
 --------------------------------------------------------------------------------------------------
