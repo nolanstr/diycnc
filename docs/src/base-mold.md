@@ -44,7 +44,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 |---|---|---|
 | Melamine board, 3/4 in | about 1.5 m2 | all the molds come out of two 4 x 8 ft sheets |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 0.76 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.75 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -69,7 +69,7 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-84 prints, 0.76 kg, about 67 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+84 prints, 0.75 kg, about 67 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -77,7 +77,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-box/kit-corner-bracket.stl` | 4 | 33 | 39m 23s |
 | `base-box/kit-partition-bracket.stl` | 2 | 14 | 35m 28s |
 | `base-box/kit-saddle.stl` | 6 | 58 | 46m 3s |
-| `base-box/kit-leg-holder.stl` | 4 | 83 | 1h 37m 19s |
+| `base-box/kit-leg-holder.stl` | 4 | 82 | 1h 37m 1s |
 | `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 5s |
 | `base-rear/former-gutter-L-part2of3.stl` | 1 | 8 | 33m 40s |
 | `base-rear/former-gutter-L-part3of3.stl` | 1 | 7 | 31m 15s |
@@ -125,15 +125,15 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-rear/core-outer-b-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-rear-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/plug-socket-spike.stl` | 4 | 8 | 13m 26s |
-| `base-rear/kit-spigot-bushing.stl` | 2 | 34 | 1h 11m 50s |
+| `base-rear/kit-spigot-bushing.stl` | 2 | 34 | 1h 11m 37s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `base-front/cast-in-base-front-tube-plug-l.stl` | 2 | 13 | 29m 7s |
-| `base-front/cast-in-base-front-spigot-sleeve-l.stl` | 2 | 29 | 1h 14m 37s |
-| `base-front/cast-in-leg-front-l-plug.stl` | 2 | 7 | 15m 49s |
-| `base-rear/cast-in-base-rear-tube-plug-l.stl` | 2 | 13 | 27m 49s |
-| `base-rear/cast-in-base-rear-spigot-sleeve-l.stl` | 2 | 29 | 1h 14m 37s |
-| `base-rear/cast-in-leg-rear-l-plug.stl` | 2 | 7 | 15m 49s |
+| `base-front/cast-in-base-front-tube-plug-l.stl` | 2 | 15 | 39m 34s |
+| `base-front/cast-in-base-front-spigot-sleeve-l.stl` | 2 | 22 | 59m 28s |
+| `base-front/cast-in-leg-front-l-plug.stl` | 2 | 8 | 24m 14s |
+| `base-rear/cast-in-base-rear-tube-plug-l.stl` | 2 | 15 | 39m 16s |
+| `base-rear/cast-in-base-rear-spigot-sleeve-l.stl` | 2 | 22 | 59m 32s |
+| `base-rear/cast-in-leg-rear-l-plug.stl` | 2 | 8 | 24m 14s |
 
 ## 4. Cut the boards
 
@@ -196,23 +196,23 @@ glue the post in.
 | base-front | trough-band-L | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | draw-rod-L | 1 | XPS block 37 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | foot-a-L | 1 | XPS block 68 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-b-L | 1 | XPS block 68 x 100 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-c-L | 1 | XPS block 80 x 63 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | knee-L | 1 | XPS block 50 x 183 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-a-L | 1 | XPS block 35 x 43 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-L | 1 | XPS block 68 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-c-L | 1 | XPS block 80 x 62 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-L | 1 | XPS block 50 x 184 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-a-L | 1 | XPS block 35 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-b-L | 1 | XPS block 35 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | rear-L | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | outboard-R | 1 | XPS block 130 x 164 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | trough-band-R | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | draw-rod-R | 1 | XPS block 37 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | foot-a-R | 1 | XPS block 68 x 66 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-b-R | 1 | XPS block 68 x 100 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-c-R | 1 | XPS block 80 x 63 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | knee-R | 1 | XPS block 50 x 183 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-a-R | 1 | XPS block 35 x 43 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-R | 1 | XPS block 68 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-c-R | 1 | XPS block 80 x 62 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-R | 1 | XPS block 50 x 184 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | outer-a-R | 1 | XPS block 35 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | outer-b-R | 1 | XPS block 35 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | rear-R | 1 | XPS block 170 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | socket | 4 | XPS block 41 x 41 x 80 mm, taped; dig it out after curing (a little acetone dissolves the rest). |
+| base-rear | socket | 4 | XPS block 43 x 43 x 80 mm, taped; dig it out after curing (a little acetone dissolves the rest). |
 
 ![A socket core on its spike](../../renders/mold/detail-socket.png)
 
@@ -245,7 +245,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base rear, step 4](../../renders/mold/step-base-rear-4.png)
 
-5. Inserts and couplers on their greased screws and bolts; spigots through the bushings with the rear tubes on them; leg holders in the corners, legs set to height, pinch screws tight.
+5. Inserts and couplers on their greased screws and bolts; spigots through the bushings to their middle marks, rear tubes on them, split ends tight to the partition; leg holders in the corners, legs set to height, pinch screws tight.
 
 ![Base rear, step 5](../../renders/mold/step-base-rear-5.png)
 
@@ -292,6 +292,8 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 | Bracket or saddle loose on the board | Board thinner than set: tape shim, or set `mold_board` and reprint |
 | Pin won't go in | Run the 1/8 in bit through again; trim the pin tip |
 | Foam core moves | Tighten its post bolt; carpet tape under it |
+| Printed part won't go on or into a steel tube | File the weld seam; sand the part. Several tight: caliper the tube, put its sizes in `frame_tube` / `post_tube`, re-run and reprint |
+| Printed part loose on a tube | A wrap of tape round the part |
 | Leak at a corner | Silicone fillet inside before waxing; check the brackets and diagonals |
 | Former stuck after curing | Bolts out first, then a dowel and a light tap |
 

@@ -107,11 +107,22 @@ P = dict(
     frame_tube=(50.8, 3.175), post_tube=(38.1, 3.175),
     # Bought lengths, nothing cut: 12 in base (the split sockets), 18 in beam, 12 in posts, 6 in spigots.
     tube_len=dict(base=304.8, beam=457.2, post=304.8, spigot=152.4),
+    # Real tube isn't nominal. A supplier's saw cut is good to about +/-1/8 in, and A500 tube is
+    # +/-0.5 mm across the flats with a +/-10 % wall and a weld seam inside. So every cast-in piece is
+    # set from one end (its datum) and its other end has room in the casting (the report checks it
+    # against tube_cut_tol), and every printed part that slips on or into a tube has tube_fit a side
+    # and clears the seam. Once the steel is here, caliper it, put the real sizes in frame_tube and
+    # post_tube (outside across the flats, (outside - inside) / 2), set tube_fit to 0.25 and re-run
+    # before printing those parts.
+    tube_cut_tol=3.2, tube_fit=0.5, tube_seam=(6.0, 1.2),   # seam relief (width, depth) in printed faces
+    post_top_gap=6.0,        # post top to the top plate: the posts stand on the bench, so length error ends up here
+    beam_tube_hole=19.05,    # 3/4 in holes in the beam tubes for the cap screws (3 mm a side round the 1/2 in rods)
+    pad_gap=1.5,             # X support pad to the front beam tube, bedded in thickened epoxy
     # Printed PETG sleeves: socket liners (cast in; closed at the bottom) and spigot sleeves
-    # (1-1/2 in spigot in the 2 in tube); (outer size, wall). The sockets are 1.5 mm a side
+    # (1-1/2 in spigot in the 2 in tube); (outer size, wall). The sockets are 2.5 mm a side
     # oversize: the posts are grouted in with epoxy at assembly (waxed, so they still lift out), which
     # takes up whatever the two molds differ by.
-    socket_liner=(45.1, 2.0), socket_depth=80.0, spigot_sleeve=70.0,
+    socket_liner=(47.1, 2.0), socket_depth=80.0, spigot_sleeve=70.0,
     # Legs: 6 in pieces of the 1-1/2 in tube cast into the base corners, with threaded inserts
     # for the leveling feet. The coolant sump slides in underneath, between them.
     leg_len=152.4, leg_embed=35.0, leg_inset=35.0,
@@ -367,6 +378,9 @@ def frame_layout(d):
     g['bolt_xs'] = (g['ux'] - 22.0, g['ux'] + 22.0)            # beam cap screws
     g['bolt_ys'] = (d['beam_face'] + 25.0, d['beam_face'] + P['beam_d'] - 25.0)
     g['beam_dowel_y'] = d['beam_face'] + 70.0
+    # beam tube center lines (y): the front one clears the X support pads by pad_gap, the back one 32 in
+    g['beam_tube_ys'] = (d['beam_face'] + P['support_pad'][0] + P['pad_gap'] + P['frame_tube'][0] / 2,
+                         d['beam_face'] + P['beam_d'] - 32.0)
     g['tube_z'] = 42.5                                         # rail tubes: 17 mm of casting under them
     g['split'] = P['base_split_y']
     g['draw_x'] = d['base_half'] - 20.0                        # base draw rods, in the side walls
@@ -392,11 +406,30 @@ class Steel:
 
     def plug(self, name, container, axis, c1, c2, size, a0, a1, closed):
         """Printed end plug that keeps the casting out of a hollow tube: a cup, closed (2 mm) at the
-        tube's end (`closed`, a0 or a1) and open toward the inside of the tube."""
-        env, _ = parts.square_tube(axis, c1, c2, size - 2.0, 0.1, a0, a1)
+        tube's end (`closed`, a0 or a1) and open toward the inside of the tube. `size` is the tube's
+        inside; the cup is tube_fit a side smaller, with rounded corners and seam grooves."""
+        s = size - 2 * P['tube_fit']
+        env, _ = parts.square_tube(axis, c1, c2, s, 2.5, a0, a1)      # 3.75 mm corner rounds
         b0, b1 = (a0 + 2.0, a1 + 1.0) if closed == a0 else (a0 - 1.0, a1 - 2.0)
-        cup = env.cut(parts.square_tube(axis, c1, c2, size - 2.0 - 3.2, 0.1, b0, b1)[0])
-        self.add(name, container, cup, 'printed')
+        cup = env.cut(parts.square_tube(axis, c1, c2, s - 4.8, 0.1, b0, b1)[0])
+        self.add(name, container, seam_relief(cup, axis, c1, c2, s, a0, a1), 'printed')
+
+
+def seam_relief(shape, axis, c1, c2, s, a0, a1):
+    """Groove down the middle of each outside face of a printed square section (size s, along
+    `axis` from a0 to a1, centered on (c1, c2)) that goes inside a steel tube: clears the weld seam."""
+    w, dp = P['tube_seam']
+    h = s / 2
+    cuts = []
+    for p0, p1, q0, q1 in ((h - dp, h + 1, -w / 2, w / 2), (-h - 1, -h + dp, -w / 2, w / 2),
+                           (-w / 2, w / 2, h - dp, h + 1), (-w / 2, w / 2, -h - 1, -h + dp)):
+        if axis == 'x':
+            cuts.append(parts.box(a0 - 1, a1 + 1, c1 + p0, c1 + p1, c2 + q0, c2 + q1))
+        elif axis == 'y':
+            cuts.append(parts.box(c1 + p0, c1 + p1, a0 - 1, a1 + 1, c2 + q0, c2 + q1))
+        else:
+            cuts.append(parts.box(c1 + p0, c1 + p1, c2 + q0, c2 + q1, a0 - 1, a1 + 1))
+    return shape.cut(cuts)
 
 
 def chamfered(x0, x1, y0, y1, c):
@@ -528,8 +561,10 @@ def base_half(m, g, st, front):
         # the spigot's length in this tube (the spigot bears on two short bands; the ring at the split
         # keeps the mix out)
         sa, sb = (ys - sv, ys - 1) if front else (ys + 1, ys + sv)
-        rings = [parts.square_tube('y', x, g['tube_z'], inner - 0.2, (inner - 0.2 - spig_s - 0.4) / 2, a_, a_ + 15.0)[1]
-                 for a_ in (sa, sb - 15.0)]
+        fit = P['tube_fit']
+        so = inner - 2 * fit
+        rings = [seam_relief(parts.square_tube('y', x, g['tube_z'], so, (so - spig_s - 2 * fit) / 2, a_, a_ + 15.0)[1],
+                             'y', x, g['tube_z'], so, a_, a_ + 15.0) for a_ in (sa, sb - 15.0)]
         st.add(f'Base{tag}SpigotSleeve{side}', cont, rings[0].fuse(rings[1]), 'printed')
         if not front:
             _, spigot = parts.square_tube('y', x, g['tube_z'], spig_s, spig_w, ys - sl / 2, ys + sl / 2)
@@ -672,7 +707,7 @@ def upright(m, g, st, sx):
     xa, xb = sorted((sx * (inner + 6), sx * (outer - 6)))
     cuts = [parts.box(xa, xb, up_y0 + 6, up_y1 - 6, beam_bot - plate_t, beam_bot + 1),
             Part.makeCylinder(P['up_dowel_hole'] / 2, 16.0, Vector(sx * g['ux'], g['rod_y'], base_top - 1))]   # base dowel
-    post_top = beam_bot - plate_t - 2
+    post_top = beam_bot - plate_t - P['post_top_gap']
     for i, py in enumerate(g['post_ys']):
         # hollow post, printed plug at the top
         env, shell = parts.square_tube('z', sx * g['ux'], py, post_s, post_w, post_top - P['tube_len']['post'], post_top)
@@ -735,10 +770,11 @@ def beam(m, g, st):
     cz = (bot + top) / 2
     cuts = []
     half_len = P['tube_len']['beam'] / 2
-    for i, ty in enumerate((bf + 32.0, by1 - 32.0)):
+    for i, ty in enumerate(g['beam_tube_ys']):
         _, shell = parts.square_tube('x', ty, cz, tube_s, tube_w, -half_len, half_len)
-        # 14 mm holes through the tube where the inner cap screws pass (drill press)
-        holes = [Part.makeCylinder(7.0, top - bot + 2, Vector(sx * bx, by, bot - 1))
+        # 3/4 in holes through the tube where the inner cap screws pass (drill press), marked from the
+        # tube's measured middle: the rods through them set the tube along x, its ends float
+        holes = [Part.makeCylinder(P['beam_tube_hole'] / 2, top - bot + 2, Vector(sx * bx, by, bot - 1))
                  for sx in (-1, 1) for bx in g['bolt_xs'] for by in g['bolt_ys'] if bx < half_len]
         shell = shell.cut(holes) if holes else shell
         cuts.append(shell)
@@ -761,7 +797,7 @@ def beam(m, g, st):
     # holes left by the printed tube locators (mold guide): a 16 mm stem from each tube end to the beam end,
     # beside the tube's center line so it misses the bolt holes, and a short square spigot in the tube end
     inner_t = tube_s - 2 * tube_w
-    for ty, sy in ((bf + 32.0, 1), (by1 - 32.0, -1)):
+    for ty, sy in zip(g['beam_tube_ys'], (1, -1)):
         for sx in (-1, 1):
             cuts.append(Part.makeCylinder(8.0, outer - half_len + 1, Vector(sx * half_len, ty + sy * BEAM_STEM_OFF, cz),
                                           Vector(sx, 0, 0)))
@@ -788,7 +824,7 @@ def frame_modules(m, d):
     ys, y0 = g['split'], d['base_y0']
     # each tube: any cap screw inside its length passes through its top and bottom walls
     n_holes = sum(1 for bx in g['bolt_xs'] if bx < tl['beam'] / 2) * 2 * 2
-    drill = f"drill {n_holes} x 14 mm holes per tube" if n_holes else "no drilling"
+    drill = (f"drill {n_holes} x 3/4 in holes per tube, marked from its middle" if n_holes else "no drilling")
     d['steel_bom'] = [
         ('frame', 'Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)',
          f"4 x {inch(tl['base'])} (base), 2 x {inch(tl['beam'])} (beam, {drill})", 'buy'),
@@ -808,6 +844,62 @@ def frame_modules(m, d):
          f"{d['gasket_m'] + 0.3:.1f} m", 'buy'),
         ('frame', '1/2 in brass hex nipple, cast-in coolant drain', '1 pc', 'buy'),
     ]
+
+
+def free_end_room(cast, axis, c1, c2, size, end, sgn, cover=2.0, most=30.0):
+    """How far a cast-in tube could run past its free end (at `end`, growing toward sgn) and stay in
+    solid casting: a slab of its section plus `cover` all round, grown until it leaves the casting."""
+    def slab(t):
+        a0, a1 = sorted((end, end + sgn * t))
+        h = size / 2 + cover
+        lo1, hi1, lo2, hi2 = c1 - h, c1 + h, c2 - h, c2 + h
+        if axis == 'y':
+            return parts.box(lo1, hi1, a0, a1, lo2, hi2)
+        return parts.box(lo1, hi1, lo2, hi2, a0, a1)
+    crop = cast.common(slab(most))
+    inside = lambda t: slab(t).cut(crop).Volume < 0.5
+    if inside(most):
+        return most
+    lo, hi = 0.0, most
+    while hi - lo > 0.25:
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if inside(mid) else (lo, mid)
+    return lo
+
+
+def steel_tolerance(m, d):
+    """Where each cast-in piece's length error goes, and whether there's room for tube_cut_tol."""
+    g = frame_layout(d)
+    cast = {p['name']: p['shape'] for p in m.parts if p['name'].endswith('Casting')}
+    tol, ys = P['tube_cut_tol'], g['split']
+    tube_s, post_s = P['frame_tube'][0], P['post_tube'][0]
+    s2 = P['table_rail_spacing'] / 2
+    rows = []
+    rooms = [free_end_room(cast['BaseFrontCasting'], 'y', sx * s2, g['tube_z'], tube_s, ys - P['tube_len']['base'], -1)
+             for sx in (-1, 1)]
+    rooms += [free_end_room(cast['BaseRearCasting'], 'y', sx * s2, g['tube_z'], tube_s, ys + P['tube_len']['base'], 1)
+              for sx in (-1, 1)]
+    rows.append(('Base tubes (4)', 'split end, against the partition / the rear half', 'outer end, in the casting', min(rooms)))
+    post_top = g['beam_bot'] - P['top_plate_t'] - P['post_top_gap']
+    rooms = [free_end_room(cast[f"Upright{'L' if sx < 0 else 'R'}Casting"], 'z', sx * g['ux'], py, post_s, post_top, 1)
+             for sx in (-1, 1) for py in g['post_ys']]
+    rows.append(('Upright posts (4)', 'bottom end, standing on the bench', 'top end, under the top plate', min(rooms)))
+    rooms = [free_end_room(cast['BaseFrontCasting' if ly < ys else 'BaseRearCasting'], 'z', lx, ly, post_s, P['leg_embed'], 1)
+             for lx, ly in g['legs']]
+    rows.append(('Legs (4)', 'set proud of the leg holder', 'top end, in the casting', min(rooms)))
+    # beam tubes: the rods through the 3/4 in holes set them along x; the ends ride on the locators'
+    # 15 mm spigots, so each end has the spigot's length (less 5 mm kept) less the holes' float
+    float_ = (P['beam_tube_hole'] - P['beam_bolt_hole'] - 2 * FIT_PLUG) / 2
+    rows.append(('Beam tubes (2)', 'holes, marked from the measured middle', 'both ends, on the locators',
+                 2 * (15.0 - 5.0 - float_)))
+    # spigots: marked at their middle, pushed in to the mark; each end has to pass its far sleeve ring
+    rows.append(('Spigots (2)', 'a mark at the middle, at the split', 'both ends, inside the tubes',
+                 2 * (P['tube_len']['spigot'] / 2 - P['spigot_sleeve'])))
+    rows.append(('Top plates (2)', 'bolted to the mold bridge', 'all edges, 6 mm inside the casting', 6.0))
+    d['steel_tol'] = [(n, dat, fr, room, room >= tol) for n, dat, fr, room in rows]
+    for n, _, _, room, ok in d['steel_tol']:
+        if not ok:
+            m.warnings.append(f'{n}: only {room:.1f} mm for a {tol:.1f} mm cutting error')
 
 
 def cast_anchors(m, d):
@@ -1121,8 +1213,8 @@ def mold_base(kit, m, g):
         kit.add('base-rear', 'socket-plug', 'plug', plugs[0], 4, 'Fills the open end of a socket liner; bolts to the '
                 'floor.', placed=plugs, show=REAR, up=-Z)
     # spigots (rear) through the partition
-    bush = [moldbox.bushing(Vector(sx * P['table_rail_spacing'] / 2, ys, g['tube_z']), -Y, X, P['post_tube'][0])
-            for sx in (-1, 1)]
+    bush = [moldbox.bushing(Vector(sx * P['table_rail_spacing'] / 2, ys, g['tube_z']), -Y, X, P['post_tube'][0],
+                            fit=P['tube_fit']) for sx in (-1, 1)]
     kit.add_many('base-rear', 'spigot-bushing', 'kit', bush, mold=M, show=REAR, up=Y,
                  note='Push fit in a 2-1/2 in hole-saw hole; flange on the far side.')
 
@@ -1202,7 +1294,7 @@ def leg_holder(c, sx, sy, half, yw, fb, x_in):
     xa, xb = sorted((xw, sx * x_in))
     ya, yb = sorted((yw, yw - sy * 72.0))
     s = parts.box(xa, xb, ya, yb, z0, z1)
-    q = P['post_tube'][0] + 2 * FIT_PLUG
+    q = P['post_tube'][0] + 2 * P['tube_fit']
     s = s.cut(parts.box(c.x - q / 2, c.x + q / 2, c.y - q / 2, c.y + q / 2, z0 - 1, z1 + 1))
     # lighten: in (u, v) from the leg's center, positive toward the side wall and the end wall, keep a
     # 7 mm ring round the leg, the plate out to both walls, the cradle arm and the pinch-screw boss
@@ -1347,10 +1439,10 @@ def mold_upright(kit, g):
     kit.add(folder, 'plate-spacer', 'kit', sp[0], 4, 'Between the bridge and the top plate, on its greased 3/8 bolt.',
             placed=sp, show=show)
     kit.fix(holes, M, mult)
-    bush = [moldbox.bushing(Vector(sx * g['ux'], py, top), -Z, X, P['post_tube'][0]) for py in g['post_ys']]
+    bush = [moldbox.bushing(Vector(sx * g['ux'], py, top), -Z, X, P['post_tube'][0], fit=P['tube_fit']) for py in g['post_ys']]
     kit.add_many(folder, 'post-bushing', 'kit', bush, mold=M, show=show, per=2, mult=mult, up=Z,
                  note='Push fit in a 2-1/2 in hole-saw hole in the floor, flange underneath.')
-    post_bot = bb - P['top_plate_t'] - 2 - P['tube_len']['post']
+    post_bot = bb - P['top_plate_t'] - P['post_top_gap'] - P['tube_len']['post']
     h = top - T - post_bot
     kit.count(f'Block of 2x4, {h:.0f} mm long: four under each upright mold (the posts stand on the bench)', 8, M)
     rods = sorted(round(zt + TH_SADDLE + T + 10 - post_bot if pb >= g['pocket_bot'] - 1 else
@@ -1426,18 +1518,19 @@ def mold_beam(kit, m, g):
     # tube locators: a square spigot in the tube end and a 16 mm stem to the end wall, bolted through it
     # (M4 x 70) into a nut that slides in from the inside of the tube
     tube_s, tube_w = P['frame_tube']
-    sq = tube_s - 2 * tube_w - 2 * FIT_PLUG
+    sq = tube_s - 2 * tube_w - 2 * P['tube_fit']
     half_len = P['tube_len']['beam'] / 2
     cz = (bot + top) / 2
     locs = []
-    for ty, sy in ((bf + 32.0, 1), (by1 - 32.0, -1)):
+    for ty, sy in zip(g['beam_tube_ys'], (1, -1)):
         for sx in (-1, 1):
             xe = sx * half_len
             sy_ = ty + sy * BEAM_STEM_OFF                         # stem clear of the bolt holes beside the tube end
             xa_, xb_ = sorted((xe, xe - sx * 15.0))               # a cross in the tube end, a boss for the nut
-            spig = parts.box(xa_, xb_, ty - sq / 2, ty + sq / 2, cz - 3.0, cz + 3.0).fuse(
-                [parts.box(xa_, xb_, ty - 3.0, ty + 3.0, cz - sq / 2, cz + sq / 2),
+            spig = parts.box(xa_, xb_, ty - sq / 2, ty + sq / 2, cz - 6.0, cz + 6.0).fuse(
+                [parts.box(xa_, xb_, ty - 6.0, ty + 6.0, cz - sq / 2, cz + sq / 2),
                  parts.box(xa_, xb_, sy_ - 7.0, sy_ + 7.0, cz - 7.0, cz + 7.0)])
+            spig = seam_relief(spig, 'x', ty, cz, sq, xa_, xb_)     # the arms bear either side of the seam
             stem = Part.makeCylinder(8.0, outer - half_len, Vector(xe, sy_, cz), sx * X)
             p = spig.fuse(stem)
             p = p.cut(Part.makeCylinder(HW['M4']['hole'] / 2, outer - half_len + 15.0, Vector(sx * outer, sy_, cz), -sx * X))
@@ -1576,6 +1669,7 @@ def build():
                                                 car_z0, z_flange), 'alu')
     m.add('ZPlate', 'zaxis', parts.plate(-P['zplate_w'] / 2, P['zplate_w'] / 2, zp_front, zp_back, zp_bot, zp_top), 'alu')
     cast_anchors(m, d)
+    steel_tolerance(m, d)
 
     # ---- spindle --------------------------------------------------------
     m.add_all('SpindleClamp', 'zaxis', parts.spindle_clamp(zp_bot, P['clamp_off']))
@@ -2020,6 +2114,11 @@ def report(m, hits):
             lines.append(f"  {name:18s} {val}")
     lines += [f"  2020 x {n:<2d}         {L} mm" for L, n in sorted(lengths.items(), reverse=True)]
     lines.append(f"  2020 total         {sum(L * n for L, n in lengths.items()) / 1000:.2f} m")
+    lines += ['', f"Steel cut to length (+/-{P['tube_cut_tol']:.1f} mm allowed; tubes +/-0.5 mm across the flats, "
+              f"printed fits {P['tube_fit']:.2f} mm a side)", '-' * 98,
+              f"  {'Piece':18s} {'Set from (datum)':50s} {'Error goes to':36s} Room"]
+    lines += [f"  {n:18s} {dat:50s} {fr:36s} {room:4.1f} mm {'ok' if ok else 'TOO LITTLE'}"
+              for n, dat, fr, room, ok in d['steel_tol']]
     if m.warnings:
         lines += ['', 'Warnings', '--------'] + [f'  {w}' for w in m.warnings]
     lines += ['', 'Collision check (18 poses: X/Y at both ends + center, Z top/bottom; door closed, cutter excluded)',
@@ -2728,6 +2827,9 @@ def mold_guide(m, only=None):
           '| Bracket or saddle loose on the board | Board thinner than set: tape shim, or set `mold_board` and reprint |',
           '| Pin won\'t go in | Run the 1/8 in bit through again; trim the pin tip |',
           '| Foam core moves | Tighten its post bolt; carpet tape under it |',
+          '| Printed part won\'t go on or into a steel tube | File the weld seam; sand the part. Several tight: caliper the tube, '
+          'put its sizes in `frame_tube` / `post_tube`, re-run and reprint |',
+          '| Printed part loose on a tube | A wrap of tape round the part |',
           '| Leak at a corner | Silicone fillet inside before waxing; check the brackets and diagonals |',
           '| Former stuck after curing | Bolts out first, then a dowel and a light tap |', '',
           '## Appendix: hole maps', '',
@@ -2759,8 +2861,9 @@ STEPS_TEXT = {
     'step-base-rear-3': 'Partition between the side walls: two brackets, two struts to the front wall. Beads on its pins, '
                         'spigot bushings in its holes.',
     'step-base-rear-4': 'Gutter formers, motor relief and corner fillers on; socket spikes bolted down with a foam block on each.',
-    'step-base-rear-5': 'Inserts and couplers on their greased screws and bolts; spigots through the bushings with the rear '
-                        'tubes on them; leg holders in the corners, legs set to height, pinch screws tight.',
+    'step-base-rear-5': 'Inserts and couplers on their greased screws and bolts; spigots through the bushings to their '
+                        'middle marks, rear tubes on them, split ends tight to the partition; leg holders in the corners, '
+                        'legs set to height, pinch screws tight.',
     'step-base-rear-6': 'Pour the 20 mm skin. Foam cores on it, bridges into the saddles, each post bolted to its bridge. '
                         'Fill to the pour line.',
     'step-base-front-1': 'After the cure: bridges, partition and struts off. Dig out the socket foam, pull the beads, tape '
@@ -2773,15 +2876,17 @@ UP_TEXT = [
     'Post bushings into the floor from below; gasket bead pinned on; cleats bolted down.',
     'Side plates against their cleats, back board between them, two back brackets.',
     'Toe filler bolted down, the front board\'s foot in its lip, two front brackets at the top.',
-    'Mold on its four 2x4 blocks. Posts up through the bushings; greased 5/8 in rods up through the floor (short '
+    'Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends '
+    f"nearer the top plate: {P['post_top_gap']:.0f} mm room); greased 5/8 in rods up through the floor (short "
     'ones into the slope plugs, long ones to the top); dowel-hole bolt from underneath.',
     'Fill to the line. Top pocket plugs down the long rods, top plate hung from the bridge, bridge onto its saddles.',
 ]
 BEAM_TEXT = [
     'Cleats bolted down; support pads and riser inserts screwed to the floor.',
     'Walls against the cleats; four corner brackets.',
-    'Tube locators bolted through the end walls, tubes between them; back-edge filler on the top wall; dowels on '
-    'their stops; greased 1/2 in rods through both walls. Fill to the line.',
+    'Tube locators bolted through the end walls. Butter the support pads with thickened epoxy (about 3 mm), then the '
+    'tubes between the locators, holes over the rod holes; back-edge filler on the top wall; dowels on their stops; '
+    'greased 1/2 in rods through both walls and the tubes. Fill to the line.',
 ]
 
 

@@ -12,14 +12,14 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
-Epoxy granite volume:         49.4 L
+Epoxy granite volume:         49.3 L
 Casting mass:                 125 kg (276 lb)
   Base front:                  13.0 L   30.5 kg
   Base rear:                   16.1 L   37.9 kg
-  Upright L:                    5.5 L   15.3 kg  (alumina grit)
-  Upright R:                    5.5 L   15.3 kg  (alumina grit)
-  Beam:                         9.3 L   26.3 kg  (alumina grit)
-Cast-in steel + joint hardware: 23.4 kg
+  Upright L:                    5.5 L   15.4 kg  (alumina grit)
+  Upright R:                    5.5 L   15.4 kg  (alumina grit)
+  Beam:                         9.4 L   26.3 kg  (alumina grit)
+Cast-in steel + joint hardware: 23.3 kg
 Epoxy needed (~8.5% of the sand mix by mass): 9.9 kg
 Aluminum oxide grit, brown #16 (coarse sand): 19.5 kg (beam + uprights)
 Aluminum oxide grit, black 70 grit (fine sand): 10.1 kg (beam + uprights)
@@ -49,7 +49,7 @@ Linear motion / plate BOM
   frame    Cast-in threaded inserts for epoxy (knurled brass or steel) M5 x 12 long: 18 (riser hold-downs); M6 x 15 long: 6 (Y BK/BF on the base) buy
   frame    Steel flat bar 1/4 x 2-1/2 in: X BK/BF pads, drilled + tapped M6, cast flush in the beam face 2 pads (~4 in of bar), 6 tapped holes buy
   frame    Cap screws: DIN 7984 low-head M5 x 20 (X risers), M5 x 25 (Y risers); M6 x 40 (Y BK/BF); M6 x 35 + 2 DIN 433 small washers under each head (X BK/BF, so they stop short of the tube) 8 + 10; 6; 6                         buy
-  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 14 mm holes per tube) buy
+  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall)     4 x 12 in (base), 2 x 18 in (beam, drill 4 x 3/4 in holes per tube, marked from its middle) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 12 in (posts), 2 x 6 in (spigots), 4 x 6 in (legs) buy
   frame    Printed PETG: 4 spigot sleeves, 12 tube end plugs, 4 dark gray pocket caps (sockets cast on foam) ~250 g                               PRINT
   frame    Steel plate 3/8 in, cut to size by the supplier (upright tops) 2 x 68 x 168                         buy
@@ -85,6 +85,16 @@ Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)
   2020 x 3          560 mm
   2020 x 2          244 mm
   2020 total         10.68 m
+
+Steel cut to length (+/-3.2 mm allowed; tubes +/-0.5 mm across the flats, printed fits 0.50 mm a side)
+--------------------------------------------------------------------------------------------------
+  Piece              Set from (datum)                                   Error goes to                        Room
+  Base tubes (4)     split end, against the partition / the rear half   outer end, in the casting            13.1 mm ok
+  Upright posts (4)  bottom end, standing on the bench                  top end, under the top plate          5.9 mm ok
+  Legs (4)           set proud of the leg holder                        top end, in the casting               4.0 mm ok
+  Beam tubes (2)     holes, marked from the measured middle             both ends, on the locators           13.9 mm ok
+  Spigots (2)        a mark at the middle, at the split                 both ends, inside the tubes          12.4 mm ok
+  Top plates (2)     bolted to the mold bridge                          all edges, 6 mm inside the casting    6.0 mm ok
 
 Collision check (18 poses: X/Y at both ends + center, Z top/bottom; door closed, cutter excluded)
 --------------------------------------------------------------------------------------------------

@@ -423,7 +423,7 @@ def fig_locator(sc):
             sc.add(turn_beam(s), look)
     sc.camera(Vector(-0.6, 0.6, -0.5))
     cz = (G['beam_bot'] + G['beam_top']) / 2
-    ty = bf + 32.0
+    ty = G['beam_tube_ys'][0]
     sc.shoot('detail-locator', labels=[
         (pt(turn_beam, Vector(half_len - 30, ty - 25.4 + 1.6, cz - 12)), 'Beam tube'),
         (pt(turn_beam, Vector(half_len - 8, ty, cz)), 'Cross in the tube end'),

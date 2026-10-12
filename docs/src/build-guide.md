@@ -46,12 +46,28 @@ plates and the aluminum plates cut to size. Only the 1/2-13 threaded rod is cut.
 1. **Square tube** (plain steel, not galvanized; 0.120 or 1/8 in wall; remnants are fine):
    - 2 x 2 in: 4 x 12 in (base; they also take the split spigots), 2 x 18 in (beam).
    - 1-1/2 x 1-1/2 in: 4 x 12 in (upright posts), 6 x 6 in (2 base spigots + 4 legs).
-2. **Check the telescoping fit.** A 1-1/2 in spigot must slide inside a 2 in base tube with the
-   printed sleeve around it. File the inside weld seam of the 2 in base tubes where the sleeve
-   goes. Adjust the sleeve wall in the slicer if it is too tight or loose.
-3. **Drill the beam tubes:** each 18 in tube gets 14 mm holes straight through its top and
-   bottom walls where the inner beam cap screws pass (4 holes per tube; mark from the model
-   or the upright top plates, 203 mm either side of the center, on the cap-screw line).
+2. **Check the steel when it arrives.** A supplier's saw cut is good to about 1/8 in, and
+   square tube is about 0.5 mm off its nominal size, with a weld seam down the inside. None of
+   that needs fixing, because each piece is set from one end and the other end has room
+   (the "Steel cut to length" table in `docs/5-design/report.txt` lists it):
+   - **Length:** anything within 1/8 in of the listed length is fine. Mark one end of each 2 in
+     base tube as its split end, and mark the middle of each spigot.
+   - **Ends:** square within a couple of degrees (a 2 in end no more than 1.5 mm out across it).
+     Knock off burrs.
+   - **Size:** caliper the outside of each size of tube, and the inside of a 2 in tube away from
+     the seam. The printed parts that fit on or into tube (bushings, leg holders, sleeves,
+     plugs, locators) have 0.5 mm a side and grooves for the seam, so they fit tube that's up to
+     0.5 mm off. If yours is further off, enter the sizes in `frame_tube` / `post_tube` in
+     `model/build_cnc.py` (with `tube_fit` at 0.25 for a closer fit), re-run it and print those
+     parts from the new files.
+   - **Test fit:** a printed sleeve on a spigot, both into a 2 in base tube. If it's tight, file the
+     seam. If it's loose, wrap the sleeve in a turn of tape.
+3. **Drill the beam tubes:** each 18 in tube gets 3/4 in holes straight through its top and
+   bottom walls where the inner beam cap screws pass, 4 holes per tube. Measure the tube, mark its
+   middle, and mark the holes 203 mm either side of that mark on the cap-screw line (7 mm off
+   the tube's center line, toward the outside of the beam). Measuring from the middle splits any
+   length error between the two ends, and the 3/4 in holes give the 1/2 in rods that form the
+   bolt holes 3 mm of play a side. Use a drill press, a step drill or a hole saw.
 4. **Top plates** (3/8 in steel, 2 pieces 68 x 168 mm, ordered cut to size): drill and tap the four 3/8-16 beam-screw
    holes and a 14 mm dowel hole in each (oversize: the beam's dowel is grouted into it at
    assembly), and cut the tie-rod pockets (see the section picture below). Do this before casting.
@@ -126,7 +142,7 @@ lists the printed parts.
 - **Inserts** (M5 enclosure, M5 riser hold-downs, M6 Y BK/BF): screwed to the floor from underneath,
   flush with the casting face.
 - **Sockets** (rear half): cast on taped foam blocks pushed over printed spikes bolted to the floor; dig
-  the foam out after curing. The sockets are 1.5 mm a side bigger than the posts: the posts are grouted
+  the foam out after curing. The sockets are 2.5 mm a side bigger than the posts: the posts are grouted
   in at assembly (section 4), so the two molds don't have to agree to a tenth.
 - **Couplers:** the tie-rod couplers on greased 1/2-13 bolts up through the floor; the rear half's
   draw-rod couplers on bolts through the partition.
@@ -136,12 +152,17 @@ lists the printed parts.
   cast-in depth by a pinch screw.
 - **Cores:** taped XPS foam blocks on the wet 20 mm skin; a printed post glued into each bolts to the
   side of a bridge, which sets its height and stops it floating. They can stay in.
-- **Uprights:** the posts come up through bushings in the floor, 5/8 in rods form the tie-rod holes
+- **Uprights:** the posts come up through bushings in the floor and stand on the bench, so a post
+  that's cut long just ends closer to the top plate (6 mm of room); 5/8 in rods form the tie-rod holes
   (1.6 mm a side over the 1/2 in tie rods), a greased 1/2-13 bolt forms the dowel hole (grouted at
   assembly), and the top plate hangs from the bridge on two greased 3/8 bolts.
 - **Beam:** the tubes hang between printed locators bolted through the end walls (each leaves a 16 mm
-  hole in the beam end); the support pads and riser inserts screw to the floor; 1/2 in rods form the
-  cap-screw holes (1.6 mm a side over the 3/8 in bolts); the dowels sit in the bottom wall on printed stops.
+  hole in the beam end). The locators only hold the tube ends; the 1/2 in rods through the tubes'
+  3/4 in holes set them along the beam, so a tube that's a little long or short doesn't matter. The rods
+  also form the cap-screw holes (1.6 mm a side over the 3/8 in bolts). The support pads and riser inserts
+  screw to the floor; butter each pad with thickened epoxy (epoxy and whiting, peanut-butter thick, about
+  3 mm) just before the tubes go in, so it fills the 1.5 mm gap to the front tube whatever the tube's
+  size. The dowels sit in the bottom wall on printed stops.
 
 ![Front-half mold, cast against the cured rear half](../../renders/build/04-mold-base-front.png)
 
@@ -238,7 +259,7 @@ mold.
    cord ends). Push the front half on (its tubes and sleeves over the spigots) and tighten the two
    1/2-13 draw rods from the front pockets (snug, then about 40 N·m). Level the whole base with
    the feet.
-3. **Grout the posts.** The sockets are 1.5 mm a side bigger than the posts, so the fit comes
+3. **Grout the posts.** The sockets are 2.5 mm a side bigger than the posts, so the fit comes
    from epoxy, not from the two molds agreeing. Wax the posts (three coats, buffed) and the base
    dowels. Mix a little of the leftover epoxy with whiting to a thick cream and half-fill each
    socket and each upright's dowel hole. Glue the foot O-ring into each upright's groove, lower

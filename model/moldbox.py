@@ -178,12 +178,12 @@ def saddle(c, n_out, up, along, width=None, depth=12.0, cheeks=True):
     return s.removeSplitter(), [wall_fix], bridge_fix
 
 
-def bushing(c, n, side, sq, hole=63.5):
+def bushing(c, n, side, sq, hole=63.5, fit=FIT):
     """Push fit in a hole-saw hole, flush with the cast face at c, flange on the far side
-    (n points through the board, away from the cavity); a square hole `sq` for a tube."""
+    (n points through the board, away from the cavity); a square hole `sq` for a tube, `fit` a side."""
     n, side = unit(n), unit(side)
     t = board_t()
-    q = sq + 2 * FIT
+    q = sq + 2 * fit
     b = n.cross(side)
     body = Part.makeCylinder((hole - 0.1) / 2, t, c, n)
     for d in (side, -side, b, -b):                 # four tabs on the far side hold it in

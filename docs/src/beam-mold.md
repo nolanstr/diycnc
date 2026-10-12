@@ -68,7 +68,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `beam/filler-back-edge-part2of4.stl` | 1 | 19 | 1h 14m 46s |
 | `beam/filler-back-edge-part3of4.stl` | 1 | 19 | 1h 14m 46s |
 | `beam/filler-back-edge-part4of4.stl` | 1 | 19 | 1h 15m 1s |
-| `beam/kit-tube-locator.stl` | 4 | 39 | 55m 37s |
+| `beam/kit-tube-locator.stl` | 4 | 43 | 58m 26s |
 | `beam/kit-dowel-stop.stl` | 2 | 2 | 6m 51s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
@@ -129,7 +129,7 @@ Cast front (rail) face down, back open.
 
 ![Beam, step 2](../../renders/mold/step-beam-2.png)
 
-3. Tube locators bolted through the end walls, tubes between them; back-edge filler on the top wall; dowels on their stops; greased 1/2 in rods through both walls. Fill to the line.
+3. Tube locators bolted through the end walls. Butter the support pads with thickened epoxy (about 3 mm), then the tubes between the locators, holes over the rod holes; back-edge filler on the top wall; dowels on their stops; greased 1/2 in rods through both walls and the tubes. Fill to the line.
 
 ![Beam, step 3](../../renders/mold/step-beam-3.png)
 
@@ -160,6 +160,8 @@ Cast front (rail) face down, back open.
 | Bracket or saddle loose on the board | Board thinner than set: tape shim, or set `mold_board` and reprint |
 | Pin won't go in | Run the 1/8 in bit through again; trim the pin tip |
 | Foam core moves | Tighten its post bolt; carpet tape under it |
+| Printed part won't go on or into a steel tube | File the weld seam; sand the part. Several tight: caliper the tube, put its sizes in `frame_tube` / `post_tube`, re-run and reprint |
+| Printed part loose on a tube | A wrap of tape round the part |
 | Leak at a corner | Silicone fillet inside before waxing; check the brackets and diagonals |
 | Former stuck after curing | Bolts out first, then a dowel and a light tap |
 
@@ -245,7 +247,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 70 | 44 | 4.5 | tube locator |
+| 1 | 70 | 45 | 4.5 | tube locator |
 | 2 | 70 | 96 | 4.5 | tube locator |
 | 3 | 14 | 154 | 4.5 | corner bracket |
 | 4 | 126 | 154 | 4.5 | corner bracket |
@@ -256,7 +258,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 70 | 44 | 4.5 | tube locator |
+| 1 | 70 | 45 | 4.5 | tube locator |
 | 2 | 70 | 96 | 4.5 | tube locator |
 | 3 | 14 | 154 | 4.5 | corner bracket |
 | 4 | 126 | 154 | 4.5 | corner bracket |
