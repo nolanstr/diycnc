@@ -19,6 +19,7 @@ Origin is on the casting's underside directly below the spindle axis with all
 axes at home (X and Y centered, Z fully up).
 """
 
+import collections
 import csv
 import importlib
 import itertools
@@ -105,8 +106,8 @@ P = dict(
     # Cast-in steel and joints (tube = (size, wall)): US stock sizes in stock lengths, so
     # nothing is cut to length: 2 x 2 x 1/8 in and 1-1/2 x 1-1/2 x 1/8 in mild steel.
     frame_tube=(50.8, 3.175), post_tube=(38.1, 3.175),
-    # Bought lengths, nothing cut: 12 in base (the split sockets), 18 in beam, 12 in posts, 6 in spigots.
-    tube_len=dict(base=304.8, beam=457.2, post=304.8, spigot=152.4),
+    # Bought lengths, nothing cut: 12 in base (the split sockets), 18 in beam, 11 in posts, 6 in spigots.
+    tube_len=dict(base=304.8, beam=457.2, post=279.4, spigot=152.4),
     # Real tube isn't nominal. A supplier's saw cut is good to about +/-1/8 in, and A500 tube is
     # +/-0.5 mm across the flats with a +/-10 % wall and a weld seam inside. So every cast-in piece is
     # set from one end (its datum) and its other end has room in the casting (the report checks it
@@ -131,7 +132,17 @@ P = dict(
     gasket_cord=3.0, gasket_groove=(4.0, 2.3), gasket_split_z=92.0,
     # Joint hardware in hardware-store inch sizes: 1/2-13 rod, couplers and nuts, 3/8-16 grade 8
     # beam bolts, 3/8 in dowels.
-    top_plate_t=10.0, tie_rod_d=12.7, beam_bolt_d=9.525, dowel_d=9.525,
+    tie_rod_d=12.7, beam_bolt_d=9.525, dowel_d=9.525, dowel_proud=15.0,
+    # The uprights are tied to steel top and bottom. Each top plate is two 1/2 in laser-cut layers: the
+    # lower one is tapped for the beam's cap screws, and the two top tie rods screw into nuts held in hex
+    # holes in the upper one. At the bottom every tie rod runs right through the base to a 3/8 x 3 in
+    # laser-cut steel bar flush in the underside, nut and washer below it. So the beam, the top plate,
+    # the tie rods and the bars are one steel chain, with the epoxy granite clamped in it, and there is
+    # no thread in the epoxy granite to come loose: every nut can be retightened from under the base.
+    top_plate_t=25.4, plate_layer=12.7, beam_bolt_len=165.1,          # 3/8-16 x 6-1/2 in cap screws
+    anchor_bar=(9.525, 76.2), anchor_hole=17.5,                       # bar (thickness, width), 11/16 in holes
+    rod_tail=6.0,            # tie rod below its bottom nut: the rods are cut at home, and the error ends up here
+    slope_pocket_d=42.0,     # slope tie-rod nut pockets: room for a 1/2 x 1-1/2 in fender washer
     # In the uprights the tie-rod holes are cast on 5/8 in rods (1.6 mm clearance a side) and the base
     # dowel's hole is 1/2 in, grouted with the posts: the uprights' own mold sets them.
     up_rod_hole=15.875, up_dowel_hole=12.7,
@@ -366,13 +377,15 @@ def frame_layout(d):
     g['sock_bot'] = d['base_top'] - P['socket_depth']
     g['post_ys'] = (d['up_y0'] + 35.0, d['up_y1'] - 35.0)
     g['rod_y'] = (d['up_y0'] + d['up_y1']) / 2                 # upright tie rods
-    g['pocket_bot'] = d['beam_bot'] - 18.0                     # tie-rod nut pocket floor
+    g['pocket_bot'] = d['beam_bot'] - P['top_plate_t']         # underside of the upright's top plate
     g['up_front'] = d['beam_face'] - P['upright_foot']         # front of the upright foot
     g['up_top_front'] = d['beam_face'] - P['upright_top_front']
     toe = d['base_top'] + P['upright_nose']
     slope = lambda y: toe + (y - g['up_front']) / (g['up_top_front'] - g['up_front']) * (d['beam_bot'] - toe)
     # tie rods (x from the center line outward, y, nut-pocket floor): two at the top, two through the slope
-    g['tie_rods'] = [(g['ux'] - 20.0, g['rod_y'], g['pocket_bot']), (g['ux'] + 20.0, g['rod_y'], g['pocket_bot'])]
+    # (the top two seat their nuts on the top plate's lower layer)
+    nut_seat = d['beam_bot'] - P['plate_layer']
+    g['tie_rods'] = [(g['ux'] - 20.0, g['rod_y'], nut_seat), (g['ux'] + 20.0, g['rod_y'], nut_seat)]
     # (the sloped pockets go 38 mm deep, so a printed cap closes them flush over the nut)
     g['tie_rods'] += [(g['ux'], g['up_front'] + dy, slope(g['up_front'] + dy) - 38.0) for dy in P['front_tie_rods']]
     g['bolt_xs'] = (g['ux'] - 22.0, g['ux'] + 22.0)            # beam cap screws
@@ -389,7 +402,27 @@ def frame_layout(d):
                  for y in (d['base_y0'] + P['leg_inset'], d['base_y1'] - P['leg_inset']) for sx in (-1, 1)]
     g['gasket_len'] = 0.0
     g['draw_z'] = 55.0
+    # steel anchor bars flush in the base underside, along each upright's center line, one per base half:
+    # (front half?, y0, y1); and the M5 holes that hang each from the bridges in the base mold
+    g['anchor_bars'], g['bar_hangers'] = [], {}
+    for front in (True, False):
+        rys = [r[1] for r in g['tie_rods'] if (r[1] < g['split']) == front]
+        y0_, y1_ = min(rys) - 37.5, max(rys) + 37.5
+        y0_, y1_ = (y0_, min(y1_, g['split'] - 12.0)) if front else (max(y0_, g['split'] + 12.0), y1_)
+        g['anchor_bars'].append((front, y0_, y1_))
+        hang = []
+        for yb in BASE_BRIDGES['base-front' if front else 'base-rear']:
+            cands = [yb + sgn * (P['mold_board'] / 2 + HANGER / 2) for sgn in (-1, 1)]
+            cands = [y for y in cands if y0_ + 12.0 <= y <= y1_ - 12.0]
+            if cands:
+                y = max(cands, key=lambda y: min(abs(y - ry) for ry in rys))
+                hang += [(g['ux'] - 22.0, y, yb), (g['ux'] + 22.0, y, yb)]
+        g['bar_hangers'][front] = hang
     return g
+
+
+BASE_BRIDGES = {'base-front': (-190.0, -58.0), 'base-rear': (100.0, 170.0, 280.0)}   # y of the base mold's bridges
+HANGER = 16.0     # printed post that hangs an anchor bar from a bridge
 
 
 class Steel:
@@ -454,31 +487,31 @@ def base_pockets(g):
     ry = g['rod_y']
     foot = g['up_front']
     sw = P['split_wall'] + 10.0                      # full-depth band either side of the split
+    ob = g['ux'] + P['anchor_bar'][1] / 2 + 9.0      # outboard of the anchor bar
     out = [(chamfered(-gi, gi, yf0, g['split'] - P['base_tie'], 10.0), zp, 'center'),   # front, between the girders
            (chamfered(-gi, gi, tie, 245.0, 30.0), zp, 'center')]        # rear, between the girders
     for sx in (-1, 1):
         if P['base_foot_pockets']:
             # Under the upright feet: a full-depth rib across the foot's front end, another along the
-            # split, and pockets between them that keep clear of the front tie-rod couplers (x = ux)
-            # and the sockets. The outboard pocket runs up to the front rib.
-            cx = g['ux'] - 27.0                       # inboard of the couplers
-            rods = sorted(r[1] for r in g['tie_rods'] if r[1] < g['post_ys'][0])
+            # split, and pockets between them that keep clear of the solid band under each upright's
+            # center line, where the tie rods run down to the steel anchor bar, and of the sockets.
+            # The outboard pocket runs up to the front rib.
+            cx = g['ux'] - P['anchor_bar'][1] / 2 - 12.0      # inboard of the anchor bar
             sock = g['post_ys'][0] - P['socket_liner'][0] / 2 - 12.0
             front_end = foot + 10.0
             feet = [(chamfered(go, cx, front_end + 20.0, g['split'] - sw, 10.0), zp, 'foot-a'),
-                    (chamfered(go, cx, g['split'] + sw, sock - 5.0, 10.0), zp, 'foot-b'),
-                    (chamfered(cx + 2.0, half - 20.0, rods[-1] + 27.0, sock, 8.0), zp, 'foot-c')]
+                    (chamfered(go, cx, g['split'] + sw, sock - 5.0, 10.0), zp, 'foot-b')]
             knee_y0, outer_y0 = sock + 5.0, sock + 15.0
         else:
             front_end, feet, knee_y0, outer_y0 = foot - 20.0, [], tie, 60.0
         side = [
             (chamfered(go, half - 40.0, yf0, front_end, 10.0), zp, 'outboard'),             # front, outboard
             (chamfered(go + 5.0, 236.0, y0 + 15.0, yf0, 10.0), 40.0, 'trough-band'),      # under the coolant trough band
-            (chamfered(half - 45.0, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),  # under the front draw rods
+            (chamfered(ob, half - 8.0, yf0, yf1 - 5.0, 8.0), 40.0, 'draw-rod'),            # under the front draw rods
         ] + feet + [
             (chamfered(go, g['inner'] - 5.0, knee_y0, 318.0, 10.0), 40.0, 'knee'),        # under the knee, inboard of the sockets
-            (chamfered(g['outer'] - 8.0, half - 8.0, outer_y0, ry - 32.0, 8.0), 65.0, 'outer-a'),  # outboard of the sockets,
-            (chamfered(g['outer'] - 8.0, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),     # either side of the coupler
+            (chamfered(ob, half - 8.0, outer_y0, ry - 32.0, 8.0), 65.0, 'outer-a'),        # outboard of the sockets,
+            (chamfered(ob, half - 8.0, ry + 32.0, 312.0, 8.0), 65.0, 'outer-b'),           # either side of the rods
             (chamfered(60.0, 230.0, 318.0, y1 - 10.0, 10.0), zp, 'rear'),                 # behind the sockets
         ]
         for poly, z, name in side:
@@ -631,14 +664,18 @@ def base_half(m, g, st, front):
             cuts.append(dowel)
             st.add(f'DowelBase{side}', cont, dowel, 'steel')
 
-    # tie-rod coupling nuts for the uprights, in whichever half each rod lands
+    # the uprights' tie rods: 5/8 in holes right through (cast on greased rods) to a steel bar flush in the
+    # underside, which the nuts pull up against
+    bt, bw = P['anchor_bar']
     for sx, side in ((-1, 'L'), (1, 'R')):
-        for j, (rx, ry, _) in enumerate(g['tie_rods']):
-            if ya <= ry < yb:
-                env = parts.hexagon(19.0, base_top - 70, 36.0, sx * rx, ry)
-                cuts += [env, Part.makeCylinder(7.0, 36, Vector(sx * rx, ry, base_top - 35))]
-                st.add(f'TieRodCoupler{side}{j + 1}', cont,
-                       env.cut(Part.makeCylinder(P['tie_rod_d'] / 2, 40, Vector(sx * rx, ry, base_top - 72))), 'steel')
+        rods = [(sx * rx, ry) for rx, ry, _ in g['tie_rods'] if ya <= ry < yb]
+        cuts += [Part.makeCylinder(P['up_rod_hole'] / 2, base_top + 2, Vector(x, y, -1)) for x, y in rods]
+        _, by0, by1 = next(b for b in g['anchor_bars'] if b[0] == front)
+        bar = parts.box(sx * g['ux'] - bw / 2, sx * g['ux'] + bw / 2, by0, by1, 0, bt)
+        cuts.append(bar)
+        bar = bar.cut([Part.makeCylinder(P['anchor_hole'] / 2, bt + 2, Vector(x, y, -1)) for x, y in rods]
+                      + [Part.makeCylinder(2.1, bt + 2, Vector(sx * hx, hy, -1)) for hx, hy, _ in g['bar_hangers'][front]])
+        st.add(f'TieBar{tag}{side}', cont, bar)
 
     if not front:
         # Seal on the split face: a U under the floor gutters, rising at both ends to near the top. It is
@@ -715,27 +752,52 @@ def upright(m, g, st, sx):
         st.add(f'Post{tag}{i + 1}', cont, shell)
         st.plug(f'Post{tag}{i + 1}Plug', cont, 'z', sx * g['ux'], py, post_s - 2 * post_w, post_top - 10, post_top, post_top)
     pockets, taps = [], []
+    lay = P['plate_layer']
+    rod_r = P['tie_rod_d'] / 2
     for j, (rx, ry, pb) in enumerate(g['tie_rods']):
         x = sx * rx
-        # nut pocket: up from its floor through the top (or the sloped front) of the casting
-        pockets.append(Part.makeCylinder(16.0, beam_bot - pb + 1, Vector(x, ry, pb)))
-        cuts.append(Part.makeCylinder(P['up_rod_hole'] / 2, pb - base_top + 1, Vector(x, ry, base_top - 0.5)))
-        st.add(f'TieRod{tag}{j + 1}', cont, Part.makeCylinder(P['tie_rod_d'] / 2, pb + 12.5 - (base_top - 52),
-                                                               Vector(x, ry, base_top - 52)), 'steel')
-        washer = Part.makeCylinder(12.0, 2.5, Vector(x, ry, pb)).cut(Part.makeCylinder(6.5, 3, Vector(x, ry, pb - 0.25)))
-        nut = parts.hexagon(19.0, pb + 2.5, 10.0, x, ry).cut(
-            Part.makeCylinder(P['tie_rod_d'] / 2, 11, Vector(x, ry, pb + 2)))
-        st.add(f'TieRodNut{tag}{j + 1}', cont, washer.fuse(nut), 'steel')
-        if pb < g['pocket_bot'] - 1:
-            # pocket in the slope: a printed push-fit cap, flush with the face, resting on the nut
-            cap = Part.makeCylinder(15.85, beam_bot - pb, Vector(x, ry, pb + 12.6)).common(up)
+        # under the base: washer and nut against the anchor bar
+        low = Part.makeCylinder(13.5, 2.5, Vector(x, ry, -2.5)).fuse(parts.hexagon(19.05, -13.6, 11.1, x, ry))
+        st.add(f'TieRodNutLow{tag}{j + 1}', cont, low.cut(Part.makeCylinder(rod_r, 20, Vector(x, ry, -15))), 'steel')
+        if pb >= g['pocket_bot'] - 1:
+            # top rods: through the plate's lower layer into a nut held in a hex hole in the upper layer.
+            # The hole in the casting is lined with a printed sleeve (two pieces) that the rod centers
+            # in the mold.
+            plate_bot = beam_bot - plate_t
+            cuts.append(Part.makeCylinder(P['up_rod_hole'] / 2, plate_bot - base_top + 1, Vector(x, ry, base_top - 0.5)))
+            taps += [Part.makeCylinder(7.15, lay + 1, Vector(x, ry, plate_bot - 0.5)),
+                     parts.hexagon(19.05 + 0.6, beam_bot - lay, lay + 1, x, ry)]
+            half_ = (plate_bot - base_top) / 2
+            for k in range(2):
+                z0 = base_top + k * half_
+                sleeve = Part.makeCylinder(P['up_rod_hole'] / 2, half_, Vector(x, ry, z0)).cut(
+                    Part.makeCylinder(6.65, half_ + 2, Vector(x, ry, z0 - 1)))
+                st.add(f'RodSleeve{tag}{j + 1}{"ab"[k]}', cont, sleeve, 'printed')
+            rod_top = beam_bot - 1.0
+            nut = parts.hexagon(19.05, pb, 11.1, x, ry)
+        else:
+            # pocket in the slope: a fender washer and nut on its floor; a printed push-fit cap,
+            # flush with the face, rests on the nut
+            r = P['slope_pocket_d'] / 2
+            pockets.append(Part.makeCylinder(r, beam_bot - pb + 1, Vector(x, ry, pb)))
+            cuts.append(Part.makeCylinder(P['up_rod_hole'] / 2, pb - base_top + 1, Vector(x, ry, base_top - 0.5)))
+            nut = Part.makeCylinder(r - 2.0, 2.5, Vector(x, ry, pb)).fuse(parts.hexagon(19.05, pb + 2.5, 11.1, x, ry))
+            rod_top = pb + 13.5
+            cap = Part.makeCylinder(r - 0.15, beam_bot - pb, Vector(x, ry, pb + 13.7)).common(up)
             m.add(f'PocketCap{tag}{j + 1}', 'frame', cap, 'printed_dark', container=cont)
+        st.add(f'TieRodNut{tag}{j + 1}', cont, nut.cut(Part.makeCylinder(rod_r, 1e3, Vector(x, ry, 0))), 'steel')
+        tail = 13.6 + P['rod_tail']
+        st.add(f'TieRod{tag}{j + 1}', cont, Part.makeCylinder(rod_r, rod_top + tail, Vector(x, ry, -tail)), 'steel')
     for bx in g['bolt_xs']:
         for by in g['bolt_ys']:
-            taps.append(Part.makeCylinder(P['beam_bolt_d'] / 2, plate_t + 2, Vector(sx * bx, by, beam_bot - plate_t - 1)))
+            # tapped in the lower layer, clear (10.5 mm) in the upper one
+            taps += [Part.makeCylinder(P['beam_bolt_d'] / 2, plate_t + 2, Vector(sx * bx, by, beam_bot - plate_t - 1)),
+                     Part.makeCylinder(5.25, lay + 1, Vector(sx * bx, by, beam_bot - lay))]
     taps.append(Part.makeCylinder(P['plate_dowel_hole'] / 2, plate_t + 2, Vector(sx * g['ux'], g['beam_dowel_y'], beam_bot - plate_t - 1)))
-    plate = parts.plate(xa, xb, up_y0 + 6, up_y1 - 6, beam_bot - plate_t, beam_bot, 0.8)
-    st.add(f'TopPlate{tag}', cont, plate.cut(pockets + taps))
+    for k, name in ((0, 'Lower'), (1, 'Upper')):
+        z0 = beam_bot - plate_t + k * lay
+        layer = parts.plate(xa, xb, up_y0 + 6, up_y1 - 6, z0, z0 + lay, 0.8)
+        st.add(f'TopPlate{tag}{name}', cont, layer.cut(taps))
     ring, ring_len = foot_gasket(g, sx)
     cuts.append(ring)
     st.add(f'GasketUpright{tag}', cont, ring.copy(), 'rubber')
@@ -782,7 +844,8 @@ def beam(m, g, st):
     plate_t = P['top_plate_t']
     n = 0
     for sx in (-1, 1):
-        dowel = Part.makeCylinder(P['dowel_d'] / 2, plate_t + 15.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - plate_t))
+        dowel = Part.makeCylinder(P['dowel_d'] / 2, P['dowel_proud'] + 15.0, Vector(sx * g['ux'], g['beam_dowel_y'],
+                                                                                   bot - P['dowel_proud']))
         cuts.append(dowel)
         st.add(f'DowelBeam{"L" if sx < 0 else "R"}', 'FrameBeam', dowel, 'steel')
         for bx in g['bolt_xs']:
@@ -790,7 +853,8 @@ def beam(m, g, st):
                 x = sx * bx
                 n += 1
                 cuts.append(Part.makeCylinder(P['beam_bolt_hole'] / 2, top - bot + 2, Vector(x, by, bot - 1)))
-                bolt = Part.makeCylinder(P['beam_bolt_d'] / 2, top - bot + plate_t, Vector(x, by, bot - plate_t))
+                bolt = Part.makeCylinder(P['beam_bolt_d'] / 2, P['beam_bolt_len'] - 2.0,
+                                         Vector(x, by, top + 2.0 - P['beam_bolt_len']))
                 washer = Part.makeCylinder(10.0, 2.0, Vector(x, by, top))
                 head = Part.makeCylinder(8.0, 10.0, Vector(x, by, top + 2)).cut(parts.hexagon(8.0, top + 6, 7, x, by))
                 st.add(f'BeamBolt{n}', 'FrameBeam', bolt.fuse([washer, head]), 'black')
@@ -833,17 +897,33 @@ def frame_modules(m, d):
         ('frame', 'Printed PETG: 4 spigot sleeves, 12 tube end plugs, 4 dark gray pocket caps (sockets cast on foam)'
          if P['foam'] else 'Printed PETG: 4 socket liners, 4 spigot sleeves, 12 tube end plugs, 4 dark gray pocket caps',
          '~250 g', 'PRINT'),
-        ('frame', f'Steel plate 3/8 in, cut to size by the supplier (upright tops)',
-         f"2 x {d['outer'] - d['inner'] - 12:.0f} x {d['up_y1'] - d['up_y0'] - 12:.0f}", 'buy'),
-        ('frame', '1/2-13 threaded rod + coupling nut + nut/washer (hardware store)', ', '.join(f"2 x {pb + 12.5 - (d['base_top'] - 52):.0f}" for _, _, pb in g['tie_rods'])
-         + " (uprights), "
-                                                         f"2 x {ys + 28 - y0 - 15.5:.0f} (base)", 'buy'),
-        ('frame', f"3/8-16 x 6 in grade 8 bolt + washer (beam; {d['beam_top'] - d['beam_bot'] + plate_t:.0f} mm under the head)", '8 pcs', 'buy'),
+        ('frame', 'Steel plate 1/2 in, laser cut (docs/1-sourcing/laser/top-plate-*.dxf): upright top plates, '
+                  'two layers each; tap the lower layer\'s four 3/8-16 holes',
+         f"2 x lower, 2 x upper, {d['outer'] - d['inner'] - 12:.0f} x {d['up_y1'] - d['up_y0'] - 12:.0f}", 'buy'),
+        ('frame', 'Steel plate 3/8 in, laser cut (docs/1-sourcing/laser/anchor-bar-*.dxf): base anchor bars; '
+                  'tap the small holes M5', ', '.join(f"2 x {y1_ - y0_:.0f} x {P['anchor_bar'][1]:.0f}"
+                                                      for _, y0_, y1_ in g['anchor_bars']), 'buy'),
+        ('frame', '1/2-13 threaded rod (hardware store)',
+         ', '.join(f"{2 * n_} x {L:.0f}" for L, n_ in sorted(collections.Counter(round(v) for v in tie_rod_lengths(g)).items(),
+                                                            reverse=True))
+         + f" (uprights), 2 x {ys + 28 - y0 - 15.5:.0f} (base draw rods)", 'buy'),
+        ('frame', '1/2-13 nut + 1/2 in SAE washer (uprights: two nuts and one washer per tie rod; draw rods: one each)',
+         f"{4 * len(g['tie_rods']) + 2} nuts, {2 * len(g['tie_rods']) + 2} washers", 'buy'),
+        ('frame', '1/2 x 1-1/2 in fender washer (under the slope tie-rod nuts)',
+         f"{2 * sum(1 for *_, pb in g['tie_rods'] if pb < g['pocket_bot'] - 1)} pcs", 'buy'),
+        ('frame', '3/8-16 x 6-1/2 in grade 8 bolt + washer (beam)', '8 pcs', 'buy'),
         ('frame', 'Dowel pin 3/8 x 1-1/4 in', '4 pcs', 'buy'),
         ('frame', f"Nitrile O-ring cord {P['gasket_cord']:.0f} mm (base split + upright feet), glue the ends",
          f"{d['gasket_m'] + 0.3:.1f} m", 'buy'),
         ('frame', '1/2 in brass hex nipple, cast-in coolant drain', '1 pc', 'buy'),
     ]
+
+
+def tie_rod_lengths(g):
+    """Each upright's tie rods, cut length: from rod_tail under the bottom nut (washer, nut) to flush with
+    the top plate (top two) or with the top of the slope nut."""
+    return [(g['beam_bot'] - 1.0 if pb >= g['pocket_bot'] - 1 else pb + 13.5) + 13.6 + P['rod_tail']
+            for _, _, pb in g['tie_rods']]
 
 
 def free_end_room(cast, axis, c1, c2, size, end, sgn, cover=2.0, most=30.0):
@@ -896,6 +976,8 @@ def steel_tolerance(m, d):
     rows.append(('Spigots (2)', 'a mark at the middle, at the split', 'both ends, inside the tubes',
                  2 * (P['tube_len']['spigot'] / 2 - P['spigot_sleeve'])))
     rows.append(('Top plates (2)', 'bolted to the mold bridge', 'all edges, 6 mm inside the casting', 6.0))
+    rows.append(('Tie rods (8, cut)', 'screwed up flush with the plate / the slope nut', 'the tail under the bottom nut',
+                 P['rod_tail']))
     d['steel_tol'] = [(n, dat, fr, room, room >= tol) for n, dat, fr, room in rows]
     for n, _, _, room, ok in d['steel_tol']:
         if not ok:
@@ -1073,7 +1155,7 @@ def mold_base(kit, m, g):
 
     # bridges: boards on edge across the box, in saddles on the side walls; the cores bolt to their sides
     bh, bz = 60.0, wt - TH_SADDLE
-    lines = {'base-front': (-190.0, -58.0), 'base-rear': (100.0, 170.0, 280.0)}
+    lines = BASE_BRIDGES
     legs_y = {'base-front': g['legs'][0][1], 'base-rear': g['legs'][2][1]}
     for folder, ys_ in lines.items():
         for yb in ys_:
@@ -1105,6 +1187,16 @@ def mold_base(kit, m, g):
                           'the pinch screw (M4 x 20).')
     kit.count('M4 x 20 bolt (leg pinch screw)', 4, M)
     kit.count('M4 nut', 4, M)
+    # anchor bars: each hangs flush with the pour line from its bridges, on printed posts with an M5 screw
+    # down through each into a tapped hole in the bar
+    n_hang = 2 * max(len(v) for v in g['bar_hangers'].values())
+    for folder, front in (('base-rear', False), ('base-front', True)):
+        hangers = [bar_hanger(sx * hx, hy, yb, bz) for sx in (-1, 1) for hx, hy, yb in g['bar_hangers'][front]]
+        kit.add_many('base-box', 'bar-hanger', 'kit', hangers, mold=M, show=[folder], merge=True, reuse=True, up=-Z,
+                     note=f'Bolts to the side of a bridge; an M5 x 60 screw down through it holds the anchor bar '
+                          f'flush with the pour line. The rear half needs {n_hang}; {n_hang // 2} move over for the front.')
+    next(r for r in kit.rows if r['folder'] == 'base-box' and r['name'] == 'bar-hanger')['qty'] = n_hang
+    kit.count('M5 x 60 screw (hangs an anchor bar)', n_hang, M)
 
     # pieces on the floor and walls
     floor = (Vector(0, 0, top), Z)
@@ -1228,14 +1320,30 @@ def mold_base(kit, m, g):
         holes.append(Fix('hole', Vector(bx, by, top), Z, 5.5, 'M5 insert screw'))
     for sx in (-1, 1):
         for rx, ry, _ in g['tie_rods']:
-            holes.append(Fix('hole', Vector(sx * rx, ry, top), Z, 13.5, '1/2-13 bolt into coupler'))
+            holes.append(Fix('hole', Vector(sx * rx, ry, top), Z, 16.3, '5/8 core rod'))
         holes.append(Fix('hole', Vector(sx * g['ux'], g['rod_y'], top), Z, 9.6, '3/8 dowel'))
         holes.append(Fix('hole', Vector(sx * g['draw_x'], ys, g['draw_z']), -Y, 13.5, '1/2-13 bolt into coupler'))
     kit.fix(holes, M)
     kit.count('M5 x 20 screw, greased (holds an insert)', sum(1 for f in holes if f.what == 'M5 insert screw'), M)
     kit.count('M6 x 20 screw, greased (holds an insert)', sum(1 for f in holes if f.what == 'M6 insert screw'), M)
-    kit.count('1/2-13 x 2-1/2 in bolt, greased (holds a coupler)', 2 * len(g['tie_rods']), M)
+    n_rods = 2 * max(sum(1 for r in g['tie_rods'] if (r[1] < ys) == fr) for fr in (True, False))
+    kit.count(f"5/8 in plain steel rod, greased (forms a tie-rod hole through the base and the anchor bar), "
+              f"{T + top + 40:.0f} mm", n_rods, M)
     kit.count('1/2-13 x 1-1/2 in bolt, greased (holds a draw-rod coupler)', 2, M)
+
+
+def bar_hanger(hx, hy, yb, bz):
+    """Printed post that hangs an anchor bar from the side of a base bridge (bottom edge at z = bz; the
+    base is cast upside down, so up is -z): from just above the bridge's edge down to the bar's face
+    on the pour line (z = 0). An M5 screw runs down its middle into the bar; an M4 through the bridge
+    into a captive nut, beside it, holds it to the bridge."""
+    f = Vector(0, 1 if yb > hy else -1, 0)
+    z_top = bz - 24.0
+    post = parts.box(hx - 12.0, hx + 12.0, hy - HANGER / 2, hy + HANGER / 2, z_top, 0.0)
+    q = Vector(hx + 7.0, hy, bz - 12.0) + f * (HANGER / 2)
+    post = post.cut(molds.nut_trap(q, f, Vector(0, 0, -1), 'M4', mode='side', run=40.0))
+    post = post.cut(Part.makeCylinder(2.75, -z_top + 2, Vector(hx, hy, z_top - 1)))
+    return post, [Fix('bolt', q, f, molds.DRILL['M4'], 'bar hanger', 'M4', molds.nut_bolt('M4')[0])]
 
 
 TH_SADDLE = 6.0
@@ -1334,7 +1442,8 @@ def mold_upright(kit, g):
     cast foot down, so 'up' is +z. Two side plates cut to the profile stand on the floor; a back
     board and a sloped front board fit between them. The front board's foot sits on the printed toe
     filler. The posts come up through bushings in the floor, 5/8 in rods form the tie-rod holes, and
-    a bridge across the top carries the top plate and the top pocket plugs."""
+    a bridge across the top carries the top plate. The two top tie-rod holes are lined with printed
+    sleeves, centered on greased 1/2 in rods that run up through the plate and the bridge."""
     T, fb = P['mold_board'], P['mold_freeboard']
     M, folder, show, mult = 'upright', 'upright', ['upright'], 2
     sx = -1
@@ -1407,28 +1516,24 @@ def mold_upright(kit, g):
     fixed_piece(kit, folder, M, 'foot-gasket-groove', 'former', foot_gasket(g, sx)[0], [(Vector(0, 0, top), -Z, 2)],
                 qty=2, note='Pins into the floor.', up=-Z, show=show, mult=mult, sizes=('pin',), avoid=keep_clear)
 
-    # tie-rod holes and pockets: 5/8 in rods up through the floor; plugs form the nut pockets
+    # tie-rod holes: the top two on greased 1/2 in rods in printed sleeves, up through the plate and the
+    # bridge; the slope ones on 5/8 in rods up into plugs that form the nut pockets
     rod = P['up_rod_hole'] / 2 + FIT_PLUG
-    holes, tops = [], []
+    holes = []
     for rx, ry, pb in g['tie_rods']:
         x = sx * rx
-        holes.append(Fix('hole', Vector(x, ry, top), -Z, 16.3, '5/8 core rod'))
         if pb >= g['pocket_bot'] - 1:
-            p = Part.makeCylinder(16.0, bb - pb, Vector(x, ry, pb)).fuse(
-                Part.makeCylinder(rod + 2.0, zt + TH_SADDLE - bb, Vector(x, ry, bb))).cut(
-                Part.makeCylinder(rod, 1e3, Vector(x, ry, 0))).removeSplitter()
-            tops.append(p)
-            holes.append(Fix('hole', Vector(x, ry, zt + TH_SADDLE), Z, 16.3, '5/8 core rod'))
+            holes.append(Fix('hole', Vector(x, ry, top), -Z, 13.5, '1/2 rod through a sleeve'))
+            holes.append(Fix('hole', Vector(x, ry, zt + TH_SADDLE), Z, 13.5, '1/2 rod through a sleeve'))
         else:
+            holes.append(Fix('hole', Vector(x, ry, top), -Z, 16.3, '5/8 core rod'))
             ys_ = L0.z + (ry - L0.y) * a.z / a.y          # slope height over the rod
-            p = Part.makeCylinder(16.0, bb - pb, Vector(x, ry, pb)).common(env).cut(
+            p = Part.makeCylinder(P['slope_pocket_d'] / 2, bb - pb, Vector(x, ry, pb)).common(env).cut(
                 Part.makeCylinder(rod, ys_ - 12.0 - pb + 1, Vector(x, ry, pb - 1)))
             nm = 'slope-plug-lower' if ry == min(r_[1] for r_ in g['tie_rods'] if r_[2] < g['pocket_bot'] - 1) else 'slope-plug-upper'
             fixed_piece(kit, folder, M, nm, 'plug', p, [(L0, nrm, 1)], qty=2,
                         note='Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.',
                         show=show, mult=mult, sizes=('M4', 'M3'))
-    kit.add(folder, 'tie-rod-pocket', 'plug', tops[0], 2 * len(tops), 'Forms a top nut pocket: slides down its rod; '
-            'the bridge holds it down.', placed=tops, show=show)
     holes.append(Fix('hole', Vector(sx * g['ux'], g['rod_y'], top), -Z, 13.1, '1/2-13 bolt, base dowel hole'))
     plate_bolts = [(sx * (g['ux'] - 22.0), g['bolt_ys'][0]), (sx * (g['ux'] + 22.0), g['bolt_ys'][1])]
     sp = []
@@ -1445,10 +1550,12 @@ def mold_upright(kit, g):
     post_bot = bb - P['top_plate_t'] - P['post_top_gap'] - P['tube_len']['post']
     h = top - T - post_bot
     kit.count(f'Block of 2x4, {h:.0f} mm long: four under each upright mold (the posts stand on the bench)', 8, M)
-    rods = sorted(round(zt + TH_SADDLE + T + 10 - post_bot if pb >= g['pocket_bot'] - 1 else
-                        L0.z + (ry - L0.y) * a.z / a.y - 12 - post_bot) for _, ry, pb in g['tie_rods'])
-    kit.count('5/8 in plain steel rod, greased (forms a tie-rod hole), cut to ' + ', '.join(f'{r} mm' for r in rods), 2, M)
-    kit.count('3/8-16 x 2-1/2 in bolt, greased (holds the top plate)', 2 * 2, M)
+    rods = sorted(round(L0.z + (ry - L0.y) * a.z / a.y - 12 - post_bot) for _, ry, pb in g['tie_rods']
+                  if pb < g['pocket_bot'] - 1)
+    kit.count('5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to ' + ', '.join(f'{r} mm' for r in rods), 2, M)
+    kit.count(f"1/2 in rod (or a tie rod), greased, {round(zt + TH_SADDLE + T + 20 - post_bot)} mm: centers a top "
+              "tie-rod sleeve", 2 * 2, M)
+    kit.count('3/8-16 x 3 in bolt, greased (holds the top plate, both layers)', 2 * 2, M)
     kit.count('1/2-13 x 1-1/2 in bolt + nut, greased (forms the dowel hole)', 2, M)
 
 
@@ -1558,10 +1665,10 @@ def mold_beam(kit, m, g):
                 holes.append(Fix('hole', Vector(sx * bx, by, bot), -Z, 13.1, '1/2 core rod'))
         holes.append(Fix('hole', Vector(sx * g['ux'], g['beam_dowel_y'], bot), -Z, 9.6, '3/8 dowel'))
     kit.fix(holes, M)
-    stops = [Part.makeCylinder(4.7, T - P['top_plate_t'], Vector(sx * g['ux'], g['beam_dowel_y'], bot - T)).fuse(
+    stops = [Part.makeCylinder(4.7, T - P['dowel_proud'], Vector(sx * g['ux'], g['beam_dowel_y'], bot - T)).fuse(
         Part.makeCylinder(9.0, 2.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - T - 2.0))) for sx in (-1, 1)]
     kit.add(folder, 'dowel-stop', 'kit', stops[0], 2, 'Pushes into the dowel hole from outside so the dowel stands '
-            f"{P['top_plate_t']:.0f} mm proud.", placed=stops, show=show)
+            f"{P['dowel_proud']:.0f} mm proud.", placed=stops, show=show)
     kit.count('M6 x 20 screw, greased (holds a pad)', sum(1 for f in holes if f.what == 'M6 screw into pad'), M)
     kit.count('M5 x 20 screw, greased (holds an insert)', sum(1 for f in holes if f.what == 'M5 insert screw'), M)
     kit.count(f"1/2 in plain steel rod, greased (forms a beam bolt hole), {top - bot + 2 * T + 20:.0f} mm", 8, M)
@@ -2861,25 +2968,29 @@ STEPS_TEXT = {
     'step-base-rear-3': 'Partition between the side walls: two brackets, two struts to the front wall. Beads on its pins, '
                         'spigot bushings in its holes.',
     'step-base-rear-4': 'Gutter formers, motor relief and corner fillers on; socket spikes bolted down with a foam block on each.',
-    'step-base-rear-5': 'Inserts and couplers on their greased screws and bolts; spigots through the bushings to their '
+    'step-base-rear-5': 'Inserts on their greased screws; greased 5/8 in rods up through the floor for the tie-rod holes; '
+                        'spigots through the bushings to their '
                         'middle marks, rear tubes on them, split ends tight to the partition; leg holders in the corners, '
                         'legs set to height, pinch screws tight.',
     'step-base-rear-6': 'Pour the 20 mm skin. Foam cores on it, bridges into the saddles, each post bolted to its bridge. '
-                        'Fill to the pour line.',
+                        'Fill to the pour line; the anchor bars over the rods, screwed to their hangers, flush with '
+                        'the line.',
     'step-base-front-1': 'After the cure: bridges, partition and struts off. Dig out the socket foam, pull the beads, tape '
                          'the groove, and wax the rear half\'s split face and spigots.',
     'step-base-front-2': 'Trough and gutter formers and corner fillers on; front tubes onto the spigots; draw rods into the '
-                         'rear couplers; inserts, couplers and legs.',
-    'step-base-front-3': 'Skin, cores, bridges, fill. After the cure, take it apart and split the halves with wedges.',
+                         'rear couplers; inserts, tie-rod core rods and legs.',
+    'step-base-front-3': 'Skin, cores, bridges, fill; the anchor bars on their hangers. After the cure, pull the rods, take '
+                         'it apart and split the halves with wedges.',
 }
 UP_TEXT = [
     'Post bushings into the floor from below; gasket bead pinned on; cleats bolted down.',
     'Side plates against their cleats, back board between them, two back brackets.',
     'Toe filler bolted down, the front board\'s foot in its lip, two front brackets at the top.',
     'Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends '
-    f"nearer the top plate: {P['post_top_gap']:.0f} mm room); greased 5/8 in rods up through the floor (short "
-    'ones into the slope plugs, long ones to the top); dowel-hole bolt from underneath.',
-    'Fill to the line. Top pocket plugs down the long rods, top plate hung from the bridge, bridge onto its saddles.',
+    f"nearer the top plate: {P['post_top_gap']:.0f} mm room); greased 5/8 in rods up through the floor into the "
+    'slope plugs; the two top sleeves standing over their floor holes, tops taped; dowel-hole bolt from underneath.',
+    'Fill to the line. Top plate (both layers) hung from the bridge, bridge onto its saddles; greased 1/2 in rods up '
+    'from under the floor, through the sleeves, the plate and the bridge.',
 ]
 BEAM_TEXT = [
     'Cleats bolted down; support pads and riser inserts screwed to the floor.',
@@ -2894,6 +3005,55 @@ def _minutes(t):
     return sum(int(v) * {'d': 1440, 'h': 60, 'm': 1, 's': 1 / 60}[u] for v, u in re.findall(r'(\d+)([dhms])', t))
 
 
+LASER = [   # (part, file, note): the flat steel to order laser cut, from its section at mid-thickness
+    ('TopPlateLLower', 'top-plate-lower', '1/2 in mild steel, qty 2. Tap the four 5/16 in holes 3/8-16.'),
+    ('TopPlateLUpper', 'top-plate-upper', '1/2 in mild steel, qty 2.'),
+    ('TieBarFrontL', 'anchor-bar-front', '3/8 in mild steel, qty 2. Tap the small holes M5.'),
+    ('TieBarRearL', 'anchor-bar-rear', '3/8 in mild steel, qty 2. Tap the small holes M5.'),
+]
+
+
+def write_laser_dxf(m):
+    """DXF (R12, mm) of each flat steel part for a laser-cutting service, in docs/1-sourcing/laser/. Holes
+    that get tapped are drawn at the tap drill size."""
+    out = os.path.join(ROOT, 'docs', '1-sourcing', 'laser')
+    os.makedirs(out, exist_ok=True)
+    tap = {round(P['beam_bolt_d'], 2): 7.94}          # 3/8-16 -> 5/16 in drill
+    parts_by_name = {p['name']: p['shape'] for p in m.parts}
+    lines = []
+    for name, fn, note in LASER:
+        shape = parts_by_name[name]
+        bb = shape.BoundBox
+        ox, oy = bb.XMin, bb.YMin
+        ents = []
+        for w in shape.slice(Vector(0, 0, 1), (bb.ZMin + bb.ZMax) / 2):
+            for e in w.Edges:
+                c = e.Curve
+                if isinstance(c, Part.Circle):
+                    cx, cy, r = c.Center.x - ox, c.Center.y - oy, c.Radius
+                    if e.isClosed():
+                        r = tap.get(round(2 * r, 2), 2 * r) / 2
+                        ents.append(f'0\nCIRCLE\n8\n0\n10\n{cx:.4f}\n20\n{cy:.4f}\n30\n0\n40\n{r:.4f}')
+                        continue
+                    a0, a1 = (math.degrees(math.atan2(v.Point.y - oy - cy, v.Point.x - ox - cx)) for v in e.Vertexes[:2])
+                    if c.Axis.z < 0:
+                        a0, a1 = a1, a0
+                    ents.append(f'0\nARC\n8\n0\n10\n{cx:.4f}\n20\n{cy:.4f}\n30\n0\n40\n{r:.4f}\n50\n{a0:.4f}\n51\n{a1:.4f}')
+                    continue
+                pts = [v.Point for v in e.Vertexes] if isinstance(c, (Part.Line, Part.LineSegment)) else e.discretize(24)
+                for a, b in zip(pts, pts[1:]):
+                    ents.append(f'0\nLINE\n8\n0\n10\n{a.x - ox:.4f}\n20\n{a.y - oy:.4f}\n30\n0\n'
+                                f'11\n{b.x - ox:.4f}\n21\n{b.y - oy:.4f}\n31\n0')
+        with open(os.path.join(out, fn + '.dxf'), 'w') as fh:
+            fh.write('0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n4\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n'
+                     + '\n'.join(ents) + '\n0\nENDSEC\n0\nEOF\n')
+        lines.append(f'| `{fn}.dxf` | {bb.XLength:.1f} x {bb.YLength:.1f} | {note} |')
+    with open(os.path.join(out, 'README.md'), 'w') as fh:
+        fh.write('# Laser-cut steel\n\nUpload these to a laser-cutting service (SendCutSend, OSH Cut, a local shop). Units are mm.\n'
+                 'Holes to be tapped are drawn at the tap drill size.\n\n| File | Size (mm) | Order |\n|---|---|---|\n'
+                 + '\n'.join(lines) + '\n')
+
+
 def main():
     m = build()
     hits = collisions(m)
@@ -2902,6 +3062,7 @@ def main():
     with open(os.path.join(ROOT, 'docs', '5-design', 'report.txt'), 'w') as fh:
         fh.write(text + '\n')
     export_prints(m)
+    write_laser_dxf(m)
     write_mold_guide(m)
     if not App.GuiUp:
         return  # a headless save would drop the colors from DIYCNC.FCStd

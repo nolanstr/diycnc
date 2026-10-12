@@ -74,10 +74,10 @@
 <text x="24.4" y="526.9" font-size="10.7" fill="#1d2422">36</text>
 <circle cx="698.1" cy="528.7" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="702.5" y="526.9" font-size="10.7" fill="#1d2422">37</text>
-<circle cx="134.1" cy="499.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="142.6" y="497.3" font-size="10.7" fill="#1d2422">38</text>
-<circle cx="584.0" cy="499.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="592.6" y="497.3" font-size="10.7" fill="#1d2422">39</text>
+<circle cx="134.1" cy="499.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="144.0" y="497.3" font-size="10.7" fill="#1d2422">38</text>
+<circle cx="584.0" cy="499.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="594.0" y="497.3" font-size="10.7" fill="#1d2422">39</text>
 <circle cx="86.6" cy="474.8" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="91.0" y="473.0" font-size="10.7" fill="#1d2422">40</text>
 <circle cx="631.6" cy="474.8" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
@@ -94,10 +94,10 @@
 <text x="91.0" y="406.8" font-size="10.7" fill="#1d2422">46</text>
 <circle cx="631.6" cy="408.6" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="636.0" y="406.8" font-size="10.7" fill="#1d2422">47</text>
-<circle cx="134.1" cy="399.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="142.6" y="397.3" font-size="10.7" fill="#1d2422">48</text>
-<circle cx="584.0" cy="399.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="592.6" y="397.3" font-size="10.7" fill="#1d2422">49</text>
+<circle cx="134.1" cy="399.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="144.0" y="397.3" font-size="10.7" fill="#1d2422">48</text>
+<circle cx="584.0" cy="399.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="594.0" y="397.3" font-size="10.7" fill="#1d2422">49</text>
 <circle cx="86.6" cy="348.7" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="91.0" y="346.9" font-size="10.7" fill="#1d2422">50</text>
 <circle cx="631.6" cy="348.7" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
@@ -122,18 +122,18 @@
 <text x="91.0" y="227.1" font-size="10.7" fill="#1d2422">60</text>
 <circle cx="631.6" cy="228.8" r="2.7" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="636.0" y="227.1" font-size="10.7" fill="#1d2422">61</text>
-<circle cx="114.1" cy="219.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="122.6" y="217.3" font-size="10.7" fill="#1d2422">62</text>
+<circle cx="114.1" cy="219.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="124.0" y="217.3" font-size="10.7" fill="#1d2422">62</text>
 <circle cx="134.1" cy="219.1" r="4.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="140.6" y="217.3" font-size="10.7" fill="#1d2422">63</text>
-<circle cx="154.1" cy="219.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="162.6" y="217.3" font-size="10.7" fill="#1d2422">64</text>
-<circle cx="564.0" cy="219.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="572.6" y="217.3" font-size="10.7" fill="#1d2422">65</text>
+<circle cx="154.1" cy="219.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="164.0" y="217.3" font-size="10.7" fill="#1d2422">64</text>
+<circle cx="564.0" cy="219.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="574.0" y="217.3" font-size="10.7" fill="#1d2422">65</text>
 <circle cx="584.0" cy="219.1" r="4.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="590.6" y="217.3" font-size="10.7" fill="#1d2422">66</text>
-<circle cx="604.0" cy="219.1" r="6.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
-<text x="612.6" y="217.3" font-size="10.7" fill="#1d2422">67</text>
+<circle cx="604.0" cy="219.1" r="8.2" fill="none" stroke="#a8641a" stroke-width="1.33"/>
+<text x="614.0" y="217.3" font-size="10.7" fill="#1d2422">67</text>
 <circle cx="69.1" cy="209.1" r="2.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>
 <text x="73.6" y="207.3" font-size="10.7" fill="#1d2422">68</text>
 <circle cx="649.0" cy="209.1" r="2.8" fill="none" stroke="#a8641a" stroke-width="1.33"/>

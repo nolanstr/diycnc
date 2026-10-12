@@ -2,13 +2,21 @@
 <polygon points="650.9,60.0 0.0,60.0 0.0,0.0 650.9,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
 <circle cx="635.2" cy="49.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
 <text x="639.2" y="47.4" font-size="9.7" fill="#1d2422">1</text>
-<circle cx="600.0" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
-<text x="604.0" y="46.4" font-size="9.7" fill="#1d2422">2</text>
+<circle cx="607.5" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="611.5" y="46.4" font-size="9.7" fill="#1d2422">2</text>
+<circle cx="565.5" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="569.5" y="46.4" font-size="9.7" fill="#1d2422">3</text>
+<circle cx="521.5" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="525.5" y="46.4" font-size="9.7" fill="#1d2422">4</text>
 <circle cx="325.4" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
-<text x="329.5" y="46.4" font-size="9.7" fill="#1d2422">3</text>
-<circle cx="50.9" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
-<text x="55.0" y="46.4" font-size="9.7" fill="#1d2422">4</text>
+<text x="329.5" y="46.4" font-size="9.7" fill="#1d2422">5</text>
+<circle cx="115.4" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="119.5" y="46.4" font-size="9.7" fill="#1d2422">6</text>
+<circle cx="71.4" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="75.5" y="46.4" font-size="9.7" fill="#1d2422">7</text>
+<circle cx="43.4" cy="48.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
+<text x="47.4" y="46.4" font-size="9.7" fill="#1d2422">8</text>
 <circle cx="15.7" cy="49.0" r="2.4" fill="none" stroke="#a8641a" stroke-width="1.21"/>
-<text x="19.8" y="47.4" font-size="9.7" fill="#1d2422">5</text>
+<text x="19.8" y="47.4" font-size="9.7" fill="#1d2422">9</text>
 <text x="0" y="73.6" font-size="9.7" fill="#5b6662">0,0 · 651 x 60 mm · seen from the outside (top)</text>
 </svg>

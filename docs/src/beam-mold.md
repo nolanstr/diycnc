@@ -69,7 +69,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `beam/filler-back-edge-part3of4.stl` | 1 | 19 | 1h 14m 46s |
 | `beam/filler-back-edge-part4of4.stl` | 1 | 19 | 1h 15m 1s |
 | `beam/kit-tube-locator.stl` | 4 | 43 | 58m 26s |
-| `beam/kit-dowel-stop.stl` | 2 | 2 | 6m 51s |
+| `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
 

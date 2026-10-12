@@ -32,12 +32,12 @@
 <text x="131.3" y="203.5" font-size="3.2" fill="#1d2422">15</text>
 <circle cx="131.4" cy="160.7" r="1.6" fill="none" stroke="#a8641a" stroke-width="0.39"/>
 <text x="133.5" y="160.2" font-size="3.2" fill="#1d2422">16</text>
-<circle cx="79.1" cy="149.0" r="8.2" fill="none" stroke="#a8641a" stroke-width="0.39"/>
-<text x="87.7" y="148.5" font-size="3.2" fill="#1d2422">17</text>
+<circle cx="79.1" cy="149.0" r="6.8" fill="none" stroke="#a8641a" stroke-width="0.39"/>
+<text x="86.3" y="148.5" font-size="3.2" fill="#1d2422">17</text>
 <circle cx="99.1" cy="149.0" r="6.5" fill="none" stroke="#a8641a" stroke-width="0.39"/>
 <text x="106.1" y="148.5" font-size="3.2" fill="#1d2422">18</text>
-<circle cx="119.1" cy="149.0" r="8.2" fill="none" stroke="#a8641a" stroke-width="0.39"/>
-<text x="127.7" y="148.5" font-size="3.2" fill="#1d2422">19</text>
+<circle cx="119.1" cy="149.0" r="6.8" fill="none" stroke="#a8641a" stroke-width="0.39"/>
+<text x="126.3" y="148.5" font-size="3.2" fill="#1d2422">19</text>
 <circle cx="67.1" cy="114.3" r="1.6" fill="none" stroke="#a8641a" stroke-width="0.39"/>
 <text x="69.2" y="113.8" font-size="3.2" fill="#1d2422">20</text>
 <circle cx="99.1" cy="94.0" r="31.8" fill="none" stroke="#a8641a" stroke-width="0.39"/>

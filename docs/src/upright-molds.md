@@ -39,7 +39,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Material | Amount | Notes |
 |---|---|---|
 | Melamine board, 3/4 in | about 1.0 m2 | all the molds come out of two 4 x 8 ft sheets |
-| PETG | 0.34 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.39 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 | 2x4 offcut | 4 blocks per upright mold, about 50 mm | feet |
@@ -51,15 +51,16 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 30 bolt | 24 |
 | M4 x 35 bolt | 4 |
 | M4 x 45 bolt | 14 |
+| 1/2 in rod (or a tie rod), greased, 381 mm: centers a top tie-rod sleeve | 4 |
 | 1/2-13 x 1-1/2 in bolt + nut, greased (forms the dowel hole) | 2 |
-| 3/8-16 x 2-1/2 in bolt, greased (holds the top plate) | 4 |
-| 5/8 in plain steel rod, greased (forms a tie-rod hole), cut to 144 mm, 247 mm, 381 mm, 381 mm | 2 |
+| 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 4 |
+| 5/8 in plain steel rod, greased (forms a slope tie-rod hole), cut to 134 mm, 237 mm | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
 
 ## 3. Print
 
-46 prints, 0.34 kg, about 27 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+50 prints, 0.39 kg, about 33 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -72,14 +73,14 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `upright/former-foot-gasket-groove-part2of4.stl` | 2 | 3 | 8m 46s |
 | `upright/former-foot-gasket-groove-part3of4.stl` | 2 | 3 | 8m 46s |
 | `upright/former-foot-gasket-groove-part4of4.stl` | 2 | 7 | 17m 10s |
-| `upright/plug-slope-plug-lower.stl` | 2 | 19 | 45m 49s |
-| `upright/plug-slope-plug-upper.stl` | 2 | 19 | 45m 47s |
-| `upright/plug-tie-rod-pocket.stl` | 4 | 33 | 39m 54s |
+| `upright/plug-slope-plug-lower.stl` | 2 | 29 | 1h 0m 39s |
+| `upright/plug-slope-plug-upper.stl` | 2 | 29 | 1h 0m 39s |
 | `upright/kit-plate-spacer.stl` | 4 | 15 | 20m 9s |
 | `upright/kit-post-bushing.stl` | 4 | 67 | 1h 11m 51s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
 | `upright/cast-in-post-l1-plug.stl` | 4 | 16 | 24m 37s |
+| `upright/cast-in-rod-sleeve-l1a.stl` | 8 | 61 | 57m 53s |
 
 ## 4. Cut the boards
 
@@ -114,6 +115,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 | 4.5 mm | 11/64 in | cleat, corner bracket, saddle, slope-plug-lower, slope-plug-upper, toe-filler |
 | 10 mm | 25/64 in | 3/8-16 bolt into the top plate |
 | 13.1 mm | 33/64 in | 1/2-13 bolt, base dowel hole |
+| 13.5 mm | 17/32 in | 1/2 rod through a sleeve |
 | 16.3 mm | 41/64 in | 5/8 core rod |
 | 63.5 mm | 2-1/2 in hole saw | hole saw |
 
@@ -142,11 +144,11 @@ Cast foot down. Build two of everything.
 
 ![Upright, step 3](../../renders/mold/step-upright-3.png)
 
-4. Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends nearer the top plate: 6 mm room); greased 5/8 in rods up through the floor (short ones into the slope plugs, long ones to the top); dowel-hole bolt from underneath.
+4. Mold on its four 2x4 blocks. Posts up through the bushings, standing on the bench (a long post just ends nearer the top plate: 6 mm room); greased 5/8 in rods up through the floor into the slope plugs; the two top sleeves standing over their floor holes, tops taped; dowel-hole bolt from underneath.
 
 ![Upright, step 4](../../renders/mold/step-upright-4.png)
 
-5. Fill to the line. Top pocket plugs down the long rods, top plate hung from the bridge, bridge onto its saddles.
+5. Fill to the line. Top plate (both layers) hung from the bridge, bridge onto its saddles; greased 1/2 in rods up from under the floor, through the sleeves, the plate and the bridge.
 
 ![Upright, step 5](../../renders/mold/step-upright-5.png)
 
@@ -209,9 +211,9 @@ edge on the floor). The templates carry the same holes at full size.
 | 14 | 178 | 333 | 4.5 | cleat |
 | 15 | 99 | 371 | 63.5 | hole saw |
 | 16 | 131 | 414 | 3.2 | foot-gasket-groove |
-| 17 | 79 | 426 | 16.3 | 5/8 core rod |
+| 17 | 79 | 426 | 13.5 | 1/2 rod through a sleeve |
 | 18 | 99 | 426 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 19 | 119 | 426 | 16.3 | 5/8 core rod |
+| 19 | 119 | 426 | 13.5 | 1/2 rod through a sleeve |
 | 20 | 67 | 461 | 3.2 | foot-gasket-groove |
 | 21 | 99 | 481 | 63.5 | hole saw |
 | 22 | 20 | 495 | 4.5 | cleat |
@@ -257,8 +259,8 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 32 | 66 | 4.5 | slope-plug-lower |
-| 2 | 32 | 209 | 4.5 | slope-plug-upper |
+| 1 | 27 | 66 | 4.5 | slope-plug-lower |
+| 2 | 27 | 209 | 4.5 | slope-plug-upper |
 | 3 | 14 | 301 | 4.5 | corner bracket |
 | 4 | 66 | 301 | 4.5 | corner bracket |
 
@@ -269,8 +271,8 @@ Outline corners (x, y): (495, 0), (0, 0), (0, 271), (231, 271)
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 87 | 10 | 10 | 3/8-16 bolt into the top plate |
-| 2 | 85 | 34 | 16.3 | 5/8 core rod |
-| 3 | 45 | 34 | 16.3 | 5/8 core rod |
+| 2 | 85 | 34 | 13.5 | 1/2 rod through a sleeve |
+| 3 | 45 | 34 | 13.5 | 1/2 rod through a sleeve |
 | 4 | 43 | 100 | 10 | 3/8-16 bolt into the top plate |
 
 #### Upright cleat, outer (x2)
