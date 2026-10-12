@@ -2,10 +2,10 @@
 <polygon points="130.9,108.0 0.0,108.0 0.0,0.0 130.9,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
 <circle cx="87.4" cy="98.5" r="5.0" fill="none" stroke="#a8641a" stroke-width="0.33"/>
 <text x="92.9" y="98.1" font-size="2.6" fill="#1d2422">1</text>
-<circle cx="85.4" cy="73.5" r="8.2" fill="none" stroke="#a8641a" stroke-width="0.33"/>
-<text x="94.0" y="73.1" font-size="2.6" fill="#1d2422">2</text>
-<circle cx="45.4" cy="73.5" r="8.2" fill="none" stroke="#a8641a" stroke-width="0.33"/>
-<text x="54.0" y="73.1" font-size="2.6" fill="#1d2422">3</text>
+<circle cx="85.4" cy="73.5" r="6.8" fill="none" stroke="#a8641a" stroke-width="0.33"/>
+<text x="92.6" y="73.1" font-size="2.6" fill="#1d2422">2</text>
+<circle cx="45.4" cy="73.5" r="6.8" fill="none" stroke="#a8641a" stroke-width="0.33"/>
+<text x="52.6" y="73.1" font-size="2.6" fill="#1d2422">3</text>
 <circle cx="43.4" cy="8.5" r="5.0" fill="none" stroke="#a8641a" stroke-width="0.33"/>
 <text x="48.9" y="8.1" font-size="2.6" fill="#1d2422">4</text>
 <text x="0" y="111.6" font-size="2.6" fill="#5b6662">0,0 · 131 x 108 mm · seen from the outside (top)</text>

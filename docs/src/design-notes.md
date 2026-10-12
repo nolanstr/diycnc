@@ -13,20 +13,21 @@ Five epoxy-granite castings that bolt together, each with cast-in steel:
 | Module | Steel inside | Joins to |
 |---|---|---|
 | Base front | 2x 2x2x1/8 in tubes (12 in) under the table rails, hollow, sockets for the split spigots, 2x 1/2-13 draw rods, the coolant outlet | Rear half: 1-1/2 in spigots slide inside the sockets (printed sleeves take up the clearance); the draw rods pull it tight from pockets in the front face. Cast against the rear half, so the joint fits by construction |
-| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), 4 printed socket liners, 1/2-13 coupling nuts, O-ring groove on the split face | - |
-| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (12 in) that stick out the bottom, 3/8 in top plate, O-ring groove under the foot | Posts are grouted into the oversize sockets at first assembly (waxed, so they lift out), a dowel locates it, 4x 1/2-13 tie rods pull it down (two from pockets at the top, two from pockets in the sloped front) |
+| Base rear | 2x 2x2x1/8 in tubes (12 in), 2x 1-1/2 in spigots (6 in), sockets, draw-rod coupling nuts, O-ring groove on the split face | - |
+| Upright (x2), a raked buttress | 2x 1-1/2x1-1/2x1/8 in posts (11 in) that stick out the bottom, a two-layer 1 in steel top plate, O-ring groove under the foot | Posts are grouted into the oversize sockets at first assembly (waxed, so they lift out), a dowel locates it, 4x 1/2-13 tie rods pull it down: two from nuts held in the top plate, two from pockets in the sloped front, all right through the base to 3/8 x 3 in steel anchor bars in its underside |
 | Beam (140 deep x 140 high) | 2x 2x2x1/8 in tubes (18 in), drilled 3/4 in where the inner cap screws pass | A dowel (grouted into an oversize plate hole at first assembly) and 4x 3/8-16 bolts per side into the upright top plates |
 
 **Nothing you buy gets cut.** The rails (including the 600 mm Y pair), ballscrews and tube are
 used at the lengths they're sold in: tube in 18, 12 and 6 in pieces of two US sizes (remnants
 are fine, lengths +/- 1/4 in, 0.120 in wall works as well as 1/8 in). The risers, aluminum
-plates and the upright top plates are ordered cut to size. The only cutting left is the 1/2-13
-threaded rod. The only machining is drilling the beam tubes (4 holes each) and drilling and
-tapping the risers, top plates and support pads. Use plain steel, not galvanized: epoxy bonds
+plates are ordered cut to size, and the upright top plates and the base anchor bars are laser cut
+from the DXFs in `docs/1-sourcing/laser/`. The only cutting left is the 1/2-13 threaded rod. The
+only machining is drilling the beam tubes (4 holes each), drilling and tapping the risers and
+support pads, and tapping the top plates and anchor bars. Use plain steel, not galvanized: epoxy bonds
 poorly to zinc. Wire-brush off rust and loose scale and degrease just before casting; paint only the
 part of each leg that hangs below the base.
 
-**Keeping the epoxy down.** About 9.9 kg of epoxy (8.5 % of the 116 kg the castings would weigh with sand; 126 kg with the alumina):
+**Keeping the epoxy down.** About 10.1 kg of epoxy (8.5 % of the 119 kg the castings would weigh with sand; 128 kg with the alumina):
 - The base sockets, posts and legs stay hollow. Printed plugs close their ends so no mix
   gets in; fill them with dry sand first if you want extra damping. The beam tubes are
   filled, because the cap screws pass through them.
@@ -34,8 +35,8 @@ part of each leg that hangs below the base.
   (80 mm wide, the narrowest that still fills around the rail tubes) under the table rails, a
   full-depth tie between them across the split, a full-depth rib across the front of each
   upright foot and another along the split, and a 20 mm top skin almost everywhere else,
-  including over pockets under the upright feet that keep clear of the tie-rod couplers and
-  sockets. The 70 mm front wall carries the coolant trough. Every pocket is open to the
+  including over pockets under the upright feet that keep clear of the band under each upright
+  where the tie rods run down to the anchor bar, and of the sockets. The 70 mm front wall carries the coolant trough. Every pocket is open to the
   bottom, so the cores (printed shells or foam blocks) pull straight out; a few are shallow
   steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
   the sockets (`base_pockets` in `model/build_cnc.py`).
@@ -46,7 +47,7 @@ with every wall 25 mm above the pour line, held by printed brackets and saddles 
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
 it is too thin, and pieces cut to fit the printer are pegged together. The hidden pocket and socket
-cores are XPS foam, which keeps the printing to 1.3 kg of PETG (sliced in Bambu Studio). A clash check in the
+cores are XPS foam, which keeps the printing to 1.5 kg of PETG (sliced in Bambu Studio). A clash check in the
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
 (flush top faces, matching split faces, tubes straight onto the spigots), and the posts and
@@ -71,7 +72,7 @@ the 0.2 mm a side the old printed socket liners needed.
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
   **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
   of that for far less. **Epoxy grout** (Laticrete SpectraLock) is fine for a test bar or a
-  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 126 kg. Whiting is
+  repair, but it's fine-grained (about 15-20 % binder) and far too expensive for 128 kg. Whiting is
   used instead of silica flour because it has no crystalline silica: a plain dust mask is enough. A good mix gets to
   8.5 % epoxy, which fits a single 3 gal kit (10 % needs a second, small kit); the build guide's
   jar test and test bars check it before anything is cast.
@@ -88,22 +89,28 @@ the aluminum plates and needs no inserts. See the build guide.
 **Load path.** The castings carry the load; the steel is where load changes hands. A cutting
 force goes spindle, Z plate, Z and X blocks, X rails, steel risers, beam casting; then at each end
 four 3/8-16 grade 8 bolts and a dowel into a 3/8 in steel plate cast into the upright top; the upright
-casting; four 1/2-13 tie rods per upright into steel couplers cast 35-70 mm down in the base, with the
-foot bearing on the base top and two grouted steel posts in sockets taking the shear; the base halves,
+casting; four 1/2-13 tie rods per upright, from nuts held in the top plate (or in the slope pockets)
+right through the upright and the base to a 3/8 x 3 in steel anchor bar in the base underside, nut
+and washer below it, with the foot bearing on the base top and two grouted steel posts in sockets
+taking the shear; the base halves,
 clamped face to face by two draw rods, with the steel spigots in the rail tubes keeping them in line;
 and back up through the Y risers, rails and blocks to the table. Every bolted joint is steel thread in
 steel (plates, couplers, nuts) or a cast-in brass insert, never a thread cut in epoxy granite, and every joint bears
-on a big flat epoxy face under preload. The stiffness study treats the joints as bonded, which is
+on a big flat epoxy face under preload. The uprights in particular hang on one steel chain: the
+beam screws pull up on the top plate, the tie rods pull it down, and the anchor bars take the rods
+under the base, so the epoxy granite between them only ever sees compression, and nothing that
+holds an upright depends on a thread or a bond in the casting. All eight tie-rod nuts are under
+the base or in the slope pockets, where they can be checked and retightened. The stiffness study treats the joints as bonded, which is
 what that preload is for.
 
-The cast-in tubes aren't welded into one frame, on purpose. A welded skeleton would have to be one
-casting (about 150 kg, one mold) or be welded after casting (the heat ruins the epoxy next to it); it
-would add steel and weight; and it would make the frame one piece that can't be moved in parts,
-re-cast one member at a time, or rebuilt with a longer beam. It also wouldn't help much: the
-frame is already about 2-4 times stiffer at the tool (84-125 N/um) than the ballscrews (30-50 N/um),
-and the study found the tubes inside the members worth 1 % (base) and 6-7 % (beam). What does
-pay is keeping the joints flat, clean and preloaded, which is why they're cast against each other
-or grouted.
+The steel is tied together with bolts, not welded. A welded skeleton would have to be one casting
+(about 150 kg, one mold) or be welded after casting (the heat ruins the epoxy next to it), and it
+would make the frame one piece that can't be moved in parts, re-cast one member at a time, or
+rebuilt with a longer beam. Bolted, the chain from the beam to the anchor bars is just as
+continuous in tension, and it comes apart. The tubes inside the members aren't part of it; the
+study found them worth 1 % (base) and 6-7 % (beam), and the frame is already about 2-4 times
+stiffer at the tool (84-125 N/um) than the ballscrews (30-50 N/um). What does pay is keeping the
+joints flat, clean and preloaded, which is why they're cast against each other or grouted.
 
 **Steel tolerances.** Nothing is cut at home, but a supplier's saw cut is only good to about
 1/8 in, and A500 tube is about 0.5 mm off nominal with a weld seam inside. Each cast-in piece is
@@ -123,7 +130,7 @@ coolant runs to the two drains at the front. The door laps over the base front f
 Assembly: base halves (spigots in, tighten the draw rods), uprights (posts grouted into the
 sockets the first time, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
 take the X and Y motors off first (they pass through the enclosure panels), then
-reverse the order. Heaviest piece: the rear base half (about 38 kg). The upright feet run
+reverse the order. Heaviest piece: the rear base half (about 41 kg). The upright feet run
 forward across the base split, so the base halves have to be joined before the uprights go on.
 
 ## Stiffness study (`analysis/`)
@@ -323,7 +330,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,562** (including $150 of alumina grit for the beam and uprights, and about $200 for the
+**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,655** (including $150 of alumina grit for the beam and uprights, and about $200 for the
 bolt-together mold kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
 electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
