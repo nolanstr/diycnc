@@ -33,28 +33,28 @@
    "holes": [
     [
      80.0,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      266.03,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      452.07,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      638.1,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
@@ -130,14 +130,14 @@
      "11/64 in"
     ],
     [
-     20.0,
+     20.95,
      99.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     698.1,
+     697.15,
      99.05,
      4.5,
      "cleat",
@@ -179,6 +179,20 @@
      "11/64 in"
     ],
     [
+     231.05,
+     135.05,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
+    ],
+    [
+     487.05,
+     135.05,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
+    ],
+    [
      86.55,
      150.3,
      4.5,
@@ -196,14 +210,14 @@
      269.05,
      184.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
      449.05,
      184.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
@@ -266,25 +280,25 @@
      269.05,
      304.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
      449.05,
      304.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
-     20.0,
+     20.95,
      313.88,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     698.1,
+     697.15,
      313.88,
      4.5,
      "cleat",
@@ -322,14 +336,14 @@
      269.05,
      424.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
      449.05,
      424.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
@@ -375,14 +389,14 @@
      "25/64 in"
     ],
     [
-     20.0,
+     20.95,
      528.72,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     698.1,
+     697.15,
      528.72,
      4.5,
      "cleat",
@@ -392,14 +406,14 @@
      269.05,
      544.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
      449.05,
      544.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
@@ -462,14 +476,14 @@
      269.05,
      664.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
      449.05,
      664.05,
      5.5,
-     "M5 screw into a rail bar",
+     "M5 screw into the steel",
      "7/32 in"
     ],
     [
@@ -499,6 +513,20 @@
      6.5,
      "M6 screw into a pad",
      "17/64 in"
+    ],
+    [
+     320.05,
+     712.05,
+     5.5,
+     "M5 screw into the steel",
+     "7/32 in"
+    ],
+    [
+     398.05,
+     712.05,
+     5.5,
+     "M5 screw into the steel",
+     "7/32 in"
     ],
     [
      336.05,
@@ -536,14 +564,28 @@
      "9/64 in"
     ],
     [
-     20.0,
+     20.95,
      743.55,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     698.1,
+     222.05,
+     743.05,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
+    ],
+    [
+     496.05,
+     743.05,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
+    ],
+    [
+     697.15,
      743.55,
      4.5,
      "cleat",
@@ -586,28 +628,28 @@
     ],
     [
      80.0,
-     822.6,
+     821.65,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      266.03,
-     822.6,
+     821.65,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      452.07,
-     822.6,
+     821.65,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      638.1,
-     822.6,
+     821.65,
      4.5,
      "cleat",
      "11/64 in"
@@ -1254,10 +1296,10 @@
    "mold": "base",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     638.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -1270,38 +1312,38 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      638.1,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      598.1,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      412.07,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      226.03,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -1314,10 +1356,10 @@
    "mold": "base",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     638.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -1330,38 +1372,38 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      638.1,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      598.1,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      412.07,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      226.03,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -1374,10 +1416,10 @@
    "mold": "base",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     724.5,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -1390,38 +1432,38 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      724.5,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      684.5,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      469.67,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      254.83,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -1434,10 +1476,10 @@
    "mold": "base",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     724.5,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -1450,38 +1492,38 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      724.5,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      684.5,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      469.67,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      254.83,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -1993,7 +2035,7 @@
   {
    "name": "Upright floor",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "inside",
    "note": "",
    "size": [
@@ -2041,14 +2083,14 @@
      "1/8 in"
     ],
     [
-     20.0,
+     20.95,
      170.0,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     178.1,
+     177.15,
      170.0,
      4.5,
      "cleat",
@@ -2083,7 +2125,7 @@
      "33/64 in"
     ],
     [
-     20.0,
+     20.95,
      315.37,
      4.5,
      "cleat",
@@ -2104,7 +2146,7 @@
      "1/8 in"
     ],
     [
-     178.1,
+     177.15,
      315.37,
      4.5,
      "cleat",
@@ -2146,14 +2188,14 @@
      "1/8 in"
     ],
     [
-     20.0,
+     20.95,
      460.74,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     178.1,
+     177.15,
      460.74,
      4.5,
      "cleat",
@@ -2161,7 +2203,7 @@
     ],
     [
      99.05,
-     520.74,
+     519.79,
      4.5,
      "cleat",
      "11/64 in"
@@ -2172,7 +2214,7 @@
   {
    "name": "Upright side plate, outer",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "inside",
    "note": "cut to the profile",
    "size": [
@@ -2229,7 +2271,7 @@
   {
    "name": "Upright side plate, inner",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "inside",
    "note": "cut to the profile",
    "size": [
@@ -2286,7 +2328,7 @@
   {
    "name": "Upright back board",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "inside",
    "note": "",
    "size": [
@@ -2336,7 +2378,7 @@
   {
    "name": "Upright front board",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "inside",
    "note": "ends cut square",
    "size": [
@@ -2393,7 +2435,7 @@
   {
    "name": "Upright bridge",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "outside",
    "note": "",
    "size": [
@@ -2439,12 +2481,12 @@
   {
    "name": "Upright cleat, outer",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     370.7,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -2457,31 +2499,31 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      370.74,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      330.74,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      185.37,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -2492,12 +2534,12 @@
   {
    "name": "Upright cleat, inner",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     370.7,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -2510,31 +2552,31 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      370.74,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      330.74,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      185.37,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -2545,12 +2587,12 @@
   {
    "name": "Upright cleat, back",
    "mold": "upright",
-   "qty": 2,
+   "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     80.0,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -2563,17 +2605,17 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      80.0,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -2612,21 +2654,21 @@
    "holes": [
     [
      80.0,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      324.05,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      568.1,
-     20.0,
+     20.95,
      4.5,
      "cleat",
      "11/64 in"
@@ -2660,14 +2702,14 @@
      "7/32 in"
     ],
     [
-     20.0,
+     20.95,
      99.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     628.1,
+     627.15,
      99.05,
      4.5,
      "cleat",
@@ -2716,14 +2758,14 @@
      "17/64 in"
     ],
     [
-     20.0,
+     20.95,
      165.1,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
-     628.1,
+     627.15,
      165.1,
      4.5,
      "cleat",
@@ -2759,21 +2801,21 @@
     ],
     [
      80.0,
-     244.15,
+     243.2,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      324.05,
-     244.15,
+     243.2,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      568.1,
-     244.15,
+     243.2,
      4.5,
      "cleat",
      "11/64 in"
@@ -2837,6 +2879,20 @@
      13.1,
      "1/2 core rod",
      "33/64 in"
+    ],
+    [
+     406.55,
+     49.0,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
+    ],
+    [
+     406.55,
+     71.0,
+     5.5,
+     "M5 insert screw",
+     "7/32 in"
     ],
     [
      37.05,
@@ -3133,10 +3189,10 @@
    "mold": "beam",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     568.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -3149,31 +3205,31 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      568.1,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      528.1,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      284.05,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -3186,10 +3242,10 @@
    "mold": "beam",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     568.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -3202,31 +3258,31 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      568.1,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      528.1,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      284.05,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -3239,10 +3295,10 @@
    "mold": "beam",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     146.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -3255,24 +3311,24 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      146.05,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      106.05,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
@@ -3285,10 +3341,10 @@
    "mold": "beam",
    "qty": 1,
    "view": "outside",
-   "note": "offcut strip, flat on the floor",
+   "note": "flat on the floor",
    "size": [
     146.1,
-    40.0
+    38.1
    ],
    "outline": [
     [
@@ -3301,24 +3357,24 @@
     ],
     [
      0.0,
-     40.0
+     38.1
     ],
     [
      146.05,
-     40.0
+     38.1
     ]
    ],
    "holes": [
     [
      106.05,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"
     ],
     [
      40.0,
-     20.0,
+     19.05,
      4.5,
      "cleat",
      "11/64 in"

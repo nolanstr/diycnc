@@ -91,9 +91,11 @@ granite.
    hang below the base (after casting).
 6. **Threaded rod and hardware:** cut the 1/2-13 rods: per upright 2 x 363 mm (in the columns) and
    1 x 153 mm (at the toe); 2 x 687 mm for the base draw rods; 4 x 270 and 6 x 225 mm for the base cross
-   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 186 mm and 3 ties of 107 mm. Deburr the ends.
+   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 190 mm and 3 ties of 107 mm. Deburr the ends.
    A rod a few mm off is fine: one end is set flush and the error ends up in the 6 mm tail past the far
-   nut. Have 11 x M5 cast-in inserts ready for the enclosure (the only inserts left).
+   nut. Have 17 x M5 cast-in inserts ready: 11 for the enclosure and 4 for the way-cover rollers in the
+   base, 2 for the cable-chain mount in the beam. They hold only those add-ons; nothing structural
+   threads into the epoxy granite. Cast them all in, even if the enclosure and covers come later.
 
 ![Section through the uprights: columns, tie rods, top plates and the base pedestals](../../renders/frame_section_uprights.png)
 
@@ -126,8 +128,8 @@ lists the printed parts.
 |---|---|---|---|
 | Base front | top face (coolant floor) | 600 x 345 x 110 | 30.7 kg |
 | Base rear | top face | 600 x 380 x 110 | 41.1 kg |
-| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 400 long, 246 tall, sloped front | 12.5 kg each |
-| Beam | front face (rails) | 530 x 140 x 140 | 23.8 kg |
+| Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 400 long, 246 tall, sloped front | 12.1 kg each |
+| Beam | front face (rails) | 530 x 140 x 140 | 23.7 kg |
 
 **Casting order:**
 
@@ -136,7 +138,8 @@ lists the printed parts.
    split face. The two top faces come out flush and the split faces match. The front grid's end plates
    go straight onto the rear half's dowel pins, and the draw rods run on through, so
    that joint fits by construction. The split's gasket groove is in the rear half; tape over it first.
-3. **Uprights**, both from one batch, in two molds.
+3. **Uprights**, one after the other in the same mold (the two are the same part): take it apart after
+   the first one cures, scrape and re-wax it, and cast the second.
 4. **Beam.**
 
 ![Rear-half mold from above (mold the right way up): boards see-through, kit and cores orange](../../renders/build/02-mold-base-rear.png)
@@ -151,7 +154,9 @@ lists the printed parts.
   bars locate the pedestals. The draw rods and tie rods sit inside the tubes, so nothing forms their holes;
   tape over the holes in the pedestals' bottom bars (they're at the pour line). For the front half, the
   front grid's split end plates go onto the rear half's dowel pins. Printed plugs form the draw-rod nut
-  pockets down to the girders' end plates. The 11 enclosure inserts screw to the floor.
+  pockets down to the girders' end plates. The 15 inserts (11 for the enclosure, 4 for the way-cover
+  rollers) screw to the floor; the rear rollers' other feet go into two M5 holes in the BK pad, screwed
+  to the floor like the rest of the grid.
 - **Dowels** (rear half): two per upright, through the floor and the seat bars; they stand 15 mm proud and
   are grouted into oversize holes in the upright's foot at assembly (section 4).
 - **Legs:** through printed holders in the corners, each held at its cast-in depth by a pinch screw.
@@ -165,7 +170,8 @@ lists the printed parts.
   holes.
 - **Beam:** the face bar lies on the floor, held by greased M5 and M6 screws into its tapped holes, the back
   bar on its spacers above it; greased 1/2 in rods through the walls and the cap and seat bars form the
-  stud holes. The dowels sit in the bottom wall on printed stops.
+  stud holes. The dowels sit in the bottom wall on printed stops; the cable-chain mount's two inserts
+  screw to the top wall.
 
 ![Front-half mold, cast against the cured rear half](../../renders/build/04-mold-base-front.png)
 
@@ -182,8 +188,8 @@ fills the gaps between the next size up), which is what lets the epoxy stay at 8
 |---|---|---|---|---|
 | Epoxy | | Raka 127 + 606 | 8.5 % | 9.6 kg |
 | Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 10.5 kg |
-| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 10 kg (base) + 10 kg of 70 grit |
-| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 19 kg (base) + 20 kg of #16 grit |
+| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 16 kg |
+| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 19 kg (base) + 17 kg of #16 grit (beam, uprights) |
 | Pea gravel | 3-6 mm | bagged pea gravel, sieved | 20 % | 23 kg |
 | Gravel | 6-10 mm | 3/8 in crushed stone (#8) or bigger pea gravel | 20 % | 23 kg |
 
@@ -193,15 +199,15 @@ gravel into these bands. Wash anything dusty or clay-coated, and dry everything 
 locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
 either works.
 
-**Beam and uprights: aluminum oxide instead of the sand.** Aluminum oxide grit is about five
-times stiffer than sand or granite. Brown fused #16 (about 1.2 mm) replaces the coarse sand
-and black 70 grit (about 0.2 mm, Harbor Freight) replaces the fine sand; together they make
-these castings roughly 35 % stiffer, about 17 % on the whole frame. The grit is heavier, so
-swap it by volume: **1.5 kg of #16 for every 1 kg of coarse sand, and 1.4 kg of 70 grit for
-every 1 kg of fine sand**, everything else (epoxy included) the same. A 50 lb bag of #16 and
-a 25 lb bag of 70 grit cover the beam, both uprights and a pair of test bars. The base keeps
-the sand. Don't over-vibrate these: the heavy grit can settle. Use an old paddle; the grit
-wears it.
+**Beam and uprights: aluminum oxide instead of the coarse sand.** Aluminum oxide grit is about
+five times stiffer than sand or granite. Brown fused #16 (about 1.2 mm) replaces the coarse sand,
+which makes these castings roughly 20 % stiffer, about 5 % on the whole frame (the steel skeleton
+carries most of the load). The grit is heavier, so swap it by volume: **1.5 kg of #16 for every
+1 kg of coarse sand**, everything else (epoxy included) the same. A 50 lb bag covers the beam,
+both uprights and a pair of test bars. The fine sand stays sand, and the base keeps all sand.
+Don't over-vibrate these: the heavy grit can settle. Use an old paddle; the grit wears it.
+(Optional, and only before the pour: black 70 grit for the fine sand as well, 1.4 kg for every
+1 kg of fine sand, one 25 lb bag, is about 5 % more on the frame.)
 
 8.5 % only works if the aggregate packs densely, so prove the mix before casting anything:
 
@@ -211,7 +217,7 @@ wears it.
    until it's as small as you can get it (below about 25 % of the jar is good).
 2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mold (waxed like the others) and cast
    two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings,
-   plus two at 8.5 % with the alumina grits for the beam and uprights.
+   plus two at 8.5 % with the #16 grit for the beam and uprights.
 3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
    than a grain of sand, and every stone should be wetted. Then tap-test the other: weigh it,
    rest it on two foam strips 112 mm in from each end, tap the middle with a small hammer and
@@ -220,15 +226,16 @@ wears it.
    about 570 Hz for a 1.9 kg bar; 25 GPa would cost about 13 % of the frame stiffness.
 4. **Pick the mix.** Use 8.5 % if its bar is void-free and at least as stiff as the 9.5 % one;
    otherwise use 9.5 % and order the extra 1.5 qt epoxy kit. The alumina bar should come out
-   about 35 % stiffer than the plain 8.5 % one (it's heavier, so use the formula, not the
-   pitch); if it's well short, or it has voids, cast the beam and uprights with sand too.
+   about 20 % stiffer than the plain 8.5 % one (35 % with the 70 grit as well; it's heavier, so
+   use the formula, not the pitch); if it's well short, or it has voids, cast the beam and
+   uprights with sand too.
 
 | Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
 | Base front | 30.7 kg | 2.6 kg |
 | Base rear | 41.1 kg | 3.5 kg |
-| Uprights (alumina) | 2 x 12.5 kg | 2 x 1.0 kg |
-| Beam (alumina) | 23.8 kg | 1.7 kg |
+| Uprights (alumina) | 2 x 12.1 kg | 2 x 1.0 kg |
+| Beam (alumina) | 23.7 kg | 1.7 kg |
 
 Add 5-10 % for waste: about 10.5 kg, plus about 1 kg for the test bars, which fits the 3 gal kit
 (about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers
@@ -249,9 +256,9 @@ the gel coat.
 6. **Seal** the base top (the coolant floor) and the gutters with a thin epoxy gel coat. Paint
    the exposed leg ends.
 
-Cast the rear base half first and the front half against it (above). Cast the two uprights
-together from one batch, before the beam, so you can check the top-plate spacing against the beam
-mold.
+Cast the rear base half first and the front half against it (above). Cast the two uprights,
+one after the other in their mold, before the beam, so you can check the top-plate spacing against
+the beam mold.
 
 ## 4. Assemble the frame
 
@@ -283,7 +290,7 @@ mold.
      three, then tighten to about 40-50 N·m, front to back. Push the printed cap into the toe pocket,
      flush with the face (a dab of silicone holds it).
    - Check them again after a week and after the first month; later, once a year.
-5. **Beam:** the top plates' dowel holes are 14 mm, oversize the same way. Screw the eight 186 mm
+5. **Beam:** the top plates' dowel holes are 14 mm, oversize the same way. Screw the eight 190 mm
    3/8-16 studs down through the top plates' upper bars into the lower bars until they stop. Wax the beam's
    dowels, put grout in the holes, set the beam down over the studs and run a washer and nut on each,
    snug.
@@ -347,7 +354,8 @@ steel: the base's rail bars and the beam's face bar, tapped M5.
    on top.
 3. Spindle clamp on the Z plate, spindle in the clamp. Tram it later (section 9).
 
-Lubricate every block with the grease gun before moving anything far.
+Lubricate every block before moving anything far: a grease syringe with a needle tip on the blocks'
+M4 nipples does until the grease gun (an add-later item).
 
 ![Rails, screws and motors on the frame](../../renders/build/11-rails-screws-motors.png)
 
@@ -366,23 +374,31 @@ Lubricate every block with the grease gun before moving anything far.
   antifreeze, switched by a relay so it runs whenever the spindle runs. Never run the spindle
   dry.
 - **Safety:** wire the E-stop to cut driver enable and the VFD run signal in hardware. Fit
-  the homing switches, then the tool setter.
+  the homing switches, then the tool setter. None of the switches needs anything in the castings:
+  Y goes on the Y motor bracket, where the table's rear edge (or a small printed dog on it) trips
+  it; X and Z go on the X carriage, X tripped by the BK10 near the end of travel, Z by the Z plate.
 
-## 8. Enclosure and coolant (part 3 of the sourcing list)
+## 8. Add-ons, enclosure and coolant (the add-later items and part 3 of the sourcing list)
 
-The machine runs without these: until then, brush or drip cutting fluid onto the cut, keep the
-way covers and screw cover on, and let the gutters and drain carry the fluid to the pan under the
-base. Cast the enclosure inserts into the base now so the frame bolts straight on later.
+The machine runs without these: until then, brush or drip cutting fluid onto the cut and let the
+gutters and drain carry it to a bin under the base. Everything here bolts to fixings that are
+already in the castings, so nothing is ever recast: fit them in any order, as you buy them. Fit the
+way covers before steady steel work; chips wear the Y screw and rails.
 
 1. Bolt the 2020 frame to the base top with angle brackets into the cast-in M5 inserts
    (M5 x 35). Cut list in `docs/5-design/report.txt`.
 2. ACM side, back and roof panels; polycarbonate door on hinges and gas struts, magnetic catch.
    Brush seals where the X and Y motors pass through the panels.
-3. Way covers: the stainless strips on their spring rollers in front of and behind the table,
-   the spiral cover on the Y screw, the drip shield over the X rails.
+3. Way covers: the stainless strips on their spring rollers in front of and behind the table.
+   Each roller's feet screw down (M5 x 12): the front roller's into two inserts behind the coolant
+   trough, the rear rollers' outer feet into two inserts and their inner feet into the tapped BK
+   pad beside the BK12. The spiral cover clamps on the Y screw between the nut housing and the
+   BK12. The drip shield (ACM offcut) goes over the X rails, its back edge under the washers of the
+   four front beam studs: back the nuts off, slide it in, retighten.
 4. Coolant: slide the sump (steam-table pan with the chip basket, magnet, baffle, screen and
-   24 V pump) in under the base below the drain nipple. Run the return hose to the bulkhead, up
-   the cable chain, to the manifold and nozzles on the spindle clamp. Use water-soluble coolant.
+   24 V pump) in under the base below the drain nipple, in place of the bin. Run the return hose
+   to the bulkhead, up the cable chain, to the manifold and nozzles on the spindle clamp. Use
+   water-soluble coolant.
 
 ![Enclosure, coolant sump and bench](../../renders/build/13-enclosure-coolant.png)
 

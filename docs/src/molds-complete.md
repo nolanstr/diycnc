@@ -46,7 +46,8 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 | Material | Amount | Notes |
 |---|---|---|
-| Melamine board, 3/4 in | 2 sheets, 4 x 8 ft | layout in section 4 |
+| Melamine board, 3/4 in | 1 sheet, 4 x 8 ft | layout in section 4 |
+| 1x2 lumber (furring strip is fine) | 3 x 8 ft 1x2 (5.0 m) | the cleats: they lie on the floor outside the walls |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
 | PETG | 1.02 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
@@ -59,20 +60,20 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M3 nut | 20 |
 | M3 washer | 20 |
 | M3 x 25 bolt | 20 |
-| M4 nut | 174 |
-| M4 washer | 170 |
+| M4 nut | 154 |
+| M4 washer | 150 |
 | M4 x 20 bolt (leg pinch screw) | 4 |
-| M4 x 30 bolt | 98 |
-| M4 x 35 bolt | 32 |
-| M4 x 45 bolt | 40 |
-| M5 x 20 screw, greased (holds an insert) | 11 |
-| M5 x 30 screw, greased (holds a rail bar) | 10 |
+| M4 x 30 bolt | 87 |
+| M4 x 35 bolt | 30 |
+| M4 x 45 bolt | 33 |
+| M5 x 20 screw, greased (holds an insert) | 17 |
+| M5 x 30 screw, greased (holds a rail bar or the BK pad) | 12 |
 | M5 x 40 screw, greased (holds the face plate) | 8 |
 | M6 x 30 screw, greased (holds a support pad) | 6 |
 | M6 x 40 screw, greased (holds the face plate) | 6 |
 | 1/2 in plain steel rod, greased (forms a beam bolt hole), 204 mm | 8 |
-| 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 4 |
-| 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 4 |
+| 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 2 |
+| 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 2 |
 | the two column tie rods themselves, greased: up through the floor and the columns into the top plate, to center the columns while the casting goes off | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl, a fine saw or hot wire for the foam.
@@ -163,11 +164,10 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 ## 4. Cut the boards
 
 Have the store rip the strips; crosscut at home. Write each board's name on its outside face, and mark
-the cast face (the melamine face the mix touches).
+the cast face (the melamine face the mix touches). The cleats are cut from 1x2 lumber, not the sheet;
+the bridges and struts come out of the sheet's offcuts.
 
 ![Sheet 1](boards/sheet-1.svg)
-
-![Sheet 2](boards/sheet-2.svg)
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
@@ -178,10 +178,10 @@ the cast face (the melamine face the mix touches).
 | Base side wall, right | 1 | 724 x 135 |  |
 | Base partition | 1 | 600 x 135 | rear half only; comes out before the front half |
 | Base partition strut | 2 | 326 x 60 | offcut, stands on edge; holds the partition foot (rear half only) |
-| Base cleat, front | 1 | 638 x 40 | offcut strip, flat on the floor |
-| Base cleat, rear | 1 | 638 x 40 | offcut strip, flat on the floor |
-| Base cleat, left | 1 | 724 x 40 | offcut strip, flat on the floor |
-| Base cleat, right | 1 | 724 x 40 | offcut strip, flat on the floor |
+| Base cleat, front | 1 | 638 x 38 | 1x2 lumber; flat on the floor |
+| Base cleat, rear | 1 | 638 x 38 | 1x2 lumber; flat on the floor |
+| Base cleat, left | 1 | 724 x 38 | 1x2 lumber; flat on the floor |
+| Base cleat, right | 1 | 724 x 38 | 1x2 lumber; flat on the floor |
 | Base bridge y=-230 | 1 | 651 x 60 |  |
 | Base bridge y=-130 | 1 | 651 x 60 |  |
 | Base bridge y=-60 | 1 | 651 x 60 |  |
@@ -190,24 +190,24 @@ the cast face (the melamine face the mix touches).
 | Base bridge y=280 | 1 | 651 x 60 |  |
 | Base leg bridge y=-310 | 1 | 480 x 60 |  |
 | Base leg bridge y=344 | 1 | 480 x 60 |  |
-| Upright floor | 2 | 198 x 541 |  |
-| Upright side plate, outer | 2 | 461 x 271 (profile) | cut to the profile |
-| Upright side plate, inner | 2 | 461 x 271 (profile) | cut to the profile |
-| Upright back board | 2 | 80 x 271 |  |
-| Upright front board | 2 | 80 x 292 | ends cut square |
-| Upright bridge | 2 | 131 x 138 |  |
-| Upright cleat, outer | 2 | 371 x 40 | offcut strip, flat on the floor |
-| Upright cleat, inner | 2 | 371 x 40 | offcut strip, flat on the floor |
-| Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
+| Upright floor | 1 | 198 x 541 |  |
+| Upright side plate, outer | 1 | 461 x 271 (profile) | cut to the profile |
+| Upright side plate, inner | 1 | 461 x 271 (profile) | cut to the profile |
+| Upright back board | 1 | 80 x 271 |  |
+| Upright front board | 1 | 80 x 292 | ends cut square |
+| Upright bridge | 1 | 131 x 138 |  |
+| Upright cleat, outer | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, inner | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, back | 1 | 80 x 38 | 1x2 lumber; flat on the floor |
 | Beam floor | 1 | 648 x 264 |  |
 | Beam top wall | 1 | 568 x 165 |  |
 | Beam bottom wall | 1 | 568 x 165 |  |
 | Beam end wall, left | 1 | 146 x 165 |  |
 | Beam end wall, right | 1 | 146 x 165 |  |
-| Beam cleat, top | 1 | 568 x 40 | offcut strip, flat on the floor |
-| Beam cleat, bottom | 1 | 568 x 40 | offcut strip, flat on the floor |
-| Beam cleat, left | 1 | 146 x 40 | offcut strip, flat on the floor |
-| Beam cleat, right | 1 | 146 x 40 | offcut strip, flat on the floor |
+| Beam cleat, top | 1 | 568 x 38 | 1x2 lumber; flat on the floor |
+| Beam cleat, bottom | 1 | 568 x 38 | 1x2 lumber; flat on the floor |
+| Beam cleat, left | 1 | 146 x 38 | 1x2 lumber; flat on the floor |
+| Beam cleat, right | 1 | 146 x 38 | 1x2 lumber; flat on the floor |
 
 ## 5. Mark and drill
 
@@ -224,7 +224,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 | 3.2 mm | 1/8 in | foot-gasket-groove, motor-relief, split-gasket-groove |
 | 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
 | 4.5 mm | 11/64 in | back-edge, cleat, core post, corner bracket, corner-L, corner-R, draw-pocket-L, draw-pocket-R, gutter-L, gutter-R, leg holder, saddle, toe-filler, toe-plug, trough |
-| 5.5 mm | 7/32 in | M5 insert screw, M5 screw into a rail bar, M5 screw into the face plate |
+| 5.5 mm | 7/32 in | M5 insert screw, M5 screw into the face plate, M5 screw into the steel |
 | 6.5 mm | 17/64 in | M6 screw into a pad, M6 screw into the face plate |
 | 9.6 mm | 25/64 in | 3/8 dowel, 3/8 dowel pin |
 | 10 mm | 25/64 in | 3/8-16 bolt into the top plate |
@@ -311,9 +311,9 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base front, step 3](../../renders/mold/step-base-front-3.png)
 
-### Uprights (two molds)
+### Uprights (one mold, cast twice)
 
-Cast foot down. Build two of everything. The skeleton: the foot bar, two columns and the top plate (two flat bars), clamped later by the column tie rods.
+Cast foot down. The two uprights are the same part: cast one, take the mold apart after the cure, scrape and re-wax it and cast the other. The skeleton: the foot bar, two columns and the top plate (two flat bars), clamped later by the column tie rods.
 
 ![An upright skeleton](../../renders/mold/skeleton-upright.png)
 
@@ -400,10 +400,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 80 | 20 | 4.5 | cleat |
-| 2 | 266 | 20 | 4.5 | cleat |
-| 3 | 452 | 20 | 4.5 | cleat |
-| 4 | 638 | 20 | 4.5 | cleat |
+| 1 | 80 | 21 | 4.5 | cleat |
+| 2 | 266 | 21 | 4.5 | cleat |
+| 3 | 452 | 21 | 4.5 | cleat |
+| 4 | 638 | 21 | 4.5 | cleat |
 | 5 | 71 | 64 | 3.4 | corner-R |
 | 6 | 647 | 64 | 3.4 | corner-L |
 | 7 | 159 | 69 | 5.5 | M5 insert screw |
@@ -414,75 +414,81 @@ edge on the floor). The templates carry the same holes at full size.
 | 12 | 387 | 89 | 4.5 | trough |
 | 13 | 499 | 89 | 4.5 | trough |
 | 14 | 611 | 89 | 4.5 | trough |
-| 15 | 20 | 99 | 4.5 | cleat |
-| 16 | 698 | 99 | 4.5 | cleat |
+| 15 | 21 | 99 | 4.5 | cleat |
+| 16 | 697 | 99 | 4.5 | cleat |
 | 17 | 163 | 104 | 4.5 | trough |
 | 18 | 219 | 104 | 4.5 | trough |
 | 19 | 331 | 104 | 4.5 | trough |
 | 20 | 443 | 104 | 4.5 | trough |
 | 21 | 555 | 104 | 4.5 | trough |
-| 22 | 87 | 150 | 4.5 | gutter-R |
-| 23 | 632 | 150 | 4.5 | gutter-L |
-| 24 | 269 | 184 | 5.5 | M5 screw into a rail bar |
-| 25 | 449 | 184 | 5.5 | M5 screw into a rail bar |
-| 26 | 69 | 209 | 5.5 | M5 insert screw |
-| 27 | 336 | 210 | 6.5 | M6 screw into a pad |
-| 28 | 382 | 210 | 6.5 | M6 screw into a pad |
-| 29 | 649 | 209 | 5.5 | M5 insert screw |
-| 30 | 87 | 223 | 4.5 | gutter-R |
-| 31 | 632 | 223 | 4.5 | gutter-L |
-| 32 | 87 | 295 | 3.4 | gutter-R |
-| 33 | 632 | 295 | 3.4 | gutter-L |
-| 34 | 269 | 304 | 5.5 | M5 screw into a rail bar |
-| 35 | 449 | 304 | 5.5 | M5 screw into a rail bar |
-| 36 | 20 | 314 | 4.5 | cleat |
-| 37 | 698 | 314 | 4.5 | cleat |
-| 38 | 87 | 368 | 3.4 | gutter-R |
-| 39 | 632 | 368 | 3.4 | gutter-L |
-| 40 | 69 | 421 | 5.5 | M5 insert screw |
-| 41 | 649 | 421 | 5.5 | M5 insert screw |
-| 42 | 269 | 424 | 5.5 | M5 screw into a rail bar |
-| 43 | 449 | 424 | 5.5 | M5 screw into a rail bar |
-| 44 | 87 | 434 | 3.4 | gutter-R |
-| 45 | 632 | 434 | 3.4 | gutter-L |
-| 46 | 87 | 494 | 3.4 | gutter-R |
-| 47 | 632 | 494 | 3.4 | gutter-L |
-| 48 | 134 | 504 | 9.6 | 3/8 dowel |
-| 49 | 584 | 504 | 9.6 | 3/8 dowel |
-| 50 | 20 | 529 | 4.5 | cleat |
-| 51 | 698 | 529 | 4.5 | cleat |
-| 52 | 269 | 544 | 5.5 | M5 screw into a rail bar |
-| 53 | 449 | 544 | 5.5 | M5 screw into a rail bar |
-| 54 | 87 | 554 | 3.4 | gutter-R |
-| 55 | 632 | 554 | 3.4 | gutter-L |
-| 56 | 87 | 614 | 3.4 | gutter-R |
-| 57 | 632 | 614 | 3.4 | gutter-L |
-| 58 | 134 | 619 | 9.6 | 3/8 dowel |
-| 59 | 584 | 619 | 9.6 | 3/8 dowel |
-| 60 | 69 | 634 | 5.5 | M5 insert screw |
-| 61 | 649 | 634 | 5.5 | M5 insert screw |
-| 62 | 269 | 664 | 5.5 | M5 screw into a rail bar |
-| 63 | 449 | 664 | 5.5 | M5 screw into a rail bar |
-| 64 | 87 | 674 | 3.4 | gutter-R |
-| 65 | 632 | 674 | 3.4 | gutter-L |
-| 66 | 336 | 705 | 6.5 | M6 screw into a pad |
-| 67 | 382 | 705 | 6.5 | M6 screw into a pad |
-| 68 | 336 | 718 | 6.5 | M6 screw into a pad |
-| 69 | 382 | 718 | 6.5 | M6 screw into a pad |
-| 70 | 87 | 734 | 3.4 | gutter-R |
-| 71 | 343 | 737 | 3.2 | motor-relief |
-| 72 | 632 | 734 | 3.4 | gutter-L |
-| 73 | 20 | 744 | 4.5 | cleat |
-| 74 | 698 | 744 | 4.5 | cleat |
-| 75 | 64 | 772 | 3.4 | corner-R |
-| 76 | 375 | 770 | 3.2 | motor-relief |
-| 77 | 654 | 772 | 3.4 | corner-L |
-| 78 | 209 | 774 | 5.5 | M5 insert screw |
-| 79 | 509 | 774 | 5.5 | M5 insert screw |
-| 80 | 80 | 823 | 4.5 | cleat |
-| 81 | 266 | 823 | 4.5 | cleat |
-| 82 | 452 | 823 | 4.5 | cleat |
-| 83 | 638 | 823 | 4.5 | cleat |
+| 22 | 231 | 135 | 5.5 | M5 insert screw |
+| 23 | 487 | 135 | 5.5 | M5 insert screw |
+| 24 | 87 | 150 | 4.5 | gutter-R |
+| 25 | 632 | 150 | 4.5 | gutter-L |
+| 26 | 269 | 184 | 5.5 | M5 screw into the steel |
+| 27 | 449 | 184 | 5.5 | M5 screw into the steel |
+| 28 | 69 | 209 | 5.5 | M5 insert screw |
+| 29 | 336 | 210 | 6.5 | M6 screw into a pad |
+| 30 | 382 | 210 | 6.5 | M6 screw into a pad |
+| 31 | 649 | 209 | 5.5 | M5 insert screw |
+| 32 | 87 | 223 | 4.5 | gutter-R |
+| 33 | 632 | 223 | 4.5 | gutter-L |
+| 34 | 87 | 295 | 3.4 | gutter-R |
+| 35 | 632 | 295 | 3.4 | gutter-L |
+| 36 | 269 | 304 | 5.5 | M5 screw into the steel |
+| 37 | 449 | 304 | 5.5 | M5 screw into the steel |
+| 38 | 21 | 314 | 4.5 | cleat |
+| 39 | 697 | 314 | 4.5 | cleat |
+| 40 | 87 | 368 | 3.4 | gutter-R |
+| 41 | 632 | 368 | 3.4 | gutter-L |
+| 42 | 69 | 421 | 5.5 | M5 insert screw |
+| 43 | 649 | 421 | 5.5 | M5 insert screw |
+| 44 | 269 | 424 | 5.5 | M5 screw into the steel |
+| 45 | 449 | 424 | 5.5 | M5 screw into the steel |
+| 46 | 87 | 434 | 3.4 | gutter-R |
+| 47 | 632 | 434 | 3.4 | gutter-L |
+| 48 | 87 | 494 | 3.4 | gutter-R |
+| 49 | 632 | 494 | 3.4 | gutter-L |
+| 50 | 134 | 504 | 9.6 | 3/8 dowel |
+| 51 | 584 | 504 | 9.6 | 3/8 dowel |
+| 52 | 21 | 529 | 4.5 | cleat |
+| 53 | 697 | 529 | 4.5 | cleat |
+| 54 | 269 | 544 | 5.5 | M5 screw into the steel |
+| 55 | 449 | 544 | 5.5 | M5 screw into the steel |
+| 56 | 87 | 554 | 3.4 | gutter-R |
+| 57 | 632 | 554 | 3.4 | gutter-L |
+| 58 | 87 | 614 | 3.4 | gutter-R |
+| 59 | 632 | 614 | 3.4 | gutter-L |
+| 60 | 134 | 619 | 9.6 | 3/8 dowel |
+| 61 | 584 | 619 | 9.6 | 3/8 dowel |
+| 62 | 69 | 634 | 5.5 | M5 insert screw |
+| 63 | 649 | 634 | 5.5 | M5 insert screw |
+| 64 | 269 | 664 | 5.5 | M5 screw into the steel |
+| 65 | 449 | 664 | 5.5 | M5 screw into the steel |
+| 66 | 87 | 674 | 3.4 | gutter-R |
+| 67 | 632 | 674 | 3.4 | gutter-L |
+| 68 | 336 | 705 | 6.5 | M6 screw into a pad |
+| 69 | 382 | 705 | 6.5 | M6 screw into a pad |
+| 70 | 320 | 712 | 5.5 | M5 screw into the steel |
+| 71 | 398 | 712 | 5.5 | M5 screw into the steel |
+| 72 | 336 | 718 | 6.5 | M6 screw into a pad |
+| 73 | 382 | 718 | 6.5 | M6 screw into a pad |
+| 74 | 87 | 734 | 3.4 | gutter-R |
+| 75 | 343 | 737 | 3.2 | motor-relief |
+| 76 | 632 | 734 | 3.4 | gutter-L |
+| 77 | 21 | 744 | 4.5 | cleat |
+| 78 | 222 | 743 | 5.5 | M5 insert screw |
+| 79 | 496 | 743 | 5.5 | M5 insert screw |
+| 80 | 697 | 744 | 4.5 | cleat |
+| 81 | 64 | 772 | 3.4 | corner-R |
+| 82 | 375 | 770 | 3.2 | motor-relief |
+| 83 | 654 | 772 | 3.4 | corner-L |
+| 84 | 209 | 774 | 5.5 | M5 insert screw |
+| 85 | 509 | 774 | 5.5 | M5 insert screw |
+| 86 | 80 | 822 | 4.5 | cleat |
+| 87 | 266 | 822 | 4.5 | cleat |
+| 88 | 452 | 822 | 4.5 | cleat |
+| 89 | 638 | 822 | 4.5 | cleat |
 
 #### Base front wall
 
@@ -581,10 +587,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 598 | 20 | 4.5 | cleat |
-| 2 | 412 | 20 | 4.5 | cleat |
-| 3 | 226 | 20 | 4.5 | cleat |
-| 4 | 40 | 20 | 4.5 | cleat |
+| 1 | 598 | 19 | 4.5 | cleat |
+| 2 | 412 | 19 | 4.5 | cleat |
+| 3 | 226 | 19 | 4.5 | cleat |
+| 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base cleat, rear
 
@@ -592,10 +598,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 598 | 20 | 4.5 | cleat |
-| 2 | 412 | 20 | 4.5 | cleat |
-| 3 | 226 | 20 | 4.5 | cleat |
-| 4 | 40 | 20 | 4.5 | cleat |
+| 1 | 598 | 19 | 4.5 | cleat |
+| 2 | 412 | 19 | 4.5 | cleat |
+| 3 | 226 | 19 | 4.5 | cleat |
+| 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base cleat, left
 
@@ -603,10 +609,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 684 | 20 | 4.5 | cleat |
-| 2 | 470 | 20 | 4.5 | cleat |
-| 3 | 255 | 20 | 4.5 | cleat |
-| 4 | 40 | 20 | 4.5 | cleat |
+| 1 | 684 | 19 | 4.5 | cleat |
+| 2 | 470 | 19 | 4.5 | cleat |
+| 3 | 255 | 19 | 4.5 | cleat |
+| 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base cleat, right
 
@@ -614,10 +620,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 684 | 20 | 4.5 | cleat |
-| 2 | 470 | 20 | 4.5 | cleat |
-| 3 | 255 | 20 | 4.5 | cleat |
-| 4 | 40 | 20 | 4.5 | cleat |
+| 1 | 684 | 19 | 4.5 | cleat |
+| 2 | 470 | 19 | 4.5 | cleat |
+| 3 | 255 | 19 | 4.5 | cleat |
+| 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base bridge y=-230
 
@@ -712,7 +718,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 ### Uprights
 
-#### Upright floor (x2)
+#### Upright floor
 
 ![Upright floor](boards/upright-floor.svg)
 
@@ -721,26 +727,26 @@ edge on the floor). The templates carry the same holes at full size.
 | 1 | 77 | 54 | 4.5 | toe-filler |
 | 2 | 119 | 72 | 4.5 | toe-filler |
 | 3 | 131 | 123 | 3.2 | foot-gasket-groove |
-| 4 | 20 | 170 | 4.5 | cleat |
-| 5 | 178 | 170 | 4.5 | cleat |
+| 4 | 21 | 170 | 4.5 | cleat |
+| 5 | 177 | 170 | 4.5 | cleat |
 | 6 | 67 | 182 | 3.2 | foot-gasket-groove |
 | 7 | 67 | 249 | 3.2 | foot-gasket-groove |
 | 8 | 131 | 249 | 3.2 | foot-gasket-groove |
 | 9 | 99 | 272 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 10 | 20 | 315 | 4.5 | cleat |
+| 10 | 21 | 315 | 4.5 | cleat |
 | 11 | 67 | 314 | 3.2 | foot-gasket-groove |
 | 12 | 131 | 314 | 3.2 | foot-gasket-groove |
-| 13 | 178 | 315 | 4.5 | cleat |
+| 13 | 177 | 315 | 4.5 | cleat |
 | 14 | 99 | 337 | 13.5 | column tie rod, from below |
 | 15 | 131 | 381 | 3.2 | foot-gasket-groove |
 | 16 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
 | 17 | 99 | 437 | 13.5 | column tie rod, from below |
 | 18 | 67 | 441 | 3.2 | foot-gasket-groove |
-| 19 | 20 | 461 | 4.5 | cleat |
-| 20 | 178 | 461 | 4.5 | cleat |
-| 21 | 99 | 521 | 4.5 | cleat |
+| 19 | 21 | 461 | 4.5 | cleat |
+| 20 | 177 | 461 | 4.5 | cleat |
+| 21 | 99 | 520 | 4.5 | cleat |
 
-#### Upright side plate, outer (x2)
+#### Upright side plate, outer
 
 ![Upright side plate, outer](boards/upright-side-plate-outer.svg)
 
@@ -752,7 +758,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
-#### Upright side plate, inner (x2)
+#### Upright side plate, inner
 
 ![Upright side plate, inner](boards/upright-side-plate-inner.svg)
 
@@ -764,7 +770,7 @@ Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
 Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
-#### Upright back board (x2)
+#### Upright back board
 
 ![Upright back board](boards/upright-back-board.svg)
 
@@ -773,7 +779,7 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 1 | 3 | 260 | 4.5 | corner bracket |
 | 2 | 77 | 260 | 4.5 | corner bracket |
 
-#### Upright front board (x2)
+#### Upright front board
 
 ![Upright front board](boards/upright-front-board.svg)
 
@@ -783,7 +789,7 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 2 | 14 | 281 | 4.5 | corner bracket |
 | 3 | 66 | 281 | 4.5 | corner bracket |
 
-#### Upright bridge (x2)
+#### Upright bridge
 
 ![Upright bridge](boards/upright-bridge.svg)
 
@@ -792,33 +798,33 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 1 | 87 | 40 | 10 | 3/8-16 bolt into the top plate |
 | 2 | 43 | 130 | 10 | 3/8-16 bolt into the top plate |
 
-#### Upright cleat, outer (x2)
+#### Upright cleat, outer
 
 ![Upright cleat, outer](boards/upright-cleat-outer.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 20 | 4.5 | cleat |
-| 2 | 185 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 331 | 19 | 4.5 | cleat |
+| 2 | 185 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
-#### Upright cleat, inner (x2)
+#### Upright cleat, inner
 
 ![Upright cleat, inner](boards/upright-cleat-inner.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 20 | 4.5 | cleat |
-| 2 | 185 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 331 | 19 | 4.5 | cleat |
+| 2 | 185 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
-#### Upright cleat, back (x2)
+#### Upright cleat, back
 
 ![Upright cleat, back](boards/upright-cleat-back.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 40 | 20 | 4.5 | cleat |
+| 1 | 40 | 19 | 4.5 | cleat |
 
 ### Beam
 
@@ -828,30 +834,30 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 80 | 20 | 4.5 | cleat |
-| 2 | 324 | 20 | 4.5 | cleat |
-| 3 | 568 | 20 | 4.5 | cleat |
+| 1 | 80 | 21 | 4.5 | cleat |
+| 2 | 324 | 21 | 4.5 | cleat |
+| 3 | 568 | 21 | 4.5 | cleat |
 | 4 | 174 | 82 | 5.5 | M5 screw into the face plate |
 | 5 | 294 | 82 | 5.5 | M5 screw into the face plate |
 | 6 | 354 | 82 | 5.5 | M5 screw into the face plate |
 | 7 | 474 | 82 | 5.5 | M5 screw into the face plate |
-| 8 | 20 | 99 | 4.5 | cleat |
-| 9 | 628 | 99 | 4.5 | cleat |
+| 8 | 21 | 99 | 4.5 | cleat |
+| 9 | 627 | 99 | 4.5 | cleat |
 | 10 | 94 | 109 | 6.5 | M6 screw into the face plate |
 | 11 | 107 | 109 | 6.5 | M6 screw into the face plate |
 | 12 | 452 | 109 | 6.5 | M6 screw into the face plate |
 | 13 | 94 | 155 | 6.5 | M6 screw into the face plate |
 | 14 | 107 | 155 | 6.5 | M6 screw into the face plate |
 | 15 | 452 | 155 | 6.5 | M6 screw into the face plate |
-| 16 | 20 | 165 | 4.5 | cleat |
-| 17 | 628 | 165 | 4.5 | cleat |
+| 16 | 21 | 165 | 4.5 | cleat |
+| 17 | 627 | 165 | 4.5 | cleat |
 | 18 | 174 | 182 | 5.5 | M5 screw into the face plate |
 | 19 | 294 | 182 | 5.5 | M5 screw into the face plate |
 | 20 | 354 | 182 | 5.5 | M5 screw into the face plate |
 | 21 | 474 | 182 | 5.5 | M5 screw into the face plate |
-| 22 | 80 | 244 | 4.5 | cleat |
-| 23 | 324 | 244 | 4.5 | cleat |
-| 24 | 568 | 244 | 4.5 | cleat |
+| 22 | 80 | 243 | 4.5 | cleat |
+| 23 | 324 | 243 | 4.5 | cleat |
+| 24 | 568 | 243 | 4.5 | cleat |
 
 #### Beam top wall
 
@@ -863,15 +869,17 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 2 | 81 | 25 | 13.1 | 1/2 core rod |
 | 3 | 487 | 25 | 13.1 | 1/2 core rod |
 | 4 | 531 | 25 | 13.1 | 1/2 core rod |
-| 5 | 37 | 115 | 13.1 | 1/2 core rod |
-| 6 | 81 | 115 | 13.1 | 1/2 core rod |
-| 7 | 487 | 115 | 13.1 | 1/2 core rod |
-| 8 | 531 | 115 | 13.1 | 1/2 core rod |
-| 9 | 163 | 133 | 4.5 | back-edge |
-| 10 | 285 | 133 | 4.5 | back-edge |
-| 11 | 403 | 133 | 4.5 | back-edge |
-| 12 | 33 | 154 | 4.5 | corner bracket |
-| 13 | 535 | 154 | 4.5 | corner bracket |
+| 5 | 407 | 49 | 5.5 | M5 insert screw |
+| 6 | 407 | 71 | 5.5 | M5 insert screw |
+| 7 | 37 | 115 | 13.1 | 1/2 core rod |
+| 8 | 81 | 115 | 13.1 | 1/2 core rod |
+| 9 | 487 | 115 | 13.1 | 1/2 core rod |
+| 10 | 531 | 115 | 13.1 | 1/2 core rod |
+| 11 | 163 | 133 | 4.5 | back-edge |
+| 12 | 285 | 133 | 4.5 | back-edge |
+| 13 | 403 | 133 | 4.5 | back-edge |
+| 14 | 33 | 154 | 4.5 | corner bracket |
+| 15 | 535 | 154 | 4.5 | corner bracket |
 
 #### Beam bottom wall
 
@@ -916,9 +924,9 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 528 | 20 | 4.5 | cleat |
-| 2 | 284 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 528 | 19 | 4.5 | cleat |
+| 2 | 284 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
 #### Beam cleat, bottom
 
@@ -926,9 +934,9 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 528 | 20 | 4.5 | cleat |
-| 2 | 284 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 528 | 19 | 4.5 | cleat |
+| 2 | 284 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
 #### Beam cleat, left
 
@@ -936,8 +944,8 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 106 | 20 | 4.5 | cleat |
-| 2 | 40 | 20 | 4.5 | cleat |
+| 1 | 106 | 19 | 4.5 | cleat |
+| 2 | 40 | 19 | 4.5 | cleat |
 
 #### Beam cleat, right
 
@@ -945,5 +953,5 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 106 | 20 | 4.5 | cleat |
-| 2 | 40 | 20 | 4.5 | cleat |
+| 1 | 106 | 19 | 4.5 | cleat |
+| 2 | 40 | 19 | 4.5 | cleat |

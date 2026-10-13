@@ -28,11 +28,13 @@ def board_t():
 
 
 class Board:
-    """A melamine board: its inside (cast) face is the plane through `origin` with normal -N, so N
-    points away from the cavity. Seen from inside, U is right and V is up; the outline is in (u, v)."""
+    """A melamine board, or a piece of stock lumber (`stock`): its inside (cast) face is the plane through
+    `origin` with normal -N, so N points away from the cavity. Seen from inside, U is right and V is up;
+    the outline is in (u, v)."""
 
-    def __init__(self, name, mold, origin, N, V, outline, qty=1, note='', view='inside', show=()):
+    def __init__(self, name, mold, origin, N, V, outline, qty=1, note='', view='inside', show=(), stock=None):
         self.name, self.mold, self.qty, self.note, self.view, self.show = name, mold, qty, note, view, list(show)
+        self.stock = stock       # None: cut from the melamine sheet; else stock lumber, e.g. '1x3' (never touches the mix)
         self.N, self.V = unit(N), unit(V)
         self.U = self.N.cross(self.V)
         self.o = Vector(origin)

@@ -445,11 +445,15 @@ def loc_line(points, r=5.5, step=8.5):
     return balls[0].multiFuse(balls[1:] + [nozzle])
 
 
-def roll_cover(x0, x1, y, z, floor, r=18.0):
-    """Spring roller for a roll-up way cover, axis along x, with end brackets down to the floor."""
+def roll_cover(x0, x1, y, z, floor, r=18.0, feet=()):
+    """Spring roller for a roll-up way cover, axis along x, with end brackets down to the floor.
+    feet: (x, y, wx, wy) 5 mm tabs on the floor, each with an M5 clearance hole at (x, y)."""
     drum = cyl_u(r, x0, x1, y, z)
     for xa, xb in ((x0 - 6, x0), (x1, x1 + 6)):
         drum = drum.fuse(box(xa, xb, y - r - 2, y + r + 2, floor, z + r))
+    for fx, fy, wx, wy in feet:
+        tab = box(fx - wx / 2, fx + wx / 2, fy - wy / 2, fy + wy / 2, floor, floor + 5.0)
+        drum = drum.fuse(tab.cut(Part.makeCylinder(2.75, 7.0, V(fx, fy, floor - 1))))
     return drum
 
 

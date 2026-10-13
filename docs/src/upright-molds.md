@@ -38,7 +38,8 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 | Material | Amount | Notes |
 |---|---|---|
-| Melamine board, 3/4 in | about 0.9 m2 | all the molds come out of two 4 x 8 ft sheets |
+| Melamine board, 3/4 in | about 0.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
+| 1x2 lumber (furring strip is fine) | 1 x 8 ft 1x2 (0.8 m) | the cleats: they lie on the floor outside the walls |
 | PETG | 0.32 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -46,13 +47,13 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 | Hardware | Qty |
 |---|---|
-| M4 nut | 40 |
-| M4 washer | 40 |
-| M4 x 30 bolt | 22 |
-| M4 x 35 bolt | 4 |
-| M4 x 45 bolt | 14 |
-| 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 4 |
-| 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 4 |
+| M4 nut | 20 |
+| M4 washer | 20 |
+| M4 x 30 bolt | 11 |
+| M4 x 35 bolt | 2 |
+| M4 x 45 bolt | 7 |
+| 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 2 |
+| 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 2 |
 | the two column tie rods themselves, greased: up through the floor and the columns into the top plate, to center the columns while the casting goes off | 2 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a jigsaw for the side plates' slope, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
@@ -81,19 +82,20 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 ## 4. Cut the boards
 
 Have the store rip the strips; crosscut at home. Write each board's name on its outside face, and mark
-the cast face (the melamine face the mix touches).
+the cast face (the melamine face the mix touches). The cleats are cut from 1x2 lumber, not the sheet;
+the bridges and struts come out of the sheet's offcuts.
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Upright floor | 2 | 198 x 541 |  |
-| Upright side plate, outer | 2 | 461 x 271 (profile) | cut to the profile |
-| Upright side plate, inner | 2 | 461 x 271 (profile) | cut to the profile |
-| Upright back board | 2 | 80 x 271 |  |
-| Upright front board | 2 | 80 x 292 | ends cut square |
-| Upright bridge | 2 | 131 x 138 |  |
-| Upright cleat, outer | 2 | 371 x 40 | offcut strip, flat on the floor |
-| Upright cleat, inner | 2 | 371 x 40 | offcut strip, flat on the floor |
-| Upright cleat, back | 2 | 80 x 40 | offcut strip, flat on the floor |
+| Upright floor | 1 | 198 x 541 |  |
+| Upright side plate, outer | 1 | 461 x 271 (profile) | cut to the profile |
+| Upright side plate, inner | 1 | 461 x 271 (profile) | cut to the profile |
+| Upright back board | 1 | 80 x 271 |  |
+| Upright front board | 1 | 80 x 292 | ends cut square |
+| Upright bridge | 1 | 131 x 138 |  |
+| Upright cleat, outer | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, inner | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, back | 1 | 80 x 38 | 1x2 lumber; flat on the floor |
 
 ## 5. Mark and drill
 
@@ -122,9 +124,9 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 ## 7. Assemble
 
-### Uprights (two molds)
+### Uprights (one mold, cast twice)
 
-Cast foot down. Build two of everything. The skeleton: the foot bar, two columns and the top plate (two flat bars), clamped later by the column tie rods.
+Cast foot down. The two uprights are the same part: cast one, take the mold apart after the cure, scrape and re-wax it and cast the other. The skeleton: the foot bar, two columns and the top plate (two flat bars), clamped later by the column tie rods.
 
 ![An upright skeleton](../../renders/mold/skeleton-upright.png)
 
@@ -185,7 +187,7 @@ Cast foot down. Build two of everything. The skeleton: the foot bar, two columns
 Every board as seen from the face you mark: x from the left edge, y from the bottom edge (for a wall, the
 edge on the floor). The templates carry the same holes at full size.
 
-#### Upright floor (x2)
+#### Upright floor
 
 ![Upright floor](boards/upright-floor.svg)
 
@@ -194,26 +196,26 @@ edge on the floor). The templates carry the same holes at full size.
 | 1 | 77 | 54 | 4.5 | toe-filler |
 | 2 | 119 | 72 | 4.5 | toe-filler |
 | 3 | 131 | 123 | 3.2 | foot-gasket-groove |
-| 4 | 20 | 170 | 4.5 | cleat |
-| 5 | 178 | 170 | 4.5 | cleat |
+| 4 | 21 | 170 | 4.5 | cleat |
+| 5 | 177 | 170 | 4.5 | cleat |
 | 6 | 67 | 182 | 3.2 | foot-gasket-groove |
 | 7 | 67 | 249 | 3.2 | foot-gasket-groove |
 | 8 | 131 | 249 | 3.2 | foot-gasket-groove |
 | 9 | 99 | 272 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 10 | 20 | 315 | 4.5 | cleat |
+| 10 | 21 | 315 | 4.5 | cleat |
 | 11 | 67 | 314 | 3.2 | foot-gasket-groove |
 | 12 | 131 | 314 | 3.2 | foot-gasket-groove |
-| 13 | 178 | 315 | 4.5 | cleat |
+| 13 | 177 | 315 | 4.5 | cleat |
 | 14 | 99 | 337 | 13.5 | column tie rod, from below |
 | 15 | 131 | 381 | 3.2 | foot-gasket-groove |
 | 16 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
 | 17 | 99 | 437 | 13.5 | column tie rod, from below |
 | 18 | 67 | 441 | 3.2 | foot-gasket-groove |
-| 19 | 20 | 461 | 4.5 | cleat |
-| 20 | 178 | 461 | 4.5 | cleat |
-| 21 | 99 | 521 | 4.5 | cleat |
+| 19 | 21 | 461 | 4.5 | cleat |
+| 20 | 177 | 461 | 4.5 | cleat |
+| 21 | 99 | 520 | 4.5 | cleat |
 
-#### Upright side plate, outer (x2)
+#### Upright side plate, outer
 
 ![Upright side plate, outer](boards/upright-side-plate-outer.svg)
 
@@ -225,7 +227,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
-#### Upright side plate, inner (x2)
+#### Upright side plate, inner
 
 ![Upright side plate, inner](boards/upright-side-plate-inner.svg)
 
@@ -237,7 +239,7 @@ Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
 Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
-#### Upright back board (x2)
+#### Upright back board
 
 ![Upright back board](boards/upright-back-board.svg)
 
@@ -246,7 +248,7 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 1 | 3 | 260 | 4.5 | corner bracket |
 | 2 | 77 | 260 | 4.5 | corner bracket |
 
-#### Upright front board (x2)
+#### Upright front board
 
 ![Upright front board](boards/upright-front-board.svg)
 
@@ -256,7 +258,7 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 2 | 14 | 281 | 4.5 | corner bracket |
 | 3 | 66 | 281 | 4.5 | corner bracket |
 
-#### Upright bridge (x2)
+#### Upright bridge
 
 ![Upright bridge](boards/upright-bridge.svg)
 
@@ -265,30 +267,30 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 | 1 | 87 | 40 | 10 | 3/8-16 bolt into the top plate |
 | 2 | 43 | 130 | 10 | 3/8-16 bolt into the top plate |
 
-#### Upright cleat, outer (x2)
+#### Upright cleat, outer
 
 ![Upright cleat, outer](boards/upright-cleat-outer.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 20 | 4.5 | cleat |
-| 2 | 185 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 331 | 19 | 4.5 | cleat |
+| 2 | 185 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
-#### Upright cleat, inner (x2)
+#### Upright cleat, inner
 
 ![Upright cleat, inner](boards/upright-cleat-inner.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 20 | 4.5 | cleat |
-| 2 | 185 | 20 | 4.5 | cleat |
-| 3 | 40 | 20 | 4.5 | cleat |
+| 1 | 331 | 19 | 4.5 | cleat |
+| 2 | 185 | 19 | 4.5 | cleat |
+| 3 | 40 | 19 | 4.5 | cleat |
 
-#### Upright cleat, back (x2)
+#### Upright cleat, back
 
 ![Upright cleat, back](boards/upright-cleat-back.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 40 | 20 | 4.5 | cleat |
+| 1 | 40 | 19 | 4.5 | cleat |

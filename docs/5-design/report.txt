@@ -13,16 +13,15 @@ Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
 Epoxy granite volume:         45.7 L
-Casting mass:                 116 kg (255 lb)
+Casting mass:                 113 kg (249 lb)
   Base front:                  12.3 L   28.9 kg
   Base rear:                   15.5 L   36.3 kg
-  Upright L:                    4.5 L   12.7 kg  (alumina grit)
-  Upright R:                    4.5 L   12.7 kg  (alumina grit)
-  Beam:                         8.9 L   25.0 kg  (alumina grit)
-Cast-in steel + joint hardware: 60.5 kg
+  Upright L:                    4.5 L   12.1 kg  (alumina grit)
+  Upright R:                    4.5 L   12.1 kg  (alumina grit)
+  Beam:                         8.9 L   23.7 kg  (alumina grit)
+Cast-in steel + joint hardware: 60.6 kg
 Epoxy needed (~8.5% of the sand mix by mass): 9.1 kg
 Aluminum oxide grit, brown #16 (coarse sand): 17.3 kg (beam + uprights)
-Aluminum oxide grit, black 70 grit (fine sand): 8.9 kg (beam + uprights)
 
 Linear motion / plate BOM
 -------------------------
@@ -46,7 +45,7 @@ Linear motion / plate BOM
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
-  frame    Cast-in M5 threaded inserts (knurled brass), for the enclosure only 11 pcs                               buy
+  frame    Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mount 11 + 4 + 2 pcs                       buy
   frame    Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); M6 x 40 (the Y and X BK/BF) 8 + 10; 12                           buy
   frame    Flat bar 1/2 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 198                              buy
   frame    Flat bar 3/8 x 1-1/2 in, cut to length (docs/1-sourcing/steel/) 2 x 359, 2 x 288                     buy
@@ -61,7 +60,7 @@ Linear motion / plate BOM
   frame    Printed PETG: 8 column rings, 4 leg plugs, 2 dark gray pocket caps ~60 g                                PRINT
   frame    1/2-13 threaded rod (hardware store)                 4 x 363, 2 x 153 (uprights), 2 x 687 (base draw rods), 4 x 270 + 6 x 225 (base cross rods) buy
   frame    1/2-13 nut + 1/2 in SAE washer                       32 of each                           buy
-  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 186 + 3 x 107 mm; 11 nuts        buy
+  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 190 + 3 x 107 mm; 11 nuts        buy
   frame    1/2 in x 3 in black pipe nipple (beam spacers)       3 pcs                                buy
   frame    1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes (2-1/4 in) about 20 x 4 in + 4 x 2-1/4 in       buy
   frame    Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split) 6 + 4 pcs                            buy
@@ -74,9 +73,10 @@ Linear motion / plate BOM
   coolant  Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out 2.8 m                                buy (part 3)
   frame    Leg feet: printed plug + 1/2-13 nut bonded into each leg end 4 pcs                                PRINT
   coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                buy (part 3)
-  covers   Roll-up way cover: spring roller + 0.1 mm stainless strip 1x 250 wide, 2x 85 wide              buy or DIY
-  covers   Spiral ballscrew cover for the table screw           1                                    buy
-  covers   Drip shield over the beam rails, aluminum or ACM offcut 510 x 57                             buy
+  covers   Roll-up way cover: spring roller + 0.1 mm stainless strip; M5 x 12 into the inserts and the BK pad 1x 250 wide, 2x 85 wide              buy or DIY (add later)
+  covers   Spiral ballscrew cover for the table screw           1                                    buy (add later)
+  covers   Drip shield over the beam rails, ACM offcut, clamped under the front beam stud nuts 518 x 79                             buy (add later)
+  electronics Homing switches: Y on the Y motor bracket (the table's rear edge trips it), X and Z on the X carriage; they need nothing cast in 3                                    buy (part 2)
   covers   Brush seal plates for the motor cutouts              2                                    buy (part 3)
   printed  Drag chain links, PETG: 38 x 21 outer, 20 pitch, R38 bend 17 + 2 end mounts                    PRINT
 

@@ -143,7 +143,8 @@ P = dict(
     # plate, the columns, the pedestal and the rods are one steel chain, with the epoxy granite clamped in
     # it, and there is no thread in the epoxy granite to come loose: every nut can be retightened.
     top_plate_t=25.4, plate_layer=12.7,
-    beam_stud=186.0,         # the beam's eight 3/8-16 grade B7 studs, cut from rod, screwed into the top plates
+    beam_stud=190.0,         # the beam's eight 3/8-16 grade B7 studs, cut from rod, screwed into the top plates
+    drip_shield_t=3.0,       # ACM offcut over the X rails; the front studs' nuts clamp it to the beam top
     beam_spacer=76.2,        # 1/2 in x 3 in pipe nipples between the beam's face and back bars
     rod_tail=6.0,            # tie rod below its bottom nut: the rods are cut at home, and the error ends up here
     slope_pocket_d=32.0,     # toe tie-rod nut pocket, down to the foot plate
@@ -178,11 +179,12 @@ P = dict(
     foam=True, foam_formers=False,
 
     eg_density=2.35,     # kg/L, epoxy granite
-    # The beam and uprights use aluminum oxide grit instead of sand, same volume: brown #16 for the
-    # coarse sand, black 70 grit for the fine sand (analysis/alumina.py).
+    # The beam and uprights use brown #16 aluminum oxide grit instead of the coarse sand, same volume
+    # (analysis/alumina.py): about +5 % frame stiffness for one 50 lb bag. Black 70 grit for the fine sand
+    # as well would add about 5 % more for another $40; the fine sand stays sand.
     # (name, share of the sand mix by weight, density relative to sand)
     alumina_castings=('Upright', 'Beam'),
-    alumina=(('brown #16 (coarse sand)', 0.275, 3.95 / 2.65), ('black 70 grit (fine sand)', 0.15, 3.75 / 2.65)),
+    alumina=(('brown #16 (coarse sand)', 0.275, 3.95 / 2.65),),
     eg_epoxy_frac=0.085,  # epoxy mass fraction, with well-graded aggregate + whiting (calcium carbonate) fines;
                           # check it with the jar test and test bars (build guide)
 )
@@ -758,8 +760,8 @@ def base_half(m, g, st, front):
             insert = parts.square_tube('z', lx, ly, leg_s - 2 * leg_w - 1.2, 0.1, z1 - P['leg_len'], z1 - P['leg_len'] + 22)[0]
             st.add(name + 'Insert', cont, insert.cut(Part.makeCylinder(6.0, 30, Vector(lx, ly, z1 - P['leg_len'] - 5))), 'steel')
 
-    # cast-in M5 inserts for the enclosure's bottom rails
-    for i, (bx, by) in enumerate(g['rail_bolts']):
+    # cast-in M5 inserts for the enclosure's bottom rails and the way-cover rollers
+    for i, (bx, by) in enumerate(g['rail_bolts'] + g['cover_inserts']):
         if ya <= by < yb:
             cuts.append(Part.makeCylinder(4.0, 13.0, Vector(bx, by, base_top - 12)))
             st.add(f'Insert{tag}{i + 1}', cont, Part.makeCylinder(4.0, 12.0, Vector(bx, by, base_top - 12)).cut(
@@ -995,9 +997,15 @@ def beam(m, g, st):
                 cuts.append(Part.makeCylinder(P['beam_bolt_hole'] / 2, top - bot + 2, Vector(x, by, bot - 1)))
                 z0 = bot - P['top_plate_t']                              # bottom of the top plate's lower bar
                 stud = Part.makeCylinder(P['beam_bolt_d'] / 2, P['beam_stud'], Vector(x, by, z0))
-                washer = Part.makeCylinder(10.0, 2.0, Vector(x, by, top))
-                nut = parts.hexagon(14.3, top + 2, 8.4, x, by)
+                zw = top + (P['drip_shield_t'] if by == g['bolt_ys'][0] else 0.0)   # the front row clamps the shield
+                washer = Part.makeCylinder(10.0, 2.0, Vector(x, by, zw))
+                nut = parts.hexagon(14.3, zw + 2, 8.4, x, by)
                 st.add(f'BeamBolt{n}', cont, stud.fuse([washer, nut]), 'black')
+    # cast-in M5 inserts in the top for the cable chain's fixed mount
+    for i, (ix, iy) in enumerate(g['chain_inserts'], 1):
+        cuts.append(Part.makeCylinder(4.0, 13.0, Vector(ix, iy, top - 12)))
+        st.add(f'InsertBeam{i}', cont, Part.makeCylinder(4.0, 12.0, Vector(ix, iy, top - 12)).cut(
+            Part.makeCylinder(2.5, 14.0, Vector(ix, iy, top - 13))), 'brass')
     shape = shape.cut(cuts).removeSplitter()
     m.add('BeamCasting', 'frame', shape, 'granite', container=cont)
     return shape.Volume
@@ -1398,15 +1406,16 @@ def mold_base(kit, m, g):
     for pt, n, kind in m.anchors:
         if abs(n.z) > 0.5:
             holes.append(Fix('hole', pt, Z, 5.5 if kind == 'insert_m5' else 6.5,
-                             'M5 screw into a rail bar' if kind == 'insert_m5' else 'M6 screw into a pad'))
-    for bx, by in g['rail_bolts']:
+                             'M5 screw into the steel' if kind == 'insert_m5' else 'M6 screw into a pad'))
+    for bx, by in g['rail_bolts'] + g['cover_inserts']:
         holes.append(Fix('hole', Vector(bx, by, top), Z, 5.5, 'M5 insert screw'))
     for sx in (-1, 1):
         holes += [Fix('hole', Vector(sx * g['ux'], dy, top), Z, 9.6, '3/8 dowel') for dy in g['dowel_ys']]
         holes += [Fix('hole', Vector(sx * g['girder_x'] + dx, ys, g['draw_z']), -Y, 9.6, '3/8 dowel pin (split)')
                   for dx in (-32.0, 32.0)]
     kit.fix(holes, M)
-    kit.count('M5 x 30 screw, greased (holds a rail bar)', sum(1 for f in holes if f.what == 'M5 screw into a rail bar'), M)
+    kit.count('M5 x 30 screw, greased (holds a rail bar or the BK pad)',
+              sum(1 for f in holes if f.what == 'M5 screw into the steel'), M)
     kit.count('M6 x 30 screw, greased (holds a support pad)', sum(1 for f in holes if f.what == 'M6 screw into a pad'), M)
     kit.count('M5 x 20 screw, greased (holds an insert)', sum(1 for f in holes if f.what == 'M5 insert screw'), M)
 
@@ -1414,7 +1423,7 @@ def mold_base(kit, m, g):
 
 TH_SADDLE = 6.0
 FIT_PLUG = 0.15
-CLEAT = 40.0       # melamine strips along each wall's foot, bolted down through the floor
+CLEAT = 38.1       # 1x2 strips along each wall's foot, flat on the floor, bolted down through it (any 1x2 lumber)
 
 
 def cleat(kit, M, name, p0, p1, n_out, up, show, qty=1, mult=1):
@@ -1427,8 +1436,8 @@ def cleat(kit, M, name, p0, p1, n_out, up, show, qty=1, mult=1):
     cs = [p0, p1, p0 + n_out * CLEAT + up * T, p1 + n_out * CLEAT + up * T]
     lo = tuple(min(c[i] for c in cs) for i in range(3))
     hi = tuple(max(c[i] for c in cs) for i in range(3))
-    kit.board(moldbox.box_board(name, M, lo, hi, up, n_out, qty=qty, note='offcut strip, flat on the floor', show=show,
-                                 view='outside'))
+    kit.board(moldbox.box_board(name, M, lo, hi, up, n_out, qty=qty, note='flat on the floor', show=show,
+                                 view='outside', stock='1x2'))
     n = max(1, math.ceil((length - 80.0) / 250.0) + 1) if length > 120 else 1
     at = [length / 2] if n == 1 else [40.0 + (length - 80.0) * k / (n - 1) for k in range(n)]
     kit.fix([Fix('bolt', p0 + a * t + n_out * (CLEAT / 2), -up, 4.5, 'cleat', 'M4',
@@ -1502,14 +1511,14 @@ def leg_holder(c, sx, sy, half, yw, fb, x_in):
 
 
 def mold_upright(kit, g):
-    """Upright mold (two of them: both uprights are cast from one batch, and they are the same):
-    cast foot down, so 'up' is +z. Two side plates cut to the profile stand on the floor; a back
-    board and a sloped front board fit between them. The front board's foot sits on the printed toe
-    filler. The posts come up through bushings in the floor, 5/8 in rods form the tie-rod holes, and
-    a bridge across the top carries the top plate. The two top tie-rod holes are lined with printed
+    """Upright mold (one: the two uprights are the same part, so it casts one, comes apart after the
+    cure and casts the other): cast foot down, so 'up' is +z. Two side plates cut to the profile stand
+    on the floor; a back board and a sloped front board fit between them. The front board's foot sits
+    on the printed toe filler. The posts come up through bushings in the floor, 5/8 in rods form the
+    tie-rod holes, and a bridge across the top carries the top plate. The two top tie-rod holes are lined with printed
     sleeves, centered on greased 1/2 in rods that run up through the plate and the bridge."""
     T, fb = P['mold_board'], P['mold_freeboard']
-    M, folder, show, mult = 'upright', 'upright', ['upright'], 2
+    M, folder, show, mult = 'upright', 'upright', ['upright'], 1
     sx = -1
     x0, x1 = -g['outer'], -g['inner']
     top, bb = g['base_top'], g['beam_bot']
@@ -1526,20 +1535,20 @@ def mold_upright(kit, g):
     yb = g['up_y1']
     B = moldbox.box_board
     kit.board(B('Upright floor', M, (x0 - T - 40, at(s_of(top, T), T).y - 40, top - T), (x1 + T + 40, yb + T + 40, top),
-                -Z, Y, qty=2, show=show))
+                -Z, Y, qty=1, show=show))
     prof = [(at(s_of(top, T), T).y, top), (yb + T, top), (yb + T, zt), (at(s_top, T).y, zt)]
     kit.board(moldbox.Board('Upright side plate, outer', M, Vector(x0, 0, 0), -X, Z, [(y, z) for y, z in prof],
-                             qty=2, note='cut to the profile', show=show))
+                             qty=1, note='cut to the profile', show=show))
     kit.board(moldbox.Board('Upright side plate, inner', M, Vector(x1, 0, 0), X, Z, [(-y, z) for y, z in prof],
-                             qty=2, note='cut to the profile', show=show))
-    kit.board(B('Upright back board', M, (x0, yb, top), (x1, yb + T, zt), Y, Z, qty=2, show=show))
+                             qty=1, note='cut to the profile', show=show))
+    kit.board(B('Upright back board', M, (x0, yb, top), (x1, yb + T, zt), Y, Z, qty=1, show=show))
     kit.board(moldbox.Board('Upright front board', M, at(s0, 0) + X * x1, nrm, a,
-                             [(0, 0), (x1 - x0, 0), (x1 - x0, s_top - s0), (0, s_top - s0)], qty=2,
+                             [(0, 0), (x1 - x0, 0), (x1 - x0, s_top - s0), (0, s_top - s0)], qty=1,
                              note='ends cut square', show=show))
     by0 = min(g['bolt_ys'][0], g['columns'][0]) - 10.0               # bridge: over the plate bolts and the rods
     by1_ = max(g['bolt_ys'][1], g['columns'][1]) + 8.5
     kit.board(B('Upright bridge', M, (x0 - T - SLOT_W - TH_SADDLE, by0, zt + TH_SADDLE),
-                (x1 + T + SLOT_W + TH_SADDLE, by1_, zt + TH_SADDLE + T), Z, Y, qty=2, view='outside', show=show))
+                (x1 + T + SLOT_W + TH_SADDLE, by1_, zt + TH_SADDLE + T), Z, Y, qty=1, view='outside', show=show))
 
     # corner brackets: back corners, and top and foot of the front board (the foot one only bears on it)
     back, fr = [], []
@@ -1552,8 +1561,8 @@ def mold_upright(kit, g):
                  note='At the top of the front board; its foot sits in the toe filler\'s lip.')
     yf = at(s_of(top, T), T).y
     for xs, n, tag in ((x0 - T, -X, 'outer'), (x1 + T, X, 'inner')):
-        cleat(kit, M, f'Upright cleat, {tag}', Vector(xs, yf + 90.0, top), Vector(xs, yb + T, top), n, Z, show, 2, mult)
-    cleat(kit, M, 'Upright cleat, back', Vector(x0, yb + T, top), Vector(x1, yb + T, top), Y, Z, show, 2, mult)
+        cleat(kit, M, f'Upright cleat, {tag}', Vector(xs, yf + 90.0, top), Vector(xs, yb + T, top), n, Z, show, 1, mult)
+    cleat(kit, M, 'Upright cleat, back', Vector(x0, yb + T, top), Vector(x1, yb + T, top), Y, Z, show, 1, mult)
     sad = []
     for xs, n in ((x0, -X), (x1, X)):
         s, wf, _ = moldbox.saddle(Vector(xs, (by0 + by1_) / 2, zt), n, Z, Y, width=24.0, cheeks=False)
@@ -1570,7 +1579,7 @@ def mold_upright(kit, g):
         molds.poly([Vector(x0 + FIT_PLUG, p.y, p.z) for p in lip])).extrude(X * (x1 - x0 - 2 * FIT_PLUG))
     region = region.common(parts.box(x0, x1, -1e3, 1e3, top, 1e3))
     toe_shape = max(region.cut(env).Solids, key=lambda s_: s_.Volume)
-    fixed_piece(kit, folder, M, 'toe-filler', 'filler', toe_shape, [(Vector(0, 0, top), -Z, 2)], qty=2,
+    fixed_piece(kit, folder, M, 'toe-filler', 'filler', toe_shape, [(Vector(0, 0, top), -Z, 2)], qty=1,
                 note='Rounds the nose into the slope; the front board\'s foot sits in its lip. Bolts to the floor.',
                 show=show, mult=mult)
 
@@ -1578,7 +1587,7 @@ def mold_upright(kit, g):
     keep_clear = [(Vector(sx * rx, ry, top), 8.0) for rx, ry, _ in g['tie_rods']]
     keep_clear += [(Vector(sx * g['ux'], dy, top), 6.4) for dy in g['dowel_ys']]
     fixed_piece(kit, folder, M, 'foot-gasket-groove', 'former', foot_gasket(g, sx)[0], [(Vector(0, 0, top), -Z, 2)],
-                qty=2, note='Pins into the floor.', up=-Z, show=show, mult=mult, sizes=('pin',), avoid=keep_clear)
+                qty=1, note='Pins into the floor.', up=-Z, show=show, mult=mult, sizes=('pin',), avoid=keep_clear)
 
     # tie-rod holes: the top two on greased 1/2 in rods in printed sleeves, up through the plate and the
     # bridge; the slope ones on 5/8 in rods up into plugs that form the nut pockets
@@ -1593,7 +1602,7 @@ def mold_upright(kit, g):
             p = Part.makeCylinder(P['slope_pocket_d'] / 2, bb - pb, Vector(x, ry, pb)).common(env).cut(
                 Part.makeCylinder(rod, ys_ - 12.0 - pb + 1, Vector(x, ry, pb - 1)))
             nm = 'toe-plug'
-            fixed_piece(kit, folder, M, nm, 'plug', p, [(L0, nrm, 1)], qty=2,
+            fixed_piece(kit, folder, M, nm, 'plug', p, [(L0, nrm, 1)], qty=1,
                         note='Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.',
                         show=show, mult=mult, sizes=('M4', 'M3'))
     holes += [Fix('hole', Vector(sx * g['ux'], dy, top), -Z, 13.1, '1/2-13 bolt, base dowel hole') for dy in g['dowel_ys']]
@@ -1603,15 +1612,15 @@ def mold_upright(kit, g):
         holes.append(Fix('hole', Vector(px, py, zt + TH_SADDLE), Z, 10.0, '3/8-16 bolt into the top plate'))
         sp.append(Part.makeCylinder(8.0, zt + TH_SADDLE - bb, Vector(px, py, bb)).cut(
             Part.makeCylinder(5.0, 1e3, Vector(px, py, 0))))
-    kit.add(folder, 'plate-spacer', 'kit', sp[0], 4, 'Between the bridge and the top plate, on its greased 3/8 bolt.',
+    kit.add(folder, 'plate-spacer', 'kit', sp[0], 2, 'Between the bridge and the top plate, on its greased 3/8 bolt.',
             placed=sp, show=show)
     kit.fix(holes, M, mult)
     rod_bot = top - T - 20.0                       # the rods stand 20 mm out under the floor
-    kit.count('Block of 2x4, laid flat: four under each upright mold (room under the floor for the rod ends)', 8, M)
+    kit.count('Block of 2x4, laid flat: four under the upright mold (room under the floor for the rod ends)', 4, M)
     kit.count('the two column tie rods themselves, greased: up through the floor and the columns into the top '
               'plate, to center the columns while the casting goes off', 2, M)
-    kit.count('3/8-16 x 3 in bolt, greased (holds the top plate, both layers)', 2 * 2, M)
-    kit.count('1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole)', 2 * len(g['dowel_ys']), M)
+    kit.count('3/8-16 x 3 in bolt, greased (holds the top plate, both layers)', 2, M)
+    kit.count('1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole)', len(g['dowel_ys']), M)
 
 
 SLOT_W = 0.4
@@ -1690,6 +1699,7 @@ def mold_beam(kit, m, g):
                 holes.append(Fix('hole', Vector(sx * bx, by, top), Z, 13.1, '1/2 core rod'))
                 holes.append(Fix('hole', Vector(sx * bx, by, bot), -Z, 13.1, '1/2 core rod'))
         holes.append(Fix('hole', Vector(sx * g['ux'], g['beam_dowel_y'], bot), -Z, 9.6, '3/8 dowel'))
+    holes += [Fix('hole', Vector(ix, iy, top), Z, 5.5, 'M5 insert screw') for ix, iy in g['chain_inserts']]
     kit.fix(holes, M)
     stops = [Part.makeCylinder(4.7, T - P['dowel_proud'], Vector(sx * g['ux'], g['beam_dowel_y'], bot - T)).fuse(
         Part.makeCylinder(9.0, 2.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - T - 2.0))) for sx in (-1, 1)]
@@ -1700,6 +1710,7 @@ def mold_beam(kit, m, g):
     kit.count('M5 x 40 screw, greased (holds the face plate)',
               sum(1 for f in holes if f.what == 'M5 screw into the face plate'), M)
     kit.count(f"1/2 in plain steel rod, greased (forms a beam bolt hole), {top - bot + 2 * T + 20:.0f} mm", 8, M)
+    kit.count('M5 x 20 screw, greased (holds an insert)', len(g['chain_inserts']), M)
 
 
 def build():
@@ -1750,6 +1761,9 @@ def build():
                        [(sx * hx, y) for sx in (-1, 1) for y in (base_y0 + 150.0, (base_y0 + base_y1) / 2, base_y1 - 150.0)] +
                        [(x, base_y1 - 10.0) for x in (-150.0, 150.0)])
     d['bulkhead'] = (-170.0, 600.0)          # coolant return through the back panel (x, z)
+    # fixings for the parts that bolt on later (way-cover rollers, cable-chain mount), cast in now
+    d['cover_inserts'] = roller_layout()['inserts']
+    d['chain_inserts'] = [(CHAIN['fixed_x'] - 12.5, beam_face + CHAIN['beam_y'] + dy) for dy in (-11.0, 11.0)]
     frame_modules(m, d)
     leg_bot = P['leg_embed'] - P['leg_len']
     d['bench_top'] = leg_bot - P['foot_h']
@@ -1765,6 +1779,9 @@ def build():
     y_tail = parts.ENDS['SFU1605']['bk_e'] - parts.SUPPORT['BK12']['L'] + parts.ENDS['SFU1605']['stub_l']
     screw_axis(m, tf, 'Y', 'SFU1605', P['table_screw_len'], ty_u1 - (P['table_screw_len'] - y_tail), 'BF12', 'BK12',
                'frame', 'table', 0.0, y_stack, 0.0, P['motor_y'])
+    # the rear way-cover rollers' inner brackets screw into the BK12 pad beside the support (tapped M5)
+    for x, y in roller_layout()['tapped']:
+        m.anchors.append((Vector(x, y, base_top), Vector(0, 0, 1), 'insert_m5'))
     tw, tl, pitch = P['table_w'], P['table_len'], P['table_hole_pitch']
     table = parts.plate(-tw / 2, tw / 2, -tl / 2, tl / 2, table_bot, table_top, 1.0)
     nx, ny = int((tw - 30) // pitch) + 1, int((tl - 30) // pitch) + 1
@@ -1844,10 +1861,12 @@ def build():
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
         ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
-        ('frame', 'Cast-in M5 threaded inserts (knurled brass), for the enclosure only', f"{len(d['rail_bolts'])} pcs", 'buy'),
+        ('frame', 'Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mount',
+         f"{len(d['rail_bolts'])} + {len(d['cover_inserts'])} + {len(d['chain_inserts'])} pcs", 'buy'),
         ('frame', 'Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); '
                   'M6 x 40 (the Y and X BK/BF)',
-         f"{d['anchor_count'].get('face_insert_m5', 0)} + {d['anchor_count'].get('base_insert_m5', 0)}; "
+         f"{d['anchor_count'].get('face_insert_m5', 0)} + "
+         f"{d['anchor_count'].get('base_insert_m5', 0) - len(roller_layout()['tapped'])}; "
          f"{d['anchor_count'].get('face_insert_m6', 0) + d['anchor_count'].get('base_insert_m6', 0)}", 'buy'),
     ] + d['steel_bom'] + [
         ('coolant', 'Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base', '1', 'buy'),
@@ -1857,9 +1876,13 @@ def build():
         ('coolant', 'Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out', f"{d['hose_return']:.1f} m", 'buy (part 3)'),
         ('frame', 'Leg feet: printed plug + 1/2-13 nut bonded into each leg end', '4 pcs', 'PRINT'),
         ('coolant', '1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles', '1 set', 'buy (part 3)'),
-        ('covers', 'Roll-up way cover: spring roller + 0.1 mm stainless strip', '1x 250 wide, 2x 85 wide', 'buy or DIY'),
-        ('covers', 'Spiral ballscrew cover for the table screw', '1', 'buy'),
-        ('covers', 'Drip shield over the beam rails, aluminum or ACM offcut', f"{2 * d['outer'] - 20:.0f} x 57", 'buy'),
+        ('covers', 'Roll-up way cover: spring roller + 0.1 mm stainless strip; M5 x 12 into the inserts and the BK pad',
+         '1x 250 wide, 2x 85 wide', 'buy or DIY (add later)'),
+        ('covers', 'Spiral ballscrew cover for the table screw', '1', 'buy (add later)'),
+        ('covers', 'Drip shield over the beam rails, ACM offcut, clamped under the front beam stud nuts',
+         f"{d['drip_shield'][0]:.0f} x {d['drip_shield'][1]:.0f}", 'buy (add later)'),
+        ('electronics', 'Homing switches: Y on the Y motor bracket (the table\'s rear edge trips it), X and Z on the X '
+                        'carriage; they need nothing cast in', '3', 'buy (part 2)'),
         ('covers', 'Brush seal plates for the motor cutouts', '2', 'buy (part 3)'),
         ('printed', f"Drag chain links, PETG: {CHAIN['width']:.0f} x {CHAIN['height']:.0f} outer, {CHAIN['pitch']:.0f} pitch, "
                     f"R{CHAIN['radius']:.0f} bend", f"{CHAIN['links']} + 2 end mounts", 'PRINT'),
@@ -1984,24 +2007,43 @@ def enclosure(m, d):
 # --------------------------------------------------------------------------
 # Chips and coolant
 # --------------------------------------------------------------------------
+ROLLER_R = 18.0
+
+
+def roller_layout():
+    """The way covers' spring rollers {name: (x0, x1, y, feet)} and their fixings, cast in with the base so
+    the covers bolt on whenever they are bought. The front roller sits over the coolant trough, so its end
+    brackets reach back past it to an M5 insert each; the rear rollers' outer brackets reach outboard to an
+    insert, their inner ones forward onto the BK12 pad beside the support, tapped M5. feet: (x, y, wx, wy)."""
+    r, rail_end = ROLLER_R, P['table_rail_len'] / 2
+    yf = P['table_rail_y'] - rail_end - r - 1.0
+    yr = P['table_rail_y'] + rail_end + r + 1.0
+    rollers = {'Front': (-125.0, 125.0, yf, [(sx * 128.0, yf + 30.0, 12.0, 24.0) for sx in (-1, 1)])}
+    for sx, side in ((-1, 'L'), (1, 'R')):
+        x0, x1 = sorted((sx * 125.0, sx * 40.0))                 # either side of the BK12
+        rollers[f'Rear{side}'] = (x0, x1, yr, [(sx * 137.0, yr, 14.0, 18.0), (sx * 39.0, yr - 31.0, 12.0, 24.0)])
+    feet = [f_ for *_, fs in rollers.values() for f_ in fs]
+    return dict(rollers=rollers, inserts=[(x, y) for x, y, *_ in feet if abs(x) > 60],
+                tapped=[(x, y) for x, y, *_ in feet if abs(x) <= 60])
+
+
 def covers(m, d):
     """Keep chips off the ways.
 
     Table: roll-up 0.1 mm stainless strips on spring rollers in front of and behind the
     table (running just over the BF/BK12 supports and under the table), plus a spiral
-    spring cover on the screw behind the table. Beam: a drip shield over the rails.
+    spring cover on the screw behind the table. Beam: a drip shield over the rails. All of
+    them bolt on later to fixings already in the castings (roller_layout, the beam studs).
     """
-    base_top, tl, r = d['base_top'], P['table_len'], 18.0
+    base_top, tl, r = d['base_top'], P['table_len'], ROLLER_R
     zs = base_top + parts.SUPPORT['BK12']['H'] + 0.5          # strip underside
     zr = zs - r
-    rail_end = P['table_rail_len'] / 2
-    yf, yr = P['table_rail_y'] - rail_end - r - 1.0, P['table_rail_y'] + rail_end + r + 1.0
-    m.add('CoverRollerFront', 'frame', parts.roll_cover(-125, 125, yf, zr, base_top, r), 'black',
-          container='FrameBaseFront')
-    rear_x = ((-125.0, -40.0), (40.0, 125.0))                 # either side of the BK12
-    for (x0, x1), side in zip(rear_x, 'LR'):
-        m.add(f'CoverRollerRear{side}', 'frame', parts.roll_cover(x0, x1, yr, zr, base_top, r), 'black',
-              container='FrameBaseRear')
+    rl = roller_layout()['rollers']
+    yf, yr = rl['Front'][2], rl['RearL'][2]
+    for name, (x0, x1, y, feet) in rl.items():
+        m.add(f'CoverRoller{name}', 'frame', parts.roll_cover(x0, x1, y, zr, base_top, r, feet), 'black',
+              container='FrameBaseFront' if y < 0 else 'FrameBaseRear')
+    rear_x = (rl['RearL'][:2], rl['RearR'][:2])
 
     def front_strip(x, y, z):
         edge = y - tl / 2
@@ -2027,12 +2069,19 @@ def covers(m, d):
 
     m.add_dynamic('CoverScrewRear', 'black', screw_cover, 'WayCovers', touches=('Y_NutHousing', 'Y_BK12'))
 
-    m.add('DripShield', 'frame', parts.box(-(d['outer'] - 10), d['outer'] - 10, d['car_back'] + 2.0,
-                                           d['beam_face'] + 15.0, d['beam_top'], d['beam_top'] + 1.5),
-          'shim', container='FrameBeam')
+    # drip shield: from over the X rails back past the front row of beam studs, whose nuts clamp it
+    g = frame_layout(d)
+    xs = g['ux'] + 22.0 + 12.0
+    y0, y1 = d['car_back'] + 2.0, g['bolt_ys'][0] + 12.0
+    shield = parts.box(-xs, xs, y0, y1, d['beam_top'], d['beam_top'] + P['drip_shield_t'])
+    shield = shield.cut([Part.makeCylinder(5.5, 10.0, Vector(sx * bx, g['bolt_ys'][0], d['beam_top'] - 1))
+                         for sx in (-1, 1) for bx in g['bolt_xs']])
+    m.add('DripShield', 'frame', shield, 'shim', container='FrameBeam')
+    d['drip_shield'] = (2 * xs, y1 - y0)
 
 
-CHAIN = dict(pitch=20.0, width=38.0, height=21.0, radius=38.0, links=17, fixed_x=-110.0, carriage_dx=-20.0)
+CHAIN = dict(pitch=20.0, width=38.0, height=21.0, radius=38.0, links=17, fixed_x=-110.0, carriage_dx=-20.0,
+             beam_y=60.0)   # chain center line, this far behind the beam face
 
 
 def chain_and_coolant(m, d):
@@ -2042,7 +2091,7 @@ def chain_and_coolant(m, d):
     p_, h_, rad, n = C['pitch'], C['height'], C['radius'], C['links']
     length = n * p_
     bt = d['beam_top']
-    cy = d['beam_face'] + 60.0
+    cy = d['beam_face'] + C['beam_y']
     zl, zu = bt + h_ / 2, bt + h_ / 2 + 2 * rad
     xf, dx = C['fixed_x'], C['carriage_dx']
     links = [parts.chain_link(p_, C['width'], h_), parts.chain_link(p_, C['width'], h_, inner_layer=True)]
@@ -2070,7 +2119,9 @@ def chain_and_coolant(m, d):
         return Part.makeCompound(out)
 
     hw = C['width'] / 2
-    m.add('ChainMountFixed', 'frame', parts.box(xf - 25, xf, cy - hw, cy + hw, bt, bt + h_), 'printed', container='FrameBeam')
+    fixed = parts.box(xf - 25, xf, cy - hw, cy + hw, bt, bt + h_)       # screws into the two inserts in the beam top
+    fixed = fixed.cut([Part.makeCylinder(2.75, h_ + 2, Vector(ix, iy, bt - 1)) for ix, iy in d['chain_inserts']])
+    m.add('ChainMountFixed', 'frame', fixed, 'printed', container='FrameBeam')
     mount = parts.box(dx - 15, dx + 15, d['car_back'], d['car_back'] + 3, zu - 25, zu + 20)
     mount = mount.fuse([parts.box(dx - 12, dx + 12, d['car_back'], cy + hw, zu + h_ / 2 + 0.5, zu + h_ / 2 + 3.5),
                         parts.box(dx - 22, dx + 2, cy - hw, cy + hw, zu - h_ / 2, zu + h_ / 2)])
@@ -2566,7 +2617,7 @@ def snapshots(doc, out_dir, m):
 
 FOLDER_TITLES = [('tools', 'Tools: pour-line gauge and screed shoes'), ('base-box', 'Base mold kit (both halves)'), ('base-rear', 'Base, rear half (cast first)'),
                  ('base-front', 'Base, front half'),
-                 ('upright', 'Uprights (two molds: print quantities are for both)'), ('beam', 'Beam'),
+                 ('upright', 'Uprights (one mold, cast twice: cast-in parts are for both)'), ('beam', 'Beam'),
                  ('machine', 'Machine parts')]
 
 
@@ -2700,10 +2751,14 @@ KERF = 4.0
 
 
 def sheet_layout(boards):
-    """Rip-and-crosscut layout: each sheet is ripped into strips along its length, as wide as the widest
-    piece left; pieces are crosscut from the strips, widest first. Returns [[(x, y, w, h, label)]]."""
+    """Three-stage cut of the melamine boards (not the lumber): rip each sheet into strips along its length,
+    as wide as the widest piece left; crosscut each strip into columns as long as their first piece; rip a
+    column into narrower pieces side by side (two bridges out of a wall-wide strip). Widest first.
+    Returns [[(x, y, w, h, label)]]."""
     pcs = []
     for b in boards:
+        if b.stock:
+            continue
         su, sv = b.size()
         for k in range(b.qty):
             L, W = max(su, sv), min(su, sv)
@@ -2713,16 +2768,21 @@ def sheet_layout(boards):
     while pcs:
         sheet, y = [], 0.0
         while pcs:
-            strip = next((p for p in pcs if y + p[0] <= SHEET[1] + 0.1), None)
-            if strip is None:
+            first = next((p for p in pcs if y + p[0] <= SHEET[1] + 0.1), None)
+            if first is None:
                 break
-            w = strip[0]
-            x = 0.0
-            for p in list(pcs):
-                if p[0] <= w + 0.1 and x + p[1] <= SHEET[0] + 0.1:
-                    sheet.append((x, y, p[1], p[0], p[2]))
-                    x += p[1] + KERF
-                    pcs.remove(p)
+            w, x = first[0], 0.0
+            while True:
+                col = next((p for p in pcs if p[0] <= w + 0.1 and x + p[1] <= SHEET[0] + 0.1), None)
+                if col is None:
+                    break
+                lc, yc = col[1], y
+                for p in list(pcs):
+                    if p[1] <= lc + 0.1 and yc + p[0] <= y + w + 0.1:
+                        sheet.append((x, yc, p[1], p[0], p[2]))
+                        yc += p[0] + KERF
+                        pcs.remove(p)
+                x += lc + KERF
             y += w + KERF
         sheets.append(sheet)
     return sheets
@@ -2805,7 +2865,12 @@ def mold_guide(m, only=None):
     foam = [r for r in m.molds if r['kind'] == 'foam' and r['folder'] in folders]
     sl_path = os.path.join(ROOT, 'print', 'sliced.csv')
     sliced = [r for r in csv.DictReader(open(sl_path)) if r['folder'] in folders] if os.path.exists(sl_path) else []
-    area = sum(b.size()[0] * b.size()[1] * b.qty for b in boards) / 1e6
+    area = sum(b.size()[0] * b.size()[1] * b.qty for b in boards if not b.stock) / 1e6
+    lumber = {}
+    for b in boards:
+        if b.stock:
+            lumber[b.stock] = lumber.get(b.stock, 0.0) + (max(b.size()) + KERF) * b.qty
+    lumber_txt = ', '.join(f'{math.ceil(v / 2438.4)} x 8 ft {k} ({v / 1000:.1f} m)' for k, v in sorted(lumber.items()))
     title = MOLD_DOCS[only][1]
     tmpl = ', '.join(f'`templates/{mo}-templates.pdf`' for mo in molds_)
     expl = {'base': ('exploded-base', 'The base mold (rear half), pulled apart'),
@@ -2842,8 +2907,11 @@ def mold_guide(m, only=None):
     L += [f'- **Fits** are 0.15 mm a side, and drawn for {T:.2f} mm board (Home Depot\'s 3/4 in melamine is a true',
           '  0.750 in). Measure yours; if it differs, set `mold_board` in `model/build_cnc.py` and re-run it.', '',
           '## 2. What you need', '', '| Material | Amount | Notes |', '|---|---|---|']
-    L.append(f'| Melamine board, 3/4 in | {len(sheets)} sheets, 4 x 8 ft | layout in section 4 |' if only is None else
-             f'| Melamine board, 3/4 in | about {area:.1f} m2 | all the molds come out of two 4 x 8 ft sheets |')
+    n_sh = f"{len(sheets)} sheet{'s' if len(sheets) > 1 else ''}"
+    L.append(f'| Melamine board, 3/4 in | {n_sh}, 4 x 8 ft | layout in section 4 |' if only is None
+             else f'| Melamine board, 3/4 in | about {area:.1f} m2 | all the molds come out of {n_sh}, 4 x 8 ft |')
+    if lumber:
+        L.append(f'| 1x2 lumber (furring strip is fine) | {lumber_txt} | the cleats: they lie on the floor outside the walls |')
     if foam:
         L.append('| XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |')
     if sliced:
@@ -2877,7 +2945,8 @@ def mold_guide(m, only=None):
         L.append(f"| `{r['folder']}/{r['file']}` | {r['qty']} | {float(r['grams']):.0f} | {r['time_each']} |")
     L += ['', '## 4. Cut the boards', '',
           'Have the store rip the strips; crosscut at home. Write each board\'s name on its outside face, and mark',
-          'the cast face (the melamine face the mix touches).', '']
+          'the cast face (the melamine face the mix touches). The cleats are cut from 1x2 lumber, not the sheet;',
+          'the bridges and struts come out of the sheet\'s offcuts.', '']
     if only is None:
         for k in range(1, len(sheets) + 1):
             L += [f'![Sheet {k}](boards/sheet-{k}.svg)', '']
@@ -2891,7 +2960,7 @@ def mold_guide(m, only=None):
         else:
             cut[key] = [b, f"{su:.0f} x {sv:.0f}{'' if b.rect() else ' (profile)'}", b.qty]
     for b, size, qty in cut.values():
-        L.append(f"| {b.name} | {qty} | {size} | {b.note} |")
+        L.append(f"| {b.name} | {qty} | {size} | {(b.stock + ' lumber' + ('; ' if b.note else '')) if b.stock else ''}{b.note} |")
     L += ['', '## 5. Mark and drill', '',
           f'1. Print the drilling templates ({tmpl}) at **actual size** and check the 100 mm square.',
           '2. Tape each board\'s pages onto it: printed edges on the board\'s edges, grid lines lined up.',
@@ -2933,7 +3002,8 @@ def mold_guide(m, only=None):
         for k in range(1, 4):
             L += [f'{k}. ' + STEPS_TEXT[f'step-base-front-{k}'], ''] + fig(f'step-base-front-{k}', f'Base front, step {k}')
     if 'upright' in molds_:
-        L += ['### Uprights (two molds)', '', 'Cast foot down. Build two of everything. The skeleton: the foot bar, '
+        L += ['### Uprights (one mold, cast twice)', '', 'Cast foot down. The two uprights are the same part: cast one, '
+              'take the mold apart after the cure, scrape and re-wax it and cast the other. The skeleton: the foot bar, '
               'two columns and the top plate (two flat bars), clamped later by the column tie rods.', '']
         L += fig('skeleton-upright', 'An upright skeleton')
         for k, t in enumerate(UP_TEXT, 1):

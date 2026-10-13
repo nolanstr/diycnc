@@ -56,5 +56,5 @@ In the FreeCAD file, edit `posX`, `posY`, `posZ` and `doorAngle` in the `Params`
 axes and open the door, `explode` to pull the frame apart and `sumpOut` to slide the coolant sump
 out. The printed mold pieces are in the hidden `Molds` group.
 
-The stiffness study needs Python with numpy, scipy, matplotlib and scikit-sparse 0.5 or later; see the
-design notes.
+The stiffness and vibration studies run in the `diycnc` conda env (`conda env create -f environment.yml`,
+then `conda activate diycnc`): numpy, scipy, matplotlib and scikit-sparse 0.5 or later. See the design notes.

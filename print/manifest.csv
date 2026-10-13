@@ -53,13 +53,13 @@ base-rear,plug-draw-pocket-R.stl,plug,1,32 x 32 x 20,6,Forms a draw-rod nut pock
 upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
-upright,filler-toe-filler.stl,filler,2,80 x 55 x 48,54,Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor.
-upright,former-foot-gasket-groove-part1of4.stl,former,2,68 x 129 x 8,8,Pins into the floor.
-upright,former-foot-gasket-groove-part2of4.stl,former,2,4 x 129 x 8,3,
-upright,former-foot-gasket-groove-part3of4.stl,former,2,4 x 129 x 8,3,
-upright,former-foot-gasket-groove-part4of4.stl,former,2,68 x 129 x 8,8,
-upright,plug-toe-plug.stl,plug,2,32 x 76 x 46,27,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
-upright,kit-plate-spacer.stl,kit,4,16 x 16 x 31,17,"Between the bridge and the top plate, on its greased 3/8 bolt."
+upright,filler-toe-filler.stl,filler,1,80 x 55 x 48,27,Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor.
+upright,former-foot-gasket-groove-part1of4.stl,former,1,68 x 129 x 8,4,Pins into the floor.
+upright,former-foot-gasket-groove-part2of4.stl,former,1,4 x 129 x 8,2,
+upright,former-foot-gasket-groove-part3of4.stl,former,1,4 x 129 x 8,2,
+upright,former-foot-gasket-groove-part4of4.stl,former,1,68 x 129 x 8,4,
+upright,plug-toe-plug.stl,plug,1,32 x 76 x 46,13,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
+upright,kit-plate-spacer.stl,kit,2,16 x 16 x 31,9,"Between the bridge and the top plate, on its greased 3/8 bolt."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 beam,filler-back-edge-part1of3.stl,filler,1,124 x 40 x 40,22,Rounded back edge between the uprights; bolts to the top wall.
 beam,filler-back-edge-part2of3.stl,filler,1,124 x 40 x 40,22,

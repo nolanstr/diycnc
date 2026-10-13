@@ -530,6 +530,20 @@
 6.0,
 "M6",
 "M6 tap drill (5 mm), tap M6"
+],
+[
+6.0,
+38.8,
+5.0,
+"M5",
+"M5 tap drill (4.2 mm), tap M5"
+],
+[
+84.0,
+38.8,
+5.0,
+"M5",
+"M5 tap drill (4.2 mm), tap M5"
 ]
 ],
 "pour": null

@@ -27,7 +27,7 @@ All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal S
 | Rail bar front | Flat bar 3/8 x 1-1/2 in | 288 mm (11.34 in) | 2 | 6 x 17/64 in, 2 x M5 tap drill (4.2 mm), tap M5 |
 | Upright foot | Flat bar 3/8 x 2 in | 375 mm (14.76 in) | 2 | 3 x 9/16 in, 2 x 1/2 in |
 | Pad BF | Flat bar 3/8 x 2 in | 90 mm (3.54 in) | 1 | 2 x 17/64 in, 2 x M6 tap drill (5 mm), tap M6 |
-| Pad BK | Flat bar 3/8 x 2 in | 90 mm (3.54 in) | 1 | 2 x 17/64 in, 4 x M6 tap drill (5 mm), tap M6 |
+| Pad BK | Flat bar 3/8 x 2 in | 90 mm (3.54 in) | 1 | 2 x 17/64 in, 4 x M6 tap drill (5 mm), tap M6, 2 x M5 tap drill (4.2 mm), tap M5 |
 | Seat rear | Flat bar 3/8 x 2-1/2 in | 285 mm (11.22 in) | 2 | 2 x 9/16 in, 2 x 3/8 in |
 | Pedestal bar rear | Flat bar 3/8 x 2-1/2 in | 285 mm (11.22 in) | 2 | 2 x 9/16 in |
 | Beam seat | Flat bar 3/8 x 2-1/2 in | 133 mm (5.25 in) | 2 | 4 x 17/32 in, 1 x 3/8 in |

@@ -12,7 +12,8 @@ Five castings that bolt together. Each is a **steel skeleton** of stock flat bar
 drilled from printed templates and clamped with threaded rod, cast into **epoxy granite**, which damps it
 and adds stiffness. The steel is the frame: every joint between castings, and every rail, riser and
 ballscrew support, bolts steel to steel. Nothing is welded, nothing is custom-cut, and nothing is
-threaded into the epoxy granite (the enclosure's 11 M5 inserts are the only ones left).
+threaded into the epoxy granite (17 M5 inserts hold only the add-ons: the enclosure, the way-cover rollers
+and the cable-chain mount).
 
 | Module | Steel skeleton (all stock) | Joins to |
 |---|---|---|
@@ -28,7 +29,7 @@ tapping (from the templates) and the risers. Use plain steel, not galvanized: ep
 Wire-brush off rust and loose scale and degrease just before casting; paint only the part of each leg
 that hangs below the base.
 
-**Keeping the epoxy down.** About 9.6 kg of epoxy (8.5 % of the 113 kg the castings would weigh with sand; 121 kg with the alumina):
+**Keeping the epoxy down.** About 9.1 kg of epoxy (8.5 % of the 107 kg the castings would weigh with sand; 113 kg with the #16 grit):
 - The tubes stay hollow (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
   they're clamped between, or by printed rings and plugs, so no mix gets in.
 - The base's underside pockets follow the stiffness study below, with the steel grid in the ribs
@@ -41,31 +42,44 @@ that hangs below the base.
   steps (40 or 65 mm deep) under the trough band, the draw rods, the knees and outboard of
   the pedestals (`base_pockets` in `model/build_cnc.py`).
 
-**Molds and fits.** The molds are a kit (`model/moldbox.py`, the mold guide): melamine boards
-with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
+**Molds and fits.** The molds are a kit (`model/moldbox.py`, the mold guide): melamine boards, all from
+one 4 x 8 ft sheet (a three-stage cut: the bridges and struts come out of the strips the walls leave), and
+1x2 cleats, with every wall 25 mm above the pour line, held by printed brackets and saddles with M4 bolts
 through that band, so no bolt passes through a cast face. Every printed piece bolts to its board
 from outside into a captive nut (a bayonet pocket in the face against the board), or pins on if
 it is too thin, and pieces cut to fit the printer are pegged together. The hidden pocket
-cores are XPS foam, which keeps the printing to 1.1 kg of PETG (sliced in Bambu Studio). A clash check in the
+cores are XPS foam, which keeps the printing to about 1 kg of PETG (sliced in Bambu Studio). A clash check in the
 model keeps the kit, the boards, the castings and the steel apart. Two joints are made to fit by
 construction instead of by measuring: the front base half is cast against the rear half
 (flush top faces, matching split faces, end plates straight onto the dowel pins), and the dowels
 are grouted into oversize holes at first assembly, so two independent molds don't have to agree.
+The two uprights are the same part, so one mold casts both, one after the other.
 - The mix matters as much as the geometry. Use a well-graded aggregate (gravel up to about
   10 mm, sand, fine sand, and whiting, i.e. calcium carbonate powder) and vibrate it. The
   split in the build guide follows a modified Fuller curve, P(d) = (d^q - d_min^q) / (D^q - d_min^q)
   with D = 10 mm and q about 0.45: q = 0.5 (classic Fuller) is a little coarse and needs more
   epoxy to wet, q = 0.37 (Andreasen) packs tighter but its extra powder soaks up epoxy.
 - **Aluminum oxide in the beam and uprights.** Alumina grit (E about 370 GPa for brown fused,
-  a little less for black, against about 70 for quartz and granite) replaces the sand, volume
-  for volume, in those three castings only (`analysis/alumina.py`): brown #16 for the coarse
-  sand, black 70 grit for the fine sand. A differential-effective-medium estimate of the mix
-  (the plain mix comes out at 34 GPa, close to the 30 GPa the frame model uses) puts it
-  22 % stiffer with the #16 alone, 10 % with the 70 grit alone and 37 % with both. On the
-  frame, both come to about +17 / +16 / +21 % in X / Y / Z for $150 (a 50 lb and a 25 lb
-  bag); the #16 alone is about +10 %. Doing the base as well would take about 60 kg more grit
-  for another 8-11 %. It's an estimate, so the build guide's tap-tested bars check it, and
-  sand is the fallback. Other options:
+  a little less for black, against about 70 for quartz and granite) replaces the coarse sand,
+  volume for volume, in those three castings only (`analysis/alumina.py`): brown #16, one 50 lb
+  bag. A differential-effective-medium estimate of the mix (the plain mix comes out at 34 GPa,
+  close to the 30 GPa the frame model uses) puts it 22 % stiffer with the #16 alone, 10 % with
+  black 70 grit alone (for the fine sand) and 37 % with both. On the frame as drawn now, where
+  the steel skeleton carries most of the load, that is worth much less than it was on the
+  all-epoxy-granite frame (+17 %):
+
+  | Grit in the beam and uprights | X | Y | Z | Grit |
+  |---|---|---|---|---|
+  | None (sand) | 89.2 | 137.8 | 117.0 | |
+  | #16 in the beam only | 92.8 | 147.5 | 124.1 | ~$70 (two 12 lb bags) |
+  | Both grits, beam only | 95.0 | 153.1 | 128.4 | ~$105 |
+  | **#16, beam and uprights (drawn)** | **96.5** | **150.2** | **128.8** | **$110** |
+  | Both grits, beam and uprights | 101.0 | 157.8 | 136.3 | $150 |
+
+  So the #16 is about +5 % for $110 and the 70 grit another +5 % for $40: the 70 grit is an
+  option (decided before the pour). Even with plain sand the frame is more than twice as stiff as
+  the ballscrews. It's an estimate, so the build guide's tap-tested bars check it, and sand is
+  the fallback. Other options:
   **Graded industrial quartz** (Agsco and similar) is clean, dry and
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
   **Ceramic microspheres** (Zeeospheres) help the mix flow at low epoxy, but whiting does most
@@ -160,13 +174,15 @@ in it; the screws alone are roughly 30-50 N/um, so the frame should stay well ab
 | + steel skeletons in the uprights and a steel box in the beam (all 3/8 in) | 47.9 L | 96.0 | 132.7 | 130.9 |
 | + steel grids in the base (all 3/8 in) | 45.8 L | 107.1 | 153.5 | 138.1 |
 | Slimmed: webs, cross plates and braces 1/4 in with windows, 3/8 in foot plates (64 laser-cut plates) | 48.5 L | 99.7 | 146.9 | 124.7 |
-| **Now: all stock flat bar and tube, bolted (no custom parts), beam 146 mm high** | **44.8 L** | **101.0** | **157.8** | **136.3** |
+| All stock flat bar and tube, bolted (no custom parts), beam 146 mm high | 44.8 L | 101.0 | 157.8 | 136.3 |
+| **Now: the same with the #16 grit only (the 70 grit is an option)** | **44.8 L** | **96.5** | **150.2** | **128.8** |
 
 - **Steel skeletons.** Making the steel the frame (epoxy granite cast round it) makes the frame stiffer
   than the last all-epoxy-granite design. The first version was 64 custom laser-cut plates slotted
   together (+18 / +19 / +14 %); the one drawn now is all stock flat bar and tube, cut to length, drilled
-  from templates and bolted, and comes out stiffer still: +20 / +28 / +25 % (101.0 / 157.8 / 136.3 N/um),
-  with modes 133 / 265 / 300 Hz, about 60 kg of steel and hardware and 113 kg of castings (the hollow
+  from templates and bolted, and comes out stiffer still: +20 / +28 / +25 % (101.0 / 157.8 / 136.3 N/um
+  with both grits; 96.5 / 150.2 / 128.8 with the #16 only, as drawn now), with modes 132 / 262 / 299 Hz
+  (133 / 265 / 300 with both grits), about 60 kg of steel and hardware and 113 kg of castings (the hollow
   girder tubes take some epoxy granite out of the base). It loses the laser version's upright brace and
   beam diaphragms but gains the base girders' and the beam bars' depth.
 
@@ -246,16 +262,17 @@ scales almost directly with E:
 So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
 test and tap-tested bars check both before anything is cast.
 
-**Vibration** (`analysis/modal.py`, run with `FEA_GRIT=1.37` for the alumina). The frame as drawn
-on its four feet, with 12 kg of X carriage, Z axis and spindle on the beam blocks and 12 kg of
-table, vise and work on the Y blocks:
+**Vibration** (`analysis/modal.py`). The frame on its four feet, with 12 kg of X carriage, Z axis
+and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, with the #16 grit
+only as drawn now (`FEA_GRIT=1.22`) and with the 70 grit too (`FEA_GRIT=1.37`). The 70 grit
+raises them by 1-2 %:
 
-| Mode | Frequency | Motion |
-|---|---|---|
-| 1 | 133 Hz | gantry sways side to side (X); base twisting on its feet carries 40 % of it |
-| 2 | 265 Hz | beam rocks front to back (Y) |
-| 3 | 300 Hz | base bends, front to back |
-| 4 | 360 Hz | gantry sway with the base, second form |
+| Mode | #16 only (drawn) | Both grits | Motion |
+|---|---|---|---|
+| 1 | **132 Hz** | 133 Hz | gantry sways side to side (X); base twisting on its feet carries 40 % of it |
+| 2 | **262 Hz** | 265 Hz | beam rocks front to back (Y) |
+| 3 | **299 Hz** | 300 Hz | base bends, front to back |
+| 4 | **353 Hz** | 360 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 Mode 1 is at the bottom of the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -293,11 +310,13 @@ in each column), `base_pocket_*` and `base_free_*` (optimization results at 18-2
 `tradeoff.png` (base stiffness against base volume), `upright_*` (lightening holes, at 90 and
 80 % of the upright).
 
-Rerun it with a Python that has numpy, scipy, matplotlib and scikit-sparse 0.5 or later
-(older scikit-sparse falls back to a much slower solver):
+Rerun it in the `diycnc` conda env (`environment.yml`: numpy, scipy, matplotlib and
+scikit-sparse 0.5 or later; older scikit-sparse falls back to a much slower solver):
 
 ```sh
 /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/voxelize.py   # -> analysis/vox_current.*
+conda env create -f environment.yml                 # once
+conda activate diycnc
 cd analysis
 python baseline.py                                  # stiffness and each module's share (about 1 min)
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
@@ -307,7 +326,7 @@ FEA_VOX=vox_current python whatif.py                # stiffness of the model as 
 python alumina.py                                   # alumina grit: mix modulus and frame stiffness
 FEA_GRIT=1.37 python -c "import topopt; topopt.main('pocket', 24, tag='light_24')"   # lighter base
 python weight.py vox_current [vox_...]              # castings mass against stiffness
-python modal.py                                     # natural frequencies (about 30 s)
+FEA_GRIT=1.22 python modal.py                       # natural frequencies (about 30 s)
 python topopt_upright.py 0.9 [web]                  # upright holes (about 10 min each)
 python compare_uprights.py to_upright_*.npz         # their stiffness and frequencies
 ```
@@ -332,6 +351,19 @@ To empty or clean the sump, pop the hose off the pump and slide the pan out the 
 it still sits on four M12 leveling feet, now in the leg ends. Use a water-soluble coolant
 and keep it topped up; skim tramp oil off the clean end now and then.
 
+**Add later, fixed now.** The covers, the sump and the enclosure can come later, but whatever they fix
+to is in the castings already, so nothing is recast:
+
+| Add-on | Fixing | Where in the model |
+|---|---|---|
+| Way-cover rollers | Front: an M5 insert behind the coolant trough for each end bracket's foot. Rear: an insert outboard of each roller, and an M5 hole tapped in the BK12 pad beside the support for each inner foot | `roller_layout`, `CoverRoller*` |
+| Spiral screw cover | None: it clamps between the nut housing and the BK12 | `CoverScrewRear` |
+| Drip shield | The four front beam studs: its back edge goes under their washers (the studs are 190 mm, long enough for the 3 mm ACM) | `DripShield` |
+| Cable-chain mount | Two M5 inserts in the beam top | `ChainMountFixed` |
+| Enclosure | 11 M5 inserts in the base top | `rail_bolts` |
+| Flood coolant | The trough, gutters and cast-in drain; room for the sump between the legs | `base_top_formers`, `DrainOutlet` |
+| Homing switches | None: Y on the Y motor bracket, X and Z on the X carriage | |
+
 **Cable chain.** One printed chain on top of the beam carries the coolant line, Z motor,
 spindle power and spindle water hoses to the carriage (17 links, 38 x 21 outer, 20 mm
 pitch, R38). Print it in PETG, not PLA. The model shows a simplified link; for the
@@ -346,15 +378,37 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 
 ## Cost
 
-**Checked against real listings (2026-10-09/10, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews, chip protection) about **$1,839** (including $150 of alumina grit for the beam and uprights, and about $200 for the
-bolt-together mold kit: two sheets of melamine, its hardware, a sheet of XPS foam and the PETG); **2, the
-electronics and spindle** about **$430** plus the spindle the builder picks ($250-375 for a 1.5 kW
-110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the enclosure and flood
-coolant** about $650-700. The steel and aluminum are priced as remnants and the joint hardware
-from a hardware store; the remnant prices are estimates. The estimate below was made
-before that check and is too low; it assumed AliExpress-level prices. It's kept here to show
-what each cost-down change saves.
+**Checked against real listings (2026-10-09/12, the sourcing list).** The list is in three parts:
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,603**, plus about **$183 of add-later
+niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
+they're bought; **2, the electronics and spindle** about **$430** plus the spindle the builder picks
+($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
+enclosure and flood coolant** about $650-700. The steel and aluminum are priced as remnants and the joint
+hardware from a hardware store; the remnant prices are estimates.
+
+**Frame cost-down (2026-10-12).** The frame was $1,839 with everything in it. The changes, none of
+which gives up travel, rigidity to speak of, chip protection or the coolant system:
+
+| Change | Frame |
+|---|---|
+| Before | $1,839 |
+| Missing or low lines added: a third B7 rod, the PVA film, the quarter-round and silicone | +$47 |
+| Add-later niceties out of the frame total (they bolt to fixings cast in now, below; $183 with cheaper springs and screw cover) | -$210 |
+| Their stand-ins for the first chips: a grease syringe, a bin under the drain | +$20 |
+| #16 grit only; the 70 grit is an option (96.5 / 150.2 / 128.8 N/um against 101.0 / 157.8 / 136.3) | -$40 |
+| One melamine sheet (one upright mold for both, three-stage cut) and 1x2 cleats | -$36 |
+| Mold hardware and rods to the real counts; low-head screws by the piece | -$24 |
+| More fine sand (it replaces the 70 grit) | +$7 |
+| **Now** | **$1,603** |
+
+What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
+(about $220 at $2/lb, against the $300 estimate), AliExpress motor brackets and couplers (about $50 less,
+2-4 weeks), and the #16 in the beam only (about $40 less for -3 to -4 %; plain sand everywhere is about
+$100 less for -8 to -9 % against the drawn frame). The aluminum plates are the risk the other way: without
+drops, cut plate is about $120-190 against the $85 estimate.
+
+The estimate below was made before the listings were checked and is too low; it assumed
+AliExpress-level prices. It's kept here to show what each earlier cost-down change saves.
 
 Rough estimates in USD at hobby-supplier prices (AliExpress/Amazon-type sources, late
 2026). They're not quotes; check current listings. The cost-down column keeps the

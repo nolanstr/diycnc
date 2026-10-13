@@ -15,8 +15,8 @@ import numpy as np
 from vfe import E_EG, E_MIN, E_ST, Mesh, Voxels, wrench_loads
 
 F0 = 1000.0   # N
-# Epoxy-granite stiffness factor per casting: FEA_GRIT=1.37 for the alumina grits in the uprights
-# and beam (analysis/alumina.py); 1 = the plain sand mix everywhere.
+# Epoxy-granite stiffness factor per casting: FEA_GRIT=1.22 for the #16 alumina grit in the uprights
+# and beam as drawn, 1.37 with the 70 grit as well (analysis/alumina.py); 1 = the plain sand mix everywhere.
 EG_SCALE = {'base': 1.0, 'up': float(os.environ.get('FEA_GRIT', 1.0)), 'beam': float(os.environ.get('FEA_GRIT', 1.0))}
 
 
