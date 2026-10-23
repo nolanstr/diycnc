@@ -250,6 +250,46 @@ def support(kind, u0, a, journal_r, lock_r=None):
     return out
 
 
+# Integrated BK bearing seat + NEMA 23 motor bracket, one steel part (ANWOK / generic HM series), from the
+# listing's drawing: L long, B wide, H over the bearing block (H1 at its sides, B1 wide in the middle), shaft h
+# above the base. Bearing-end holes as the BK12 (P apart, C from the bearing end); two counterbored S holes
+# (Q x Z) E from the motor end; D1 pilot bore and M4 motor screws on W1. Coupler length per the drawing.
+# The HM10-57 has no published drawing: measure the one on X before drawing it here.
+HM = {
+    'HM12-57': dict(L=89.0, B=60.0, H=44.0, h=25.0, H1=37.0, B1=34.0, P=46.0, C=(6.0, 19.0), S=6.6, Q=11.0, Z=2.0,
+                    E=40.0, D1=38.1, W1=66.7, seat=35.0, flange=12.0, floor=12.0, coupler=(30.0, 42.0)),
+}
+
+
+def hm_bracket(kind, u0):
+    """HM bracket from its bearing end (u0) to its motor face (u0 + L)."""
+    s = HM[kind]
+    L, B, h = s['L'], s['B'], s['h']
+    f0, top = u0 + L - s['flange'], h + 31.5
+    body = box(u0, u0 + s['seat'], -B / 2, B / 2, 0, s['H1']).fuse([
+        box(u0, u0 + s['seat'], -s['B1'] / 2, s['B1'] / 2, 0, s['H']),
+        box(u0 + s['seat'] - 1, f0 + 1, -B / 2, B / 2, 0, s['floor']),
+        box(f0, u0 + L, -B / 2, B / 2, 0, top)]).removeSplitter()
+    body = soften(body, 0.8, chamfer=True)
+    r_m = s['W1'] / 2 / math.sqrt(2)
+    # the bearing bore, and a counterbore for the BK-style lock nut on the screw's journal
+    cuts = [cyl_u(10.0, u0 - 1, u0 + s['seat'] + 1, 0, h), cyl_u(12.5, u0 + 22.0, u0 + s['seat'] + 1, 0, h),
+            cyl_u(s['D1'] / 2 + 0.5, f0 - 1, u0 + L + 1, 0, h)]
+    cuts += [cyl_u(1.65, f0 - 1, u0 + L + 1, v, h + w) for v in (-r_m, r_m) for w in (-r_m, r_m)]
+    for v in (-s['P'] / 2, s['P'] / 2):
+        cuts += [cyl_w(s['S'] / 2, -1, s['H1'] + 1, u0 + c, v) for c in s['C']]
+        e = u0 + L - s['E']
+        cuts += [cyl_w(s['S'] / 2, -1, s['floor'] + 1, e, v), cyl_w(s['Q'] / 2, s['floor'] - s['Z'], s['floor'] + 1, e, v)]
+    return body.cut(cuts)
+
+
+def hm_holes(kind, u0):
+    """The bracket's mounting holes (u, v) from its bearing end at u0: the four bearing-end, then the two motor-end."""
+    s = HM[kind]
+    return ([(u0 + c, v) for c in s['C'] for v in (-s['P'] / 2, s['P'] / 2)]
+            + [(u0 + s['L'] - s['E'], v) for v in (-s['P'] / 2, s['P'] / 2)])
+
+
 def coupler(u0, u1, a, bore0, bore1, hub=15.0, r=12.5):
     """D25 L30 beam coupler with blind bores (radius bore0 from u0, bore1 from u1)."""
     c = cyl_u(r, u0, u1, 0, a)

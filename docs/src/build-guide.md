@@ -90,12 +90,13 @@ granite.
    just before casting. If it will sit more than a day or two, give it a thin coat of epoxy primer
    (not on the faces the mold screws or the rails bear on). Paint only the part of each leg that will
    hang below the base (after casting).
-6. **Threaded rod and hardware:** cut the 1/2-13 rods: per upright 2 x 363 mm (in the columns) and
-   1 x 153 mm (at the toe); 2 x 687 mm for the base draw rods; 4 x 270 and 6 x 225 mm for the base cross
-   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 190 mm and 3 ties of 113 mm. Deburr the ends.
-   A rod a few mm off is fine: one end is set flush and the error ends up in the 6 mm tail past the far
-   nut. Have 17 x M5 cast-in inserts ready: 11 for the enclosure and 4 for the way-cover rollers in the
-   base, 2 for the cable-chain mount in the beam. They hold only those add-ons; nothing structural
+6. **Studs and hardware:** nothing to cut. The 1/2-13 rods are grade B7 studs bought at length: per
+   upright 2 x 14-1/4 in (in the columns) and 1 x 6 in (at the toe); 2 x 27 in for the base draw rods;
+   4 x 10-3/4 and 6 x 8-1/2 in for the base cross rods. The 3/8-16 ones: 8 beam studs of 7-1/2 in and
+   3 ties of 4-1/2 in. One end is set flush and the far nut's tail takes the rest (at least 4.6 mm
+   of it). If a length had to be cut from rod, deburr the end. Have 19 x M5 cast-in inserts ready: 11
+   for the enclosure, 4 for the way-cover rollers and 2 for the Y cable chain in the base, 2 for the
+   cable-chain mount in the beam. They hold only those add-ons; nothing structural
    threads into the epoxy granite. Cast them all in, even if the enclosure and covers come later.
 
 ![Section through the uprights: columns, tie rods, top plates and the base pedestals](../../renders/frame_section_uprights.png)
@@ -334,13 +335,14 @@ steel: the base's rail bars and the beam's face bar, tapped M5.
    (M4 x 16, about 4 N·m). Tighten the first rail against a
    straightedge, then set the second parallel with a dial indicator on a block of the first
    (within 0.01-0.02 mm over the travel).
-2. Bolt the BK12 (fixed bearing, rear) and BF12 (front) to their tapped steel pads (M6 x 40, about
-   6-8 N·m) with the screw installed. Align the screw parallel to the rails in both directions
+2. Bolt the HM12-57 bracket (the fixed bearing and the motor mount in one, rear; its six holes) and the
+   BF12 (front) to their tapped steel pads (M6 x 40, about 6-8 N·m) with the screw installed. Move the
+   bearings, spacer and lock nut from the kit's BK12 into the bracket if it came without them. Align the screw parallel to the rails in both directions
    with a dial indicator on the nut. Shim under a support if needed; the screw should spin
    freely by hand along the whole length.
 3. Mount the DSG16H nut housing under the table (shim to height), bolt the table to the four
-   blocks and the housing, and check for binding at both ends of travel. Fit the motor
-   bracket, the 8 x 10 coupler and the closed-loop motor.
+   blocks and the housing, and check for binding at both ends of travel. Fit the 8 x 10 coupler
+   (the length the bracket takes, L30-42) and the closed-loop motor on the bracket.
 
 **X (beam).**
 1. Rails onto the X risers as for Y (100 mm spacing).
@@ -395,9 +397,9 @@ way covers before steady steel work; chips wear the Y screw and rails.
    Brush seals where the X and Y motors pass through the panels.
 3. Way covers: the stainless strips on their spring rollers in front of and behind the table.
    Each roller's feet screw down (M5 x 12): the front roller's into two inserts behind the coolant
-   trough, the rear rollers' outer feet into two inserts and their inner feet into the tapped BK
-   pad beside the BK12. The spiral cover clamps on the Y screw between the nut housing and the
-   BK12. The drip shield (ACM offcut) goes over the X rails, its back edge under the washers of the
+   trough, the rear rollers' outer feet into two inserts and their inner feet into the tapped pad
+   beside the Y bracket. The spiral cover clamps on the Y screw between the nut housing and the
+   bracket's bearing end. The drip shield (ACM offcut) goes over the X rails, its back edge under the washers of the
    four front beam studs: back the nuts off, slide it in, retighten.
 4. Coolant: slide the sump (steam-table pan with the chip basket, magnet, baffle, screen and
    24 V pump) in under the base below the drain nipple, in place of the bin. Run the return hose

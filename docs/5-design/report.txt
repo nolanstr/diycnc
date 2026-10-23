@@ -1,26 +1,26 @@
 DIY CNC layout report
 =====================
 Travel X/Y/Z:                 180 / 300 / 140 mm
-Base footprint (= enclosure): 600 W x 724 D mm
-Enclosure frame:              600 W x 724 D x 766 H mm
-Overall incl. door, motors:   687 W x 872 D x 1024 H mm
+Base footprint (= enclosure): 582 W x 724 D mm
+Enclosure frame:              582 W x 724 D x 766 H mm
+Overall incl. door, motors:   678 W x 889 D x 1024 H mm
 Table top height:             176 mm above casting underside
 Table top -> collet nut tip:  160 mm (Z up)
 Table top -> beam underside:  180 mm
 Tool tip above table, Z up:   130 mm (30 mm stickout)
 Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
-Gap between uprights:         370 mm
+Gap between uprights:         352 mm
 
-Epoxy granite volume:         45.1 L
-Casting mass:                 106 kg (234 lb)
-  Base front:                  12.7 L   29.8 kg
-  Base rear:                   14.9 L   35.0 kg
+Epoxy granite volume:         44.0 L
+Casting mass:                 103 kg (228 lb)
+  Base front:                  12.3 L   29.0 kg
+  Base rear:                   14.5 L   34.1 kg
   Upright L:                    4.9 L   11.6 kg
   Upright R:                    4.9 L   11.6 kg
-  Beam:                         7.7 L   18.0 kg
+  Beam:                         7.3 L   17.2 kg
 Cast-in steel + joint hardware: 72.8 kg
-Epoxy needed (~8.5% of the sand mix by mass): 9.0 kg
+Epoxy needed (~8.5% of the sand mix by mass): 8.8 kg
 
 Linear motion / plate BOM
 -------------------------
@@ -32,38 +32,39 @@ Linear motion / plate BOM
   Z        SFU1204 ballscrew + BK10/BF10 + housing + coupler    300 mm                               buy
   X beam   NEMA 23 bracket for BK10                             1 pc                                 OWNED
   Z        NEMA 23 bracket for BK10                             1 pc                                 buy
-  Y table  NEMA 23 bracket for BK12                             1 pc                                 buy
+  Y table  HM12-57 integrated bearing seat + NEMA 23 bracket (in place of the kit's BK12, which is spare); D25 coupler 8 x 10 mm, about 42 mm long 1 pc                                 buy
   X, Y     NEMA 23 closed loop 23HS30-5004D-E1000 + CL57T driver 2 pcs                                buy
   Z        NEMA 23 open loop (modeled as 23HS30-3004S)          1 pc                                 OWNED
   Y table  DSG16H nut housing                                   1 pc                                 buy (comes in SFU1605 kits)
   X, Z     DSG12H (24 mm bore) nut housing                      2 pcs                                X OWNED, Z buy
   spindle  GDZ80-2.2 water-cooled ER20 + VFD + 80 mm cast clamp 1 set                                buy
-  all      MIC6 plate: table                                    260 x 320 x 3/4 in, M6 grid 10x12 @ 25 buy
-  all      MIC6 plate: X carriage                               170 x 407 x 5/8 in                   buy
-  all      MIC6 plate: Z plate                                  150 x 300 x 5/8 in                   buy
+  all      6061 flat bar cut to length: table                   3/4 x 10 in x 12-5/8 in long, M6 grid 9x12 @ 25, 2 x 8 mm H7 dowel holes 200 apart on the X center line buy
+  all      6061 flat bar cut to length: X carriage              5/8 x 6 in x 16-1/16 in long         buy
+  all      6061 flat bar cut to length: Z plate                 5/8 x 6 in x 11-13/16 in long        buy
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
-  frame    Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mount 11 + 4 + 2 pcs                       buy
-  frame    Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); M6 x 40 (the Y and X BK/BF) 8 + 10; 12                           buy
+  frame    Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mounts (beam and Y) 11 + 4 + 2 + 2 pcs                   buy
+  frame    Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); M6 x 40 (the Y and X BK/BF) 8 + 10; 14                           buy
   frame    Flat bar 1/2 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 198                              buy
   frame    Flat bar 3/4 x 5 in, cut to length (docs/1-sourcing/steel/) 2 x 508                              buy
   frame    Flat bar 3/8 x 1-1/2 in, cut to length (docs/1-sourcing/steel/) 2 x 359, 2 x 288                     buy
-  frame    Flat bar 3/8 x 2 in, cut to length (docs/1-sourcing/steel/) 2 x 375, 2 x 90                      buy
+  frame    Flat bar 3/8 x 2 in, cut to length (docs/1-sourcing/steel/) 2 x 375, 1 x 90                      buy
   frame    Flat bar 3/8 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 285, 4 x 133, 8 x 76, 4 x 66     buy
+  frame    Flat bar 3/8 x 3-1/2 in, cut to length (docs/1-sourcing/steel/) 1 x 90                               buy
   frame    Rectangular tube 2 x 3 x 1/8 in, cut to length (docs/1-sourcing/steel/) 2 x 340, 2 x 269                     buy
-  frame    Square tube 1-1/2 x 1-1/2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 4 x 129, 6 x 84                      buy
+  frame    Square tube 1-1/2 x 1-1/2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 4 x 129, 6 x 75                      buy
   frame    Square tube 2 x 2 x 3/16 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy
   frame    Steel square tube 2 x 2 x 3/16 in, bought at length  4 x 8-1/8 in (upright columns; the base's short ones are in the cut list) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 6 in (legs)                      buy
   frame    Printed PETG: 8 column rings, 4 leg plugs, 2 gray pocket caps ~60 g                                PRINT
-  frame    1/2-13 threaded rod (hardware store)                 4 x 363, 2 x 153 (uprights), 2 x 687 (base draw rods), 4 x 270 + 6 x 225 (base cross rods) buy
+  frame    1/2-13 grade B7 fully threaded studs, bought at length (nothing sawn) 4 x 14-1/4 in, 2 x 6 in (uprights), 2 x 27 in (base draw rods), 4 x 10-3/4 in + 6 x 8-1/2 in (base cross rods) buy
   frame    1/2-13 nut + 1/2 in SAE washer                       32 of each                           buy
-  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 190 + 3 x 113 mm; 11 nuts        buy
+  frame    3/8-16 grade B7 fully threaded studs, bought at length: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 7-1/2 in + 3 x 4-1/2 in; 11 nuts buy
   frame    1/2 in x 2-1/2 in black pipe nipple (beam spacers)   3 pcs                                buy
   frame    1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes (2-1/4 in) about 20 x 4 in + 4 x 2-1/4 in       buy
   frame    Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split) 6 + 4 pcs                            buy
-  frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.9 m                                buy
+  frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.8 m                                buy
   frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
   coolant  Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base 1                                    buy
   coolant  Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep 1                                    buy
@@ -74,7 +75,7 @@ Linear motion / plate BOM
   coolant  1/4 in bulkhead fitting, ball valve, manifold, 2x Loc-Line 1/4 in nozzles 1 set                                buy (part 3)
   covers   Roll-up way cover: spring roller + 0.1 mm stainless strip; M5 x 12 into the inserts and the BK pad 1x 250 wide, 2x 85 wide              buy or DIY (add later)
   covers   Spiral ballscrew cover for the table screw           1                                    buy (add later)
-  covers   Drip shield over the beam rails, ACM offcut, clamped under the front beam stud nuts 518 x 79                             buy (add later)
+  covers   Drip shield over the beam rails, ACM offcut, clamped under the front beam stud nuts 500 x 79                             buy (add later)
   electronics Homing switches: Y on the Y motor bracket (the table's rear edge trips it), X and Z on the X carriage; they need nothing cast in 3                                    buy (part 2)
   covers   Brush seal plates for the motor cutouts              2                                    buy (part 3)
   printed  Drag chain links, PETG: 38 x 21 outer, 20 pitch, R38 bend 17 + 2 end mounts                    PRINT
@@ -83,26 +84,26 @@ Enclosure cut list (2020 extrusion, 3 mm ACM walls, 4 mm polycarbonate door)
 --------------------------------------------------------
   PanelLeft          726 x 684 ACM 3 mm
   PanelRight         726 x 684 ACM 3 mm
-  PanelBack          726 x 560 ACM 3 mm
-  PanelRoof          684 x 560 ACM 3 mm
-  DoorPanel          560 x 756 polycarbonate
+  PanelBack          726 x 542 ACM 3 mm
+  PanelRoof          684 x 542 ACM 3 mm
+  DoorPanel          542 x 756 polycarbonate
   2020 x 4          766 mm
   2020 x 2          756 mm
   2020 x 4          684 mm
-  2020 x 2          600 mm
-  2020 x 3          560 mm
-  2020 x 2          244 mm
-  2020 total         10.68 m
+  2020 x 2          582 mm
+  2020 x 3          542 mm
+  2020 x 2          235 mm
+  2020 total         10.57 m
 
-Steel cut to length (+/-3.2 mm allowed; tubes +/-0.5 mm across the flats, printed fits 0.50 mm a side)
+Steel cut to length (+/-3.2 mm allowed; studs +/-1.6 mm; tubes +/-0.5 mm across the flats, printed fits 0.50 mm a side)
 --------------------------------------------------------------------------------------------------
   Piece              Set from (datum)                                   Error goes to                        Room
   Legs (4)           set proud of the leg holder                        top end, in the casting              30.0 mm ok
   Upright columns (4) top end, against the top plate                     an epoxy bed on the foot bar          4.8 mm ok
-  Draw rods (2, cut) flush with the front nut                           the tail behind the back nut          6.0 mm ok
+  Draw rods (2, studs) flush with the front nut                           the tail behind the back nut          4.6 mm ok
   Girders (4)        the split end plate                                the far end plate, clamped by the draw rod  6.0 mm ok
   Top plates (2)     bolted to the mold bridge                          all edges, 6 mm inside the casting    6.0 mm ok
-  Tie and cross rods (cut) screwed up to a stop, or flush with one nut        the tail past the far nut             6.0 mm ok
+  Tie and cross rods (studs) screwed up to a stop, or flush with one nut        the tail past the far nut             4.9 mm ok
 
 Collision check (18 poses: X/Y at both ends + center, Z top/bottom; door closed, cutter excluded)
 --------------------------------------------------------------------------------------------------

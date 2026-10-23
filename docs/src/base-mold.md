@@ -23,7 +23,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 ![The captive nut](../../renders/mold/fixing-nut.png)
 
-- **Thin pieces** (gasket-groove beads, motor relief) have 3 mm pins that push into 1/8 in holes.
+- **Thin pieces** (gasket-groove beads) have 3 mm pins that push into 1/8 in holes.
 
 ![Pins on a gasket-groove bead](../../renders/mold/fixing-pins.png)
 
@@ -42,10 +42,10 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 | Material | Amount | Notes |
 |---|---|---|
-| Melamine board, 3/4 in | about 1.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
+| Melamine board, 3/4 in | about 1.3 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
 | 1x2 lumber (furring strip is fine) | 2 x 8 ft 1x2 (2.7 m) | the cleats: they lie on the floor outside the walls |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 1.42 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 1.39 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -55,21 +55,21 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M3 nut | 20 |
 | M3 washer | 20 |
 | M3 x 25 bolt | 20 |
-| M4 nut | 117 |
-| M4 washer | 113 |
+| M4 nut | 116 |
+| M4 washer | 112 |
 | M4 x 20 bolt (leg pinch screw) | 4 |
-| M4 x 30 bolt | 69 |
+| M4 x 30 bolt | 68 |
 | M4 x 35 bolt | 28 |
 | M4 x 45 bolt | 16 |
-| M5 x 20 screw, greased (holds an insert) | 15 |
+| M5 x 20 screw, greased (holds an insert) | 17 |
 | M5 x 30 screw, greased (holds a rail bar or the BK pad) | 12 |
-| M6 x 30 screw, greased (holds a support pad) | 6 |
+| M6 x 30 screw, greased (holds a support pad) | 8 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a 2-1/2 in hole saw, a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl, a fine saw or hot wire for the foam.
 
 ## 3. Print
 
-75 prints, 1.42 kg, about 91 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+74 prints, 1.39 kg, about 89 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -78,44 +78,43 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-box/kit-partition-bracket.stl` | 2 | 14 | 35m 28s |
 | `base-box/kit-saddle.stl` | 6 | 58 | 46m 3s |
 | `base-box/kit-leg-holder.stl` | 4 | 166 | 2h 30m 55s |
-| `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 5s |
+| `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 6s |
 | `base-rear/former-gutter-L-part2of3.stl` | 1 | 8 | 33m 40s |
 | `base-rear/former-gutter-L-part3of3.stl` | 1 | 7 | 31m 15s |
 | `base-rear/former-gutter-R-part1of3.stl` | 1 | 8 | 35m 6s |
 | `base-rear/former-gutter-R-part2of3.stl` | 1 | 8 | 33m 40s |
 | `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
-| `base-rear/former-motor-relief.stl` | 1 | 12 | 40m 58s |
-| `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 20s |
-| `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 9s |
-| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 42s |
-| `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 11m 33s |
+| `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 27s |
+| `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 10s |
+| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 44s |
+| `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 9m 35s |
 | `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 34m 47s |
-| `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 56s |
-| `base-rear/filler-bevel-end-part1of3.stl` | 1 | 51 | 2h 41m 27s |
-| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 51 | 2h 41m 49s |
-| `base-rear/filler-bevel-end-part3of3.stl` | 1 | 51 | 2h 41m 53s |
-| `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 23s |
-| `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 43s |
+| `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 51s |
+| `base-rear/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 36m 44s |
+| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 10s |
+| `base-rear/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 36m 53s |
+| `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 24s |
+| `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 44s |
 | `base-front/former-gutter-R-part1of2.stl` | 1 | 11 | 49m 24s |
 | `base-front/former-gutter-R-part2of2.stl` | 1 | 10 | 43m 43s |
-| `base-front/former-trough-part1of5.stl` | 1 | 20 | 1h 14m 18s |
-| `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 23m 56s |
-| `base-front/former-trough-part3of5.stl` | 1 | 25 | 1h 34m 0s |
-| `base-front/former-trough-part4of5.stl` | 1 | 23 | 1h 24m 3s |
-| `base-front/former-trough-part5of5.stl` | 1 | 21 | 1h 17m 36s |
+| `base-front/former-trough-part1of5.stl` | 1 | 19 | 1h 12m 26s |
+| `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 21m 44s |
+| `base-front/former-trough-part3of5.stl` | 1 | 24 | 1h 31m 38s |
+| `base-front/former-trough-part4of5.stl` | 1 | 22 | 1h 21m 55s |
+| `base-front/former-trough-part5of5.stl` | 1 | 20 | 1h 11m 51s |
 | `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 58s |
 | `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 12s |
-| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 28s |
-| `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 16s |
+| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 19s |
+| `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 15s |
 | `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 6s |
-| `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 44s |
-| `base-front/filler-bevel-end-part1of3.stl` | 1 | 51 | 2h 37m 19s |
-| `base-front/filler-bevel-end-part2of3.stl` | 1 | 51 | 2h 38m 46s |
-| `base-front/filler-bevel-end-part3of3.stl` | 1 | 51 | 2h 38m 0s |
-| `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 50s |
-| `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 58s |
-| `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 58s |
-| `base-rear/former-split-gasket-groove-part4of4.stl` | 1 | 2 | 9m 53s |
+| `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 45s |
+| `base-front/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 32m 21s |
+| `base-front/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 33m 43s |
+| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 32s |
+| `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 41s |
+| `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 49s |
+| `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 49s |
+| `base-rear/former-split-gasket-groove-part4of4.stl` | 1 | 2 | 9m 42s |
 | `base-front/core-center-a-post.stl` | 1 | 5 | 44m 56s |
 | `base-front/core-center-b-post.stl` | 1 | 5 | 44m 56s |
 | `base-rear/core-center-post.stl` | 1 | 5 | 44m 56s |
@@ -142,25 +141,25 @@ the bridges and struts come out of the sheet's offcuts.
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Base floor | 1 | 718 x 843 | both halves are cast on it |
-| Base front wall | 1 | 638 x 135 |  |
-| Base rear wall | 1 | 638 x 135 |  |
+| Base floor | 1 | 700 x 843 | both halves are cast on it |
+| Base front wall | 1 | 620 x 135 |  |
+| Base rear wall | 1 | 620 x 135 |  |
 | Base side wall, left | 1 | 724 x 135 |  |
 | Base side wall, right | 1 | 724 x 135 |  |
-| Base partition | 1 | 600 x 135 | rear half only; comes out before the front half |
+| Base partition | 1 | 582 x 135 | rear half only; comes out before the front half |
 | Base partition strut | 2 | 326 x 60 | offcut, stands on edge; holds the partition foot (rear half only) |
-| Base cleat, front | 1 | 638 x 38 | 1x2 lumber; flat on the floor |
-| Base cleat, rear | 1 | 638 x 38 | 1x2 lumber; flat on the floor |
+| Base cleat, front | 1 | 620 x 38 | 1x2 lumber; flat on the floor |
+| Base cleat, rear | 1 | 620 x 38 | 1x2 lumber; flat on the floor |
 | Base cleat, left | 1 | 724 x 38 | 1x2 lumber; flat on the floor |
 | Base cleat, right | 1 | 724 x 38 | 1x2 lumber; flat on the floor |
-| Base bridge y=-230 | 1 | 651 x 60 |  |
-| Base bridge y=-130 | 1 | 651 x 60 |  |
-| Base bridge y=-60 | 1 | 651 x 60 |  |
-| Base bridge y=100 | 1 | 651 x 60 |  |
-| Base bridge y=170 | 1 | 651 x 60 |  |
-| Base bridge y=280 | 1 | 651 x 60 |  |
-| Base leg bridge y=-280 | 1 | 420 x 60 |  |
-| Base leg bridge y=318 | 1 | 420 x 60 |  |
+| Base bridge y=-230 | 1 | 633 x 60 |  |
+| Base bridge y=-130 | 1 | 633 x 60 |  |
+| Base bridge y=-60 | 1 | 633 x 60 |  |
+| Base bridge y=100 | 1 | 633 x 60 |  |
+| Base bridge y=170 | 1 | 633 x 60 |  |
+| Base bridge y=280 | 1 | 633 x 60 |  |
+| Base leg bridge y=-280 | 1 | 402 x 60 |  |
+| Base leg bridge y=318 | 1 | 402 x 60 |  |
 
 ## 5. Mark and drill
 
@@ -174,7 +173,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 | Hole | Drill | For |
 |---|---|---|
-| 3.2 mm | 1/8 in | motor-relief, split-gasket-groove |
+| 3.2 mm | 1/8 in | split-gasket-groove |
 | 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
 | 4.5 mm | 11/64 in | bevel-L, bevel-R, bevel-end, cleat, core post, corner bracket, corner-L, corner-R, draw-pocket-L, draw-pocket-R, gutter-L, gutter-R, leg holder, saddle, trough |
 | 5.5 mm | 7/32 in | M5 insert screw, M5 screw into the steel |
@@ -192,12 +191,12 @@ glue the post in.
 | base-front | center-a | 1 | XPS block 100 x 73 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | center-b | 1 | XPS block 100 x 72 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | center | 1 | XPS block 88 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-L | 1 | XPS block 102 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-b-L | 1 | XPS block 39 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | knee-L | 1 | XPS block 50 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-R | 1 | XPS block 102 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | foot-b-R | 1 | XPS block 39 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | knee-R | 1 | XPS block 50 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-L | 1 | XPS block 93 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-L | 1 | XPS block 30 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-L | 1 | XPS block 41 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-R | 1 | XPS block 93 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | foot-b-R | 1 | XPS block 30 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-rear | knee-R | 1 | XPS block 41 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 ## 7. Wax
 
 - 3-5 coats of paste wax on every face the mix touches, boards and removable printed pieces, then PVA.
@@ -225,7 +224,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base rear, step 3](../../renders/mold/step-base-rear-3.png)
 
-4. Gutter formers, motor relief, corner fillers and the draw-rod pocket plugs on. Bevel strips on the side and rear walls, their 1-1/2 in face flush with the pour line.
+4. Gutter formers, corner fillers and the draw-rod pocket plugs on. Bevel strips on the side and rear walls, their 1-1/2 in face flush with the pour line.
 
 ![Base rear, step 4](../../renders/mold/step-base-rear-4.png)
 
@@ -293,94 +292,95 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 80 | 21 | 4.5 | cleat |
-| 2 | 266 | 21 | 4.5 | cleat |
-| 3 | 452 | 21 | 4.5 | cleat |
-| 4 | 638 | 21 | 4.5 | cleat |
+| 2 | 260 | 21 | 4.5 | cleat |
+| 3 | 440 | 21 | 4.5 | cleat |
+| 4 | 620 | 21 | 4.5 | cleat |
 | 5 | 71 | 64 | 3.4 | corner-R |
-| 6 | 647 | 64 | 3.4 | corner-L |
-| 7 | 159 | 69 | 5.5 | M5 insert screw |
-| 8 | 359 | 69 | 5.5 | M5 insert screw |
-| 9 | 559 | 69 | 5.5 | M5 insert screw |
-| 10 | 107 | 89 | 4.5 | trough |
-| 11 | 275 | 89 | 4.5 | trough |
-| 12 | 387 | 89 | 4.5 | trough |
-| 13 | 499 | 89 | 4.5 | trough |
-| 14 | 611 | 89 | 4.5 | trough |
+| 6 | 630 | 64 | 3.4 | corner-L |
+| 7 | 150 | 69 | 5.5 | M5 insert screw |
+| 8 | 350 | 69 | 5.5 | M5 insert screw |
+| 9 | 550 | 69 | 5.5 | M5 insert screw |
+| 10 | 269 | 89 | 4.5 | trough |
+| 11 | 378 | 89 | 4.5 | trough |
+| 12 | 486 | 89 | 4.5 | trough |
+| 13 | 595 | 89 | 4.5 | trough |
+| 14 | 133 | 97 | 4.5 | trough |
 | 15 | 21 | 99 | 4.5 | cleat |
-| 16 | 697 | 99 | 4.5 | cleat |
-| 17 | 163 | 104 | 4.5 | trough |
-| 18 | 219 | 104 | 4.5 | trough |
-| 19 | 331 | 104 | 4.5 | trough |
-| 20 | 443 | 104 | 4.5 | trough |
-| 21 | 555 | 104 | 4.5 | trough |
-| 22 | 231 | 135 | 5.5 | M5 insert screw |
-| 23 | 487 | 135 | 5.5 | M5 insert screw |
-| 24 | 87 | 150 | 4.5 | gutter-R |
-| 25 | 632 | 150 | 4.5 | gutter-L |
-| 26 | 269 | 184 | 5.5 | M5 screw into the steel |
-| 27 | 449 | 184 | 5.5 | M5 screw into the steel |
-| 28 | 69 | 209 | 5.5 | M5 insert screw |
-| 29 | 336 | 210 | 6.5 | M6 screw into a pad |
-| 30 | 382 | 210 | 6.5 | M6 screw into a pad |
-| 31 | 649 | 209 | 5.5 | M5 insert screw |
-| 32 | 87 | 223 | 4.5 | gutter-R |
-| 33 | 632 | 223 | 4.5 | gutter-L |
-| 34 | 87 | 295 | 3.4 | gutter-R |
-| 35 | 632 | 295 | 3.4 | gutter-L |
-| 36 | 269 | 304 | 5.5 | M5 screw into the steel |
-| 37 | 449 | 304 | 5.5 | M5 screw into the steel |
-| 38 | 21 | 314 | 4.5 | cleat |
-| 39 | 697 | 314 | 4.5 | cleat |
-| 40 | 87 | 368 | 3.4 | gutter-R |
-| 41 | 632 | 368 | 3.4 | gutter-L |
-| 42 | 69 | 421 | 5.5 | M5 insert screw |
-| 43 | 649 | 421 | 5.5 | M5 insert screw |
-| 44 | 269 | 424 | 5.5 | M5 screw into the steel |
-| 45 | 449 | 424 | 5.5 | M5 screw into the steel |
-| 46 | 87 | 434 | 3.4 | gutter-R |
-| 47 | 632 | 434 | 3.4 | gutter-L |
-| 48 | 87 | 494 | 3.4 | gutter-R |
-| 49 | 632 | 494 | 3.4 | gutter-L |
-| 50 | 134 | 504 | 9.6 | 3/8 dowel |
-| 51 | 584 | 504 | 9.6 | 3/8 dowel |
-| 52 | 21 | 529 | 4.5 | cleat |
-| 53 | 697 | 529 | 4.5 | cleat |
-| 54 | 269 | 544 | 5.5 | M5 screw into the steel |
-| 55 | 449 | 544 | 5.5 | M5 screw into the steel |
-| 56 | 87 | 554 | 3.4 | gutter-R |
-| 57 | 632 | 554 | 3.4 | gutter-L |
-| 58 | 87 | 614 | 3.4 | gutter-R |
-| 59 | 632 | 614 | 3.4 | gutter-L |
-| 60 | 134 | 619 | 9.6 | 3/8 dowel |
-| 61 | 584 | 619 | 9.6 | 3/8 dowel |
-| 62 | 69 | 634 | 5.5 | M5 insert screw |
-| 63 | 649 | 634 | 5.5 | M5 insert screw |
-| 64 | 269 | 664 | 5.5 | M5 screw into the steel |
-| 65 | 449 | 664 | 5.5 | M5 screw into the steel |
-| 66 | 87 | 674 | 3.4 | gutter-R |
-| 67 | 632 | 674 | 3.4 | gutter-L |
-| 68 | 336 | 705 | 6.5 | M6 screw into a pad |
-| 69 | 382 | 705 | 6.5 | M6 screw into a pad |
-| 70 | 320 | 712 | 5.5 | M5 screw into the steel |
-| 71 | 398 | 712 | 5.5 | M5 screw into the steel |
-| 72 | 336 | 718 | 6.5 | M6 screw into a pad |
-| 73 | 382 | 718 | 6.5 | M6 screw into a pad |
-| 74 | 87 | 734 | 3.4 | gutter-R |
-| 75 | 343 | 737 | 3.2 | motor-relief |
-| 76 | 632 | 734 | 3.4 | gutter-L |
+| 16 | 680 | 99 | 4.5 | cleat |
+| 17 | 214 | 104 | 4.5 | trough |
+| 18 | 323 | 104 | 4.5 | trough |
+| 19 | 431 | 104 | 4.5 | trough |
+| 20 | 540 | 104 | 4.5 | trough |
+| 21 | 222 | 135 | 5.5 | M5 insert screw |
+| 22 | 478 | 135 | 5.5 | M5 insert screw |
+| 23 | 87 | 150 | 4.5 | gutter-R |
+| 24 | 614 | 150 | 4.5 | gutter-L |
+| 25 | 260 | 184 | 5.5 | M5 screw into the steel |
+| 26 | 440 | 184 | 5.5 | M5 screw into the steel |
+| 27 | 69 | 209 | 5.5 | M5 insert screw |
+| 28 | 327 | 210 | 6.5 | M6 screw into a pad |
+| 29 | 373 | 210 | 6.5 | M6 screw into a pad |
+| 30 | 631 | 209 | 5.5 | M5 insert screw |
+| 31 | 87 | 223 | 4.5 | gutter-R |
+| 32 | 614 | 223 | 4.5 | gutter-L |
+| 33 | 87 | 295 | 3.4 | gutter-R |
+| 34 | 614 | 295 | 3.4 | gutter-L |
+| 35 | 260 | 304 | 5.5 | M5 screw into the steel |
+| 36 | 440 | 304 | 5.5 | M5 screw into the steel |
+| 37 | 21 | 314 | 4.5 | cleat |
+| 38 | 680 | 314 | 4.5 | cleat |
+| 39 | 87 | 368 | 3.4 | gutter-R |
+| 40 | 614 | 368 | 3.4 | gutter-L |
+| 41 | 69 | 421 | 5.5 | M5 insert screw |
+| 42 | 631 | 421 | 5.5 | M5 insert screw |
+| 43 | 260 | 424 | 5.5 | M5 screw into the steel |
+| 44 | 440 | 424 | 5.5 | M5 screw into the steel |
+| 45 | 87 | 434 | 3.4 | gutter-R |
+| 46 | 199 | 433 | 5.5 | M5 insert screw |
+| 47 | 614 | 434 | 3.4 | gutter-L |
+| 48 | 199 | 455 | 5.5 | M5 insert screw |
+| 49 | 87 | 494 | 3.4 | gutter-R |
+| 50 | 614 | 494 | 3.4 | gutter-L |
+| 51 | 134 | 504 | 9.6 | 3/8 dowel |
+| 52 | 566 | 504 | 9.6 | 3/8 dowel |
+| 53 | 21 | 529 | 4.5 | cleat |
+| 54 | 680 | 529 | 4.5 | cleat |
+| 55 | 260 | 544 | 5.5 | M5 screw into the steel |
+| 56 | 440 | 544 | 5.5 | M5 screw into the steel |
+| 57 | 87 | 554 | 3.4 | gutter-R |
+| 58 | 614 | 554 | 3.4 | gutter-L |
+| 59 | 87 | 614 | 3.4 | gutter-R |
+| 60 | 614 | 614 | 3.4 | gutter-L |
+| 61 | 134 | 619 | 9.6 | 3/8 dowel |
+| 62 | 566 | 619 | 9.6 | 3/8 dowel |
+| 63 | 69 | 634 | 5.5 | M5 insert screw |
+| 64 | 631 | 634 | 5.5 | M5 insert screw |
+| 65 | 260 | 664 | 5.5 | M5 screw into the steel |
+| 66 | 440 | 664 | 5.5 | M5 screw into the steel |
+| 67 | 87 | 674 | 3.4 | gutter-R |
+| 68 | 614 | 674 | 3.4 | gutter-L |
+| 69 | 327 | 705 | 6.5 | M6 screw into a pad |
+| 70 | 373 | 705 | 6.5 | M6 screw into a pad |
+| 71 | 311 | 712 | 5.5 | M5 screw into the steel |
+| 72 | 389 | 712 | 5.5 | M5 screw into the steel |
+| 73 | 327 | 718 | 6.5 | M6 screw into a pad |
+| 74 | 373 | 718 | 6.5 | M6 screw into a pad |
+| 75 | 87 | 734 | 3.4 | gutter-R |
+| 76 | 614 | 734 | 3.4 | gutter-L |
 | 77 | 21 | 744 | 4.5 | cleat |
-| 78 | 222 | 743 | 5.5 | M5 insert screw |
-| 79 | 496 | 743 | 5.5 | M5 insert screw |
-| 80 | 697 | 744 | 4.5 | cleat |
-| 81 | 64 | 772 | 3.4 | corner-R |
-| 82 | 375 | 770 | 3.2 | motor-relief |
-| 83 | 654 | 772 | 3.4 | corner-L |
-| 84 | 209 | 774 | 5.5 | M5 insert screw |
-| 85 | 509 | 774 | 5.5 | M5 insert screw |
-| 86 | 80 | 822 | 4.5 | cleat |
-| 87 | 266 | 822 | 4.5 | cleat |
-| 88 | 452 | 822 | 4.5 | cleat |
-| 89 | 638 | 822 | 4.5 | cleat |
+| 78 | 213 | 743 | 5.5 | M5 insert screw |
+| 79 | 487 | 743 | 5.5 | M5 insert screw |
+| 80 | 680 | 744 | 4.5 | cleat |
+| 81 | 327 | 748 | 6.5 | M6 screw into a pad |
+| 82 | 373 | 748 | 6.5 | M6 screw into a pad |
+| 83 | 64 | 772 | 3.4 | corner-R |
+| 84 | 637 | 772 | 3.4 | corner-L |
+| 85 | 200 | 774 | 5.5 | M5 insert screw |
+| 86 | 500 | 774 | 5.5 | M5 insert screw |
+| 87 | 80 | 822 | 4.5 | cleat |
+| 88 | 260 | 822 | 4.5 | cleat |
+| 89 | 440 | 822 | 4.5 | cleat |
+| 90 | 620 | 822 | 4.5 | cleat |
 
 #### Base front wall
 
@@ -388,17 +388,17 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 229 | 39 | 4.5 | draw-pocket-L |
-| 2 | 409 | 39 | 4.5 | draw-pocket-R |
+| 1 | 220 | 39 | 4.5 | draw-pocket-L |
+| 2 | 400 | 39 | 4.5 | draw-pocket-R |
 | 3 | 34 | 57 | 4.5 | corner-L |
-| 4 | 604 | 57 | 4.5 | corner-R |
-| 5 | 149 | 78 | 4.5 | bevel-end |
-| 6 | 319 | 78 | 4.5 | bevel-end |
-| 7 | 489 | 78 | 4.5 | bevel-end |
+| 4 | 586 | 57 | 4.5 | corner-R |
+| 5 | 146 | 78 | 4.5 | bevel-end |
+| 6 | 310 | 78 | 4.5 | bevel-end |
+| 7 | 474 | 78 | 4.5 | bevel-end |
 | 8 | 33 | 124 | 4.5 | corner bracket |
-| 9 | 605 | 124 | 4.5 | corner bracket |
+| 9 | 588 | 124 | 4.5 | corner bracket |
 | 10 | 84 | 129 | 4.5 | leg holder |
-| 11 | 554 | 129 | 4.5 | leg holder |
+| 11 | 536 | 129 | 4.5 | leg holder |
 
 #### Base rear wall
 
@@ -406,17 +406,17 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 229 | 39 | 4.5 | draw-pocket-R |
-| 2 | 409 | 39 | 4.5 | draw-pocket-L |
+| 1 | 220 | 39 | 4.5 | draw-pocket-R |
+| 2 | 400 | 39 | 4.5 | draw-pocket-L |
 | 3 | 34 | 57 | 4.5 | corner-R |
-| 4 | 604 | 57 | 4.5 | corner-L |
-| 5 | 149 | 78 | 4.5 | bevel-end |
-| 6 | 319 | 78 | 4.5 | bevel-end |
-| 7 | 489 | 78 | 4.5 | bevel-end |
+| 4 | 586 | 57 | 4.5 | corner-L |
+| 5 | 146 | 78 | 4.5 | bevel-end |
+| 6 | 310 | 78 | 4.5 | bevel-end |
+| 7 | 474 | 78 | 4.5 | bevel-end |
 | 8 | 33 | 124 | 4.5 | corner bracket |
-| 9 | 605 | 124 | 4.5 | corner bracket |
+| 9 | 588 | 124 | 4.5 | corner bracket |
 | 10 | 84 | 129 | 4.5 | leg holder |
-| 11 | 554 | 129 | 4.5 | leg holder |
+| 11 | 536 | 129 | 4.5 | leg holder |
 
 #### Base side wall, left
 
@@ -472,20 +472,20 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 46 | 18 | 3.2 | split-gasket-groove |
-| 2 | 119 | 18 | 3.2 | split-gasket-groove |
-| 3 | 191 | 18 | 3.2 | split-gasket-groove |
-| 4 | 264 | 18 | 3.2 | split-gasket-groove |
-| 5 | 336 | 18 | 3.2 | split-gasket-groove |
-| 6 | 409 | 18 | 3.2 | split-gasket-groove |
-| 7 | 481 | 18 | 3.2 | split-gasket-groove |
-| 8 | 554 | 18 | 3.2 | split-gasket-groove |
-| 9 | 178 | 48 | 9.6 | 3/8 dowel pin (split) |
-| 10 | 242 | 48 | 9.6 | 3/8 dowel pin (split) |
-| 11 | 358 | 48 | 9.6 | 3/8 dowel pin (split) |
-| 12 | 422 | 48 | 9.6 | 3/8 dowel pin (split) |
+| 1 | 45 | 18 | 3.2 | split-gasket-groove |
+| 2 | 115 | 18 | 3.2 | split-gasket-groove |
+| 3 | 186 | 18 | 3.2 | split-gasket-groove |
+| 4 | 256 | 18 | 3.2 | split-gasket-groove |
+| 5 | 326 | 18 | 3.2 | split-gasket-groove |
+| 6 | 397 | 18 | 3.2 | split-gasket-groove |
+| 7 | 467 | 18 | 3.2 | split-gasket-groove |
+| 8 | 537 | 18 | 3.2 | split-gasket-groove |
+| 9 | 169 | 48 | 9.6 | 3/8 dowel pin (split) |
+| 10 | 233 | 48 | 9.6 | 3/8 dowel pin (split) |
+| 11 | 349 | 48 | 9.6 | 3/8 dowel pin (split) |
+| 12 | 413 | 48 | 9.6 | 3/8 dowel pin (split) |
 | 13 | 20 | 124 | 4.5 | corner bracket |
-| 14 | 580 | 124 | 4.5 | corner bracket |
+| 14 | 562 | 124 | 4.5 | corner bracket |
 
 #### Base cleat, front
 
@@ -493,9 +493,9 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 598 | 19 | 4.5 | cleat |
-| 2 | 412 | 19 | 4.5 | cleat |
-| 3 | 226 | 19 | 4.5 | cleat |
+| 1 | 580 | 19 | 4.5 | cleat |
+| 2 | 400 | 19 | 4.5 | cleat |
+| 3 | 220 | 19 | 4.5 | cleat |
 | 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base cleat, rear
@@ -504,9 +504,9 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 598 | 19 | 4.5 | cleat |
-| 2 | 412 | 19 | 4.5 | cleat |
-| 3 | 226 | 19 | 4.5 | cleat |
+| 1 | 580 | 19 | 4.5 | cleat |
+| 2 | 400 | 19 | 4.5 | cleat |
+| 3 | 220 | 19 | 4.5 | cleat |
 | 4 | 40 | 19 | 4.5 | cleat |
 
 #### Base cleat, left
@@ -537,8 +537,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 325 | 12 | 4.5 | core post |
+| 1 | 618 | 11 | 4.5 | saddle |
+| 2 | 317 | 12 | 4.5 | core post |
 | 3 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=-130
@@ -547,10 +547,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 516 | 12 | 4.5 | core post |
-| 3 | 325 | 12 | 4.5 | core post |
-| 4 | 134 | 12 | 4.5 | core post |
+| 1 | 618 | 11 | 4.5 | saddle |
+| 2 | 503 | 12 | 4.5 | core post |
+| 3 | 317 | 12 | 4.5 | core post |
+| 4 | 130 | 12 | 4.5 | core post |
 | 5 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=-60
@@ -559,7 +559,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
+| 1 | 618 | 11 | 4.5 | saddle |
 | 2 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=100
@@ -568,9 +568,9 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 481 | 12 | 4.5 | core post |
-| 3 | 170 | 12 | 4.5 | core post |
+| 1 | 618 | 11 | 4.5 | saddle |
+| 2 | 468 | 12 | 4.5 | core post |
+| 3 | 166 | 12 | 4.5 | core post |
 | 4 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=170
@@ -579,10 +579,10 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 480 | 12 | 4.5 | core post |
-| 3 | 325 | 12 | 4.5 | core post |
-| 4 | 170 | 12 | 4.5 | core post |
+| 1 | 618 | 11 | 4.5 | saddle |
+| 2 | 467 | 12 | 4.5 | core post |
+| 3 | 317 | 12 | 4.5 | core post |
+| 4 | 166 | 12 | 4.5 | core post |
 | 5 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=280
@@ -591,7 +591,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 635 | 11 | 4.5 | saddle |
+| 1 | 618 | 11 | 4.5 | saddle |
 | 2 | 16 | 11 | 4.5 | saddle |
 
 #### Base leg bridge y=-280
@@ -600,7 +600,7 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 414 | 11 | 4.5 | leg holder |
+| 1 | 396 | 11 | 4.5 | leg holder |
 | 2 | 6 | 11 | 4.5 | leg holder |
 
 #### Base leg bridge y=318
@@ -609,5 +609,5 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 414 | 11 | 4.5 | leg holder |
+| 1 | 396 | 11 | 4.5 | leg holder |
 | 2 | 6 | 11 | 4.5 | leg holder |

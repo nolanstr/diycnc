@@ -23,7 +23,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 ![The captive nut](../../renders/mold/fixing-nut.png)
 
-- **Thin pieces** (gasket-groove beads, motor relief) have 3 mm pins that push into 1/8 in holes.
+- **Thin pieces** (gasket-groove beads) have 3 mm pins that push into 1/8 in holes.
 
 ![Pins on a gasket-groove bead](../../renders/mold/fixing-pins.png)
 

@@ -71,20 +71,25 @@ P = dict(
     # the front ends stay clear of the coolant trough.
     table_rail_len=600.0, table_rail_y=20.0, table_rail_spacing=180.0, table_blk_pitch=150.0,
     table_screw_len=550.0, table_riser_t=19.05,   # 3/4 in risers clear the 43 mm BK12
-    table_len=320.0, table_w=260.0, table_t=19.05, table_hole_pitch=25.0,
+    # The aluminum plates are stock 6061 flat-bar widths (10 in table, 6 in X carriage and Z plate), so the only cut
+    # is their length.
+    table_len=320.0, table_w=254.0, table_t=19.05, table_hole_pitch=25.0,
 
     # Beam axis (X): owned HGR15-400 pair + SFU1204-400 kit
-    beam_rail_len=400.0, beam_rail_spacing=100.0, beam_blk_pitch=100.0,
+    beam_rail_len=400.0, beam_rail_spacing=100.0, beam_blk_pitch=90.0,   # blocks span 151.4 on the 6 in carriage
     beam_screw_len=400.0, beam_riser_t=15.875,    # 5/8 in risers clear the 39 mm BK10
-    carriage_w=170.0, carriage_t=15.875,
+    carriage_w=152.4, carriage_t=15.875,
 
     # Z axis: moving-rail (blocks fixed to the carriage), HGR15-300 + SFU1204-300
     z_rail_len=300.0, z_rail_spacing=100.0, z_blk_pitch=80.0,
     z_screw_len=300.0, z_nut_on_plate=230.0, z_riser_t=15.875,
-    zplate_w=150.0, zplate_t=15.875,     # clamp foot is 148 wide
+    zplate_w=152.4, zplate_t=15.875,     # clamp foot is 148 wide
 
     # Motors (parts.MOTORS): closed loop on X/Y, the owned open-loop NEMA 23 on Z
     motor_x='23HS30-5004D-E1000', motor_y='23HS30-5004D-E1000', motor_z='23HS30-3004S',
+    # Integrated bearing seat + motor brackets (parts.HM); None = the kit BK and a separate bracket. X and Z get
+    # the HM10-57 once the one on hand is measured.
+    bracket_y='HM12-57',
 
     # Epoxy-granite castings: base (front + rear halves), two uprights, beam
     # The base's underside pockets follow a topology optimization (analysis/, see base_pockets).
@@ -131,6 +136,7 @@ P = dict(
     # post_tube (outside across the flats, (outside - inside) / 2), set tube_fit to 0.25 and re-run
     # before printing those parts.
     tube_cut_tol=3.2, tube_fit=0.5, tube_seam=(6.0, 1.2),   # seam relief (width, depth) in printed faces
+    stud_tol=1.6,        # a bought stud's length, +/-1/16 in
     # Printed PETG spigot sleeves (1-1/2 in spigot in the 2 in tube), this long in each tube.
     # The uprights have no posts: the tie rods clamp each foot to the base through steel, friction under
     # that clamp carries the side load, and two dowels per foot, grouted into oversize holes in the upright
@@ -154,11 +160,11 @@ P = dict(
     # plate, the columns, the pedestal and the rods are one steel chain, with the epoxy granite clamped in
     # it, and there is no thread in the epoxy granite to come loose: every nut can be retightened.
     top_plate_t=25.4, plate_layer=12.7,
-    beam_stud=190.0,         # the beam's eight 3/8-16 grade B7 studs, cut from rod, screwed into the top plates
+    beam_stud=190.5,         # the beam's eight 3/8-16 grade B7 studs, 7-1/2 in bought at length, screwed into the top plates
     drip_shield_t=3.0,       # ACM offcut over the X rails; the front studs' nuts clamp it to the beam top
     beam_bar_t=19.05,        # the beam's 5 in face and back bars, 3/4 in: steel in place of alumina grit (design notes)
     beam_spacer=63.5,        # 1/2 in x 2-1/2 in pipe nipples between the beam's face and back bars
-    rod_tail=6.0,            # tie rod below its bottom nut: the rods are cut at home, and the error ends up here
+    rod_tail=6.0,            # rod past its far nut; the rods are B7 studs bought in 1/4 in steps, and the step ends up here
     slope_pocket_d=32.0,     # toe tie-rod nut pocket, down to the foot plate
     # In the uprights the tie-rod holes are cast on 5/8 in rods (1.6 mm clearance a side) and the base
     # dowel's hole is 1/2 in, grouted with the posts: the uprights' own mold sets them.
@@ -258,6 +264,7 @@ class Model:
         self.parts = []
         self.bom = []
         self.cutlist = []
+        self.coupler_len = {}
         self.dims = {}
         self.warnings = []
         self.frame_container = 'FrameBaseRear'
@@ -326,11 +333,14 @@ def rail_pair(m, f, tag, t, length, spacing, blk_pitch, rail_group, blk_group, r
             m.add_all(f'{tag}_Block{side}{i + 1}', blk_group, parts.hgh15_block(), lambda s: f.place(s.translated(off)))
 
 
-def screw_axis(m, f, tag, kind, length, u0, bf, bk, fixed_group, nut_group, nut_u, carrier_w, motor_min_u, motor):
+def screw_axis(m, f, tag, kind, length, u0, bf, bk, fixed_group, nut_group, nut_u, carrier_w, motor_min_u, motor,
+               bracket=None):
     """Ballscrew, BF/BK supports, coupler, bracket and motor on fixed_group; nut + housing on nut_group.
 
     u0 is the BF outer face; length is the overall machined screw length. The nut housing
     bolts under the moving part at w = carrier_w. Returns the motor face position along u.
+    bracket: an integrated HM bearing seat + motor bracket (parts.HM) in place of the BK and kit bracket, its
+    bearing end where the BK's inner face would be, so the BK-machined screw end fits it.
     """
     a = parts.SUPPORT[bk]['h']
     e = parts.ENDS[kind]
@@ -338,27 +348,52 @@ def screw_axis(m, f, tag, kind, length, u0, bf, bk, fixed_group, nut_group, nut_
     screw, u1, s0, s1 = parts.ballscrew(kind, u0, length, bf, bk, a)
     m.add(f'{tag}_Screw', fixed_group, place(screw), 'steel')
     m.add_all(f'{tag}_{bf}', fixed_group, parts.support(bf, u0, a, e['bf_a'] / 2), place)
-    m.add_all(f'{tag}_{bk}', fixed_group, parts.support(bk, u1 - parts.SUPPORT[bk]['L'], a, e['bk_a'] / 2,
-                                                        lock_r=e['bk_a'] / 2), place)
+    ub = u1 - parts.SUPPORT[bk]['L']
+    if bracket:
+        m.add(f'{tag}_MotorBracket', fixed_group, place(parts.hm_bracket(bracket, ub)), 'black')
+        m.add(f'{tag}_LockNut', fixed_group, place(parts.ring_u(parts.SUPPORT[bk]['lock'][0], e['bk_a'] / 2, u1,
+                                                                u1 + parts.SUPPORT[bk]['lock'][1], 0, a)), 'black')
+    else:
+        m.add_all(f'{tag}_{bk}', fixed_group, parts.support(bk, ub, a, e['bk_a'] / 2, lock_r=e['bk_a'] / 2), place)
     if fixed_group == 'frame':
-        # BK/BF bolt into M6 inserts cast into the base top / beam face
+        # the BF and the BK (or HM bracket) bolt into M6 holes tapped in the steel of the base top / beam face
         n = f.m.multVec(Vector(0, 0, 1)) - f.m.multVec(Vector(0, 0, 0))
-        for sup, us in ((bf, u0), (bk, u1 - parts.SUPPORT[bk]['L'])):
-            sp = parts.SUPPORT[sup]
-            for c in sp['C']:
-                for v in (-sp['P'] / 2, sp['P'] / 2):
-                    m.anchors.append((f.m.multVec(Vector(us + c, v, 0)), n, 'insert_m6'))
+        sp = parts.SUPPORT[bf]
+        pts = [(u0 + c, v) for c in sp['C'] for v in (-sp['P'] / 2, sp['P'] / 2)]
+        if bracket:
+            pts += parts.hm_holes(bracket, ub)
+        else:
+            sp = parts.SUPPORT[bk]
+            pts += [(ub + c, v) for c in sp['C'] for v in (-sp['P'] / 2, sp['P'] / 2)]
+        for u, v in pts:
+            m.anchors.append((f.m.multVec(Vector(u, v, 0)), n, 'insert_m6'))
 
-    # The motor shaft (21 long) reaches 15 into the 30 mm coupler that sits on the stub.
-    c0 = s0
-    face = max(c0 + 30.0 + parts.SHAFT_LEN - 15.0, motor_min_u)
-    c1 = face - (parts.SHAFT_LEN - 15.0)
-    if c1 - c0 > 30.5:
-        m.warnings.append(f'{tag}: motor pushed out to clear the moving parts; needs a {c1 - c0:.0f} mm '
-                          f'coupler or a {length + c1 - c0 - 30:.0f} mm screw')
     shaft_r = parts.MOTORS[motor]['shaft_d'] / 2
+    if bracket:
+        # The bracket sets the motor face; the coupler bridges the stub and the motor shaft, centered on the gap.
+        hm = parts.HM[bracket]
+        face = ub + hm['L']
+        tip, lo, hi = face - parts.SHAFT_LEN, *hm['coupler']
+        span = min(max(tip + 15.0 - (s1 - 15.0), lo), hi)
+        c0 = (s1 + tip) / 2 - span / 2
+        c1 = c0 + span
+        if min(s1 - c0, c1 - tip) < 10.0:
+            m.warnings.append(f'{tag}: the {span:.0f} mm coupler takes only {min(s1 - c0, c1 - tip):.0f} mm of the '
+                              f'stub or the motor shaft')
+        m.coupler_len[tag] = span
+    else:
+        # The motor shaft (21 long) reaches 15 into the 30 mm coupler that sits on the stub.
+        c0 = s0
+        face = max(c0 + 30.0 + parts.SHAFT_LEN - 15.0, motor_min_u)
+        c1 = face - (parts.SHAFT_LEN - 15.0)
+        if c1 - c0 > 30.5:
+            m.warnings.append(f'{tag}: motor pushed out to clear the moving parts; needs a {c1 - c0:.0f} mm '
+                              f'coupler or a {length + c1 - c0 - 30:.0f} mm screw')
+        m.coupler_len[tag] = c1 - c0
+        m.add(f'{tag}_MotorBracket', fixed_group, place(parts.motor_bracket(u1, face, a)), 'black')
+    if face < motor_min_u:
+        m.warnings.append(f'{tag}: the bracket puts the motor {motor_min_u - face:.0f} mm into the moving parts')
     m.add(f'{tag}_Coupler', fixed_group, place(parts.coupler(c0, c1, a, e['stub'] / 2, shaft_r)), 'alu')
-    m.add(f'{tag}_MotorBracket', fixed_group, place(parts.motor_bracket(u1, face, a)), 'black')
     m.add_all(f'{tag}_Motor', fixed_group, parts.nema23(face, a, motor), place)
 
     m.add(f'{tag}_Nut', nut_group, place(parts.sfu_nut(kind, nut_u, a)), 'steel')
@@ -593,7 +628,7 @@ def base_envelope(g, front, edges=True):
 
 def base_top_formers(g, front):
     """Recesses in a base half's top face (named solids): the side gutters, the coolant trough
-    (front) and the table-motor relief (rear). Cut from the casting; printed as mold formers."""
+    (front) and, with a short Y bracket, the table-motor relief (rear). Cut from the casting; printed as mold formers."""
     half, base_top, ys = g['base_half'], g['base_top'], g['split']
     ya, yb = (g['base_y0'], ys) if front else (ys, g['base_y1'])
     out = []
@@ -612,10 +647,11 @@ def base_top_formers(g, front):
         trough = [(-gx1, base_top + 1), (-gx1, base_top - 15), (ox, base_top - 25), (gx1, base_top - 18), (gx1, base_top + 1)]
         out.append(('trough', Part.Face(Part.makePolygon([Vector(x, gy0, z) for x, z in trough] +
                                                          [Vector(trough[0][0], gy0, trough[0][1])])).extrude(Vector(0, 35.0, 0))))
-    else:
-        # relief under the table motor, which hangs off the back below the base top
+    elif not P['bracket_y'] or g['y_bk'] - parts.SUPPORT['BK12']['L'] + parts.HM[P['bracket_y']]['L'] < yb:
+        # relief under the table motor, which hangs below the base top: from the bracket's motor end
         c = P['motor_cutout'] / 2
-        out.append(('motor-relief', parts.box(-c, c, g['y_bk'], yb + 1, base_top - 8, base_top + 1)))
+        y_m = g['y_bk'] - parts.SUPPORT['BK12']['L'] + parts.HM[P['bracket_y']]['L'] if P['bracket_y'] else g['y_bk']
+        out.append(('motor-relief', parts.box(-c, c, y_m, yb + 1, base_top - 8, base_top + 1)))
     return out
 
 
@@ -727,6 +763,19 @@ def base_grid(m, g, st, front, cont, tag):
         if nm.startswith(('BaseCrossBF', 'BaseCrossBK')):
             bf = nm.startswith('BaseCrossBF')
             py0, py1 = (g['y_bf'] - 20.4, g['y_bf'] + 30.4) if bf else (g['y_bk'] - 50.8, g['y_bk'])
+            if not bf and P['bracket_y']:
+                # the HM bracket's six holes, the rear rollers' inner feet and the pad's own bolts, 8 mm in from
+                # its edges, on the narrowest stock flat bar that covers them
+                ub = g['y_bk'] - parts.SUPPORT['BK12']['L']
+                ys_ = [ub + c for c in parts.HM[P['bracket_y']]['C']] + [y_ - 12.0] + \
+                      [ub + parts.HM[P['bracket_y']]['L'] - parts.HM[P['bracket_y']]['E']] + \
+                      [yy for _, yy in roller_layout()['tapped']]
+                need = max(ys_) - min(ys_) + 16.0
+                w_ = next(w for w in (50.8, 63.5, 76.2, 88.9, 101.6) if w >= need)
+                py0 = (max(ys_) + min(ys_)) / 2 - w_ / 2
+                py1 = py0 + w_
+                if py1 > g['base_y1'] - 6.0:
+                    py0, py1 = g['base_y1'] - 6.0 - w_, g['base_y1'] - 6.0
             pad = sk.flat_bar('BasePadBF' if bf else 'BasePadBK', 'z', H, T38, -45.0, py0, 45.0, py1)
             tube = next(p_ for p_ in parts_ if getattr(p_, 'name', '') == nm)
             by = y_ + (12.0 if bf else -12.0)
@@ -819,7 +868,7 @@ def base_half(m, g, st, front):
             st.add(name + 'Insert', cont, insert.cut(Part.makeCylinder(6.0, 30, Vector(lx, ly, z1 - P['leg_len'] - 5))), 'steel')
 
     # cast-in M5 inserts for the enclosure's bottom rails and the way-cover rollers
-    for i, (bx, by) in enumerate(g['rail_bolts'] + g['cover_inserts']):
+    for i, (bx, by) in enumerate(g['rail_bolts'] + g['cover_inserts'] + g['ychain_inserts']):
         if ya <= by < yb:
             cuts.append(Part.makeCylinder(4.0, 13.0, Vector(bx, by, base_top - 12)))
             st.add(f'Insert{tag}{i + 1}', cont, Part.makeCylinder(4.0, 12.0, Vector(bx, by, base_top - 12)).cut(
@@ -995,9 +1044,15 @@ def beam_envelope(g, edges=True):
     return fillet_safe(shape, (P['round_r'], 6.0, 3.0), lambda e: all(abs(abs(v.Point.x) - outer) < 1e-6 for v in e.Vertexes))
 
 
+def stud(mm, exact=False):
+    """The nearest stud length sold (1/4 in steps), so every rod is bought at length instead of sawn.
+    exact=True gives the length the rod would be cut to (rod_tail past the far nut exactly)."""
+    return mm if exact else round(mm / 6.35) * 6.35
+
+
 def beam_tie_length():
-    """The beam ties: from 0.5 mm inside the face bar's front, through the nipple and back bar, 12 mm past it."""
-    return 2 * P['beam_bar_t'] + P['beam_spacer'] + 11.5
+    """The beam ties: from 0.5 mm inside the face bar's front, through the nipple and back bar, about 12 mm past it."""
+    return stud(2 * P['beam_bar_t'] + P['beam_spacer'] + 11.5)
 
 
 def beam(m, g, st):
@@ -1095,14 +1150,15 @@ def frame_modules(m, d):
         ('frame', 'Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length',
          f"4 x {inch(P['leg_len'])} (legs)", 'buy'),
         ('frame', 'Printed PETG: 8 column rings, 4 leg plugs, 2 gray pocket caps', '~60 g', 'PRINT'),
-        ('frame', '1/2-13 threaded rod (hardware store)',
-         ', '.join(f"{2 * n_} x {L:.0f}" for L, n_ in sorted(collections.Counter(round(v) for v in tie_rod_lengths(g)).items(),
-                                                            reverse=True))
-         + f" (uprights), 2 x {draw_rod_length(g):.0f} (base draw rods), 4 x {cross_rod_lengths(g)[0]:.0f} + "
-           f"6 x {cross_rod_lengths(g)[1]:.0f} (base cross rods)", 'buy'),
+        ('frame', '1/2-13 grade B7 fully threaded studs, bought at length (nothing sawn)',
+         ', '.join(f"{2 * n_} x {inch(L)}" for L, n_ in sorted(collections.Counter(tie_rod_lengths(g)).items(),
+                                                              reverse=True))
+         + f" (uprights), 2 x {inch(draw_rod_length(g))} (base draw rods), 4 x {inch(cross_rod_lengths(g)[0])} + "
+           f"6 x {inch(cross_rod_lengths(g)[1])} (base cross rods)", 'buy'),
         ('frame', '1/2-13 nut + 1/2 in SAE washer', '32 of each', 'buy'),
-        ('frame', '3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts '
-                  'and washers', f"8 x {P['beam_stud']:.0f} + 3 x {beam_tie_length():.0f} mm; 11 nuts", 'buy'),
+        ('frame', '3/8-16 grade B7 fully threaded studs, bought at length: beam studs (into the upright top plates) and '
+                  'beam ties, + 3/8-16 nuts and washers', f"8 x {inch(P['beam_stud'])} + 3 x {inch(beam_tie_length())}; 11 nuts",
+         'buy'),
         ('frame', f"1/2 in x {inch(P['beam_spacer'])} black pipe nipple (beam spacers)", '3 pcs', 'buy'),
         ('frame', '1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes '
                   '(2-1/4 in)', 'about 20 x 4 in + 4 x 2-1/4 in', 'buy'),
@@ -1113,24 +1169,24 @@ def frame_modules(m, d):
     ]
 
 
-def cross_rod_lengths(g):
+def cross_rod_lengths(g, exact=False):
     """The base cross rods: girder to girder, and girder to pedestal column, a nut, washer and rod_tail past
     each outside face."""
     tail = 2 * (13.6 + P['rod_tail'])
     gw = GIRDER[0]
-    return (2 * (g['girder_x'] + gw / 2) + tail, (g['ux'] + 25.4) - (g['girder_x'] - gw / 2) + tail)
+    return (stud(2 * (g['girder_x'] + gw / 2) + tail, exact), stud((g['ux'] + 25.4) - (g['girder_x'] - gw / 2) + tail, exact))
 
 
-def draw_rod_length(g):
+def draw_rod_length(g, exact=False):
     """The base draw rods: from the front cross plate to the girders' rear end plates, a nut, a washer
     and a rod_tail past each."""
-    return g['rear_end'] + T38 - g['front_web'] + 2 * (13.6 + P['rod_tail'])
+    return stud(g['rear_end'] + T38 - g['front_web'] + 2 * (13.6 + P['rod_tail']), exact)
 
 
-def tie_rod_lengths(g):
-    """Each upright's tie rods, cut length: from rod_tail under the bottom nut (washer, nut) to flush with
+def tie_rod_lengths(g, exact=False):
+    """Each upright's tie rods, stud length: from rod_tail under the bottom nut (washer, nut) to flush with
     the top plate (top two) or with the top of the slope nut."""
-    return [(g['beam_bot'] - P['plate_layer'] if pb >= g['pocket_bot'] - 1 else pb + 13.5) + 13.6 + P['rod_tail']
+    return [stud((g['beam_bot'] - P['plate_layer'] if pb >= g['pocket_bot'] - 1 else pb + 13.5) + 13.6 + P['rod_tail'], exact)
             for _, _, pb in g['tie_rods']]
 
 
@@ -1169,15 +1225,21 @@ def steel_tolerance(m, d):
     # upright columns: clamped up against the top plate; the bottom end sits in an epoxy bed on the foot plate
     rows.append(('Upright columns (4)', 'top end, against the top plate', 'an epoxy bed on the foot bar',
                  g['pocket_bot'] - P['column_len'] - g['foot_top']))
-    rows.append(('Draw rods (2, cut)', 'flush with the front nut', 'the tail behind the back nut', P['rod_tail']))
+    # the studs are bought in 1/4 in steps: the step shortens or lengthens the tail past the far nut, and the
+    # stud's own length error (stud_tol) has to fit in the shortest tail
+    def tail(n, x):
+        return P['rod_tail'] + min(a - b for a, b in zip(n, x))
+    rows.append(('Draw rods (2, studs)', 'flush with the front nut', 'the tail behind the back nut',
+                 tail([draw_rod_length(g)], [draw_rod_length(g, True)]), P['stud_tol']))
     rows.append(('Girders (4)', 'the split end plate', 'the far end plate, clamped by the draw rod', 6.0))
     rows.append(('Top plates (2)', 'bolted to the mold bridge', 'all edges, 6 mm inside the casting', 6.0))
-    rows.append(('Tie and cross rods (cut)', 'screwed up to a stop, or flush with one nut', 'the tail past the far nut',
-                 P['rod_tail']))
-    d['steel_tol'] = [(n, dat, fr, room, room >= tol) for n, dat, fr, room in rows]
+    rows.append(('Tie and cross rods (studs)', 'screwed up to a stop, or flush with one nut', 'the tail past the far nut',
+                 tail(tie_rod_lengths(g) + list(cross_rod_lengths(g)), tie_rod_lengths(g, True) + list(cross_rod_lengths(g, True))),
+                 P['stud_tol']))
+    d['steel_tol'] = [(r[0], r[1], r[2], r[3], r[3] >= (r[4] if len(r) > 4 else tol)) for r in rows]
     for n, _, _, room, ok in d['steel_tol']:
         if not ok:
-            m.warnings.append(f'{n}: only {room:.1f} mm for a {tol:.1f} mm cutting error')
+            m.warnings.append(f'{n}: only {room:.1f} mm for its length error')
 
 
 def cast_anchors(m, d):
@@ -1490,7 +1552,7 @@ def mold_base(kit, m, g):
         if abs(n.z) > 0.5:
             holes.append(Fix('hole', pt, Z, 5.5 if kind == 'insert_m5' else 6.5,
                              'M5 screw into the steel' if kind == 'insert_m5' else 'M6 screw into a pad'))
-    for bx, by in g['rail_bolts'] + g['cover_inserts']:
+    for bx, by in g['rail_bolts'] + g['cover_inserts'] + g['ychain_inserts']:
         holes.append(Fix('hole', Vector(bx, by, top), Z, 5.5, 'M5 insert screw'))
     for sx in (-1, 1):
         holes += [Fix('hole', Vector(sx * g['ux'], dy, top), Z, 9.6, '3/8 dowel') for dy in g['dowel_ys']]
@@ -1861,6 +1923,10 @@ def build():
     d['bulkhead'] = (-170.0, 600.0)          # coolant return through the back panel (x, z)
     # fixings for the parts that bolt on later (way-cover rollers, cable-chain mount), cast in now
     d['cover_inserts'] = roller_layout()['inserts']
+    # a Y cable chain for a table-mounted 4th/5th axis (add later): its fixed end on two M5 inserts in the base
+    # top, in the 49 mm gap between the table and the right upright, a little behind the split
+    d['ychain_x'] = (P['table_w'] / 2 + inner) / 2
+    d['ychain_inserts'] = [(d['ychain_x'], 40.0 + dy) for dy in (-11.0, 11.0)]
     d['chain_inserts'] = [(CHAIN['fixed_x'] - 12.5, beam_face + CHAIN['beam_y'] + dy) for dy in (-11.0, 11.0)]
     frame_modules(m, d)
     leg_bot = P['leg_embed'] - P['leg_len']
@@ -1876,7 +1942,7 @@ def build():
               'frame', 'table', rail_u0=P['table_rail_y'])
     y_tail = parts.ENDS['SFU1605']['bk_e'] - parts.SUPPORT['BK12']['L'] + parts.ENDS['SFU1605']['stub_l']
     screw_axis(m, tf, 'Y', 'SFU1605', P['table_screw_len'], ty_u1 - (P['table_screw_len'] - y_tail), 'BF12', 'BK12',
-               'frame', 'table', 0.0, y_stack, 0.0, P['motor_y'])
+               'frame', 'table', 0.0, y_stack, 0.0, P['motor_y'], bracket=P['bracket_y'])
     # the rear way-cover rollers' inner brackets screw into the BK12 pad beside the support (tapped M5)
     for x, y in roller_layout()['tapped']:
         m.anchors.append((Vector(x, y, base_top), Vector(0, 0, 1), 'insert_m5'))
@@ -1885,8 +1951,16 @@ def build():
     nx, ny = int((tw - 30) // pitch) + 1, int((tl - 30) // pitch) + 1
     holes = [Part.makeCylinder(2.5, P['table_t'] + 2, Vector((i - (nx - 1) / 2) * pitch, (j - (ny - 1) / 2) * pitch, table_bot - 1))
              for i in range(nx) for j in range(ny)]
+    # The table is the module interface: a vise plate, a 4th-axis plate or a trunnion base bolts to the M6 grid and
+    # lands square on two 8 mm dowels on the X center line, halfway between grid rows.
+    dowel_y = (4.0 if ny % 2 == 0 else 4.5) * pitch
+    holes += [Part.makeCylinder(4.0, P['table_t'] + 2, Vector(0, sy * dowel_y, table_bot - 1)) for sy in (-1, 1)]
+    # the Y cable chain's moving end: two M5 holes tapped into the table's right edge
+    holes += [Part.makeCylinder(2.1, 12.0, Vector(tw / 2 - 12.0, dy, (table_bot + table_top) / 2), Vector(1, 0, 0))
+              for dy in (-11.0, 11.0)]
     m.add('Table', 'table', table.cut(holes), 'alu')
     d['table_holes'] = (nx, ny)
+    d['table_dowels'] = 2 * dowel_y
 
     # ---- beam axis (X) --------------------------------------------------
     m.frame_container = 'FrameBeam'
@@ -1947,20 +2021,26 @@ def build():
         ('Z', 'SFU1204 ballscrew + BK10/BF10 + housing + coupler', f"{P['z_screw_len']:.0f} mm", 'buy'),
         ('X beam', 'NEMA 23 bracket for BK10', '1 pc', 'OWNED'),
         ('Z', 'NEMA 23 bracket for BK10', '1 pc', 'buy'),
-        ('Y table', 'NEMA 23 bracket for BK12', '1 pc', 'buy'),
+        ('Y table', f"{P['bracket_y']} integrated bearing seat + NEMA 23 bracket (in place of the kit's BK12, which is "
+                    f"spare); D25 coupler 8 x 10 mm, about {m.coupler_len['Y']:.0f} mm long" if P['bracket_y'] else
+         'NEMA 23 bracket for BK12', '1 pc', 'buy'),
         ('X, Y', f"NEMA 23 closed loop {P['motor_x']} + CL57T driver", '2 pcs', 'buy'),
         ('Z', f"NEMA 23 open loop (modeled as {P['motor_z']})", '1 pc', 'OWNED'),
         ('Y table', parts.HOUSING['SFU1605']['name'] + ' nut housing', '1 pc', 'buy (comes in SFU1605 kits)'),
         ('X, Z', parts.HOUSING['SFU1204']['name'] + ' nut housing', '2 pcs', 'X OWNED, Z buy'),
         ('spindle', 'GDZ80-2.2 water-cooled ER20 + VFD + 80 mm cast clamp', '1 set', 'buy'),
-        ('all', 'MIC6 plate: table', f"{tw:.0f} x {tl:.0f} x 3/4 in, M6 grid {nx}x{ny} @ {pitch:.0f}", 'buy'),
-        ('all', 'MIC6 plate: X carriage', f"{P['carriage_w']:.0f} x {z_flange - car_z0:.0f} x 5/8 in", 'buy'),
-        ('all', 'MIC6 plate: Z plate', f"{P['zplate_w']:.0f} x {P['z_rail_len']:.0f} x 5/8 in", 'buy'),
+        ('all', '6061 flat bar cut to length: table', f"3/4 x {sk.inch(tw)} in x {sk.inch(tl)} in long, M6 grid {nx}x{ny} @ {pitch:.0f}, "
+                                                 f"2 x 8 mm H7 dowel holes {d['table_dowels']:.0f} apart on the X center line",
+         'buy'),
+        ('all', '6061 flat bar cut to length: X carriage', f"5/8 x {sk.inch(P['carriage_w'])} in x {sk.inch(z_flange - car_z0)} in long",
+         'buy'),
+        ('all', '6061 flat bar cut to length: Z plate', f"5/8 x {sk.inch(P['zplate_w'])} in x {sk.inch(P['z_rail_len'])} in long", 'buy'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
         ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
-        ('frame', 'Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mount',
-         f"{len(d['rail_bolts'])} + {len(d['cover_inserts'])} + {len(d['chain_inserts'])} pcs", 'buy'),
+        ('frame', 'Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mounts '
+                  '(beam and Y)',
+         f"{len(d['rail_bolts'])} + {len(d['cover_inserts'])} + {len(d['chain_inserts'])} + {len(d['ychain_inserts'])} pcs", 'buy'),
         ('frame', 'Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); '
                   'M6 x 40 (the Y and X BK/BF)',
          f"{d['anchor_count'].get('face_insert_m5', 0)} + "
@@ -2064,7 +2144,7 @@ def enclosure(m, d):
         m.cutlist.append((name, f'{dims[0]:.0f} x {dims[1]:.0f} ACM 3 mm'))
 
     # Brush seals around the motors where they pass through the panels (outside face).
-    s_out, s_in = c + 10.0, 31.0
+    s_out, s_in = c + 10.0, 33.0     # the opening clears the motor (28.2 a side) and the Y bracket's flange (31.5 up)
     seal_x = parts.box(x1o - 10 + t, x1o - 10 + t + 3, ymx - s_out, ymx + s_out, zmx - s_out, zmx + s_out).cut(
         parts.box(x1o - 20, x1o, ymx - s_in, ymx + s_in, zmx - s_in, zmx + s_in))
     add('BrushSealX', seal_x, 'black')
@@ -2394,8 +2474,8 @@ def report(m, hits):
             lines.append(f"  {name:18s} {val}")
     lines += [f"  2020 x {n:<2d}         {L} mm" for L, n in sorted(lengths.items(), reverse=True)]
     lines.append(f"  2020 total         {sum(L * n for L, n in lengths.items()) / 1000:.2f} m")
-    lines += ['', f"Steel cut to length (+/-{P['tube_cut_tol']:.1f} mm allowed; tubes +/-0.5 mm across the flats, "
-              f"printed fits {P['tube_fit']:.2f} mm a side)", '-' * 98,
+    lines += ['', f"Steel cut to length (+/-{P['tube_cut_tol']:.1f} mm allowed; studs +/-{P['stud_tol']:.1f} mm; tubes +/-0.5 mm "
+              f"across the flats, printed fits {P['tube_fit']:.2f} mm a side)", '-' * 98,
               f"  {'Piece':18s} {'Set from (datum)':50s} {'Error goes to':36s} Room"]
     lines += [f"  {n:18s} {dat:50s} {fr:36s} {room:4.1f} mm {'ok' if ok else 'TOO LITTLE'}"
               for n, dat, fr, room, ok in d['steel_tol']]
@@ -2995,7 +3075,7 @@ def mold_guide(m, only=None):
     L += [''] + fig('detail-corner', 'A corner of the base mold')
     L += ['- **Printed pieces** have a nut built in: it goes into a pocket on the board side and slides under the',
           '  hole; an M4 bolt comes through the board from outside.', ''] + fig('fixing-nut', 'The captive nut')
-    L += ['- **Thin pieces** (gasket-groove beads, motor relief) have 3 mm pins that push into 1/8 in holes.', '']
+    L += ['- **Thin pieces** (gasket-groove beads) have 3 mm pins that push into 1/8 in holes.', '']
     L += fig('fixing-pins', 'Pins on a gasket-groove bead')
     L += ['- **Long pieces** are printed in parts that peg together; each part bolts down on its own.', '']
     L += fig('fixing-peg', 'Peg and socket')
@@ -3162,7 +3242,7 @@ STEPS_TEXT = {
     'step-base-rear-1': 'Floor on three battens. Bolt the cleats down.',
     'step-base-rear-2': 'Walls against the cleats; corner brackets at the top. Diagonals equal within 2 mm, then tighten.',
     'step-base-rear-3': 'Partition between the side walls: two brackets, two struts to the front wall. Beads on its pins.',
-    'step-base-rear-4': 'Gutter formers, motor relief, corner fillers and the draw-rod pocket plugs on. Bevel strips on '
+    'step-base-rear-4': 'Gutter formers, corner fillers and the draw-rod pocket plugs on. Bevel strips on '
                         'the side and rear walls, their 1-1/2 in face flush with the pour line.',
     'step-base-rear-5': 'The steel grid in, bolted up and upside down: its rail bars and the BK pad screwed to the floor '
                         '(greased M5 and M6), its seats over the dowels, the split end plates against the partition with '
@@ -3278,7 +3358,7 @@ def write_steel_parts(m):
                                   holes=hs, pour=None))
             n_by = collections.Counter(h[4] for h in hs)
             drill_txt.append(', '.join(f'{n} x {k}' for k, n in n_by.items()))
-        parts_md.append(f'| {name} | {stock} | {ln:.0f} mm ({ln / 25.4:.2f} in) | {qty} | '
+        parts_md.append(f'| {name} | {stock} | {ln:.0f} mm ({sk.inch(ln)} in) | {qty} | '
                         f'{"; ".join(drill_txt) if drill_txt else "-"} |')
     kg = sum(pt.mass * qty for pt, qty, *_ in rows)
     cut = []

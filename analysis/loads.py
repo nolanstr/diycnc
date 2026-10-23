@@ -53,7 +53,12 @@ def cases(mesh, vox, xs=(0.0,), yts=(-150.0, 0.0, 150.0), tip_above_table=50.0, 
     Fs, labels = [], []
     # screw axes (a point on each) and fixed-bearing footprints
     bk_x = union_box(b, 'X_BK10')
-    bk_y = union_box(b, 'Y_BK12')
+    if any(k.startswith('Y_BK12') for k in b):
+        bk_y = union_box(b, 'Y_BK12')
+    else:
+        # an HM bracket is the fixed bearing: its thrust goes into the pad under its bearing end (BK12 footprint)
+        bk_y = union_box(b, 'Y_MotorBracket')
+        bk_y[4] = bk_y[1] + 25.0
     sx_pt = np.r_[0.5 * (bk_x[0] + bk_x[3]), bf - 22.0, d['beam_cz']]
     sy_pt = np.r_[0.0, 0.5 * (bk_y[1] + bk_y[4]), bt + 25.0]
     n_bkx = mesh.nodes_in(np.r_[bk_x[0], bf - 1, bk_x[2]], np.r_[bk_x[3], bf + h, bk_x[5]], mesh.solid)

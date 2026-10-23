@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**118 prints, 1.81 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**117 prints, 1.79 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -69,7 +69,7 @@ Folder `print/base-box/`, about 270 g.
 
 ## Base, rear half (cast first)
 
-Folder `print/base-rear/`, about 520 g.
+Folder `print/base-rear/`, about 502 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -79,20 +79,19 @@ Folder `print/base-rear/`, about 520 g.
 | `former-gutter-R-part1of3.stl` | Former (removable) | 1 | 15 x 124 x 12 | 8 | Bolts to the floor from underneath (the base is cast top face down). |
 | `former-gutter-R-part2of3.stl` | Former (removable) | 1 | 15 x 124 x 10 | 8 |  |
 | `former-gutter-R-part3of3.stl` | Former (removable) | 1 | 15 x 120 x 9 | 7 |  |
-| `former-motor-relief.stl` | Former (removable) | 1 | 72 x 60 x 14 | 12 | Bolts to the floor from underneath (the base is cast top face down). |
 | `filler-corner-L.stl` | Filler (removable) | 1 | 45 x 45 x 110 | 29 | Rounded corner; bolts to the floor and both walls. |
 | `filler-bevel-L-part1of2.stl` | Filler (removable) | 1 | 64 x 171 x 38 | 50 | The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
 | `filler-bevel-L-part2of2.stl` | Filler (removable) | 1 | 64 x 167 x 38 | 50 |  |
 | `filler-corner-R.stl` | Filler (removable) | 1 | 45 x 45 x 110 | 29 | Rounded corner; bolts to the floor and both walls. |
 | `filler-bevel-R-part1of2.stl` | Filler (removable) | 1 | 64 x 171 x 38 | 50 | The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
 | `filler-bevel-R-part2of2.stl` | Filler (removable) | 1 | 64 x 167 x 38 | 50 |  |
-| `filler-bevel-end-part1of3.stl` | Filler (removable) | 1 | 174 x 64 x 38 | 51 | The bevel along the lower edge: at the pour line, bolted to the rear wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
-| `filler-bevel-end-part2of3.stl` | Filler (removable) | 1 | 174 x 64 x 38 | 51 |  |
-| `filler-bevel-end-part3of3.stl` | Filler (removable) | 1 | 170 x 64 x 38 | 51 |  |
-| `former-split-gasket-groove-part1of4.stl` | Former (removable) | 1 | 145 x 14 x 8 | 2 | Pins into the partition. |
-| `former-split-gasket-groove-part2of4.stl` | Former (removable) | 1 | 145 x 4 x 8 | 1 |  |
-| `former-split-gasket-groove-part3of4.stl` | Former (removable) | 1 | 145 x 4 x 8 | 1 |  |
-| `former-split-gasket-groove-part4of4.stl` | Former (removable) | 1 | 145 x 14 x 8 | 2 |  |
+| `filler-bevel-end-part1of3.stl` | Filler (removable) | 1 | 168 x 64 x 38 | 50 | The bevel along the lower edge: at the pour line, bolted to the rear wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
+| `filler-bevel-end-part2of3.stl` | Filler (removable) | 1 | 168 x 64 x 38 | 50 |  |
+| `filler-bevel-end-part3of3.stl` | Filler (removable) | 1 | 164 x 64 x 38 | 50 |  |
+| `former-split-gasket-groove-part1of4.stl` | Former (removable) | 1 | 141 x 14 x 8 | 2 | Pins into the partition. |
+| `former-split-gasket-groove-part2of4.stl` | Former (removable) | 1 | 141 x 4 x 8 | 1 |  |
+| `former-split-gasket-groove-part3of4.stl` | Former (removable) | 1 | 141 x 4 x 8 | 1 |  |
+| `former-split-gasket-groove-part4of4.stl` | Former (removable) | 1 | 141 x 14 x 8 | 2 |  |
 | `core-center-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-foot-b-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-knee-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
@@ -104,7 +103,7 @@ Folder `print/base-rear/`, about 520 g.
 
 ## Base, front half
 
-Folder `print/base-front/`, about 599 g.
+Folder `print/base-front/`, about 590 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -112,20 +111,20 @@ Folder `print/base-front/`, about 599 g.
 | `former-gutter-L-part2of2.stl` | Former (removable) | 1 | 15 x 145 x 13 | 10 |  |
 | `former-gutter-R-part1of2.stl` | Former (removable) | 1 | 15 x 149 x 15 | 11 | Bolts to the floor from underneath (the base is cast top face down). |
 | `former-gutter-R-part2of2.stl` | Former (removable) | 1 | 15 x 145 x 13 | 10 |  |
-| `former-trough-part1of5.stl` | Former (removable) | 1 | 116 x 35 x 19 | 20 | Bolts to the floor from underneath (the base is cast top face down). |
-| `former-trough-part2of5.stl` | Former (removable) | 1 | 116 x 35 x 23 | 22 |  |
-| `former-trough-part3of5.stl` | Former (removable) | 1 | 116 x 38 x 33 | 25 |  |
-| `former-trough-part4of5.stl` | Former (removable) | 1 | 116 x 35 x 24 | 23 |  |
-| `former-trough-part5of5.stl` | Former (removable) | 1 | 112 x 35 x 21 | 21 |  |
+| `former-trough-part1of5.stl` | Former (removable) | 1 | 112 x 35 x 19 | 19 | Bolts to the floor from underneath (the base is cast top face down). |
+| `former-trough-part2of5.stl` | Former (removable) | 1 | 112 x 35 x 23 | 22 |  |
+| `former-trough-part3of5.stl` | Former (removable) | 1 | 112 x 38 x 33 | 24 |  |
+| `former-trough-part4of5.stl` | Former (removable) | 1 | 112 x 35 x 24 | 22 |  |
+| `former-trough-part5of5.stl` | Former (removable) | 1 | 108 x 35 x 21 | 20 |  |
 | `filler-corner-L.stl` | Filler (removable) | 1 | 45 x 45 x 110 | 29 | Rounded corner; bolts to the floor and both walls. |
 | `filler-bevel-L-part1of2.stl` | Filler (removable) | 1 | 64 x 154 x 38 | 46 | The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
 | `filler-bevel-L-part2of2.stl` | Filler (removable) | 1 | 64 x 150 x 38 | 46 |  |
 | `filler-corner-R.stl` | Filler (removable) | 1 | 45 x 45 x 110 | 29 | Rounded corner; bolts to the floor and both walls. |
 | `filler-bevel-R-part1of2.stl` | Filler (removable) | 1 | 64 x 154 x 38 | 46 | The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
 | `filler-bevel-R-part2of2.stl` | Filler (removable) | 1 | 64 x 150 x 38 | 46 |  |
-| `filler-bevel-end-part1of3.stl` | Filler (removable) | 1 | 174 x 64 x 38 | 51 | The bevel along the lower edge: at the pour line, bolted to the front wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
-| `filler-bevel-end-part2of3.stl` | Filler (removable) | 1 | 174 x 64 x 38 | 51 |  |
-| `filler-bevel-end-part3of3.stl` | Filler (removable) | 1 | 170 x 64 x 38 | 51 |  |
+| `filler-bevel-end-part1of3.stl` | Filler (removable) | 1 | 168 x 64 x 38 | 50 | The bevel along the lower edge: at the pour line, bolted to the front wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
+| `filler-bevel-end-part2of3.stl` | Filler (removable) | 1 | 168 x 64 x 38 | 50 |  |
+| `filler-bevel-end-part3of3.stl` | Filler (removable) | 1 | 164 x 64 x 38 | 50 |  |
 | `core-center-a-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-center-b-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
 | `core-outboard-L-post.stl` | Pocket core (shell, stays in) | 1 | 12 x 12 x 81 | 5 | Post for a foam core: push it 30 mm into a snug hole in the foam and glue it. |
@@ -154,14 +153,14 @@ Folder `print/upright/`, about 219 g.
 
 ## Beam
 
-Folder `print/beam/`, about 86 g.
+Folder `print/beam/`, about 84 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
 | `kit-corner-bracket.stl` | Mold kit (reused) | 4 | 50 x 50 x 23 | 33 |  |
-| `filler-back-edge-part1of3.stl` | Filler (removable) | 1 | 124 x 40 x 40 | 17 | Rounded back edge between the uprights; bolts to the top wall. |
-| `filler-back-edge-part2of3.stl` | Filler (removable) | 1 | 124 x 40 x 40 | 18 |  |
-| `filler-back-edge-part3of3.stl` | Filler (removable) | 1 | 120 x 40 x 40 | 17 |  |
+| `filler-back-edge-part1of3.stl` | Filler (removable) | 1 | 118 x 40 x 40 | 17 | Rounded back edge between the uprights; bolts to the top wall. |
+| `filler-back-edge-part2of3.stl` | Filler (removable) | 1 | 118 x 40 x 40 | 17 |  |
+| `filler-back-edge-part3of3.stl` | Filler (removable) | 1 | 114 x 40 x 40 | 17 |  |
 | `kit-dowel-stop.stl` | Mold kit (reused) | 2 | 18 x 18 x 6 | 1 | Pushes into the dowel hole from outside so the dowel stands 15 mm proud. |
 
 ## Machine parts

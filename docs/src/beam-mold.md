@@ -23,7 +23,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 
 ![The captive nut](../../renders/mold/fixing-nut.png)
 
-- **Thin pieces** (gasket-groove beads, motor relief) have 3 mm pins that push into 1/8 in holes.
+- **Thin pieces** (gasket-groove beads) have 3 mm pins that push into 1/8 in holes.
 
 ![Pins on a gasket-groove bead](../../renders/mold/fixing-pins.png)
 
@@ -40,7 +40,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 |---|---|---|
 | Melamine board, 3/4 in | about 0.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
 | 1x2 lumber (furring strip is fine) | 1 x 8 ft 1x2 (1.4 m) | the cleats: they lie on the floor outside the walls |
-| PETG | 0.12 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.11 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 
@@ -59,15 +59,15 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-13 prints, 0.12 kg, about 9 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+13 prints, 0.11 kg, about 8 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
 | `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
-| `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 8m 21s |
-| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 13s |
-| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 8m 22s |
+| `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 5m 47s |
+| `beam/filler-back-edge-part2of3.stl` | 1 | 17 | 1h 6m 9s |
+| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 5m 50s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
@@ -80,13 +80,13 @@ the bridges and struts come out of the sheet's offcuts.
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Beam floor | 1 | 648 x 264 |  |
-| Beam top wall | 1 | 568 x 165 |  |
-| Beam bottom wall | 1 | 568 x 165 |  |
+| Beam floor | 1 | 630 x 264 |  |
+| Beam top wall | 1 | 550 x 165 |  |
+| Beam bottom wall | 1 | 550 x 165 |  |
 | Beam end wall, left | 1 | 146 x 165 |  |
 | Beam end wall, right | 1 | 146 x 165 |  |
-| Beam cleat, top | 1 | 568 x 38 | 1x2 lumber; flat on the floor |
-| Beam cleat, bottom | 1 | 568 x 38 | 1x2 lumber; flat on the floor |
+| Beam cleat, top | 1 | 550 x 38 | 1x2 lumber; flat on the floor |
+| Beam cleat, bottom | 1 | 550 x 38 | 1x2 lumber; flat on the floor |
 | Beam cleat, left | 1 | 146 x 38 | 1x2 lumber; flat on the floor |
 | Beam cleat, right | 1 | 146 x 38 | 1x2 lumber; flat on the floor |
 
@@ -177,29 +177,29 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 80 | 21 | 4.5 | cleat |
-| 2 | 324 | 21 | 4.5 | cleat |
-| 3 | 568 | 21 | 4.5 | cleat |
-| 4 | 174 | 82 | 5.5 | M5 screw into the face plate |
-| 5 | 294 | 82 | 5.5 | M5 screw into the face plate |
-| 6 | 354 | 82 | 5.5 | M5 screw into the face plate |
-| 7 | 474 | 82 | 5.5 | M5 screw into the face plate |
+| 2 | 315 | 21 | 4.5 | cleat |
+| 3 | 550 | 21 | 4.5 | cleat |
+| 4 | 165 | 82 | 5.5 | M5 screw into the face plate |
+| 5 | 285 | 82 | 5.5 | M5 screw into the face plate |
+| 6 | 345 | 82 | 5.5 | M5 screw into the face plate |
+| 7 | 465 | 82 | 5.5 | M5 screw into the face plate |
 | 8 | 21 | 99 | 4.5 | cleat |
-| 9 | 627 | 99 | 4.5 | cleat |
-| 10 | 94 | 109 | 6.5 | M6 screw into the face plate |
-| 11 | 107 | 109 | 6.5 | M6 screw into the face plate |
-| 12 | 452 | 109 | 6.5 | M6 screw into the face plate |
-| 13 | 94 | 155 | 6.5 | M6 screw into the face plate |
-| 14 | 107 | 155 | 6.5 | M6 screw into the face plate |
-| 15 | 452 | 155 | 6.5 | M6 screw into the face plate |
+| 9 | 610 | 99 | 4.5 | cleat |
+| 10 | 85 | 109 | 6.5 | M6 screw into the face plate |
+| 11 | 98 | 109 | 6.5 | M6 screw into the face plate |
+| 12 | 443 | 109 | 6.5 | M6 screw into the face plate |
+| 13 | 85 | 155 | 6.5 | M6 screw into the face plate |
+| 14 | 98 | 155 | 6.5 | M6 screw into the face plate |
+| 15 | 443 | 155 | 6.5 | M6 screw into the face plate |
 | 16 | 21 | 165 | 4.5 | cleat |
-| 17 | 627 | 165 | 4.5 | cleat |
-| 18 | 174 | 182 | 5.5 | M5 screw into the face plate |
-| 19 | 294 | 182 | 5.5 | M5 screw into the face plate |
-| 20 | 354 | 182 | 5.5 | M5 screw into the face plate |
-| 21 | 474 | 182 | 5.5 | M5 screw into the face plate |
+| 17 | 610 | 165 | 4.5 | cleat |
+| 18 | 165 | 182 | 5.5 | M5 screw into the face plate |
+| 19 | 285 | 182 | 5.5 | M5 screw into the face plate |
+| 20 | 345 | 182 | 5.5 | M5 screw into the face plate |
+| 21 | 465 | 182 | 5.5 | M5 screw into the face plate |
 | 22 | 80 | 243 | 4.5 | cleat |
-| 23 | 324 | 243 | 4.5 | cleat |
-| 24 | 568 | 243 | 4.5 | cleat |
+| 23 | 315 | 243 | 4.5 | cleat |
+| 24 | 550 | 243 | 4.5 | cleat |
 
 #### Beam top wall
 
@@ -209,19 +209,19 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 37 | 25 | 13.1 | 1/2 core rod |
 | 2 | 81 | 25 | 13.1 | 1/2 core rod |
-| 3 | 487 | 25 | 13.1 | 1/2 core rod |
-| 4 | 531 | 25 | 13.1 | 1/2 core rod |
-| 5 | 407 | 49 | 5.5 | M5 insert screw |
-| 6 | 407 | 71 | 5.5 | M5 insert screw |
+| 3 | 469 | 25 | 13.1 | 1/2 core rod |
+| 4 | 513 | 25 | 13.1 | 1/2 core rod |
+| 5 | 398 | 49 | 5.5 | M5 insert screw |
+| 6 | 398 | 71 | 5.5 | M5 insert screw |
 | 7 | 37 | 115 | 13.1 | 1/2 core rod |
 | 8 | 81 | 115 | 13.1 | 1/2 core rod |
-| 9 | 487 | 115 | 13.1 | 1/2 core rod |
-| 10 | 531 | 115 | 13.1 | 1/2 core rod |
-| 11 | 163 | 133 | 4.5 | back-edge |
-| 12 | 285 | 133 | 4.5 | back-edge |
-| 13 | 403 | 133 | 4.5 | back-edge |
+| 9 | 469 | 115 | 13.1 | 1/2 core rod |
+| 10 | 513 | 115 | 13.1 | 1/2 core rod |
+| 11 | 162 | 133 | 4.5 | back-edge |
+| 12 | 276 | 133 | 4.5 | back-edge |
+| 13 | 390 | 133 | 4.5 | back-edge |
 | 14 | 33 | 154 | 4.5 | corner bracket |
-| 15 | 535 | 154 | 4.5 | corner bracket |
+| 15 | 518 | 154 | 4.5 | corner bracket |
 
 #### Beam bottom wall
 
@@ -231,16 +231,16 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 37 | 25 | 13.1 | 1/2 core rod |
 | 2 | 81 | 25 | 13.1 | 1/2 core rod |
-| 3 | 487 | 25 | 13.1 | 1/2 core rod |
-| 4 | 531 | 25 | 13.1 | 1/2 core rod |
+| 3 | 469 | 25 | 13.1 | 1/2 core rod |
+| 4 | 513 | 25 | 13.1 | 1/2 core rod |
 | 5 | 59 | 70 | 9.6 | 3/8 dowel |
-| 6 | 509 | 70 | 9.6 | 3/8 dowel |
+| 6 | 491 | 70 | 9.6 | 3/8 dowel |
 | 7 | 37 | 115 | 13.1 | 1/2 core rod |
 | 8 | 81 | 115 | 13.1 | 1/2 core rod |
-| 9 | 487 | 115 | 13.1 | 1/2 core rod |
-| 10 | 531 | 115 | 13.1 | 1/2 core rod |
+| 9 | 469 | 115 | 13.1 | 1/2 core rod |
+| 10 | 513 | 115 | 13.1 | 1/2 core rod |
 | 11 | 33 | 154 | 4.5 | corner bracket |
-| 12 | 535 | 154 | 4.5 | corner bracket |
+| 12 | 518 | 154 | 4.5 | corner bracket |
 
 #### Beam end wall, left
 
@@ -266,8 +266,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 528 | 19 | 4.5 | cleat |
-| 2 | 284 | 19 | 4.5 | cleat |
+| 1 | 510 | 19 | 4.5 | cleat |
+| 2 | 275 | 19 | 4.5 | cleat |
 | 3 | 40 | 19 | 4.5 | cleat |
 
 #### Beam cleat, bottom
@@ -276,8 +276,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 528 | 19 | 4.5 | cleat |
-| 2 | 284 | 19 | 4.5 | cleat |
+| 1 | 510 | 19 | 4.5 | cleat |
+| 2 | 275 | 19 | 4.5 | cleat |
 | 3 | 40 | 19 | 4.5 | cleat |
 
 #### Beam cleat, left

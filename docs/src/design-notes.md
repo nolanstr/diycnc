@@ -23,13 +23,16 @@ and the cable-chain mount).
 
 **Nothing is made to order.** The rails (including the 600 mm Y pair) and ballscrews are used at the
 lengths they're sold in; the skeletons are about 54 pieces of stock flat bar and tube (56 kg) cut to
-length (`docs/1-sourcing/steel/` has the cut list and the drilling templates); the risers and aluminum
-plates are ordered cut to size. The cutting left is the threaded rod; the machining is drilling and
-tapping (from the templates) and the risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
+length (`docs/1-sourcing/steel/` has the cut list and the drilling templates); the risers and the aluminum
+plates are ordered cut to length (the plates are stock 6061 flat-bar widths: a 10 in table, a 6 in X carriage
+and Z plate). Every rod is a grade B7 fully threaded stud bought at a stock length (they come in 1/4 in
+steps; each is within 3 mm of the length the joint wants, and the tail past its far nut takes the
+difference), so nothing is sawn at home: the machining is drilling and tapping (from the templates) and the
+risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
 Wire-brush off rust and loose scale and degrease just before casting; paint only the part of each leg
 that hangs below the base.
 
-**Keeping the epoxy down.** About 9.0 kg of epoxy (8.5 % of the 106 kg of castings):
+**Keeping the epoxy down.** About 8.8 kg of epoxy (8.5 % of the 103 kg of castings):
 - The tubes stay hollow (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
   they're clamped between, or by printed rings and plugs, so no mix gets in.
 - The base's underside pockets follow the stiffness study below, with the steel grid in the ribs
@@ -139,8 +142,10 @@ The two uprights are the same part, so one mold casts both, one after the other.
 **What the rails and supports bolt to.** Steel. The rails screw into steel risers, and the risers
 are bedded on the castings with a thin epoxy grout and held down by counterbored M5 screws (under
 the rail, between its own screws) into the skeleton: the base's tapped rail bars (Y) and the beam's
-tapped face bar (X). The Y ballscrew supports (BK12/BF12) bolt into tapped pads on the base grid's
-cross tubes; the X supports (BK10/BF10) into the beam's face bar. Behind every tapped hole there's room
+tapped face bar (X). The Y screw's BF12, and the HM12-57 bracket that is its fixed end and motor mount in
+one (the kit's BK12 is a spare), bolt into tapped pads on the base grid's cross tubes; the bracket's pad is
+3/8 x 3-1/2 in bar, wide enough for its six holes. The X supports (BK10/BF10) bolt into the beam's face bar;
+X and Z get HM10-57 brackets too, drawn once the one on hand is measured (no drawing is published). Behind every tapped hole there's room
 (the casting is relieved where the greased mold screw stood, or a relief hole is drilled in the tube
 below). The Z axis mounts on the aluminum plates.
 
@@ -230,7 +235,8 @@ good part of the X deflection; in Y and Z it is mostly the beam bending between 
 | The same with the #16 grit only (the 70 grit an option) | 44.8 L | 96.5 | 150.2 | 128.8 |
 | Plain sand, the grit's money in steel: 3/4 in beam bars, 3/16 in column walls | 44.9 L | 100.9 | 155.4 | 135.6 |
 | The base's lower edge beveled 1-1/2 x 2-1/2 in, the legs tucked in behind it | 44.6 L | 103.4 | 155.8 | 136.5 |
-| **Now: + the uprights' backs raked, each foot 40 mm deeper** | **45.4 L** | **105.2** | **157.2** | **138.2** |
+| + the uprights' backs raked, each foot 40 mm deeper | 45.4 L | 105.2 | 157.2 | 138.2 |
+| **Now: stock flat-bar plates (a 6 in X carriage, so the uprights are 18 mm closer and the beam shorter), the HM12-57 on Y** | **44.1 L** | **107.4** | **168.2** | **146.4** |
 
 - **Steel skeletons.** Making the steel the frame (epoxy granite cast round it) makes the frame stiffer
   than the last all-epoxy-granite design. The first version was 64 custom laser-cut plates slotted
@@ -323,14 +329,15 @@ and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks
 (plain sand, 3/4 in beam bars, the legs tucked in behind the base's bevel, the uprights' backs raked), with the optional #16 grit
 on top (`FEA_GRIT=1.22`), and with the legs in the corners and a square edge, as before. Tucking the
 legs in shortens the span the base bends over between its feet: +17 % in the first mode and +31 % in
-the base's own bending, more than any change to the castings has bought:
+the base's own bending, more than any change to the castings has bought (the grit and corner-leg columns
+were run on the 600 mm wide frame, before the 6 in carriage brought the uprights in):
 
 | Mode | Drawn | + #16 grit | Legs in the corners | Motion |
 |---|---|---|---|---|
-| 1 | **150 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
-| 2 | **295 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
-| 3 | **389 Hz** | 391 Hz | 298 Hz | base bends, front to back |
-| 4 | **398 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
+| 1 | **149 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
+| 2 | **300 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
+| 3 | **391 Hz** | 391 Hz | 298 Hz | base bends, front to back |
+| 4 | **400 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 All four are inside the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -420,20 +427,24 @@ to is in the castings already, so nothing is recast:
 
 | Add-on | Fixing | Where in the model |
 |---|---|---|
-| Way-cover rollers | Front: an M5 insert behind the coolant trough for each end bracket's foot. Rear: an insert outboard of each roller, and an M5 hole tapped in the BK12 pad beside the support for each inner foot | `roller_layout`, `CoverRoller*` |
-| Spiral screw cover | None: it clamps between the nut housing and the BK12 | `CoverScrewRear` |
+| Way-cover rollers | Front: an M5 insert behind the coolant trough for each end bracket's foot. Rear: an insert outboard of each roller, and an M5 hole tapped in the Y bracket's pad beside it for each inner foot | `roller_layout`, `CoverRoller*` |
+| Spiral screw cover | None: it clamps between the nut housing and the Y bracket's bearing end | `CoverScrewRear` |
 | Drip shield | The four front beam studs: its back edge goes under their washers (the studs are 190 mm, long enough for the 3 mm ACM) | `DripShield` |
 | Cable-chain mount | Two M5 inserts in the beam top | `ChainMountFixed` |
 | Enclosure | 11 M5 inserts in the base top | `rail_bolts` |
 | Flood coolant | The trough, gutters and cast-in drain; room for the sump between the legs | `base_top_formers`, `DrainOutlet` |
 | Homing switches | None: Y on the Y motor bracket, X and Z on the X carriage | |
+| Y cable chain (a 4th or 5th axis on the table) | Two M5 inserts in the base top, in the 49 mm gap between the table and the right upright, and two M5 holes tapped in the table's right edge | `ychain_inserts` |
+| A 4th axis, a trunnion or a vise plate | The table is the interface: the M6 grid at 25 mm and two 8 mm dowel holes, 200 apart on its X center line, so a module lands square | `Table` |
 
 **Cable chain.** One printed chain on top of the beam carries the coolant line, Z motor,
 spindle power and spindle water hoses to the carriage (17 links, 38 x 21 outer, 20 mm
 pitch, R38). Print it in PETG, not PLA. The model shows a simplified link; for the
 real parts, start from a proven printable parametric chain sized to about 30 x 15 inside
 and print three links to check the fit before printing the rest. The table and Z axes
-don't need chains: the table carries no cables and Z uses a short service loop.
+don't need chains: the table carries no cables and Z uses a short service loop. A 4th or 5th axis on the
+table brings cables: a second chain of the same links, standing on edge in the gap between the table and
+the right upright, its fixed end on the two inserts cast in for it.
 
 **Parts that change shape with the axes.** The way-cover strips, the screw cover, the
 cable chain and the nozzle hose are drawn for the home position. The collision check
@@ -443,7 +454,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/22, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews) about **$1,490**, plus about **$183 of add-later
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,507**, plus about **$183 of add-later
 niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
 they're bought; **2, the electronics and spindle** about **$418** plus the spindle the builder picks
 ($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
@@ -475,13 +486,16 @@ which gives up travel, rigidity to speak of, chip protection or the coolant syst
 | Couplers from AliExpress (about $2 each against $13-14 a pack; not needed until the axes go on) | -$19 |
 | B7 rod by the piece from Bolt Depot ($7.63 a rod against a $49 five-pack) | -$26 |
 | The #16 grit's job done by steel: 3/4 in beam bars, 3/16 in column walls (+27 lb), plain sand everywhere, 100.9 / 155.4 / 135.6 N/um against 96.5 / 150.2 / 128.8 | -$110 +$60 +$7 |
-| **Now** | **$1,490** |
+| Every rod a B7 stud bought at a stock length instead of zinc rod sawn by hand: nothing to cut, and stronger | +$20 |
+| The 3/8-16 beam studs and ties bought at length too, instead of three B7 rods | -$3 |
+| **Now** | **$1,507** |
 
 What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
 (about $275 at $2/lb, against the $360 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
 clone dimensions vary), and car paste wax under the PVA instead of Partall ($15 less; test it on a
-melamine offcut). The aluminum plates are the risk the other way: without drops, cut plate is about
-$120-190 against the $85 estimate.
+melamine offcut). The aluminum plates are the risk the other way: they are stock flat-bar widths now, so any
+drop of 10 in or 6 in bar only needs a length cut, but bought new and cut to length they are about $235
+against the $85 estimate.
 
 The estimate below was made before the listings were checked and is too low; it assumed
 AliExpress-level prices. It's kept here to show what each earlier cost-down change saves.
@@ -532,7 +546,8 @@ Bigger savings mean giving something up. Options, roughly in order of impact:
 | DSG16H nut housing | makerstore.cc drawing TR-BS-DSG16-00 | |
 | DSG12H nut housing (24 mm bore) | zyltech / vxb listings | Center height and holes estimated. |
 | NEMA 23 motors | StepperOnline drawings 23HS45-4204D-E1000, 23HS30-5004D-E1000, 23HS30-3004S | |
-| Motor bracket | No published drawing | Sized from kit listings: motor face ~47 mm from the BK. |
+| Motor bracket (X, Z kit style) | No published drawing | Sized from kit listings: motor face ~47 mm from the BK. |
+| HM12-57 bracket (Y) | Dimensioned drawing in the ANWOK listing's images (Amazon B09S39Q1RT) | 89 x 60 x 44, shaft 25 up, BK12 hole pattern plus two counterbored holes 40 from the motor end, 6001 bearings, coupler L30-42. The flange height and the inside are estimated. |
 | D25 L30 coupler | Seller listings (5 N·m, 8x10 / 6.35x10 bores) | Hub depth estimated. |
 | GDZ80-2.2 spindle | StepperOnline drawings GDZ80-2.2A/B | Some features scaled from the drawing (±1 mm). Body length varies by seller (213/230/240): measure yours. |
 | 80 mm cast clamp | cnconline.co.za 80 mm spindle bracket drawing | 148 W x 80 D, 14 foot, bore center 50 off the foot. |

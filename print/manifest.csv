@@ -9,38 +9,37 @@ base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,8,
 base-rear,former-gutter-R-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
 base-rear,former-gutter-R-part2of3.stl,former,1,15 x 124 x 10,8,
 base-rear,former-gutter-R-part3of3.stl,former,1,15 x 120 x 9,8,
-base-rear,former-motor-relief.stl,former,1,72 x 60 x 14,14,Bolts to the floor from underneath (the base is cast top face down).
 base-rear,filler-corner-L.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
 base-rear,filler-bevel-L-part1of2.stl,filler,1,64 x 171 x 38,55,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
 base-rear,filler-bevel-L-part2of2.stl,filler,1,64 x 167 x 38,55,
 base-rear,filler-corner-R.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
 base-rear,filler-bevel-R-part1of2.stl,filler,1,64 x 171 x 38,55,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
 base-rear,filler-bevel-R-part2of2.stl,filler,1,64 x 167 x 38,55,
-base-rear,filler-bevel-end-part1of3.stl,filler,1,174 x 64 x 38,56,"The bevel along the lower edge: at the pour line, bolted to the rear wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
-base-rear,filler-bevel-end-part2of3.stl,filler,1,174 x 64 x 38,56,
-base-rear,filler-bevel-end-part3of3.stl,filler,1,170 x 64 x 38,56,
+base-rear,filler-bevel-end-part1of3.stl,filler,1,168 x 64 x 38,54,"The bevel along the lower edge: at the pour line, bolted to the rear wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-rear,filler-bevel-end-part2of3.stl,filler,1,168 x 64 x 38,54,
+base-rear,filler-bevel-end-part3of3.stl,filler,1,164 x 64 x 38,54,
 base-front,former-gutter-L-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
 base-front,former-gutter-L-part2of2.stl,former,1,15 x 145 x 13,12,
 base-front,former-gutter-R-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
 base-front,former-gutter-R-part2of2.stl,former,1,15 x 145 x 13,12,
-base-front,former-trough-part1of5.stl,former,1,116 x 35 x 19,21,Bolts to the floor from underneath (the base is cast top face down).
-base-front,former-trough-part2of5.stl,former,1,116 x 35 x 23,24,
-base-front,former-trough-part3of5.stl,former,1,116 x 38 x 33,27,
-base-front,former-trough-part4of5.stl,former,1,116 x 35 x 24,25,
-base-front,former-trough-part5of5.stl,former,1,112 x 35 x 21,23,
+base-front,former-trough-part1of5.stl,former,1,112 x 35 x 19,20,Bolts to the floor from underneath (the base is cast top face down).
+base-front,former-trough-part2of5.stl,former,1,112 x 35 x 23,23,
+base-front,former-trough-part3of5.stl,former,1,112 x 38 x 33,26,
+base-front,former-trough-part4of5.stl,former,1,112 x 35 x 24,24,
+base-front,former-trough-part5of5.stl,former,1,108 x 35 x 21,22,
 base-front,filler-corner-L.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
 base-front,filler-bevel-L-part1of2.stl,filler,1,64 x 154 x 38,50,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
 base-front,filler-bevel-L-part2of2.stl,filler,1,64 x 150 x 38,50,
 base-front,filler-corner-R.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
 base-front,filler-bevel-R-part1of2.stl,filler,1,64 x 154 x 38,50,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
 base-front,filler-bevel-R-part2of2.stl,filler,1,64 x 150 x 38,50,
-base-front,filler-bevel-end-part1of3.stl,filler,1,174 x 64 x 38,56,"The bevel along the lower edge: at the pour line, bolted to the front wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
-base-front,filler-bevel-end-part2of3.stl,filler,1,174 x 64 x 38,56,
-base-front,filler-bevel-end-part3of3.stl,filler,1,170 x 64 x 38,56,
-base-rear,former-split-gasket-groove-part1of4.stl,former,1,145 x 14 x 8,2,Pins into the partition.
-base-rear,former-split-gasket-groove-part2of4.stl,former,1,145 x 4 x 8,2,
-base-rear,former-split-gasket-groove-part3of4.stl,former,1,145 x 4 x 8,2,
-base-rear,former-split-gasket-groove-part4of4.stl,former,1,145 x 14 x 8,2,
+base-front,filler-bevel-end-part1of3.stl,filler,1,168 x 64 x 38,54,"The bevel along the lower edge: at the pour line, bolted to the front wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-front,filler-bevel-end-part2of3.stl,filler,1,168 x 64 x 38,54,
+base-front,filler-bevel-end-part3of3.stl,filler,1,164 x 64 x 38,54,
+base-rear,former-split-gasket-groove-part1of4.stl,former,1,141 x 14 x 8,2,Pins into the partition.
+base-rear,former-split-gasket-groove-part2of4.stl,former,1,141 x 4 x 8,2,
+base-rear,former-split-gasket-groove-part3of4.stl,former,1,141 x 4 x 8,2,
+base-rear,former-split-gasket-groove-part4of4.stl,former,1,141 x 14 x 8,2,
 base-front,core-center-a-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-center-b-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-center-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
@@ -65,9 +64,9 @@ upright,former-foot-gasket-groove-part4of4.stl,former,1,68 x 143 x 8,4,
 upright,plug-toe-plug.stl,plug,1,32 x 76 x 46,13,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,kit-plate-spacer.stl,kit,2,16 x 16 x 31,9,"Between the bridge and the top plate, on its greased 3/8 bolt."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
-beam,filler-back-edge-part1of3.stl,filler,1,124 x 40 x 40,22,Rounded back edge between the uprights; bolts to the top wall.
-beam,filler-back-edge-part2of3.stl,filler,1,124 x 40 x 40,22,
-beam,filler-back-edge-part3of3.stl,filler,1,120 x 40 x 40,22,
+beam,filler-back-edge-part1of3.stl,filler,1,118 x 40 x 40,21,Rounded back edge between the uprights; bolts to the top wall.
+beam,filler-back-edge-part2of3.stl,filler,1,118 x 40 x 40,21,
+beam,filler-back-edge-part3of3.stl,filler,1,114 x 40 x 40,21,
 beam,kit-dowel-stop.stl,kit,2,18 x 18 x 6,2,Pushes into the dowel hole from outside so the dowel stands 15 mm proud.
 tools,kit-pour-gauge.stl,kit,2,25 x 29 x 24,11,"Clips over a wall top; its inner leg ends 25 mm down, on the pour line. Pencil along it all round the mold, and check the fill against it."
 tools,kit-screed-shoe.stl,kit,2,49 x 27 x 32,26,A pair: rest them on two facing wall tops and drop a straight board (on edge) into them; its bottom edge sits on the pour line. Slide it along to strike off.

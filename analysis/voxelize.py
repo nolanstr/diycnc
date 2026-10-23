@@ -95,7 +95,7 @@ def main():
     boxes, steel = {}, {}
     for p in m.parts:
         n = p['name']
-        if any(n.startswith(t) for t in ('Y_BK12', 'Y_BF12', 'X_BK10', 'X_BF10', 'Y_Block', 'X_Block', 'Y_Screw', 'X_Screw')):
+        if any(n.startswith(t) for t in ('Y_BK12', 'Y_BF12', 'X_BK10', 'X_BF10', 'Y_MotorBracket', 'Y_Block', 'X_Block', 'Y_Screw', 'X_Screw')):
             bb = p['shape'].BoundBox
             boxes[n] = [bb.XMin, bb.YMin, bb.ZMin, bb.XMax, bb.YMax, bb.ZMax]
         if n not in m.structure and n not in risers and not n.endswith('Casting'):
