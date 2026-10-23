@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13.9 -13.9 488.5 298.9" width="489mm" height="299mm" font-family="Helvetica, Arial, sans-serif">
-<polygon points="0.0,271.1 460.7,271.1 460.7,0.0 227.8,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
-<circle cx="246.0" cy="29.7" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.87"/>
-<text x="249.4" y="28.5" font-size="6.9" fill="#1d2422">1</text>
-<circle cx="355.9" cy="12.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.87"/>
-<text x="359.3" y="10.8" font-size="6.9" fill="#1d2422">2</text>
-<circle cx="438.2" cy="11.5" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.87"/>
-<text x="441.6" y="10.3" font-size="6.9" fill="#1d2422">3</text>
-<line x1="206.8" y1="25.0" x2="460.7" y2="25.0" stroke="#2b72c9" stroke-width="1.16" stroke-dasharray="6.9,3.5"/>
-<text x="213.8" y="33.3" font-size="6.2" fill="#2b72c9">pour line (25 mm below the top)</text>
-<text x="0" y="280.8" font-size="6.9" fill="#5b6662">0,0 · 461 x 271 mm · seen from the cast side</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.1 -15.1 531.1 301.2" width="531mm" height="301mm" font-family="Helvetica, Arial, sans-serif">
+<polygon points="0.0,271.1 501.0,271.1 456.9,0.0 227.8,0.0" fill="#f4f4f1" stroke="#222" stroke-width="0.8"/>
+<circle cx="246.0" cy="29.7" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.94"/>
+<text x="249.5" y="28.4" font-size="7.5" fill="#1d2422">1</text>
+<circle cx="436.6" cy="15.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.94"/>
+<text x="440.1" y="13.7" font-size="7.5" fill="#1d2422">2</text>
+<circle cx="355.9" cy="12.0" r="2.2" fill="none" stroke="#a8641a" stroke-width="0.94"/>
+<text x="359.4" y="10.7" font-size="7.5" fill="#1d2422">3</text>
+<line x1="206.8" y1="25.0" x2="461.0" y2="25.0" stroke="#2b72c9" stroke-width="1.25" stroke-dasharray="7.5,3.8"/>
+<text x="214.3" y="34.0" font-size="6.8" fill="#2b72c9">pour line (25 mm below the top)</text>
+<text x="0" y="281.6" font-size="7.5" fill="#5b6662">0,0 · 501 x 271 mm · seen from the cast side</text>
 </svg>

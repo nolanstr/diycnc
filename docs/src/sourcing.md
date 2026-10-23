@@ -25,20 +25,20 @@ to be decided before the pour.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,316.92 |
-| 1 | Rails, screws and mechanics | $266.02 |
+| 1 | Castings and hardware | $1,222.72 |
+| 1 | Rails, screws and mechanics | $247.14 |
 | 1 | First chips | $20.00 |
 | 1 | Add later (niceties), not in the frame total | $183.09 |
 | 2 | Motors and drivers | $232.12 |
-| 2 | Controller and wiring | $198.59 |
-| 3 | Enclosure and flood coolant | $436.05 |
+| 2 | Controller and wiring | $186.19 |
+| 3 | Enclosure and flood coolant | $537.99 |
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,602.94** + $183.09 of niceties, added later |
-| **2. Electronics + spindle** | **$430.71** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
-| **3. Enclosure + flood coolant** | **$436.05** + 2 unpriced (ACM sheet, Flood coolant pump): about $650-700 |
-| **Total** | **about $2.93-3.33k**, plus the niceties |
+| **1. Frame** | **$1,489.86** + $183.09 of niceties, added later |
+| **2. Electronics + spindle** | **$418.31** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
+| **3. Enclosure + flood coolant** | **$537.99** + 1 unpriced (Flood coolant pump): about $650-700 |
+| **Total** | **about $2.81-3.21k**, plus the niceties |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -59,23 +59,23 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
 | Epoxy | ~10.3 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)](https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
-| Fines | Whiting (calcium carbonate) 325 mesh, ~11 kg | 1 (50 lb) | [Clay-King calcium carbonate whiting, 50 lb (not Amazon)](https://www.clay-king.com/product/calcium-carbonate-whiting/) | $0.84/lb | $42.00 | No crystalline silica (check the SDS), so a basic N95 is enough. A local pottery supplier saves the heavy shipping. Avoid garden lime and talc. |
-| Aggregate | ~86 kg: fine sand 16, coarse sand 19, pea gravel 23, 3/8 in gravel 23 kg, plus test bars | ~6 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$9/bag | $55.00 | Buy locally. Wash and dry fully. The fine sand includes the beam and uprights' (the alumina replaces only their coarse sand). |
-| Alumina grit, coarse | Brown fused aluminum oxide #16 (12-20 is fine), ~19 kg (17.3 net): the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Free shipping. About +5 % frame stiffness (96.5 / 150 / 129 N/um against 89 / 138 / 117 with sand; analysis/alumina.py). It is cast in: decide before the pour. Alt: Kleen Blast AO5016 $90 + shipping (blast media is excluded from its free shipping). |
-| (opt) Alumina grit, fine | Black aluminum oxide 70 grit, ~10 kg (8.9 net): the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Upgrade, decided before the pour: with the #16, the frame comes to 101 / 158 / 136 N/um (about +5 % more). Without it, the fine sand stays sand (in the aggregate row). |
+| Fines | Whiting (calcium carbonate) 325 mesh, ~11 kg | 1 (50 lb) | [Clayworks Supplies calcium carbonate whiting, 50 lb, pickup (4625 Falls Rd, Baltimore; not Amazon)](https://clayworkssupplies.com/product/calcium-carbonate-whiting/) | $17.00 | $17.00 | Call first (410-235-5998) to check it is 325 mesh. Shipped alt: Clay-King, $0.84/lb plus heavy shipping. No crystalline silica (check the SDS), so a basic N95 is enough. Avoid garden lime and talc. |
+| Aggregate | ~94 kg: fine sand 17, coarse sand 31, pea gravel 23, 3/8 in gravel 23 kg, plus test bars | ~7 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$9/bag | $62.00 | Buy locally. Wash and dry fully. The same plain mix in every casting: the beam and uprights get their stiffness from heavier steel instead of alumina grit. |
+| (opt) Alumina grit, coarse | Brown fused aluminum oxide #16 (12-20 is fine), ~19 kg (18.1 net): the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Upgrade, decided before the pour (it is cast in): 108.0 / 166.9 / 147.3 N/um against 100.9 / 155.4 / 135.6 with sand. The 3/4 in beam bars and 3/16 in column walls in the steel row do more for about half the money. Free shipping. Alt: NT Ruddock or Precision Finishing, about $80 + freight; Kleen Blast AO5016 $90 + shipping. |
+| (opt) Alumina grit, fine | Black aluminum oxide 70 grit, ~10 kg (9.3 net): the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Upgrade on top of the #16, decided before the pour: about +5 % more. Without it, the fine sand stays sand (in the aggregate row). |
 | Mold board | 3/4 in white melamine (a true 0.750 in), about 2.2 m2 of boards: cut list and layout in the mold guide | 1 (4 x 8 ft) | [Veranda melamine white particleboard panel, 3/4 in x 4 ft x 8 ft (Home Depot, model 461877)](https://www.homedepot.com/p/Veranda-3-4-in-x-4-ft-x-8-ft-Melamine-White-Particleboard-Panel-461877/100070209) | $43.98 | $43.98 | One sheet: one upright mold casts both uprights, and the bridges and struts come out of the offcuts (three-stage cut in the mold guide). Have the store rip the long strips. Measure the thickness: the printed saddles and brackets are drawn for 19.05 mm (mold_board in the model). |
 | Mold cleats | 1x2 lumber, 5.0 m: the strips along the walls' feet | 3 (8 ft) | 1x2 furring strip (Home Depot / Lowe's) | ~$2.50 | $7.50 | They lie on the floor outside the walls and never touch the mix. |
 | Mold hardware | M4 x 30 (87), M4 x 35 (30), M4 x 45 (33), M4 x 20 (4, leg pinch screws), M4 nuts (154) and washers (150); M3 x 25 with nuts and washers (20) | packs of 100 / 50 | [Zinc-plated metric (Zoro, Bolt Depot or a hardware store; Zoro M4 x 30 is $9.89 per 100)](https://www.zoro.com/i/G0869522/) | ~$40 | $40.00 | Exact counts in the mold guide; add about 10 % spare. Reused for every casting. |
-| Mold rods and bolts | Plain steel rod: 1/2 in 2x 3 ft; 1/2-13 x 1-1/2 in bolts (2), 3/8-16 x 3 in (2); M5 x 20 (17, insert screws), M5 x 30 (12), M5 x 40 (8), M6 x 30 (6), M6 x 40 (6) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot); the metric screws in packs online | ~$40 | $40.00 | Greased, they form the beam's stud holes and the dowel holes and hold the steel and the inserts to the mold boards. Reused. |
+| Mold rods and bolts | Plain steel rod: 1/2 in 2x 3 ft; 1/2-13 x 1-1/2 in bolts (2), 3/8-16 x 3 in (2); M5 x 20 (17, insert screws), M5 x 30 (12), M5 x 50 (8), M6 x 30 (6), M6 x 50 (6) | 1 set | Everbilt plain steel rod and hex bolts (Home Depot); the metric screws in packs online | ~$40 | $40.00 | Greased, they form the beam's stud holes and the dowel holes and hold the steel and the inserts to the mold boards. Reused. |
 | Mold release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats, then the PVA. |
 | Mold release film | PVA, over the wax | 1 (pint) | [Partall #10 PVA film (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $8.36 | $8.36 |  |
 | Edge rounds and fillets | 3/8 in PVC quarter-round, about 6 m; a tube of silicone | 1 set | PVC quarter-round molding + clear silicone (hardware store) | ~$20 | $20.00 | Quarter-round in the corners that make outside edges; silicone fillets elsewhere (the mold guide). |
-| Steel, stock flat bar and tube | Flat bar 3/8 in x 1-1/2 (4.2 ft), x 2 (3.1 ft), x 2-1/2 (8.4 ft), x 5 (3.3 ft); 1/2 x 2-1/2 in (2.6 ft). Tube 1/8 wall: 2x3 (4.0 ft), 2x2 (1.8 ft + 4x 8-1/8 in), 1-1/2x1-1/2 (3.4 ft + 4x 6 in) | ~110 lb | A local steel yard or Metal Supermarkets, cut to the list in docs/1-sourcing/steel/ (Online Metals, Speedy Metals and Zoro sell the same sizes by the piece) | ~$300 | $300.00 | About $1.50-3/lb at a yard or service center with cutting: get a quote with the cut list (Baltimore: Alro Metals Outlet, Essex; Metal Supermarkets, Golden Ring Rd). At about $2/lb it is near $220. Speedy Metals stock pieces are about $258 + $100-150 shipping, and you cut them. Retail cut pieces cost far more (Zoro: about $27/ft for 3/8 x 2-1/2 in bar). Drill and tap from docs/1-sourcing/steel/steel-templates.pdf. |
+| Steel, stock flat bar and tube | Flat bar 3/8 in x 1-1/2 (4.2 ft), x 2 (3.1 ft), x 2-1/2 (8.4 ft); 1/2 x 2-1/2 in (2.6 ft); 3/4 x 5 in (3.3 ft). Tube: 2x3x1/8 (4.0 ft), 2x2x3/16 (1.8 ft + 4x 8-1/8 in), 1-1/2x1-1/2x1/8 (3.4 ft + 4x 6 in) | ~138 lb | A local steel yard or Metal Supermarkets, cut to the list in docs/1-sourcing/steel/ (Online Metals, Speedy Metals and Zoro sell the same sizes by the piece) | ~$360 | $360.00 | About $2/lb for flat bar and $3/lb for tube, plus cutting, at a yard or service center: get a quote with the cut list (Baltimore: Alro Metals Outlet, Essex; Metal Supermarkets, Golden Ring Rd; DS Pipe & Steel, Wicomico St). The 3/4 x 5 in beam bars and 3/16 in column walls (about 27 lb, $60) replace the alumina grit ($110). Speedy Metals: 3/8 x 2-1/2 in flat $19.13 per 36 in (about $2/lb), plus shipping, and you cut them. Retail cut pieces cost far more (Zoro: about $27/ft for 3/8 x 2-1/2 in bar). Drill and tap from docs/1-sourcing/steel/steel-templates.pdf. |
 | Rail risers | Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm | ~4 + 5 ft | Steel yard (local) | ~$40 | $40.00 | About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece). |
 | Aluminum plates | 6061 drops: table 3/4 x 10.5 x 13 in, X 5/8 x 7 x 16.5, Z 5/8 x 6.25 x 12.25 | ~22 lb | eBay "6061 aluminum plate remnant" / local drops | ~$85 | $85.00 | About $2.3-4.5/lb delivered if you find drops; budget up to $120-190 if not (Speedy Metals 6061 cut to size is about $194 + shipping, Midwest MIC-6 $242). Ask the steel yard for drops. Check flatness; face the table on the machine. |
 | Threaded rod | 1/2-13, cut to 4x 363, 2x 153, 2x 687, 4x 270, 6x 225 mm | 4x 6 ft | [Everbilt 1/2-13 zinc threaded rod (Home Depot)](https://www.homedepot.com/p/332733421) | $14.93 | $59.72 | 6 ft: 687, 687, 363; 6 ft: 363, 363, 363, 270, 153; 6 ft: 270, 270, 270, 225, 225, 225; 6 ft: 225, 225, 225, 153 (hacksaw). |
-| Beam studs | 3/8-16 grade B7 threaded rod: 8x 190 mm studs, 3x 107 mm ties; 3/8-16 nuts and washers (11) | 3x 3 ft | [Redboar grade B7 threaded rod, 36 in, 5-pack (or Zoro, $16.25 each)](https://redboarchain.com/collections/threaded-fasteners/Threaded-Rod) | $49.10 | $49.10 | Grade B7 is about as strong as a grade 8 bolt; plain zinc rod is not. 36 in: 190, 190, 190, 190; 190, 190, 190, 190; 107, 107, 107 (with saw kerfs, two rods are not enough). |
-| Pipe nipples | 1/2 in x 3 in black steel pipe nipple (beam spacers) | 3 | Everbilt black pipe nipple (Home Depot) | ~$3 | $9.00 |  |
+| Beam studs | 3/8-16 grade B7 threaded rod: 8x 190 mm studs, 3x 113 mm ties; 3/8-16 nuts and washers (11) | 3x 3 ft | [Bolt Depot grade B7 threaded rod, plain, 3/8-16 x 3 ft (#23749; not Amazon)](https://www.boltdepot.com/) | $7.63 | $22.89 | Plus shipping; the nuts and washers can go in the same order. Alt: Redboar 5-pack $49.10 shipped free, or Zoro $16.25 each. Grade B7 is about as strong as a grade 8 bolt; plain zinc rod is not. 36 in: 190, 190, 190, 190; 190, 190, 190, 190; 113, 113, 113 (with saw kerfs, two rods are not enough). |
+| Pipe nipples | 1/2 in x 2-1/2 in black steel pipe nipple (beam spacers) | 3 | Everbilt black pipe nipple (Home Depot) | ~$3 | $9.00 |  |
 | Bolts for the base grid | 1/4-20 hex bolts with nuts and washers: 24x 4 in (rail bars onto the girders), 4x 2-1/4 in (pads) | 1 set | Hardware store | ~$15 | $15.00 |  |
 | Nuts and washers | 1/2-13 nuts x32, 1/2 in SAE washers x32, 3/8 grade 8 washers x8 | 5 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$28 | $28.00 | Nuts 15-pack $4.89; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
 | Dowel pins | 3/8 x 1-1/4 in (6) and 3/8 x 1 in (4, base split) | 2 (10-packs) | [Steel dowel pins (Zoro)](https://www.zoro.com/i/G410073219/) | ~$12 | $11.58 | They only locate the castings |
@@ -87,12 +87,12 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Support screws | M6 x 40 (12: the Y and X BK/BF into their tapped steel) | 1 (100) | [Zoro M6x40 100-pack](https://www.zoro.com/i/G2650606/) | $10.15 | $10.15 | The casting is relieved behind each tapped hole, so they never bottom |
 | Rail screws | M4 x 16 | 1 (100) | [iexcell M4x16 12.9](https://www.amazon.com/dp/B08B1T9VM3) | $8.26 | $8.26 |  |
 | Block screws | M4 x 20 | 1 (50) | [iexcell M4x20 12.9](https://www.amazon.com/dp/B08B1T7K14) | $7.86 | $7.86 | Check length against the plate thickness |
-| PETG filament | 1.1 kg (sliced): mold kit, core posts, formers and fillers, cast-in parts and machine parts | 2 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $31.98 | The pocket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more. |
+| PETG filament | 1.8 kg (sliced; 1.1 kg with the base's bevel strips from a 2x3): mold kit, core posts, formers and fillers, cast-in parts and machine parts | 2 (1 kg) | [SUNLU PETG 1 kg](https://www.amazon.com/dp/B0FS1FJLCW) | $15.99 | $31.98 | The pocket cores are foam (next row). Printing them instead (foam=False in the model) needs about 1.4 kg more. |
 | XPS foam board | 2 in x 2 ft x 8 ft: the base pocket cores | 1 | [Owens Corning FOAMULAR 250, 2 in x 2 ft x 8 ft (Home Depot, model 24DD)](https://www.homedepot.com/p/Owens-Corning-FOAMULAR-250-2-in-x-2-ft-x-8-ft-R-10-Tongue-and-Groove-Rigid-Foam-Board-Insulation-Sheathing-24DD/100320335) | ~$25 | $25.00 | Plus packing tape and double-sided carpet tape (~$10). Sizes in the mold guide. |
 | Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 | Drain nipple | 1/2 NPT brass | 1 (2-pack) | [Legines brass barb 1/2 NPT x 5/8](https://www.amazon.com/dp/B077DMKGLB) | $10.99 | $10.99 | Cast into the base, pointing down into the sump. +$7.59 shipping; a hardware-store 1/2 NPT brass nipple works too. |
 
-**Priced subtotal: $1,316.92**
+**Priced subtotal: $1,222.72**
 
 ## Part 1 - Frame: rails, screws and mechanics
 
@@ -104,12 +104,11 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Z ballscrew kit | SFU1204-300, BK10/BF10, DSG12H | 1 | [CNCYEAH SFU1204 300 mm kit](https://www.amazon.com/dp/B09MJ3T5JZ) | $32.69 | $32.69 | Ships with a 6.35x8 coupler: use the 8x8 below |
 | Z motor bracket | NEMA 23 + BK10 (HM10-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1204](https://www.amazon.com/dp/B09S3HMB7S) | $32.02 | $32.02 | Same bracket as your X one |
 | Y motor bracket | NEMA 23 + BK12 (HM12-57) | 1 | [ANWOK NEMA 23 steel bracket, SFU1605](https://www.amazon.com/dp/B09S39Q1RT) | $31.36 | $31.36 | Alt: CNCMANS HM12-57 B09QS2S3BT $28.98. AliExpress HM10-57 / HM12-57 brackets are about $10-15 each (2-4 weeks): about $35 less for the pair. |
-| Couplers, Y | 8x10 mm, D25 L30 | 1 (3-pack) | [CNCTOPBAOS 8x10 plum coupling, 3 pcs](https://www.amazon.com/dp/B082TT7B84) | $13.99 | $13.99 | Spares; check that D25 fits inside the bracket |
-| Couplers, Z | 8x8 mm, D25 L30 | 1 (2-pack) | [Yeebyee 8x8 plum coupling, 2 pcs](https://www.amazon.com/dp/B0GTV7VMZB) | $12.89 | $12.89 | The spare covers X if your kit came with 6.35x8. Alt (both rows): AliExpress plum couplers, about $3-5 each, 2-4 weeks. |
+| Couplers | 8x10 mm (Y) and 8x8 mm (Z), D25 L30, two of each | 4 | [AliExpress "BW three jaws D25L30" plum coupling (not Amazon, 2-4 weeks)](https://www.aliexpress.us/item/2251832821692735.html) | ~$1-3 | $8.00 | The spares cover X if your kit came with 6.35x8. They aren't needed until the axes go on, so order with the first parts. Check that D25 fits inside the bracket. Amazon alt: CNCTOPBAOS 8x10 3-pack B082TT7B84 $13.99 and Yeebyee 8x8 2-pack B0GTV7VMZB $12.89. |
 | Grease and syringe | Lithium NLGI 2 + a grease syringe with a needle tip, for the blocks' M4 nipples | 1 each | Lithium grease tube + needle-tip grease syringe (hardware store or Amazon) | ~$12 | $12.00 | Enough for the blocks until the grease gun (add later). |
 | (opt) M4 grease nipples | M4x0.7 straight | 1 pack | [HARFINGTON 15 pcs M4x0.7](https://www.amazon.com/dp/B0CLP8NGRJ) | $13.94 | $13.94 | Only if the block nipples are missing or the coupler won't seat |
 
-**Priced subtotal: $266.02**
+**Priced subtotal: $247.14**
 
 ## Part 1 - Frame: first chips
 
@@ -153,7 +152,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 |---|---|---|---|---|---|---|
 | Controller | FluidNC, 6 axes, external drivers, RS485, 0-10 V | 1 | [Elecrow Corgi ESP32 FluidNC controller (not Amazon)](https://www.elecrow.com/corgi-esp32-6-axis-cnc-controller-for-fluidnc.html) | $49.00 | $49.00 | Runs gSender or the web UI. Drives an RS485 VFD directly, so no 0-10 V module is needed for one. |
 | Limit switches | Roller lever, 4 needed | 1 (5-pack) | [Yusheng ME-8108 limit switch set of 5](https://www.cncproshop.com/products/yusheng-me-8108-limit-switch-set-of-5) | $16.99 | $16.99 | Inductive LJ12A3-4-Z/BX (about $4.50 each) also work; power them from 12 V. |
-| E-stop | 22 mm mushroom, latching, NC, in a box | 1 | [Generic 22 mm E-stop station (eBay)](https://www.ebay.com/itm/144182671837) | $22.39 | $22.39 | Wire it to cut drive enable and VFD run in hardware. Check it has an NC contact. |
+| E-stop | 22 mm mushroom, latching, 1 NO + 1 NC, in a box | 1 | [BAOMAIN 22 mm E-stop station, keyed, IP65](https://www.amazon.com/dp/B0068AGC2Q) | $9.99 | $9.99 | Wire it to cut drive enable and VFD run in hardware. Was a $22.39 eBay station; the same switch. |
 | Mains inlet | IEC C14 with switch + fuse | 1 | [IEC C14 inlet module (Walmart)](https://www.walmart.com/ip/115677799) | $7.99 | $7.99 | Often ships without the fuse: buy 5x20 mm fuses. |
 | Logic power supply | 24 V, 6.5 A | 1 | [Mean Well LRS-150-24 (TRC Electronics)](https://www.trcelectronics.com/products/mean-well-lrs-150-24) | $20.39 | $20.39 | Jameco about $18.80 |
 | Electrical box | ABS IP65, 11.8 x 9.8 x 4.7 in | 1 | [LeMotech ABS IP65 junction box 11.8x9.8x4.7](https://thrumsvet.co.uk/products/lemotech-abs-plastic-dustproof-waterproof-ip65-junction-box/223105279/) | $25.99 | $25.99 | Holds the controller, three drivers and both supplies on a plywood or aluminum backplate; the VFD mounts outside. Steel alt: VEVOR 12x10x6 $48.90. |
@@ -162,7 +161,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Cable glands | PG7-PG16 | 1 (25 pcs) | [Nylon cable gland kit (eBay)](https://www.ebay.com/itm/406955179899) | $13.80 | $13.80 |  |
 | (opt) Tool setter | NC, magnetic base | 1 | [Z touch tool setter](https://www.amazon.com/dp/B0D42C32MR) | ~$31.61 | $31.61 | Nice to have; add later |
 
-**Priced subtotal: $198.59**
+**Priced subtotal: $186.19**
 
 ## Part 2 - Electronics: spindle (pick one)
 
@@ -181,7 +180,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Item | Spec | Qty | Listing | Price | Line | Notes |
 |---|---|---|---|---|---|---|
 | 2020 extrusion | 4x766, 2x756, 4x684, 2x600, 3x560 mm | 2 (10x 1000 mm) | [KathyLiely 2020 T-slot 1000 mm, 10 pcs](https://www.amazon.com/dp/B0DQ7WTJHL) | $49.99 | $99.98 | One piece per stick; 5 sticks spare. Take the 2x 244 from your 400s. |
-| ACM sheet | 3 mm, all four wall/roof panels | 1 (4x8 ft) | [Sign supply / Piedmont Plastics (not Amazon)](https://piedmontplastics.com/p/acm-sheet-3mm-x-30-x-48-black) | ? | ? | The 726x684 sides don't fit any in-stock Amazon sheet. One 4x8 covers all four panels and the drip shield. Amazon 24x36 2-pack (B0F18ZQ7DJ, $65.99) covers back + roof only. |
+| ACM sheet | 3 mm, all four wall/roof panels | 1 (4x8 ft) | [Blue Ridge Sign Supply ACM 4x8 x 3 mm, white (not Amazon)](https://blueridgesignsupply.com/products/acm-poly-metal-panel-4x-8-x-3mm) | $116.94 | $116.94 | Plus freight on a full sheet: get a local quote first (Piedmont Plastics, Elkridge, 301-881-7900; Central Sign Supplies lists it at $66, pickup or freight). The 726x684 sides don't fit any in-stock Amazon sheet. One 4x8 covers all four panels and the drip shield. Amazon 24x36 2-pack (B0F18ZQ7DJ, $65.99) covers back + roof only. |
 | Door | Clear polycarbonate 560x756 | 1 | [SIBE polycarbonate 1/8 in, 24x36](https://www.amazon.com/dp/B0772W49WL) | $24.63 | $24.63 |  |
 | Corner brackets | ~30 | 1 | [JCSPBYL 30 sets 2020 corner brackets](https://www.amazon.com/dp/B0DQDT9K64) | $12.99 | $12.99 |  |
 | T-nuts | M5 drop-in, 100 | 1 | [POLISI3D 100 M5 drop-in T-nuts](https://www.amazon.com/dp/B07TSM9XN7) | $7.65 | $7.65 |  |
@@ -194,16 +193,16 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Brush seal | For 2x 72 mm motor cutouts | 1 m | [SLZ dust-shoe brush strip 50 mm](https://www.amazon.com/dp/B0GVHQQ699) | $20.00 | $20.00 |  |
 | Bulkhead | 1/4 NPT, thin panel | 1 (2-pack) | [FloFlex 1/4 in bulkhead, short](https://www.amazon.com/dp/B0CSZ76G4K) | $9.99 | $9.99 | Measure the hole size first |
 | Sump filter mesh | 100 um | 1 | [100 micron filter sock (cut open)](https://www.amazon.com/dp/B082S88S92) | $10.59 | $10.59 | Cut open and clamp in the printed filter frame |
-| Magnet bar | 100 x 25 mm | 1 | [ULIBERMAGNET 12000 Gs filter rod 100x25](https://www.amazon.com/dp/B0CWGNDRNL) | $29.99 | $29.99 | Lies on the sump floor and catches fine steel |
+| Sump magnets | N52 bar magnets 60 x 10 x 5 mm, sealed in a zip bag | 1 (12-pack) | [N52 neodymium bar magnets, 12-pack](https://www.amazon.com/dp/B0F42KCKF9) | $14.99 | $14.99 | The bag lies on the sump floor and catches fine steel; turn it inside out to dump the chips. Was a $29.99 filter rod (B0CWGNDRNL). |
 | Flood coolant pump | 24 V brushless submersible, ~800 L/h, 5 m head, <= 60 mm tall | 1 | Search Amazon: "24V brushless submersible pump 800L/H 5M" | ? | ? | Low enough for the 4 in sump and no mains voltage in the coolant. Runs from the 24 V supply via the controller's MOSFET output. Replaces the $113 120 V pump. |
 | Return tubing | 8 mm OD PU | 1 (5.5 m) | [uxcell 8 mm PU tubing](https://www.amazon.com/dp/B00WW704BY) | $10.19 | $10.19 | +$1.21 shipping |
 | Ball valve | 1/4 NPT | 1 | [Beduan brass mini ball valve](https://www.amazon.com/dp/B07PMPXC5X) | $7.99 | $7.99 |  |
 | Manifold | 1/4 NPT Y | 1 | [FASPARTS brass Y block](https://www.amazon.com/dp/B01B5BY0BC) | $11.99 | $11.99 | One bullet says 1/2 in thread: check before ordering |
 | Loc-Line nozzles | 1/4 in kit | 2 | [Loc-Line LP-40413 coolant hose kit](https://www.amazon.com/dp/B002QG4F8Y) | $15.15 | $30.30 |  |
 | Push-to-connect fittings | 8 mm x 1/4 NPT | 1 (10) | [Qjaiune push fittings](https://www.amazon.com/dp/B098QMJHWP) | $7.49 | $7.49 | One at the pump outlet, so the return line unplugs and the sump slides out |
-| Coolant concentrate | Semi-synthetic, 1 gal | 1 | [Fusion Cool 2240](https://www.amazon.com/dp/B09LSL9JS7) | $52.95 | $52.95 | Mix 5-10 % |
+| Coolant concentrate | Semi-synthetic, 1 gal | 1 | [Fusion Cool 2240](https://www.amazon.com/dp/B09LSL9JS7) | $52.95 | $52.95 | Mix 5-10 %. Sold out when checked on 2026-10-22: any semi-synthetic for steel will do. |
 
-**Priced subtotal: $436.05** + 2 unpriced: ACM sheet, Flood coolant pump
+**Priced subtotal: $537.99** + 1 unpriced: Flood coolant pump
 
 ## Already owned
 

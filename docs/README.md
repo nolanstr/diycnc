@@ -11,12 +11,14 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
   for a spreadsheet.
 - [steel/](1-sourcing/steel/README.md): the steel skeletons' cut list (stock flat bar and tube, about 54
   pieces) and [steel-templates.pdf](1-sourcing/steel/steel-templates.pdf), 1:1 drilling templates for every part.
+- [quote-requests.md](1-sourcing/quote-requests.md): ready-to-send quote requests for the steel, risers and
+  aluminum (four Baltimore-area sellers), the whiting and the enclosure's ACM sheet.
 
 ## 2. Printing: start this first
 
 - [print-guide.pdf](2-printing/print-guide.pdf): every printed part (STLs in `print/`), the slicer settings,
-  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.1 kg of PETG and a
-  hundred-odd hours of printing, so start it while the rest is on order.
+  how the pieces join, and the filament each takes, sliced in Bambu Studio. About 1.8 kg of PETG and 120 hours of
+  printing (1.1 kg and 84 hours with the base's bevel strips from a 2x3), so start it while the rest is on order.
 
 ## 3. Molds: making the molds
 

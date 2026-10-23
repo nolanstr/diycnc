@@ -45,7 +45,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Melamine board, 3/4 in | about 1.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
 | 1x2 lumber (furring strip is fine) | 2 x 8 ft 1x2 (2.7 m) | the cleats: they lie on the floor outside the walls |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 0.64 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 1.42 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -55,10 +55,10 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M3 nut | 20 |
 | M3 washer | 20 |
 | M3 x 25 bolt | 20 |
-| M4 nut | 113 |
-| M4 washer | 109 |
+| M4 nut | 117 |
+| M4 washer | 113 |
 | M4 x 20 bolt (leg pinch screw) | 4 |
-| M4 x 30 bolt | 65 |
+| M4 x 30 bolt | 69 |
 | M4 x 35 bolt | 28 |
 | M4 x 45 bolt | 16 |
 | M5 x 20 screw, greased (holds an insert) | 15 |
@@ -69,7 +69,7 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-71 prints, 0.64 kg, about 57 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+75 prints, 1.42 kg, about 91 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -77,7 +77,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-box/kit-corner-bracket.stl` | 4 | 33 | 39m 23s |
 | `base-box/kit-partition-bracket.stl` | 2 | 14 | 35m 28s |
 | `base-box/kit-saddle.stl` | 6 | 58 | 46m 3s |
-| `base-box/kit-leg-holder.stl` | 4 | 82 | 1h 37m 0s |
+| `base-box/kit-leg-holder.stl` | 4 | 166 | 2h 30m 55s |
 | `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 5s |
 | `base-rear/former-gutter-L-part2of3.stl` | 1 | 8 | 33m 40s |
 | `base-rear/former-gutter-L-part3of3.stl` | 1 | 7 | 31m 15s |
@@ -85,19 +85,33 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-rear/former-gutter-R-part2of3.stl` | 1 | 8 | 33m 40s |
 | `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
 | `base-rear/former-motor-relief.stl` | 1 | 12 | 40m 58s |
-| `base-rear/filler-corner-L.stl` | 1 | 17 | 1h 44m 24s |
-| `base-rear/filler-corner-R.stl` | 1 | 16 | 1h 42m 27s |
+| `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 20s |
+| `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 9s |
+| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 42s |
+| `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 11m 33s |
+| `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 34m 47s |
+| `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 56s |
+| `base-rear/filler-bevel-end-part1of3.stl` | 1 | 51 | 2h 41m 27s |
+| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 51 | 2h 41m 49s |
+| `base-rear/filler-bevel-end-part3of3.stl` | 1 | 51 | 2h 41m 53s |
 | `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 23s |
 | `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 43s |
 | `base-front/former-gutter-R-part1of2.stl` | 1 | 11 | 49m 24s |
 | `base-front/former-gutter-R-part2of2.stl` | 1 | 10 | 43m 43s |
 | `base-front/former-trough-part1of5.stl` | 1 | 20 | 1h 14m 18s |
 | `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 23m 56s |
-| `base-front/former-trough-part3of5.stl` | 1 | 25 | 1h 33m 33s |
+| `base-front/former-trough-part3of5.stl` | 1 | 25 | 1h 34m 0s |
 | `base-front/former-trough-part4of5.stl` | 1 | 23 | 1h 24m 3s |
 | `base-front/former-trough-part5of5.stl` | 1 | 21 | 1h 17m 36s |
-| `base-front/filler-corner-L.stl` | 1 | 16 | 1h 43m 48s |
-| `base-front/filler-corner-R.stl` | 1 | 17 | 1h 40m 33s |
+| `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 58s |
+| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 12s |
+| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 28s |
+| `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 16s |
+| `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 6s |
+| `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 44s |
+| `base-front/filler-bevel-end-part1of3.stl` | 1 | 51 | 2h 37m 19s |
+| `base-front/filler-bevel-end-part2of3.stl` | 1 | 51 | 2h 38m 46s |
+| `base-front/filler-bevel-end-part3of3.stl` | 1 | 51 | 2h 38m 0s |
 | `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 50s |
 | `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 58s |
 | `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 58s |
@@ -106,21 +120,11 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/core-center-b-post.stl` | 1 | 5 | 44m 56s |
 | `base-rear/core-center-post.stl` | 1 | 5 | 44m 56s |
 | `base-front/core-outboard-L-post.stl` | 1 | 5 | 44m 53s |
-| `base-front/core-trough-band-L-post.stl` | 1 | 5 | 44m 54s |
-| `base-front/core-draw-rod-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-foot-b-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-L-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-outer-a-L-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-outer-b-L-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-rear-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/core-outboard-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-front/core-trough-band-R-post.stl` | 1 | 5 | 44m 54s |
-| `base-front/core-draw-rod-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-foot-b-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-outer-a-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-outer-b-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-rear/core-rear-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/plug-draw-pocket-L.stl` | 1 | 12 | 46m 16s |
 | `base-front/plug-draw-pocket-R.stl` | 1 | 12 | 46m 16s |
 | `base-rear/plug-draw-pocket-L.stl` | 1 | 5 | 21m 23s |
@@ -155,8 +159,8 @@ the bridges and struts come out of the sheet's offcuts.
 | Base bridge y=100 | 1 | 651 x 60 |  |
 | Base bridge y=170 | 1 | 651 x 60 |  |
 | Base bridge y=280 | 1 | 651 x 60 |  |
-| Base leg bridge y=-310 | 1 | 480 x 60 |  |
-| Base leg bridge y=344 | 1 | 480 x 60 |  |
+| Base leg bridge y=-280 | 1 | 420 x 60 |  |
+| Base leg bridge y=318 | 1 | 420 x 60 |  |
 
 ## 5. Mark and drill
 
@@ -172,7 +176,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 |---|---|---|
 | 3.2 mm | 1/8 in | motor-relief, split-gasket-groove |
 | 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
-| 4.5 mm | 11/64 in | cleat, core post, corner bracket, corner-L, corner-R, draw-pocket-L, draw-pocket-R, gutter-L, gutter-R, leg holder, saddle, trough |
+| 4.5 mm | 11/64 in | bevel-L, bevel-R, bevel-end, cleat, core post, corner bracket, corner-L, corner-R, draw-pocket-L, draw-pocket-R, gutter-L, gutter-R, leg holder, saddle, trough |
 | 5.5 mm | 7/32 in | M5 insert screw, M5 screw into the steel |
 | 6.5 mm | 17/64 in | M6 screw into a pad |
 | 9.6 mm | 25/64 in | 3/8 dowel, 3/8 dowel pin |
@@ -188,22 +192,12 @@ glue the post in.
 | base-front | center-a | 1 | XPS block 100 x 73 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-front | center-b | 1 | XPS block 100 x 72 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | center | 1 | XPS block 88 x 190 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-L | 1 | XPS block 120 x 174 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | trough-band-L | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | draw-rod-L | 1 | XPS block 20 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-L | 1 | XPS block 102 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | foot-b-L | 1 | XPS block 39 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | knee-L | 1 | XPS block 50 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-a-L | 1 | XPS block 20 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-b-L | 1 | XPS block 20 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | rear-L | 1 | XPS block 85 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | outboard-R | 1 | XPS block 120 x 174 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | trough-band-R | 1 | XPS block 101 x 55 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-front | draw-rod-R | 1 | XPS block 20 x 255 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
+| base-front | outboard-R | 1 | XPS block 102 x 148 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | foot-b-R | 1 | XPS block 39 x 99 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 | base-rear | knee-R | 1 | XPS block 50 x 140 x 40 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-a-R | 1 | XPS block 20 x 44 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | outer-b-R | 1 | XPS block 20 x 60 x 65 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
-| base-rear | rear-R | 1 | XPS block 85 x 52 x 90 mm, outline as the pocket (chamfered corners); taped, with its printed post glued in. |
 ## 7. Wax
 
 - 3-5 coats of paste wax on every face the mix touches, boards and removable printed pieces, then PVA.
@@ -231,7 +225,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base rear, step 3](../../renders/mold/step-base-rear-3.png)
 
-4. Gutter formers, motor relief, corner fillers and the draw-rod pocket plugs on.
+4. Gutter formers, motor relief, corner fillers and the draw-rod pocket plugs on. Bevel strips on the side and rear walls, their 1-1/2 in face flush with the pour line.
 
 ![Base rear, step 4](../../renders/mold/step-base-rear-4.png)
 
@@ -239,7 +233,7 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base rear, step 5](../../renders/mold/step-base-rear-5.png)
 
-6. Pour the 20 mm skin. Foam cores on it between the steel, bridges into the saddles, each post bolted to its bridge. Fill to the pour line.
+6. Pour the 20 mm skin. Foam cores on it between the steel, bridges into the saddles, each post bolted to its bridge. Fill to the pour line, packing the mix up under the bevel strips.
 
 ![Base rear, step 6](../../renders/mold/step-base-rear-6.png)
 
@@ -249,11 +243,11 @@ Cast upside down, top face on the floor; shown the right way up. New parts in co
 
 ![Base front, step 1](../../renders/mold/step-base-front-1.png)
 
-2. Trough and gutter formers, corner fillers and pocket plugs on; the front grid in, its rail bars and BF pad screwed down and its split end plates onto the dowel pins; inserts and legs.
+2. Trough and gutter formers, corner fillers, bevel strips and pocket plugs on; the front grid in, its rail bars and BF pad screwed down and its split end plates onto the dowel pins; inserts and legs.
 
 ![Base front, step 2](../../renders/mold/step-base-front-2.png)
 
-3. Skin, cores, bridges, fill. After the cure, take it apart and split the halves with wedges.
+3. Skin, cores, bridges, fill (packed under the bevel strips). After the cure, take it apart and split the halves with wedges.
 
 ![Base front, step 3](../../renders/mold/step-base-front-3.png)
 
@@ -396,12 +390,15 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 229 | 39 | 4.5 | draw-pocket-L |
 | 2 | 409 | 39 | 4.5 | draw-pocket-R |
-| 3 | 26 | 56 | 4.5 | corner-L |
-| 4 | 612 | 56 | 4.5 | corner-R |
-| 5 | 33 | 124 | 4.5 | corner bracket |
-| 6 | 605 | 124 | 4.5 | corner bracket |
-| 7 | 54 | 129 | 4.5 | leg holder |
-| 8 | 584 | 129 | 4.5 | leg holder |
+| 3 | 34 | 57 | 4.5 | corner-L |
+| 4 | 604 | 57 | 4.5 | corner-R |
+| 5 | 149 | 78 | 4.5 | bevel-end |
+| 6 | 319 | 78 | 4.5 | bevel-end |
+| 7 | 489 | 78 | 4.5 | bevel-end |
+| 8 | 33 | 124 | 4.5 | corner bracket |
+| 9 | 605 | 124 | 4.5 | corner bracket |
+| 10 | 84 | 129 | 4.5 | leg holder |
+| 11 | 554 | 129 | 4.5 | leg holder |
 
 #### Base rear wall
 
@@ -411,12 +408,15 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 229 | 39 | 4.5 | draw-pocket-R |
 | 2 | 409 | 39 | 4.5 | draw-pocket-L |
-| 3 | 26 | 56 | 4.5 | corner-R |
-| 4 | 612 | 56 | 4.5 | corner-L |
-| 5 | 33 | 124 | 4.5 | corner bracket |
-| 6 | 605 | 124 | 4.5 | corner bracket |
-| 7 | 54 | 129 | 4.5 | leg holder |
-| 8 | 584 | 129 | 4.5 | leg holder |
+| 3 | 34 | 57 | 4.5 | corner-R |
+| 4 | 604 | 57 | 4.5 | corner-L |
+| 5 | 149 | 78 | 4.5 | bevel-end |
+| 6 | 319 | 78 | 4.5 | bevel-end |
+| 7 | 489 | 78 | 4.5 | bevel-end |
+| 8 | 33 | 124 | 4.5 | corner bracket |
+| 9 | 605 | 124 | 4.5 | corner bracket |
+| 10 | 84 | 129 | 4.5 | leg holder |
+| 11 | 554 | 129 | 4.5 | leg holder |
 
 #### Base side wall, left
 
@@ -424,19 +424,23 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 7 | 35 | 4.5 | corner-L |
-| 2 | 718 | 46 | 4.5 | corner-L |
-| 3 | 14 | 124 | 4.5 | corner bracket |
-| 4 | 100 | 123 | 4.5 | saddle |
-| 5 | 210 | 123 | 4.5 | saddle |
-| 6 | 280 | 123 | 4.5 | saddle |
-| 7 | 419 | 124 | 4.5 | corner bracket |
-| 8 | 440 | 123 | 4.5 | saddle |
-| 9 | 510 | 123 | 4.5 | saddle |
-| 10 | 610 | 123 | 4.5 | saddle |
-| 11 | 711 | 124 | 4.5 | corner bracket |
-| 12 | 35 | 129 | 4.5 | leg holder |
-| 13 | 690 | 129 | 4.5 | leg holder |
+| 1 | 15 | 57 | 4.5 | corner-L |
+| 2 | 709 | 57 | 4.5 | corner-L |
+| 3 | 129 | 78 | 4.5 | bevel-L |
+| 4 | 296 | 78 | 4.5 | bevel-L |
+| 5 | 454 | 78 | 4.5 | bevel-L |
+| 6 | 604 | 78 | 4.5 | bevel-L |
+| 7 | 14 | 124 | 4.5 | corner bracket |
+| 8 | 100 | 123 | 4.5 | saddle |
+| 9 | 210 | 123 | 4.5 | saddle |
+| 10 | 280 | 123 | 4.5 | saddle |
+| 11 | 419 | 124 | 4.5 | corner bracket |
+| 12 | 440 | 123 | 4.5 | saddle |
+| 13 | 510 | 123 | 4.5 | saddle |
+| 14 | 610 | 123 | 4.5 | saddle |
+| 15 | 711 | 124 | 4.5 | corner bracket |
+| 16 | 62 | 129 | 4.5 | leg holder |
+| 17 | 660 | 129 | 4.5 | leg holder |
 
 #### Base side wall, right
 
@@ -444,19 +448,23 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 7 | 35 | 4.5 | corner-R |
-| 2 | 718 | 35 | 4.5 | corner-R |
-| 3 | 14 | 124 | 4.5 | corner bracket |
-| 4 | 115 | 123 | 4.5 | saddle |
-| 5 | 215 | 123 | 4.5 | saddle |
-| 6 | 285 | 123 | 4.5 | saddle |
-| 7 | 306 | 124 | 4.5 | corner bracket |
-| 8 | 445 | 123 | 4.5 | saddle |
-| 9 | 515 | 123 | 4.5 | saddle |
-| 10 | 625 | 123 | 4.5 | saddle |
-| 11 | 711 | 124 | 4.5 | corner bracket |
-| 12 | 35 | 129 | 4.5 | leg holder |
-| 13 | 690 | 129 | 4.5 | leg holder |
+| 1 | 15 | 57 | 4.5 | corner-R |
+| 2 | 709 | 57 | 4.5 | corner-R |
+| 3 | 120 | 78 | 4.5 | bevel-R |
+| 4 | 270 | 78 | 4.5 | bevel-R |
+| 5 | 429 | 78 | 4.5 | bevel-R |
+| 6 | 596 | 78 | 4.5 | bevel-R |
+| 7 | 14 | 124 | 4.5 | corner bracket |
+| 8 | 115 | 123 | 4.5 | saddle |
+| 9 | 215 | 123 | 4.5 | saddle |
+| 10 | 285 | 123 | 4.5 | saddle |
+| 11 | 306 | 124 | 4.5 | corner bracket |
+| 12 | 445 | 123 | 4.5 | saddle |
+| 13 | 515 | 123 | 4.5 | saddle |
+| 14 | 625 | 123 | 4.5 | saddle |
+| 15 | 711 | 124 | 4.5 | corner bracket |
+| 16 | 65 | 129 | 4.5 | leg holder |
+| 17 | 662 | 129 | 4.5 | leg holder |
 
 #### Base partition
 
@@ -530,10 +538,8 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 525 | 12 | 4.5 | core post |
-| 3 | 325 | 12 | 4.5 | core post |
-| 4 | 125 | 12 | 4.5 | core post |
-| 5 | 16 | 11 | 4.5 | saddle |
+| 2 | 325 | 12 | 4.5 | core post |
+| 3 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=-130
 
@@ -542,9 +548,9 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 608 | 12 | 4.5 | core post |
+| 2 | 516 | 12 | 4.5 | core post |
 | 3 | 325 | 12 | 4.5 | core post |
-| 4 | 43 | 12 | 4.5 | core post |
+| 4 | 134 | 12 | 4.5 | core post |
 | 5 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=-60
@@ -574,12 +580,10 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 608 | 12 | 4.5 | core post |
-| 3 | 480 | 12 | 4.5 | core post |
-| 4 | 325 | 12 | 4.5 | core post |
-| 5 | 170 | 12 | 4.5 | core post |
-| 6 | 43 | 12 | 4.5 | core post |
-| 7 | 16 | 11 | 4.5 | saddle |
+| 2 | 480 | 12 | 4.5 | core post |
+| 3 | 325 | 12 | 4.5 | core post |
+| 4 | 170 | 12 | 4.5 | core post |
+| 5 | 16 | 11 | 4.5 | saddle |
 
 #### Base bridge y=280
 
@@ -588,28 +592,22 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 635 | 11 | 4.5 | saddle |
-| 2 | 608 | 12 | 4.5 | core post |
-| 3 | 43 | 12 | 4.5 | core post |
-| 4 | 16 | 11 | 4.5 | saddle |
+| 2 | 16 | 11 | 4.5 | saddle |
 
-#### Base leg bridge y=-310
+#### Base leg bridge y=-280
 
-![Base leg bridge y=-310](boards/base-leg-bridge-y-310.svg)
+![Base leg bridge y=-280](boards/base-leg-bridge-y-280.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 474 | 11 | 4.5 | leg holder |
-| 2 | 426 | 12 | 4.5 | core post |
-| 3 | 54 | 12 | 4.5 | core post |
-| 4 | 6 | 11 | 4.5 | leg holder |
+| 1 | 414 | 11 | 4.5 | leg holder |
+| 2 | 6 | 11 | 4.5 | leg holder |
 
-#### Base leg bridge y=344
+#### Base leg bridge y=318
 
-![Base leg bridge y=344](boards/base-leg-bridge-y-344.svg)
+![Base leg bridge y=318](boards/base-leg-bridge-y-318.svg)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 474 | 11 | 4.5 | leg holder |
-| 2 | 428 | 12 | 4.5 | core post |
-| 3 | 52 | 12 | 4.5 | core post |
-| 4 | 6 | 11 | 4.5 | leg holder |
+| 1 | 414 | 11 | 4.5 | leg holder |
+| 2 | 6 | 11 | 4.5 | leg holder |

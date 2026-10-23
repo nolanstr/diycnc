@@ -326,7 +326,7 @@ def fig_corner(sc):
     pour = parts.box(150, half, 220, y1, -0.6, 0)
     sc.add(flip_base(pour), 'pour', 70)
     sc.camera(Vector(-0.55, 0.55, -0.62))
-    lx, ly = half - P['leg_inset'], G['legs'][2][1]
+    lx, ly = half - P['leg_inset'][0], G['legs'][2][1]
     lab = [(pt(flip_base, Vector(half + T / 2, 300, 40)), 'Side wall'),
            (pt(flip_base, Vector(200, y1 + T / 2, 40)), 'Rear wall'),
            (pt(flip_base, Vector(half + T + 20, 250, G['base_top'] - T / 2)), 'Cleat, bolted down'),
@@ -335,7 +335,8 @@ def fig_corner(sc):
            (pt(flip_base, Vector(lx, ly, -100)), 'Leg'),
            (pt(flip_base, Vector(half + 5, 280, -40)), 'Saddle + bridge'),
            (pt(flip_base, Vector(165, 235, -0.3)), 'Pour line: 25 mm below the wall tops'),
-           (pt(flip_base, Vector(half - 15, y1 - 15, 60)), 'Corner filler')]
+           (pt(flip_base, Vector(half - 15, y1 - 15, 60)), 'Corner filler'),
+           (pt(flip_base, Vector(half - 10, y1 - 100, 15)), 'Bevel strip (or a ripped 2x3)')]
     sc.shoot('detail-corner', labels=lab)
 
 

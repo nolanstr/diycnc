@@ -51,8 +51,8 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 30 bolt | 11 |
 | M4 x 45 bolt | 10 |
 | M5 x 20 screw, greased (holds an insert) | 2 |
-| M5 x 40 screw, greased (holds the face plate) | 8 |
-| M6 x 40 screw, greased (holds the face plate) | 6 |
+| M5 x 50 screw, greased (holds the face plate) | 8 |
+| M6 x 50 screw, greased (holds the face plate) | 6 |
 | 1/2 in plain steel rod, greased (forms a beam bolt hole), 204 mm | 8 |
 
 Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-point bits (sizes in section 5), a square, clamps, a 7 mm nut driver, a 3 mm hex key, an awl.
@@ -66,7 +66,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 |---|---|---|---|
 | `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
 | `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 8m 21s |
-| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 15s |
+| `beam/filler-back-edge-part2of3.stl` | 1 | 18 | 1h 9m 13s |
 | `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 8m 22s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |

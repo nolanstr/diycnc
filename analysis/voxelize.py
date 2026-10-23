@@ -6,7 +6,8 @@ Builds the model from build_cnc.py and writes analysis/vox_current.npz: per-voxe
 fractions of epoxy granite and steel for each module group (base, uprights, beam),
 plus the base with no underside pockets (the optimization's design space), and
 analysis/vox_current.json with the positions the load cases need. VOX_P='{"beam_d": 140}' overrides
-parameters, VOX_OUT names the output.
+parameters, VOX_OUT names the output. VOX_PARTS=1 also writes <output>_parts.npz, each steel part's
+own fractions (for steel_study.py).
 """
 
 import json
@@ -25,6 +26,7 @@ H = float(os.environ.get('VOX_H', '10'))     # voxel size, mm
 SUB = int(os.environ.get('VOX_SUB', '4'))    # sample points per voxel edge
 OUT = os.environ.get('VOX_OUT', os.path.join(HERE, 'vox_current'))
 SKIP = [t for t in os.environ.get('VOX_SKIP', '').split(',') if t]   # part-name prefixes left out (unbonded rods)
+PARTS = os.environ.get('VOX_PARTS') == '1'
 
 
 def load_build():
@@ -90,7 +92,7 @@ def main():
 
     risers = {'X_RiserL', 'X_RiserR', 'Y_RiserL', 'Y_RiserR'}
     fr = {f'{mat}_{g}': np.zeros(tuple(grid.n), np.float32) for mat in ('eg', 'st') for g in ('base', 'up', 'beam')}
-    boxes = {}
+    boxes, steel = {}, {}
     for p in m.parts:
         n = p['name']
         if any(n.startswith(t) for t in ('Y_BK12', 'Y_BF12', 'X_BK10', 'X_BF10', 'Y_Block', 'X_Block', 'Y_Screw', 'X_Screw')):
@@ -101,7 +103,10 @@ def main():
         if p['look'] in ('printed', 'rubber') or any(n.startswith(t) for t in SKIP):
             continue
         mat = 'eg' if p['look'] == 'granite' else 'st'
-        fr[f"{mat}_{GROUP[p['container']]}"] += fractions(p['shape'], grid)
+        a = fractions(p['shape'], grid)
+        fr[f"{mat}_{GROUP[p['container']]}"] += a
+        if PARTS and mat == 'st':
+            steel[n] = a
         print('  ', n, flush=True)
 
     # The base with no underside pockets: the optimization's design space.
@@ -119,6 +124,8 @@ def main():
     print('solid base volume', sum(vols) / 1e6, 'L', flush=True)
 
     np.savez_compressed(OUT + '.npz', eg_base_solid=solid, **{k: np.clip(v, 0, 1) for k, v in fr.items()})
+    if PARTS:
+        np.savez_compressed(OUT + '_parts.npz', **steel)
     keys = ['base_top', 'table_top', 'beam_bot', 'beam_top', 'beam_face', 'inner', 'outer', 'up_y0', 'up_y1',
             'base_half', 'base_y0', 'base_y1', 'tip', 'nut_tip', 'y_bk', 'beam_cz', 'car_back']
     info = dict(h=H, origin=grid.o.tolist(), n=grid.n.tolist(), dims={k: float(d[k]) for k in keys}, boxes=boxes,

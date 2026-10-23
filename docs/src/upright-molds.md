@@ -39,8 +39,8 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Material | Amount | Notes |
 |---|---|---|
 | Melamine board, 3/4 in | about 0.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
-| 1x2 lumber (furring strip is fine) | 1 x 8 ft 1x2 (0.8 m) | the cleats: they lie on the floor outside the walls |
-| PETG | 0.32 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| 1x2 lumber (furring strip is fine) | 1 x 8 ft 1x2 (0.9 m) | the cleats: they lie on the floor outside the walls |
+| PETG | 0.25 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 | 2x4 offcut | 4 blocks per upright mold, about 50 mm | feet |
@@ -60,24 +60,24 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-40 prints, 0.32 kg, about 23 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+32 prints, 0.25 kg, about 18 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
-| `upright/kit-back-bracket.stl` | 4 | 21 | 27m 33s |
+| `upright/kit-back-bracket.stl` | 4 | 21 | 27m 31s |
 | `upright/kit-front-bracket.stl` | 4 | 32 | 38m 26s |
 | `upright/kit-saddle-flat.stl` | 4 | 18 | 22m 40s |
-| `upright/filler-toe-filler.stl` | 2 | 51 | 1h 30m 59s |
-| `upright/former-foot-gasket-groove-part1of4.stl` | 2 | 6 | 16m 25s |
-| `upright/former-foot-gasket-groove-part2of4.stl` | 2 | 2 | 8m 22s |
-| `upright/former-foot-gasket-groove-part3of4.stl` | 2 | 2 | 8m 22s |
-| `upright/former-foot-gasket-groove-part4of4.stl` | 2 | 6 | 16m 30s |
-| `upright/plug-toe-plug.stl` | 2 | 26 | 1h 3m 42s |
-| `upright/kit-plate-spacer.stl` | 4 | 15 | 20m 9s |
+| `upright/filler-toe-filler.stl` | 1 | 26 | 1h 30m 59s |
+| `upright/former-foot-gasket-groove-part1of4.stl` | 1 | 3 | 17m 31s |
+| `upright/former-foot-gasket-groove-part2of4.stl` | 1 | 1 | 8m 54s |
+| `upright/former-foot-gasket-groove-part3of4.stl` | 1 | 1 | 8m 54s |
+| `upright/former-foot-gasket-groove-part4of4.stl` | 1 | 3 | 17m 27s |
+| `upright/plug-toe-plug.stl` | 1 | 13 | 1h 3m 42s |
+| `upright/kit-plate-spacer.stl` | 2 | 8 | 20m 9s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `upright/cast-in-column-ring-l1a.stl` | 8 | 109 | 49m 49s |
+| `upright/cast-in-column-ring-l1a.stl` | 8 | 93 | 44m 23s |
 
 ## 4. Cut the boards
 
@@ -87,14 +87,14 @@ the bridges and struts come out of the sheet's offcuts.
 
 | Board | Qty | Size (mm) | Notes |
 |---|---|---|---|
-| Upright floor | 1 | 198 x 541 |  |
-| Upright side plate, outer | 1 | 461 x 271 (profile) | cut to the profile |
-| Upright side plate, inner | 1 | 461 x 271 (profile) | cut to the profile |
-| Upright back board | 1 | 80 x 271 |  |
+| Upright floor | 1 | 198 x 581 |  |
+| Upright side plate, outer | 1 | 501 x 271 (profile) | cut to the profile |
+| Upright side plate, inner | 1 | 501 x 271 (profile) | cut to the profile |
+| Upright back board | 1 | 80 x 272 | ends cut square |
 | Upright front board | 1 | 80 x 292 | ends cut square |
 | Upright bridge | 1 | 131 x 138 |  |
-| Upright cleat, outer | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
-| Upright cleat, inner | 1 | 371 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, outer | 1 | 411 x 38 | 1x2 lumber; flat on the floor |
+| Upright cleat, inner | 1 | 411 x 38 | 1x2 lumber; flat on the floor |
 | Upright cleat, back | 1 | 80 x 38 | 1x2 lumber; flat on the floor |
 
 ## 5. Mark and drill
@@ -134,7 +134,7 @@ Cast foot down. The two uprights are the same part: cast one, take the mold apar
 
 ![Upright, step 1](../../renders/mold/step-upright-1.png)
 
-2. Side plates against their cleats, back board between them, two back brackets.
+2. Side plates against their cleats, back board between them (it leans in, like the front board), two back brackets.
 
 ![Upright, step 2](../../renders/mold/step-upright-2.png)
 
@@ -195,25 +195,25 @@ edge on the floor). The templates carry the same holes at full size.
 |---|---|---|---|---|
 | 1 | 77 | 54 | 4.5 | toe-filler |
 | 2 | 119 | 72 | 4.5 | toe-filler |
-| 3 | 131 | 123 | 3.2 | foot-gasket-groove |
+| 3 | 131 | 129 | 3.2 | foot-gasket-groove |
 | 4 | 21 | 170 | 4.5 | cleat |
 | 5 | 177 | 170 | 4.5 | cleat |
-| 6 | 67 | 182 | 3.2 | foot-gasket-groove |
-| 7 | 67 | 249 | 3.2 | foot-gasket-groove |
-| 8 | 131 | 249 | 3.2 | foot-gasket-groove |
+| 6 | 67 | 189 | 3.2 | foot-gasket-groove |
+| 7 | 67 | 266 | 3.2 | foot-gasket-groove |
+| 8 | 131 | 266 | 3.2 | foot-gasket-groove |
 | 9 | 99 | 272 | 13.1 | 1/2-13 bolt, base dowel hole |
-| 10 | 21 | 315 | 4.5 | cleat |
-| 11 | 67 | 314 | 3.2 | foot-gasket-groove |
-| 12 | 131 | 314 | 3.2 | foot-gasket-groove |
-| 13 | 177 | 315 | 4.5 | cleat |
-| 14 | 99 | 337 | 13.5 | column tie rod, from below |
-| 15 | 131 | 381 | 3.2 | foot-gasket-groove |
-| 16 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 10 | 21 | 335 | 4.5 | cleat |
+| 11 | 67 | 337 | 3.2 | foot-gasket-groove |
+| 12 | 99 | 337 | 13.5 | column tie rod, from below |
+| 13 | 131 | 337 | 3.2 | foot-gasket-groove |
+| 14 | 177 | 335 | 4.5 | cleat |
+| 15 | 99 | 387 | 13.1 | 1/2-13 bolt, base dowel hole |
+| 16 | 131 | 414 | 3.2 | foot-gasket-groove |
 | 17 | 99 | 437 | 13.5 | column tie rod, from below |
-| 18 | 67 | 441 | 3.2 | foot-gasket-groove |
-| 19 | 21 | 461 | 4.5 | cleat |
-| 20 | 177 | 461 | 4.5 | cleat |
-| 21 | 99 | 520 | 4.5 | cleat |
+| 18 | 67 | 474 | 3.2 | foot-gasket-groove |
+| 19 | 21 | 501 | 4.5 | cleat |
+| 20 | 177 | 501 | 4.5 | cleat |
+| 21 | 99 | 560 | 4.5 | cleat |
 
 #### Upright side plate, outer
 
@@ -222,10 +222,10 @@ edge on the floor). The templates carry the same holes at full size.
 | # | x | y | Hole | For |
 |---|---|---|---|---|
 | 1 | 246 | 241 | 4.5 | corner bracket |
-| 2 | 356 | 259 | 4.5 | saddle |
-| 3 | 438 | 260 | 4.5 | corner bracket |
+| 2 | 437 | 256 | 4.5 | corner bracket |
+| 3 | 356 | 259 | 4.5 | saddle |
 
-Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
+Outline corners (x, y): (0, 0), (501, 0), (457, 271), (228, 271)
 
 #### Upright side plate, inner
 
@@ -233,11 +233,11 @@ Outline corners (x, y): (0, 0), (461, 0), (461, 271), (228, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 215 | 241 | 4.5 | corner bracket |
-| 2 | 22 | 260 | 4.5 | corner bracket |
-| 3 | 105 | 259 | 4.5 | saddle |
+| 1 | 255 | 241 | 4.5 | corner bracket |
+| 2 | 64 | 256 | 4.5 | corner bracket |
+| 3 | 145 | 259 | 4.5 | saddle |
 
-Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
+Outline corners (x, y): (501, 0), (0, 0), (44, 271), (273, 271)
 
 #### Upright back board
 
@@ -273,8 +273,8 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 19 | 4.5 | cleat |
-| 2 | 185 | 19 | 4.5 | cleat |
+| 1 | 371 | 19 | 4.5 | cleat |
+| 2 | 205 | 19 | 4.5 | cleat |
 | 3 | 40 | 19 | 4.5 | cleat |
 
 #### Upright cleat, inner
@@ -283,8 +283,8 @@ Outline corners (x, y): (461, 0), (0, 0), (0, 271), (233, 271)
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 331 | 19 | 4.5 | cleat |
-| 2 | 185 | 19 | 4.5 | cleat |
+| 1 | 371 | 19 | 4.5 | cleat |
+| 2 | 205 | 19 | 4.5 | cleat |
 | 3 | 40 | 19 | 4.5 | cleat |
 
 #### Upright cleat, back

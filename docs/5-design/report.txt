@@ -12,16 +12,15 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         370 mm
 
-Epoxy granite volume:         45.7 L
-Casting mass:                 113 kg (249 lb)
-  Base front:                  12.3 L   28.9 kg
-  Base rear:                   15.5 L   36.3 kg
-  Upright L:                    4.5 L   12.1 kg  (alumina grit)
-  Upright R:                    4.5 L   12.1 kg  (alumina grit)
-  Beam:                         8.9 L   23.7 kg  (alumina grit)
-Cast-in steel + joint hardware: 60.6 kg
-Epoxy needed (~8.5% of the sand mix by mass): 9.1 kg
-Aluminum oxide grit, brown #16 (coarse sand): 17.3 kg (beam + uprights)
+Epoxy granite volume:         45.1 L
+Casting mass:                 106 kg (234 lb)
+  Base front:                  12.7 L   29.8 kg
+  Base rear:                   14.9 L   35.0 kg
+  Upright L:                    4.9 L   11.6 kg
+  Upright R:                    4.9 L   11.6 kg
+  Beam:                         7.7 L   18.0 kg
+Cast-in steel + joint hardware: 72.8 kg
+Epoxy needed (~8.5% of the sand mix by mass): 9.0 kg
 
 Linear motion / plate BOM
 -------------------------
@@ -48,27 +47,27 @@ Linear motion / plate BOM
   frame    Cast-in M5 threaded inserts (knurled brass): the enclosure, the way-cover rollers, the cable-chain mount 11 + 4 + 2 pcs                       buy
   frame    Cap screws into the tapped steel: DIN 7984 low-head M5 x 20 (X risers) and M5 x 25 (Y risers); M6 x 40 (the Y and X BK/BF) 8 + 10; 12                           buy
   frame    Flat bar 1/2 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 198                              buy
+  frame    Flat bar 3/4 x 5 in, cut to length (docs/1-sourcing/steel/) 2 x 508                              buy
   frame    Flat bar 3/8 x 1-1/2 in, cut to length (docs/1-sourcing/steel/) 2 x 359, 2 x 288                     buy
   frame    Flat bar 3/8 x 2 in, cut to length (docs/1-sourcing/steel/) 2 x 375, 2 x 90                      buy
   frame    Flat bar 3/8 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 285, 4 x 133, 8 x 76, 4 x 66     buy
-  frame    Flat bar 3/8 x 5 in, cut to length (docs/1-sourcing/steel/) 2 x 508                              buy
   frame    Rectangular tube 2 x 3 x 1/8 in, cut to length (docs/1-sourcing/steel/) 2 x 340, 2 x 269                     buy
   frame    Square tube 1-1/2 x 1-1/2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 4 x 129, 6 x 84                      buy
-  frame    Square tube 2 x 2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy
-  frame    Steel square tube 2 x 2 x 1/8 in (or 0.120 wall), bought at length 4 x 8-1/8 in (upright columns; the base's short ones are in the cut list) buy
+  frame    Square tube 2 x 2 x 3/16 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy
+  frame    Steel square tube 2 x 2 x 3/16 in, bought at length  4 x 8-1/8 in (upright columns; the base's short ones are in the cut list) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 6 in (legs)                      buy
-  frame    Printed PETG: 8 column rings, 4 leg plugs, 2 dark gray pocket caps ~60 g                                PRINT
+  frame    Printed PETG: 8 column rings, 4 leg plugs, 2 gray pocket caps ~60 g                                PRINT
   frame    1/2-13 threaded rod (hardware store)                 4 x 363, 2 x 153 (uprights), 2 x 687 (base draw rods), 4 x 270 + 6 x 225 (base cross rods) buy
   frame    1/2-13 nut + 1/2 in SAE washer                       32 of each                           buy
-  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 190 + 3 x 107 mm; 11 nuts        buy
-  frame    1/2 in x 3 in black pipe nipple (beam spacers)       3 pcs                                buy
+  frame    3/8-16 grade B7 threaded rod: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 190 + 3 x 113 mm; 11 nuts        buy
+  frame    1/2 in x 2-1/2 in black pipe nipple (beam spacers)   3 pcs                                buy
   frame    1/4-20 hex bolt + nut + washers: rail bars onto the girders (4 in), pads onto their cross tubes (2-1/4 in) about 20 x 4 in + 4 x 2-1/4 in       buy
   frame    Dowel pin 3/8 x 1-1/4 in (4 base dowels, 2 beam) and 3/8 x 1 in (4 at the base split) 6 + 4 pcs                            buy
-  frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.7 m                                buy
+  frame    Nitrile O-ring cord 3 mm (base split + upright feet), glue the ends 2.9 m                                buy
   frame    1/2 in brass hex nipple, cast-in coolant drain       1 pc                                 buy
   coolant  Sump: full-size 4 in stainless steam-table pan (~13 L), slides in under the base 1                                    buy
   coolant  Chip basket: 1/3-size perforated steam-table pan, 2.5 in deep 1                                    buy
-  coolant  100 um filter mesh (printed frame), printed baffle, 100 x 25 magnet bar 1 set                                buy (part 3)
+  coolant  100 um filter mesh (printed frame), printed baffle, a bag of N52 bar magnets 1 set                                buy (part 3)
   coolant  Submersible pump 24 V brushless, ~800 L/h, 5 m head, on the controller M8 MOSFET output 1                                    buy (part 3)
   coolant  Return hose 8 mm OD PU, push-to-connect at the pump so the sump slides out 2.8 m                                buy (part 3)
   frame    Leg feet: printed plug + 1/2-13 nut bonded into each leg end 4 pcs                                PRINT

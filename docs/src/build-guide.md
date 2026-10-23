@@ -32,7 +32,8 @@ Torques below are starting points for these fastener sizes, not manufacturer spe
 - **3D printing (PETG):** the mold kit (brackets, saddles, holders, bushings), the core posts,
   formers and fillers, the parts that get cast in (column rings, tube plugs, drain liner) and
   the machine's printed parts. All of it is in `print/`, split to fit a Bambu A1 mini, and listed
-  in the print guide: 1.1 kg of PETG (sliced), inside two 1 kg rolls, and about 90 hours of printing. The base pocket cores
+  in the print guide: 1.8 kg of PETG (sliced), inside two 1 kg rolls, and about 120 hours of printing; 1.1 kg and 84 hours if
+  the base's bevel strips are a ripped 2x3 instead. The base pocket cores
   are cut from one sheet of 2 in XPS foam board instead. Print one bracket and one saddle first and check them on your board;
   print a column ring early and test-fit it in your actual tube.
 - **Foam cutting:** a fine-tooth saw or a hot-wire cutter, a long knife, a sanding block, packing
@@ -53,9 +54,9 @@ granite.
 ![The beam's steel: face and back bars, pipe spacers, end bars](../../renders/mold/skeleton-beam.png)
 
 1. **Buy the steel cut to length.** `docs/1-sourcing/steel/README.md` has the cut list by stock size and
-   every part (about 54 pieces, 46 kg). It's all common sizes: 3/8 in flat bar in 1-1/2, 2, 2-1/2 and
-   5 in widths, 1/2 x 2-1/2 in flat bar, 2 x 3 in rectangular tube, and 2 x 2 and 1-1/2 x 1-1/2 in square
-   tube (1/8 wall). A local steel yard or Metal Supermarkets will cut it for you (cheapest); online
+   every part (about 54 pieces, 56 kg). It's all common sizes: 3/8 in flat bar in 1-1/2, 2 and 2-1/2 in
+   widths, 1/2 x 2-1/2 and 3/4 x 5 in flat bar, 2 x 3 x 1/8 in rectangular tube, and 2 x 2 x 3/16 and
+   1-1/2 x 1-1/2 x 1/8 in square tube. A local steel yard or Metal Supermarkets will cut it for you (cheapest); online
    sellers sell it in fixed lengths you cut with a chop saw or hacksaw. Plus, bought at length: 2 x 2 in
    tube, 4 x 8-1/8 in (the upright columns), and 1-1/2 x 1-1/2 in tube, 4 x 6 in (legs). A saw cut within
    1/8 in is fine everywhere (the report's "Steel cut to length" table lists where each error goes).
@@ -68,7 +69,7 @@ granite.
 3. **Bolt each skeleton together on the bench:**
    - **Upright** (two): just the parts for now: foot bar, two columns (a printed ring in each end) and the
      top plate's two bars. The column tie rods clamp it at assembly.
-   - **Beam:** screw the three 107 mm studs into the face bar, a pipe nipple over each, the back bar over
+   - **Beam:** screw the three 113 mm studs into the face bar, a pipe nipple over each, the back bar over
      them and a nut on each; the seat and cap bars go in the mold on the cap-screw rods.
    - **Base** (one grid per half): each girder (2 x 3 tube) between its end plates, its rail bar bolted on
      top with 1/4-20 x 4 in bolts (nuts under the tube) and the draw rod through it; the pedestals (seat bar,
@@ -91,7 +92,7 @@ granite.
    hang below the base (after casting).
 6. **Threaded rod and hardware:** cut the 1/2-13 rods: per upright 2 x 363 mm (in the columns) and
    1 x 153 mm (at the toe); 2 x 687 mm for the base draw rods; 4 x 270 and 6 x 225 mm for the base cross
-   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 190 mm and 3 ties of 107 mm. Deburr the ends.
+   rods. Cut the 3/8-16 grade B7 rod into 8 beam studs of 190 mm and 3 ties of 113 mm. Deburr the ends.
    A rod a few mm off is fine: one end is set flush and the error ends up in the 6 mm tail past the far
    nut. Have 17 x M5 cast-in inserts ready: 11 for the enclosure and 4 for the way-cover rollers in the
    base, 2 for the cable-chain mount in the beam. They hold only those add-ons; nothing structural
@@ -120,14 +121,17 @@ lists the printed parts.
   poured with its most important face down.
 - **Edges:** the castings' outside edges are rounded 10 mm. Glue 3/8 in quarter-round molding
   (PVC or primed wood) into the inside corners of the boxes that form outside edges, and run
-  small silicone fillets everywhere else.
+  small silicone fillets everywhere else. The base's lower edge is a bevel, 1-1/2 in in and 2-1/2 in
+  up, formed by a strip along each wall at the pour line: a 2x3 ripped corner to corner on a table
+  saw and screwed to the wall from outside, or the printed bevel strips. Printed pieces fill the
+  corners either way.
 - **Release:** wax every surface the mix touches 3-5 times (Partall Paste #2), buff, then
   spray or wipe PVA. That includes the printed pieces that come out; not the ones that stay in.
 
 | Casting | Face on the mold floor | Size (mm) | Mass |
 |---|---|---|---|
-| Base front | top face (coolant floor) | 600 x 345 x 110 | 30.7 kg |
-| Base rear | top face | 600 x 380 x 110 | 41.1 kg |
+| Base front | top face (coolant floor) | 600 x 345 x 110 | 31.6 kg |
+| Base rear | top face | 600 x 380 x 110 | 39.7 kg |
 | Upright (x2) | foot (the face that sits on the base) | 80 wide, foot 400 long, 246 tall, sloped front | 12.1 kg each |
 | Beam | front face (rails) | 530 x 140 x 140 | 23.7 kg |
 
@@ -159,7 +163,8 @@ lists the printed parts.
   to the floor like the rest of the grid.
 - **Dowels** (rear half): two per upright, through the floor and the seat bars; they stand 15 mm proud and
   are grouted into oversize holes in the upright's foot at assembly (section 4).
-- **Legs:** through printed holders in the corners, each held at its cast-in depth by a pinch screw.
+- **Legs:** through printed holders near the corners (65 mm in from the sides and the front, 62 mm from
+  the back, behind the bevel), each held at its cast-in depth by a pinch screw.
 - **Cores:** taped XPS foam blocks on the wet 20 mm skin, between the steel; a printed post glued into each
   bolts to the side of a bridge. They can stay in.
 - **Uprights:** the foot bar lies on the floor. Stand the columns on a bed of thickened epoxy on it, set the
@@ -187,9 +192,9 @@ fills the gaps between the next size up), which is what lets the epoxy stay at 8
 | Part | Size | Source | % of mix | For the whole frame |
 |---|---|---|---|---|
 | Epoxy | | Raka 127 + 606 | 8.5 % | 9.6 kg |
-| Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 10.5 kg |
-| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 16 kg |
-| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 19 kg (base) + 17 kg of #16 grit (beam, uprights) |
+| Whiting (calcium carbonate) | 325 mesh, under 0.05 mm | pottery supplier | 9 % | 10 kg |
+| Fine sand | 0.1-0.6 mm | pool filter sand (#20 silica) | 15 % | 17 kg |
+| Coarse sand | 0.6-3 mm | concrete / all-purpose sand, sieved | 27.5 % | 31 kg |
 | Pea gravel | 3-6 mm | bagged pea gravel, sieved | 20 % | 23 kg |
 | Gravel | 6-10 mm | 3/8 in crushed stone (#8) or bigger pea gravel | 20 % | 23 kg |
 
@@ -199,15 +204,13 @@ gravel into these bands. Wash anything dusty or clay-coated, and dry everything 
 locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
 either works.
 
-**Beam and uprights: aluminum oxide instead of the coarse sand.** Aluminum oxide grit is about
-five times stiffer than sand or granite. Brown fused #16 (about 1.2 mm) replaces the coarse sand,
-which makes these castings roughly 20 % stiffer, about 5 % on the whole frame (the steel skeleton
-carries most of the load). The grit is heavier, so swap it by volume: **1.5 kg of #16 for every
-1 kg of coarse sand**, everything else (epoxy included) the same. A 50 lb bag covers the beam,
-both uprights and a pair of test bars. The fine sand stays sand, and the base keeps all sand.
-Don't over-vibrate these: the heavy grit can settle. Use an old paddle; the grit wears it.
-(Optional, and only before the pour: black 70 grit for the fine sand as well, 1.4 kg for every
-1 kg of fine sand, one 25 lb bag, is about 5 % more on the frame.)
+**The same mix in every casting.** The beam and uprights get their extra stiffness from steel
+(3/4 in beam bars, 3/16 in column walls), so all five castings use this plain mix.
+(Optional, and only before the pour: brown fused #16 aluminum oxide grit, about five times
+stiffer than sand, in place of the coarse sand in the beam and uprights adds about 8 % on the
+frame for one 50 lb bag. It's heavier, so swap it by volume: **1.5 kg of #16 for every 1 kg of
+coarse sand**, everything else, epoxy included, the same. Don't over-vibrate it: the heavy grit
+can settle. Black 70 grit for the fine sand, 1.4 kg for every 1 kg, is a further option on top.)
 
 8.5 % only works if the aggregate packs densely, so prove the mix before casting anything:
 
@@ -216,8 +219,8 @@ Don't over-vibrate these: the heavy grit can settle. Use an old paddle; the grit
    water is the void space. Nudge the coarse sand and fine sand up or down a few percent
    until it's as small as you can get it (below about 25 % of the jar is good).
 2. **Test bars.** Print or build a 40 x 40 x 500 mm bar mold (waxed like the others) and cast
-   two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings,
-   plus two at 8.5 % with the #16 grit for the beam and uprights.
+   two bars at 8.5 % and two at 9.5 %, about 2 kg each, vibrated the same way as the castings
+   (and two at 8.5 % with the #16 grit, if you use it).
 3. **Check them after 7 days.** Cut one bar of each pair open: there should be no voids larger
    than a grain of sand, and every stone should be wetted. Then tap-test the other: weigh it,
    rest it on two foam strips 112 mm in from each end, tap the middle with a small hammer and
@@ -225,19 +228,19 @@ Don't over-vibrate these: the heavy grit can settle. Use an old paddle; the grit
    about **E (GPa) = 4.8e-5 x mass (kg) x frequency (Hz)²**. The frame model assumes 30 GPa,
    about 570 Hz for a 1.9 kg bar; 25 GPa would cost about 13 % of the frame stiffness.
 4. **Pick the mix.** Use 8.5 % if its bar is void-free and at least as stiff as the 9.5 % one;
-   otherwise use 9.5 % and order the extra 1.5 qt epoxy kit. The alumina bar should come out
-   about 20 % stiffer than the plain 8.5 % one (35 % with the 70 grit as well; it's heavier, so
-   use the formula, not the pitch); if it's well short, or it has voids, cast the beam and
-   uprights with sand too.
+   otherwise use 9.5 % and order the extra 1.5 qt epoxy kit. A grit bar, if you cast one, should
+   come out about 20 % stiffer than the plain 8.5 % one (35 % with the 70 grit as well; it's
+   heavier, so use the formula, not the pitch); if it's well short, or it has voids, cast the
+   beam and uprights with sand.
 
 | Casting | Mix | Epoxy (8.5 %) |
 |---|---|---|
 | Base front | 30.7 kg | 2.6 kg |
 | Base rear | 41.1 kg | 3.5 kg |
-| Uprights (alumina) | 2 x 12.1 kg | 2 x 1.0 kg |
-| Beam (alumina) | 23.7 kg | 1.7 kg |
+| Uprights | 2 x 11.6 kg | 2 x 1.0 kg |
+| Beam | 18.0 kg | 1.5 kg |
 
-Add 5-10 % for waste: about 10.5 kg, plus about 1 kg for the test bars, which fits the 3 gal kit
+Add 5-10 % for waste: about 10 kg, plus about 1 kg for the test bars, which fits the 3 gal kit
 (about 12.5 kg). Mix only what you can place; if you're running short, the 1.5 qt kit covers
 the gel coat.
 
@@ -247,7 +250,8 @@ the gel coat.
    smooth, then the sands, then the gravel. Mix until every stone is wet and the color is even.
 3. **Place in layers** of 30-40 mm. Vibrate each layer until the surface goes glossy and stops
    releasing bubbles, then add the next. Work the mix around the steel, inserts and cores with a
-   stick. Vibrate the full mold for 20-30 minutes at the end.
+   stick, and pack it up under the base's bevel strips: the air runs up their slope to the open
+   face. Vibrate the full mold for 20-30 minutes at the end.
 4. **Level the open face** at the pour line, 25 mm below the wall tops: strike it off with a straight
    board in the two printed screed shoes (mold guide, "Pour"). Cover against dust, and leave it at 20-25 °C. Demold after the
    time your epoxy needs (usually 24-48 h), but don't load or machine anything for 7 days.

@@ -2,7 +2,7 @@ folder,file,kind,qty,size,grams,note
 base-box,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
 base-box,kit-partition-bracket.stl,kit,2,44 x 44 x 23,18,
 base-box,kit-saddle.stl,kit,6,53 x 31 x 25,73,The rear half needs six; four move over for the front half.
-base-box,kit-leg-holder.stl,kit,4,72 x 72 x 40,104,Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20).
+base-box,kit-leg-holder.stl,kit,4,102 x 102 x 40,214,Set the leg 92 mm proud of the holder and tighten the pinch screw (M4 x 20).
 base-rear,former-gutter-L-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the floor from underneath (the base is cast top face down).
 base-rear,former-gutter-L-part2of3.stl,former,1,15 x 124 x 10,8,
 base-rear,former-gutter-L-part3of3.stl,former,1,15 x 120 x 9,8,
@@ -10,19 +10,33 @@ base-rear,former-gutter-R-part1of3.stl,former,1,15 x 124 x 12,9,Bolts to the flo
 base-rear,former-gutter-R-part2of3.stl,former,1,15 x 124 x 10,8,
 base-rear,former-gutter-R-part3of3.stl,former,1,15 x 120 x 9,8,
 base-rear,former-motor-relief.stl,former,1,72 x 60 x 14,14,Bolts to the floor from underneath (the base is cast top face down).
-base-rear,filler-corner-L.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
-base-rear,filler-corner-R.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
+base-rear,filler-corner-L.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
+base-rear,filler-bevel-L-part1of2.stl,filler,1,64 x 171 x 38,55,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-rear,filler-bevel-L-part2of2.stl,filler,1,64 x 167 x 38,55,
+base-rear,filler-corner-R.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
+base-rear,filler-bevel-R-part1of2.stl,filler,1,64 x 171 x 38,55,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-rear,filler-bevel-R-part2of2.stl,filler,1,64 x 167 x 38,55,
+base-rear,filler-bevel-end-part1of3.stl,filler,1,174 x 64 x 38,56,"The bevel along the lower edge: at the pour line, bolted to the rear wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-rear,filler-bevel-end-part2of3.stl,filler,1,174 x 64 x 38,56,
+base-rear,filler-bevel-end-part3of3.stl,filler,1,170 x 64 x 38,56,
 base-front,former-gutter-L-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
 base-front,former-gutter-L-part2of2.stl,former,1,15 x 145 x 13,12,
 base-front,former-gutter-R-part1of2.stl,former,1,15 x 149 x 15,13,Bolts to the floor from underneath (the base is cast top face down).
 base-front,former-gutter-R-part2of2.stl,former,1,15 x 145 x 13,12,
 base-front,former-trough-part1of5.stl,former,1,116 x 35 x 19,21,Bolts to the floor from underneath (the base is cast top face down).
 base-front,former-trough-part2of5.stl,former,1,116 x 35 x 23,24,
-base-front,former-trough-part3of5.stl,former,1,116 x 35 x 33,27,
+base-front,former-trough-part3of5.stl,former,1,116 x 38 x 33,27,
 base-front,former-trough-part4of5.stl,former,1,116 x 35 x 24,25,
 base-front,former-trough-part5of5.stl,former,1,112 x 35 x 21,23,
-base-front,filler-corner-L.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
-base-front,filler-corner-R.stl,filler,1,40 x 40 x 110,21,Rounded corner; bolts to the floor and both walls.
+base-front,filler-corner-L.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
+base-front,filler-bevel-L-part1of2.stl,filler,1,64 x 154 x 38,50,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-front,filler-bevel-L-part2of2.stl,filler,1,64 x 150 x 38,50,
+base-front,filler-corner-R.stl,filler,1,45 x 45 x 110,32,Rounded corner; bolts to the floor and both walls.
+base-front,filler-bevel-R-part1of2.stl,filler,1,64 x 154 x 38,50,"The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-front,filler-bevel-R-part2of2.stl,filler,1,64 x 150 x 38,50,
+base-front,filler-bevel-end-part1of3.stl,filler,1,174 x 64 x 38,56,"The bevel along the lower edge: at the pour line, bolted to the front wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm)."
+base-front,filler-bevel-end-part2of3.stl,filler,1,174 x 64 x 38,56,
+base-front,filler-bevel-end-part3of3.stl,filler,1,170 x 64 x 38,56,
 base-rear,former-split-gasket-groove-part1of4.stl,former,1,145 x 14 x 8,2,Pins into the partition.
 base-rear,former-split-gasket-groove-part2of4.stl,former,1,145 x 4 x 8,2,
 base-rear,former-split-gasket-groove-part3of4.stl,former,1,145 x 4 x 8,2,
@@ -31,21 +45,11 @@ base-front,core-center-a-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: pu
 base-front,core-center-b-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-center-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-outboard-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-trough-band-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-draw-rod-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-foot-b-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-knee-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-outer-a-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-outer-b-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-rear-L-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,core-outboard-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-trough-band-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-front,core-draw-rod-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-foot-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-rear,core-knee-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-outer-a-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-outer-b-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
-base-rear,core-rear-R-post.stl,core,1,12 x 12 x 81,6,Post for a foam core: push it 30 mm into a snug hole in the foam and glue it.
 base-front,plug-draw-pocket-L.stl,plug,1,32 x 32 x 56,13,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
 base-front,plug-draw-pocket-R.stl,plug,1,32 x 32 x 56,13,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
 base-rear,plug-draw-pocket-L.stl,plug,1,32 x 32 x 20,6,Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall.
@@ -54,10 +58,10 @@ upright,kit-back-bracket.stl,kit,4,33 x 33 x 23,26,
 upright,kit-front-bracket.stl,kit,4,50 x 50 x 22,39,At the top of the front board; its foot sits in the toe filler's lip.
 upright,kit-saddle-flat.stl,kit,4,31 x 25 x 25,23,The bridge rests on them; its rods locate it.
 upright,filler-toe-filler.stl,filler,1,80 x 55 x 48,27,Rounds the nose into the slope; the front board's foot sits in its lip. Bolts to the floor.
-upright,former-foot-gasket-groove-part1of4.stl,former,1,68 x 129 x 8,4,Pins into the floor.
-upright,former-foot-gasket-groove-part2of4.stl,former,1,4 x 129 x 8,2,
-upright,former-foot-gasket-groove-part3of4.stl,former,1,4 x 129 x 8,2,
-upright,former-foot-gasket-groove-part4of4.stl,former,1,68 x 129 x 8,4,
+upright,former-foot-gasket-groove-part1of4.stl,former,1,68 x 143 x 8,4,Pins into the floor.
+upright,former-foot-gasket-groove-part2of4.stl,former,1,4 x 143 x 8,2,
+upright,former-foot-gasket-groove-part3of4.stl,former,1,4 x 143 x 8,2,
+upright,former-foot-gasket-groove-part4of4.stl,former,1,68 x 143 x 8,4,
 upright,plug-toe-plug.stl,plug,1,32 x 76 x 46,13,Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it.
 upright,kit-plate-spacer.stl,kit,2,16 x 16 x 31,9,"Between the bridge and the top plate, on its greased 3/8 bolt."
 beam,kit-corner-bracket.stl,kit,4,50 x 50 x 23,40,
@@ -69,7 +73,7 @@ tools,kit-pour-gauge.stl,kit,2,25 x 29 x 24,11,"Clips over a wall top; its inner
 tools,kit-screed-shoe.stl,kit,2,49 x 27 x 32,26,A pair: rest them on two facing wall tops and drop a straight board (on edge) into them; its bottom edge sits on the pour line. Slide it along to strike off.
 base-front,cast-in-leg-front-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,31 x 31 x 10,9,"Cast in, stays."
-upright,cast-in-column-ring-l1a.stl,cast-in,8,43 x 43 x 12,127,"Cast in, stays."
+upright,cast-in-column-ring-l1a.stl,cast-in,8,40 x 40 x 12,109,"Cast in, stays."
 machine,part-pocket-cap-l3.stl,part,2,32 x 65 x 37,27,
 machine,part-chain-mount-fixed.stl,part,1,25 x 38 x 21,10,
 machine,part-chain-mount-moving.stl,part,1,37 x 123 x 45,24,
