@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 *.FCBak
 analysis/log_*.txt
+
+# Rebuilt by model/build_cnc.py (CNC_SNAPSHOTS=1) and docs/src/make_pdfs.py; not kept in the repo
+model/DIYCNC.step
+model/DIYCNC.FCStd
+docs/3-molds/molds-complete.pdf
+docs/4-build/build-guide.pdf

@@ -1,7 +1,8 @@
 # Beam mold
 
-How to make the beam mold. Drilling templates: `templates/beam-templates.pdf`. The complete guide (all the molds and the
-sheet layout for the boards) is `molds-complete.pdf`.
+How to make the beam mold. Drilling templates: `templates/beam-templates.pdf`. The sheet layout for the boards is
+`docs/src/boards/sheet-1.svg`; `docs/src/make_pdfs.py` also makes `molds-complete.pdf`, all the molds in one
+(not kept in the repo).
 
 ![The beam mold, pulled apart](../../renders/mold/exploded-beam.png)
 

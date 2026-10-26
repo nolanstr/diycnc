@@ -3060,8 +3060,9 @@ def mold_guide(m, only=None):
         L += ['How to make the molds for the five castings. Each mold also has its own shorter guide in this folder',
               '(base, uprights, beam), and its own printable drilling templates in `templates/`.', '']
     else:
-        L += [f"How to make the {title.lower()}. Drilling templates: {tmpl}. The complete guide (all the molds and the",
-              'sheet layout for the boards) is `molds-complete.pdf`.', '']
+        L += [f"How to make the {title.lower()}. Drilling templates: {tmpl}. The sheet layout for the boards is",
+              '`docs/src/boards/sheet-1.svg`; `docs/src/make_pdfs.py` also makes `molds-complete.pdf`, all the molds in one',
+              '(not kept in the repo).', '']
     for mo in molds_:
         L += fig(*expl[mo])
     L += ['**In short:** melamine boards bolt together with printed brackets. Every printed piece bolts or pins to',

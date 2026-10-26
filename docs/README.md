@@ -22,7 +22,7 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 
 ## 3. Molds: making the molds
 
-- [molds-complete.pdf](3-molds/molds-complete.pdf): all the molds, with the sheet layout for the boards.
+- The [sheet layout](src/boards/sheet-1.svg) for the boards.
 - One guide per mold, each complete on its own (how the molds work, that mold's parts, hardware, boards,
   foam and steps): [base-mold.pdf](3-molds/base-mold.pdf) (both base halves),
   [upright-molds.pdf](3-molds/upright-molds.pdf), [beam-mold.pdf](3-molds/beam-mold.pdf).
@@ -32,7 +32,7 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 
 ## 4. Build: casting and assembly
 
-- [build-guide.pdf](4-build/build-guide.pdf): the whole build. The same in stages, for the bench:
+- The build guide, in stages for the bench:
   1. [1-steel.pdf](4-build/1-steel.pdf): tools, space and safety; buying and preparing the steel.
   2. [2-casting.pdf](4-build/2-casting.pdf): the molds (summary) and the mix, test bars and casting.
   3. [3-frame.pdf](4-build/3-frame.pdf): joining the castings (grouting the dowels, the tie rods) and bedding the rail risers.

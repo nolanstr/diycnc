@@ -1,7 +1,8 @@
 # Base mold
 
-How to make the base mold. Drilling templates: `templates/base-templates.pdf`. The complete guide (all the molds and the
-sheet layout for the boards) is `molds-complete.pdf`.
+How to make the base mold. Drilling templates: `templates/base-templates.pdf`. The sheet layout for the boards is
+`docs/src/boards/sheet-1.svg`; `docs/src/make_pdfs.py` also makes `molds-complete.pdf`, all the molds in one
+(not kept in the repo).
 
 ![The base mold (rear half), pulled apart](../../renders/mold/exploded-base.png)
 
