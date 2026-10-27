@@ -25,7 +25,7 @@ to be decided before the pour.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,264.11 |
+| 1 | Castings and hardware | $1,344.11 |
 | 1 | Rails, screws and mechanics | $247.14 |
 | 1 | First chips | $20.00 |
 | 1 | Add later (niceties), not in the frame total | $183.09 |
@@ -35,10 +35,10 @@ to be decided before the pour.
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,531.25** + $183.09 of niceties, added later |
+| **1. Frame** | **$1,611.25** + $183.09 of niceties, added later |
 | **2. Electronics + spindle** | **$418.31** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
 | **3. Enclosure + flood coolant** | **$537.99** + 1 unpriced (Flood coolant pump): about $650-700 |
-| **Total** | **about $2.85-3.25k**, plus the niceties |
+| **Total** | **about $2.93-3.33k**, plus the niceties |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -51,7 +51,7 @@ no ready-made SFU1204 (lead 4) kit, and the 1605 screw-end machining for BK12/BF
 confirmed. Worth adding the rails and couplers only to a JLC order you are placing anyway.
 JLCCNC machining of the three aluminum plates with all holes is estimated at $430-850
 delivered (90 % duty prepaid on machined aluminum): not worth it for plates drilled to the parts
-(and the X carriage is steel now). Retail cut-to-size shops (e.g. Metal Supermarkets, about $820 for
+(and the X carriage and Z plate are steel now). Retail cut-to-size shops (e.g. Metal Supermarkets, about $820 for
 the tube, risers and aluminum) also cost more than the sources here.
 
 ## Part 1 - Frame: castings and hardware
@@ -70,9 +70,10 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Mold release wax | Partall Paste #2 | 1 | [Partall Paste #2, 12 oz (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $20.96 | $20.96 | 3-5 coats, then the PVA. |
 | Mold release film | PVA, over the wax | 1 (pint) | [Partall #10 PVA film (Fiberglass Supply)](https://www.fiberglasssupply.com/partall/) | $8.36 | $8.36 |  |
 | Edge rounds and fillets | 3/8 in PVC quarter-round, about 6 m; a tube of silicone | 1 set | PVC quarter-round molding + clear silicone (hardware store) | ~$20 | $20.00 | Quarter-round in the corners that make outside edges; silicone fillets elsewhere (the mold guide). |
-| Steel, stock flat bar and tube | Flat bar 3/8 in x 1-1/2 (4.2 ft), x 2 (2.8 ft), x 2-1/2 (8.4 ft), x 3-1/2 (one 3-9/16 in piece, the Y bracket pad); 1/2 x 2-1/2 in (2.6 ft); 3/4 x 5 in (3.3 ft); 5/8 x 6 in (one 16-1/16 in piece, the X carriage). Angle 1-1/4 x 1-1/4 x 1/4 in (2x 10-1/8 in, up the back of the carriage). Tube: 2x3x1/8 (4.0 ft), 2x2x3/16 (1.8 ft + 4x 8-1/8 in), 1-1/2x1-1/2x1/8 (3.2 ft + 4x 6 in) | ~158 lb | A local steel yard or Metal Supermarkets, cut to the list in docs/1-sourcing/steel/ (Online Metals, Speedy Metals and Zoro sell the same sizes by the piece) | ~$400 | $400.00 | About $2/lb for flat bar and $3/lb for tube, plus cutting, at a yard or service center: get a quote with the cut list (Baltimore: Alro Metals Outlet, Essex; Metal Supermarkets, Golden Ring Rd; DS Pipe & Steel, Wicomico St). The 3/4 x 5 in beam bars and 3/16 in column walls (about 27 lb, $60) replace the alumina grit ($110). The X carriage is steel too (about 20 lb with its angles, $40): it was the softest part between the tool and the work (design notes). Speedy Metals: 3/8 x 2-1/2 in flat $19.13 per 36 in (about $2/lb), plus shipping, and you cut them. Retail cut pieces cost far more (Zoro: about $27/ft for 3/8 x 2-1/2 in bar). Drill and tap from docs/1-sourcing/steel/steel-templates.pdf. |
+| Steel, stock flat bar and tube | Flat bar 3/8 in x 1-1/2 (4.2 ft), x 2 (2.8 ft), x 2-1/2 (8.4 ft), x 3-1/2 (one 3-9/16 in piece, the Y bracket pad); 1/2 x 2-1/2 in (2.6 ft); 3/4 x 5 in (3.3 ft); 5/8 x 6 in (16-1/16 in, the X carriage, and 11-13/16 in, the Z plate). Angle 1-1/4 x 1-1/4 x 1/4 in (2x 10-1/8 in, up the back of the carriage). Tube: 2x3x1/8 (4.0 ft), 2x2x3/16 (1.8 ft + 4x 8-1/8 in), 1-1/2x1-1/2x1/8 (3.2 ft + 4x 6 in) | ~171 lb | A local steel yard or Metal Supermarkets, cut to the list in docs/1-sourcing/steel/ (Online Metals, Speedy Metals and Zoro sell the same sizes by the piece) | ~$425 | $425.00 | About $2/lb for flat bar and $3/lb for tube, plus cutting, at a yard or service center: get a quote with the cut list (Baltimore: Alro Metals Outlet, Essex; Metal Supermarkets, Golden Ring Rd; DS Pipe & Steel, Wicomico St). The 3/4 x 5 in beam bars and 3/16 in column walls (about 27 lb, $60) replace the alumina grit ($110). The X carriage is steel too (about 20 lb with its angles, $40): it was the softest part between the tool and the work (design notes). So is the Z plate (about 13 lb, $25): stiffer and cheaper than the aluminum bar. Speedy Metals: 3/8 x 2-1/2 in flat $19.13 per 36 in (about $2/lb), plus shipping, and you cut them. Retail cut pieces cost far more (Zoro: about $27/ft for 3/8 x 2-1/2 in bar). Drill and tap from docs/1-sourcing/steel/steel-templates.pdf. |
+| Grinding | Blanchard grind both faces flat and parallel: the X carriage, the Z plate and the two 5/8 x 1-1/4 x 300 mm Z risers | 1 lot | Metal Supermarkets (grinds what it sells at some stores; ask with the steel quote) or a local grinding shop | ~$75 | $75.00 | Before drilling. The rails and blocks sit on these metal to metal, with no epoxy bed to take up mill scale or bow; the Y and X risers are bedded on epoxy, so they need nothing. Buy the Z risers with the plates so one lot covers all four. |
 | Rail risers | Cold-rolled 1018 x 1-1/4 in: 3/4 thick 2x 600 mm; 5/8 thick 2x 400 + 2x 300 mm | ~4 + 5 ft | Steel yard (local) | ~$40 | $40.00 | About 26 lb at $1-2/lb. Online: Speedy Metals $60 + shipping. Pieced bars are fine (two rail screws per piece). |
-| Aluminum plates | 6061 flat bar in stock widths, cut to length: table 3/4 x 10 x 12-5/8 in, Z plate 5/8 x 6 x 11-13/16 in | ~14 lb | [Drops or flat bar from the steel yard / eBay "6061 flat bar"; Speedy Metals cuts the same bar to length](https://speedymetals.com/p-2301-34-x-10-6061-t6511-aluminum-extruded.aspx) | ~$65 | $65.00 | Stock widths, so a drop or a piece of bar only needs a length cut. About $2.3-4.5/lb if you find drops. Bought new and cut to length it is about $155 + shipping (Speedy Metals by the inch, 2026-10-26: 3/4 x 10 in $8.31/in, 5/8 x 6 in $4.08/in). Check flatness; face the table on the machine. The X carriage is steel now (steel row). |
+| Aluminum table | 6061 flat bar in a stock width, cut to length: 3/4 x 10 x 12-5/8 in | ~9 lb | [Drops or flat bar from the steel yard / eBay "6061 flat bar"; Speedy Metals cuts the same bar to length](https://speedymetals.com/p-2301-34-x-10-6061-t6511-aluminum-extruded.aspx) | ~$45 | $45.00 | A stock width, so a drop or a piece of bar only needs a length cut. About $2.3-4.5/lb if you find drops. Bought new and cut to length it is about $105 + shipping (Speedy Metals by the inch, 2026-10-26: 3/4 x 10 in $8.31/in). Face it on the machine once it runs. The X carriage and Z plate are steel now (steel row). |
 | Threaded studs | 1/2-13 grade B7 fully threaded studs, bought at length: 4x 14-1/4, 2x 6 in (uprights), 2x 27 in (base draw rods), 4x 10-3/4 + 6x 8-1/2 in (base cross rods) | 18 | [Bolt Depot B7 fully threaded studs, plain (sold in 1/4 in steps; not Amazon)](https://boltdepot.com/Fully_threaded_studs_B7_alloy_steel_plain_finish_1_2-13) | ~$2-10 | $80.00 | Nothing to saw: every rod is a stock stud length (each within 3 mm of the length it replaces; the tail past the far nut takes it). Estimate from the 6 in at $2.18; longer ones scale with length. B7 is about as strong as grade 8, well above the zinc rod it replaces ($60 at Home Depot, sawn by hand). If a length is not stocked (the 27 in draw rods most likely), cut it from 1/2-13 B7 rod. |
 | Beam studs | 3/8-16 grade B7 fully threaded studs, bought at length: 8x 7-1/2 in (beam studs), 3x 4-1/2 in (beam ties); 3/8-16 nuts and washers (11) | 11 | [Bolt Depot B7 fully threaded studs, plain, 3/8-16 (not Amazon)](https://www.boltdepot.com/) | ~$1.5-2 | $20.00 | Same order as the 1/2-13 studs. Grade B7 is about as strong as a grade 8 bolt; plain zinc rod is not. If not stocked at these lengths: 3/8-16 B7 rod, 3x 3 ft ($7.63 each), sawn. |
 | Pipe nipples | 1/2 in x 2-1/2 in black steel pipe nipple (beam spacers) | 3 | Everbilt black pipe nipple (Home Depot) | ~$3 | $9.00 |  |
@@ -93,7 +94,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 | Drain nipple | 1/2 NPT brass | 1 (2-pack) | [Legines brass barb 1/2 NPT x 5/8](https://www.amazon.com/dp/B077DMKGLB) | $10.99 | $10.99 | Cast into the base, pointing down into the sump. +$7.59 shipping; a hardware-store 1/2 NPT brass nipple works too. |
 
-**Priced subtotal: $1,264.11**
+**Priced subtotal: $1,344.11**
 
 ## Part 1 - Frame: rails, screws and mechanics
 

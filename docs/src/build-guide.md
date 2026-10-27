@@ -60,6 +60,10 @@ granite.
    sellers sell it in fixed lengths you cut with a chop saw or hacksaw. Plus, bought at length: 2 x 2 in
    tube, 4 x 8-1/8 in (the upright columns), and 1-1/2 x 1-1/2 in tube, 4 x 6 in (legs). A saw cut within
    1/8 in is fine everywhere (the report's "Steel cut to length" table lists where each error goes).
+   **Have the two 5/8 x 6 in plates (the X carriage and the Z plate) and the two Z risers Blanchard
+   ground** on both faces, flat and parallel, before you drill them: the rail blocks sit on them metal to
+   metal, with no epoxy bed to take up mill scale or bow. Metal Supermarkets grinds what it sells at some
+   stores; otherwise any grinding shop. Nothing else needs it: the Y and X risers are bedded on epoxy.
 2. **Drill and tap from the templates.** Print `docs/1-sourcing/steel/steel-templates.pdf` at actual
    size (check the 100 mm square), tape each part's outline to the part, center-punch every crosshair
    and drill on a drill press. The legend on each page gives the drill, and which holes to tap:
@@ -78,7 +82,7 @@ granite.
      support pads bolted onto their cross tubes. Glue the four 3/8 x 1 in dowel pins into the rear half's
      split end plates, half their length out.
 4. **Rail risers** (cold-rolled 1018, 1-1/4 in wide, ordered cut to the rail lengths): Y 3/4 in x
-   600 mm (2), X 5/8 in x 400 mm (2), Z 5/8 in x 300 mm (2). The rails are used at full length.
+   600 mm (2), X 5/8 in x 400 mm (2), Z 5/8 in x 300 mm (2, ground with the plates). The rails are used at full length.
    - Clamp each rail on its riser, centered, and use the rail's own holes as the drill
      template; drill and tap M4 (60 mm pitch). Mark which rail goes on which riser.
    - Y and X risers also get the hold-down holes, midway between rail holes and under the
@@ -349,7 +353,7 @@ steel: the base's rail bars and the beam's face bar, tapped M5.
 2. BK10 and BF10 onto the beam's face bar, tapped M6: M6 x 40 (the casting is relieved behind each
    hole, so the screws don't bottom).
    Align and check as for Y.
-3. The X carriage is 5/8 in steel: drill and tap it to the parts it carries (the four X blocks and the
+3. The X carriage is 5/8 in steel, ground both sides: drill and tap it to the parts it carries (the four X blocks and the
    nut housing on the back, the four Z blocks and the Z BK10/BF10 on the front, M4 and M6). Use a drill
    press, spiral-point taps and cutting oil; mark from the parts themselves or from a printed layout.
    Drill the two 1-1/4 in angles (five 17/64 in holes each, from the steel templates), clamp each one up
@@ -359,9 +363,10 @@ steel: the base's rail bars and the beam's face bar, tapped M5.
    motor.
 
 **Z.**
-1. Z risers onto the Z plate: tap the risers M5 and screw them on from the back of the plate
-   (no inserts needed in aluminum). Rails on the risers, and the four Z blocks on the front
-   of the X carriage.
+1. The Z plate is 5/8 in steel too, ground both sides: drill it as the carriage, from the parts it
+   carries (the risers and the nut housing on the back, the spindle clamp on the front), and oil or
+   paint the bare faces. Z risers onto the Z plate: tap the risers M5 and screw them on from the back
+   of the plate. Rails on the risers, and the four Z blocks on the front of the X carriage.
 2. BK10 / BF10 and the Z screw on the carriage, nut housing on the Z plate, open-loop motor
    on top.
 3. Spindle clamp on the Z plate, spindle in the clamp. Tram it later (section 9).

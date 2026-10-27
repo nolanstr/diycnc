@@ -54,6 +54,8 @@ VARIANTS = {
     'table1': ('1 in table', dict(P=dict(table_t=25.4))),
     'zpitch': ('Z blocks 88 mm apart (as far as the travel allows)', dict(P=dict(z_blk_pitch=88.0))),
     'noangles': ('No angles up the carriage back', dict(no_angles=True)),
+    'zpalu': ('5/8 in aluminum Z plate (as it was)', dict(zp_alu=True)),
+    'tablesteel': ('Steel table', dict(table_steel=True)),
 }
 FREECAD = os.environ.get('FREECADCMD', '/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd')
 
@@ -157,7 +159,8 @@ def head(g, opt, dz):
     """X carriage + Z plate, Z lowered dz from the top. Returns {(xc, dir): (compliance, energies)}."""
     zp, car = box(g, 'ZPlate', dz), box(g, 'XCarriagePlate')
     steel = g['looks']['XCarriagePlate'].startswith('steel') and not opt.get('car_alu')
-    bodies = [Body('Z plate', zp, E_AL), Body('X carriage', car, E_ST if steel else E_AL)]
+    zp_steel = g['looks']['ZPlate'].startswith('steel') and not opt.get('zp_alu')
+    bodies = [Body('Z plate', zp, E_ST if zp_steel else E_AL), Body('X carriage', car, E_ST if steel else E_AL)]
     bodies += [Body('Z plate', box(g, f'Z_{p}{s}', dz), E_ST) for p in ('Riser', 'Rail') for s in 'LR']
     a, t = g['P']['car_angle']
     for side in ('L', 'R') if not opt.get('no_angles') else ():
@@ -237,7 +240,7 @@ def head(g, opt, dz):
 def table(g, opt):
     """Table on its blocks and the Y screw. Returns {(xc, yt, dir): (compliance, energies)}."""
     tb = box(g, 'Table')
-    part = Part([Body('Table', tb, E_AL)], tb[:3])
+    part = Part([Body('Table', tb, E_ST if opt.get('table_steel') else E_AL)], tb[:3])
     m, h = part.mesh, H
     springs, tags = [], []
     kb = opt.get('block', SPRINGS['block']) * 1e3

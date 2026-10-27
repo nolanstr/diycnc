@@ -2,12 +2,12 @@
 
 Ready to send: copy the text into the seller's email or quote form, fill in your name and phone, and
 send. Contacts were checked on 2026-10-22; none of these sellers publishes prices for cut pieces, so a
-quote is the only way to beat the estimates in the sourcing list (steel ~$400, aluminum ~$65, ACM
+quote is the only way to beat the estimates in the sourcing list (steel ~$425, grinding ~$75, aluminum ~$45, ACM
 ~$117 + freight).
 
 ## 1. Steel, rail risers and aluminum plates
 
-Send the same request to all four and take the best. Ask each to quote both ways: cut to the list,
+Send the same request to all four and take the best. Metal Supermarkets may also grind the two 5/8 x 6 in plates and the Z risers (the last paragraph), which saves a trip to a grinding shop. Ask each to quote both ways: cut to the list,
 and the same stock uncut (drops or full lengths), since a chop saw does the rest.
 
 | Seller | How to send | Notes |
@@ -33,7 +33,7 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 > - 3/8 x 2 in: 2 pcs at 14.76 in, 1 pc at 3.54 in
 > - 3/8 x 2-1/2 in: 4 pcs at 11.22 in, 4 pcs at 5.25 in, 8 pcs at 3.00 in, 4 pcs at 2.60 in
 > - 3/8 x 3-1/2 in: 1 pc at 3.56 in
-> - 5/8 x 6 in: 1 pc at 16.06 in
+> - 5/8 x 6 in: 2 pcs, 1 at 16.06 in and 1 at 11.81 in (see grinding below)
 >
 > **Angle (A36)**
 > - 1-1/4 x 1-1/4 x 1/4 in: 2 pcs at 10.13 in
@@ -49,9 +49,12 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 >
 > **Aluminum 6061 flat bar** (drops or remnants welcome; MIC-6 even better if you have it)
 > - 3/4 x 10 in: 1 pc at 12.63 in
-> - 5/8 x 6 in: 1 pc at 11.81 in
 >
-> Total is roughly 185 lb of steel and 14 lb of aluminum. Could you also tell me your cutting
+> **Blanchard grinding**, if you offer it: both faces of the two 5/8 x 6 in pieces and the two 5/8 x
+> 1-1/4 x 11.81 in cold-rolled pieces, ground flat and parallel (clean up, about 0.010-0.020 in a side;
+> the final thickness doesn't matter, but please grind the two narrow pieces to the same thickness).
+>
+> Total is roughly 198 lb of steel and 9 lb of aluminum. Could you also tell me your cutting
 > charge, and whether I can pick it up the same week?
 >
 > Thank you,

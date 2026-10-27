@@ -71,7 +71,7 @@ P = dict(
     # the front ends stay clear of the coolant trough.
     table_rail_len=600.0, table_rail_y=20.0, table_rail_spacing=180.0, table_blk_pitch=150.0,
     table_screw_len=550.0, table_riser_t=19.05,   # 3/4 in risers clear the 43 mm BK12
-    # The table and Z plate are stock 6061 flat-bar widths (10 in and 6 in), so the only cut is their length.
+    # The table is a stock 6061 flat-bar width (10 in), so the only cut is its length.
     table_len=320.0, table_w=254.0, table_t=19.05, table_hole_pitch=25.0,
 
     # Beam axis (X): owned HGR15-400 pair + SFU1204-400 kit
@@ -2005,7 +2005,12 @@ def build():
         m.add(ang.name, 'xcar', ang.shape, 'steeltube')
         m.plates.append(ang)
     d['car_angle_z'] = (ang_z0, z_flange)
-    m.add('ZPlate', 'zaxis', parts.plate(-P['zplate_w'] / 2, P['zplate_w'] / 2, zp_front, zp_back, zp_bot, zp_top), 'alu')
+    # The Z plate is steel too (5/8 x 6 in, like the carriage): stiffer and cheaper than the aluminum bar. Both
+    # plates and the Z risers are ground flat and parallel before they're drilled (the rails sit on them metal
+    # to metal, with no epoxy bed to take up mill scale or bow).
+    zpl = sk.flat_bar('ZPlate', 'y', zp_front, P['zplate_t'], -P['zplate_w'] / 2, zp_bot, P['zplate_w'] / 2, zp_top)
+    m.add(zpl.name, 'zaxis', zpl.shape, 'steeltube')
+    m.plates.append(zpl)
     cast_anchors(m, d)
     steel_tolerance(m, d)
 
@@ -2048,7 +2053,8 @@ def build():
          'buy'),
         ('xcar', 'Steel angles up the carriage back: M6 x 16 button heads through the flat leg into the carriage '
                  '(tapped through the angle\'s holes)', f"{2 * sk.ANGLE_HOLES} pcs", 'buy'),
-        ('all', '6061 flat bar cut to length: Z plate', f"5/8 x {sk.inch(P['zplate_w'])} in x {sk.inch(P['z_rail_len'])} in long", 'buy'),
+        ('xcar, zaxis', 'Grinding: both faces of the X carriage, the Z plate and the two Z risers, flat and parallel',
+         'one lot', 'buy (a local grinding shop)'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
         ('enclosure', 'M5 x 35 cap screw through the bottom rails into cast-in inserts', f"{len(d['rail_bolts'])} pcs", 'buy (part 3)'),
@@ -3392,11 +3398,13 @@ def write_steel_parts(m):
         pieces = ', '.join(f'{q} x {ln}' for ln, q in sorted(merged.items(), reverse=True))
         cut.append(f'| {stock} | {pieces} | {total / 304.8:.1f} ft |')
     with open(os.path.join(out, 'README.md'), 'w') as fh:
-        fh.write('# Steel for the skeletons and the X carriage\n\nAll stock mild steel (A36 / A500), nothing custom: buy it cut to length '
+        fh.write('# Steel for the skeletons, the X carriage and the Z plate\n\nAll stock mild steel (A36 / A500), nothing custom: buy it cut to length '
                  '(Metal Supermarkets, Online Metals, a local steel yard; flat bar and tube also come in 3 and 6 ft '
                  'lengths on Amazon and at hardware stores, and a chop saw or hacksaw does the rest). Drill and tap '
                  'it from the printed 1:1 templates in `steel-templates.pdf` (center-punch through the paper, then '
-                 'a drill press).\n\n'
+                 'a drill press). Buy the X carriage and Z plate (5/8 x 6 in) and the two 5/8 in Z risers where they '
+                 'can be Blanchard ground: both faces flat and parallel, before you drill them (Metal Supermarkets '
+                 'grinds what it sells at some stores).\n\n'
                  f'{len(rows)} different parts, {sum(r[1] for r in rows)} pieces, about {kg:.0f} kg.\n\n'
                  '## Cut list (by stock size)\n\n| Stock | Pieces (qty x length, mm) | Total |\n|---|---|---|\n'
                  + '\n'.join(cut) + '\n\n## Parts\n\n| Part | Stock | Length | Qty | Holes |\n|---|---|---|---|---|\n'

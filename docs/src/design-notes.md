@@ -24,8 +24,9 @@ and the cable-chain mount).
 **Nothing is made to order.** The rails (including the 600 mm Y pair) and ballscrews are used at the
 lengths they're sold in; the skeletons are about 54 pieces of stock flat bar and tube (56 kg) cut to
 length (`docs/1-sourcing/steel/` has the cut list and the drilling templates); the risers and the aluminum
-plates are ordered cut to length (the table and Z plate are stock 6061 flat-bar widths, 10 in and 6 in; the X
-carriage is 5/8 x 6 in steel flat bar with two 1-1/4 in angles, bought with the skeletons' steel). Every rod is a grade B7 fully threaded stud bought at a stock length (they come in 1/4 in
+table are ordered cut to length (the table is a stock 6061 flat-bar width, 10 in; the X carriage and the Z plate
+are 5/8 x 6 in steel flat bar, Blanchard ground with the Z risers, the carriage with two 1-1/4 in angles, all
+bought with the skeletons' steel). Every rod is a grade B7 fully threaded stud bought at a stock length (they come in 1/4 in
 steps; each is within 3 mm of the length the joint wants, and the tail past its far nut takes the
 difference), so nothing is sawn at home: the machining is drilling and tapping (from the templates) and the
 risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
@@ -147,7 +148,8 @@ one (the kit's BK12 is a spare), bolt into tapped pads on the base grid's cross 
 3/8 x 3-1/2 in bar, wide enough for its six holes. The X supports (BK10/BF10) bolt into the beam's face bar;
 X and Z get HM10-57 brackets too, drawn once the one on hand is measured (no drawing is published). Behind every tapped hole there's room
 (the casting is relieved where the greased mold screw stood, or a relief hole is drilled in the tube
-below). The Z axis mounts on the X carriage (steel) and the Z plate (aluminum).
+below). The Z axis mounts on the X carriage and the Z plate, both steel, ground flat and parallel with the Z
+risers (the rails and blocks sit on them metal to metal, with no epoxy bed under them).
 
 **Load path.** A cutting force goes spindle, Z plate, Z and X blocks, X rails, steel risers, the beam's
 face bar and the steel behind it; at each end the seat bar bears on the upright's top plate, clamped by
@@ -324,22 +326,22 @@ scales almost directly with E:
 So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
 test and tap-tested bars check both before anything is cast.
 
-**Vibration** (`analysis/modal.py`). The frame on its four feet, with 18.5 kg of X carriage (steel, with its
-angles), Z axis and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, as drawn now
+**Vibration** (`analysis/modal.py`). The frame on its four feet, with 22.2 kg of X carriage (steel, with its
+angles), Z axis (steel Z plate) and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, as drawn now
 (plain sand, 3/4 in beam bars, the legs tucked in behind the base's bevel, the uprights' backs raked), with the optional #16 grit
 on top (`FEA_GRIT=1.22`), and with the legs in the corners and a square edge, as before. Tucking the
 legs in shortens the span the base bends over between its feet: +17 % in the first mode and +31 % in
 the base's own bending, more than any change to the castings has bought (the grit and corner-leg columns
 were run on the 600 mm wide frame, before the 6 in carriage brought the uprights in, and with the 12 kg
-aluminum-carriage head; the steel carriage's 6.5 kg take the drawn modes from 149 / 300 / 391 / 400 Hz to the
-figures here):
+aluminum-carriage head; the steel carriage and Z plate, about 10 kg more, take the drawn modes from 149 / 300 / 391 / 400 Hz to
+the figures here):
 
 | Mode | Drawn | + #16 grit | Legs in the corners | Motion |
 |---|---|---|---|---|
-| 1 | **146 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
-| 2 | **281 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
-| 3 | **379 Hz** | 391 Hz | 298 Hz | base bends, front to back |
-| 4 | **385 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
+| 1 | **145 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
+| 2 | **271 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
+| 3 | **371 Hz** | 391 Hz | 298 Hz | base bends, front to back |
+| 4 | **376 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 All four are inside the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -365,8 +367,9 @@ and the bolted joints as bonded, so the real machine is somewhat softer still.
 | Tool against work, N/um | X | Y | Z |
 |---|---|---|---|
 | The frame alone (above) | 107.4 | 168.2 | 146.4 |
-| With the moving parts, 5/8 in aluminum X carriage (as it was) | 3.1 | 2.7 | 4.0 |
-| **With the moving parts, 5/8 in steel X carriage and two angles (drawn)** | **3.5** | **3.5** | **6.6** |
+| With the moving parts, 5/8 in aluminum X carriage and Z plate (as it was) | 3.1 | 2.7 | 4.0 |
+| With the moving parts, 5/8 in steel X carriage and two angles, aluminum Z plate | 3.5 | 3.5 | 6.6 |
+| **With the moving parts, steel X carriage with its angles and steel Z plate (drawn)** | **3.8** | **3.8** | **6.9** |
 
 The moving parts are where the machine gives: the frame is 2-4 % of the deflection at the tool. With
 the aluminum carriage the carriage itself was the softest link, half of the Z deflection and a third
@@ -375,21 +378,24 @@ of Y's: between the X blocks it bends where the Z blocks bear on it, and above t
 A thicker carriage moves the spindle away from the beam and gives some of the gain back; steel at the
 same thickness doesn't, costs less than the aluminum bar (about $35 at the yard against $66 or more new)
 and only weighs 5 kg more. The two 1-1/4 x 1-1/4 x 1/4 in angles bolted up its back, above the beam's
-drip shield, stiffen that cantilever. What each change is worth (`python chain.py <variant>`):
+drip shield, stiffen that cantilever. With the carriage fixed, the aluminum Z plate was next (a fifth of X
+and Y): steel there too, the same 5/8 x 6 in bar for less money, 3.7 kg more on the Z screw. What each
+change is worth (`python chain.py <variant>`):
 
 | Change from the drawn machine | X | Y | Z |
 |---|---|---|---|
-| 5/8 in aluminum carriage, no angles (as it was) | -12 % | -23 % | -40 % |
+| 5/8 in aluminum carriage and Z plate, no angles (as it was) | -20 % | -30 % | -42 % |
+| 5/8 in aluminum Z plate | -9 % | -9 % | -4 % |
 | No angles | 0 | 0 | -8 % |
-| Medium-preload blocks (ZA, 365 N/um: genuine HIWIN, a bolt-on upgrade) | +26 % | +21 % | +11 % |
-| Blocks at half the catalog rigidity (a loose clone: check them for play) | about -27 % | about -23 % | about -12 % |
+| Medium-preload blocks (ZA, 365 N/um: genuine HIWIN, a bolt-on upgrade) | +28 % | +24 % | +12 % |
+| Blocks at half the catalog rigidity (a loose clone: check them for play) | -31 % | -27 % | -17 % |
 | Y screw fixed at both ends (the spare BK12 for the BF12) | 0 | +5 % | 0 |
 | Screw bearings or nuts twice as stiff | +1-3 % | | |
 | 1 in table, 1 in or 3/4 in Z plate | +3-9 % | | |
 
-(The blocks-at-half row was run with the aluminum carriage.) Drawn, the deflection is shared by the Z
-plate and Z blocks (half of X and 40 % of Y), the X blocks (12-16 %), the table and the Z screw (a quarter
-and a fifth of Z) and the carriage (18 % of Y and 20 % of Z). That is the order for any later upgrades;
+(The last two rows were run with the aluminum Z plate.) Drawn, the deflection is shared by the Z blocks
+and Z plate (45 % of X and 35 % of Y), the X blocks (12-18 %), the table and the Z screw (a quarter and a
+fifth of Z) and the carriage (20 % of Y and 22 % of Z). That is the order for any later upgrades;
 the frame doesn't need anything. It also says the frame has stiffness to spare, which is right for the
 one part that can't be changed after the pour: everything that bolts on can be upgraded later.
 
@@ -497,7 +503,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/22, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews) about **$1,531**, plus about **$183 of add-later
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,611**, plus about **$183 of add-later
 niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
 they're bought; **2, the electronics and spindle** about **$418** plus the spindle the builder picks
 ($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
@@ -542,16 +548,34 @@ link between the tool and the work; steel at the same size is +13 / +30 / +65 % 
 | The carriage in 5/8 x 6 in steel and two 1-1/4 in angles, with the skeletons' steel (about 20 lb) | +$40 |
 | The carriage out of the aluminum (its share of the drop estimate) | -$20 |
 | M6 screws for the angles | +$4 |
-| **Now** | **$1,531** |
+| **After** | **$1,531** |
 
 Against aluminum bought new (about $66 for the carriage alone) it is about $30 cheaper, not dearer.
 
+**The steel Z plate and grinding (2026-10-27).** The same study puts the aluminum Z plate next in line, and
+steel there is +10 / +9 / +4 % at the tool for less money. Steel bar as it comes isn't flat, though
+(hot-rolled bar can be half a millimeter out over the carriage's length), and the carriage and the Z plate
+carry the rails and blocks metal to metal, so both plates and the Z risers are ground:
+
+| Change | Frame |
+|---|---|
+| Before | $1,531 |
+| The Z plate in 5/8 x 6 in steel, with the skeletons' steel (about 13 lb) | +$25 |
+| The Z plate out of the aluminum | -$20 |
+| Blanchard grinding: the carriage, the Z plate and the Z risers, both faces | +$75 |
+| **Now** | **$1,611** |
+
+The grinding is the only real addition, and it buys accuracy, not stiffness. Machining the plates on the
+machine itself (built first with the bars as they come, then facing a second pair and swapping them in)
+would cost about $35 of bar instead, but the result is only as flat as the machine's own travel, and
+custom-machined steel parts (online quotes run from tens to over a hundred dollars a part) cost more than the stock bar and the grinding.
+
 What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
-(about $315 at $2/lb, against the $400 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
+(about $340 at $2/lb, against the $425 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
 clone dimensions vary), and car paste wax under the PVA instead of Partall ($15 less; test it on a
-melamine offcut). The aluminum plates are the risk the other way: they are stock flat-bar widths now, so any
-drop of 10 in or 6 in bar only needs a length cut, but bought new and cut to length the table and Z plate are
-about $155 against the $65 estimate.
+melamine offcut). The aluminum table is the risk the other way: it is a stock flat-bar width, so any
+drop of 10 in bar only needs a length cut, but bought new and cut to length it is about $105 against the $45
+estimate.
 
 The estimate below was made before the listings were checked and is too low; it assumed
 AliExpress-level prices. It's kept here to show what each earlier cost-down change saves.

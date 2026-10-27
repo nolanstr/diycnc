@@ -22,7 +22,7 @@ from vfe import CholeskyFactor, Voxels, wrench_loads
 RHO_EG, RHO_ST = 2.35e-9, 7.85e-9    # t/mm^3 (mm, N, t -> s)
 
 # Moving assemblies: mass (kg), center of mass offset from (tool x, tool y, z), box size for inertia (mm)
-HEAD = dict(m=18.5, at=(0.0, 30.0, 440.0), box=(170.0, 150.0, 300.0))      # steel X carriage + angles, Z axis, spindle
+HEAD = dict(m=22.2, at=(0.0, 30.0, 440.0), box=(170.0, 150.0, 300.0))      # steel X carriage + angles, steel Z axis, spindle
 TABLE = dict(m=12.0, dz=60.0, box=(320.0, 260.0, 100.0))                   # table, vise, work
 
 

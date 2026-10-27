@@ -40,7 +40,7 @@ Linear motion / plate BOM
   spindle  GDZ80-2.2 water-cooled ER20 + VFD + 80 mm cast clamp 1 set                                buy
   all      6061 flat bar cut to length: table                   3/4 x 10 in x 12-5/8 in long, M6 grid 9x12 @ 25, 2 x 8 mm H7 dowel holes 200 apart on the X center line buy
   xcar     Steel angles up the carriage back: M6 x 16 button heads through the flat leg into the carriage (tapped through the angle's holes) 10 pcs                               buy
-  all      6061 flat bar cut to length: Z plate                 5/8 x 6 in x 11-13/16 in long        buy
+  xcar, zaxis Grinding: both faces of the X carriage, the Z plate and the two Z risers, flat and parallel one lot                              buy (a local grinding shop)
   all      Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated 1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z) buy
   all      Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end) 4 sets                               buy
   enclosure M5 x 35 cap screw through the bottom rails into cast-in inserts 11 pcs                               buy (part 3)
@@ -53,7 +53,7 @@ Linear motion / plate BOM
   frame    Flat bar 3/8 x 2 in, cut to length (docs/1-sourcing/steel/) 2 x 375, 1 x 90                      buy
   frame    Flat bar 3/8 x 2-1/2 in, cut to length (docs/1-sourcing/steel/) 4 x 285, 4 x 133, 8 x 76, 4 x 66     buy
   frame    Flat bar 3/8 x 3-1/2 in, cut to length (docs/1-sourcing/steel/) 1 x 90                               buy
-  frame    Flat bar 5/8 x 6 in, cut to length (docs/1-sourcing/steel/) 1 x 407                              buy
+  frame    Flat bar 5/8 x 6 in, cut to length (docs/1-sourcing/steel/) 1 x 407, 1 x 300                     buy
   frame    Rectangular tube 2 x 3 x 1/8 in, cut to length (docs/1-sourcing/steel/) 2 x 340, 2 x 269                     buy
   frame    Square tube 1-1/2 x 1-1/2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 4 x 129, 6 x 75                      buy
   frame    Square tube 2 x 2 x 3/16 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy

@@ -1,8 +1,8 @@
-# Steel for the skeletons and the X carriage
+# Steel for the skeletons, the X carriage and the Z plate
 
-All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal Supermarkets, Online Metals, a local steel yard; flat bar and tube also come in 3 and 6 ft lengths on Amazon and at hardware stores, and a chop saw or hacksaw does the rest). Drill and tap it from the printed 1:1 templates in `steel-templates.pdf` (center-punch through the paper, then a drill press).
+All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal Supermarkets, Online Metals, a local steel yard; flat bar and tube also come in 3 and 6 ft lengths on Amazon and at hardware stores, and a chop saw or hacksaw does the rest). Drill and tap it from the printed 1:1 templates in `steel-templates.pdf` (center-punch through the paper, then a drill press). Buy the X carriage and Z plate (5/8 x 6 in) and the two 5/8 in Z risers where they can be Blanchard ground: both faces flat and parallel, before you drill them (Metal Supermarkets grinds what it sells at some stores).
 
-25 different parts, 57 pieces, about 66 kg.
+26 different parts, 58 pieces, about 71 kg.
 
 ## Cut list (by stock size)
 
@@ -15,7 +15,7 @@ All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal S
 | Flat bar 3/8 x 2 in | 2 x 375, 1 x 90 | 2.8 ft |
 | Flat bar 3/8 x 2-1/2 in | 4 x 285, 4 x 133, 8 x 76, 4 x 66 | 8.4 ft |
 | Flat bar 3/8 x 3-1/2 in | 1 x 90 | 0.3 ft |
-| Flat bar 5/8 x 6 in | 1 x 407 | 1.3 ft |
+| Flat bar 5/8 x 6 in | 1 x 407, 1 x 300 | 2.3 ft |
 | Rectangular tube 2 x 3 x 1/8 in | 2 x 340, 2 x 269 | 4.0 ft |
 | Square tube 1-1/2 x 1-1/2 x 1/8 in | 4 x 129, 6 x 75 | 3.2 ft |
 | Square tube 2 x 2 x 3/16 in | 6 x 91 | 1.8 ft |
@@ -42,6 +42,7 @@ All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal S
 | Pedestal bar / seat front | Flat bar 3/8 x 2-1/2 in | 66 mm (2-5/8 in) | 4 | 1 x 9/16 in |
 | Pad BK | Flat bar 3/8 x 3-1/2 in | 90 mm (3-9/16 in) | 1 | 2 x 17/64 in, 6 x M6 tap drill (5 mm), tap M6, 2 x M5 tap drill (4.2 mm), tap M5 |
 | X carriage plate | Flat bar 5/8 x 6 in | 407 mm (16-1/16 in) | 1 | - |
+| Z plate | Flat bar 5/8 x 6 in | 300 mm (11-13/16 in) | 1 | - |
 | Girder rear | Rectangular tube 2 x 3 x 1/8 in | 340 mm (13-3/8 in) | 2 | 6 x 17/64 in, 3 x 1/4 in; 4 x 9/16 in |
 | Girder front | Rectangular tube 2 x 3 x 1/8 in | 269 mm (10-5/8 in) | 2 | 6 x 17/64 in, 2 x 1/4 in; 3 x 9/16 in |
 | Cross split | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 2 | - |
