@@ -349,8 +349,14 @@ steel: the base's rail bars and the beam's face bar, tapped M5.
 2. BK10 and BF10 onto the beam's face bar, tapped M6: M6 x 40 (the casting is relieved behind each
    hole, so the screws don't bottom).
    Align and check as for Y.
-3. Bolt the X carriage plate to the four blocks and the nut housing; motor bracket, 8 x 8
-   coupler, closed-loop motor.
+3. The X carriage is 5/8 in steel: drill and tap it to the parts it carries (the four X blocks and the
+   nut housing on the back, the four Z blocks and the Z BK10/BF10 on the front, M4 and M6). Use a drill
+   press, spiral-point taps and cutting oil; mark from the parts themselves or from a printed layout.
+   Drill the two 1-1/4 in angles (five 17/64 in holes each, from the steel templates), clamp each one up
+   the back of the carriage at its outer edge, flush with the top, spot the carriage through the holes,
+   tap it M6 and bolt them on (M6 x 16). Paint or oil the bare faces: the coolant reaches it.
+4. Bolt the carriage to the four blocks and the nut housing; motor bracket, 8 x 8 coupler, closed-loop
+   motor.
 
 **Z.**
 1. Z risers onto the Z plate: tap the risers M5 and screw them on from the back of the plate

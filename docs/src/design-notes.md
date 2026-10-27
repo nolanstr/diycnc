@@ -24,8 +24,8 @@ and the cable-chain mount).
 **Nothing is made to order.** The rails (including the 600 mm Y pair) and ballscrews are used at the
 lengths they're sold in; the skeletons are about 54 pieces of stock flat bar and tube (56 kg) cut to
 length (`docs/1-sourcing/steel/` has the cut list and the drilling templates); the risers and the aluminum
-plates are ordered cut to length (the plates are stock 6061 flat-bar widths: a 10 in table, a 6 in X carriage
-and Z plate). Every rod is a grade B7 fully threaded stud bought at a stock length (they come in 1/4 in
+plates are ordered cut to length (the table and Z plate are stock 6061 flat-bar widths, 10 in and 6 in; the X
+carriage is 5/8 x 6 in steel flat bar with two 1-1/4 in angles, bought with the skeletons' steel). Every rod is a grade B7 fully threaded stud bought at a stock length (they come in 1/4 in
 steps; each is within 3 mm of the length the joint wants, and the tail past its far nut takes the
 difference), so nothing is sawn at home: the machining is drilling and tapping (from the templates) and the
 risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
@@ -147,7 +147,7 @@ one (the kit's BK12 is a spare), bolt into tapped pads on the base grid's cross 
 3/8 x 3-1/2 in bar, wide enough for its six holes. The X supports (BK10/BF10) bolt into the beam's face bar;
 X and Z get HM10-57 brackets too, drawn once the one on hand is measured (no drawing is published). Behind every tapped hole there's room
 (the casting is relieved where the greased mold screw stood, or a relief hole is drilled in the tube
-below). The Z axis mounts on the aluminum plates.
+below). The Z axis mounts on the X carriage (steel) and the Z plate (aluminum).
 
 **Load path.** A cutting force goes spindle, Z plate, Z and X blocks, X rails, steel risers, the beam's
 face bar and the steel behind it; at each end the seat bar bears on the upright's top plate, clamped by
@@ -200,7 +200,7 @@ the X ballscrew to its BK bearing) and, reversed, into the base through the Y bl
 component through the Y screw to its BK). The result is the frame's own stiffness at the
 tool, tool against work, for X at the center and end, the table at both ends and the
 center, and the tool 50 mm above the table. Rails, blocks, screws and the spindle are not
-in it; the screws alone are roughly 30-50 N/um, so the frame should stay well above that.
+in it: those are the moving parts' study below, which puts the frame in series with them.
 
 ![The frame under 1 kN at the tool in X, Y and Z, tool at the middle of X and the table centered (`analysis/animate.py`; motion exaggerated, colors the real deflection)](../../analysis/figs/deflection.gif)
 
@@ -324,20 +324,22 @@ scales almost directly with E:
 So the packing of the mix matters more than the last percent of epoxy. The build guide's jar
 test and tap-tested bars check both before anything is cast.
 
-**Vibration** (`analysis/modal.py`). The frame on its four feet, with 12 kg of X carriage, Z axis
-and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, as drawn now
+**Vibration** (`analysis/modal.py`). The frame on its four feet, with 18.5 kg of X carriage (steel, with its
+angles), Z axis and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, as drawn now
 (plain sand, 3/4 in beam bars, the legs tucked in behind the base's bevel, the uprights' backs raked), with the optional #16 grit
 on top (`FEA_GRIT=1.22`), and with the legs in the corners and a square edge, as before. Tucking the
 legs in shortens the span the base bends over between its feet: +17 % in the first mode and +31 % in
 the base's own bending, more than any change to the castings has bought (the grit and corner-leg columns
-were run on the 600 mm wide frame, before the 6 in carriage brought the uprights in):
+were run on the 600 mm wide frame, before the 6 in carriage brought the uprights in, and with the 12 kg
+aluminum-carriage head; the steel carriage's 6.5 kg take the drawn modes from 149 / 300 / 391 / 400 Hz to the
+figures here):
 
 | Mode | Drawn | + #16 grit | Legs in the corners | Motion |
 |---|---|---|---|---|
-| 1 | **149 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
-| 2 | **300 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
-| 3 | **391 Hz** | 391 Hz | 298 Hz | base bends, front to back |
-| 4 | **400 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
+| 1 | **146 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
+| 2 | **281 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
+| 3 | **379 Hz** | 391 Hz | 298 Hz | base bends, front to back |
+| 4 | **385 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
 
 Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
 All four are inside the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
@@ -349,6 +351,47 @@ solid bench (the base twisting on its feet is in every mode) and sand in the hol
 too.
 
 ![The four lowest modes, as drawn (`analysis/animate.py`; motion exaggerated, colors the motion as a share of each mode's peak)](../../analysis/figs/modes.gif)
+
+**Stiffness at the tool, moving parts and all** (`analysis/chain.py`, `chain_geom.py`). The frame study
+stops at the rail blocks. This one carries on to the tool: the head (X carriage, Z plate with its risers
+and rails) and the table are voxel models of their own at 1/8 in (five layers through a 5/8 in plate;
+checked against beam theory, within 5 %, a little stiff), the rail blocks and ballscrews are springs,
+and the frame's compliance from the study above is added in series, load case by load case. The blocks are
+HIWIN's catalog rigidity for an HG15C at light preload (Z0, 196 N/um); the screws are the shaft from its
+fixed bearing to the nut (at the root diameter), an unpreloaded nut (about 100-150 N/um) and the
+bearing pair (about 80-100 N/um), the last two estimates. The spindle and its clamp are taken as rigid
+and the bolted joints as bonded, so the real machine is somewhat softer still.
+
+| Tool against work, N/um | X | Y | Z |
+|---|---|---|---|
+| The frame alone (above) | 107.4 | 168.2 | 146.4 |
+| With the moving parts, 5/8 in aluminum X carriage (as it was) | 3.1 | 2.7 | 4.0 |
+| **With the moving parts, 5/8 in steel X carriage and two angles (drawn)** | **3.5** | **3.5** | **6.6** |
+
+The moving parts are where the machine gives: the frame is 2-4 % of the deflection at the tool. With
+the aluminum carriage the carriage itself was the softest link, half of the Z deflection and a third
+of Y's: between the X blocks it bends where the Z blocks bear on it, and above them it cantilevers about
+210 mm up to the Z screw's top bearing, which takes the vertical cutting load 30 mm in front of the plate.
+A thicker carriage moves the spindle away from the beam and gives some of the gain back; steel at the
+same thickness doesn't, costs less than the aluminum bar (about $35 at the yard against $66 or more new)
+and only weighs 5 kg more. The two 1-1/4 x 1-1/4 x 1/4 in angles bolted up its back, above the beam's
+drip shield, stiffen that cantilever. What each change is worth (`python chain.py <variant>`):
+
+| Change from the drawn machine | X | Y | Z |
+|---|---|---|---|
+| 5/8 in aluminum carriage, no angles (as it was) | -12 % | -23 % | -40 % |
+| No angles | 0 | 0 | -8 % |
+| Medium-preload blocks (ZA, 365 N/um: genuine HIWIN, a bolt-on upgrade) | +26 % | +21 % | +11 % |
+| Blocks at half the catalog rigidity (a loose clone: check them for play) | about -27 % | about -23 % | about -12 % |
+| Y screw fixed at both ends (the spare BK12 for the BF12) | 0 | +5 % | 0 |
+| Screw bearings or nuts twice as stiff | +1-3 % | | |
+| 1 in table, 1 in or 3/4 in Z plate | +3-9 % | | |
+
+(The blocks-at-half row was run with the aluminum carriage.) Drawn, the deflection is shared by the Z
+plate and Z blocks (half of X and 40 % of Y), the X blocks (12-16 %), the table and the Z screw (a quarter
+and a fifth of Z) and the carriage (18 % of Y and 20 % of Z). That is the order for any later upgrades;
+the frame doesn't need anything. It also says the frame has stiffness to spare, which is right for the
+one part that can't be changed after the pour: everything that bolts on can be upgraded later.
 
 **Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
 The uprights were optimized again on their own, with the cuts forced to go straight through
@@ -454,7 +497,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/22, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews) about **$1,507**, plus about **$183 of add-later
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,531**, plus about **$183 of add-later
 niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
 they're bought; **2, the electronics and spindle** about **$418** plus the spindle the builder picks
 ($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
@@ -488,14 +531,27 @@ which gives up travel, rigidity to speak of, chip protection or the coolant syst
 | The #16 grit's job done by steel: 3/4 in beam bars, 3/16 in column walls (+27 lb), plain sand everywhere, 100.9 / 155.4 / 135.6 N/um against 96.5 / 150.2 / 128.8 | -$110 +$60 +$7 |
 | Every rod a B7 stud bought at a stock length instead of zinc rod sawn by hand: nothing to cut, and stronger | +$20 |
 | The 3/8-16 beam studs and ties bought at length too, instead of three B7 rods | -$3 |
-| **Now** | **$1,507** |
+| **After** | **$1,507** |
+
+**The steel X carriage (2026-10-26).** The moving-parts study (above) found the aluminum carriage the softest
+link between the tool and the work; steel at the same size is +13 / +30 / +65 % at the tool:
+
+| Change | Frame |
+|---|---|
+| Before | $1,507 |
+| The carriage in 5/8 x 6 in steel and two 1-1/4 in angles, with the skeletons' steel (about 20 lb) | +$40 |
+| The carriage out of the aluminum (its share of the drop estimate) | -$20 |
+| M6 screws for the angles | +$4 |
+| **Now** | **$1,531** |
+
+Against aluminum bought new (about $66 for the carriage alone) it is about $30 cheaper, not dearer.
 
 What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
-(about $275 at $2/lb, against the $360 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
+(about $315 at $2/lb, against the $400 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
 clone dimensions vary), and car paste wax under the PVA instead of Partall ($15 less; test it on a
 melamine offcut). The aluminum plates are the risk the other way: they are stock flat-bar widths now, so any
-drop of 10 in or 6 in bar only needs a length cut, but bought new and cut to length they are about $235
-against the $85 estimate.
+drop of 10 in or 6 in bar only needs a length cut, but bought new and cut to length the table and Z plate are
+about $155 against the $65 estimate.
 
 The estimate below was made before the listings were checked and is too low; it assumed
 AliExpress-level prices. It's kept here to show what each earlier cost-down change saves.

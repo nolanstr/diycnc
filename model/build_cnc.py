@@ -71,14 +71,16 @@ P = dict(
     # the front ends stay clear of the coolant trough.
     table_rail_len=600.0, table_rail_y=20.0, table_rail_spacing=180.0, table_blk_pitch=150.0,
     table_screw_len=550.0, table_riser_t=19.05,   # 3/4 in risers clear the 43 mm BK12
-    # The aluminum plates are stock 6061 flat-bar widths (10 in table, 6 in X carriage and Z plate), so the only cut
-    # is their length.
+    # The table and Z plate are stock 6061 flat-bar widths (10 in and 6 in), so the only cut is their length.
     table_len=320.0, table_w=254.0, table_t=19.05, table_hole_pitch=25.0,
 
     # Beam axis (X): owned HGR15-400 pair + SFU1204-400 kit
     beam_rail_len=400.0, beam_rail_spacing=100.0, beam_blk_pitch=90.0,   # blocks span 151.4 on the 6 in carriage
     beam_screw_len=400.0, beam_riser_t=15.875,    # 5/8 in risers clear the 39 mm BK10
-    carriage_w=152.4, carriage_t=15.875,
+    # The X carriage is 5/8 x 6 in mild steel flat bar, with two 1-1/4 x 1/4 in steel angles bolted up its back above
+    # the X blocks: it was the softest link between the tool and the work, and steel at the same thickness keeps
+    # the spindle where it is (analysis/chain.py, design notes).
+    carriage_w=152.4, carriage_t=15.875, car_angle=(31.75, 6.35),
 
     # Z axis: moving-rail (blocks fixed to the carriage), HGR15-300 + SFU1204-300
     z_rail_len=300.0, z_rail_spacing=100.0, z_blk_pitch=80.0,
@@ -1989,8 +1991,20 @@ def build():
 
     x_blk_bot = beam_cz - P['beam_rail_spacing'] / 2 - 17.0
     car_z0 = min(z_blk_mid - P['z_blk_pitch'] / 2 - 61.4 / 2, z_u0, x_blk_bot) - 5
-    m.add('XCarriagePlate', 'xcar', parts.plate(-P['carriage_w'] / 2, P['carriage_w'] / 2, car_front, car_back,
-                                                car_z0, z_flange), 'alu')
+    car = sk.flat_bar('XCarriagePlate', 'y', car_front, P['carriage_t'], -P['carriage_w'] / 2, car_z0,
+                      P['carriage_w'] / 2, z_flange)
+    m.add(car.name, 'xcar', car.shape, 'steeltube')
+    m.plates.append(car)            # bought with the skeletons' steel
+    # The angles: the flat leg bolted to the carriage's back (M6 into the steel), the other leg standing at its
+    # outer edge, from just above the drip shield on the beam top to the carriage's top. They stay in front of
+    # the beam face, clear of the cable chain's mount between them.
+    a, t = P['car_angle']
+    ang_z0 = beam_top + P['drip_shield_t'] + 2.0
+    for sx, side in ((-1, 'L'), (1, 'R')):
+        ang = sk.Angle(f'XCarriageAngle{side}', car_back, sx * P['carriage_w'] / 2, -sx, a, t, ang_z0, z_flange)
+        m.add(ang.name, 'xcar', ang.shape, 'steeltube')
+        m.plates.append(ang)
+    d['car_angle_z'] = (ang_z0, z_flange)
     m.add('ZPlate', 'zaxis', parts.plate(-P['zplate_w'] / 2, P['zplate_w'] / 2, zp_front, zp_back, zp_bot, zp_top), 'alu')
     cast_anchors(m, d)
     steel_tolerance(m, d)
@@ -2032,8 +2046,8 @@ def build():
         ('all', '6061 flat bar cut to length: table', f"3/4 x {sk.inch(tw)} in x {sk.inch(tl)} in long, M6 grid {nx}x{ny} @ {pitch:.0f}, "
                                                  f"2 x 8 mm H7 dowel holes {d['table_dowels']:.0f} apart on the X center line",
          'buy'),
-        ('all', '6061 flat bar cut to length: X carriage', f"5/8 x {sk.inch(P['carriage_w'])} in x {sk.inch(z_flange - car_z0)} in long",
-         'buy'),
+        ('xcar', 'Steel angles up the carriage back: M6 x 16 button heads through the flat leg into the carriage '
+                 '(tapped through the angle\'s holes)', f"{2 * sk.ANGLE_HOLES} pcs", 'buy'),
         ('all', '6061 flat bar cut to length: Z plate', f"5/8 x {sk.inch(P['zplate_w'])} in x {sk.inch(P['z_rail_len'])} in long", 'buy'),
         ('all', 'Cold-rolled steel flat bar rail risers, bedded + epoxy-replicated', "1-1/4 in wide, 3/4 in (Y) and 5/8 in (X, Z)", 'buy'),
         ('all', 'Feet: 1/2-13 x 2 in bolt + jam nut + rubber pad (into the nut in each leg end)', '4 sets', 'buy'),
@@ -3313,6 +3327,9 @@ def steel_parts(m):
         if pt.stock[0] == 'flat':
             _, t, w, ln, _ = pt.stock
             stock = f'Flat bar {sk.inch(t)} x {sk.inch(w)} in'
+        elif pt.stock[0] == 'angle':
+            _, a, t, ln = pt.stock
+            stock = f'Angle {sk.inch(a)} x {sk.inch(a)} x {sk.inch(t)} in'
         else:
             _, w1, w2, wall, ln = pt.stock
             a, b = sorted((w1, w2))
@@ -3341,6 +3358,10 @@ def write_steel_parts(m):
                 x, y = ((p_ - p0, q_ - q0) if along_p else (q_ - q0, p_ - p0))
                 holes.append([round(x, 2), round(y, 2), round(d, 2), tap or '', sk.drill_name(d, tap)])
             faces = [('', w, holes)]
+        elif pt.stock[0] == 'angle':
+            # the flat leg, measured from the end and from the heel
+            faces = [('flat leg, from the heel', pt.stock[1],
+                      [[round(u, 2), round(v, 2), d, '', sk.drill_name(d)] for u, v, d in pt.holes])]
         else:
             faces = {}
             for face, a, c, d, what, both in pt.holes:
@@ -3371,7 +3392,7 @@ def write_steel_parts(m):
         pieces = ', '.join(f'{q} x {ln}' for ln, q in sorted(merged.items(), reverse=True))
         cut.append(f'| {stock} | {pieces} | {total / 304.8:.1f} ft |')
     with open(os.path.join(out, 'README.md'), 'w') as fh:
-        fh.write('# Steel for the skeletons\n\nAll stock mild steel (A36 / A500), nothing custom: buy it cut to length '
+        fh.write('# Steel for the skeletons and the X carriage\n\nAll stock mild steel (A36 / A500), nothing custom: buy it cut to length '
                  '(Metal Supermarkets, Online Metals, a local steel yard; flat bar and tube also come in 3 and 6 ft '
                  'lengths on Amazon and at hardware stores, and a chop saw or hacksaw does the rest). Drill and tap '
                  'it from the printed 1:1 templates in `steel-templates.pdf` (center-punch through the paper, then '

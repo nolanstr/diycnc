@@ -2,7 +2,7 @@
 
 Ready to send: copy the text into the seller's email or quote form, fill in your name and phone, and
 send. Contacts were checked on 2026-10-22; none of these sellers publishes prices for cut pieces, so a
-quote is the only way to beat the estimates in the sourcing list (steel ~$360, aluminum ~$85, ACM
+quote is the only way to beat the estimates in the sourcing list (steel ~$400, aluminum ~$65, ACM
 ~$117 + freight).
 
 ## 1. Steel, rail risers and aluminum plates
@@ -30,8 +30,13 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 > - 3/4 x 5 in: 2 pcs at 20.00 in
 > - 1/2 x 2-1/2 in: 4 pcs at 7.80 in
 > - 3/8 x 1-1/2 in: 2 pcs at 14.13 in, 2 pcs at 11.34 in
-> - 3/8 x 2 in: 2 pcs at 14.76 in, 2 pcs at 3.54 in
+> - 3/8 x 2 in: 2 pcs at 14.76 in, 1 pc at 3.54 in
 > - 3/8 x 2-1/2 in: 4 pcs at 11.22 in, 4 pcs at 5.25 in, 8 pcs at 3.00 in, 4 pcs at 2.60 in
+> - 3/8 x 3-1/2 in: 1 pc at 3.56 in
+> - 5/8 x 6 in: 1 pc at 16.06 in
+>
+> **Angle (A36)**
+> - 1-1/4 x 1-1/4 x 1/4 in: 2 pcs at 10.13 in
 >
 > **Tube (A500)**
 > - Rectangular 2 x 3 x 1/8 in wall: 2 pcs at 13.40 in, 2 pcs at 10.61 in
@@ -42,11 +47,11 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 > - 3/4 x 1-1/4 in: 2 pcs at 23.62 in
 > - 5/8 x 1-1/4 in: 2 pcs at 15.75 in, 2 pcs at 11.81 in
 >
-> **Aluminum 6061 plate** (drops or remnants welcome; MIC-6 even better if you have it)
-> - 3/4 in thick: 1 pc at least 10.25 x 12.6 in (260 x 320 mm)
-> - 5/8 in thick: 1 pc at least 6.7 x 16.0 in (170 x 407 mm) and 1 pc at least 5.9 x 11.8 in (150 x 300 mm)
+> **Aluminum 6061 flat bar** (drops or remnants welcome; MIC-6 even better if you have it)
+> - 3/4 x 10 in: 1 pc at 12.63 in
+> - 5/8 x 6 in: 1 pc at 11.81 in
 >
-> Total is roughly 165 lb of steel and 22 lb of aluminum. Could you also tell me your cutting
+> Total is roughly 185 lb of steel and 14 lb of aluminum. Could you also tell me your cutting
 > charge, and whether I can pick it up the same week?
 >
 > Thank you,

@@ -9,3 +9,7 @@ model/DIYCNC.step
 model/DIYCNC.FCStd
 docs/3-molds/molds-complete.pdf
 docs/4-build/build-guide.pdf
+
+# caches of analysis/chain.py
+analysis/chain_frame_*.npz
+analysis/chain_geom_*.json

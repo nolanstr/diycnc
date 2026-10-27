@@ -8,7 +8,9 @@ Everything is modeled in FreeCAD from one Python script.
 ![The machine](renders/machine_iso.png)
 
 The frame in the stiffness model: 1 kN at the tool in X, Y and Z, tool at the middle of X and the table
-centered (about 108 / 164 / 148 N/um), and its four lowest vibration modes (149-400 Hz). The motion is exaggerated thousands of times.
+centered (about 108 / 164 / 148 N/um), and its four lowest vibration modes (146-385 Hz). The motion is exaggerated thousands of times.
+With the moving parts in series (plates, rail blocks, ballscrews) the machine is about 3.5 / 3.5 / 6.6 N/um at the tool:
+the frame has stiffness to spare, and the parts that bolt on are where later upgrades go (design notes).
 
 ![The frame under the cutting loads](analysis/figs/deflection.gif)
 
@@ -66,4 +68,5 @@ out. The printed mold pieces are in the hidden `Molds` group.
 
 The stiffness and vibration studies run in the `diycnc` conda env (`conda env create -f environment.yml`,
 then `conda activate diycnc`): numpy, scipy, matplotlib, scikit-sparse 0.5 or later, and pyvista for the animations
-(`analysis/animate.py`). See the design notes.
+(`analysis/animate.py`). `analysis/chain.py` carries the stiffness on through the plates, rail blocks and
+ballscrews to the tool (run `freecadcmd analysis/chain_geom.py` first for their geometry). See the design notes.

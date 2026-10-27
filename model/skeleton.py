@@ -145,6 +145,31 @@ def flat_bar(name, normal, c0, t, p0, q0, p1, q1, note=''):
     return pl
 
 
+ANGLE_HOLES = 5      # bolts through an angle's flat leg
+
+
+class Angle:
+    """A piece of stock equal-leg angle (a x a x t) standing along z from z0 to z1, its flat leg on the face
+    y = y0 (reaching +y by t), its heel at x = x_edge and the flat leg running in toward `inward` (+1 or -1);
+    the other leg stands out to y0 + a at that edge. The flat leg is drilled for ANGLE_HOLES bolts on its
+    middle, 20 mm in from the ends and evenly between."""
+
+    def __init__(self, name, y0, x_edge, inward, a, t, z0, z1):
+        self.name = name
+        self.stock = ('angle', a, t, z1 - z0)
+        xa, xt = sorted((x_edge, x_edge + inward * a)), sorted((x_edge, x_edge + inward * t))
+        flat = Part.makeBox(a, t, z1 - z0, Vector(xa[0], y0, z0))
+        leg = Part.makeBox(t, a, z1 - z0, Vector(xt[0], y0, z0))
+        self.hole_x = x_edge + inward * (t + (a - t) / 2)
+        self.holes = [(20.0 + i * (z1 - z0 - 40.0) / (ANGLE_HOLES - 1), (a + t) / 2, 6.6) for i in range(ANGLE_HOLES)]
+        self.shape = flat.fuse(leg).removeSplitter().cut(
+            [Part.makeCylinder(3.3, t + 2, Vector(self.hole_x, y0 - 1, z0 + u), Vector(0, 1, 0)) for u, _, _ in self.holes])
+
+    @property
+    def mass(self):
+        return self.shape.Volume * 7.85e-6
+
+
 class Tube:
     """A piece of stock rectangular tube along `axis` from a0 to a1, centered on (c1, c2) in the other two
     axes (in x, y, z order), outside w1 x w2 (same order), wall `wall`."""
