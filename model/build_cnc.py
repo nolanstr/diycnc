@@ -2658,7 +2658,7 @@ def snapshots(doc, out_dir, m):
     enc, bench = doc.getObject('Enclosure'), doc.getObject('Workbench')
     axes = [doc.getObject(n) for n in ('TableAxis', 'XCarriage', 'WayCovers', 'CableChain', 'CoolantLines')]
     castings = [o for o in doc.Objects if o.Name.endswith('Casting')]
-    hx, hy, hz = P['travel_x'] / 2, P['travel_y'] / 2, P['travel_z']
+    hy = P['travel_y'] / 2
 
     def rear_iso():
         view.viewIsometric()
@@ -2675,35 +2675,19 @@ def snapshots(doc, out_dir, m):
     iso, front, right = view.viewIsometric, view.viewFront, view.viewRight
     # name, (x, y, z), view, focus objects, options
     shots = (
-        ('enclosure_closed', (0, 0, 0), iso, None, dict(enc=True)),
         ('enclosure_open', (0, -hy, 0), iso, None, dict(enc=True, door=75)),
         ('machine_iso', (0, 0, 0), iso, None, {}),
-        ('machine_extreme', (hx, hy, -hz), iso, None, {}),
         ('machine_right', (0, -hy, 0), right, None, {}),
         ('machine_front', (0, 0, 0), front, None, {}),
         ('coolant_system', (0, 0, 0), iso, None, dict(enc=True, bench=True)),
         ('detail_z_axis', (0, 0, -70), iso, ('ZPlate', 'SpindleBody', 'SpindleClamp', 'Z_MotorBody', 'XCarriagePlate'), {}),
-        ('detail_nozzles', (0, 0, -100), iso, ('SpindleClamp', 'CoolantNozzle1', 'CoolantNozzle2', 'SpindleER20Nut', 'CoolantManifold'), {}),
-        ('detail_way_covers', (0, -hy, 0), rear_iso, ('Table', 'CoverRollerRearL', 'CoverRollerRearR', 'CoverScrewRear', 'Y_BK12'), {}),
-        ('detail_cable_chain', (hx, 0, 0), rear_iso, ('XChain', 'ChainMountFixed', 'ChainMountMoving'), {}),
         ('detail_table_drive', (0, 0, 0), rear_iso, ('Y_BK12', 'Y_MotorBody', 'Y_MotorEncoder', 'Y_MotorBracket', 'Y_Coupler'), {}),
-        ('detail_coolant_sump', (0, 0, 0), lambda: look((0.55, 0.8, -0.25)),
-         ('SumpPan', 'LegFrontL', 'LegFrontR', 'DrainOutlet'), dict(bench=True, enc=True)),
-        ('detail_coolant_sump_out', (0, 0, 0), lambda: look((0.55, 0.8, -0.45)),
-         ('SumpPan', 'SumpPump', 'LegFrontL', 'LegFrontR', 'BaseFrontCasting'), dict(bench=True, enc=True, sump=300)),
         ('frame_exploded', (0, 0, 0), iso, None, dict(mode='exploded')),
         ('frame_xray', (0, 0, 0), iso, None, dict(mode='xray')),
-        # Frame on its own: castings, cast-in steel, joint hardware; gaskets in orange.
-        ('frame_bare', (0, 0, 0), iso, None, dict(mode='bare')),
-        ('frame_bare_rear', (0, 0, 0), rear_iso, None, dict(mode='bare')),
-        ('frame_bare_exploded', (0, 0, 0), iso, None, dict(mode='bare', explode=180)),
-        ('frame_bare_xray', (0, 0, 0), rear_iso, None, dict(mode='bare', xray=True)),
+        # Frame on its own: castings, cast-in steel, joint hardware
         ('frame_section_uprights', (0, 0, 0), iso, None, dict(mode='bare', section=('y', 'TieRodL1'))),
-        ('frame_section_split', (0, 0, 0), lambda: look((1.0, 0.45, -0.5)), None,
-         dict(mode='bare', section=('x', 'BaseGirderRearR'))),
         ('frame_base_underside', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
-        ('gasket_base_split', (0, 0, 0), iso, ('BaseRearCasting',), dict(mode='bare', only=('FrameBaseRear',))),
         # Build steps (renders/build/): cast-in steel, molds, frame assembly, axes
         ('build/01-steel-base-rear', (0, 0, 0), rear_iso, ('BaseRearCasting',),
          dict(mode='bare', only=('FrameBaseRear',), xray=True)),
@@ -2730,8 +2714,6 @@ def snapshots(doc, out_dir, m):
                                   'Y_Screw', 'X_Screw', 'Y_Coupler', 'X_Coupler', 'Y_Motor', 'X_Motor'))),
         ('build/12-axes-spindle', (0, 0, 0), iso, None, {}),
         ('build/13-enclosure-coolant', (0, 0, 0), iso, None, dict(enc=True, bench=True)),
-        ('gasket_upright_foot', (0, 0, 0), lambda: look((0.55, 0.65, 0.75)), ('UprightLCasting',),
-         dict(mode='bare', only=('FrameUprightL',))),
     )
     structure = [o for o in doc.Objects if o.TypeId == 'Part::Feature'
                  and (o.Name in m.structure or o.Name.endswith('Casting'))]

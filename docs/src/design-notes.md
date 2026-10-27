@@ -279,7 +279,7 @@ good part of the X deflection; in Y and Z it is mostly the beam bending between 
 - The castable version drawn now is a solid full-width buttress (one sloped board in the
   mold, no cores) with its foot 290 mm ahead of the beam face: 5.3 L per upright (5.5 L since
   the toe got a 20 mm nose). The base
-  was then re-optimized around the longer feet (`analysis/figs/frame2_base_*.png`): it wants
+  was then re-optimized around the longer feet: it wants
   full depth under the feet and a wider tie across the split. Total +8.9 L of epoxy granite
   (about $75) for +39 / +11 / +35 %.
 - The base optimization (`analysis/topopt.py`, pockets open to the bottom) puts the base material
@@ -414,18 +414,15 @@ and 80 % of their material (run on the frame before the toe and edge cleanup, wh
 | Two outer pockets each, 80 % | 2.1 L | 73.1 | 105.6 | 90.3 | 135 / 254 Hz | ~$6 |
 
 The holes land where you'd expect, in the low-stress middle of the buttress just ahead of
-the front post (`analysis/figs/upright_*.png`), but they don't pay: 10 % of the upright costs
+the front post, but they don't pay: 10 % of the upright costs
 1-3 % of the frame's stiffness and saves about $3 of epoxy (the 3 gal kit is bought either
 way), and the natural frequencies don't move because the mass that matters is the beam and
 the head on top. Each window would also need a printed liner. The uprights stay solid; the
 frame optimization above already moved material into them, not out.
 
-Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `frame_34.6_*` (base and
-uprights optimized together), `frame2_base_*` (base around the new uprights), `base_current.png` (the
-previous base), `base_final.png` (solid depth from the top
-in each column), `base_pocket_*` and `base_free_*` (optimization results at 18-28.5 L), and
-`tradeoff.png` (base stiffness against base volume), `upright_*` (lightening holes, at 90 and
-80 % of the upright), and the animations `deflection.gif` (the frame under the cutting loads) and `modes.gif`
+Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `frame_34.6_upright.png` (base and
+uprights optimized together), `base_current.png` (the previous base), `base_final.png` (solid depth from the
+top in each column), `tradeoff.png` (base stiffness against base volume), and the animations `deflection.gif` (the frame under the cutting loads) and `modes.gif`
 (the four lowest vibration modes).
 
 Rerun it in the `diycnc` conda env (`environment.yml`: numpy, scipy, matplotlib,

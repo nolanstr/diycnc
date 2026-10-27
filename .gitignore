@@ -13,3 +13,7 @@ docs/4-build/build-guide.pdf
 # caches of analysis/chain.py
 analysis/chain_frame_*.npz
 analysis/chain_geom_*.json
+
+# study variants (analysis/lean_study.py, topopt_gantry.py); rebuilt by voxelize.py and the optimizer
+analysis/vox_lean*
+analysis/vox_gantry_*

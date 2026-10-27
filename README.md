@@ -16,6 +16,17 @@ the frame has stiffness to spare, and the parts that bolt on are where later upg
 
 ![The frame's four lowest vibration modes](analysis/figs/modes.gif)
 
+## Views
+
+| | |
+|---|---|
+| ![Front](renders/machine_front.png) Front | ![Right side](renders/machine_right.png) Right side |
+| ![The castings pulled apart](renders/frame_exploded.png) The five castings, pulled apart | ![The steel inside the castings](renders/frame_xray.png) The steel skeletons inside |
+| ![Z axis](renders/detail_z_axis.png) The steel X carriage and Z plate, spindle | ![Y drive](renders/detail_table_drive.png) The Y drive under the table |
+| ![Enclosure open](renders/enclosure_open.png) The enclosure, door open | ![Coolant](renders/coolant_system.png) Flood coolant and the sump |
+
+The build guide has a picture for each step (`renders/build/`) and the mold guides theirs (`renders/mold/`).
+
 ## Documents
 
 The documents are in `docs/`, one folder per stage of the build, in the order you use them (index:
