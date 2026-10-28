@@ -125,9 +125,9 @@ P = dict(
     round_r=10.0, beam_back_low_r=10.0, beam_face_r=3.0,
 
     # Cast-in steel and joints (tube = (size, wall)): US stock sizes in stock lengths, so
-    # nothing is cut to length: 2 x 2 x 3/16 in (the upright and pedestal columns: the heavier wall is
-    # steel in place of alumina grit) and 1-1/2 x 1-1/2 x 1/8 in mild steel.
-    frame_tube=(50.8, 4.7625), post_tube=(38.1, 3.175),
+    # nothing is cut to length: 2 x 2 x 1/8 in (the upright and pedestal columns: the 3/16 in wall
+    # bought under 0.1 % at the tool, analysis/lean_study.py) and 1-1/2 x 1-1/2 x 1/8 in mild steel.
+    frame_tube=(50.8, 3.175), post_tube=(38.1, 3.175),
     # Bought lengths, nothing cut: 12 in base (the split sockets), 18 in beam, 6 in spigots.
     tube_len=dict(base=304.8, spigot=152.4),
     # Real tube isn't nominal. A supplier's saw cut is good to about +/-1/8 in, and A500 tube is
@@ -164,8 +164,10 @@ P = dict(
     top_plate_t=25.4, plate_layer=12.7,
     beam_stud=190.5,         # the beam's eight 3/8-16 grade B7 studs, 7-1/2 in bought at length, screwed into the top plates
     drip_shield_t=3.0,       # ACM offcut over the X rails; the front studs' nuts clamp it to the beam top
-    beam_bar_t=19.05,        # the beam's 5 in face and back bars, 3/4 in: steel in place of alumina grit (design notes)
-    beam_spacer=63.5,        # 1/2 in x 2-1/2 in pipe nipples between the beam's face and back bars
+    # The beam's 5 in face and back bars: 1/2 in at the face (tapped for the X rails and supports), 3/8 in at
+    # the back. 3/4 in bars bought under 0.5 % at the tool (analysis/lean_study.py, design notes).
+    beam_face_t=12.7, beam_back_t=9.525,
+    beam_spacer=76.2,        # 1/2 in x 3 in pipe nipples between them: the back bar stays where the 3/4 in one was
     rod_tail=6.0,            # rod past its far nut; the rods are B7 studs bought in 1/4 in steps, and the step ends up here
     slope_pocket_d=32.0,     # toe tie-rod nut pocket, down to the foot plate
     # In the uprights the tie-rod holes are cast on 5/8 in rods (1.6 mm clearance a side) and the base
@@ -200,8 +202,8 @@ P = dict(
 
     eg_density=2.35,     # kg/L, epoxy granite
     # Aluminum oxide grit for the coarse sand in the beam and uprights, same volume (analysis/alumina.py):
-    # about +9 % frame stiffness for $110. The 3/4 in beam bars and 3/16 in column walls give more for about
-    # half that, so the mix is plain sand everywhere and the grit is an option, decided before the pour:
+    # about +9 % frame stiffness for $110, but the frame is only 2-5 % of the compliance at the tool, so the
+    # mix is plain sand everywhere and the grit is an option, decided before the pour:
     # alumina=(('brown #16 (coarse sand)', 0.275, 3.95 / 2.65),).
     # (name, share of the sand mix by weight, density relative to sand)
     alumina_castings=('Upright', 'Beam'),
@@ -1054,13 +1056,13 @@ def stud(mm, exact=False):
 
 def beam_tie_length():
     """The beam ties: from 0.5 mm inside the face bar's front, through the nipple and back bar, about 12 mm past it."""
-    return stud(2 * P['beam_bar_t'] + P['beam_spacer'] + 11.5)
+    return stud(P['beam_face_t'] + P['beam_spacer'] + P['beam_back_t'] + 11.5)
 
 
 def beam(m, g, st):
     """Beam: a steel box of stock flat bar cast into epoxy granite. A 5 in face bar (the rail face,
     tapped for the X risers and ballscrew supports, cast_anchors) and a back bar, held apart by pipe
-    nipples on studs screwed into the face bar, both beam_bar_t thick; at each end a 3/8 x 2-1/2 in seat bar under and cap bar
+    nipples on studs screwed into the face bar (beam_face_t, beam_back_t); at each end a 3/8 x 2-1/2 in seat bar under and cap bar
     over them. Eight 3/8-16 studs, screwed into the upright top plates, clamp cap bar, face and back bars
     and seat bar down onto the top plates."""
     outer, inner, bf = g['outer'], g['inner'], g['beam_face']
@@ -1070,10 +1072,10 @@ def beam(m, g, st):
     shape = beam_envelope(g)
     cont = 'FrameBeam'
     xe = 254.0                                                         # 20 in bars
-    tb = P['beam_bar_t']
+    tb, tk = P['beam_face_t'], P['beam_back_t']
     yb0 = bf + tb + P['beam_spacer']                                   # back bar, behind the spacers
     face = sk.flat_bar('BeamFacePlate', 'y', bf, tb, -xe, bot + T38, xe, top - T38)
-    back = sk.flat_bar('BeamBackPlate', 'y', yb0, tb, -xe, bot + T38, xe, top - T38)
+    back = sk.flat_bar('BeamBackPlate', 'y', yb0, tk, -xe, bot + T38, xe, top - T38)
     ends = []
     for sx, side in ((-1, 'L'), (1, 'R')):
         xa, xb = sorted((sx * (g['ux'] - 31.75), sx * (g['ux'] + 31.75)))
@@ -1096,9 +1098,9 @@ def beam(m, g, st):
         st.add(f'BeamSpacer{int(tx)}', cont, pipe)
         cuts.append(parts.cyl_v(10.65, bf + tb, yb0, tx, cz))
         stud = parts.cyl_v(P['beam_bolt_d'] / 2, bf + 0.5, bf + 0.5 + beam_tie_length(), tx, cz)
-        nut = hex_y(14.3, tx, yb0 + tb, 8.4, cz).cut(parts.cyl_v(P['beam_bolt_d'] / 2, yb0, yb0 + 20, tx, cz))
+        nut = hex_y(14.3, tx, yb0 + tk, 8.4, cz).cut(parts.cyl_v(P['beam_bolt_d'] / 2, yb0, yb0 + 20, tx, cz))
         st.add(f'BeamTie{int(tx)}', cont, stud.fuse(nut), 'steel')
-        cuts.append(parts.cyl_v(13.0, yb0 + tb, yb0 + tb + 14.0, tx, cz))           # its nut, in the casting
+        cuts.append(parts.cyl_v(13.0, yb0 + tk, yb0 + tk + 14.0, tx, cz))           # its nut, in the casting
     plates = [back] + ends
     for pl in plates:
         st.add(pl.name, cont, pl.shape)
@@ -1256,7 +1258,7 @@ def cast_anchors(m, d):
         if abs(n.z) < 0.5:
             face.hole(pt.x, pt.z, 0, tap='M5' if kind == 'insert_m5' else 'M6')
             holes.setdefault('BeamCasting', []).append(
-                Part.makeCylinder(thread / 2 + 0.5, 12.0, Vector(pt.x, d['beam_face'] + P['beam_bar_t'] - 0.5, pt.z), Vector(0, 1, 0)))
+                Part.makeCylinder(thread / 2 + 0.5, 12.0, Vector(pt.x, d['beam_face'] + P['beam_face_t'] - 0.5, pt.z), Vector(0, 1, 0)))
             count['face_' + kind] = count.get('face_' + kind, 0) + 1
             continue
         cast = 'BaseFrontCasting' if pt.y < P['base_split_y'] else 'BaseRearCasting'
@@ -1866,7 +1868,7 @@ def mold_beam(kit, m, g):
         Part.makeCylinder(9.0, 2.0, Vector(sx * g['ux'], g['beam_dowel_y'], bot - T - 2.0))) for sx in (-1, 1)]
     kit.add(folder, 'dowel-stop', 'kit', stops[0], 2, 'Pushes into the dowel hole from outside so the dowel stands '
             f"{P['dowel_proud']:.0f} mm proud.", placed=stops, show=show)
-    stand = 5 * math.ceil((P['mold_board'] + P['beam_bar_t'] + 10.0) / 5)      # through the floor and plate, 10 mm proud
+    stand = 5 * math.ceil((P['mold_board'] + P['beam_face_t'] + 10.0) / 5)      # through the floor and plate, 10 mm proud
     kit.count(f'M6 x {stand} screw, greased (holds the face plate)',
               sum(1 for f in holes if f.what == 'M6 screw into the face plate'), M)
     kit.count(f'M5 x {stand} screw, greased (holds the face plate)',

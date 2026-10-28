@@ -8,8 +8,8 @@ Everything is modeled in FreeCAD from one Python script.
 ![The machine](renders/machine_iso.png)
 
 The frame in the stiffness model: 1 kN at the tool in X, Y and Z, tool at the middle of X and the table
-centered (about 108 / 164 / 148 N/um), and its four lowest vibration modes (145-376 Hz). The motion is exaggerated thousands of times.
-With the moving parts in series (plates, rail blocks, ballscrews) the machine is about 3.8 / 3.8 / 6.9 N/um at the tool:
+centered (about 98 / 153 / 131 N/um), and its four lowest vibration modes (148-370 Hz). The motion is exaggerated thousands of times.
+With the moving parts in series (plates, rail blocks, ballscrews) the machine is about 3.8 / 3.8 / 6.8 N/um at the tool:
 the frame has stiffness to spare, and the parts that bolt on are where later upgrades go (design notes).
 
 ![The frame under the cutting loads](analysis/figs/deflection.gif)

@@ -8,12 +8,13 @@ Needs the Python `markdown` package and Google Chrome.
 
 import os
 import re
-import subprocess
 import sys
 import tempfile
 from datetime import date
 
 import markdown
+
+from make_templates import print_pdf
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.dirname(SRC)
@@ -100,9 +101,7 @@ def build(src, out, orient, text=None):
         tmp = fh.name
     pdf = os.path.join(DOCS, out)
     os.makedirs(os.path.dirname(pdf), exist_ok=True)
-    subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-pdf-header-footer',
-                    '--allow-file-access-from-files', f'--print-to-pdf={pdf}', f'file://{tmp}'],
-                   check=True, capture_output=True)
+    print_pdf(f'file://{tmp}', pdf, '--allow-file-access-from-files')
     os.remove(tmp)
     print(f'{out}: {os.path.getsize(pdf) / 1e6:.1f} MB')
 

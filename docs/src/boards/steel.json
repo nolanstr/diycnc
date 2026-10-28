@@ -218,64 +218,11 @@
 "pour": null
 },
 {
-"name": "Beam back plate",
-"mold": "steel",
-"qty": 1,
-"view": "steel",
-"note": "Flat bar 3/4 x 5 in",
-"size": [
-508.0,
-127.0
-],
-"outline": [
-[
-0,
-0
-],
-[
-508.0,
-0
-],
-[
-508.0,
-127.0
-],
-[
-0,
-127.0
-]
-],
-"holes": [
-[
-134.0,
-63.5,
-10.5,
-"",
-"13/32 in"
-],
-[
-254.0,
-63.5,
-10.5,
-"",
-"13/32 in"
-],
-[
-374.0,
-63.5,
-10.5,
-"",
-"13/32 in"
-]
-],
-"pour": null
-},
-{
 "name": "Beam face plate",
 "mold": "steel",
 "qty": 1,
 "view": "steel",
-"note": "Flat bar 3/4 x 5 in",
+"note": "Flat bar 1/2 x 5 in",
 "size": [
 508.0,
 127.0
@@ -1198,6 +1145,59 @@
 "pour": null
 },
 {
+"name": "Beam back plate",
+"mold": "steel",
+"qty": 1,
+"view": "steel",
+"note": "Flat bar 3/8 x 5 in",
+"size": [
+508.0,
+127.0
+],
+"outline": [
+[
+0,
+0
+],
+[
+508.0,
+0
+],
+[
+508.0,
+127.0
+],
+[
+0,
+127.0
+]
+],
+"holes": [
+[
+134.0,
+63.5,
+10.5,
+"",
+"13/32 in"
+],
+[
+254.0,
+63.5,
+10.5,
+"",
+"13/32 in"
+],
+[
+374.0,
+63.5,
+10.5,
+"",
+"13/32 in"
+]
+],
+"pour": null
+},
+{
 "name": "Girder rear (z-face)",
 "mold": "steel",
 "qty": 2,
@@ -1618,7 +1618,7 @@
 "mold": "steel",
 "qty": 6,
 "view": "steel",
-"note": "Square tube 2 x 2 x 3/16 in",
+"note": "Square tube 2 x 2 x 1/8 in",
 "size": [
 90.9,
 50.8

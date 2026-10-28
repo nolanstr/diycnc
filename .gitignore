@@ -17,3 +17,4 @@ analysis/chain_geom_*.json
 # study variants (analysis/lean_study.py, topopt_gantry.py); rebuilt by voxelize.py and the optimizer
 analysis/vox_lean*
 analysis/vox_gantry_*
+analysis/vox_*_parts.npz

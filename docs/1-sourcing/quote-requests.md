@@ -2,7 +2,7 @@
 
 Ready to send: copy the text into the seller's email or quote form, fill in your name and phone, and
 send. Contacts were checked on 2026-10-22; none of these sellers publishes prices for cut pieces, so a
-quote is the only way to beat the estimates in the sourcing list (steel ~$425, grinding ~$75, aluminum ~$45, ACM
+quote is the only way to beat the estimates in the sourcing list (steel ~$375, grinding ~$75, aluminum ~$45, ACM
 ~$117 + freight).
 
 ## 1. Steel, rail risers and aluminum plates
@@ -27,7 +27,8 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 > tube unless noted.
 >
 > **Flat bar (hot-rolled A36)**
-> - 3/4 x 5 in: 2 pcs at 20.00 in
+> - 1/2 x 5 in: 1 pc at 20.00 in
+> - 3/8 x 5 in: 1 pc at 20.00 in
 > - 1/2 x 2-1/2 in: 4 pcs at 7.80 in
 > - 3/8 x 1-1/2 in: 2 pcs at 14.13 in, 2 pcs at 11.34 in
 > - 3/8 x 2 in: 2 pcs at 14.76 in, 1 pc at 3.54 in
@@ -40,7 +41,7 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 >
 > **Tube (A500)**
 > - Rectangular 2 x 3 x 1/8 in wall: 2 pcs at 13.40 in, 2 pcs at 10.61 in
-> - Square 2 x 2 x 3/16 in wall: 6 pcs at 3.58 in, 4 pcs at 8.13 in
+> - Square 2 x 2 x 1/8 in wall: 6 pcs at 3.58 in, 4 pcs at 8.13 in
 > - Square 1-1/2 x 1-1/2 x 1/8 in wall: 4 pcs at 5.09 in, 6 pcs at 3.31 in, 4 pcs at 6.00 in
 >
 > **Cold-rolled 1018 flat bar** (needs to be cold-rolled for flatness)
@@ -54,7 +55,7 @@ and the same stock uncut (drops or full lengths), since a chop saw does the rest
 > 1-1/4 x 11.81 in cold-rolled pieces, ground flat and parallel (clean up, about 0.010-0.020 in a side;
 > the final thickness doesn't matter, but please grind the two narrow pieces to the same thickness).
 >
-> Total is roughly 198 lb of steel and 9 lb of aluminum. Could you also tell me your cutting
+> Total is roughly 178 lb of steel and 9 lb of aluminum. Could you also tell me your cutting
 > charge, and whether I can pick it up the same week?
 >
 > Thank you,

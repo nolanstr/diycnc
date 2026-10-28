@@ -87,12 +87,12 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
 | `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 27s |
 | `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 10s |
-| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 44s |
+| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 41s |
 | `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 9m 35s |
 | `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 34m 47s |
 | `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 51s |
 | `base-rear/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 36m 44s |
-| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 10s |
+| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 9s |
 | `base-rear/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 36m 53s |
 | `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 24s |
 | `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 44s |
@@ -104,14 +104,14 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/former-trough-part4of5.stl` | 1 | 22 | 1h 21m 55s |
 | `base-front/former-trough-part5of5.stl` | 1 | 20 | 1h 11m 51s |
 | `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 58s |
-| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 12s |
-| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 19s |
+| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 10s |
+| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 21s |
 | `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 15s |
 | `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 6s |
 | `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 45s |
 | `base-front/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 32m 21s |
 | `base-front/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 33m 43s |
-| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 32s |
+| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 17s |
 | `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 41s |
 | `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 49s |
 | `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 49s |

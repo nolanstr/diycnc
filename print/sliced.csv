@@ -11,12 +11,12 @@ base-rear,former-gutter-R-part2of3.stl,former,1,7.6,7.6,33m 40s,8
 base-rear,former-gutter-R-part3of3.stl,former,1,7.0,7.0,31m 15s,8
 base-rear,filler-corner-L.stl,filler,1,28.7,28.7,2h 10m 27s,32
 base-rear,filler-bevel-L-part1of2.stl,filler,1,50.5,50.5,2h 39m 10s,55
-base-rear,filler-bevel-L-part2of2.stl,filler,1,50.5,50.5,2h 39m 44s,55
+base-rear,filler-bevel-L-part2of2.stl,filler,1,50.5,50.5,2h 39m 41s,55
 base-rear,filler-corner-R.stl,filler,1,28.8,28.8,2h 9m 35s,32
 base-rear,filler-bevel-R-part1of2.stl,filler,1,50.5,50.5,2h 34m 47s,55
 base-rear,filler-bevel-R-part2of2.stl,filler,1,50.5,50.5,2h 35m 51s,55
 base-rear,filler-bevel-end-part1of3.stl,filler,1,49.6,49.6,2h 36m 44s,54
-base-rear,filler-bevel-end-part2of3.stl,filler,1,49.7,49.7,2h 37m 10s,54
+base-rear,filler-bevel-end-part2of3.stl,filler,1,49.7,49.7,2h 37m 9s,54
 base-rear,filler-bevel-end-part3of3.stl,filler,1,49.6,49.6,2h 36m 53s,54
 base-front,former-gutter-L-part1of2.stl,former,1,11.4,11.4,49m 24s,13
 base-front,former-gutter-L-part2of2.stl,former,1,10.4,10.4,43m 44s,12
@@ -28,14 +28,14 @@ base-front,former-trough-part3of5.stl,former,1,24.2,24.2,1h 31m 38s,26
 base-front,former-trough-part4of5.stl,former,1,22.5,22.5,1h 21m 55s,24
 base-front,former-trough-part5of5.stl,former,1,20.2,20.2,1h 11m 51s,22
 base-front,filler-corner-L.stl,filler,1,28.7,28.7,2h 10m 58s,32
-base-front,filler-bevel-L-part1of2.stl,filler,1,45.5,45.5,2h 25m 12s,50
-base-front,filler-bevel-L-part2of2.stl,filler,1,45.5,45.5,2h 25m 19s,50
+base-front,filler-bevel-L-part1of2.stl,filler,1,45.5,45.5,2h 25m 10s,50
+base-front,filler-bevel-L-part2of2.stl,filler,1,45.5,45.5,2h 25m 21s,50
 base-front,filler-corner-R.stl,filler,1,28.7,28.7,2h 8m 15s,32
 base-front,filler-bevel-R-part1of2.stl,filler,1,45.5,45.5,2h 21m 6s,50
 base-front,filler-bevel-R-part2of2.stl,filler,1,45.5,45.5,2h 21m 45s,50
 base-front,filler-bevel-end-part1of3.stl,filler,1,49.6,49.6,2h 32m 21s,54
 base-front,filler-bevel-end-part2of3.stl,filler,1,49.7,49.7,2h 33m 43s,54
-base-front,filler-bevel-end-part3of3.stl,filler,1,49.6,49.6,2h 33m 32s,54
+base-front,filler-bevel-end-part3of3.stl,filler,1,49.6,49.6,2h 33m 17s,54
 base-rear,former-split-gasket-groove-part1of4.stl,former,1,1.5,1.5,9m 41s,2
 base-rear,former-split-gasket-groove-part2of4.stl,former,1,1.4,1.4,8m 49s,2
 base-rear,former-split-gasket-groove-part3of4.stl,former,1,1.4,1.4,8m 49s,2
@@ -66,13 +66,13 @@ upright,kit-plate-spacer.stl,kit,2,3.8,7.6,20m 9s,9
 beam,kit-corner-bracket.stl,kit,4,8.2,32.8,40m 3s,40
 beam,filler-back-edge-part1of3.stl,filler,1,16.6,16.6,1h 5m 47s,21
 beam,filler-back-edge-part2of3.stl,filler,1,16.7,16.7,1h 6m 9s,21
-beam,filler-back-edge-part3of3.stl,filler,1,16.7,16.7,1h 5m 50s,21
+beam,filler-back-edge-part3of3.stl,filler,1,16.7,16.7,1h 5m 49s,21
 beam,kit-dowel-stop.stl,kit,2,0.7,1.4,4m 19s,2
 tools,kit-pour-gauge.stl,kit,2,4.7,9.4,24m 33s,11
 tools,kit-screed-shoe.stl,kit,2,9.8,19.5,44m 42s,26
 base-front,cast-in-leg-front-l-plug.stl,cast-in,2,4.1,8.2,24m 14s,9
 base-rear,cast-in-leg-rear-l-plug.stl,cast-in,2,4.1,8.2,24m 14s,9
-upright,cast-in-column-ring-l1a.stl,cast-in,8,11.6,93.2,44m 23s,109
+upright,cast-in-column-ring-l1a.stl,cast-in,8,13.6,108.7,49m 49s,127
 machine,part-pocket-cap-l3.stl,part,2,11.5,23.1,43m 49s,27
 machine,part-chain-mount-fixed.stl,part,1,8.6,8.6,38m 9s,10
 machine,part-chain-mount-moving.stl,part,1,18.0,18.0,1h 18m 33s,24

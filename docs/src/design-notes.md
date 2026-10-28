@@ -17,9 +17,9 @@ and the cable-chain mount).
 
 | Module | Steel skeleton (all stock) | Joins to |
 |---|---|---|
-| Base, two halves | Per half: a 2x3 tube girder under each Y rail with a tapped 3/8 x 1-1/2 in rail bar bolted on top and a 3/8 x 2-1/2 in end plate at each end; a pedestal under each upright (3/8 x 2-1/2 in seat and bottom bars, a 2x2x3/16 tube spacer round each tie rod); 1-1/2 in cross tubes from girder to girder (at the split and under the Y ballscrew supports, with tapped pads bolted on) and from each girder to its pedestal, each clamped by a 1/2-13 rod | The halves meet end plate to end plate on four dowel pins, clamped by two 1/2-13 draw rods that run inside the girders from a front pocket to a back pocket. The front half is cast against the rear, so the joint fits by construction |
-| Upright (x2), a raked buttress | A 3/8 x 2 in flat-bar foot, two 2x2x3/16 tube columns, a top plate of two 1/2 x 2-1/2 in flat bars (the lower one tapped); O-ring groove under the foot | Its foot bar bears on the base pedestal's seat bar. Three 1/2-13 tie rods (two inside the columns, screwed into the top plate; one from the toe, onto the foot bar) run right through the pedestal to its bottom bar. Two dowels, grouted into the foot at first assembly, locate it |
-| Beam (140 deep x 146 high) | A 3/4 x 5 in face bar (the rail face, tapped) and back bar, held apart by three 2-1/2 in pipe nipples on studs; a 3/8 x 2-1/2 in seat and cap bar at each end | The seat bars bear on the upright top plates; at each end four 3/8-16 grade B7 studs, screwed into the top plate, clamp cap bar, face and back bars and seat bar down; a dowel (grouted at first assembly) locates it |
+| Base, two halves | Per half: a 2x3 tube girder under each Y rail with a tapped 3/8 x 1-1/2 in rail bar bolted on top and a 3/8 x 2-1/2 in end plate at each end; a pedestal under each upright (3/8 x 2-1/2 in seat and bottom bars, a 2x2x1/8 tube spacer round each tie rod); 1-1/2 in cross tubes from girder to girder (at the split and under the Y ballscrew supports, with tapped pads bolted on) and from each girder to its pedestal, each clamped by a 1/2-13 rod | The halves meet end plate to end plate on four dowel pins, clamped by two 1/2-13 draw rods that run inside the girders from a front pocket to a back pocket. The front half is cast against the rear, so the joint fits by construction |
+| Upright (x2), a raked buttress | A 3/8 x 2 in flat-bar foot, two 2x2x1/8 tube columns, a top plate of two 1/2 x 2-1/2 in flat bars (the lower one tapped); O-ring groove under the foot | Its foot bar bears on the base pedestal's seat bar. Three 1/2-13 tie rods (two inside the columns, screwed into the top plate; one from the toe, onto the foot bar) run right through the pedestal to its bottom bar. Two dowels, grouted into the foot at first assembly, locate it |
+| Beam (140 deep x 146 high) | A 1/2 x 5 in face bar (the rail face, tapped) and a 3/8 x 5 in back bar, held apart by three 3 in pipe nipples on studs; a 3/8 x 2-1/2 in seat and cap bar at each end | The seat bars bear on the upright top plates; at each end four 3/8-16 grade B7 studs, screwed into the top plate, clamp cap bar, face and back bars and seat bar down; a dowel (grouted at first assembly) locates it |
 
 **Nothing is made to order.** The rails (including the 600 mm Y pair) and ballscrews are used at the
 lengths they're sold in; the skeletons are about 54 pieces of stock flat bar and tube (56 kg) cut to
@@ -33,7 +33,7 @@ risers. Use plain steel, not galvanized: epoxy bonds poorly to zinc.
 Wire-brush off rust and loose scale and degrease just before casting; paint only the part of each leg
 that hangs below the base.
 
-**Keeping the epoxy down.** About 8.8 kg of epoxy (8.5 % of the 103 kg of castings):
+**Keeping the epoxy down.** About 9.0 kg of epoxy (8.5 % of the 106 kg of castings):
 - The tubes stay hollow (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
   they're clamped between, or by printed rings and plugs, so no mix gets in.
 - The base's underside pockets follow the stiffness study below, with the steel grid in the ribs
@@ -130,6 +130,8 @@ The two uprights are the same part, so one mold casts both, one after the other.
   less; the castings are 8 kg lighter (the grit is heavy) and the frame about 4 kg heavier
   overall. The #16 grit on top is still an option (decided before the pour): 108.0 / 166.9 / 147.3 N/um
   for $110. It's an estimate, so the build guide's tap-tested bars check the mix either way.
+  (That was before the moving-parts study below showed the frame is only 2-5 % of the deflection at the
+  tool. The lean-frame study took most of this steel back out for under 0.5 % there: below.)
   Other options:
   **Graded industrial quartz** (Agsco and similar) is clean, dry and
   consistent but costs more and ships heavy; pool filter sand is the local equivalent.
@@ -238,7 +240,8 @@ good part of the X deflection; in Y and Z it is mostly the beam bending between 
 | Plain sand, the grit's money in steel: 3/4 in beam bars, 3/16 in column walls | 44.9 L | 100.9 | 155.4 | 135.6 |
 | The base's lower edge beveled 1-1/2 x 2-1/2 in, the legs tucked in behind it | 44.6 L | 103.4 | 155.8 | 136.5 |
 | + the uprights' backs raked, each foot 40 mm deeper | 45.4 L | 105.2 | 157.2 | 138.2 |
-| **Now: stock flat-bar plates (a 6 in X carriage, so the uprights are 18 mm closer and the beam shorter), the HM12-57 on Y** | **44.1 L** | **107.4** | **168.2** | **146.4** |
+| Stock flat-bar plates (a 6 in X carriage, so the uprights are 18 mm closer and the beam shorter), the HM12-57 on Y | 44.1 L | 107.4 | 168.2 | 146.4 |
+| **Now: 1/2 in face and 3/8 in back beam bars on 3 in nipples, 1/8 in column walls (the lean frame, below)** | **44.8 L** | **98.3** | **153.1** | **131.3** |
 
 - **Steel skeletons.** Making the steel the frame (epoxy granite cast round it) makes the frame stiffer
   than the last all-epoxy-granite design. The first version was 64 custom laser-cut plates slotted
@@ -328,22 +331,23 @@ test and tap-tested bars check both before anything is cast.
 
 **Vibration** (`analysis/modal.py`). The frame on its four feet, with 22.2 kg of X carriage (steel, with its
 angles), Z axis (steel Z plate) and spindle on the beam blocks and 12 kg of table, vise and work on the Y blocks, as drawn now
-(plain sand, 3/4 in beam bars, the legs tucked in behind the base's bevel, the uprights' backs raked), with the optional #16 grit
+(plain sand, 1/2 and 3/8 in beam bars, the legs tucked in behind the base's bevel, the uprights' backs raked), with the optional #16 grit
 on top (`FEA_GRIT=1.22`), and with the legs in the corners and a square edge, as before. Tucking the
 legs in shortens the span the base bends over between its feet: +17 % in the first mode and +31 % in
 the base's own bending, more than any change to the castings has bought (the grit and corner-leg columns
 were run on the 600 mm wide frame, before the 6 in carriage brought the uprights in, and with the 12 kg
 aluminum-carriage head; the steel carriage and Z plate, about 10 kg more, take the drawn modes from 149 / 300 / 391 / 400 Hz to
-the figures here):
+145 / 271 / 371 / 376 Hz, and the lean frame's thinner steel to the figures here):
 
 | Mode | Drawn | + #16 grit | Legs in the corners | Motion |
 |---|---|---|---|---|
-| 1 | **145 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
+| 1 | **148 Hz** | 151 Hz | 128 Hz | gantry sways side to side (X); the base twisting on its feet carries a third of it |
 | 2 | **271 Hz** | 303 Hz | 256 Hz | beam rocks front to back (Y) |
-| 3 | **371 Hz** | 391 Hz | 298 Hz | base bends, front to back |
-| 4 | **376 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
+| 3 | **365 Hz** | 391 Hz | 298 Hz | base bends, front to back |
+| 4 | **370 Hz** | 410 Hz | 349 Hz | gantry sway with the base, second form |
 
-Bricks this coarse run a little stiff, so the real frequencies are probably 10-20 % lower.
+Bricks this coarse run a little stiff: the same frame in 7.5 mm voxels comes out 3-10 % lower in its
+modes (and within 3 % in static stiffness), so the real frequencies are probably 10-20 % lower.
 All four are inside the tooth-pass band for steel (roughly 130-400 Hz: 4,000-8,000 rpm
 with 2-3 flutes). That's normal for a machine this size; the frame is still several times stiffer than
 the spindle and tool (static X/Y/Z above), and chatter on a mill like this usually
@@ -366,12 +370,13 @@ and the bolted joints as bonded, so the real machine is somewhat softer still.
 
 | Tool against work, N/um | X | Y | Z |
 |---|---|---|---|
-| The frame alone (above) | 107.4 | 168.2 | 146.4 |
+| The frame alone (above) | 98.3 | 153.1 | 131.3 |
 | With the moving parts, 5/8 in aluminum X carriage and Z plate (as it was) | 3.1 | 2.7 | 4.0 |
 | With the moving parts, 5/8 in steel X carriage and two angles, aluminum Z plate | 3.5 | 3.5 | 6.6 |
-| **With the moving parts, steel X carriage with its angles and steel Z plate (drawn)** | **3.8** | **3.8** | **6.9** |
+| With the moving parts, steel X carriage with its angles and steel Z plate, the frame before the lean steel | 3.9 | 3.8 | 6.9 |
+| **The same on the lean frame (drawn)** | **3.8** | **3.8** | **6.8** |
 
-The moving parts are where the machine gives: the frame is 2-4 % of the deflection at the tool. With
+The moving parts are where the machine gives: the frame is 2-5 % of the deflection at the tool. With
 the aluminum carriage the carriage itself was the softest link, half of the Z deflection and a third
 of Y's: between the X blocks it bends where the Z blocks bear on it, and above them it cantilevers about
 210 mm up to the Z screw's top bearing, which takes the vertical cutting load 30 mm in front of the plate.
@@ -398,6 +403,41 @@ and Z plate (45 % of X and 35 % of Y), the X blocks (12-18 %), the table and the
 fifth of Z) and the carriage (20 % of Y and 22 % of Z). That is the order for any later upgrades;
 the frame doesn't need anything. It also says the frame has stiffness to spare, which is right for the
 one part that can't be changed after the pour: everything that bolts on can be upgraded later.
+
+**The lean frame (2026-10-27)** (`analysis/lean_study.py`, `topopt_gantry.py`). If the frame is 2-4 % of
+the deflection at the tool, some of its steel and casting is buying very little. Each change was voxelized
+(or the steel scaled where it lies, as in the steel study), judged at the tool with the moving parts in
+series, and by its modes, since those are what thinner castings give up first:
+
+| Change from the frame before (10 mm voxels) | At the tool X / Y / Z | Modes, Hz | Castings | Steel | Cost |
+|---|---|---|---|---|---|
+| Before | 3.86 / 3.81 / 6.86 N/um | 145 / 271 / 371 / 376 | 103.5 kg | 75.1 kg | |
+| Beam bars 1/2 in | -0.3 / -0.1 / -0.4 % | 148 / 276 / ... | | -5.9 kg | -$26 |
+| Beam face bar 1/2 in, back bar 3/8 in | -0.3 / -0.2 / -0.5 % | | | -7.4 kg | -$32 |
+| 2x2 columns 1/8 in wall | -0.1 % | | | -3.1 kg | -$20 |
+| Top plates of 3/8 in bars | about 0 | | | -1.2 kg | -$5 |
+| **Drawn: the beam bars 1/2 and 3/8 in (3 in nipples), the columns 1/8 in wall** | **-0.3 / -0.2 / -0.5 %** | **148 / 271 / 365 / 370** | **105.4 kg** | **64.5 kg** | **-$50** |
+| ... and the uprights' toes 200 mm ahead of the beam instead of 260 | -0.6 / -0.3 / -0.7 % | 146 / 240 / 361 / 369 | 101.3 kg | 62.9 kg | -$3 epoxy |
+| ... toes 150 mm ahead | -0.9 / -0.4 / -1.1 % | 145 / 219 / 354 / 370 | 96.5 kg | 62.9 kg | -$10 epoxy |
+| ... the base 100 mm high instead of 110 | -0.5 / -0.3 / -0.7 % | 148 / 259 / 369 / 376 | 97.4 kg | 64.3 kg | -$8 epoxy |
+| Uprights and beam optimized together, 70 % of their epoxy granite kept (on the frame before) | -0.7 / -0.2 / -0.8 % | 144 / 234 / 348 / 375 | 91.3 kg | | -$17 epoxy |
+| The same, 60 % kept | -1.5 / -0.8 / -2.4 % | 145 / 188 / 330 / 372 | 87.2 kg | | -$22 epoxy |
+
+The thinner steel is nearly free: 23 lb and $50 less for half a percent at the tool, the modes the same.
+(The top plates stay 1/2 in bars: the lower one holds the 1/2-13 tie rods' and the beam studs' threads,
+and 3/8 in would leave them three quarters of a diameter of thread. The face bar stays 1/2 in for the
+M5 and M6 threads of the rails and supports, over two diameters.) The 3 in nipples keep the back bar
+where the 3/4 in one was, so the beam's depth between its bars doesn't change.
+
+The castings are another matter. The optimizer (uprights and beam on one budget, free in 3D, mirrored,
+kept solid 10 mm round the steel, 15 mm round the tie rods and in a 20 mm skin on the beam) takes the
+material out of the uprights' raked toes and the beam's core between its bars, between the nipples
+(below), and the second mode, the beam rocking front to back, pays for it: 271 Hz to 234 Hz at 70 %, 188 Hz
+at 60 %. Shortening the toes outright is worse still per kilogram. And epoxy granite saves money only
+in kit steps: the 3 gal kit stays until the castings are under about 86 kg, which none of these reach
+without giving up a fifth of that mode or more. So the castings stay as they are, and the money is in the steel.
+
+![Where the optimizer takes the epoxy granite out of the uprights and beam, at 70 % and 60 % kept (`analysis/plot_gantry.py`)](../../analysis/figs/gantry_0.7_0.6.png)
 
 **Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
 The uprights were optimized again on their own, with the cuts forced to go straight through
@@ -500,7 +540,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/22, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews) about **$1,611**, plus about **$183 of add-later
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,561**, plus about **$183 of add-later
 niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
 they're bought; **2, the electronics and spindle** about **$418** plus the spindle the builder picks
 ($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
@@ -560,15 +600,25 @@ carry the rails and blocks metal to metal, so both plates and the Z risers are g
 | The Z plate in 5/8 x 6 in steel, with the skeletons' steel (about 13 lb) | +$25 |
 | The Z plate out of the aluminum | -$20 |
 | Blanchard grinding: the carriage, the Z plate and the Z risers, both faces | +$75 |
-| **Now** | **$1,611** |
+| **After** | **$1,611** |
 
 The grinding is the only real addition, and it buys accuracy, not stiffness. Machining the plates on the
 machine itself (built first with the bars as they come, then facing a second pair and swapping them in)
 would cost about $35 of bar instead, but the result is only as flat as the machine's own travel, and
 custom-machined steel parts (online quotes run from tens to over a hundred dollars a part) cost more than the stock bar and the grinding.
 
+**The lean steel (2026-10-27).** The frame is 2-5 % of the deflection at the tool, so the skeleton's
+heavier steel was buying little (the lean frame, above):
+
+| Change | Frame |
+|---|---|
+| Before | $1,611 |
+| The beam bars 1/2 and 3/8 in instead of 3/4 in, the 2x2 tube 1/8 in wall instead of 3/16 in (about 20 lb) | -$50 |
+| A little more epoxy granite where the steel was (0.2 kg of epoxy, inside the 3 gal kit) | 0 |
+| **Now** | **$1,561** |
+
 What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
-(about $340 at $2/lb, against the $425 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
+(about $300 at $2/lb, against the $375 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;
 clone dimensions vary), and car paste wax under the PVA instead of Partall ($15 less; test it on a
 melamine offcut). The aluminum table is the risk the other way: it is a stock flat-bar width, so any
 drop of 10 in bar only needs a length cut, but bought new and cut to length it is about $105 against the $45

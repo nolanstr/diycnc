@@ -54,8 +54,8 @@ granite.
 ![The beam's steel: face and back bars, pipe spacers, end bars](../../renders/mold/skeleton-beam.png)
 
 1. **Buy the steel cut to length.** `docs/1-sourcing/steel/README.md` has the cut list by stock size and
-   every part (about 54 pieces, 56 kg). It's all common sizes: 3/8 in flat bar in 1-1/2, 2 and 2-1/2 in
-   widths, 1/2 x 2-1/2 and 3/4 x 5 in flat bar, 2 x 3 x 1/8 in rectangular tube, and 2 x 2 x 3/16 and
+   every part (about 58 pieces, 62 kg). It's all common sizes: 3/8 in flat bar in 1-1/2, 2, 2-1/2 and 5 in
+   widths, 1/2 x 2-1/2 and 1/2 x 5 in flat bar, 2 x 3 x 1/8 in rectangular tube, and 2 x 2 x 1/8 and
    1-1/2 x 1-1/2 x 1/8 in square tube. A local steel yard or Metal Supermarkets will cut it for you (cheapest); online
    sellers sell it in fixed lengths you cut with a chop saw or hacksaw. Plus, bought at length: 2 x 2 in
    tube, 4 x 8-1/8 in (the upright columns), and 1-1/2 x 1-1/2 in tube, 4 x 6 in (legs). A saw cut within
@@ -209,11 +209,10 @@ gravel into these bands. Wash anything dusty or clay-coated, and dry everything 
 locks together a little stiffer than rounded gravel; rounded flows and packs a little better;
 either works.
 
-**The same mix in every casting.** The beam and uprights get their extra stiffness from steel
-(3/4 in beam bars, 3/16 in column walls), so all five castings use this plain mix.
-(Optional, and only before the pour: brown fused #16 aluminum oxide grit, about five times
+**The same mix in every casting.** All five castings use this plain mix.
+(Optional, and only before the pour, though not worth it: brown fused #16 aluminum oxide grit, about five times
 stiffer than sand, in place of the coarse sand in the beam and uprights adds about 8 % on the
-frame for one 50 lb bag. It's heavier, so swap it by volume: **1.5 kg of #16 for every 1 kg of
+frame for one 50 lb bag, but under 0.5 % at the tool. It's heavier, so swap it by volume: **1.5 kg of #16 for every 1 kg of
 coarse sand**, everything else, epoxy included, the same. Don't over-vibrate it: the heavy grit
 can settle. Black 70 grit for the fine sand, 1.4 kg for every 1 kg, is a further option on top.)
 

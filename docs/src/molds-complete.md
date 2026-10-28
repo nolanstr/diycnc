@@ -49,7 +49,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Melamine board, 3/4 in | 1 sheet, 4 x 8 ft | layout in section 4 |
 | 1x2 lumber (furring strip is fine) | 3 x 8 ft 1x2 (5.0 m) | the cleats: they lie on the floor outside the walls |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 1.69 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 1.71 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | about 6 m | the rounded outside edges |
@@ -68,9 +68,9 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | M4 x 45 bolt | 33 |
 | M5 x 20 screw, greased (holds an insert) | 19 |
 | M5 x 30 screw, greased (holds a rail bar or the BK pad) | 12 |
-| M5 x 50 screw, greased (holds the face plate) | 8 |
+| M5 x 45 screw, greased (holds the face plate) | 8 |
 | M6 x 30 screw, greased (holds a support pad) | 8 |
-| M6 x 50 screw, greased (holds the face plate) | 6 |
+| M6 x 45 screw, greased (holds the face plate) | 6 |
 | 1/2 in plain steel rod, greased (forms a beam bolt hole), 204 mm | 8 |
 | 1/2-13 x 1-1/2 in bolt + nut, greased (forms a dowel hole) | 2 |
 | 3/8-16 x 3 in bolt, greased (holds the top plate, both layers) | 2 |
@@ -80,7 +80,7 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-111 prints, 1.69 kg, about 111 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+111 prints, 1.71 kg, about 112 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 ![The printed mold kit](../../renders/mold/gallery-kit.png)
@@ -101,12 +101,12 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
 | `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 27s |
 | `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 10s |
-| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 44s |
+| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 41s |
 | `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 9m 35s |
 | `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 34m 47s |
 | `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 51s |
 | `base-rear/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 36m 44s |
-| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 10s |
+| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 9s |
 | `base-rear/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 36m 53s |
 | `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 24s |
 | `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 44s |
@@ -118,14 +118,14 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `base-front/former-trough-part4of5.stl` | 1 | 22 | 1h 21m 55s |
 | `base-front/former-trough-part5of5.stl` | 1 | 20 | 1h 11m 51s |
 | `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 58s |
-| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 12s |
-| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 19s |
+| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 10s |
+| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 21s |
 | `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 15s |
 | `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 6s |
 | `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 45s |
 | `base-front/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 32m 21s |
 | `base-front/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 33m 43s |
-| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 32s |
+| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 17s |
 | `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 41s |
 | `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 49s |
 | `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 49s |
@@ -156,13 +156,13 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
 | `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 5m 47s |
 | `beam/filler-back-edge-part2of3.stl` | 1 | 17 | 1h 6m 9s |
-| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 5m 50s |
+| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 5m 49s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
 | `base-front/cast-in-leg-front-l-plug.stl` | 2 | 8 | 24m 14s |
 | `base-rear/cast-in-leg-rear-l-plug.stl` | 2 | 8 | 24m 14s |
-| `upright/cast-in-column-ring-l1a.stl` | 8 | 93 | 44m 23s |
+| `upright/cast-in-column-ring-l1a.stl` | 8 | 109 | 49m 49s |
 
 ## 4. Cut the boards
 

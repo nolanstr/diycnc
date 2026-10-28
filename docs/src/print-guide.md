@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**117 prints, 1.79 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**117 prints, 1.80 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -135,7 +135,7 @@ Folder `print/base-front/`, about 590 g.
 
 ## Uprights (one mold, cast twice: cast-in parts are for both)
 
-Folder `print/upright/`, about 219 g.
+Folder `print/upright/`, about 235 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -149,7 +149,7 @@ Folder `print/upright/`, about 219 g.
 | `former-foot-gasket-groove-part4of4.stl` | Former (removable) | 1 | 68 x 143 x 8 | 3 |  |
 | `plug-toe-plug.stl` | Plug (removable) | 1 | 32 x 76 x 46 | 13 | Forms a nut pocket in the slope; bolts to the front board; its rod stops inside it. |
 | `kit-plate-spacer.stl` | Mold kit (reused) | 2 | 16 x 16 x 31 | 8 | Between the bridge and the top plate, on its greased 3/8 bolt. |
-| `cast-in-column-ring-l1a.stl` | Cast-in part (stays in) | 8 | 40 x 40 x 12 | 93 | Cast in, stays. |
+| `cast-in-column-ring-l1a.stl` | Cast-in part (stays in) | 8 | 43 x 43 x 12 | 109 | Cast in, stays. |
 
 ## Beam
 

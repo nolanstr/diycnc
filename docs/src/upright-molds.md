@@ -41,7 +41,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 |---|---|---|
 | Melamine board, 3/4 in | about 0.4 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
 | 1x2 lumber (furring strip is fine) | 1 x 8 ft 1x2 (0.9 m) | the cleats: they lie on the floor outside the walls |
-| PETG | 0.25 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 0.26 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
 | 2x4 offcut | 4 blocks per upright mold, about 50 mm | feet |
@@ -61,7 +61,7 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-32 prints, 0.25 kg, about 18 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+32 prints, 0.26 kg, about 19 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
@@ -78,7 +78,7 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 | `upright/kit-plate-spacer.stl` | 2 | 8 | 20m 9s |
 | `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
 | `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `upright/cast-in-column-ring-l1a.stl` | 8 | 93 | 44m 23s |
+| `upright/cast-in-column-ring-l1a.stl` | 8 | 109 | 49m 49s |
 
 ## 4. Cut the boards
 

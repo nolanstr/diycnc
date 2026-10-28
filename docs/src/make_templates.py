@@ -14,11 +14,22 @@ import math
 import os
 import subprocess
 import tempfile
+import time
 from datetime import date
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.dirname(SRC)
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+
+
+def print_pdf(url, pdf, *flags):
+    """Print a page to PDF with headless Chrome. Chrome sometimes writes the PDF and then dies in its
+    teardown watchdog (exit 2); the PDF is good then."""
+    t0 = time.time()
+    r = subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-pdf-header-footer', *flags,
+                        f'--print-to-pdf={pdf}', url], capture_output=True)
+    if r.returncode and not (os.path.exists(pdf) and os.path.getmtime(pdf) >= t0 and b'bytes written' in r.stderr):
+        raise subprocess.CalledProcessError(r.returncode, r.args, r.stdout, r.stderr)
 PAGE = (215.9, 279.4)                  # Letter, mm
 MARGIN = 7.5                           # most printers print to within 6.35 mm (1/4 in) of the edge
 HEAD = 17.0                            # header band at the top of each page
@@ -213,8 +224,7 @@ def main():
             tmp = fh.name
         rel = '1-sourcing/steel/steel-templates.pdf' if mold == 'steel' else f'3-molds/templates/{mold}-templates.pdf'
         pdf = os.path.join(DOCS, rel)
-        subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={pdf}',
-                        f'file://{tmp}'], check=True, capture_output=True)
+        print_pdf(f'file://{tmp}', pdf)
         os.remove(tmp)
         print(f'{rel}: {len(pages) + 1} pages')
 
