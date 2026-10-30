@@ -2,6 +2,7 @@
 
     python topopt_gantry.py 0.6              # keep 60 % of the uprights' and the beam's epoxy granite
     python lean_study.py lean0: gantry_0.6:  # then judge it at the tool, by its modes and its mass
+    python topopt_gantry.py 0.7 lean0_h7.5   # from other voxels (here 7.5 mm): writes vox_gantry_0.7_lean0_h7.5
 
 Free 3D in both (closed voids are fine: printed or XPS cores left in the casting, as in topopt_frame.py), the
 same on both sides of x = 0. Kept solid in both: 10 mm around
@@ -27,22 +28,18 @@ from vfe import E_EG, E_MIN, E_ST, Voxels
 HERE = os.path.dirname(os.path.abspath(__file__))
 R_FILTER = 25.0
 SKIN = 20.0
-SRC = 'vox_lean0'
 
 
-def main(frac, iters=80):
-    warnings.filterwarnings('ignore', message='Matrix is nearly singular')
-    vox = Voxels(SRC)
+def design_domain(vox, mesh):
+    """The uprights' and beam's epoxy granite the optimizer may take out: design elements `de`, grouped in
+    columns mirrored about x = 0 (`col_of`), their density filter `W`, and the volumes the budget counts."""
     h, d, f = vox.h, vox.d, vox.f
-    mesh = setup(vox, domain_mask(vox))
-    F, labels = cases(mesh, vox, xs=(0.0, 90.0))
-    nlc = F.shape[1]
     fld = mesh.field
     st = fld(f['st_base']) + fld(f['st_up']) + fld(f['st_beam'])
     eg_base, eg_up, eg_beam = fld(f['eg_base']), fld(f['eg_up']), fld(f['eg_beam'])
 
     X, Y, Z = np.meshgrid(vox.centers(0), vox.centers(1), vox.centers(2), indexing='ij')
-    near_steel = ndi.binary_dilation((f['st_up'] + f['st_beam']) > 0.02, np.ones((3, 3, 3), bool))
+    near_steel = ndi.distance_transform_edt((f['st_up'] + f['st_beam']) <= 0.02) * h <= 10.0 + 1e-6
     beam_solid = (f['eg_beam'] + f['st_beam']) > 0.01
     skin = beam_solid & (ndi.distance_transform_edt(beam_solid) * h <= SKIN)
     keep = near_steel | skin | (Z > d['beam_bot'] - 25.0) & (f['eg_up'] > 0.01) | (Z < d['base_top'] + 15.0)
@@ -67,6 +64,22 @@ def main(frac, iters=80):
     v_e = eg_d * h ** 3 / 1e6
     v_all = v_e[up | (eg_beam > 0.01)].sum()
     v_fix = v_all - v_e[de].sum()
+    vcol = np.bincount(col_of, weights=v_e[de], minlength=len(cols))
+    return dict(de=de, cols=cols, col_of=col_of, W=W, eg_d=eg_d, v_all=v_all, v_fix=v_fix, vcol=vcol, st=st,
+                eg_base=eg_base)
+
+
+def main(frac, src='lean0', iters=80):
+    warnings.filterwarnings('ignore', message='Matrix is nearly singular')
+    SRC = 'vox_' + src
+    vox = Voxels(SRC)
+    h, f = vox.h, vox.f
+    mesh = setup(vox, domain_mask(vox))
+    F, labels = cases(mesh, vox, xs=(0.0, 90.0))
+    nlc = F.shape[1]
+    dd = design_domain(vox, mesh)
+    de, cols, col_of, W, eg_d = dd['de'], dd['cols'], dd['col_of'], dd['W'], dd['eg_d']
+    v_all, v_fix, vcol, st, eg_base = dd['v_all'], dd['v_fix'], dd['vcol'], dd['st'], dd['eg_base']
     target = frac * v_all
     print(f'uprights + beam {v_all:.2f} L, fixed {v_fix:.2f} L, target {target:.2f} L, {len(cols)} variables',
           flush=True)
@@ -83,7 +96,6 @@ def main(frac, iters=80):
 
     E0 = E_MIN * E_EG + E_EG * (eg_base + eg_d) + E_ST * st
     C0 = (F * mesh.solve(E0, F)).sum(0)
-    vcol = np.bincount(col_of, weights=v_e[de], minlength=len(cols))
 
     def volume(x):
         return v_fix + (proj(W @ x)[0] * vcol).sum()
@@ -121,7 +133,7 @@ def main(frac, iters=80):
     i, j, kk = mesh.ijk[cut].T
     for g in ('up', 'beam'):
         out[f'eg_{g}'][i, j, kk] = 0.0
-    name = f'vox_gantry_{frac:g}'
+    name = f'vox_gantry_{frac:g}' + ('' if src == 'lean0' else '_' + src)
     np.savez_compressed(os.path.join(HERE, name + '.npz'), **out)
     info = json.load(open(os.path.join(HERE, SRC + '.json')))
     json.dump(info, open(os.path.join(HERE, name + '.json'), 'w'))
@@ -131,4 +143,4 @@ def main(frac, iters=80):
 
 
 if __name__ == '__main__':
-    main(float(sys.argv[1]))
+    main(float(sys.argv[1]), *sys.argv[2:3])

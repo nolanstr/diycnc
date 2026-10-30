@@ -4,7 +4,7 @@ models of their own at 1/8 in; the rail blocks and ballscrews are springs at the
 each tied to the plate over its footprint as a rigid patch (RBE3 style, like the frame's loads). The
 spindle and its clamp are rigid: the tool force goes into the Z plate over the clamp's foot.
 
-    freecadcmd analysis/chain_geom.py        # the moving parts' geometry -> chain_geom.json
+    python analysis/chain_geom.py            # the moving parts' geometry -> chain_geom.json
     python chain.py                          # as drawn and every variant
     python chain.py yff car1 car1+yff        # chosen variants, combined with +
     python chain.py --no-frame ...           # the moving parts only
@@ -57,7 +57,6 @@ VARIANTS = {
     'zpalu': ('5/8 in aluminum Z plate (as it was)', dict(zp_alu=True)),
     'tablesteel': ('Steel table', dict(table_steel=True)),
 }
-FREECAD = os.environ.get('FREECADCMD', '/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd')
 
 def frac1(o, n, lo, hi):
     """Overlap of [lo, hi] with each of n voxels of size H starting at o, as a fraction."""
@@ -295,7 +294,7 @@ def geometry(P=None):
     tag = '_'.join(f'{k}{v:g}' for k, v in sorted(P.items()))
     path = os.path.join(HERE, f'chain_geom_{tag}.json')
     if not os.path.exists(path):
-        subprocess.run([FREECAD, os.path.join(HERE, 'chain_geom.py')], check=True, capture_output=True,
+        subprocess.run([sys.executable, os.path.join(HERE, 'chain_geom.py')], check=True, capture_output=True,
                        env=dict(os.environ, VOX_P=json.dumps(P), CHAIN_OUT=path))
     return json.load(open(path))
 

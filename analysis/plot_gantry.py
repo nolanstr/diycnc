@@ -1,6 +1,7 @@
 """Where topopt_gantry.py takes the epoxy granite out: figs/gantry_<frac>.png.
 
     python plot_gantry.py 0.7 0.6
+    python plot_gantry.py --ref sym10 gantry_0.7_sym10 damped_0.7_sym10     # any voxels, against --ref
 
 Three views, each the share of the casting removed through its depth: an upright from the side (y, z,
 through its width), the beam end-on (y, z, along its length between the uprights) and the beam from the
@@ -18,15 +19,17 @@ import matplotlib.pyplot as plt  # noqa: E402
 from vfe import Voxels  # noqa: E402
 
 
-def main(fracs):
-    ref = Voxels('vox_lean0')
+def main(fracs, ref_name='lean0'):
+    ref = Voxels('vox_' + ref_name, sym=False)
     h, o, n = ref.h, ref.o, ref.info['n']
     x = o[0] + (np.arange(n[0]) + 0.5) * h
     ext = lambda a, b: [o[a], o[a] + n[a] * h, o[b], o[b] + n[b] * h]
     fig, axs = plt.subplots(len(fracs), 3, figsize=(15, 4.2 * len(fracs)), squeeze=False,
                             gridspec_kw=dict(width_ratios=[1.2, 1.0, 2.2]))
     for row, frac in zip(axs, fracs):
-        v = Voxels(f'vox_gantry_{frac:g}')
+        name = f'gantry_{frac:g}' if isinstance(frac, float) else frac
+        v = Voxels('vox_' + name, sym=False)
+        label = f'keep {frac:.0%}' if isinstance(frac, float) else name
         for ax, g, sel, (a, b), title in (
                 (row[0], 'up', x < 0, (1, 2), 'left upright, from the side'),
                 (row[1], 'beam', np.abs(x) < ref.d['inner'], (1, 2), 'beam, end-on'),
@@ -44,15 +47,26 @@ def main(fracs):
             ax.set_xlim(o[a] + lo[0] * h - 10, o[a] + hi[0] * h + 10)
             ax.set_ylim(o[b] + lo[1] * h - 10, o[b] + hi[1] * h + 10)
             ax.set_aspect('equal')
-            ax.set_title(f'{title}: keep {frac:.0%}', fontsize=10)
+            ax.set_title(f'{title}: {label}', fontsize=10)
             ax.set_xlabel('xyz'[a] + ' (mm)')
             ax.set_ylabel('z (mm)')
         fig.colorbar(im, ax=row[2], shrink=0.8, label='share removed through the depth')
     fig.tight_layout()
-    out = f'figs/gantry_{"_".join(f"{f:g}" for f in fracs)}.png'
+    out = f'figs/gantry_{"_".join(f"{f:g}" if isinstance(f, float) else f for f in fracs)}.png'
     fig.savefig(out, dpi=110)
     print('saved', out)
 
 
 if __name__ == '__main__':
-    main([float(a) for a in sys.argv[1:]])
+    args, ref = sys.argv[1:], 'lean0'
+    if '--ref' in args:
+        k = args.index('--ref')
+        ref = args[k + 1]
+        args = args[:k] + args[k + 2:]
+
+    def arg(a):
+        try:
+            return float(a)
+        except ValueError:
+            return a
+    main([arg(a) for a in args], ref)

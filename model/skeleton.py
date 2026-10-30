@@ -17,8 +17,7 @@ for a laser-cutting service.
 
 import math
 
-import Part
-from FreeCAD import Vector
+from cadrust.freecad import Part, Vector
 
 CLR = 0.25                     # slot clearance a side
 T38, T14, T12 = 9.525, 6.35, 12.7

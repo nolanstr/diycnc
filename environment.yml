@@ -1,14 +1,19 @@
-# Voxel FEA in analysis/ (stiffness, vibration modes, topology studies, animations).
+# Everything: the model (model/), the renders, the voxel FEA (analysis/) and the docs.
 #   conda env create -f environment.yml && conda activate diycnc
-# The model itself (model/, analysis/voxelize.py) runs in FreeCAD's own Python (freecadcmd).
+# then build cad-rust-app's Python bindings into it (OpenCascade compiles on the first build, ~20 min):
+#   git clone https://github.com/JonasMerrell/cad-rust-app ~/dev/cad-rust-app
+#   cd ~/dev/cad-rust-app/python && CMAKE_POLICY_VERSION_MINIMUM=3.5 maturin develop --release
 name: diycnc
 channels:
   - conda-forge
 dependencies:
   - python=3.13
+  - rust         # cad-rust-app and its Python bindings (cadrust)
+  - maturin
   - numpy
   - scipy
   - matplotlib
+  - pillow       # renders and the mold guide's labeled figures
   - scikit-sparse>=0.5
   - pyvista      # animations (analysis/animate.py)
   - imageio

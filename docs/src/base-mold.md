@@ -46,7 +46,7 @@ mix touches. Nothing is glued, and it all comes apart for the next casting.
 | Melamine board, 3/4 in | about 1.3 m2 | all the molds come out of 1 sheet, 4 x 8 ft |
 | 1x2 lumber (furring strip is fine) | 2 x 8 ft 1x2 (2.7 m) | the cleats: they lie on the floor outside the walls |
 | XPS foam board, 2 in | 1 sheet, 2 x 8 ft | the cores |
-| PETG | 1.39 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
+| PETG | 1.80 kg | sliced; everything printed for the machine fits in two 1 kg rolls |
 | Packing tape, double-sided carpet tape | 1 roll each | wrapping and holding the foam |
 | Paste wax and PVA | 1 each | release |
 | 3/8 in quarter-round PVC molding | a few meters | the rounded outside edges |
@@ -70,69 +70,92 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-74 prints, 1.39 kg, about 89 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+99 prints, 1.80 kg, about 116 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
-| `base-box/kit-corner-bracket.stl` | 4 | 33 | 39m 23s |
-| `base-box/kit-partition-bracket.stl` | 2 | 14 | 35m 28s |
-| `base-box/kit-saddle.stl` | 6 | 58 | 46m 3s |
-| `base-box/kit-leg-holder.stl` | 4 | 166 | 2h 30m 55s |
-| `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 6s |
-| `base-rear/former-gutter-L-part2of3.stl` | 1 | 8 | 33m 40s |
-| `base-rear/former-gutter-L-part3of3.stl` | 1 | 7 | 31m 15s |
-| `base-rear/former-gutter-R-part1of3.stl` | 1 | 8 | 35m 6s |
-| `base-rear/former-gutter-R-part2of3.stl` | 1 | 8 | 33m 40s |
-| `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 15s |
-| `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 27s |
+| `base-box/kit-corner-bracket.stl` | 4 | 33 | 39m 22s |
+| `base-box/kit-partition-bracket.stl` | 2 | 14 | 35m 31s |
+| `base-box/kit-saddle.stl` | 6 | 58 | 46m 6s |
+| `base-box/kit-leg-holder.stl` | 4 | 166 | 2h 31m 6s |
+| `base-rear/former-gutter-L-part1of3.stl` | 1 | 8 | 35m 5s |
+| `base-rear/former-gutter-L-part2of3.stl` | 1 | 8 | 33m 42s |
+| `base-rear/former-gutter-L-part3of3.stl` | 1 | 7 | 31m 18s |
+| `base-rear/former-gutter-R-part1of3.stl` | 1 | 8 | 35m 7s |
+| `base-rear/former-gutter-R-part2of3.stl` | 1 | 8 | 33m 42s |
+| `base-rear/former-gutter-R-part3of3.stl` | 1 | 7 | 31m 17s |
+| `base-rear/former-floor-part1of9.stl` | 1 | 14 | 50m 49s |
+| `base-rear/former-floor-part2of9.stl` | 1 | 31 | 1h 48m 52s |
+| `base-rear/former-floor-part3of9.stl` | 1 | 13 | 50m 1s |
+| `base-rear/former-floor-part4of9.stl` | 1 | 13 | 47m 47s |
+| `base-rear/former-floor-part5of9.stl` | 1 | 29 | 1h 43m 13s |
+| `base-rear/former-floor-part6of9.stl` | 1 | 13 | 47m 50s |
+| `base-rear/former-floor-part7of9.stl` | 1 | 11 | 39m 30s |
+| `base-rear/former-floor-part8of9.stl` | 1 | 11 | 42m 13s |
+| `base-rear/former-floor-part9of9.stl` | 1 | 11 | 39m 27s |
+| `base-rear/filler-corner-L.stl` | 1 | 29 | 2h 10m 25s |
 | `base-rear/filler-bevel-L-part1of2.stl` | 1 | 50 | 2h 39m 10s |
-| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 41s |
-| `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 9m 35s |
-| `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 34m 47s |
-| `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 51s |
-| `base-rear/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 36m 44s |
-| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 9s |
-| `base-rear/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 36m 53s |
-| `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 24s |
-| `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 44s |
-| `base-front/former-gutter-R-part1of2.stl` | 1 | 11 | 49m 24s |
-| `base-front/former-gutter-R-part2of2.stl` | 1 | 10 | 43m 43s |
-| `base-front/former-trough-part1of5.stl` | 1 | 19 | 1h 12m 26s |
-| `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 21m 44s |
+| `base-rear/filler-bevel-L-part2of2.stl` | 1 | 50 | 2h 39m 43s |
+| `base-rear/filler-corner-R.stl` | 1 | 29 | 2h 11m 15s |
+| `base-rear/filler-bevel-R-part1of2.stl` | 1 | 50 | 2h 35m 0s |
+| `base-rear/filler-bevel-R-part2of2.stl` | 1 | 50 | 2h 35m 59s |
+| `base-rear/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 36m 46s |
+| `base-rear/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 37m 13s |
+| `base-rear/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 36m 47s |
+| `base-front/former-gutter-L-part1of2.stl` | 1 | 11 | 49m 21s |
+| `base-front/former-gutter-L-part2of2.stl` | 1 | 10 | 43m 43s |
+| `base-front/former-gutter-R-part1of2.stl` | 1 | 11 | 49m 19s |
+| `base-front/former-gutter-R-part2of2.stl` | 1 | 10 | 43m 45s |
+| `base-front/former-floor-part1of12.stl` | 1 | 44 | 2h 24m 52s |
+| `base-front/former-floor-part2of12.stl` | 1 | 23 | 1h 23m 35s |
+| `base-front/former-floor-part3of12.stl` | 1 | 5 | 24m 55s |
+| `base-front/former-floor-part4of12.stl` | 1 | 5 | 23m 14s |
+| `base-front/former-floor-part5of12.stl` | 1 | 16 | 1h 1m 11s |
+| `base-front/former-floor-part6of12.stl` | 1 | 21 | 1h 14m 46s |
+| `base-front/former-floor-part7of12.stl` | 1 | 16 | 1h 1m 0s |
+| `base-front/former-floor-part8of12.stl` | 1 | 21 | 1h 14m 46s |
+| `base-front/former-floor-part9of12.stl` | 1 | 5 | 24m 47s |
+| `base-front/former-floor-part10of12.stl` | 1 | 5 | 23m 14s |
+| `base-front/former-floor-part11of12.stl` | 1 | 44 | 2h 24m 48s |
+| `base-front/former-floor-part12of12.stl` | 1 | 23 | 1h 23m 37s |
+| `base-front/former-trough-part1of5.stl` | 1 | 19 | 1h 12m 22s |
+| `base-front/former-trough-part2of5.stl` | 1 | 22 | 1h 21m 40s |
 | `base-front/former-trough-part3of5.stl` | 1 | 24 | 1h 31m 38s |
-| `base-front/former-trough-part4of5.stl` | 1 | 22 | 1h 21m 55s |
-| `base-front/former-trough-part5of5.stl` | 1 | 20 | 1h 11m 51s |
-| `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 58s |
-| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 10s |
-| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 21s |
-| `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 15s |
-| `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 6s |
+| `base-front/former-trough-part4of5.stl` | 1 | 22 | 1h 21m 54s |
+| `base-front/former-trough-part5of5.stl` | 1 | 20 | 1h 11m 52s |
+| `base-front/filler-corner-L.stl` | 1 | 29 | 2h 10m 54s |
+| `base-front/filler-bevel-L-part1of2.stl` | 1 | 46 | 2h 25m 11s |
+| `base-front/filler-bevel-L-part2of2.stl` | 1 | 46 | 2h 25m 26s |
+| `base-front/filler-corner-R.stl` | 1 | 29 | 2h 8m 14s |
+| `base-front/filler-bevel-R-part1of2.stl` | 1 | 46 | 2h 21m 16s |
 | `base-front/filler-bevel-R-part2of2.stl` | 1 | 46 | 2h 21m 45s |
-| `base-front/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 32m 21s |
-| `base-front/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 33m 43s |
-| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 17s |
+| `base-front/filler-bevel-end-part1of3.stl` | 1 | 50 | 2h 32m 31s |
+| `base-front/filler-bevel-end-part2of3.stl` | 1 | 50 | 2h 33m 48s |
+| `base-front/filler-bevel-end-part3of3.stl` | 1 | 50 | 2h 33m 22s |
 | `base-rear/former-split-gasket-groove-part1of4.stl` | 1 | 2 | 9m 41s |
 | `base-rear/former-split-gasket-groove-part2of4.stl` | 1 | 1 | 8m 49s |
 | `base-rear/former-split-gasket-groove-part3of4.stl` | 1 | 1 | 8m 49s |
-| `base-rear/former-split-gasket-groove-part4of4.stl` | 1 | 2 | 9m 42s |
-| `base-front/core-center-a-post.stl` | 1 | 5 | 44m 56s |
-| `base-front/core-center-b-post.stl` | 1 | 5 | 44m 56s |
-| `base-rear/core-center-post.stl` | 1 | 5 | 44m 56s |
+| `base-rear/former-split-gasket-groove-part4of4.stl` | 1 | 2 | 9m 44s |
+| `base-front/core-center-a-post.stl` | 1 | 5 | 44m 53s |
+| `base-front/core-center-b-post.stl` | 1 | 5 | 44m 53s |
+| `base-rear/core-center-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/core-outboard-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-foot-b-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-L-post.stl` | 1 | 5 | 44m 53s |
 | `base-front/core-outboard-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-foot-b-R-post.stl` | 1 | 5 | 44m 53s |
 | `base-rear/core-knee-R-post.stl` | 1 | 5 | 44m 53s |
-| `base-front/plug-draw-pocket-L.stl` | 1 | 12 | 46m 16s |
-| `base-front/plug-draw-pocket-R.stl` | 1 | 12 | 46m 16s |
+| `base-front/plug-draw-pocket-L.stl` | 1 | 12 | 46m 13s |
+| `base-front/plug-draw-pocket-R.stl` | 1 | 12 | 46m 13s |
 | `base-rear/plug-draw-pocket-L.stl` | 1 | 5 | 21m 23s |
 | `base-rear/plug-draw-pocket-R.stl` | 1 | 5 | 21m 23s |
-| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
-| `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
-| `base-front/cast-in-leg-front-l-plug.stl` | 2 | 8 | 24m 14s |
-| `base-rear/cast-in-leg-rear-l-plug.stl` | 2 | 8 | 24m 14s |
+| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 41s |
+| `tools/kit-screed-shoe.stl` | 2 | 20 | 47m 40s |
+| `base-front/cast-in-leg-front-l-plug.stl` | 2 | 8 | 24m 42s |
+| `base-front/cast-in-leg-front-l-foot-cup.stl` | 2 | 18 | 1h 0m 43s |
+| `base-rear/cast-in-leg-rear-l-plug.stl` | 2 | 8 | 24m 42s |
+| `base-rear/cast-in-leg-rear-l-foot-cup.stl` | 2 | 18 | 1h 0m 43s |
 
 ## 4. Cut the boards
 
@@ -174,7 +197,7 @@ The appendix has every board as a drawing and a table, if you would rather measu
 
 | Hole | Drill | For |
 |---|---|---|
-| 3.2 mm | 1/8 in | split-gasket-groove |
+| 3.2 mm | 1/8 in | floor, split-gasket-groove |
 | 3.4 mm | 9/64 in | corner-L, corner-R, gutter-L, gutter-R |
 | 4.5 mm | 11/64 in | bevel-L, bevel-R, bevel-end, cleat, core post, corner bracket, corner-L, corner-R, draw-pocket-L, draw-pocket-R, gutter-L, gutter-R, leg holder, saddle, trough |
 | 5.5 mm | 7/32 in | M5 insert screw, M5 screw into the steel |
@@ -315,73 +338,112 @@ edge on the floor). The templates carry the same holes at full size.
 | 21 | 222 | 135 | 5.5 | M5 insert screw |
 | 22 | 478 | 135 | 5.5 | M5 insert screw |
 | 23 | 87 | 150 | 4.5 | gutter-R |
-| 24 | 614 | 150 | 4.5 | gutter-L |
-| 25 | 260 | 184 | 5.5 | M5 screw into the steel |
-| 26 | 440 | 184 | 5.5 | M5 screw into the steel |
-| 27 | 69 | 209 | 5.5 | M5 insert screw |
-| 28 | 327 | 210 | 6.5 | M6 screw into a pad |
-| 29 | 373 | 210 | 6.5 | M6 screw into a pad |
-| 30 | 631 | 209 | 5.5 | M5 insert screw |
-| 31 | 87 | 223 | 4.5 | gutter-R |
-| 32 | 614 | 223 | 4.5 | gutter-L |
-| 33 | 87 | 295 | 3.4 | gutter-R |
-| 34 | 614 | 295 | 3.4 | gutter-L |
-| 35 | 260 | 304 | 5.5 | M5 screw into the steel |
-| 36 | 440 | 304 | 5.5 | M5 screw into the steel |
-| 37 | 21 | 314 | 4.5 | cleat |
-| 38 | 680 | 314 | 4.5 | cleat |
-| 39 | 87 | 368 | 3.4 | gutter-R |
-| 40 | 614 | 368 | 3.4 | gutter-L |
-| 41 | 69 | 421 | 5.5 | M5 insert screw |
-| 42 | 631 | 421 | 5.5 | M5 insert screw |
-| 43 | 260 | 424 | 5.5 | M5 screw into the steel |
-| 44 | 440 | 424 | 5.5 | M5 screw into the steel |
-| 45 | 87 | 434 | 3.4 | gutter-R |
-| 46 | 199 | 433 | 5.5 | M5 insert screw |
-| 47 | 614 | 434 | 3.4 | gutter-L |
-| 48 | 199 | 455 | 5.5 | M5 insert screw |
-| 49 | 87 | 494 | 3.4 | gutter-R |
-| 50 | 614 | 494 | 3.4 | gutter-L |
-| 51 | 134 | 504 | 9.6 | 3/8 dowel |
-| 52 | 566 | 504 | 9.6 | 3/8 dowel |
-| 53 | 21 | 529 | 4.5 | cleat |
-| 54 | 680 | 529 | 4.5 | cleat |
-| 55 | 260 | 544 | 5.5 | M5 screw into the steel |
-| 56 | 440 | 544 | 5.5 | M5 screw into the steel |
-| 57 | 87 | 554 | 3.4 | gutter-R |
-| 58 | 614 | 554 | 3.4 | gutter-L |
-| 59 | 87 | 614 | 3.4 | gutter-R |
-| 60 | 614 | 614 | 3.4 | gutter-L |
-| 61 | 134 | 619 | 9.6 | 3/8 dowel |
-| 62 | 566 | 619 | 9.6 | 3/8 dowel |
-| 63 | 69 | 634 | 5.5 | M5 insert screw |
-| 64 | 631 | 634 | 5.5 | M5 insert screw |
-| 65 | 260 | 664 | 5.5 | M5 screw into the steel |
-| 66 | 440 | 664 | 5.5 | M5 screw into the steel |
-| 67 | 87 | 674 | 3.4 | gutter-R |
-| 68 | 614 | 674 | 3.4 | gutter-L |
-| 69 | 327 | 705 | 6.5 | M6 screw into a pad |
-| 70 | 373 | 705 | 6.5 | M6 screw into a pad |
-| 71 | 311 | 712 | 5.5 | M5 screw into the steel |
-| 72 | 389 | 712 | 5.5 | M5 screw into the steel |
-| 73 | 327 | 718 | 6.5 | M6 screw into a pad |
-| 74 | 373 | 718 | 6.5 | M6 screw into a pad |
-| 75 | 87 | 734 | 3.4 | gutter-R |
-| 76 | 614 | 734 | 3.4 | gutter-L |
-| 77 | 21 | 744 | 4.5 | cleat |
-| 78 | 213 | 743 | 5.5 | M5 insert screw |
-| 79 | 487 | 743 | 5.5 | M5 insert screw |
-| 80 | 680 | 744 | 4.5 | cleat |
-| 81 | 327 | 748 | 6.5 | M6 screw into a pad |
-| 82 | 373 | 748 | 6.5 | M6 screw into a pad |
-| 83 | 64 | 772 | 3.4 | corner-R |
-| 84 | 637 | 772 | 3.4 | corner-L |
-| 85 | 200 | 774 | 5.5 | M5 insert screw |
-| 86 | 500 | 774 | 5.5 | M5 insert screw |
-| 87 | 80 | 822 | 4.5 | cleat |
-| 88 | 260 | 822 | 4.5 | cleat |
-| 89 | 440 | 822 | 4.5 | cleat |
-| 90 | 620 | 822 | 4.5 | cleat |
+| 24 | 192 | 152 | 3.2 | floor |
+| 25 | 229 | 150 | 3.2 | floor |
+| 26 | 338 | 152 | 3.2 | floor |
+| 27 | 402 | 152 | 3.2 | floor |
+| 28 | 472 | 150 | 3.2 | floor |
+| 29 | 577 | 152 | 3.2 | floor |
+| 30 | 614 | 150 | 4.5 | gutter-L |
+| 31 | 260 | 184 | 5.5 | M5 screw into the steel |
+| 32 | 440 | 184 | 5.5 | M5 screw into the steel |
+| 33 | 69 | 209 | 5.5 | M5 insert screw |
+| 34 | 327 | 210 | 6.5 | M6 screw into a pad |
+| 35 | 373 | 210 | 6.5 | M6 screw into a pad |
+| 36 | 631 | 209 | 5.5 | M5 insert screw |
+| 37 | 124 | 221 | 3.2 | floor |
+| 38 | 508 | 221 | 3.2 | floor |
+| 39 | 87 | 223 | 4.5 | gutter-R |
+| 40 | 229 | 223 | 3.2 | floor |
+| 41 | 297 | 223 | 3.2 | floor |
+| 42 | 472 | 223 | 3.2 | floor |
+| 43 | 614 | 223 | 4.5 | gutter-L |
+| 44 | 367 | 249 | 3.2 | floor |
+| 45 | 145 | 276 | 3.2 | floor |
+| 46 | 555 | 276 | 3.2 | floor |
+| 47 | 87 | 295 | 3.4 | gutter-R |
+| 48 | 229 | 295 | 3.2 | floor |
+| 49 | 338 | 297 | 3.2 | floor |
+| 50 | 402 | 297 | 3.2 | floor |
+| 51 | 472 | 295 | 3.2 | floor |
+| 52 | 614 | 295 | 3.4 | gutter-L |
+| 53 | 260 | 304 | 5.5 | M5 screw into the steel |
+| 54 | 440 | 304 | 5.5 | M5 screw into the steel |
+| 55 | 21 | 314 | 4.5 | cleat |
+| 56 | 680 | 314 | 4.5 | cleat |
+| 57 | 214 | 344 | 3.2 | floor |
+| 58 | 487 | 344 | 3.2 | floor |
+| 59 | 298 | 366 | 3.2 | floor |
+| 60 | 363 | 366 | 3.2 | floor |
+| 61 | 87 | 368 | 3.4 | gutter-R |
+| 62 | 229 | 368 | 3.2 | floor |
+| 63 | 472 | 368 | 3.2 | floor |
+| 64 | 614 | 368 | 3.4 | gutter-L |
+| 65 | 69 | 421 | 5.5 | M5 insert screw |
+| 66 | 631 | 421 | 5.5 | M5 insert screw |
+| 67 | 260 | 424 | 5.5 | M5 screw into the steel |
+| 68 | 440 | 424 | 5.5 | M5 screw into the steel |
+| 69 | 381 | 432 | 3.2 | floor |
+| 70 | 87 | 434 | 3.4 | gutter-R |
+| 71 | 199 | 433 | 5.5 | M5 insert screw |
+| 72 | 224 | 435 | 3.2 | floor |
+| 73 | 509 | 435 | 3.2 | floor |
+| 74 | 614 | 434 | 3.4 | gutter-L |
+| 75 | 199 | 455 | 5.5 | M5 insert screw |
+| 76 | 191 | 491 | 3.2 | floor |
+| 77 | 477 | 491 | 3.2 | floor |
+| 78 | 87 | 494 | 3.4 | gutter-R |
+| 79 | 319 | 494 | 3.2 | floor |
+| 80 | 614 | 494 | 3.4 | gutter-L |
+| 81 | 134 | 504 | 9.6 | 3/8 dowel |
+| 82 | 566 | 504 | 9.6 | 3/8 dowel |
+| 83 | 21 | 529 | 4.5 | cleat |
+| 84 | 680 | 529 | 4.5 | cleat |
+| 85 | 260 | 544 | 5.5 | M5 screw into the steel |
+| 86 | 440 | 544 | 5.5 | M5 screw into the steel |
+| 87 | 224 | 552 | 3.2 | floor |
+| 88 | 381 | 549 | 3.2 | floor |
+| 89 | 509 | 552 | 3.2 | floor |
+| 90 | 87 | 554 | 3.4 | gutter-R |
+| 91 | 614 | 554 | 3.4 | gutter-L |
+| 92 | 191 | 608 | 3.2 | floor |
+| 93 | 319 | 611 | 3.2 | floor |
+| 94 | 477 | 608 | 3.2 | floor |
+| 95 | 87 | 614 | 3.4 | gutter-R |
+| 96 | 614 | 614 | 3.4 | gutter-L |
+| 97 | 134 | 619 | 9.6 | 3/8 dowel |
+| 98 | 566 | 619 | 9.6 | 3/8 dowel |
+| 99 | 69 | 634 | 5.5 | M5 insert screw |
+| 100 | 631 | 634 | 5.5 | M5 insert screw |
+| 101 | 260 | 664 | 5.5 | M5 screw into the steel |
+| 102 | 385 | 663 | 3.2 | floor |
+| 103 | 440 | 664 | 5.5 | M5 screw into the steel |
+| 104 | 224 | 669 | 3.2 | floor |
+| 105 | 509 | 669 | 3.2 | floor |
+| 106 | 87 | 674 | 3.4 | gutter-R |
+| 107 | 614 | 674 | 3.4 | gutter-L |
+| 108 | 327 | 705 | 6.5 | M6 screw into a pad |
+| 109 | 373 | 705 | 6.5 | M6 screw into a pad |
+| 110 | 311 | 712 | 5.5 | M5 screw into the steel |
+| 111 | 389 | 712 | 5.5 | M5 screw into the steel |
+| 112 | 327 | 718 | 6.5 | M6 screw into a pad |
+| 113 | 373 | 718 | 6.5 | M6 screw into a pad |
+| 114 | 87 | 734 | 3.4 | gutter-R |
+| 115 | 614 | 734 | 3.4 | gutter-L |
+| 116 | 21 | 744 | 4.5 | cleat |
+| 117 | 213 | 743 | 5.5 | M5 insert screw |
+| 118 | 487 | 743 | 5.5 | M5 insert screw |
+| 119 | 680 | 744 | 4.5 | cleat |
+| 120 | 327 | 748 | 6.5 | M6 screw into a pad |
+| 121 | 373 | 748 | 6.5 | M6 screw into a pad |
+| 122 | 64 | 772 | 3.4 | corner-R |
+| 123 | 637 | 772 | 3.4 | corner-L |
+| 124 | 200 | 774 | 5.5 | M5 insert screw |
+| 125 | 500 | 774 | 5.5 | M5 insert screw |
+| 126 | 80 | 822 | 4.5 | cleat |
+| 127 | 260 | 822 | 4.5 | cleat |
+| 128 | 440 | 822 | 4.5 | cleat |
+| 129 | 620 | 822 | 4.5 | cleat |
 
 #### Base front wall
 

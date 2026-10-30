@@ -3,7 +3,7 @@ DIY CNC layout report
 Travel X/Y/Z:                 180 / 300 / 140 mm
 Base footprint (= enclosure): 582 W x 724 D mm
 Enclosure frame:              582 W x 724 D x 766 H mm
-Overall incl. door, motors:   678 W x 889 D x 1024 H mm
+Overall incl. door, motors:   685 W x 889 D x 1014 H mm
 Table top height:             176 mm above casting underside
 Table top -> collet nut tip:  160 mm (Z up)
 Table top -> beam underside:  180 mm
@@ -12,15 +12,16 @@ Tool tip above table, Z down: -10 mm
 Beam face -> spindle axis:    170 mm (overhang)
 Gap between uprights:         352 mm
 
-Epoxy granite volume:         45.0 L
-Casting mass:                 106 kg (233 lb)
-  Base front:                  12.3 L   28.9 kg
-  Base rear:                   14.5 L   34.1 kg
+Epoxy granite volume:         44.3 L
+Casting mass:                 104 kg (230 lb)
+  Base front:                  11.8 L   27.8 kg
+  Base rear:                   14.3 L   33.6 kg
   Upright L:                    4.9 L   11.5 kg
   Upright R:                    4.9 L   11.5 kg
   Beam:                         8.3 L   19.6 kg
 Cast-in steel + joint hardware: 62.2 kg
-Epoxy needed (~8.5% of the sand mix by mass): 9.0 kg
+Dry sand in the tubes:        6.9 L  11.1 kg
+Epoxy needed (~8.5% of the sand mix by mass): 8.9 kg
 
 Linear motion / plate BOM
 -------------------------
@@ -60,7 +61,9 @@ Linear motion / plate BOM
   frame    Square tube 2 x 2 x 1/8 in, cut to length (docs/1-sourcing/steel/) 6 x 91                               buy
   frame    Steel square tube 2 x 2 x 1/8 in, bought at length   4 x 8-1/8 in (upright columns; the base's short ones are in the cut list) buy
   frame    Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length 4 x 6 in (legs)                      buy
-  frame    Printed PETG: 8 column rings, 4 leg plugs, 2 gray pocket caps ~60 g                                PRINT
+  frame    Printed PETG: 8 column rings, 4 leg plugs, 4 leg foot cups, 2 gray pocket caps ~75 g                                PRINT
+  frame    Dry sand in every tube (pool filter sand, as in the mix) 6.9 L, 11 kg                         buy
+  frame    Vinyl tube 1/2 in ID x 5/8 in OD, sleeves on the draw and tie rods (cut to the tubes) 2.5 m                                buy
   frame    1/2-13 grade B7 fully threaded studs, bought at length (nothing sawn) 4 x 14-1/4 in, 2 x 6 in (uprights), 2 x 27 in (base draw rods), 4 x 10-3/4 in + 6 x 8-1/2 in (base cross rods) buy
   frame    1/2-13 nut + 1/2 in SAE washer                       32 of each                           buy
   frame    3/8-16 grade B7 fully threaded studs, bought at length: beam studs (into the upright top plates) and beam ties, + 3/8-16 nuts and washers 8 x 7-1/2 in + 3 x 4-1/4 in; 11 nuts buy

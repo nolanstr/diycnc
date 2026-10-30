@@ -31,7 +31,10 @@ def setup(vox, mask):
     total = sum(mesh.field(f[k]) for k in f if k != 'eg_base_solid')
     mesh.solid = total > 0.3
     mesh.solid_or_base = mesh.solid | (mesh.field(f['eg_base_solid']) > 0.3)
-    # Bench supports: the four leg positions on the underside (z only, plus 3 in-plane).
+    # Bench supports: the four leg positions on the underside (z only, plus 3 in-plane). With FEA_SYM they must be
+    # symmetric too, so the front right leg is held in x as well as the front left (as a foot's friction would):
+    # the first mode comes out about 4 % higher than with the one leg (x at one point on the center line
+    # instead, the other symmetric choice, puts it 11 % lower: the in-plane supports matter to the modes).
     fixed = []
     for i, (lx, ly) in enumerate(vox.info['legs']):
         n = mesh.nodes_in(np.r_[lx - 20, ly - 20, -1], np.r_[lx + 20, ly + 20, vox.h], mesh.solid_or_base)
@@ -40,7 +43,7 @@ def setup(vox, mask):
         if i == 0:
             fixed += list(3 * n) + list(3 * n + 1)
         elif i == 1:
-            fixed += list(3 * n + 1)
+            fixed += list(3 * n + 1) + (list(3 * n) if mesh.sym else [])
     mesh.fixed = np.array(sorted(set(fixed)))
     return mesh
 

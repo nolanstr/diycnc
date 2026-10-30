@@ -1,7 +1,7 @@
-"""Positions of the rods and studs the voxels leave out (run with freecadcmd); writes analysis/rods.json for
-topopt_gantry.py, which keeps material round the uprights' tie rods.
+"""Positions of the rods and studs the voxels leave out; writes analysis/rods.json for topopt_gantry.py,
+which keeps material round the uprights' tie rods.
 
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/rods_geom.py
+    python analysis/rods_geom.py
 """
 
 import json

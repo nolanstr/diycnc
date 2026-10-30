@@ -25,8 +25,7 @@ import csv
 import math
 import os
 
-import Part
-from FreeCAD import Rotation, Vector
+from cadrust.freecad import Part, Rotation, Vector
 
 BED = 170.0       # Bambu A1 mini: 180 mm cube, less a margin
 WALL = 1.2        # core shell wall: three 0.4 mm lines (the sand inside holds the shape)
@@ -189,8 +188,8 @@ def fasten(piece, p0, n, count=1, sizes=('M4', 'M3', 'pin'), what='', avoid=()):
     c = sum((f.CenterOfMass * f.Area for f in faces), Vector()) * (1.0 / area)
     pts = [v.Point for f in faces for v in f.Vertexes]
     e1 = perp(n)
-    best = max((math.radians(a) for a in range(0, 180, 15)),
-               key=lambda a: _spread(pts, n, e1, a))
+    best = max((math.radians(a) for a in range(0, 180, 15)),     # ties go to the first angle
+               key=lambda a: round(_spread(pts, n, e1, a), 6))
     e1 = unit(e1 * math.cos(best) + n.cross(e1) * math.sin(best))
     e2 = n.cross(e1)
     us = [(q - c).dot(e1) for q in pts]
@@ -486,7 +485,6 @@ def grams(shape, kind):
 def export(rows, root):
     """rows: dicts (folder, name, shape or [parts], kind, qty, note, up). Writes STLs under root,
     returns manifest rows. A single shape is cut to the bed here (no keys); lists go as they are."""
-    import MeshPart
     out = []
     for r in rows:
         if r['kind'] == 'foam':
@@ -497,8 +495,7 @@ def export(rows, root):
         for k, p in enumerate(parts):
             stem = f"{r['kind']}-{r['name']}" + (f'-part{k + 1}of{len(parts)}' if len(parts) > 1 else '')
             pose = print_pose(p, r.get('up'), r['kind'] == 'core')
-            mesh = MeshPart.meshFromShape(Shape=pose, LinearDeflection=0.05, AngularDeflection=0.25, Relative=False)
-            mesh.write(os.path.join(d, stem + '.stl'))
+            pose.exportStl(os.path.join(d, stem + '.stl'), linear=0.05, angular=0.25)
             bb = pose.BoundBox
             out.append(dict(folder=r['folder'], file=stem + '.stl', kind=r['kind'], qty=r['qty'],
                             size=f'{bb.XLength:.0f} x {bb.YLength:.0f} x {bb.ZLength:.0f}',

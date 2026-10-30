@@ -9,7 +9,7 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
 - [sourcing.pdf](1-sourcing/sourcing.pdf): every part with a listing, price and notes, in three parts (frame,
   electronics, enclosure and coolant), with totals. [sourcing.csv](1-sourcing/sourcing.csv) is the same list
   for a spreadsheet.
-- [steel/](1-sourcing/steel/README.md): the steel skeletons' cut list (stock flat bar and tube, about 54
+- [steel/](1-sourcing/steel/README.md): the steel skeletons' cut list (stock flat bar and tube, about 58
   pieces) and [steel-templates.pdf](1-sourcing/steel/steel-templates.pdf), 1:1 drilling templates for every part.
 - [quote-requests.md](1-sourcing/quote-requests.md): ready-to-send quote requests for the steel, risers and
   aluminum (four Baltimore-area sellers), the whiting and the enclosure's ACM sheet.
@@ -45,3 +45,8 @@ written by the model (`model/build_cnc.py`), so it stays in step with the design
   study, chips and coolant, cost, and reference dimensions.
 - [report.txt](5-design/report.txt): the model's numbers: dimensions, casting volumes and masses, the BOM,
   the enclosure cut list and the collision check.
+
+## Other
+
+- [cad-rust-app-requirements.md](cad-rust-app-requirements.md): what the cad-rust-app CAD program would need
+  to do our CAM and FEA, and to run the generator in place of FreeCAD.

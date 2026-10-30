@@ -7,6 +7,8 @@ analysis/log_*.txt
 # Rebuilt by model/build_cnc.py (CNC_SNAPSHOTS=1) and docs/src/make_pdfs.py; not kept in the repo
 model/DIYCNC.step
 model/DIYCNC.FCStd
+model/DIYCNC.json
+model/DIYCNC.html
 docs/3-molds/molds-complete.pdf
 docs/4-build/build-guide.pdf
 
@@ -17,4 +19,7 @@ analysis/chain_geom_*.json
 # study variants (analysis/lean_study.py, topopt_gantry.py); rebuilt by voxelize.py and the optimizer
 analysis/vox_lean*
 analysis/vox_gantry_*
+analysis/vox_sym*
 analysis/vox_*_parts.npz
+analysis/vox_damped_*
+analysis/vox_floor*

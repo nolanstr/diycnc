@@ -3,6 +3,12 @@
 Units: mm, N, MPa. The voxel fractions come from voxelize.py. Each element's modulus is
 the volume-weighted (Voigt) mix of epoxy granite and steel in it; the joints between
 the castings are treated as bonded (preloaded, no gap opening).
+
+FEA_SYM=1 solves half the frame. The voxels (voxelized with VOX_SYM=1, so the grid is centered on x = 0)
+are made symmetric by mirroring their right half onto the left, and every solve is two solves of about half
+the size: the stiffness projected onto the fields symmetric about x = 0 (the plane doesn't move in x) and onto
+the antisymmetric ones (it doesn't move in y or z). That is exact for the symmetric frame and any load, so
+everything else (loads, compliances, energies) still works on the whole frame's nodes.
 """
 
 import json
@@ -55,13 +61,20 @@ def itertools_product(v):
 
 
 class Voxels:
-    def __init__(self, name=os.environ.get('FEA_VOX', 'vox_current')):
+    def __init__(self, name=os.environ.get('FEA_VOX', 'vox_current'), sym=os.environ.get('FEA_SYM') == '1'):
         self.f = dict(np.load(os.path.join(HERE, name + '.npz')))
         self.info = json.load(open(os.path.join(HERE, name + '.json')))
         self.h = self.info['h']
         self.o = np.array(self.info['origin'])
         self.n = np.array(self.info['n'])
         self.d = self.info['dims']
+        self.sym = sym
+        if sym:
+            if self.n[0] % 2 or abs(self.o[0] + self.n[0] * self.h / 2) > 1e-6:
+                raise ValueError(f'{name}: the grid isn\'t centered on x = 0 (voxelize it with VOX_SYM=1)')
+            m = self.n[0] // 2
+            for a in self.f.values():          # in place: the left half becomes the right half mirrored
+                a[:m] = a[m:][::-1]
 
     def centers(self, ax):
         return self.o[ax] + (np.arange(self.n[ax]) + 0.5) * self.h
@@ -79,6 +92,7 @@ class Mesh:
         off = np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]])
         gn = ((ii[:, None] + off[:, 0]) + (nx + 1) * ((jj[:, None] + off[:, 1]) + (ny + 1) * (kk[:, None] + off[:, 2])))
         used, enodes = np.unique(gn, return_inverse=True)
+        self.used = used
         self.enodes = enodes.reshape(self.ne, 8)
         self.nn = len(used)
         gi = used % (nx + 1)
@@ -100,6 +114,10 @@ class Mesh:
         self.diag = np.nonzero(self.indices == cols)[0]
         self.fixed = np.zeros(0, int)
         self.factor = None
+        self.sym = vox.sym
+        if self.sym:
+            self.T = symmetry_bases(used, nx, ny)
+            self.factors = {}
 
     def field(self, a):
         return a[self.ijk[:, 0], self.ijk[:, 1], self.ijk[:, 2]]
@@ -113,6 +131,11 @@ class Mesh:
 
     def solve(self, E, F):
         K = self.assemble(E)
+        if self.sym:
+            U = 0
+            for key, T in self.T.items():
+                U = U + T @ self.factored(key, (T.T @ K @ T).tocsc()).solve(T.T @ F)
+            return U
         if CholeskyFactor is not None:
             # keep the symbolic analysis; refactorizing a used factor drops it to the slow simplicial path
             if self.factor is None:
@@ -126,6 +149,17 @@ class Mesh:
         self.factor.cholesky_inplace(K)
         return self.factor(F)
 
+    def factored(self, key, K):
+        """K factorized, reusing the symbolic analysis while K's sparsity pattern stays the same."""
+        K.sort_indices()
+        pattern = (K.shape, K.nnz, hash(K.indptr.tobytes()), hash(K.indices.tobytes()))
+        cached = self.factors.get(key)
+        if cached is None or cached[0] != pattern:
+            cached = self.factors[key] = (pattern, CholeskyFactor(K))
+        num = cached[1].copy()
+        num.factorize(K)
+        return num
+
     def energy(self, U):
         """u_e^T ke u_e per element and load case (for E = 1)."""
         ue = U[self.edof]                       # ne x 24 x nlc
@@ -137,6 +171,34 @@ class Mesh:
         if solid is not None:
             sel &= solid
         return np.unique(self.enodes[sel])
+
+
+def symmetry_bases(used, nx, ny):
+    """{'sym': T, 'anti': T}: each maps the right half's free dofs to the whole frame's (u = T q), for fields
+    symmetric about x = 0 (u_x odd, u_y and u_z even) and antisymmetric (u_x even, u_y and u_z odd). The nodes
+    on the plane keep only the dofs the symmetry leaves them. Needs a node set symmetric about x = 0."""
+    gi = used % (nx + 1)
+    mirror = np.minimum(np.searchsorted(used, used + (nx - 2 * gi)), len(used) - 1)
+    if not np.array_equal(used[mirror], used + (nx - 2 * gi)):
+        raise ValueError('the mesh isn\'t symmetric about x = 0')
+    half = np.nonzero(2 * gi >= nx)[0]
+    plane = 2 * gi[half] == nx
+    out = {}
+    for key, sign in (('sym', (-1, 1, 1)), ('anti', (1, -1, -1))):
+        rows, cols, vals = [], [], []
+        col = 0
+        for a in range(3):
+            # on the plane a dof is kept only if it is even under the mirror (mirror sign +1)
+            nodes = half[~plane] if sign[a] < 0 else half
+            c = col + np.arange(len(nodes))
+            on = 2 * gi[nodes] == nx
+            rows += [3 * nodes + a, 3 * mirror[nodes[~on]] + a]
+            cols += [c, c[~on]]
+            vals += [np.ones(len(nodes)), np.full((~on).sum(), float(sign[a]))]
+            col += len(nodes)
+        out[key] = sp.csc_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
+                                 shape=(3 * len(used), col))
+    return out
 
 
 def wrench_loads(xyz, nodes, F, M_about, point):

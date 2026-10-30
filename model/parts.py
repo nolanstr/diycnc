@@ -7,8 +7,8 @@ places them. Spindle and clamp are built directly in machine coordinates.
 
 import math
 
-import Part
-from FreeCAD import Vector as V
+from cadrust.freecad import Part
+from cadrust.freecad import Vector as V
 
 
 # --------------------------------------------------------------------------

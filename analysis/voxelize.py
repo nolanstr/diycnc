@@ -1,13 +1,14 @@
-"""Voxelize the frame for the stiffness study (run with freecadcmd).
+"""Voxelize the frame for the stiffness study.
 
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/voxelize.py
+    python analysis/voxelize.py
 
 Builds the model from build_cnc.py and writes analysis/vox_current.npz: per-voxel volume
 fractions of epoxy granite and steel for each module group (base, uprights, beam),
 plus the base with no underside pockets (the optimization's design space), and
 analysis/vox_current.json with the positions the load cases need. VOX_P='{"beam_d": 140}' overrides
 parameters, VOX_OUT names the output. VOX_PARTS=1 also writes <output>_parts.npz, each steel part's
-own fractions (for steel_study.py).
+own fractions (for steel_study.py). VOX_H sets the voxel size (mm, default 10); VOX_SYM=1 centers the grid on
+x = 0, for the half-frame solves (FEA_SYM=1, vfe.py).
 """
 
 import json
@@ -17,8 +18,7 @@ import sys
 import numpy as np
 from matplotlib.path import Path
 
-import FreeCAD as App  # noqa: F401
-from FreeCAD import Vector
+from cadrust.freecad import Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CAD = os.path.join(os.path.dirname(HERE), 'model')
@@ -27,6 +27,7 @@ SUB = int(os.environ.get('VOX_SUB', '4'))    # sample points per voxel edge
 OUT = os.environ.get('VOX_OUT', os.path.join(HERE, 'vox_current'))
 SKIP = [t for t in os.environ.get('VOX_SKIP', '').split(',') if t]   # part-name prefixes left out (unbonded rods)
 PARTS = os.environ.get('VOX_PARTS') == '1'
+SYM = os.environ.get('VOX_SYM') == '1'
 
 
 def load_build():
@@ -84,10 +85,10 @@ def main():
     m = ns['build']()
     d = m.dims
     half = d['base_half']
-    nx = int(round(2 * half / H))
+    nx = 2 * int(np.ceil(half / H)) if SYM else int(round(2 * half / H))
     ny = int(np.ceil((d['base_y1'] - d['base_y0']) / H))
     nz = int(np.ceil(d['beam_top'] / H))
-    grid = Grid(-half, d['base_y0'], 0.0, nx, ny, nz, H)
+    grid = Grid(-nx * H / 2 if SYM else -half, d['base_y0'], 0.0, nx, ny, nz, H)
     print('grid', nx, ny, nz, flush=True)
 
     risers = {'X_RiserL', 'X_RiserR', 'Y_RiserL', 'Y_RiserR'}

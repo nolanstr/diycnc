@@ -4,7 +4,7 @@ and uprights (analysis/alumina.py).
     python weight.py vox_current vox_w_skin20 [...]
 
 The variants are voxelized from build_cnc.py with parameter overrides, e.g.
-    VOX_P='{"base_core_skin": 20}' VOX_OUT=analysis/vox_w_skin20 freecadcmd analysis/voxelize.py
+    VOX_P='{"base_core_skin": 20}' VOX_OUT=analysis/vox_w_skin20 python analysis/voxelize.py
 """
 
 import sys

@@ -1288,6 +1288,13 @@
 6.5,
 "relief under a riser hold-down (near wall only)",
 "1/4 in"
+],
+[
+100.47,
+25.4,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null
@@ -1436,6 +1443,13 @@
 6.5,
 "relief under a riser hold-down (near wall only)",
 "1/4 in"
+],
+[
+88.98,
+25.4,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null
@@ -1489,6 +1503,45 @@
 14.3,
 "1/2-13 cross rod",
 "9/16 in"
+]
+],
+"pour": null
+},
+{
+"name": "Cross split (z-face)",
+"mold": "steel",
+"qty": 2,
+"view": "steel",
+"note": "Square tube 1-1/2 x 1-1/2 x 1/8 in",
+"size": [
+129.2,
+38.1
+],
+"outline": [
+[
+0,
+0
+],
+[
+129.2,
+0
+],
+[
+129.2,
+38.1
+],
+[
+0,
+38.1
+]
+],
+"holes": [
+[
+64.6,
+19.05,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null
@@ -1549,6 +1602,13 @@
 7.0,
 "relief under a support screw (near wall only)",
 "9/32 in"
+],
+[
+64.6,
+19.05,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null
@@ -1609,6 +1669,52 @@
 7.0,
 "relief under a support screw (near wall only)",
 "9/32 in"
+],
+[
+64.6,
+19.05,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
+]
+],
+"pour": null
+},
+{
+"name": "Cross ped (z-face)",
+"mold": "steel",
+"qty": 6,
+"view": "steel",
+"note": "Square tube 1-1/2 x 1-1/2 x 1/8 in",
+"size": [
+75.4,
+38.1
+],
+"outline": [
+[
+0,
+0
+],
+[
+75.4,
+0
+],
+[
+75.4,
+38.1
+],
+[
+0,
+38.1
+]
+],
+"holes": [
+[
+37.7,
+19.05,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null
@@ -1648,6 +1754,13 @@
 14.3,
 "1/2-13 cross rod",
 "9/16 in"
+],
+[
+12.0,
+25.4,
+9.6,
+"sand fill (tape over) (near wall only)",
+"3/8 in"
 ]
 ],
 "pour": null

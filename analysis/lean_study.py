@@ -1,7 +1,7 @@
 """A leaner frame: less cast-in steel and smaller castings, judged at the tool and by the natural frequencies.
 
-    VOX_PARTS=1 VOX_SKIP=TieRod,DrawRod,CrossRod VOX_OUT=analysis/vox_lean0 freecadcmd analysis/voxelize.py
-    VOX_P='{"upright_t": 65}' VOX_PARTS=1 VOX_SKIP=... VOX_OUT=analysis/vox_lean_ut65 freecadcmd analysis/voxelize.py
+    VOX_PARTS=1 VOX_SKIP=TieRod,DrawRod,CrossRod VOX_OUT=analysis/vox_lean0 python analysis/voxelize.py
+    VOX_P='{"upright_t": 65}' VOX_PARTS=1 VOX_SKIP=... VOX_OUT=analysis/vox_lean_ut65 python analysis/voxelize.py
     python lean_study.py lean0: lean0:beam12+cols18 lean_ut65:beam12      # <voxels>:<steel changes, + joined>
 
 Each case is a voxelized frame (vox_<name>, with its per-part steel) and steel changes as in steel_study.py: a

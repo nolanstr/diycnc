@@ -60,18 +60,18 @@ Add about 10 % spare small bolts, nuts and washers. **Tools:** drill and brad-po
 
 ## 3. Print
 
-13 prints, 0.11 kg, about 8 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
+13 prints, 0.11 kg, about 9 hours (sliced; settings in the print guide). Print one corner bracket and one saddle first
 and check them on a board offcut. Press or slide the nuts in before the pieces go on the boards.
 
 | File | Qty | g | Time each |
 |---|---|---|---|
-| `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 3s |
-| `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 5m 47s |
-| `beam/filler-back-edge-part2of3.stl` | 1 | 17 | 1h 6m 9s |
-| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 5m 49s |
+| `beam/kit-corner-bracket.stl` | 4 | 33 | 40m 4s |
+| `beam/filler-back-edge-part1of3.stl` | 1 | 17 | 1h 5m 27s |
+| `beam/filler-back-edge-part2of3.stl` | 1 | 17 | 1h 6m 32s |
+| `beam/filler-back-edge-part3of3.stl` | 1 | 17 | 1h 5m 56s |
 | `beam/kit-dowel-stop.stl` | 2 | 1 | 4m 19s |
-| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
-| `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
+| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 41s |
+| `tools/kit-screed-shoe.stl` | 2 | 20 | 47m 40s |
 
 ## 4. Cut the boards
 

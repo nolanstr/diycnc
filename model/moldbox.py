@@ -13,8 +13,7 @@ Each bracket has a hex pocket that holds its nut, so assembly is one bolt from t
 
 import math
 
-import Part
-from FreeCAD import Vector
+from cadrust.freecad import Part, Vector
 
 import molds
 from molds import FIT, HW, Fix, block, bolt_length, nut_recess, unit

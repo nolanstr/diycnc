@@ -81,6 +81,14 @@ granite.
      the girders and from each girder to its pedestal, each clamped by its 1/2-13 rod and two nuts; the
      support pads bolted onto their cross tubes. Glue the four 3/8 x 1 in dowel pins into the rear half's
      split end plates, half their length out.
+   - **Sleeves:** before the draw rods and the pedestals' tie rods go in, slide a vinyl sleeve (1/2 in ID x
+     5/8 in OD) over each rod, cut to the inside length of the tube it runs in (the girder between its end
+     plates, the pedestal column between its bars). These rods come out later; the sleeve keeps the sand
+     out of their way. The cross rods stay in for good and need none.
+   - **Sand:** turn the grid upside down, as it goes in the mold, and fill every base tube with dry pool
+     filter sand through its 3/8 in fill hole (the girders' and cross tubes' bottom face, the pedestal
+     columns' outer face by the bottom bar) with a small funnel, tapping the tube with a mallet until no
+     more goes in. Tape over each hole (packing tape) and wipe off the sand outside: epoxy won't bond to it.
 4. **Rail risers** (cold-rolled 1018, 1-1/4 in wide, ordered cut to the rail lengths): Y 3/4 in x
    600 mm (2), X 5/8 in x 400 mm (2), Z 5/8 in x 300 mm (2, ground with the plates). The rails are used at full length.
    - Clamp each rail on its riser, centered, and use the rail's own holes as the drill
@@ -160,7 +168,7 @@ lists the printed parts.
   matter come out where the templates put them.
 - **Base:** the grid lies upside down on the floor (the base is cast top face down). Greased M5 and M6
   screws through the floor hold its rail bars and support pads; the dowels through the floor and the seat
-  bars locate the pedestals. The draw rods and tie rods sit inside the tubes, so nothing forms their holes;
+  bars locate the pedestals. The draw rods and tie rods sit inside the tubes in their sleeves, so nothing forms their holes;
   tape over the holes in the pedestals' bottom bars (they're at the pour line). For the front half, the
   front grid's split end plates go onto the rear half's dowel pins. Printed plugs form the draw-rod nut
   pockets down to the girders' end plates. The 15 inserts (11 for the enclosure, 4 for the way-cover
@@ -169,11 +177,15 @@ lists the printed parts.
 - **Dowels** (rear half): two per upright, through the floor and the seat bars; they stand 15 mm proud and
   are grouted into oversize holes in the upright's foot at assembly (section 4).
 - **Legs:** through printed holders near the corners (65 mm in from the sides and the front, 62 mm from
-  the back, behind the bevel), each held at its cast-in depth by a pinch screw.
+  the back, behind the bevel), each held at its cast-in depth by a pinch screw. Fill each first: the threaded
+  insert (or a 1/2-13 nut bonded into a printed plug) in the foot end, the printed foot cup pushed down onto it (room for the leveling foot's bolt), dry
+  sand tapped down to 10 mm from the top, and the printed plug pressed in.
 - **Cores:** taped XPS foam blocks on the wet 20 mm skin, between the steel; a printed post glued into each
   bolts to the side of a bridge. They can stay in.
 - **Uprights:** the foot bar lies on the floor. Stand the columns on a bed of thickened epoxy on it, set the
-  top plate and bridge on them while it goes off, then lift those away and fill. The top plate goes back
+  top plate and bridge on them while it goes off, then lift those away. Push a greased rod up through the
+  foot bar and the bottom ring, slide a vinyl sleeve over it inside each column (ring to ring), fill the
+  column with dry sand, tapping it down, and press the top ring in. Then fill the mold. The top plate goes back
   on, hung from the bridge on two greased 3/8 bolts, and the two column tie rods (greased) go up from under
   the floor through the foot bar and the columns into the plate, to hold the columns centered while it
   cures. A printed plug forms the toe pocket down to the foot bar; greased 1/2-13 bolts form the two dowel
@@ -270,9 +282,8 @@ the beam mold.
 
 ## 4. Assemble the frame
 
-1. **Feet:** set the rear base half on the bench on its legs. Bond a 1/2-13 nut into a printed
-   plug in each leg end (or use the threaded inserts), screw in the leveling feet, and roughly
-   level it.
+1. **Feet:** set the rear base half on the bench on its legs. Screw the leveling feet into the
+   inserts in the leg ends (they went in before the sand), and roughly level it.
 2. **Join the base halves:** glue the O-ring cord into the rear half's split groove (glue the
    cord ends). Push the front half on, its split end plates over the rear half's dowel pins. Run the
    two 687 mm draw rods in from the front pockets, through both halves, a washer and nut on each end
@@ -403,7 +414,8 @@ way covers before steady steel work; chips wear the Y screw and rails.
 
 1. Bolt the 2020 frame to the base top with angle brackets into the cast-in M5 inserts
    (M5 x 35). Cut list in `docs/5-design/report.txt`.
-2. ACM side, back and roof panels; polycarbonate door on hinges and gas struts, magnetic catch.
+2. ACM side, back and roof panels; polycarbonate door on two hinges on the front left post, so it
+   swings open to the left (away from the X motor) and stays put without struts; magnetic catch.
    Brush seals where the X and Y motors pass through the panels.
 3. Way covers: the stainless strips on their spring rollers in front of and behind the table.
    Each roller's feet screw down (M5 x 12): the front roller's into two inserts behind the coolant

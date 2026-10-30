@@ -34,8 +34,16 @@ Wire-brush off rust and loose scale and degrease just before casting; paint only
 that hangs below the base.
 
 **Keeping the epoxy down.** About 9.0 kg of epoxy (8.5 % of the 106 kg of castings):
-- The tubes stay hollow (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
-  they're clamped between, or by printed rings and plugs, so no mix gets in.
+- No mix goes in the tubes (girders, columns, cross tubes, legs): their ends are closed by the plates and bars
+  they're clamped between, or by printed rings and plugs. They're filled with **dry sand** instead (pool
+  filter sand, 6.9 L, 11 kg, tapped down), which damps the tube walls (a loss factor of about 0.15, against
+  0.02 for epoxy granite and 0.0005 for bare steel) and costs no epoxy. Filling them with epoxy granite
+  would take about 2 kg more epoxy, past the 3 gal kit, and needs a mix without gravel to get round the
+  rods. The rods that come out (the base draw rods and the upright tie rods) run in 1/2 in ID x 5/8 in OD
+  vinyl sleeves, 2.5 m in all, so the sand stays put when they're pulled; the cross rods stay in, so the
+  sand packs round them. Each base tube has a 3/8 in fill hole in the face that's up when the grid lies
+  upside down in the mold, taped over before the pour; the upright columns are filled before the top ring
+  goes in, the legs before their plug, over a printed cup that keeps the leveling foot's stud clear.
 - The base's underside pockets follow the stiffness study below, with the steel grid in the ribs
   between them: two full-depth girders (80 mm wide) under the table rails, a
   full-depth tie between them across the split, a full-depth rib across the front of each
@@ -183,7 +191,7 @@ and grooves for the seam. If the tube that arrives is further off, put its calip
 
 The enclosure's 2020 frame bolts to the base top with angle brackets into cast-in
 M5 inserts, so the base is the enclosure floor. Seal the top with an epoxy gel coat;
-coolant runs to the two drains at the front. The door laps over the base front face.
+coolant runs forward over the graded floor and along the side gutters to the trough and its one drain at the front. The door laps over the base front face.
 
 Assembly: base halves (end plates onto the dowel pins, tighten the draw rods), uprights (dowels grouted into the
 feet the first time, tighten the tie rods), beam (cap screws), axes, enclosure. To break it down,
@@ -353,8 +361,7 @@ with 2-3 flutes). That's normal for a machine this size; the frame is still seve
 the spindle and tool (static X/Y/Z above), and chatter on a mill like this usually
 comes from the spindle, Z axis and tool. If a frequency rings, change the spindle speed by
 10-20 % rather than the frame. Where the feet are matters more than the castings' shape (above); a
-solid bench (the base twisting on its feet is in every mode) and sand in the hollow tubes and legs help
-too.
+solid bench (the base twisting on its feet is in every mode) helps too.
 
 ![The four lowest modes, as drawn (`analysis/animate.py`; motion exaggerated, colors the motion as a share of each mode's peak)](../../analysis/figs/modes.gif)
 
@@ -437,6 +444,46 @@ at 60 %. Shortening the toes outright is worse still per kilogram. And epoxy gra
 in kit steps: the 3 gal kit stays until the castings are under about 86 kg, which none of these reach
 without giving up a fifth of that mode or more. So the castings stay as they are, and the money is in the steel.
 
+Is 10 mm fine enough to trust? The optimization was repeated on the lean frame at 7.5 mm (with the half
+model, below). It takes out the same places: the toes, the thin raked tail behind each upright, and the
+beam's core. 77 % of what the 7.5 mm run removes the 10 mm run removes too, and the details differ.
+Judged the same way, the two come out alike:
+
+| Keep 70 % of the uprights and beam (lean frame) | At the tool X / Y / Z | Modes, Hz | Castings |
+|---|---|---|---|
+| 10 mm voxels | -0.8 / -0.3 / -0.8 % | 154 / 242 / 344 / 362 (from 154 / 271 / 361 / 370) | 92.8 kg (from 105.5) |
+| 7.5 mm voxels | -0.9 / -0.4 / -1.2 % | 150 / 244 / 331 / 344 (from 149 / 269 / 343 / 353) | 93.2 kg (from 106.1) |
+
+The frame's own stiffness is another matter. 8-node bricks with the steel and epoxy granite mixed in each
+voxel converge slowly, and the thin steel (1/8 in tube walls) is smeared over the coarse voxels:
+
+| Lean frame, half model | X | Y | Z |
+|---|---|---|---|
+| 10 mm voxels | 98.7 | 154.4 | 133.4 |
+| 7.5 mm voxels | 95.4 | 151.0 | 125.5 |
+| 5 mm voxels (1.7 million, 9.7 GB) | 85.5 | 132.5 | 113.6 |
+
+So the frame is probably 15 % or more softer than the 10 mm figures in these notes, and the modes lower too.
+At the tool that is under 1 %, since the frame is 2-5 % of the deflection there: the comparisons and the
+decisions hold, but the absolute frame figures are optimistic.
+
+Which figure is right was checked with 10-node tetrahedra (`analysis/tet_check.py`, cad-rust-app's FEA).
+Each part is meshed at its own size and tied to the next where they touch, so the tube walls get their own
+fine elements. The model is one upright with its steel, cut to the slab every voxel grid shares (z = 120 to
+330 mm), its bottom section held and 1 kN spread over its top section:
+
+| Upright slab, N/um | X | Y | Z |
+|---|---|---|---|
+| 10 mm voxels | 153.9 | 1,024 | 3,793 |
+| 7.5 mm voxels | 145.3 | 933 | 3,515 |
+| 5 mm voxels | 140.7 | 918 | 3,559 |
+| tetrahedra, 16 mm casting / 3.2 mm tube / 6.4 mm bar (133,000 elements) | 143.3 | 929 | 3,428 |
+| tetrahedra, 12 / 2.5 / 4.8 mm (425,000 elements) | 142.3 | 923 | 3,483 |
+
+The two tet meshes agree within 2 %, and the voxels close in on them. At 10 mm the voxels are 8-11 % too
+stiff; at 7.5 and 5 mm they are within 2 %. So the 5 mm frame figures (85.5 / 132.5 / 113.6 N/um) are the
+ones to believe, and the 10 mm ones in these notes are about 13-15 % high.
+
 ![Where the optimizer takes the epoxy granite out of the uprights and beam, at 70 % and 60 % kept (`analysis/plot_gantry.py`)](../../analysis/figs/gantry_0.7_0.6.png)
 
 **Lightening holes in the uprights** (`analysis/topopt_upright.py`, `compare_uprights.py`).
@@ -460,6 +507,86 @@ way), and the natural frequencies don't move because the mass that matters is th
 the head on top. Each window would also need a printed liner. The uprights stay solid; the
 frame optimization above already moved material into them, not out.
 
+**Vibration and damping (2026-10-28)** (`analysis/damping.py`, `steel_opt.py`, `topopt_damped.py`,
+`ring_check.py`). Static stiffness says how far the tool is pushed; what makes chatter is how far it
+moves at a resonance, which depends on damping as well. Each material gets a loss factor, epoxy granite
+0.02 and steel 0.0005 (env `FEA_ETA_EG`, `FEA_ETA_ST`). Each mode's loss is the strain-energy-weighted mix
+of the two, and the peak at the tool is that mode's share of the cutting force over its damped stiffness
+(the frequency response by modal superposition, checked on a cantilever: peak 97.0 times static against
+0.97/η = 97). On the lean frame (10 mm voxels, half model):
+
+| Mode | Hz | Loss | Steel's share of the strain | Worst peak at the tool, N/um |
+|---|---|---|---|---|
+| 1 | 153 | 0.015 | 25 % | 9.1 (X) |
+| 4 | 369 | 0.013 | 35 % | 3.3 (X) |
+| 6 | 532 | 0.012 | 41 % | 2.3 (Z) |
+| 7-16, up to 1.7 kHz | | 0.012-0.015 | 24-39 % | 8.0 and up |
+
+| Tool against work, frame alone | X | Y | Z |
+|---|---|---|---|
+| Static (weakest case) | 94.8 | 140.4 | 124.1 |
+| At the worst resonance | 3.3 | 3.3 | 2.3 |
+| Amplification | 29x | 42x | 54x |
+
+The castings damp: every frame mode has a loss of 0.012-0.015, 25-30 times bare steel's, because 60-75 %
+of the strain is in the epoxy granite. Even so, at its worst resonance the frame drops to 2-3 N/um, the
+same as the whole machine statically (3.8 / 3.8 / 6.8 N/um at the tool), so those few frequencies are
+the ones to keep the tooth-pass rate off (change the spindle speed 10-20 %, as above).
+
+The optimization ran in two stages. Stage 1, the steel, for stiffness and cost (`steel_opt.py`): each
+group of stock is moved one catalog size at a time, at about $2/lb for flat bar and $3/lb for tube, judged
+at the tool with the moving parts in series:
+
+| Steel, one size at a time | At the tool | Steel | Cost |
+|---|---|---|---|
+| Upright feet 3/8 to 1/4 in | -0.00 % | -1.0 kg | -$4 |
+| ... seat and bottom bars 3/8 to 1/4 in | -0.01 % | -3.3 kg | -$14 |
+| ... beam back bar 3/8 to 1/4 in | -0.05 % | -4.9 kg | -$21 |
+| Beam face bar 1/2 to 3/4 in, columns to 1/4 in wall, seat and cap bars 1/2 in, cross tubes 3/16 in, back bar 3/4 in | +0.42 % | +14.1 kg | +$74 |
+
+Everything else is at its smallest stock size already. Nothing in the steel is worth buying stiffness
+with. The three thinner sizes save $21 for nothing measurable (not yet drawn: the seat and bottom bars
+also take the tie rods' nuts and the feet the dowels, so their threads and bearing need checking first).
+
+Stage 2, the castings, for damping and cost with a little stiffness (`topopt_damped.py`): the objective
+is a quarter the mean static compliance at the tool and three quarters the worst resonant peak (an 8-norm
+over 24 modes and the three directions). Its sensitivities come from the modal expansion with the higher
+modes' static flexibility added, checked against finite differences within 1.3 %:
+
+| Uprights and beam (lean frame) | Worst peak X / Y / Z, N/um | Static at the tool | Castings |
+|---|---|---|---|
+| Drawn, solid | 3.32 / 3.31 / 2.36 | | 105.5 kg |
+| Optimized for static stiffness, 70 % kept | 2.61 / 2.87 / 2.26 | -0.8 / -0.3 / -0.8 % | 92.8 kg |
+| Optimized for damping, 70 % kept | 2.74 / 2.56 / 2.42 | -0.7 / -0.8 / -1.4 % | 92.8 kg |
+| Optimized for damping, 85 % kept | 3.10 / 3.12 / 2.44 | -0.3 / -0.2 / -0.3 % | 99.1 kg |
+
+The shape of the castings barely moves the damping: whatever is taken out, the modes keep a loss of about
+0.013-0.014, and the worst peak follows the mass and stiffness given up. So the castings stay solid. The
+levers for damping are elsewhere: the mix's own loss factor (more resin damps more), the bolted joints
+(not modeled, and they damp a good deal), and dampers where something actually rings.
+
+**What rings.** Thin steel can ring like a tuning fork at frequencies the frame model can't see, with the
+little damping steel has. `ring_check.py` meshes each piece in 10-node tetrahedra with the casting round
+it (clamped where the model is cut) and lists every mode under 2 kHz whose loss is under 0.005:
+
+| Piece | Modes under 2 kHz | Loss | Verdict |
+|---|---|---|---|
+| A leg, its top cast into the base | none | | fine |
+| An upright column in its casting | none | | fine |
+| A base girder (2x3x1/8 tube) and its rail bar | none | | fine |
+| The 6061 table, 10 x 3/4 in, on its four Y blocks | 1,781 and 1,820 Hz, the plate bending | 0.0003 (x 3,000 at resonance) | **rings** |
+| The X carriage with the Z axis and spindle; the X rails on the beam face | not yet run | | |
+
+The tubes are boxed in by the castings and don't ring even hollow; they're filled with dry sand anyway
+(above), which damps their walls at any frequency, above 2 kHz too. The sand's mass is left out of the frame
+model (11 kg, mostly in the base on its feet, 1 kg in each upright). The table is bare aluminum and rings:
+its two plate modes sit near the upper harmonics of the tooth-pass band (24,000 rpm with 3 flutes is
+1.2 kHz). A vise or fixture clamped across its middle stiffens and damps it; failing that, a
+constrained-layer damper on its underside between the blocks.
+
+Figures in `analysis/figs`: `frf_vox_sym10.png` (the frequency response at the tool) and
+`damped_vs_static.png` (where the two optimizations take the casting out).
+
 Figures in `analysis/figs` (and `renders/frame_base_underside.png`): `frame_34.6_upright.png` (base and
 uprights optimized together), `base_current.png` (the previous base), `base_final.png` (solid depth from the
 top in each column), `tradeoff.png` (base stiffness against base volume), and the animations `deflection.gif` (the frame under the cutting loads) and `modes.gif`
@@ -469,9 +596,9 @@ Rerun it in the `diycnc` conda env (`environment.yml`: numpy, scipy, matplotlib,
 scikit-sparse 0.5 or later, and pyvista and imageio for the animations; older scikit-sparse falls back to a much slower solver):
 
 ```sh
-/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/voxelize.py   # -> analysis/vox_current.*
-conda env create -f environment.yml                 # once
+conda env create -f environment.yml                 # once (and build cadrust into it, see environment.yml)
 conda activate diycnc
+python analysis/voxelize.py                         # -> analysis/vox_current.*
 cd analysis
 python baseline.py                                  # stiffness and each module's share (about 1 min)
 FEA_VOX=vox_previous sh run_sweep.sh                # base optimizations (about 10 min each)
@@ -486,6 +613,17 @@ python modal.py                                     # natural frequencies (about
 python animate.py                                   # figs/deflection.gif and figs/modes.gif (about 4 min)
 python topopt_upright.py 0.9 [web]                  # upright holes (about 10 min each)
 python compare_uprights.py to_upright_*.npz         # their stiffness and frequencies
+python lean_study.py lean0: lean0:beam1238+cols18    # thinner steel and smaller castings, at the tool (3 min each)
+python topopt_gantry.py 0.7 [voxels]                # uprights and beam optimized together, 70 % kept
+# half the frame: voxelize with VOX_SYM=1 (and VOX_H=7.5 or 5 for finer voxels), then FEA_SYM=1 on any of these
+FEA_SYM=1 FEA_VOX=vox_sym5 python whatif.py
+python tet_check.py                                 # one upright: tetrahedra against the voxels (10 min)
+# vibration: each mode's damping and the resonant peaks at the tool (vibration and damping, below)
+FEA_SYM=1 FEA_VOX=vox_sym10 python damping.py --frf # modes, loss factors, worst peaks, figs/frf_<voxels>.png (1 min)
+FEA_SYM=1 FEA_VOX=vox_sym10 python steel_opt.py     # stage 1: the steel's stock sizes, stiffness against cost (40 min)
+FEA_SYM=1 python topopt_damped.py 0.85 sym10        # stage 2: the castings placed for damping (30 min; --check, --resume)
+python plot_gantry.py --ref sym10 gantry_0.7_sym10 damped_0.85_sym10   # where each one takes casting out
+python ring_check.py [legs columns girders table carriage "x rails"]    # local modes of the steel, tetrahedra (15 min)
 ```
 
 `vox_current` is whatever `build_cnc.py` draws now (`voxelize.py` rewrites it);
@@ -493,11 +631,21 @@ python compare_uprights.py to_upright_*.npz         # their stiffness and freque
 "previous design" numbers above use. `VOX_P='{"beam_d": 160}' VOX_OUT=analysis/vox_test` on the
 voxelize command tries a parameter change.
 
+**Half the frame** (`FEA_SYM=1`, `vfe.py`). The frame is symmetric about x = 0, so the voxels can be mirrored
+from their right half (voxelize with `VOX_SYM=1`, which centers the grid). Every solve then becomes two of
+about half the size: one for the fields symmetric about the center plane (the plane doesn't move in x) and
+one for the antisymmetric ones (it doesn't move in y or z), each the whole stiffness projected onto them.
+That is exact for any load: on the same voxels it matches the whole-frame solve to 1e-13, stiffness and
+modes. The supports have to be symmetric too, so the front right leg is held in x as well as the front
+left; the first mode comes out 4 % higher than with the one leg. At 7.5 mm it is about 30 % faster and
+peaks at 5.2 GB instead of 6.2 GB. Most of the memory is the assembly bookkeeping, not the factor, but
+it is enough to make 5 mm fit in 16 GB (about 14 minutes a solve).
+
 ## Chips and coolant
 
 | Stage | What | Where in the model |
 |---|---|---|
-| Collect | Sealed base top; gutters between the uprights and the enclosure walls fall toward a trough across the front, which falls to one outlet | `BaseFrontCasting`, `BaseRearCasting` |
+| Collect | Sealed base top. Inside the side gutters the whole floor falls forward to the trough, about 1:130 (1 mm below the datum at the back, 6 mm at the trough), so coolant under and behind the table runs off instead of pooling; the rail bars, screw-support pads, upright feet and inserts stand proud of it on 6 mm lands (checked in the frame study: about 1 % off the frame's stiffness, under 0.1 % at the tool, 1.5 kg less casting). Gutters between the uprights and the enclosure walls fall toward a trough across the front, which falls to one outlet | `BaseFrontCasting`, `BaseRearCasting`, `base_top_formers` |
 | Protect | Roll-up 0.1 mm stainless strips in front of and behind the table, a spiral spring cover on the rear screw, a drip shield over the beam rails, brush seals where the motors pass through the panels | `WayCovers`, `CoverRoller*`, `DripShield`, `BrushSeal*` |
 | Drain | The trough drops straight down through the front wall to a cast-in brass nipple over the chip basket | `DrainOutlet` |
 | Clean | Slide-out sump under the base, between four 6 in steel legs cast in near the corners: a full-size 4 in stainless steam-table pan (~13 L, ~9 L working). Front to back: 1/3-size perforated pan as the chip basket, a bag of bar magnets, printed underflow baffle, 100 um screen in a printed frame, pump | `Sump*`, `Leg*` |
@@ -540,7 +688,7 @@ GUI won't redraw them; re-run the macro to see them elsewhere.
 ## Cost
 
 **Checked against real listings (2026-10-09/22, the sourcing list).** The list is in three parts:
-**1, the frame** (castings, steel, rails, ballscrews) about **$1,561**, plus about **$183 of add-later
+**1, the frame** (castings, steel, rails, ballscrews) about **$1,576**, plus about **$183 of add-later
 niceties** (way covers, screw cover, stainless sump and chip basket, grease gun) that bolt on whenever
 they're bought; **2, the electronics and spindle** about **$418** plus the spindle the builder picks
 ($250-375 for a 1.5 kW 110 V kit, $430-600 for the 2.2 kW kit with a 120 V step-up VFD); **3, the
@@ -615,7 +763,9 @@ heavier steel was buying little (the lean frame, above):
 | Before | $1,611 |
 | The beam bars 1/2 and 3/8 in instead of 3/4 in, the 2x2 tube 1/8 in wall instead of 3/16 in (about 20 lb) | -$50 |
 | A little more epoxy granite where the steel was (0.2 kg of epoxy, inside the 3 gal kit) | 0 |
-| **Now** | **$1,561** |
+| Lean steel | $1,561 |
+| Dry sand in every tube and vinyl sleeves on the rods that come out (2026-10-29) | +$15 |
+| **Now** | **$1,576** |
 
 What would take it further, all on the builder's side of the list: a steel-yard quote for the cut list
 (about $300 at $2/lb, against the $375 estimate), AliExpress motor brackets (about $29 less, 2-4 weeks;

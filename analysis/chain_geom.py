@@ -1,6 +1,6 @@
-"""Geometry of the moving parts for the drive-chain stiffness study (run with freecadcmd).
+"""Geometry of the moving parts for the drive-chain stiffness study.
 
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd analysis/chain_geom.py
+    python analysis/chain_geom.py
 
 Builds the model from build_cnc.py and writes analysis/chain_geom.json: the bounding boxes of the
 plates (and what they're made of), the carriage's angles, the risers, rails, blocks, nuts and screw
@@ -10,8 +10,6 @@ voxelize.py; CHAIN_OUT names the output.
 
 import json
 import os
-
-import FreeCAD as App  # noqa: F401
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CAD = os.path.join(os.path.dirname(HERE), 'model')

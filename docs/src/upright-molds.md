@@ -66,18 +66,18 @@ and check them on a board offcut. Press or slide the nuts in before the pieces g
 
 | File | Qty | g | Time each |
 |---|---|---|---|
-| `upright/kit-back-bracket.stl` | 4 | 21 | 27m 31s |
+| `upright/kit-back-bracket.stl` | 4 | 21 | 27m 30s |
 | `upright/kit-front-bracket.stl` | 4 | 32 | 38m 26s |
-| `upright/kit-saddle-flat.stl` | 4 | 18 | 22m 40s |
-| `upright/filler-toe-filler.stl` | 1 | 26 | 1h 30m 59s |
-| `upright/former-foot-gasket-groove-part1of4.stl` | 1 | 3 | 17m 31s |
+| `upright/kit-saddle-flat.stl` | 4 | 18 | 22m 38s |
+| `upright/filler-toe-filler.stl` | 1 | 26 | 1h 30m 52s |
+| `upright/former-foot-gasket-groove-part1of4.stl` | 1 | 3 | 17m 28s |
 | `upright/former-foot-gasket-groove-part2of4.stl` | 1 | 1 | 8m 54s |
 | `upright/former-foot-gasket-groove-part3of4.stl` | 1 | 1 | 8m 54s |
 | `upright/former-foot-gasket-groove-part4of4.stl` | 1 | 3 | 17m 27s |
-| `upright/plug-toe-plug.stl` | 1 | 13 | 1h 3m 42s |
-| `upright/kit-plate-spacer.stl` | 2 | 8 | 20m 9s |
-| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 33s |
-| `tools/kit-screed-shoe.stl` | 2 | 20 | 44m 42s |
+| `upright/plug-toe-plug.stl` | 1 | 13 | 1h 3m 44s |
+| `upright/kit-plate-spacer.stl` | 2 | 8 | 20m 11s |
+| `tools/kit-pour-gauge.stl` | 2 | 9 | 24m 41s |
+| `tools/kit-screed-shoe.stl` | 2 | 20 | 47m 40s |
 | `upright/cast-in-column-ring-l1a.stl` | 8 | 109 | 49m 49s |
 
 ## 4. Cut the boards
@@ -194,8 +194,8 @@ edge on the floor). The templates carry the same holes at full size.
 
 | # | x | y | Hole | For |
 |---|---|---|---|---|
-| 1 | 77 | 54 | 4.5 | toe-filler |
-| 2 | 119 | 72 | 4.5 | toe-filler |
+| 1 | 121 | 54 | 4.5 | toe-filler |
+| 2 | 80 | 72 | 4.5 | toe-filler |
 | 3 | 131 | 129 | 3.2 | foot-gasket-groove |
 | 4 | 21 | 170 | 4.5 | cleat |
 | 5 | 177 | 170 | 4.5 | cleat |

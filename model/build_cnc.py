@@ -6,13 +6,13 @@ geometry (rails, blocks, ballscrew hardware, motors, spindle) lives in parts.py.
 The frame is five bolt-together epoxy-granite castings with cast-in steel, and the
 enclosure bolts to the base top.
 
-Headless (collision check, docs/5-design/report.txt and the print/ STLs):
-    /Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd model/build_cnc.py
-In the FreeCAD GUI (also rebuilds the colored DIYCNC.FCStd and DIYCNC.step):
-    Macro > Macros... > select model/build_cnc.py > Execute
+Runs on cad-rust-app's OpenCascade kernel through its Python bindings (cadrust), in the diycnc env:
+    python model/build_cnc.py                    # collision check, report.txt, print/ STLs, guides
+    CNC_STEP=1 python model/build_cnc.py         # ... and model/DIYCNC.step
+    CNC_DOC=1 python model/build_cnc.py          # ... and model/DIYCNC.json, a cad-rust-app document
+    CNC_SNAPSHOTS=1 python model/build_cnc.py    # ... and the STEP, the document and renders/
 
-Edit P below and re-run. In the GUI, jog the axes and open the door by editing
-posX / posY / posZ / doorAngle in the Params spreadsheet.
+Edit P below and re-run.
 
 Coordinates: X right, Y toward the back (operator stands at -Y), Z up.
 Origin is on the casting's underside directly below the spindle axis with all
@@ -30,9 +30,8 @@ import re
 import subprocess
 import sys
 
-import FreeCAD as App
-import Part
-from FreeCAD import Matrix, Vector
+from cadrust._core import common_volumes
+from cadrust.freecad import App, Matrix, Part, Vector
 
 try:
     HERE = os.path.dirname(os.path.abspath(__file__))
@@ -147,6 +146,15 @@ P = dict(
     # Legs: 6 in pieces of the 1-1/2 in tube cast into the base corners, with threaded inserts
     # for the leveling feet. The coolant sump slides in underneath, between them.
     leg_len=152.4, leg_embed=35.0,
+    # Every tube is filled with dry sand (pool filter sand, packed by tapping), which damps the walls far
+    # better than steel alone (loss factor about 0.15) and costs no epoxy. The rods that come out (the draw
+    # rods and tie rods) run in vinyl sleeves, 1/2 in ID x 5/8 in OD, so the sand stays put when they're
+    # pulled. The base tubes are filled through a 3/8 in hole once the grid is bolted up; the upright
+    # columns and legs from their open end before it's closed.
+    tube_sand=1.6,       # kg/L, dry sand tapped down
+    sleeve=(12.7, 15.9), # vinyl tube on the rods, ID and OD
+    fill_hole=9.6,       # 3/8 in drill, taped over before the pour
+    leg_cup=28.0,        # printed cup over each leg's foot insert: room for the leveling foot's stud
     # Leg centers in from the base's sides, front and back: tucked in behind the bevel, which shortens the
     # span the base bends over between its feet (modes +11-31 %). The rear pair stays clear of the pedestal bars.
     leg_inset=(65.0, 65.0, 62.0),
@@ -199,6 +207,10 @@ P = dict(
     # (about 1.4 kg more PETG). foam_formers also cuts the coolant trough and gutters and the beam's back
     # edge from foam; they shape faces you see and drain coolant, so they print by default.
     foam=True, foam_formers=False,
+    # The base top inside the side gutters falls forward to the coolant trough: this deep below the datum at the
+    # back and at the trough (mm), about 1:130. The datum faces (rail bars, screw-support pads, upright feet,
+    # inserts) stay at full height with floor_land of casting round them.
+    floor_fall=(1.0, 6.0), floor_land=6.0,
 
     eg_density=2.35,     # kg/L, epoxy granite
     # Aluminum oxide grit for the coarse sand in the beam and uprights, same volume (analysis/alumina.py):
@@ -216,6 +228,8 @@ P = dict(
 LOOKS = {
     'granite': ((0.50, 0.50, 0.52), 0.05, 0),     # as cast: gray aggregate and whiting in clear epoxy
     'steeltube': ((0.36, 0.38, 0.42), 0.35, 0),
+    'sand': ((0.82, 0.74, 0.56), 0.00, 0),         # dry sand in the tubes
+    'vinyl': ((0.80, 0.88, 0.90), 0.30, 0),        # sleeves on the rods that come out
     'alu': ((0.80, 0.81, 0.84), 0.45, 0),
     'steel': ((0.62, 0.64, 0.68), 0.70, 0),
     'black': ((0.13, 0.13, 0.14), 0.30, 0),
@@ -483,13 +497,30 @@ class Steel:
     """Collects cast-in steel and joint hardware for the mass total."""
 
     def __init__(self, m):
-        self.m, self.volume = m, 0.0
+        self.m, self.volume, self.sand, self.sleeve_mm = m, 0.0, 0.0, 0.0
 
     def add(self, name, container, shape, look='steeltube'):
         self.m.add(name, 'frame', shape, look, container=container)
         self.m.structure.add(name)
         if look != 'printed':
             self.volume += shape.Volume
+
+    def fill(self, name, container, inside, axis, c1, c2, a0, a1, sleeve=False, cut=()):
+        """Dry sand in a tube: `inside` (the tube's bore) less a vinyl sleeve along the tube's axis at (c1, c2)
+        from a0 to a1, if the rod there comes out, and less anything else that passes through (`cut`)."""
+        if sleeve:
+            ri, ro = P['sleeve'][0] / 2, P['sleeve'][1] / 2
+            outer = axis_cyl(axis, c1, c2, ro, a0, a1)
+            self.m.add(name + 'Sleeve', 'frame', outer.cut(axis_cyl(axis, c1, c2, ri, a0 - 1, a1 + 1)), 'vinyl',
+                       container=container)
+            self.sleeve_mm += a1 - a0
+            inside = inside.cut(outer)
+        bb = inside.BoundBox
+        cut = [c for c in cut if c.BoundBox.intersect(bb)]
+        if cut:
+            inside = inside.cut(cut)
+        self.m.add(name + 'Sand', 'frame', inside, 'sand', container=container)
+        self.sand += inside.Volume
 
     def plug(self, name, container, axis, c1, c2, size, a0, a1, closed):
         """Printed end plug that keeps the casting out of a hollow tube: a cup, closed (2 mm) at the
@@ -500,6 +531,25 @@ class Steel:
         b0, b1 = (a0 + 2.0, a1 + 1.0) if closed == a0 else (a0 - 1.0, a1 - 2.0)
         cup = env.cut(parts.square_tube(axis, c1, c2, s - 4.8, 0.1, b0, b1)[0])
         self.add(name, container, seam_relief(cup, axis, c1, c2, s, a0, a1), 'printed')
+
+
+def axis_cyl(axis, c1, c2, r, a0, a1):
+    """A cylinder along `axis` from a0 to a1, centered on (c1, c2) in the other two axes (x, y, z order)."""
+    i = sk.AXES[axis]
+    o, n = [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]
+    for k, c in zip([k for k in range(3) if k != i], (c1, c2)):
+        o[k] = c
+    o[i], n[i] = a0, 1.0
+    return Part.makeCylinder(r, a1 - a0, Vector(*o), Vector(*n))
+
+
+def fill_spot(tube, face, margin=25.0):
+    """Where along a tube to drill its fill hole in `face`: the middle of the longest run clear of the
+    holes already through that face, at least `margin` from either end."""
+    marks = sorted([margin] + [a for f, a, *_ in tube.holes if f == face and margin < a < tube.a1 - tube.a0 - margin]
+                   + [tube.a1 - tube.a0 - margin])
+    a, b = max(zip(marks, marks[1:]), key=lambda ab: ab[1] - ab[0])
+    return tube.a0 + (a + b) / 2
 
 
 def seam_relief(shape, axis, c1, c2, s, a0, a1):
@@ -646,6 +696,25 @@ def base_top_formers(g, front):
         gutter = Part.Face(Part.makePolygon([Vector(xa, y, z) for y, z in side] + [Vector(xa, *side[0])])).extrude(
             Vector(gx1 - gx0, 0, 0))
         out.append((f"gutter-{'R' if sx > 0 else 'L'}", gutter.common(parts.box(-half, half, ya, yb, 0, base_top + 1))))
+    # Graded floor between the side gutters: falls forward to the trough so coolant doesn't pool under or behind
+    # the table; the datums stand proud of it with a land round each.
+    fy0, fy1 = gy0 + 33.0, g['base_y1'] - 28.0
+    d0, d1 = P['floor_fall']
+    prof = [(fy0, base_top + 1), (fy0, base_top - d1), (fy1, base_top - d0), (fy1, base_top + 1)]
+    floor = Part.Face(Part.makePolygon([Vector(-gx0, y, z) for y, z in prof] + [Vector(-gx0, *prof[0])])).extrude(
+        Vector(2 * gx0, 0, 0))
+    land, zk = P['floor_land'], (base_top - 20.0, base_top + 2.0)
+    keep = []
+    for sx in (-1, 1):
+        rx = sx * g['rail_x']
+        keep.append(parts.box(rx - 19.05 - land, rx + 19.05 + land, gy0, g['base_y1'], *zk))       # rail bars
+        keep.append(parts.box(*sorted((sx * (g['inner'] - land), sx * half)),                        # upright feet
+                              g['up_front'] - land, g['up_back_foot'] + land, *zk))
+    keep.append(parts.box(-45.0 - land, 45.0 + land, g['y_bf'] - 20.4 - land, g['y_bf'] + 30.4 + land, *zk))  # BF pad
+    keep.append(parts.box(-45.0 - land, 45.0 + land, g['y_bk'] - 60.0, g['base_y1'], *zk))                  # BK pad
+    keep += [Part.makeCylinder(4.0 + land, zk[1] - zk[0], Vector(bx, by, zk[0]))
+             for bx, by in g['rail_bolts'] + g['cover_inserts'] + g['ychain_inserts']]                     # inserts
+    out.append(('floor', floor.cut(keep).common(parts.box(-half, half, ya, yb, 0, base_top + 1))))
     if front:
         ox = g['outlet'][0]
         trough = [(-gx1, base_top + 1), (-gx1, base_top - 15), (ox, base_top - 25), (gx1, base_top - 18), (gx1, base_top + 1)]
@@ -795,6 +864,19 @@ def base_grid(m, g, st, front, cont, tag):
                         tube.drill('z', vx, us + c_, 7.0, 'relief under a support screw', both=False)
             tapped.append(pad)
     m.half_rods = rods_
+    # dry sand in every tube, poured in through a 3/8 in hole in the face that's up when the grid lies upside
+    # down in the mold (the pedestal columns' outer side, by the bottom bar); the draw and tie rods in sleeves
+    for p_ in parts_:
+        if not isinstance(p_, sk.Tube):
+            continue
+        if p_.axis == 'z':                           # pedestal column, a tie rod up its middle
+            p_.drill('x', T38 + 12.0, p_.c2, P['fill_hole'], 'sand fill (tape over)', both=False)
+            sleeve = True
+        else:                                        # girder (its draw rod) or cross tube (its rod stays in)
+            p_.drill('z', fill_spot(p_, 'z'), p_.c1, P['fill_hole'], 'sand fill (tape over)', both=False)
+            sleeve = p_.name.startswith('BaseGirder')
+        bore = p_._box(p_.w1 - 2 * p_.wall, p_.w2 - 2 * p_.wall, 0.0, 0.5 * p_.wall)
+        st.fill(p_.name, cont, bore, p_.axis, p_.c1, p_.c2, p_.a0, p_.a1, sleeve, rods_)
     for p_ in parts_:
         st.add(p_.name, cont, p_.shape)
         if isinstance(p_, sk.Plate):
@@ -857,7 +939,8 @@ def base_half(m, g, st, front):
         nipple = parts.hexagon(22.0, 0.0, 12.0, ox, oy).fuse(Part.makeCylinder(8.0, 20.0, Vector(ox, oy, -20.0)))
         st.add('DrainOutlet', cont, nipple.cut(Part.makeCylinder(5.5, 34.0, Vector(ox, oy, -21.0))), 'brass')
 
-    # legs cast in near the corners, behind the bevel (hollow, plugged at the top)
+    # legs cast in near the corners, behind the bevel: filled with dry sand and plugged at the top, a printed
+    # cup over the foot's insert keeping the sand off the leveling foot's stud
     leg_s, leg_w = P['post_tube']
     for i, (lx, ly) in enumerate(g['legs']):
         if ya <= ly < yb:
@@ -870,6 +953,11 @@ def base_half(m, g, st, front):
             # threaded insert for the leveling foot
             insert = parts.square_tube('z', lx, ly, leg_s - 2 * leg_w - 1.2, 0.1, z1 - P['leg_len'], z1 - P['leg_len'] + 22)[0]
             st.add(name + 'Insert', cont, insert.cut(Part.makeCylinder(6.0, 30, Vector(lx, ly, z1 - P['leg_len'] - 5))), 'steel')
+            zc = z1 - P['leg_len'] + 22.0
+            st.plug(name + 'FootCup', cont, 'z', lx, ly, leg_s - 2 * leg_w, zc, zc + P['leg_cup'], zc + P['leg_cup'])
+            outer, wall = parts.square_tube('z', lx, ly, leg_s, leg_w, zc + P['leg_cup'], z1 - 10.0)
+            bore = outer.cut(wall)
+            st.fill(name, cont, bore, 'z', lx, ly, zc + P['leg_cup'], z1 - 10.0)
 
     # cast-in M5 inserts for the enclosure's bottom rails and the way-cover rollers
     for i, (bx, by) in enumerate(g['rail_bolts'] + g['cover_inserts'] + g['ychain_inserts']):
@@ -980,6 +1068,11 @@ def upright(m, g, st, sx):
             ring = parts.soften(ring, 3.0, parts.parallel((0, 0, 1)), chamfer=True)
             ring = seam_relief(ring.cut(Part.makeCylinder(6.6, 14, Vector(ux, cy, z0 - 1))), 'z', ux, cy, inner_s, z0, z0 + 12)
             st.add(f'ColumnRing{tag}{i + 1}{"ab"[k]}', cont, ring, 'printed')
+        # dry sand between the rings, the tie rod in a sleeve (filled before the top ring goes in)
+        z0, z1 = plate_bot - tl + 12.0, plate_bot - 12.0
+        outer, wall = parts.square_tube('z', ux, cy, P['frame_tube'][0], tw, z0, z1)
+        bore = outer.cut(wall)
+        st.fill(f'UprightColumn{tag}{i + 1}', cont, bore, 'z', ux, cy, z0, z1, sleeve=True)
     for rx, ry, pb in g['tie_rods']:
         foot.hole(sx * rx, ry, 14.3)
         if pb >= g['pocket_bot'] - 1:
@@ -1143,6 +1236,8 @@ def frame_modules(m, d):
     d['casting_vols'] = {k: v / 1e6 for k, v in vols.items()}
     d['casting_L'] = sum(vols.values()) / 1e6
     d['steel_kg'] = st.volume / 1e6 * 7.85
+    d['tube_sand_L'] = st.sand / 1e6
+    d['sleeve_m'] = st.sleeve_mm / 1000
     d['gasket_m'] = g['gasket_len'] / 1000
     plate_t = P['top_plate_t']
     tl = P['tube_len']
@@ -1153,7 +1248,11 @@ def frame_modules(m, d):
          f"4 x {inch(P['column_len'])} (upright columns; the base's short ones are in the cut list)", 'buy'),
         ('frame', 'Steel square tube 1-1/2 x 1-1/2 x 1/8 in (or 0.120 wall), bought at length',
          f"4 x {inch(P['leg_len'])} (legs)", 'buy'),
-        ('frame', 'Printed PETG: 8 column rings, 4 leg plugs, 2 gray pocket caps', '~60 g', 'PRINT'),
+        ('frame', 'Printed PETG: 8 column rings, 4 leg plugs, 4 leg foot cups, 2 gray pocket caps', '~75 g', 'PRINT'),
+        ('frame', 'Dry sand in every tube (pool filter sand, as in the mix)', f"{d['tube_sand_L']:.1f} L, "
+         f"{d['tube_sand_L'] * P['tube_sand']:.0f} kg", 'buy'),
+        ('frame', 'Vinyl tube 1/2 in ID x 5/8 in OD, sleeves on the draw and tie rods (cut to the tubes)',
+         f"{d['sleeve_m']:.1f} m", 'buy'),
         ('frame', '1/2-13 grade B7 fully threaded studs, bought at length (nothing sawn)',
          ', '.join(f"{2 * n_} x {inch(L)}" for L, n_ in sorted(collections.Counter(tie_rod_lengths(g)).items(),
                                                               reverse=True))
@@ -1454,7 +1553,7 @@ def mold_base(kit, m, g):
         cav = parts.box(-half, half, *((y0, ys) if front else (ys, y1)), 0, top)
         for name, shape in formers.items():
             shape = shape.common(cav)
-            if name.startswith('gutter') and 'trough' in formers:
+            if (name.startswith('gutter') or name == 'floor') and 'trough' in formers:
                 shape = shape.cut(formers['trough'])
             if P['foam_formers'] and name != 'motor-relief':
                 kit.add(folder, name, 'foam', shape, 1, foam_note(name, shape), show=[folder])
@@ -1609,6 +1708,9 @@ def foam_note(name, shape, poly=None):
     if name == 'trough':
         return (f'XPS {size}: {depth(0, bb.XMin + 0.5):.0f} mm deep at the left end, {depth(0, 0.0):.0f} mm at the drain '
                 f'(center), {depth(0, bb.XMax - 0.5):.0f} mm at the right, straight between. Push the drain liner into it.')
+    if name == 'floor':
+        return (f'XPS sheet {size}, sanded to a wedge: {P["floor_fall"][1]:.0f} mm thick at the front end, '
+                f'{P["floor_fall"][0]:.0f} mm at the back, with the land round each datum and insert cut out.')
     if name.startswith('back-edge'):
         return f'XPS {size}: a 40 mm quarter-round hollow, cut with a hot wire or sanded on a 80 mm tube; taped.'
     return f'XPS block {size}, outline as the pocket (chamfered corners); taped, with its printed post glued in.'
@@ -2095,7 +2197,7 @@ def build():
 # Enclosure
 # --------------------------------------------------------------------------
 def enclosure(m, d):
-    """2020 frame + polycarbonate panels bolted straight onto the base top, with a top-hinged door.
+    """2020 frame + polycarbonate panels bolted straight onto the base top, with a side-hinged door.
 
     The base is the floor: gutters run coolant to an outlet at the front. The X and Y motors
     stick out through panel cutouts so coolant stays off them (take them off before
@@ -2178,10 +2280,11 @@ def enclosure(m, d):
     bulk = parts.cyl_v(6.0, pc - 22, pc + 22, bx_, bz_).fuse([hex_y(17.0, bx_, pc - t - 5, 5.0, bz_), hex_y(17.0, bx_, pc + t, 5.0, bz_)])
     add('Bulkhead', bulk.cut(parts.cyl_v(3.5, pc - 30, pc + 30, bx_, bz_)), 'brass')
 
-    # Door: 2020 frame + panel in front of the frame, hinged along the top front edge.
-    # Its bottom laps over the base front face.
+    # Door: 2020 frame + panel in front of the frame, hinged on a vertical pin at its left edge, so it swings
+    # open sideways and stays where it's left (no struts to hold it up). The X motor sticks out on the right,
+    # so the door opens away from it. Its bottom laps over the base front face.
     door_y0 = y0o - E
-    hinge = Vector(0, door_y0 - 5.0, z1o + 5.0)   # pin just clear of the door's top front edge
+    hinge = Vector(x0o - 5.0, door_y0 - 5.0, z0)  # pin just outboard of the door's front left edge
     d['hinge'] = hinge
     dz0 = z0 - P['door_lap']
     dadd = lambda name, shape, look, **kw: m.add(name, 'door', shape, look, container='Door', **kw)
@@ -2192,16 +2295,18 @@ def enclosure(m, d):
     member('DoorStileR', (x1o - 10, dyc, dz0 + E), (0, 0, 1), (1, 0, 0), z1o - dz0 - 2 * E, dadd)
     dadd('DoorPanel', parts.box(x0o + E, x1o - E, dyc - t, dyc + t, dz0 + E, z1o - E), 'panel')
     m.cutlist.append(('DoorPanel', f'{x1o - x0o - 2 * E:.0f} x {z1o - dz0 - 2 * E:.0f} polycarbonate'))
-    hz = z0 + 60
-    handle = parts.cyl_u(7.0, -110, 110, door_y0 - 32, hz)
-    for x in (-95, 95):
-        handle = handle.fuse(parts.cyl_v(6.0, door_y0 - 32, door_y0, x, hz))
+    # a vertical pull near the free (right) edge, at mid height
+    hx, hz = x1o - 45.0, (dz0 + z1o) / 2
+    handle = Part.makeCylinder(7.0, 220.0, Vector(hx, door_y0 - 32, hz - 110), Vector(0, 0, 1))
+    for z in (-95, 95):
+        handle = handle.fuse(parts.cyl_v(6.0, door_y0 - 32, door_y0, hx, hz + z))
     dadd('DoorHandle', handle, 'steel')
-    for i, x in enumerate((x0o + 90, x1o - 90)):
-        barrel = parts.cyl_u(5.0, x - 20, x + 20, hinge.y, hinge.z)
-        leaf = parts.box(x - 20, x + 20, hinge.y, y0o + 18, z1o, z1o + 2)
+    # two butt hinges on the front left post: the fixed leaf on the post's side face, the other on the door
+    for i, z in enumerate((dz0 + 90.0, z1o - 90.0)):
+        barrel = Part.makeCylinder(5.0, 40.0, Vector(hinge.x, hinge.y, z - 20), Vector(0, 0, 1))
+        leaf = parts.box(x0o - 2, x0o, hinge.y, y0o + 18, z - 20, z + 20)
         add(f'Hinge{i + 1}', barrel.fuse(leaf), 'steel')
-        dadd(f'Hinge{i + 1}Leaf', parts.box(x - 20, x + 20, door_y0 - 3, door_y0, z1o - 45, z1o - 6), 'steel')
+        dadd(f'Hinge{i + 1}Leaf', parts.box(x0o, x0o + 40, door_y0 - 3, door_y0, z - 20, z + 20), 'steel')
 
 
 # --------------------------------------------------------------------------
@@ -2399,7 +2504,7 @@ def offset(group, x, y, z):
 def collisions(m, tol=1.0):
     hx, hy = P['travel_x'] / 2, P['travel_y'] / 2
     poses = list(itertools.product((-hx, 0.0, hx), (-hy, 0.0, hy), (-P['travel_z'], 0.0)))
-    hits = {}
+    hits, pairs = {}, []
     checked = [p for p in m.parts if not p['name'].startswith('SpindleFlutes') and not p['name'].startswith('SpindleShank')]
     for x, y, z in poses:
         home = (x, y, z) == (0.0, 0.0, 0.0)
@@ -2419,13 +2524,10 @@ def collisions(m, tol=1.0):
                 continue
             if not home and a['group'] not in MOVING and b['group'] not in MOVING:
                 continue
-            vol = 0.0
             for sa, ba in pa:
                 for sb, bb in pb:
                     if ba.intersect(bb):
-                        vol += sa.translated(oa).common(sb.translated(ob)).Volume
-            if vol > tol:
-                hits.setdefault((a['name'], b['name']), []).append(((x, y, z), vol))
+                        pairs.append(((a['name'], b['name']), (x, y, z), sa.translated(oa), sb.translated(ob)))
         # parts that change shape with the axes, against everything placed at this pose
         for dd in m.dynamic:
             shape = dd['fn'](x, y, z)
@@ -2435,9 +2537,17 @@ def collisions(m, tol=1.0):
             for p, off, pieces in placed:
                 if p['name'] in dd['touches'] or p['comp'] in dd['touches']:
                     continue
-                vol = sum(shape.common(s.translated(off)).Volume for s, bb in pieces if dbb.intersect(bb))
-                if vol > tol:
-                    hits.setdefault((dd['name'], p['name']), []).append(((x, y, z), vol))
+                pairs += [((dd['name'], p['name']), (x, y, z), shape, s.translated(off)) for s, bb in pieces
+                          if dbb.intersect(bb)]
+    # the shared volumes, on every core
+    vols = collections.defaultdict(float)
+    for (key, pose, _, _), v in zip(pairs, common_volumes([q[2]._s for q in pairs], [q[3]._s for q in pairs])):
+        if v < 0:
+            raise RuntimeError(f'collision check: the boolean failed for {key} at {pose}')
+        vols[key, pose] += v
+    for (key, pose), vol in vols.items():
+        if vol > tol:
+            hits.setdefault(key, []).append((pose, vol))
     return hits
 
 
@@ -2480,6 +2590,7 @@ def report(m, hits):
     ] + [f"  {k + ':':12s}                {v:5.1f} L  {kg[k]:5.1f} kg" + ('  (alumina grit)' if kg[k] != sand_kg[k] else '')
          for k, v in d['casting_vols'].items()] + [
         f"Cast-in steel + joint hardware: {d['steel_kg']:.1f} kg",
+        f"Dry sand in the tubes:        {d['tube_sand_L']:.1f} L  {d['tube_sand_L'] * P['tube_sand']:.1f} kg",
         f"Epoxy needed (~{P['eg_epoxy_frac'] * 100:.1f}% of the sand mix by mass): {sum(sand_kg.values()) * P['eg_epoxy_frac']:.1f} kg",
     ] + [f"Aluminum oxide grit, {name}: {sum(grit[name].values()):.1f} kg (beam + uprights)" for name, _, _ in P['alumina']] + [
         '',
@@ -2515,166 +2626,193 @@ def report(m, hits):
 
 
 # --------------------------------------------------------------------------
-# Document
+# Scene: containers, placements, STEP and renders
 # --------------------------------------------------------------------------
-def style(obj, look):
-    rgb, shine, transp = LOOKS[look]
-    vo = obj.ViewObject
-    try:
-        mat = App.Material()
-        mat.DiffuseColor = rgb
-        mat.AmbientColor = tuple(0.3 * c for c in rgb)
-        mat.SpecularColor = (shine * 0.6,) * 3
-        mat.Shininess = shine
-        vo.ShapeAppearance = (mat,)
-    except Exception:
-        vo.ShapeColor = rgb
-    vo.Transparency = transp
-    vo.LineColor = (0.12, 0.12, 0.12)
-    vo.LineWidth = 1.0
-    vo.Deviation = 0.1               # finer tessellation: smooth fillets and cylinders
-    vo.AngularDeflection = 8.0
-    vo.DisplayMode = 'Shaded' if look in SHADED else 'Flat Lines'
+# Every part sits in a container. These nest; the rest are at the top. The axes, the door, the exploded
+# view and the coolant sump move whole containers (see container_matrix).
+CONTAINER_PARENT = {'FrameBaseFront': 'Frame', 'FrameBaseRear': 'Frame', 'FrameUprightL': 'Frame',
+                    'FrameUprightR': 'Frame', 'FrameBeam': 'Frame', 'ZAxis': 'XCarriage', 'Door': 'Enclosure'}
+DEFAULT_CONTAINER = {'frame': 'Frame', 'table': 'TableAxis', 'xcar': 'XCarriage', 'zaxis': 'ZAxis', 'door': 'Door'}
+HOME = dict(x=0.0, y=0.0, z=0.0, door=0.0, explode=0.0, sump=0.0)
 
 
-def make_document(m, path):
-    name = 'DIYCNC'
-    if name in App.listDocuments():
-        App.closeDocument(name)
-    doc = App.newDocument(name)
-    if os.path.exists(path):
-        os.remove(path)  # avoid FreeCAD's .FCBak copies
-
-    sheet = doc.addObject('Spreadsheet::Sheet', 'Params')
-    for row, (alias, note) in enumerate((('posX', f"range {-P['travel_x'] / 2:.0f} .. {P['travel_x'] / 2:.0f} mm"),
-                                         ('posY', f"range {-P['travel_y'] / 2:.0f} .. {P['travel_y'] / 2:.0f} mm"),
-                                         ('posZ', f"range {-P['travel_z']:.0f} .. 0 mm"),
-                                         ('doorAngle', 'range 0 .. 100 deg'),
-                                         ('explode', 'frame exploded view, mm (0 = assembled)'),
-                                         ('sumpOut', 'coolant sump pulled out, mm (0 .. 450)')), start=1):
-        sheet.set(f'A{row}', alias)
-        sheet.set(f'B{row}', '0')
-        sheet.setAlias(f'B{row}', alias)
-        sheet.set(f'C{row}', note)
-
-    names = ['Frame', 'FrameBaseFront', 'FrameBaseRear', 'FrameUprightL', 'FrameUprightR', 'FrameBeam',
-             'TableAxis', 'XCarriage', 'ZAxis', 'Enclosure', 'Door']
-    names += sorted(({p['container'] for p in m.parts if p['container']} | {dd['container'] for dd in m.dynamic}) - set(names))
-    containers = {n: doc.addObject('App::Part', n) for n in names}
-    for n in ('FrameBaseFront', 'FrameBaseRear', 'FrameUprightL', 'FrameUprightR', 'FrameBeam'):
-        containers['Frame'].addObject(containers[n])
-    containers['XCarriage'].addObject(containers['ZAxis'])
-    # Exploded view: uprights lift and spread, the beam lifts twice as far.
-    for n, sx in (('FrameUprightL', -1), ('FrameUprightR', 1)):
-        containers[n].setExpression('.Placement.Base.z', 'Params.explode')
-        containers[n].setExpression('.Placement.Base.x', f'{sx * 0.5} * Params.explode')
-    containers['FrameBeam'].setExpression('.Placement.Base.z', '2 * Params.explode')
-    containers['FrameBaseFront'].setExpression('.Placement.Base.y', '-1.2 * Params.explode')
-    containers['Enclosure'].addObject(containers['Door'])
-    containers['CoolantSump'].setExpression('.Placement.Base.y', '-Params.sumpOut')
-    containers['TableAxis'].setExpression('.Placement.Base.y', 'Params.posY')
-    containers['XCarriage'].setExpression('.Placement.Base.x', 'Params.posX')
-    containers['ZAxis'].setExpression('.Placement.Base.z', 'Params.posZ')
-    h = m.dims['hinge']
-    containers['Door'].setExpression(
-        '.Placement', f'placement(vector(0; {h.y:.3f}; {h.z:.3f}); rotation(vector(-1; 0; 0); Params.doorAngle))')
-    default = {'frame': 'Frame', 'table': 'TableAxis', 'xcar': 'XCarriage', 'zaxis': 'ZAxis', 'door': 'Door'}
-
-    for p in m.parts:
-        obj = doc.addObject('Part::Feature', p['name'])
-        obj.Shape = p['shape'].translated(-h) if p['group'] == 'door' else p['shape']
-        containers[p['container'] or default[p['group']]].addObject(obj)
-        if App.GuiUp:
-            style(obj, p['look'])
-    # Way covers, chain and nozzle hose are drawn at the home pose; re-run the macro (or
-    # the snapshots) to redraw them elsewhere.
-    for dd in m.dynamic:
-        obj = doc.addObject('Part::Feature', dd['name'])
-        shape = dd['fn'](0.0, 0.0, 0.0)
-        obj.Shape = shape if shape is not None else Part.Shape()
-        containers[dd['container']].addObject(obj)
-        if App.GuiUp:
-            style(obj, dd['look'])
-    # The molds, hidden: boards and printed pieces, one group per casting step; shown in the build
-    # renders, left out of the STEP export.
-    mtop = doc.addObject('App::Part', 'Molds')
-    groups = {}
+def scene(m):
+    """Everything to draw: dicts (name, container, shape or fn(x, y, z), look). Molds go in one container per
+    casting step, under 'Molds'."""
+    objs = [dict(name=p['name'], container=p['container'] or DEFAULT_CONTAINER[p['group']], shape=p['shape'],
+                 look=p['look']) for p in m.parts]
+    objs += [dict(name=dd['name'], container=dd['container'], fn=dd['fn'], look=dd['look']) for dd in m.dynamic]
+    parent = dict(CONTAINER_PARENT)
     for key, cname in MOLD_GROUPS.items():
-        groups[key] = doc.addObject('App::Part', cname)
-        mtop.addObject(groups[key])
-
-    def show(key, label, shape, look):
-        obj = doc.addObject('Part::Feature', f"{MOLD_GROUPS[key]}_{label}".replace('-', '_').replace(' ', '_')
-                            .replace(',', '').replace('=', '').replace('.', '_'))
-        obj.Shape = shape
-        groups[key].addObject(obj)
-        if App.GuiUp:
-            style(obj, look)
+        parent[cname] = 'Molds'
     kit = getattr(m, 'mold_kit', None)
     for b in (kit.boards if kit else []):
         for key in b.show:
-            show(key, b.name, b.solid(), 'melamine')
+            objs.append(dict(name=f'{MOLD_GROUPS[key]}_{b.name}', container=MOLD_GROUPS[key], shape=b.solid(),
+                             look='melamine'))
     for r in getattr(m, 'molds', []):
         for i, (shape, keys) in enumerate(r['placed']):
             for key in keys:
-                show(key, f"{r['kind']}_{r['name']}_{i}", shape, 'foam' if r['kind'] == 'foam' else 'printed')
-    mtop.Visibility = False
-    doc.recompute()
-    doc.saveAs(path)
-    return doc
+                objs.append(dict(name=f"{MOLD_GROUPS[key]}_{r['kind']}_{r['name']}_{i}", container=MOLD_GROUPS[key],
+                                 shape=shape, look='foam' if r['kind'] == 'foam' else 'printed'))
+    return objs, parent
 
 
-def export_step(doc, path):
-    try:
-        import Import
-        tops = [o for o in doc.Objects if o.TypeId == 'App::Part' and o.getParentGeoFeatureGroup() is None
-                and o.Name != 'Molds']
-        Import.export(tops, path)
-    except Exception as exc:
-        print(f'STEP export failed: {exc}')
+def container_matrix(name, pose, m):
+    """A container's placement in its parent at a pose: dict(x, y, z, door (deg), explode, sump), all mm."""
+    e, mat = pose['explode'], Matrix()
+    if name in ('FrameUprightL', 'FrameUprightR'):
+        mat.move(Vector((-0.5 if name.endswith('L') else 0.5) * e, 0, e))   # uprights lift and spread
+    elif name == 'FrameBeam':
+        mat.move(Vector(0, 0, 2 * e))                                       # the beam lifts twice as far
+    elif name == 'FrameBaseFront':
+        mat.move(Vector(0, -1.2 * e, 0))
+    elif name == 'CoolantSump':
+        mat.move(Vector(0, -pose['sump'], 0))
+    elif name == 'TableAxis':
+        mat.move(Vector(0, pose['y'], 0))
+    elif name == 'XCarriage':
+        mat.move(Vector(pose['x'], 0, 0))
+    elif name == 'ZAxis':
+        mat.move(Vector(0, 0, pose['z']))
+    elif name == 'Door':                                        # swings open to the left about its vertical pin
+        h = m.dims['hinge']
+        mat = App.Rotation(Vector(0, 0, -1), pose['door']).toMatrix()
+        mat.move(h - mat.multVec(h))
+    return mat
 
 
-def zoom_to(view, objs):
-    """Aim the orthographic camera at the combined bounding box of objs (global placement)."""
-    from pivy import coin
-    bb = App.BoundBox()
+def placement(container, parent, pose, m):
+    mat = Matrix()
+    while container is not None:
+        mat = container_matrix(container, pose, m).multiply(mat)
+        container = parent.get(container)
+    return mat
+
+
+def export_step(m, path):
+    """The machine (molds left out) as one STEP: an assembly per container, every part named and colored."""
+    objs, parent = scene(m)
+    objs = [o for o in objs if not o['container'].startswith('Mold')]
+    tops = []
     for o in objs:
-        if o is not None:
-            s = o.Shape.copy()
-            s.Placement = o.getGlobalPlacement()
-            bb.add(s.BoundBox)
-    c = bb.Center
-    dv = view.getViewDirection()
-    cam = view.getCameraNode()
-    cam.position.setValue(coin.SbVec3f(c.x - dv.x * 3000, c.y - dv.y * 3000, c.z - dv.z * 3000))
-    cam.focalDistance.setValue(3000)
-    if hasattr(cam, 'height'):
-        cam.height.setValue(bb.DiagonalLength * 1.05)
+        c = o['container']
+        chain = []
+        while c is not None:
+            chain.append(c)
+            c = parent.get(c)
+        for c in reversed(chain):
+            if c not in tops:
+                tops.append(c)
+    index = {c: i for i, c in enumerate(tops)}
+    nodes = [(None, index[parent[c]] if c in parent else -1, c, None) for c in tops]
+    for o in objs:
+        shape = o['shape'] if 'shape' in o else o['fn'](0.0, 0.0, 0.0)
+        if shape is None or shape.isNull():
+            continue
+        nodes.append((shape._s, index[o['container']], o['name'], LOOKS[o['look']][0]))
+    from cadrust import _core
+    _core.write_step(nodes, path)
 
 
-def snapshots(doc, out_dir, m):
-    import FreeCADGui as Gui
-    view = Gui.ActiveDocument.ActiveView
-    view.setAnimationEnabled(False)
-    sheet = doc.getObject('Params')
-    enc, bench = doc.getObject('Enclosure'), doc.getObject('Workbench')
-    axes = [doc.getObject(n) for n in ('TableAxis', 'XCarriage', 'WayCovers', 'CableChain', 'CoolantLines')]
-    castings = [o for o in doc.Objects if o.Name.endswith('Casting')]
+APP = os.environ.get('CAD_APP', os.path.expanduser('~/dev/cad-rust-app/target/release/cad-rust-app'))
+# the containers that move, on mates to the one they ride on: (container, kind, on, axis point, axis, limits)
+MATES = [('TableAxis', 'slider', 'FrameBaseRear', (0, 0, 0), (0, 1, 0), (-P['travel_y'] / 2, P['travel_y'] / 2)),
+         ('XCarriage', 'slider', 'FrameBeam', (0, 0, 0), (1, 0, 0), (-P['travel_x'] / 2, P['travel_x'] / 2)),
+         ('ZAxis', 'slider', 'XCarriage', (0, 0, 0), (0, 0, 1), (-P['travel_z'], 0.0)),
+         ('CoolantSump', 'slider', 'FrameBaseRear', (0, 0, 0), (0, -1, 0), (0.0, 450.0))]
+
+
+def export_document(m, path):
+    """The machine as a cad-rust-app document (molds left out): a Part Studio per container holding its
+    parts, named and colored, and the DIYCNC assembly of them. The table, X carriage, Z axis and coolant sump
+    slide on slider mates within their travel and the door swings on a revolute mate, so drag them (or set
+    the mate offsets) in the app to jog the axes; the frame's explode steps pull the castings apart. Way
+    covers, the cable chain and the coolant hose are drawn at home."""
+    import json
+    import tempfile
+    from cadrust import _core
+    objs, parent = scene(m)
+    objs = [o for o in objs if not o['container'].startswith('Mold')]
+    containers = []
+    for o in objs:
+        if o['container'] not in containers:
+            containers.append(o['container'])
+    tmp = tempfile.mkdtemp()
+    steps = [dict(tool='new_document', args={})]
+    sub, solids_of = {}, {}
+    for c in containers:
+        shapes = []
+        for o in objs:
+            if o['container'] != c:
+                continue
+            shape = o['shape'] if 'shape' in o else o['fn'](0.0, 0.0, 0.0)
+            if shape is None or shape.isNull():
+                continue
+            for k, solid in enumerate(shape.Solids):
+                shapes.append((solid, o['name'] if k == 0 else f"{o['name']}_{k + 1}", LOOKS[o['look']][0]))
+        if not shapes:
+            continue
+        step = os.path.join(tmp, f'{c}.step')
+        _core.write_step([(Part.makeCompound([s for s, _, _ in shapes])._s, -1, c, None)], step)
+        if sub:
+            steps.append(dict(tool='new_part_studio', args=dict(name=c)))
+        steps.append(dict(tool='import_file', args=dict(path=step, name=c)))
+        steps.append(dict(tool='set_parts', args=dict(parts=[
+            dict(body=[1, i], name=n, color=[round(255 * v) for v in rgb]) for i, (_, n, rgb) in enumerate(shapes)])))
+        solids_of[c] = (len(sub), len(shapes))
+        sub[c] = len(sub)
+    # an assembly per container, all its parts fixed in place, then the machine of them
+    for c, ai in sub.items():
+        steps.append(dict(tool='create_assembly', args=dict(name=c)))
+        studio, n = solids_of[c]
+        for i in range(n):
+            steps.append(dict(tool='assembly_insert', args=dict(assembly=ai, studio=studio, body=[1, i], fixed=True)))
+    top = len(sub)
+    steps.append(dict(tool='create_assembly', args=dict(name='DIYCNC')))
+    inst = {}
+    for k, c in enumerate(sub):
+        moving = any(c == mc for mc, *_ in MATES) or c == 'Door'
+        steps.append(dict(tool='assembly_insert', args=dict(assembly=top, sub_assembly=sub[c], name=c, fixed=not moving)))
+        inst[c] = k + 1
+    for c, kind, on, o, ax, lim in MATES:
+        if c in inst and on in inst:
+            x = (0, 0, 1) if abs(ax[2]) < 0.9 else (1, 0, 0)
+            con = lambda i: {'instance': inst[i], 'origin': list(o), 'z': list(ax), 'x': list(x)}
+            steps.append(dict(tool='assembly_mate', args=dict(assembly=top, kind=kind, a=con(on), b=con(c), flip=True,
+                                                              limits=list(lim), name=f'{c} travel')))
+    if 'Door' in inst and 'Enclosure' in inst:
+        h = m.dims['hinge']
+        con = lambda i: {'instance': inst[i], 'origin': [h.x, h.y, h.z], 'z': [0, 0, -1], 'x': [1, 0, 0]}
+        steps.append(dict(tool='assembly_mate', args=dict(assembly=top, kind='revolute', a=con('Enclosure'), b=con('Door'),
+                                                          flip=True, limits=[0, 100], name='Door hinge')))
+    explode = [(['FrameUprightL'], [-0.5, 0, 1], 180 * math.sqrt(1.25)), (['FrameUprightR'], [0.5, 0, 1], 180 * math.sqrt(1.25)),
+               (['FrameBeam'], [0, 0, 1], 360), (['FrameBaseFront'], [0, -1, 0], 216)]
+    steps.append(dict(tool='assembly_explode', args=dict(assembly=top, steps=[
+        dict(instances=[inst[c] for c in cs if c in inst], direction=d, distance=dist) for cs, d, dist in explode])))
+    steps.append(dict(tool='save_document', args=dict(path=path)))
+    script = os.path.join(tmp, 'document.json')
+    json.dump(steps, open(script, 'w'))
+    r = subprocess.run([APP, 'run', script], capture_output=True, text=True)
+    errors = [ln for ln in r.stdout.splitlines() if '"error"' in ln]
+    if r.returncode or errors:
+        raise RuntimeError('cad-rust-app document: ' + ('; '.join(errors[:5]) or r.stderr[-2000:]))
+    doc = json.load(open(path))
+    doc['studios'][0]['name'] = next(iter(sub))         # the first Part Studio comes with the document
+    json.dump(doc, open(path, 'w'))
+
+
+def snapshots(m, out_dir):
+    from cadrust.view import Camera, Item, render
+    from PIL import Image
+    objs, parent = scene(m)
     hy = P['travel_y'] / 2
-
-    def rear_iso():
-        view.viewIsometric()
-        view.setCameraOrientation(App.Rotation(Vector(0, 0, 1), 180).multiply(view.getCameraOrientation()))
+    iso, front, right, rear_iso = Camera.iso, Camera.front, Camera.right_side, Camera.rear_iso
 
     def look(d, up=Vector(0, 0, 1)):
         """Camera looking along direction d (world), with `up` towards the top of the image."""
-        z = -Vector(*d).normalize()
-        x = up.cross(z).normalize()
-        y = z.cross(x)
-        view.setCameraOrientation(App.Rotation(App.Matrix(x.x, y.x, z.x, 0, x.y, y.y, z.y, 0,
-                                                          x.z, y.z, z.z, 0, 0, 0, 0, 1)))
+        return lambda: Camera.look(tuple(d), tuple(up))
 
-    iso, front, right = view.viewIsometric, view.viewFront, view.viewRight
     # name, (x, y, z), view, focus objects, options
     shots = (
         ('enclosure_open', (0, -hy, 0), iso, None, dict(enc=True, door=75)),
@@ -2688,21 +2826,21 @@ def snapshots(doc, out_dir, m):
         ('frame_xray', (0, 0, 0), iso, None, dict(mode='xray')),
         # Frame on its own: castings, cast-in steel, joint hardware
         ('frame_section_uprights', (0, 0, 0), iso, None, dict(mode='bare', section=('y', 'TieRodL1'))),
-        ('frame_base_underside', (0, 0, 0), lambda: look((0.35, 0.55, 1.0)), ('BaseFrontCasting', 'BaseRearCasting'),
+        ('frame_base_underside', (0, 0, 0), look((0.35, 0.55, 1.0)), ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
         # Build steps (renders/build/): cast-in steel, molds, frame assembly, axes
         ('build/01-steel-base-rear', (0, 0, 0), rear_iso, ('BaseRearCasting',),
          dict(mode='bare', only=('FrameBaseRear',), xray=True)),
-        ('build/02-mold-base-rear', (0, 0, 0), lambda: look((0.45, 0.6, 0.65), Vector(0, 0, -1)), ('BaseRearCasting',),
+        ('build/02-mold-base-rear', (0, 0, 0), look((0.45, 0.6, 0.65), Vector(0, 0, -1)), ('BaseRearCasting',),
          dict(mode='bare', only=('FrameBaseRear',), xray=True, molds=('MoldBaseRear',))),
         ('build/03-steel-base-front', (0, 0, 0), iso, ('BaseFrontCasting',),
          dict(mode='bare', only=('FrameBaseFront',), xray=True)),
-        ('build/04-mold-base-front', (0, 0, 0), lambda: look((0.45, 0.6, 0.65), Vector(0, 0, -1)),
+        ('build/04-mold-base-front', (0, 0, 0), look((0.45, 0.6, 0.65), Vector(0, 0, -1)),
          ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'), xray=True, molds=('MoldBaseFront',))),
-        ('build/05-mold-upright', (0, 0, 0), lambda: look((0.8, 0.55, -0.45)), ('UprightLCasting',),
+        ('build/05-mold-upright', (0, 0, 0), look((0.8, 0.55, -0.45)), ('UprightLCasting',),
          dict(mode='bare', only=('FrameUprightL',), xray=True, molds=('MoldUpright',))),
-        ('build/06-mold-beam', (0, 0, 0), lambda: look((0.4, -0.75, -0.5), Vector(0, 1, 0)), ('BeamCasting',),
+        ('build/06-mold-beam', (0, 0, 0), look((0.4, -0.75, -0.5), Vector(0, 1, 0)), ('BeamCasting',),
          dict(mode='bare', only=('FrameBeam',), xray=True, molds=('MoldBeam',))),
         ('build/07-frame-base', (0, 0, 0), iso, ('BaseFrontCasting', 'BaseRearCasting'),
          dict(mode='bare', only=('FrameBaseFront', 'FrameBaseRear'))),
@@ -2717,84 +2855,84 @@ def snapshots(doc, out_dir, m):
         ('build/12-axes-spindle', (0, 0, 0), iso, None, {}),
         ('build/13-enclosure-coolant', (0, 0, 0), iso, None, dict(enc=True, bench=True)),
     )
-    structure = [o for o in doc.Objects if o.TypeId == 'Part::Feature'
-                 and (o.Name in m.structure or o.Name.endswith('Casting'))]
-    gaskets = [o for o in structure if o.Name.startswith('Gasket')]
-    features = [o for o in doc.Objects if o.TypeId == 'Part::Feature']
-    tops = [o for o in doc.Objects if o.TypeId == 'App::Part' and o.getParentGeoFeatureGroup() is None]
-
-    def section(axis, through):
-        """Cut the visible structure at the plane through `through`'s center; keep the far side."""
-        c = doc.getObject(through).Shape.BoundBox.Center
-        big = 5000.0
-        keep = (parts.box(-big, big, c.y, big, -big, big) if axis == 'y'
-                else parts.box(c.x, big, -big, big, -big, big))
-        saved = {}
-        for o in structure:
-            if o.Visibility:
-                saved[o.Name] = o.Shape
-                o.Shape = o.Shape.common(keep)
-        return saved
+    structure = {o['name'] for o in objs if 'shape' in o and (o['name'] in m.structure or o['name'].endswith('Casting')
+                                                             or o['look'] in ('sand', 'vinyl'))}
+    axes = ('TableAxis', 'XCarriage', 'WayCovers', 'CableChain', 'CoolantLines')
+    W, H = 2800, 2100
     for name, (x, y, z), orient, focus, o in shots:
         mode = o.get('mode')
-        for alias, val in (('posX', x), ('posY', y), ('posZ', z), ('doorAngle', o.get('door', 0)),
-                           ('explode', o.get('explode', 180 if mode == 'exploded' else 0)), ('sumpOut', o.get('sump', 0))):
-            sheet.set(alias, str(val))
-        for dd in m.dynamic:
-            shape = dd['fn'](x, y, z)
-            doc.getObject(dd['name']).Shape = shape if shape is not None else Part.Shape()
-        doc.recompute()
-        enc.Visibility = o.get('enc', False)
-        bench.Visibility = o.get('bench', False)
-        for a in axes:
-            a.Visibility = mode is None
         bare = mode == 'bare'
         shown_molds = o.get('molds', ())
-        for t in tops:
-            if t not in (enc, bench) and t not in axes:
-                t.Visibility = (not bare and t.Name != 'Molds') or t.Name == 'Frame' or (
-                    t.Name == 'Molds' and bool(shown_molds))
-        for f in features:
-            parent = f.getParentGeoFeatureGroup()
-            in_only = 'only' not in o or (parent is not None and parent.Name in o['only'])
-            f.Visibility = (not bare or (f in structure and in_only)
-                            or ('extra' in o and f.Name.startswith(o['extra']) and in_only)
-                            or (parent is not None and parent.Name in shown_molds))
-        for c in castings:
-            style(c, 'granite_hi' if bare else 'granite')
-            c.ViewObject.Transparency = 75 if mode == 'xray' or o.get('xray') else 0
-        for gk in gaskets:
-            style(gk, 'gasket_hi' if bare else 'rubber')
-        saved = section(*o['section']) if 'section' in o else {}
-        orient()
-        view.fitAll()
+        pose = dict(x=x, y=y, z=z, door=o.get('door', 0), explode=o.get('explode', 180 if mode == 'exploded' else 0),
+                    sump=o.get('sump', 0))
+
+        def container_shown(c):
+            while c is not None:
+                top = parent.get(c) is None
+                if top:
+                    if c == 'Enclosure':
+                        return o.get('enc', False)
+                    if c == 'Workbench':
+                        return o.get('bench', False)
+                    if c in axes:
+                        return mode is None
+                    return (not bare and c != 'Molds') or c == 'Frame' or (c == 'Molds' and bool(shown_molds))
+                c = parent.get(c)
+            return True
+
+        def shown(ob):
+            c = ob['container']
+            in_only = 'only' not in o or c in o['only']
+            return ((not bare or (ob['name'] in structure and in_only)
+                     or ('extra' in o and ob['name'].startswith(o['extra']) and in_only)
+                     or c in shown_molds) and container_shown(c))
+
+        keep = None
+        if 'section' in o:
+            axis, through = o['section']
+            ob = next(ob for ob in objs if ob['name'] == through)
+            c = ob['shape'].BoundBox.Center
+            big = 5000.0
+            keep = (parts.box(-big, big, c.y, big, -big, big) if axis == 'y'
+                    else parts.box(c.x, big, -big, big, -big, big))
+        items, by_name = [], {}
+        for ob in objs:
+            if not shown(ob):
+                continue
+            shape = ob['shape'] if 'shape' in ob else ob['fn'](x, y, z)
+            if shape is None or shape.isNull():
+                continue
+            look_ = ob['look']
+            if ob['name'].endswith('Casting'):
+                look_ = 'granite_hi' if bare else 'granite'
+            elif ob['name'].startswith('Gasket') and ob['name'] in structure:
+                look_ = 'gasket_hi' if bare else 'rubber'
+            if keep is not None and ob['name'] in structure:
+                shape = shape.common(keep)
+                if shape.isNull() or shape.Volume < 1e-6:
+                    continue
+            rgb, shine, transp = LOOKS[look_]
+            if ob['name'].endswith('Casting') and (mode == 'xray' or o.get('xray')):
+                transp = 75
+            item = Item(shape, color=rgb, opacity=1.0 - transp / 100.0, shine=shine,
+                        placement=placement(ob['container'], parent, pose, m),
+                        edges=None if look_ in SHADED else (0.12, 0.12, 0.12), edge_width=2.0)
+            items.append(item)
+            by_name[ob['name']] = item
+        cam = orient()
+        cam.fit(union_box(it.bbox() for it in items), W / H)
         if focus:
-            zoom_to(view, [doc.getObject(n) for n in focus])
-        Gui.updateGui()
+            cam.fit_diagonal(union_box(by_name[n].bbox() for n in focus if n in by_name))
+        img = render(items, cam, W, H)
         path = os.path.join(out_dir, f'{name}.png')
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        view.saveImage(path, 2800, 2100, 'White')
-        subprocess.run(['sips', '-Z', '1400', path], capture_output=True)
-        for n, shp in saved.items():
-            doc.getObject(n).Shape = shp
+        img.resize((W // 2, H // 2), resample=Image.LANCZOS).save(path)     # drawn at twice the size
+        print(f'  {name}.png', flush=True)
 
-    for alias in ('posX', 'posY', 'posZ', 'doorAngle', 'explode', 'sumpOut'):
-        sheet.set(alias, '0')
-    for dd in m.dynamic:
-        shape = dd['fn'](0.0, 0.0, 0.0)
-        doc.getObject(dd['name']).Shape = shape if shape is not None else Part.Shape()
-    enc.Visibility = bench.Visibility = True
-    for a in axes + tops + features:
-        a.Visibility = True
-    doc.getObject('Molds').Visibility = False
-    for gk in gaskets:
-        style(gk, 'rubber')
-    for c in castings:
-        style(c, 'granite')
-    doc.recompute()
-    view.viewIsometric()
-    view.fitAll()
-    doc.save()
+
+def union_box(boxes):
+    from cadrust.view import union
+    return union(boxes)
 
 
 FOLDER_TITLES = [('tools', 'Tools: pour-line gauge and screed shoes'), ('base-box', 'Base mold kit (both halves)'), ('base-rear', 'Base, rear half (cast first)'),
@@ -3411,10 +3549,10 @@ def main():
     export_prints(m)
     write_steel_parts(m)
     write_mold_guide(m)
-    if not App.GuiUp:
-        return  # a headless save would drop the colors from DIYCNC.FCStd
-    doc = make_document(m, os.path.join(HERE, 'DIYCNC.FCStd'))
-    export_step(doc, os.path.join(HERE, 'DIYCNC.step'))
+    if os.environ.get('CNC_STEP') or os.environ.get('CNC_SNAPSHOTS'):
+        export_step(m, os.path.join(HERE, 'DIYCNC.step'))
+    if os.environ.get('CNC_DOC') or os.environ.get('CNC_SNAPSHOTS'):
+        export_document(m, os.path.join(HERE, 'DIYCNC.json'))
     if os.environ.get('CNC_SNAPSHOTS'):
         img = os.path.join(ROOT, 'renders')
         os.makedirs(img, exist_ok=True)
@@ -3424,14 +3562,7 @@ def main():
             for f in fn:
                 if f.endswith('.png'):
                     os.remove(os.path.join(dp, f))
-        snapshots(doc, img, m)
-        App.closeDocument(doc.Name)
-        for f in os.listdir(HERE):
-            if f.endswith('.FCBak'):
-                os.remove(os.path.join(HERE, f))
-        import FreeCADGui as Gui
-        from PySide import QtCore
-        QtCore.QTimer.singleShot(0, Gui.getMainWindow().close)
+        snapshots(m, img)
 
 
 main()

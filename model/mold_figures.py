@@ -1,8 +1,7 @@
 """Illustrations for the mold guide: assembly steps for each mold, cut-away details of the joints and
 fixings, and a gallery of the printed pieces, with labeled callouts. Writes renders/mold/.
 
-Run in the FreeCAD GUI (it needs the 3D view):
-    /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/mold_figures.py"
+    python model/mold_figures.py
 
 The base is cast upside down; its figures are turned over so the mold is shown the right way up
 (floor at the bottom), and the beam's are turned so its open back is up.
@@ -12,12 +11,9 @@ import math
 import os
 import re
 
-import FreeCAD as App
-import FreeCADGui as Gui
-import Part
-from FreeCAD import Vector
+from cadrust.freecad import Part, Vector
+from cadrust.view import Camera, Item, render
 from PIL import Image, ImageDraw, ImageFont
-from PySide import QtCore
 
 try:
     HERE = os.path.dirname(os.path.abspath(__file__))
@@ -26,14 +22,15 @@ except NameError:
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, 'renders', 'mold')
 FONT = '/System/Library/Fonts/HelveticaNeue.ttc'
-SCALE = 3                     # render at 3x the view, label, then shrink to 2/3
+VIEW = (400, 300)             # the figure's view; drawn at SCALE x, labeled, then shrunk to 2/3
+SCALE = 3
 INK, LEADER, BOX = (29, 36, 34), (90, 102, 98), (255, 255, 255)
 
 src = open(os.path.join(HERE, 'build_cnc.py')).read()
 src = src[:src.rstrip().rfind('\nmain()')]
 NS = {'__file__': os.path.join(HERE, 'build_cnc.py'), '__name__': 'build_cnc'}
 exec(compile(src, 'build_cnc.py', 'exec'), NS)
-P, parts, molds, style = NS['P'], NS['parts'], NS['molds'], NS['style']
+P, parts, molds = NS['P'], NS['parts'], NS['molds']
 NS['LOOKS'].update({'hw': ((0.55, 0.57, 0.60), 0.7, 0), 'pour': ((0.30, 0.60, 0.95), 0.2, 60),
                     'ghost': ((0.80, 0.81, 0.82), 0.05, 0), 'melamine_s': ((0.93, 0.93, 0.90), 0.3, 25),
                     'board_new': ((0.97, 0.85, 0.58), 0.2, 30), 'board_old': ((0.91, 0.91, 0.89), 0.2, 72),
@@ -94,49 +91,36 @@ def nut(c, axis, af=7.0, t=3.2, d=4.0):
 # ------------------------------------------------------------------------------------------
 class Scene:
     def __init__(self):
-        self.doc = App.newDocument('MoldFigures')
-        self.view = Gui.ActiveDocument.ActiveView
-        self.view.setAnimationEnabled(False)
-        self.n = 0
+        self.items = []
+        self.cam = None
 
     def clear(self):
-        for o in list(self.doc.Objects):
-            self.doc.removeObject(o.Name)
-        self.n = 0
+        self.items = []
 
     def add(self, shape, look, transp=None, lines=True):
         if shape is None or shape.isNull():
             return None
-        self.n += 1
-        o = self.doc.addObject('Part::Feature', f'S{self.n}')
-        o.Shape = shape
-        style(o, look)
-        if transp is not None:
-            o.ViewObject.Transparency = transp
-        if not lines:
-            o.ViewObject.DisplayMode = 'Shaded'
-        return o
+        rgb, shine, tr = NS['LOOKS'][look]
+        tr = tr if transp is None else transp
+        edges = (0.12, 0.12, 0.12) if lines and look not in NS['SHADED'] else None
+        it = Item(shape, color=rgb, opacity=1.0 - tr / 100.0, shine=shine, edges=edges, edge_width=2.5)
+        self.items.append(it)
+        return it
 
     def camera(self, d, up=Vector(0, 0, 1), zoom=1.0):
-        z = -molds.unit(d)
-        x = molds.unit(up.cross(z))
-        y = z.cross(x)
-        self.view.setCameraOrientation(App.Rotation(App.Matrix(x.x, y.x, z.x, 0, x.y, y.y, z.y, 0,
-                                                               x.z, y.z, z.z, 0, 0, 0, 0, 1)))
-        self.doc.recompute()
-        self.view.fitAll()
-        Gui.updateGui()
+        self.cam = Camera.look(tuple(d), tuple(up))
 
     def shoot(self, name, labels=(), arrows=()):
         """labels: [(point, text)]; arrows: [(from point, to point)] drawn in 2D."""
-        w, h = self.view.getSize()
-        W, H = w * SCALE, h * SCALE
+        W, H = VIEW[0] * SCALE, VIEW[1] * SCALE
         path = os.path.join(OUT, name + '.png')
-        self.view.saveImage(path, W, H, 'White')
-        im = Image.open(path).convert('RGB')
+        os.makedirs(OUT, exist_ok=True)
+        cam = self.cam
+        cam.fit_diagonal(NS['union_box'](it.bbox() for it in self.items), margin=1.0)   # the whole scene, as fitAll
+        im = render(self.items, cam, 2 * W, 2 * H).resize((W, H), Image.LANCZOS)
         dr = ImageDraw.Draw(im)
         font = ImageFont.truetype(FONT, 62)
-        proj = lambda p: (lambda q: (q[0] * SCALE, H - q[1] * SCALE))(self.view.getPointOnScreen(p))
+        proj = lambda p: tuple(c / 2 for c in cam.project(p))
         for a, b in arrows:
             (x0, y0), (x1, y1) = proj(a), proj(b)
             dr.line([(x0, y0), (x1, y1)], fill=(200, 90, 20), width=7)
@@ -800,8 +784,6 @@ def main():
         gallery(sc, 'gallery-pieces', rest)
     except Exception as e:
         print('gallery failed:', e)
-    App.closeDocument(sc.doc.Name)
 
 
 main()
-QtCore.QTimer.singleShot(0, Gui.getMainWindow().close)

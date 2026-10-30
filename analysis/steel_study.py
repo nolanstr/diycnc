@@ -2,7 +2,7 @@
 the voxels they fill) or taken out (their voxels filled with epoxy granite). Plain sand unless
 FEA_GRIT says otherwise.
 
-    VOX_PARTS=1 VOX_SKIP=TieRod,DrawRod,CrossRod VOX_OUT=analysis/vox_grit freecadcmd analysis/voxelize.py
+    VOX_PARTS=1 VOX_SKIP=TieRod,DrawRod,CrossRod VOX_OUT=analysis/vox_grit python analysis/voxelize.py
     FEA_VOX=vox_grit python steel_study.py                      # every variant (about 4 min each)
     FEA_VOX=vox_grit python steel_study.py beam34+cols316       # parts combined with +
 

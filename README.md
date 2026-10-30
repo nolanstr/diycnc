@@ -3,7 +3,7 @@
 A fixed-gantry desktop mill for cutting steel, sized like the Shariff DMC2 Mini:
 180 x 300 x 140 mm travel, five bolt-together castings (steel skeletons of stock flat bar and tube, cast into epoxy granite), HGR15 rails,
 ballscrews on all axes, a 2.2 kW water-cooled spindle, flood coolant and a full enclosure.
-Everything is modeled in FreeCAD from one Python script.
+Everything is modeled from one Python script on [cad-rust-app](https://github.com/JonasMerrell/cad-rust-app)'s OpenCascade kernel.
 
 ![The machine](renders/machine_iso.png)
 
@@ -46,7 +46,7 @@ The Markdown sources are in `docs/src/`.
 
 | Folder | Contents |
 |---|---|
-| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `molds.py` (printed mold pieces, their bolts, pins and pegs, and STL export), `moldbox.py` (the mold boards, brackets and hole maps), `mold_figures.py` (the mold guide's illustrations; run it in the FreeCAD GUI), `slice_prints.py` (slices `print/` in Bambu Studio for real filament figures), and the generated `DIYCNC.FCStd` and `DIYCNC.step` (rebuilt locally, not kept in the repo) |
+| `model/` | `build_cnc.py` (the whole machine; every dimension is in `P` at the top), `parts.py` (components from catalog drawings), `molds.py` (printed mold pieces, their bolts, pins and pegs, and STL export), `moldbox.py` (the mold boards, brackets and hole maps), `mold_figures.py` (the mold guide's illustrations), `slice_prints.py` (slices `print/` in Bambu Studio for real filament figures), and the generated `DIYCNC.step` (rebuilt locally, not kept in the repo) |
 | `print/` | STL files for every printed part, one folder per casting plus `machine/`, and `manifest.csv` |
 | `renders/` | Images of the machine and its parts; `renders/build/` has the build-step pictures |
 | `docs/` | The PDFs above, the report and the sourcing CSV; sources and generators in `docs/src/` |
@@ -54,17 +54,25 @@ The Markdown sources are in `docs/src/`.
 
 ## Rebuilding
 
-FreeCAD 1.1 is the only requirement for the model.
+Everything runs in the `diycnc` conda env, with cad-rust-app's Python bindings built into it
+(`environment.yml` says how). The model needs no FreeCAD and no window.
 
 ```sh
-# collision check, docs/5-design/report.txt, the print/ STLs and the Markdown in docs/src/
-/Applications/FreeCAD.app/Contents/Resources/bin/freecadcmd model/build_cnc.py
+conda activate diycnc
 
-# everything above plus renders/ and model/DIYCNC.FCStd and DIYCNC.step (not kept in the repo; opens and closes a FreeCAD window)
-CNC_SNAPSHOTS=1 /Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/build_cnc.py"
+# collision check, docs/5-design/report.txt, the print/ STLs and the Markdown in docs/src/ (about a minute)
+python model/build_cnc.py
+
+# everything above plus renders/, model/DIYCNC.step (named, colored parts in an assembly per container) and
+# model/DIYCNC.json, the cad-rust-app document (neither kept in the repo). CNC_STEP=1 or CNC_DOC=1 writes
+# just the STEP or the document
+CNC_SNAPSHOTS=1 python model/build_cnc.py
+
+# model/DIYCNC.html, the machine as an interactive page for a web browser (not kept in the repo)
+python model/web_export.py
 
 # the mold guide's illustrations (renders/mold/), and real filament figures from Bambu Studio
-/Applications/FreeCAD.app/Contents/MacOS/FreeCAD "$PWD/model/mold_figures.py"
+python model/mold_figures.py
 python3 model/slice_prints.py
 
 # the sourcing list, then the PDFs (needs Python with the markdown package and Google Chrome); it also makes
@@ -73,11 +81,22 @@ python3 docs/src/make_sourcing.py
 python3 docs/src/make_pdfs.py
 ```
 
-In the FreeCAD file, edit `posX`, `posY`, `posZ` and `doorAngle` in the `Params` sheet to jog the
-axes and open the door, `explode` to pull the frame apart and `sumpOut` to slide the coolant sump
-out. The printed mold pieces are in the hidden `Molds` group.
+Open `model/DIYCNC.html` in a browser to see how the machine works. You can jog X, Y and Z within their
+travel with the sliders, by dragging the table, carriage or spindle, or with the arrow keys, and the ball screws
+turn as you do. The way covers, cable chain and coolant loop follow the axes, and the tool tip reads out its
+position on the work in machine coordinates and traces its path. A demo program faces, pockets and drills a
+block on the table. You can also ghost the castings to see the steel inside, cut a section, explode the frame
+and click any part for its size and mass. The page loads three.js from a CDN, so it needs an internet
+connection.
 
-The stiffness and vibration studies run in the `diycnc` conda env (`conda env create -f environment.yml`,
-then `conda activate diycnc`): numpy, scipy, matplotlib, scikit-sparse 0.5 or later, and pyvista for the animations
-(`analysis/animate.py`). `analysis/chain.py` carries the stiffness on through the plates, rail blocks and
-ballscrews to the tool (run `freecadcmd analysis/chain_geom.py` first for their geometry). See the design notes.
+Open `model/DIYCNC.json` in cad-rust-app and drag the table, X carriage, Z axis, door or coolant sump in the
+DIYCNC assembly to jog them: they ride on slider and revolute mates limited to their travel. Its exploded view
+pulls the castings apart. Each container is a Part Studio and an assembly of its parts. The renders move the
+same containers in `container_matrix` (`build_cnc.py`); the shot list in `snapshots` sets them per image.
+
+The stiffness and vibration studies use numpy, scipy, matplotlib, scikit-sparse 0.5 or later, and pyvista for
+the animations (`analysis/animate.py`). The damping studies (`analysis/damping.py`, `steel_opt.py`,
+`topopt_damped.py`, `ring_check.py`) judge the frame by its resonant peaks at the tool, not only its static
+stiffness: the steel sized from stock first, then the castings placed for damping, then each steel member checked
+for ringing with cad-rust-app's tetrahedra. `analysis/chain.py` carries the stiffness on through the plates, rail blocks and
+ballscrews to the tool (run `python analysis/chain_geom.py` first for their geometry). See the design notes.

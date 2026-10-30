@@ -25,20 +25,20 @@ to be decided before the pour.
 
 | Part | Section | Priced |
 |---|---|---|
-| 1 | Castings and hardware | $1,294.11 |
+| 1 | Castings and hardware | $1,309.11 |
 | 1 | Rails, screws and mechanics | $247.14 |
 | 1 | First chips | $20.00 |
 | 1 | Add later (niceties), not in the frame total | $183.09 |
 | 2 | Motors and drivers | $232.12 |
 | 2 | Controller and wiring | $186.19 |
-| 3 | Enclosure and flood coolant | $537.99 |
+| 3 | Enclosure and flood coolant | $499.23 |
 
 | Part | About |
 |---|---|
-| **1. Frame** | **$1,561.25** + $183.09 of niceties, added later |
+| **1. Frame** | **$1,576.25** + $183.09 of niceties, added later |
 | **2. Electronics + spindle** | **$418.31** + spindle: $250-375 (1.5 kW 110 V kit) or $430-600 (2.2 kW + 120 V step-up VFD) |
-| **3. Enclosure + flood coolant** | **$537.99** + 1 unpriced (Flood coolant pump): about $650-700 |
-| **Total** | **about $2.88-3.28k**, plus the niceties |
+| **3. Enclosure + flood coolant** | **$499.23** + 1 unpriced (Flood coolant pump): about $650-700 |
+| **Total** | **about $2.89-3.29k**, plus the niceties |
 
 Shipping and tax are extra (Raka ships free over $100). The whiting and Bolt Depot ship heavy or separately;
 buying the whiting and the steel locally saves most of it. Steel-yard and remnant prices are
@@ -60,7 +60,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 |---|---|---|---|---|---|---|
 | Epoxy | ~10.5 kg low-viscosity laminating epoxy (8.5 % mix), plus ~10 % waste | 1 (3 gal) | [Raka Standard 2:1 Epoxy Laminating Kit: 127 Thin resin + 606 Slow hardener, 3 gal (not Amazon)](https://www.raka.com/collections/epoxy-kits/products/standard-epoxy-kits-1) | $172.99 | $172.99 | About 12.5 kg, $13.8/kg; free shipping (Raka: orders over $100). Cast the test bars first; if the mix needs more than 8.5 %, add the 1.5 qt kit ($32.99). Alt: US Composites 635, 4 gal $245. Avoid deep-pour casting resins and 1:1 tabletop epoxies. |
 | Fines | Whiting (calcium carbonate) 325 mesh, ~11 kg | 1 (50 lb) | [Clayworks Supplies calcium carbonate whiting, 50 lb, pickup (4625 Falls Rd, Baltimore; not Amazon)](https://clayworkssupplies.com/product/calcium-carbonate-whiting/) | $17.00 | $17.00 | Call first (410-235-5998) to check it is 325 mesh. Shipped alt: Clay-King, $0.84/lb plus heavy shipping. No crystalline silica (check the SDS), so a basic N95 is enough. Avoid garden lime and talc. |
-| Aggregate | ~96 kg: fine sand 17, coarse sand 32, pea gravel 23, 3/8 in gravel 24 kg, plus test bars | ~7 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$9/bag | $62.00 | Buy locally. Wash and dry fully. The same plain mix in every casting. |
+| Aggregate | ~107 kg: fine sand 17, coarse sand 32, pea gravel 23, 3/8 in gravel 24 kg, plus test bars; and 11 kg more pool filter sand, dry, to fill the tubes | ~8 bags | [Pool filter sand + Quikrete all-purpose sand + Vigoro pea gravel + 3/8 in stone (Home Depot)](https://www.homedepot.com/p/Vigoro-0-5-cu-ft-Bagged-Pea-Gravel-Pebble-Landscape-Rock-54255/202523000) | ~$9/bag | $71.00 | Buy locally. Wash and dry fully. The same plain mix in every casting. |
 | (opt) Alumina grit, coarse | Brown fused aluminum oxide #16 (12-20 is fine), ~19 kg (18.1 net): the coarse sand in the beam and uprights | 1 (50 lb) | [IMS Blasting brown aluminum oxide, 50 lb (pick 16 grit)](https://www.imsblasting.com/product-page/aluminum-oxide-50-lbs) | $109.99 | $109.99 | Not recommended: it adds about 8 % to the frame, but the frame is only 2-5 % of the deflection at the tool, so under 0.5 % there. Decided before the pour if at all (it is cast in). Free shipping. Alt: NT Ruddock or Precision Finishing, about $80 + freight; Kleen Blast AO5016 $90 + shipping. |
 | (opt) Alumina grit, fine | Black aluminum oxide 70 grit, ~10 kg (9.3 net): the fine sand in the beam and uprights | 1 (25 lb) | [Central Pneumatic black aluminum oxide 70 grit, 25 lb (Harbor Freight, item 56704)](https://www.harborfreight.com/search?q=aluminum%20oxide%20blast%20media) | $39.99 | $39.99 | Upgrade on top of the #16, decided before the pour: about +5 % more. Without it, the fine sand stays sand (in the aggregate row). |
 | Mold board | 3/4 in white melamine (a true 0.750 in), about 2.2 m2 of boards: cut list and layout in the mold guide | 1 (4 x 8 ft) | [Veranda melamine white particleboard panel, 3/4 in x 4 ft x 8 ft (Home Depot, model 461877)](https://www.homedepot.com/p/Veranda-3-4-in-x-4-ft-x-8-ft-Melamine-White-Particleboard-Panel-461877/100070209) | $43.98 | $43.98 | One sheet: one upright mold casts both uprights, and the bridges and struts come out of the offcuts (three-stage cut in the mold guide). Have the store rip the long strips. Measure the thickness: the printed saddles and brackets are drawn for 19.05 mm (mold_board in the model). |
@@ -81,6 +81,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Nuts and washers | 1/2-13 nuts x32, 1/2 in SAE washers x32, 3/8 grade 8 washers x8 | 5 packs | [Everbilt packs (Home Depot)](https://www.homedepot.com/p/204284519) | ~$28 | $28.00 | Nuts 15-pack $4.89; 1/2 washers 25-pack $9.75; 3/8 washers 25-pack $3.84 |
 | Dowel pins | 3/8 x 1-1/4 in (6) and 3/8 x 1 in (4, base split) | 2 (10-packs) | [Steel dowel pins (Zoro)](https://www.zoro.com/i/G410073219/) | ~$12 | $11.58 | They only locate the castings |
 | Feet | 1/2-13 x 2 in hex bolt + jam nut + rubber pad, per leg | 4 | Hardware store bolts + rubber anti-vibration pads | ~$12 | $12.00 | The bolt screws into the nut in each leg end; turn it to level, lock with the jam nut. Leveling mounts (S&W NYL B24, $9.49 each) if you prefer. |
+| Rod sleeves | Clear vinyl tube 1/2 in ID x 5/8 in OD, 2.5 m: over the draw and tie rods inside the sand-filled tubes | 1 (10 ft) | Clear vinyl tubing 1/2 in ID x 5/8 in OD, by the foot (hardware store) | ~$6 | $6.00 | Cut to each tube's inside length. The rods come out later and the sand stays put. |
 | O-ring cord | NBR 3 mm, 2.5 m | 1 (3 m) | [uxcell nitrile round strip 3 mm x 3 m](https://www.amazon.com/dp/B0CNKM7L8B) | $6.56 | $6.56 |  |
 | Cord splice glue | Cyanoacrylate | 1 | [Loctite 406, 20 g](https://www.amazon.com/dp/B07H2YGBTJ) | $9.86 | $9.86 |  |
 | M5 cast-in inserts | 19: the enclosure (11), the way-cover rollers (4), the beam cable-chain mount (2) and the Y cable chain (2). Nothing structural threads into the epoxy granite | 1 (30) | [uxcell knurled brass M5 x 16 mm](https://www.amazon.com/dp/B07R7LL1SG) | $11.08 | $11.08 | Screw each to the mold floor (wall) with a greased screw so it ends up flush. Cast them in even if the covers come later. |
@@ -94,7 +95,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Foam tape | Double-sided carpet tape + packing tape | 1 each | Hardware store | ~$10 | $10.00 |  |
 | Drain nipple | 1/2 NPT brass | 1 (2-pack) | [Legines brass barb 1/2 NPT x 5/8](https://www.amazon.com/dp/B077DMKGLB) | $10.99 | $10.99 | Cast into the base, pointing down into the sump. +$7.59 shipping; a hardware-store 1/2 NPT brass nipple works too. |
 
-**Priced subtotal: $1,294.11**
+**Priced subtotal: $1,309.11**
 
 ## Part 1 - Frame: rails, screws and mechanics
 
@@ -189,7 +190,6 @@ the tube, risers and aluminum) also cost more than the sources here.
 | T-nuts | M5 drop-in, 100 | 1 | [POLISI3D 100 M5 drop-in T-nuts](https://www.amazon.com/dp/B07TSM9XN7) | $7.65 | $7.65 |  |
 | Button-head screws | M5 x 10, 100 | 1 | [uxcell M5x10 button head, 100](https://www.amazon.com/dp/B01AXUT6VA) | $13.99 | $13.99 |  |
 | Hinges + handle | 2020, 6 mm slot | 1 kit | [KOOTANS 2020 hinge and handle kit](https://www.amazon.com/dp/B07NQ5WHW9) | $14.59 | $14.59 | M4 or M5 not stated |
-| Gas struts | 2x ~50 N, 200 mm | 1 pair | [SBOTTON 200 mm gas struts, 50 N](https://www.amazon.com/dp/B0B2S4LNN2) | $38.76 | $38.76 | Check force against the door weight |
 | Door catch | Magnetic | 1 (4-pack) | [Onarway cabinet magnets](https://www.amazon.com/dp/B07WQY14JR) | $13.99 | $13.99 |  |
 | (opt) Door interlock | 2NC key switch | 1 | [CZ-93B safety switch](https://www.amazon.com/dp/B0D8Y4WK66) | $22.13 | $22.13 | Wire into the E-stop or feed-hold loop |
 | Panel trim | U-strip for 3 mm panels | 1 | [BLCCLOY 2020 panel U-strip, 25x 420 mm](https://www.amazon.com/dp/B0FXWQ9941) | $17.99 | $17.99 | 10.5 m; just short of every edge |
@@ -205,7 +205,7 @@ the tube, risers and aluminum) also cost more than the sources here.
 | Push-to-connect fittings | 8 mm x 1/4 NPT | 1 (10) | [Qjaiune push fittings](https://www.amazon.com/dp/B098QMJHWP) | $7.49 | $7.49 | One at the pump outlet, so the return line unplugs and the sump slides out |
 | Coolant concentrate | Semi-synthetic, 1 gal | 1 | [Fusion Cool 2240](https://www.amazon.com/dp/B09LSL9JS7) | $52.95 | $52.95 | Mix 5-10 %. Sold out when checked on 2026-10-22: any semi-synthetic for steel will do. |
 
-**Priced subtotal: $537.99** + 1 unpriced: Flood coolant pump
+**Priced subtotal: $499.23** + 1 unpriced: Flood coolant pump
 
 ## Already owned
 

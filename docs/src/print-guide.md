@@ -5,7 +5,7 @@ Every printed part for the molds, the castings and the machine, cut to fit a Bam
 casting, with the list in `print/manifest.csv`. They are written by `model/build_cnc.py` on every run.
 How the molds go together is in the mold guide.
 
-**117 prints, 1.80 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
+**142 prints, 2.21 kg of PETG** (two 1 kg rolls). The filament figures are sliced in Bambu Studio (A1 mini, 0.4 mm nozzle, 0.2 mm layers, PETG) with the settings below, by `model/slice_prints.py`.
 
 ## Settings
 
@@ -69,7 +69,7 @@ Folder `print/base-box/`, about 270 g.
 
 ## Base, rear half (cast first)
 
-Folder `print/base-rear/`, about 502 g.
+Folder `print/base-rear/`, about 664 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -79,6 +79,15 @@ Folder `print/base-rear/`, about 502 g.
 | `former-gutter-R-part1of3.stl` | Former (removable) | 1 | 15 x 124 x 12 | 8 | Bolts to the floor from underneath (the base is cast top face down). |
 | `former-gutter-R-part2of3.stl` | Former (removable) | 1 | 15 x 124 x 10 | 8 |  |
 | `former-gutter-R-part3of3.stl` | Former (removable) | 1 | 15 x 120 x 9 | 7 |  |
+| `former-floor-part1of9.stl` | Former (removable) | 1 | 55 x 117 x 10 | 14 | Bolts to the floor from underneath (the base is cast top face down). |
+| `former-floor-part2of9.stl` | Former (removable) | 1 | 130 x 117 x 10 | 31 |  |
+| `former-floor-part3of9.stl` | Former (removable) | 1 | 55 x 117 x 10 | 13 |  |
+| `former-floor-part4of9.stl` | Former (removable) | 1 | 55 x 117 x 9 | 13 |  |
+| `former-floor-part5of9.stl` | Former (removable) | 1 | 130 x 117 x 9 | 29 |  |
+| `former-floor-part6of9.stl` | Former (removable) | 1 | 55 x 117 x 9 | 13 |  |
+| `former-floor-part7of9.stl` | Former (removable) | 1 | 55 x 117 x 8 | 11 |  |
+| `former-floor-part8of9.stl` | Former (removable) | 1 | 130 x 117 x 8 | 11 |  |
+| `former-floor-part9of9.stl` | Former (removable) | 1 | 55 x 117 x 8 | 11 |  |
 | `filler-corner-L.stl` | Filler (removable) | 1 | 45 x 45 x 110 | 29 | Rounded corner; bolts to the floor and both walls. |
 | `filler-bevel-L-part1of2.stl` | Filler (removable) | 1 | 64 x 171 x 38 | 50 | The bevel along the lower edge: at the pour line, bolted to the side wall. Or, instead of printing the strips: rip a 2x3 corner to corner on a table saw and screw the halves to the wall from outside (#8 x 1-1/4 in, every 150 mm). |
 | `filler-bevel-L-part2of2.stl` | Filler (removable) | 1 | 64 x 167 x 38 | 50 |  |
@@ -100,10 +109,11 @@ Folder `print/base-rear/`, about 502 g.
 | `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 20 | 5 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 20 | 5 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `cast-in-leg-rear-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
+| `cast-in-leg-rear-l-foot-cup.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 28 | 18 | Cast in, stays. |
 
 ## Base, front half
 
-Folder `print/base-front/`, about 590 g.
+Folder `print/base-front/`, about 836 g.
 
 | File | What | Qty | Size (mm) | g (all) | Notes |
 |---|---|---|---|---|---|
@@ -111,6 +121,18 @@ Folder `print/base-front/`, about 590 g.
 | `former-gutter-L-part2of2.stl` | Former (removable) | 1 | 15 x 145 x 13 | 10 |  |
 | `former-gutter-R-part1of2.stl` | Former (removable) | 1 | 15 x 149 x 15 | 11 | Bolts to the floor from underneath (the base is cast top face down). |
 | `former-gutter-R-part2of2.stl` | Former (removable) | 1 | 15 x 145 x 13 | 10 |  |
+| `former-floor-part1of12.stl` | Former (removable) | 1 | 128 x 145 x 12 | 44 | Bolts to the floor from underneath (the base is cast top face down). |
+| `former-floor-part2of12.stl` | Former (removable) | 1 | 128 x 145 x 11 | 23 |  |
+| `former-floor-part3of12.stl` | Former (removable) | 1 | 13 x 145 x 12 | 5 |  |
+| `former-floor-part4of12.stl` | Former (removable) | 1 | 13 x 145 x 11 | 5 |  |
+| `former-floor-part5of12.stl` | Former (removable) | 1 | 65 x 145 x 12 | 16 |  |
+| `former-floor-part6of12.stl` | Former (removable) | 1 | 65 x 145 x 11 | 21 |  |
+| `former-floor-part7of12.stl` | Former (removable) | 1 | 65 x 145 x 12 | 16 |  |
+| `former-floor-part8of12.stl` | Former (removable) | 1 | 65 x 145 x 11 | 21 |  |
+| `former-floor-part9of12.stl` | Former (removable) | 1 | 13 x 145 x 12 | 5 |  |
+| `former-floor-part10of12.stl` | Former (removable) | 1 | 13 x 145 x 11 | 5 |  |
+| `former-floor-part11of12.stl` | Former (removable) | 1 | 128 x 145 x 12 | 44 |  |
+| `former-floor-part12of12.stl` | Former (removable) | 1 | 128 x 145 x 11 | 23 |  |
 | `former-trough-part1of5.stl` | Former (removable) | 1 | 112 x 35 x 19 | 19 | Bolts to the floor from underneath (the base is cast top face down). |
 | `former-trough-part2of5.stl` | Former (removable) | 1 | 112 x 35 x 23 | 22 |  |
 | `former-trough-part3of5.stl` | Former (removable) | 1 | 112 x 38 x 33 | 24 |  |
@@ -132,6 +154,7 @@ Folder `print/base-front/`, about 590 g.
 | `plug-draw-pocket-L.stl` | Plug (removable) | 1 | 32 x 32 x 56 | 12 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `plug-draw-pocket-R.stl` | Plug (removable) | 1 | 32 x 32 x 56 | 12 | Forms a draw-rod nut pocket down to the girder's end plate; bolts to the wall. |
 | `cast-in-leg-front-l-plug.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 10 | 8 | Cast in, stays. |
+| `cast-in-leg-front-l-foot-cup.stl` | Cast-in part (stays in) | 2 | 31 x 31 x 28 | 18 | Cast in, stays. |
 
 ## Uprights (one mold, cast twice: cast-in parts are for both)
 

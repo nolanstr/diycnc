@@ -62,8 +62,20 @@ def mass_matrix(mesh, vox, eg, st):
 
 
 def modes(mesh, E, M, k=6):
-    """Lowest k natural frequencies (Hz) and mode shapes."""
+    """Lowest k natural frequencies (Hz) and mode shapes (with FEA_SYM, the lowest k of the symmetric and
+    the antisymmetric modes together)."""
     K = mesh.assemble(E)
+    if mesh.sym:
+        out = []
+        for key, T in mesh.T.items():
+            Kr = (T.T @ K @ T).tocsc()
+            fac = mesh.factored(key, Kr)
+            op = LinearOperator(Kr.shape, matvec=lambda v, fac=fac: fac.solve(v), dtype=float)
+            lam, q = eigsh(Kr, k=k, M=(T.T @ M @ T).tocsc(), sigma=0.0, which='LM', OPinv=op)
+            out += [(lam[i], T @ q[:, i]) for i in range(k)]
+        out.sort(key=lambda t: t[0])
+        lam = np.array([t[0] for t in out[:k]])
+        return np.sqrt(np.abs(lam)) / (2 * np.pi), np.column_stack([t[1] for t in out[:k]])
     fac = CholeskyFactor(K)
     fac.factorize(K)
     op = LinearOperator(K.shape, matvec=lambda v: fac.solve(v), dtype=float)

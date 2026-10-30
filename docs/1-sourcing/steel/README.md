@@ -44,10 +44,10 @@ All stock mild steel (A36 / A500), nothing custom: buy it cut to length (Metal S
 | Beam back plate | Flat bar 3/8 x 5 in | 508 mm (20 in) | 1 | 3 x 13/32 in |
 | X carriage plate | Flat bar 5/8 x 6 in | 407 mm (16-1/16 in) | 1 | - |
 | Z plate | Flat bar 5/8 x 6 in | 300 mm (11-13/16 in) | 1 | - |
-| Girder rear | Rectangular tube 2 x 3 x 1/8 in | 340 mm (13-3/8 in) | 2 | 6 x 17/64 in, 3 x 1/4 in; 4 x 9/16 in |
-| Girder front | Rectangular tube 2 x 3 x 1/8 in | 269 mm (10-5/8 in) | 2 | 6 x 17/64 in, 2 x 1/4 in; 3 x 9/16 in |
-| Cross split | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 2 | - |
-| Cross BF front | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 1 | 2 x 17/64 in, 2 x 9/32 in |
-| Cross BK rear | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 1 | 2 x 17/64 in, 2 x 9/32 in |
-| Cross ped | Square tube 1-1/2 x 1-1/2 x 1/8 in | 75 mm (2-15/16 in) | 6 | - |
-| Pedestal column | Square tube 2 x 2 x 1/8 in | 91 mm (3-9/16 in) | 6 | 1 x 9/16 in |
+| Girder rear | Rectangular tube 2 x 3 x 1/8 in | 340 mm (13-3/8 in) | 2 | 6 x 17/64 in, 3 x 1/4 in, 1 x 3/8 in; 4 x 9/16 in |
+| Girder front | Rectangular tube 2 x 3 x 1/8 in | 269 mm (10-5/8 in) | 2 | 6 x 17/64 in, 2 x 1/4 in, 1 x 3/8 in; 3 x 9/16 in |
+| Cross split | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 2 | 1 x 3/8 in |
+| Cross BF front | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 1 | 2 x 17/64 in, 2 x 9/32 in, 1 x 3/8 in |
+| Cross BK rear | Square tube 1-1/2 x 1-1/2 x 1/8 in | 129 mm (5-1/16 in) | 1 | 2 x 17/64 in, 2 x 9/32 in, 1 x 3/8 in |
+| Cross ped | Square tube 1-1/2 x 1-1/2 x 1/8 in | 75 mm (2-15/16 in) | 6 | 1 x 3/8 in |
+| Pedestal column | Square tube 2 x 2 x 1/8 in | 91 mm (3-9/16 in) | 6 | 1 x 9/16 in, 1 x 3/8 in |
